@@ -2,7 +2,9 @@
   <ul>
     {% for post in site.posts %}
       <li>
-        {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
+        <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a> 
+        <br>
+        <span style="text-align: justify">{{ post.date | date: site.theme_config.date_format }} </span>
       </li>
     {% endfor %}
   </ul>
