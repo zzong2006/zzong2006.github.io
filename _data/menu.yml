@@ -11,6 +11,7 @@ entries:
         url: https://github.com/zzong2006
       - title: 'have interest in the big data, machine learning, and deep learning'
         url: false
+        
   - title: thoughts
     post_list: true
     url: false
