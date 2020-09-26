@@ -1,0 +1,35 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: info
+    url: false
+    entries:
+      - title: 'contact: zzong2006@yonsei.ac.kr'
+        url: false
+      - title: github
+        url: https://github.com/zzong2006
+      - title: 'have interest in the big data, machine learning, and deep learning'
+        url: false
+  - title: thoughts
+    post_list: true
+    url: false
+    entries: false
+  
+
+
+  - title: another list
+    url: false
+    entries:
+      - title: with subitems
+        url: false
+        entries:
+          - title: with subsubitems
+            url: false
+          - title: example page
+            url: about
+  - title: PRO TIP
+    url: false
+    entries:
+      - title: to edit this menu, edit _data/menu.yml file
+        url: false

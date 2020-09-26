@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Sample"
+date:   2020-09-26 22:55:30 +0900
+categories: jekyll update
+---
+봤냐 맨이야
+
+ABCDEFG
+
+
+
+
+$$ 1+1=2.141592 \pi $$
+
+
+$pi -2 = gr$
+
