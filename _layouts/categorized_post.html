@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<a href="{{ site.url }}"><<{{ site.theme_config.back_home_text }}</a>
+<h1>{{ page.title }}</h1>
+
+{% if site.posts.size > 0 %}
+{% assign sorted_pages_list = site.posts | sort: "series" %}
+  <ol>
+    {% for post in sorted_pages_list %}
+    	{% assign page_categories = page.categories | downcase %}
+    	{% assign post_categories = post.categories | downcase %}
+    	
+    	
+    	{% if  post_categories contains page_categories or page_categories contains post_categories  %}
+	      <li>
+	        <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a> 
+	        <br>
+	        <span style="text-align: justify">{{ post.date | date: site.theme_config.date_format }} </span>
+	      </li>
+      	{% endif %}
+    {% endfor %}
+  </ol>
+{% endif %}

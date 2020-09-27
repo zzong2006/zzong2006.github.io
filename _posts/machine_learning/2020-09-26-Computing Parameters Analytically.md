@@ -2,7 +2,8 @@
 layout: post
 date:   2020-09-26
 title: "Machine Learning: Computing Parameters Analytically"
-categories: machine learning
+categories: machinelearning
+series: 5
 ---
 
 ## Normal Equation

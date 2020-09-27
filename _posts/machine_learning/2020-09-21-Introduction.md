@@ -2,7 +2,8 @@
 layout: post
 title:  "Machine Learning: Introduction"
 date:   2020-09-21 22:55:30 +0900
-categories: jekyll update
+categories: machinelearning
+series: 1
 ---
 
 ### (1) 머신러닝이란 무엇인가?

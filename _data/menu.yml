@@ -12,27 +12,30 @@ entries:
       - title: 'have interest in the big data, machine learning, and deep learning'
         url: false
 
-  - title: thoughts
+  - title: about me
+    url: about
+
+  - title: recent posts
     post_list: true
     url: false
     entries: false
 
-  - title: another list
-    url: false
-    entries:
-      - title: with subitems
-        url: false
-        entries:
-          - title: with subsubitems
-            url: false
-          - title: example page
-            url: about
+
+    
 
   - title: study
     url: false
     entries:
       - title: machine learning
         url: machine_learning
+      - title: operating system
+        url: operating_system
+      - title: database system
+        url: false
+      - title: probability theory
+        url: false
+      - title: deep learning
+        url: false
 
   - title: PRO TIP
     url: false

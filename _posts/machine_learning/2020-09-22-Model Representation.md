@@ -2,7 +2,8 @@
 layout: post
 title:  "Machine Learning: Model Representation"
 date:   2020-09-22 22:55:30 +0900
-categories: machine learning
+categories: machinelearning
+series: 2
 ---
 
 ### (2) 모델과 비용 함수

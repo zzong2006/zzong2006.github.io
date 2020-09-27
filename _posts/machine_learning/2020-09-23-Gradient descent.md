@@ -2,7 +2,8 @@
 layout: post
 title:  "Machine Learning: Gradient Desecent"
 date:   2020-09-23 22:55:30 +0900
-categories: machine learning
+categories: machinelearning
+series: 3
 ---
 
 ### Garident Descent의 간단한 정의 및 설명

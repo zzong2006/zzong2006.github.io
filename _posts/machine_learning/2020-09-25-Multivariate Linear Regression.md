@@ -2,7 +2,8 @@
 layout: post
 title:  "Machine Learning: Multivariate Linear Regression"
 date:   2020-09-25 22:55:30 +0900
-categories: machine learning
+categories: machinelearning
+series: 4
 ---
 
 * 여러개의 variables을 가지고 Linear regression 하는 것
