@@ -13,8 +13,11 @@ series: 5
   * $$
     \theta=(X^TX)^{-1}X^Ty
     $$
-
-
+    
+  * :grey_question: Quiz: ​ $m=14$개의 training examples에 대한 $n=3$개의 features가 존재하고, 이를 normal equation으로 풀려고 했을 때, $\theta$ 는 $4\times 1$ 그리고, $y$ 는 $14 \times 1$ 그리고 $X$ 는 $14 \times 4$이다. 
+  
+    * $n=3$임에도 불구하고, $\theta, X$의 rows 개수가 $4$인 이유는 bias의 때문이다.    
+      즉, $x_1 \sim x_3$에 대한, $\theta_0 \sim \theta_3$ 가 존재한다.
 
 * Gradient Descent 와 Normal Equation 비교
 
