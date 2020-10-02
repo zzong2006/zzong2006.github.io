@@ -22,11 +22,12 @@ series: 6
   $$
   \begin{align*}& h_\theta (x) = g ( \theta^T x ) \newline \newline& z = \theta^T x \newline& g(z) = \dfrac{1}{1 + e^{-z}}\end{align*}
   $$
+  
   위에서 $g(z)$ 를 sigmoid function 또는 logistic function 이라고 부른다.
-
-  * Sigmoid function은 다음과 같이 생겼다. 약 -4.5 이하로는 무조건 0을, 4.5 이상으로는 무조건 1의 값을 가진다.  
+  
+* Sigmoid function은 다음과 같이 생겼다. 약 -4.5 이하로는 무조건 0을, 4.5 이상으로는 무조건 1의 값을 가진다.  
     ![img](https://i.loli.net/2020/09/28/U5eOaNMiSQZd3IH.png)
-
+  
 * 이러한 값의 분포 ($0 \le h_\theta(x)\le 1$)를 보고 생각해보면,  $ h_\theta(x)$는 입력에 대한 최종 결정이 $1$일 확률을 정해주는 것이라고 생각할 수 있다.
 
   * 예를 들어, 최상단의 종양 그래프에서 $ h_\theta(x) = 0.7$ 이면, 종양이 양성($1$)일 확률이 70%나 된다는 것이다.
@@ -63,9 +64,8 @@ series: 6
     \theta^T x \geq 0 \Rightarrow y = 1 \newline&
     \theta^T x < 0 \Rightarrow y = 0 \newline &
     \end{align*}
-    \\
     $$
-
+  
 * 위와 같은 이해를 기반으로, 다음과 같은 decision boundary를 생각해볼 수 있다.
 
   * Predict $y=1$ if $h_\theta(x)= g(\theta_0 + \theta_1x_1+\theta_2x_2) \ge 0.5 \Rightarrow -3+x_1+x_2 \ge 0$   

@@ -33,7 +33,7 @@ entries:
       - title: database system
         url: false
       - title: probability theory
-        url: false
+        url: probability_theory
       - title: deep learning
         url: false
 

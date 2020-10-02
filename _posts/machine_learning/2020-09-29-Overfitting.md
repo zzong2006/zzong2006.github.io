@@ -1,7 +1,7 @@
 ---
 layout: post
 date:   2020-09-26 
-title: "Overfitting"
+title: "Machine Learning: Overfitting"
 categories: machinelearning
 series: 7
 ---
