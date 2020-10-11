@@ -36,6 +36,8 @@ entries:
         url: probability_theory
       - title: deep learning
         url: false
+      - title: python
+        url: python
 
   - title: PRO TIP
     url: false
