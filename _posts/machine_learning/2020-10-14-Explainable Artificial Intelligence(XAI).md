@@ -41,4 +41,4 @@ series: 99
 * Explaining Image Classification by Counter-factual Generation
   * GAN을 이용하여 Image Classifier의 행동을 설명
   * ![image-20201014211544172](https://i.loli.net/2020/10/14/1kYgQArVLiTOCSP.png)
-    * GAN에게 배경화면 또는 강아지를 지워보라고 요청 시, 결과를 통해서 어느 부분에 집중하고 있는지 알 수 있음 
+	  * GAN에게 배경화면 또는 강아지를 지워보라고 요청 시, 결과를 통해서 어느 부분에 집중하고 있는지 알 수 있음 
