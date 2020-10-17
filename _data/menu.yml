@@ -35,7 +35,7 @@ entries:
       - title: probability theory
         url: probability_theory
       - title: deep learning
-        url: false
+        url: deep_learning
       - title: python
         url: python
 

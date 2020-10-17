@@ -4,5 +4,5 @@ title: "Deep Learning"
 categories: deeplearning
 ---
 
-Machine Learning Notes
+Deep Learning Notes
 

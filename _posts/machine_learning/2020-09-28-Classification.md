@@ -78,3 +78,6 @@ series: 6
 # Logistic Regression Model
 
 * 이제 logistic regression model을 파악했으니, 이 모델의 비용 함수(cost function)에 대해 생각해보자.
+  * Cost function과 loss function의 차이점?
+    * Loss function은 단일 training example에 대한 prediction과 ground truth값의 차이를 의미하고, Cost function은 모든 training examples들에 대한 loss function 의 평균 값을 의미한다.
+    * 

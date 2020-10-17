@@ -1,6 +1,6 @@
 ---
 layout: post
-date:   2020-10-07 
+date:   2020-10-16 13:00:00
 title: "Machine Learning: Decision Tree"
 categories: machinelearning
 series: 13
@@ -36,12 +36,13 @@ series: 13
         * $C$는 class의 개수 $p(i)$는 데이터를 선택했을 때, 특정 노드에서 class $i$로 분류될 확률
 
     2. Feature에 대한 The Gini Impurity
-       * Weighted average of Gini impurities for the leaf nodes
-
-  * 지니 계수 측정 예시
-
-    * ![image-20201016003714265](https://i.loli.net/2020/10/15/eKtQrWZ36PlTOFV.png)
-
+       
+     * Weighted average of Gini impurities for the leaf nodes
+  
+* 지니 계수 측정 예시
+  
+  * ![image-20201016003714265](https://i.loli.net/2020/10/15/eKtQrWZ36PlTOFV.png)
+  
     * left node의 지니 계수
       $$
       \begin{align*}
@@ -49,13 +50,13 @@ series: 13
       &=1-(\frac{105}{105+39})^2-(\frac{39}{105+39})^2 \\
       &=0.395
       \end{align*}
-      $$
-
+    $$
+  
     * right node의 지니 계수
       $$
       \begin{align*}G&=1-(\text{the probability of "yes"})^2-(\text{the probability of "no"})^2 \\&=1-(\frac{34}{34+125})^2-(\frac{125}{34+125})^2 \\&=0.336\end{align*}
-      $$
-
+    $$
+  
     * Gini impurity for Chest Pain
       $$
       \begin{align*}G&=(\frac{144}{144+159})*0.395-(\frac{159}{144+159})*0.336 \\&=0.364\end{align*}
