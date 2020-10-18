@@ -52,6 +52,32 @@ series: 4
 
   * 물론 $s_i$가 (max-min) 값인지 표준 편차인지에 따라 feature scaling 결과는 다르다.
   * Andrew Ng에 의하면, 입력 데이터 $x_i$에 대한 값의 범위는 $-3 \le x_i\le3$ 또는 $-0.33 \le x_i \le 0.33$ 의 범위를 추천한다고 한다.
+  
+* z-score
+
+  * $$
+    x_i=\frac{x_i-\mu_i}{\sigma_i}
+    $$
+
+  * outlier를 잘 처리하지만, 정확히 동일한 척도로 정규화 된 데이터를 생성하지는 않는다.
+
+  * ![img](https://i.loli.net/2020/10/17/3SIZw4aopmRD6JU.png)
+
+### Feature Scaling
+
+* Scaling은 normalization과 다르다.
+
+* min-max
+
+  * $$
+    x_i =\frac{x_i-min(X)}{max(X)-min(X)}
+    $$
+
+  * $X$는 모든 features($x_i$)들의 집합
+
+  * 모든 feature들의 스케일이 동일하지만, outlier를 잘 처리하지 못한다.
+
+  * ![img](https://i.loli.net/2020/10/17/q86ZcBHiJLeKyt2.png)
 
 ## Gradient Descent in Practice II - Learning Rate
 

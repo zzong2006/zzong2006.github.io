@@ -46,9 +46,18 @@ series: 15
 * Center를 어떻게 초기화하냐에 따라서 cluster의 결과가 달라질 수 있음
   * Local optima
   * 여러번 random initializing을 수행해서 최적의 solution을 찾음
+* K-means++
+  * center 초기값 선택 알고리즘
+    1. 처음의 임의의 데이터 하나를 중심으로 선택
+    2. 선택한 중심과 데이터의 가장 가까운 거리 $D(x)$를 찾고, $D(x)^2$에 비례한 거리에 위치해 있는 데이터 중 확률 분포에 기반하여 임의의 데이터를 뽑아 중심점으로 추가
+    3. 2를 K 개의 중심을 찾을 때까지 반복 
 
 ### Choosing the Number of Clusters
 
 * Elbow Method
   * ![image-20201017211129012](https://i.loli.net/2020/10/17/csmb7X1knSRgMYe.png)
 
+#### K-median clustering algorithm
+
+* 클러스터의 중심을 구하기 위해 평균 대신 중간점을 사용하는 방식
+* k-means와 다르게 L2-norm 뿐만 아니라 임의의 거리 함수에 대해서도 동작한다.
