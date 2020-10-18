@@ -193,11 +193,16 @@ series: 3
 
     *  몬테카를로 기반 방법은 환경에 대한 모델을 요구하지 않고 개념적으로 단순하다.
     *  그러나 step-by-step형식으로 점진적 계산에는 어울리지 않는다.
+    *  Model-Free Control
 
 7. ### TD학습 방법을 기술하고 MC 방법과의 차이를 설명하시오. 
 
     * Temporal-difference methods(TD) 방식은 모델을 요구하지 않고 완벽히 점진적(fully incremental) 계산 방식을 따른다. 
-    * 그러나 분석하기 복잡하다.
+      * TD 방식은 MC 의 아이디어와 DP를 합친것과 같다.
+        * TD는 MC처럼 환경에 대한 model이 필요없이 raw experience로부터 바로 학습할 수 있다.
+        * TD는 DP처럼, 최종 결과를 기다리지 않고(에피소드 종료), 다른 추정으로 부터 추정값을 업데이트할 수 있다. 
+    * Episode가 끝나지 않더라도 DP 처럼 time step마다 학습할 수 있는 방법
+    * 
     * 
 
 8. ## 강화학습의 다양한 전략들을 기술하고 서로간의 차이를 설명하시오. 
@@ -235,7 +240,24 @@ series: 3
        * local optimum에 빠질 확률이 높다.
        * policy를 evaluating 하는 것이 일반적으로 비효율적이고 high variance하다.
 
-12. ### 알파고가 사용한 딥강화학습 DQN의핵심 아이디어들을 설명하시오
+12. ### DQN을 설명하라.
+
+     * 기존의 강화 학습의 문제를 해결하기 위해 신경망을 사용한 강화 학습 방법
+       * 기존의 강화 학습 문제
+         * Agent는 최적의 policy를 찾기 위해 모든 state에 대한 action-value function값을 table형태로 저장하고, 이를 업데이트 시켜나간다.
+         * 하지만, state와 action 범위가 커지면 학습이 많이 느려진다.
+     * DQN에서는 Neural Network를 이용해 action-value function(Q-value)를 approximate 하는 방법으로 접근한다.
+       * Q-value 뿐만 아니라 policy 자체를 approximate 할 수 있는데 이는 Policy Gradient 방식이다.
+       * DQN은 단일 계층 네트워크가 아닌 Convolutional Neural Network를 사용해서 DNN으로 확장했음
+     * Experience Replay를 구현함
+     * 제 2의 target network를 활용하여 업데이트 시 target Q value를 계산
+     * 일반적으로 stochastic gradient descent 방식을 이용하여 DNN의 weight와 bias를 update 하게 된다.
+     * 
+
+13. ### 알파고가 사용한 딥강화학습 DQN의 핵심 아이디어들을 설명하시오
+
+     * Convolutional Layer 사용
+     * 
 
       * Policy Gradient with Monte-Carlo Tree Search
         * Policy Gradient
