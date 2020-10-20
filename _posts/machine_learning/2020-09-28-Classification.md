@@ -1,7 +1,7 @@
 ---
 layout: post
 date:   2020-09-28 11:50:00
-title: "Classification"
+title: "machine learning: Classification"
 categories: machinelearning
 series: 6
 ---
