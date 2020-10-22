@@ -2,7 +2,7 @@
 layout: post
 title:  "Reinforcement learning: Interview Questions"
 date:   2020-10-14 22:55:30 +0900
-categories: deeplearning
+categories: rl
 series: 99
 ---
 

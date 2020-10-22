@@ -40,7 +40,8 @@ entries:
         url: python
       - title: artificial Intelligence
         url: artificial_intelligence
-
+      - title: reinforcement learning
+        url: rl
   - title: PRO TIP
     url: false
     entries:
