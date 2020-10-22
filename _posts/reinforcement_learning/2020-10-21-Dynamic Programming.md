@@ -2,7 +2,7 @@
 layout: post
 title:  "Reinforcement learning: Dynamic Programming"
 date:   2020-10-21 22:55:30 +0900
-categories: rl
+categories: reinforcement_learning
 series: 2
 ---
 

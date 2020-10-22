@@ -2,7 +2,7 @@
 layout: post
 title:  "Reinforcement learning: Meta Learning"
 date:   2020-10-14 22:55:30 +0900
-categories: rl
+categories: reinforcement_learning
 series: 98
 ---
 

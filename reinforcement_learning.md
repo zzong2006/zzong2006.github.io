@@ -1,7 +1,7 @@
 ---
 layout: categorized_post
 title: "Reinforcement Learning"
-categories: rl
+categories: reinforcement_learning
 ---
 
 RL Notes
