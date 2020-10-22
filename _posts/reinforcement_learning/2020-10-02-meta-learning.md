@@ -3,7 +3,7 @@ layout: post
 title:  "Reinforcement learning: Meta Learning"
 date:   2020-10-14 22:55:30 +0900
 categories: deeplearning
-series: 1
+series: 98
 ---
 
 * Meta Reinforcement Learning: How teach the agent to learn **unseen tasks** quickly?

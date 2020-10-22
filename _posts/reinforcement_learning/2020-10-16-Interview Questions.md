@@ -3,7 +3,7 @@ layout: post
 title:  "Reinforcement learning: Interview Questions"
 date:   2020-10-14 22:55:30 +0900
 categories: deeplearning
-series: 3
+series: 99
 ---
 
 ## 1. 지도학습, 비지도 학습과 비교하여 강화학습이 다른 점은 무엇인가? 
