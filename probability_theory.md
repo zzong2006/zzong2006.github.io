@@ -1,6 +1,6 @@
 ---
 layout: categorized_post
-title: "probabilitytheory"
+title: "Probability Theory"
 categories: probabilitytheory
 ---
 
