@@ -41,7 +41,8 @@ entries:
       - title: artificial Intelligence
         url: artificial_intelligence
       - title: reinforcement learning
-        url: rl
+        url: reinforcement_learning
+
   - title: PRO TIP
     url: false
     entries:
@@ -53,6 +54,6 @@ entries:
   - title: TO DO
     url: false
     entries:
-      - title: make to show only recent 5 posts
+      - title: empty for now
         url: false
       
