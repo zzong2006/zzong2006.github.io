@@ -133,8 +133,8 @@ series: 3
   * soft 성질이란, 항상 $\pi(a \mid s) > 0 $를 만족하지만, 점점 deterministic optimal policy에 접근하는 것을 의미한다.
 * 이를 위한 방법으로 $\varepsilon$-greedy policies가 있다.
   * 대부분 action을 결정할 때, 추정된 action 값 중 최대 값에 해당하는 action을 고르지만, 확률 $\varepsilon$으로 임의의 행동을 선택한다.
-  * 이 말은 모든 nongreedy 값에 대한 action은 최소한의 선택 확률이 존재한다는 것이다($\frac{\varepsilon}{|\mathcal{A}(s)|}$).
-    * 즉, soft 성질을 만족한다: $\pi(a \mid s) \geq \frac{\varepsilon}{|\mathcal{A}(s)|}$
+  * 이 말은 모든 nongreedy 값에 대한 action은 최소한의 선택 확률이 존재한다는 것이다($\frac{\varepsilon}{\mid\mathcal{A}(s)\mid}$).
+    * 즉, soft 성질을 만족한다: $\pi(a \mid s) \geq \frac{\varepsilon}{\mid\mathcal{A}(s)\mid}$
 
 * ![image-20201022165158299](https://i.loli.net/2020/10/22/DnX7EsvSeuzT1io.png)
   * 참고로 $A^{*} \leftarrow \arg \max _{a} Q\left(S_{t}, a\right)$ 에 해당하는 action은 딱 하나로 정해졌기에 다음이 성립한다.
@@ -163,7 +163,7 @@ series: 3
     \end{aligned}
     $$
 
-    *  $\sum_{a} \frac{\pi(a \mid s)-\frac{\varepsilon}{|\mathcal{A}(s)|}}{1-\varepsilon}$ 은 총합이 1이되는 음이 아닌 가중치를 적용한 평균이고, 이를 모두 더하면 1이 된다.  결과적으로, 최대값에 대한 평균보다는 반드시 작거나 같아야한다.
+    *  $\sum_{a} \frac{\pi(a \mid s)-\frac{\varepsilon}{\mid\mathcal{A}(s)\mid}}{1-\varepsilon}$ 은 총합이 1이되는 음이 아닌 가중치를 적용한 평균이고, 이를 모두 더하면 1이 된다.  결과적으로, 최대값에 대한 평균보다는 반드시 작거나 같아야한다.
 
 ## Off-policy Prediction via Importance Sampling  
 

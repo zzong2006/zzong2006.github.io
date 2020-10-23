@@ -1,7 +1,7 @@
 ---
 layout: post
 date:   2020-10-18
-title: "AI: Search"
+title: "AI: BackTracking Search"
 categories: ai
 series: 1
 ---

@@ -1,6 +1,6 @@
 ---
 layout: categorized_post
-title: "Reinforcement Learning"
+title: "reinforcement learning"
 categories: reinforcement_learning
 ---
 
