@@ -53,9 +53,9 @@ series: 4
   &=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \mid S_{t}=s\right]
   \end{aligned}
   $$
-  * 위 식에서 MC는 $\mathbb{E}_{\pi}\left[G_{t} \mid S_{t}=s\right]$ 를 target으로하여 추정을 진행한다.
+  * 위 식에서 MC는 $\mathbb{E}_{\pi}[G_{t} \mid S_{t}=s]$ 를 target으로하여 추정을 진행한다.
     * 추정인 이유는 $G_t$값을 정확히 알 수 없기 때문이다.
-  * DP는 $\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \mid S_{t}=s\right]$을 target으로하여 추정을 진행한다.
+  * DP는 $\mathbb{E}_{\pi}[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \mid S_{t}=s]$을 target으로하여 추정을 진행한다.
     * 추정인 이유는 $v_\pi(S_{t+1})$값을 정확히 알 수 없어서 $V\left(S_{t+1}\right)$를 사용하기 때문이다.
   * 그리고 TD는 위 두 이유로 추정을 진행한다.
     * TD는 expected value를 sampling하고, 이 값을 이용해 $V$를 estimate하여 실제 $v_\pi$를 찾는데 사용한다.
@@ -180,8 +180,8 @@ MC 방법과 마찬가지로, exploration과 exploitation의 trade off가 존재
 * 두 Q 값 $Q_1(a)$와 $Q_2(a)$가 존재한다고 해보자. 
   * 각각은 모든 $a \in \mathcal{A}$에 대해서 $q(a)$값을 찾으려(추정하려)한다.
   * 그리고 한 $Q$는 maximizing action 결정에, 다른 $Q$는 결정된 action의 value 업데이트에 쓰이게 한다.
-    *  $A^{*}=\arg \max _{a} Q_{1}(a)$ 그리고, $Q_{2}\left(A^{*}\right)=Q_{2}\left(\arg \max _{a} Q_{1}(a)\right)$
-    * 즉, $\mathbb{E}\left[Q_{2}\left(A^{*}\right)\right]=q\left(A^{*}\right)$를 목적으로 학습한다.
+    *  $A^{\ast}=\arg \max _{a} Q_{1}(a)$ 그리고, $Q_{2}\left(A^{\ast}\right)=Q_{2}\left(\arg \max _{a} Q_{1}(a)\right)$
+    * 즉, $\mathbb{E}\left[Q_{2}\left(A^{\ast}\right)\right]=q\left(A^{\ast}\right)$를 목적으로 학습한다.
   * 이렇게 하면 한쪽 $Q$에 사용된 sample의 목적(action 선택)이 다른 한쪽 $Q$에 사용된 sample의 목적(value 업데이트)와 달라서 unbias 하게 된다.
   * 종종 이 둘의 역할을 바꿀 수 있다:  $Q_{1}\left(\arg \max _{a} Q_{2}(a)\right)$
 * ![image-20201023203043286](https://i.loli.net/2020/10/23/dmeBwntWSg1lkqE.png)
