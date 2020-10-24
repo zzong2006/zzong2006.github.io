@@ -1,9 +1,8 @@
 ---
-layout: post
-title:  "Reinforcement learning: n-step bootstrapping"
-date:   2020-10-24 22:55:30 +0900
-categories: reinforcement_learning
-series: 7
+layout: default
+title:  "Eligibility Traces"
+parent: Reinforcement Learning
+nav_order: 8
 ---
 
 ## n-step TD Prediction  

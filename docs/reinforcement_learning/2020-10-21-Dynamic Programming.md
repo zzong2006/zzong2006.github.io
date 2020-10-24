@@ -1,9 +1,8 @@
 ---
-layout: post
-title:  "Reinforcement learning: Dynamic Programming"
-date:   2020-10-21 22:55:30 +0900
-categories: reinforcement_learning
-series: 2
+layout: default
+title:  "Dynamic Programming (DP)"
+parent: Reinforcement Learning
+nav_order: 2
 ---
 
 * DP는 MDP와 같은 환경에 대한 완벽한 모델이 주어졌을 때 사용하는 알고리즘의 총칭

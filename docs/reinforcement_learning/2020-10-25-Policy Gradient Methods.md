@@ -1,9 +1,8 @@
 ---
-layout: post
-title:  "Reinforcement learning: Policy Gradient Methods"
-date:   2020-10-24 22:55:30 +0900
-categories: reinforcement_learning
-series: 8
+layout: default
+title:  "Policy Gradient Methods"
+parent: Reinforcement Learning
+nav_order: 8
 ---
 
 ## n-step TD Prediction  

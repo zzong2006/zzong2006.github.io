@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Meta Learning"
+title:  "Actor-Critic"
 parent: Reinforcement Learning
-nav_order: 19
+nav_order: 10
 ---
 
 ## n-step TD Prediction  

@@ -1,9 +1,8 @@
 ---
-layout: post
-title:  "Reinforcement learning: On-policy Control with Approximation"
-date:   2020-10-24 22:55:30 +0900
-categories: reinforcement_learning
-series: 6
+layout: default
+title:  "On-policy Control with Approximation"
+parent: Reinforcement Learning
+nav_order: 7
 ---
 
 ## n-step TD Prediction  

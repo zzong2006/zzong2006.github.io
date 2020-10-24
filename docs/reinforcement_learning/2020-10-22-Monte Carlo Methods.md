@@ -1,9 +1,8 @@
 ---
-layout: post
-title:  "Reinforcement learning: Monte Carlo Methods"
-date:   2020-10-22 22:55:30 +0900
-categories: reinforcement_learning
-series: 3
+layout: default
+title:  "Monte Carlo Methods (MC)"
+parent: Reinforcement Learning
+nav_order: 3
 ---
 
 * 몬테 카를로 방법은 **경험(experience)**이 필요하다.
@@ -86,7 +85,7 @@ series: 3
     \pi(s) \doteq \arg \max _{a} q(s, a)
     $$
 
-* 즉, ${q_{\pi}}_{k}$를 통해서 $\pi_{k+1}$을 찾으면 되는데, 이렇게 찾아진 $\pi_{k+1}$와 $\pi_k$의 관계는 모든 $s \in \mathcal{S}$에 대해서 다음과 같다.
+* 즉, $q_{\pi_{k}}$를 통해서 $\pi_{k+1}$을 찾으면 되는데, 이렇게 찾아진 $\pi_{k+1}$와 $\pi_k$의 관계는 모든 $s \in \mathcal{S}$에 대해서 다음과 같다.
 
   * $$
     \begin{aligned}
