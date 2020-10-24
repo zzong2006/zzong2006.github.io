@@ -52,9 +52,9 @@ order: 4
   &=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \mid S_{t}=s\right]
   \end{aligned}
   $$
-  * 위 식에서 MC는 $\mathbb{E}_{\pi} [G_{t} \mid S_{t}=s]$ 를 target으로하여 추정을 진행한다.
+  * 위 식에서 MC는 $\mathbb{E}\ [G_{t} \mid S_{t}=s]$ 를 target으로하여 추정을 진행한다.
     * 추정인 이유는 $G_t$값을 정확히 알 수 없기 때문이다.
-  * DP는 $\mathbb{E}_{\pi}[R_{t+1}+\gamma v_{\pi}(S_{t+1}) \mid S_{t}=s]$을 target으로하여 추정을 진행한다.
+  * DP는 ${\mathbb{E}} \ [R_{t+1}+\gamma v_{\pi}(S_{t+1}) \mid S_{t}=s]$을 target으로하여 추정을 진행한다.
     * 추정인 이유는 $v_\pi(S_{t+1})$값을 정확히 알 수 없어서 $V\left(S_{t+1}\right)$를 사용하기 때문이다.
   * 그리고 TD는 위 두 이유로 추정을 진행한다.
     * TD는 expected value를 sampling하고, 이 값을 이용해 $V$를 estimate하여 실제 $v_\pi$를 찾는데 사용한다.
@@ -140,7 +140,7 @@ MC 방법과 마찬가지로, exploration과 exploitation의 trade off가 존재
 * $$
   Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \max _{a} Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
   $$
-  * $Q$에서 유도되는 policy에 상관없이 $\max _{a} Q\left(S_{t+1}, a\right)$ 를 통해서 최적의 action-value function를 통해 $Q$를 update한다.
+  * $Q$에서 유도되는 policy에 상관없이 $\underset{a}{\mathrm{max}} \ Q(S_{t+1}, a)$ 를 통해서 최적의 action-value function를 통해 $Q$를 update한다.
   * 즉, greedy policy가 하나 있고, $\varepsilon$-greedy와 같은 또 다른 policy가 존재하므로 Q-learning을 off-policy 라 부를 수 있다.
 
 * ![image-20201023175619321](https://i.loli.net/2020/10/23/a6LDEiPeUukvNgX.png)
@@ -179,10 +179,10 @@ MC 방법과 마찬가지로, exploration과 exploitation의 trade off가 존재
 * 두 Q 값 $Q_1(a)$와 $Q_2(a)$가 존재한다고 해보자. 
   * 각각은 모든 $a \in \mathcal{A}$에 대해서 $q(a)$값을 찾으려(추정하려)한다.
   * 그리고 한 $Q$는 maximizing action 결정에, 다른 $Q$는 결정된 action의 value 업데이트에 쓰이게 한다.
-    *  $A^{\ast}=\mathbb{argmax} _{a} Q_{1}(a)$ 그리고, $Q_{2}\left(A^{\ast}\right)=Q_{2}\left(\arg \max _{a} Q_{1}(a)\right)$
+    *  $A^{\ast} = \underset{a}{\mathrm{argmax}}\ Q_{1}(a)$ 그리고, $Q_{2}(A^{\ast})=Q_{2}(\underset{a}{\mathrm{argmax}} Q_{1}(a))$
     * 즉, $\mathbb{E}[Q_{2}(A^{\ast})]=q(A^{\ast})$를 목적으로 학습한다.
   * 이렇게 하면 한쪽 $Q$에 사용된 sample의 목적(action 선택)이 다른 한쪽 $Q$에 사용된 sample의 목적(value 업데이트)와 달라서 unbias 하게 된다.
-  * 종종 이 둘의 역할을 바꿀 수 있다:  $Q_{1}\left(\mathbb{argmax}_{a} Q_{2}(a)\right)$
+  * 종종 이 둘의 역할을 바꿀 수 있다:  $Q_{1}(\underset{a}{\mathrm{argmax}} \ Q_{2}(a))$
 * ![image-20201023203043286](https://i.loli.net/2020/10/23/dmeBwntWSg1lkqE.png)
   * behavior policy에는 두 $Q$ 값을 동시에 사용할 수 있다(더하거나 평균내서)
   * 그리고 동전을 던지듯이 $0.5$의 확률로 $Q$의 역할을 교체하면서 수행하면 된다.

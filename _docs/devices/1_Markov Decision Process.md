@@ -5,8 +5,6 @@ category: Reinforcement Learning
 order: 1
 ---
 
-# MDP
-
 ![image-20201021193635194](https://i.loli.net/2020/10/21/8yVZe96DBAClqJE.png)
 
 * 구성 요소
@@ -195,7 +193,7 @@ order: 1
     \end{aligned}
     $$
 
-    * 여기서 $\max_{a} \mathbb{E}_{\pi_{\ast}}[R_{t+1}+\gamma G_{t+1} \mid S_{t}=s, A_{t}=a]$ 이 값은 이전에 수식을 활용하여 유도된다.
+    * 여기서 $ G_t \rightarrow R_{t+1}+\gamma G_{t+1} $ 는 이전에 수식을 활용하여 유도된다.
 
       * $$
         \begin{aligned}
