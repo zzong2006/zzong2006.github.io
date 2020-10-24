@@ -76,7 +76,6 @@ order: 1
     G_{t} \doteq R_{t+1}+R_{t+2}+R_{t+3}+\cdots+R_{T}
     $$
 
-* 
 
 * 만약 끝이 없는 학습 (continuing tasks)에서는 보상값이 무한대로 치솟을 수 있음 
 
