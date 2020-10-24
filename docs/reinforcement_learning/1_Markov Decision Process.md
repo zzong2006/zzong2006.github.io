@@ -5,7 +5,7 @@ parent: Reinforcement Learning
 nav_order: 1
 ---
 
-## MDP
+# MDP
 
 ![image-20201021193635194](https://i.loli.net/2020/10/21/8yVZe96DBAClqJE.png)
 
@@ -18,7 +18,7 @@ nav_order: 1
 
 ----
 
-### $p$ : dynamics of the MDP
+## $p$ : dynamics of the MDP
 
 * $$
   p\left(s^{\prime}, r \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime}, R_{t}=r \mid S_{t-1}=s, A_{t-1}=a\right\}
@@ -34,13 +34,13 @@ nav_order: 1
     \sum_{s^{\prime} \in \mathcal{S}} \sum_{r \in \mathcal{R}} p\left(s^{\prime}, r \mid s, a\right)=1, \text { for all } s \in \mathcal{S}, a \in \mathcal{A}(s)
     $$
 
-### Markov property
+## Markov property
 
 * MDP의 $S_t$와 $A_t$는 무조건 $S_{t-1}$와 $A_{t-1}$에 의해서만 영향을 받음
 
 
 
-### state-transition probabilities
+## state-transition probabilities
 
 * $$
   p\left(s^{\prime} \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime} \mid S_{t-1}=s, A_{t-1}=a\right\}=\sum_{r \in \mathcal{R}} p\left(s^{\prime}, r \mid s, a\right)
@@ -50,7 +50,7 @@ nav_order: 1
 
 
 
-### Expected rewards
+## Expected rewards
 
 * $$
   r(s, a) \doteq \mathbb{E}\left[R_{t} \mid S_{t-1}=s, A_{t-1}=a\right]=\sum_{r \in \mathcal{R}} r \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime}, r \mid s, a\right)
@@ -64,7 +64,7 @@ nav_order: 1
     r\left(s, a, s^{\prime}\right) \doteq \mathbb{E}\left[R_{t} \mid S_{t-1}=s, A_{t-1}=a, S_{t}=s^{\prime}\right]=\sum_{r \in \mathcal{R}} r \frac{p\left(s^{\prime}, r \mid s, a\right)}{p\left(s^{\prime} \mid s, a\right)}
     $$
 
-### Expected Return
+## Expected Return
 
 * agent의 목표는 누적 보상이 최대화 되도록 하는 것
 
@@ -111,7 +111,7 @@ nav_order: 1
     G_{t}=\sum_{k=0}^{\infty} \gamma^{k}=\frac{1}{1-\gamma}
     $$
 
-### Value function
+## Value function
 
 * state $s$에서 policy $\pi$를 따를 경우의 **state value function**은 $v_{\pi}(s)$다.
 
@@ -154,7 +154,7 @@ nav_order: 1
   * ![image-20201021212620725](https://i.loli.net/2020/10/21/mVIjl64PhtcEwp7.png)
   * <img src="https://i.loli.net/2020/10/21/pJiMYoeW9FVrCbB.png" alt="image-20201021212739572" style="zoom:75%;" />
 
-### Optimal Value function
+## Optimal Value function
 
 * optimal state-value function
 
@@ -174,7 +174,7 @@ nav_order: 1
     q_{*}(s, a) \doteq \max _{\pi} q_{\pi}(s, a)
     $$
 
-### Bellman optimality Equation
+## Bellman optimality Equation
 
 * 위 둘의 관계는 다음과 같이 표현된다.
 

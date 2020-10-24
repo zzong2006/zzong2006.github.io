@@ -1,8 +1,8 @@
 ---
 layout: default
 title:  "Meta Learning"
-parent: reinforcement learning
-nav_order: 19
+parent: Reinforcement Learning
+nav_order: 20
 ---
 
 * Meta Reinforcement Learning: How teach the agent to learn **unseen tasks** quickly?

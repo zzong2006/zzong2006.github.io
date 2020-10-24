@@ -6,3 +6,27 @@
   {% assign color_scheme = "light" %}
 {% endif %}
 {% include css/just-the-docs.scss.liquid color_scheme=color_scheme %}
+
+
+h1 {
+    font-size: 3.5em !important;
+}
+
+h2 {
+    font-size: 2.3em !important;
+}
+
+h3 {
+    font-size: 2em !important;
+}
+
+
+h4 {
+    font-size: 1.55em !important;
+    text-transform: none;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+}

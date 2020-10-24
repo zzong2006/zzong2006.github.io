@@ -52,7 +52,7 @@ nav_order: 4
   &=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \mid S_{t}=s\right]
   \end{aligned}
   $$
-  * 위 식에서 MC는 $\mathbb{E}_{\pi}[G_{t} \mid S_{t}=s]$ 를 target으로하여 추정을 진행한다.
+  * 위 식에서 MC는 $\mathbb{E}_{\pi} [G_{t} \mid S_{t}=s]$ 를 target으로하여 추정을 진행한다.
     * 추정인 이유는 $G_t$값을 정확히 알 수 없기 때문이다.
   * DP는 $\mathbb{E}_{\pi}[R_{t+1}+\gamma v_{\pi}(S_{t+1}) \mid S_{t}=s]$을 target으로하여 추정을 진행한다.
     * 추정인 이유는 $v_\pi(S_{t+1})$값을 정확히 알 수 없어서 $V\left(S_{t+1}\right)$를 사용하기 때문이다.
