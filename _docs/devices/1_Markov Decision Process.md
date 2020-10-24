@@ -1,8 +1,8 @@
 ---
 layout: default
 title:  "Markov Decision Process (MDP)"
-category: Devices
-order: 2
+category: Reinforcement Learning
+order: 1
 ---
 
 # MDP
