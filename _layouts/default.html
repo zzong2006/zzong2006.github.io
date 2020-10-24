@@ -5,16 +5,18 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-			<script type="text/x-mathjax-config">
+		<script type="text/x-mathjax-config">
 	    MathJax.Hub.Config({
 	      tex2jax: {
 	        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
 	        inlineMath: [['$','$']]
-	      }
+	      }, 
+	      jax: ["input/TeX","output/HTML-CSS"],
+			displayAlign: "left"
 	    });
 	  </script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
-	  
+
 		{% seo %}
 		{% feed_meta %}
 
@@ -85,10 +87,5 @@
 			</article>
 		</section>
 
-		<script>
-			document.getElementById("open-nav").addEventListener("click", function () {
-				document.body.classList.toggle("nav-open");
-			});
-		</script>
 	</body>
 </html>
