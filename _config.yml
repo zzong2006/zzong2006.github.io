@@ -31,7 +31,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
-
+  - jemoji
+  
 exclude:
   - Gemfile
   - Gemfile.lock

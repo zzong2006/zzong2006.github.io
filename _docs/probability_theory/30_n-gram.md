@@ -1,0 +1,18 @@
+---
+layout: default
+title:  "N-gram"
+category: Probability Theory
+order: 30
+---
+
+* $n$-gram은 주어진 text나 speech의 샘플에서 연속된 $n$개의 item들을 의미한다 (출처: 위키백과).
+  * 예를 들어, DNA sequencing 분야에서, AGCTTCGA 라는 sample sequence가 주어질 경우 1~3-gram sequence는 다음과 같이 표현된다.
+    1. 1-gram sequence (unigram 이라 부른다)
+       * A, G, C, T, T, C, G, A 
+    2. 2-gram sequence (bigram 이라 부른다)
+       * AG, GC, CT, TT, TC, CG, GA
+    3. 3-gram sequence (trigram 이라 부른다)
+       * AGC, GCT, CTT, TTC, TCG, CGA
+* n-gram은 자연어 처리에서 자주 볼 수 있는 개념이다.
+  * suffix array 구조를 구축하는데도 사용되는 개념이다.
+
