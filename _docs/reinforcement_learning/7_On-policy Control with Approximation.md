@@ -5,11 +5,11 @@ category: Reinforcement Learning
 order: 7
 ---
 
-## n-step TD Prediction  
+## Episodic Semi-gradient Control  
 
 
 
-## n-step TD Prediction  
+## Semi-gradient $n$-step SARSA
 
 
 

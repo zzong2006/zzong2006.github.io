@@ -22,29 +22,37 @@ order: 3
 
 ### visit
 
-* 한 episode에서 state $s$를 발견한 경우, 이를 a visit to $s$라고 한다.
-  * 물론 $s$는 한 episode에서 여러번 visited 될 수 있다.
-  * 한 episode에서 $s$를 처음 발견한 것은 first-visit 라고 한다.
-* **first-visit MC** 방법은 처음 visit하는 $s$에 대해서 returns 의 평균값을 취해 $v_\pi(s)$를 계산한다.
-  * ![image-20201022142040163](https://i.loli.net/2020/10/22/I6BxH9ePbOQaDkS.png)
-* 반면, **every-visit MC** 방법은 어떤 $s$든 visit 할때마다 returns의 평균값을 취해  $v_\pi(s)$를 계산한다.
-  * Every-visit MC 방법도 first-visit MC 방법과 큰 차이는 없다. 다만, $S_t$가 해당 에피소드에서 방문했는지 하지 않았는지 검사하지 않는다.
+한 episode에서 state $s$를 발견한 경우, 이를 a visit to $s$라고 한다.
+* 물론 $s$는 한 episode에서 여러번 visited 될 수 있다.
+* 한 episode에서 $s$를 처음 발견한 것은 first-visit 라고 한다.
 
-* 두 MC 방법은 모두 $s$에 대해 방문하는 횟수가 무한으로 증가할수록 $v_\pi(s)$가 수렴한다.
-  * first-visit의 경우에는 각 return값은 유한한 variance $\sigma^2$를 가지는 $v_\pi(s)$의 추정값에 대해 **독립적**이고, identically distributed하다. 
-    * 독립적이고 identically distributed (i.i.d.) 하다는 의미: 어떠한 랜덤 확률변수의 집합이 있을때, 각각의 랜덤 확률변수들은 자기 사건의 발생의 영향이 다른 랜덤 확률변수에게 미치지 않고, 동일한 분포를 가질때를 의미함
-      * 예시) binomial distribution (성공 or 실패)를 가지는 동전던지기를 3회 실시한다고 가정하자. 각각의 시행은 이전이나 이후의 시행에 영향을 주지않는 독립시행이며 각각의 시행에서 나오는 동전의 앞,뒤에 대한 결과값의 분포는 동일한 binomial distribution를 따르기 때문에 이는 i.i.d.라고 할수 있다.
-  * 큰 수의 법칙에 의해 이러한 추정값은 expected value 로 수렴하게 된다.
-    * 큰 수의 법칙: 확률 변수의 무한열 $X_1, X_2, X_3, ...$이 모두 같은 기댓값 $μ$, 분산 $σ^2$을 가지고 서로 상관 관계가 없을 때(임의의 두 확률 변수 사이의 상관 계수가 0), 표본의 평균 ${\displaystyle {\overline {X}}_{n}=(X_{1}+\cdots +X_{n})/n}$ 이 $μ$로 수렴한다는 것
+**first-visit MC** 방법은 처음 visit하는 $s$에 대해서 returns 의 평균값을 취해 $v_\pi(s)$를 계산한다.
+
+![image-20201022142040163](https://i.loli.net/2020/10/22/I6BxH9ePbOQaDkS.png)
+
+반면, **every-visit MC** 방법은 어떤 $s$든 visit 할때마다 returns의 평균값을 취해  $v_\pi(s)$를 계산한다.
+
+* Every-visit MC 방법도 first-visit MC 방법과 큰 차이는 없다. 다만, $S_t$가 해당 에피소드에서 방문했는지 하지 않았는지 검사하지 않는다.
+
+두 MC 방법은 모두 $s$에 대해 방문하는 횟수가 무한으로 증가할수록 $v_\pi(s)$가 수렴한다.
+* first-visit의 경우에는 각 return값은 유한한 variance $\sigma^2$를 가지는 $v_\pi(s)$의 추정값에 대해 **독립적**이고, identically distributed하다. 
+  * 독립적이고 identically distributed (i.i.d.) 하다는 의미: 어떠한 랜덤 확률변수의 집합이 있을때, 각각의 랜덤 확률변수들은 자기 사건의 발생의 영향이 다른 랜덤 확률변수에게 미치지 않고, 동일한 분포를 가질때를 의미함
+  * 예시) binomial distribution (성공 or 실패)를 가지는 동전던지기를 3회 실시한다고 가정하자. 각각의 시행은 이전이나 이후의 시행에 영향을 주지않는 독립시행이며 각각의 시행에서 나오는 동전의 앞,뒤에 대한 결과값의 분포는 동일한 binomial distribution를 따르기 때문에 이는 i.i.d.라고 할수 있다.
+
+큰 수의 법칙에 의해 이러한 추정값은 expected value 로 수렴하게 된다.
+
+* 큰 수의 법칙: 확률 변수의 무한열 $X_1, X_2, X_3, ...$이 모두 같은 기댓값 $μ$, 분산 $σ^2$을 가지고 서로 상관 관계가 없을 때(임의의 두 확률 변수 사이의 상관 계수가 0), 표본의 평균 ${\displaystyle {\overline {X}}_{n}=(X_{1}+\cdots +X_{n})/n}$ 이 $μ$로 수렴한다는 것
 
 
 ### DP vs MC
 
-* one-step transitions을 통해 value를 update하는 DP diagram과 달리, MC는 terminal state까지의 trajectory를 확인하고 value를 estimate한다.
-  * <img src="https://i.loli.net/2020/10/22/MDP9BWjQp4cb2Gy.png" alt="image-20201022153605293" style="zoom:50%;" />
-* 또한, MC의 state에 대한 측정값은 독립적이다.
-  * DP는 다른 어떤 state들을 확용하여 특정 state를 추정하려고 했다 (bootstrap)
-  * 그러나, MC는 그렇지 않다.
+one-step transitions을 통해 value를 update하는 DP diagram과 달리, MC는 terminal state까지의 trajectory를 확인하고 value를 estimate한다.
+
+<img src="https://i.loli.net/2020/10/22/MDP9BWjQp4cb2Gy.png" alt="image-20201022153605293" style="zoom:50%;" />
+
+또한, MC의 state에 대한 측정값은 독립적이다.
+* DP는 다른 어떤 state들을 확용하여 특정 state를 추정하려고 했다 (bootstrap)
+* 그러나, MC는 그렇지 않다.
 
 ## Monte Carlo Estimation of Action Values  
 

@@ -34,15 +34,15 @@ $$
 
 ## Markov property
 
-* MDP의 $S_t$와 $A_t$는 무조건 $S_{t-1}$와 $A_{t-1}$에 의해서만 영향을 받음
+MDP의 $S_t$와 $A_t$는 무조건 $S_{t-1}$와 $A_{t-1}$에 의해서만 영향을 받음
 
 
 
 ## state-transition probabilities
 
-* $$
-  p\left(s^{\prime} \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime} \mid S_{t-1}=s, A_{t-1}=a\right\}=\sum_{r \in \mathcal{R}} p\left(s^{\prime}, r \mid s, a\right)
-  $$
+$$
+p\left(s^{\prime} \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime} \mid S_{t-1}=s, A_{t-1}=a\right\}=\sum_{r \in \mathcal{R}} p\left(s^{\prime}, r \mid s, a\right)
+$$
 
 * dynamics of the MDP의 three-arguments 버전 ($s'$에서 받을 수 있는 reward에 대한 확률을 다 합친 것임)
 

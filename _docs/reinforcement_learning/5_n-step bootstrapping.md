@@ -130,7 +130,7 @@ $$
 
 * 당연히 $G_{t: t+n} \doteq G_{t}$ for $t+n \geq T$ 이다.
 * $\bar{V}_{t+n-1}$ 은 $t$와 $s$에서 수행될 수 있는 action들의 Expected approximate value로, 다음과 같이 계산된다.
-  * $\bar{V}_{t}(s) \doteq \sum_{a} \pi(a \mid s) Q_{t}(s, a), \quad$ for all $s \in \mathcal{S}$
+  * $\bar{V}_ {t}(s) \doteq \sum_{a} \pi(a \mid s) Q_ {t}(s, a)$  for all $s \in \mathcal{S}$
 
 
 

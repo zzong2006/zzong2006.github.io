@@ -29,9 +29,9 @@ Getting a message sent is quick and easy with ChatApp:
 
 Explore more of ChatApp by reading about our features:
 
-#### Media
+#### Tips for locally testing github site
 
-Send images, videos and other media to people. Sources include your computer, phone and Facebook.
+`bundle exec jekyll serve`
 
 #### Contact Syncing
 
