@@ -460,17 +460,18 @@ img {
 	display: block;
 }
 
-.katex-display > .katex ::-webkit-scrollbar {
+.katex-display > .katex {
 	display: inline-block;
-	white-space: nowrap;
 	max-width: 100%;
 	overflow-x: auto;
+	overflow-y: hidden;
 	text-align: initial;
 }
 
 .katex {
-	font: normal 1.21em KaTeX_Main, Times New Roman, serif;
-	line-height: 1.2;
 	white-space: normal;
-	text-indent: 0;
+}
+
+.katex .katex-html {
+	overflow-wrap: normal;
 }
