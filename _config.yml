@@ -25,6 +25,7 @@ social:
 timezone: Etc/UTC
 
 permalink: pretty
+markdown: kramdown
 
 plugins:
   - jekyll-sitemap
