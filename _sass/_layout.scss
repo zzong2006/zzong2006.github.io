@@ -460,12 +460,16 @@ img {
 	display: block;
 }
 
-.katex-display > .katex {
-	display: inline-block;
-	max-width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-	text-align: initial;
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .katex-display > .katex {
+        display: inline-block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        text-align: initial;
+    }
 }
 
 .katex {
