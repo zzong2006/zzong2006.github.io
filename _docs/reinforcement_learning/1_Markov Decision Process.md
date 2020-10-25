@@ -18,9 +18,9 @@ order: 1
 
 ## $p$ : dynamics of the MDP
 
-* $$
-  p\left(s^{\prime}, r \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime}, R_{t}=r \mid S_{t-1}=s, A_{t-1}=a\right\}
-  $$
+$$
+p\left(s^{\prime}, r \mid s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime}, R_{t}=r \mid S_{t-1}=s, A_{t-1}=a\right\}
+$$
 
 * $t$ 시간에서 $a$를 통해 $s$에서 $s'$으로 옮겨서 $r$을 받을 확률
 
