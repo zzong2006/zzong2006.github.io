@@ -1,8 +1,8 @@
 ---
 layout: default
 title:  "Interview Questions"
-parent: Reinforcement Learning
-nav_order: 99
+category: Reinforcement Learning
+order: 21
 ---
 
 ## 1. 지도학습, 비지도 학습과 비교하여 강화학습이 다른 점은 무엇인가? 

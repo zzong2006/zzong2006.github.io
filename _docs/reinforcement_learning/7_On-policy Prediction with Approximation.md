@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  "On-policy Control with Approximation"
+title:  "On-policy Prediction with Approximation"
 category: Reinforcement Learning
 order: 6
 ---

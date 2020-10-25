@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "On-policy Prediction with Approximation"
-parent: Reinforcement Learning
-nav_order: 6
+title:  "On-policy Control with Approximation"
+category: Reinforcement Learning
+order: 7
 ---
 
 ## n-step TD Prediction  

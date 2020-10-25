@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Policy Gradient Methods"
-parent: Reinforcement Learning
-nav_order: 8
+title:  "Actor-Critic"
+category: Reinforcement Learning
+order: 10
 ---
 
 ## n-step TD Prediction  

@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Actor-Critic"
-parent: Reinforcement Learning
-nav_order: 10
+title:  "Eligibility Traces"
+category: Reinforcement Learning
+order: 9
 ---
 
 ## n-step TD Prediction  
