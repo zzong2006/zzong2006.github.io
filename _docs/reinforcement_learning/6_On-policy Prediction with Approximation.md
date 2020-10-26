@@ -52,7 +52,7 @@ $$
 * state space 에 걸쳐 가중치 $\mu$를 할당함으로써, 자연스러운 목적 함수를 만든다.
   * $\mu(s)$ 는 종종 $s$에서 쓰여진 시간의 비율로 채택되며, on-policy에서는 on-policy distribution으로 불린다. 
 
-$\overline{\mathrm{VE}}$ 를 사용하는 궁극적인 목표는 모든 $\mathbf{w}$에서 $\overline{\mathrm{VE}}\left(\mathbf{w}^{*}\right) \leq \overline{\mathrm{VE}}(\mathbf{w})$ 를 만족하는 weight vector $\mathbf{w}^{*}$ 를 찾는것이다.
+$\overline{\mathrm{VE}}$ 를 사용하는 궁극적인 목표는 모든 $\mathbf{w}$에서 $\overline{\mathrm{VE}}(\mathbf{w}^{\ast}) \leq \overline{\mathrm{VE}}(\mathbf{w})$ 를 만족하는 weight vector $\mathbf{w}^{\ast}$ 를 찾는것이다.
 
 * 일반적으로 선형 함수로는 종종 가능하나, 인공 신경망이나 decision tree에서는 거의 불가능하다.
   * 왜냐하면 복잡한 함수의 경우 local optimum에 빠질 수 있기 때문이다.
@@ -119,26 +119,115 @@ MC 방법과 달리, $n$-step이나 DP target을 이용한 bootstrap 방법은 *
 
 ## Linear Methods  
 
+함수 근사(function approximation)에서 가장 중요하게 쓰이는 것이 linear function $\hat{v}(\cdot, \mathbf{w})$ 이다. 
+
+모든 state $s$에 대한 실수 값 벡터 $\mathbf{x}(s) \doteq(x_{1}(s), x_{2}(s), \ldots, x_{d}(s))^{\top}$ 와 가중치 벡터 $\mathbf{w}$의 inner product로 linear function을 표현할 수 있다.
 
 $$
 \hat{v}(s, \mathbf{w}) \doteq \mathbf{w}^{\top} \mathbf{x}(s) \doteq \sum_{i=1}^{d} w_{i} x_{i}(s)
 $$
 
+$\mathbf{x}(s)$ 는 $s$ 를 표현하는 feature vector로 이루어져있다.
+
+* $x_i(s)$를 하나의 feature로 본다.
+* linear methods에서는 feature들은 basis functions으로 불리는데, 그 이유는 feature들이 근사 함수들의 집합에 대한 linear basis를 이루기 때문이다.
+  * 즉, $d$ 차원의 feature vector들을 구성하는 것은 $d$ 개의 basis function들로 이루어진 집합을 선택하는 것과 같다.
+
+linear function 근사도 SGD를 이용해서 update하면 된다. 이전의 SGD 식에 linear function을 적용하면 다음과 같다.
+$$
+\mathbf{w}_{t+1} \doteq \mathbf{w}_{t}+\alpha\left[U_{t}-\hat{v}\left(S_{t}, \mathbf{w}_{t}\right)\right] \mathbf{x}\left(S_{t}\right)
+$$
+
+* $\nabla \hat{v}(s, \mathbf{w})=\mathbf{x}(s)$
+
+linear SGD는 상당히 간단해서 대부분의 수학적 분석에 자주 사용된다.
+
+---
+
+linear 를 이용하는 경우 오직 하나의 최적값만 존재하므로, local optimum이 보장된 방법의 경우 linear를 통해서 global optimum (또는 그 근처로) 수렴할 수 있다.
+
+* 위에서 소개한 MC 수렴의 경우를 보았을 때, linear function 근사를 사용할 경우, 시간이 지나면서 $\alpha$가 조금씩 감소하면 global optimum으로 수렴한다.
+
+TD(0)의 경우는 조금 다른데, 우선 SGD는 다음과 같이 전개된다.
+$$
+\begin{aligned}
+\mathbf{w}_{t+1} & \doteq \mathbf{w}_{t}+\alpha\left(R_{t+1}+\gamma \mathbf{w}_{t}^{\top} \mathbf{x}_{t+1}-\mathbf{w}_{t}^{\top} \mathbf{x}_{t}\right) \mathbf{x}_{t} \\
+&=\mathbf{w}_{t}+\alpha\left(R_{t+1} \mathbf{x}_{t}-\mathbf{x}_{t}\left(\mathbf{x}_{t}-\gamma \mathbf{x}_{t+1}\right)^{\top} \mathbf{w}_{t}\right)
+\end{aligned}
+$$
+
+* 간단하게 $\mathbf{x}_{t}=\mathbf{x}\left(S_{t}\right)$ 로 표현했다.
+
+그리고 학습을 하다보면, 주어진 임의의 $\mathbf{w}_{t}$ 에 대해서 next weight vector의 기대값은 다음과 같이 표현된다. 
+$$
+\mathbb{E}\left[\mathbf{w}_{t+1} \mid \mathbf{w}_{t}\right]=\mathbf{w}_{t}+\alpha\left(\mathbf{b}-\mathbf{A} \mathbf{w}_{t}\right)
+$$
+
+* $$
+  \mathbf{b} \doteq \mathbb{E}\left[R_{t+1} \mathbf{x}_{t}\right] \in \mathbb{R}^{d} \quad \text { and } \quad \mathbf{A} \doteq \mathbb{E}\left[\mathbf{x}_{t}\left(\mathbf{x}_{t}-\gamma \mathbf{x}_{t+1}\right)^{\top}\right] \in \mathbb{R}^{d \times d}
+  $$
+  * 너무 어렵게 생각할 필요 없이 $\mathbf{b}$와 $\mathbf{A}$를 그냥 대입해보면 된다.
+
+그리고 만약 linear semi-gradient TD(0)가 수렴한다고 하면, 다음과 같은 weight vector로 수렴한다고 한다. 증명은 생략한다.
+$$
+\begin{aligned}
+\mathbf{b}-\mathbf{A} \mathbf{w}_{\mathrm{TD}} &=\mathbf{0} \\
+\mathbf{b} &=\mathbf{A} \mathbf{w}_{\mathrm{TD}} \\
+\mathbf{w}_{\mathrm{TD}} & \doteq \mathbf{A}^{-1} \mathbf{b}
+\end{aligned}
+$$
+여기서 $\mathbf{w}_{\mathrm{TD}}$ 값을 TD fixed pointer라 부른다. 
+
+### $n$-step semi-gradient TD
+
+![image-20201026150428627](https://i.loli.net/2020/10/26/rb6oZqdWIgBUOpm.png)
+
+위 알고리즘의 핵심은 다음과 같다.
+$$
+\mathbf{w}_{t+n} \doteq \mathbf{w}_{t+n-1}+\alpha\left[G_{t: t+n}-\hat{v}\left(S_{t}, \mathbf{w}_{t+n-1}\right)\right] \nabla \hat{v}\left(S_{t}, \mathbf{w}_{t+n-1}\right), \\ \quad 0 \leq t<T
+$$
+$n$-step은 아래와 같이 일반화될 수 있다.
+$$
+G_{t: t+n} \doteq R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} \hat{v}\left(S_{t+n}, \mathbf{w}_{t+n-1}\right), \\ \quad 0 \leq t \leq T-n
+$$
+
 
 ## Feature Construction for Linear Methods  
 
+### Polynomials  
 
-
-## Selecting Step-Size Parameters Manually  
-
+두개의 좌표 시스템의 경우 아래와 같이 표현될 수 있음
+$$
+\mathbf{x}(s)= \left(s_{1}, s_{2}\right)^{\top}
+$$
+하지만 위 feature들은 작아서, 추가로 더 많은 feature들을 넣을 수 있음
+$$
+\mathbf{x}(s)=\left(1, s_{1}, s_{2}, s_{1} s_{2}\right)^{\top}
+$$
+더욱 많은 features (higher-dimensional)
+$$
+\mathbf{x}(s)=\left(1, s_{1}, s_{2}, s_{1} s_{2}, s_{1}^{2}, s_{2}^{2}, s_{1} s_{2}^{2}, s_{1}^{2} s_{2}, s_{1}^{2} s_{2}^{2}\right)^{\top}
+$$
 
 
 ## Nonlinear Function Approximation: Artificial Neural Networks
 
+activation function(logistic, ReLU,step etc.) 을 사용하는 ANN
 
+![image-20201026163109913](https://i.loli.net/2020/10/26/MkUp94xGOCzJB1n.png)
 
-## Least-Squares TD  
+backpropagation 알고리즘을 사용하여 partial derivative를 계산하여 학습
 
+너무 네트워크기가 깊으면 (many hidden layers), overfitting의 문제가 발생함
 
+Overfitting을 줄이기 위한 방법
 
-## Memory-based Function Approximation  
+1. Cross-validation: training data외의 validation data에 대하여 신경망 성능이 감소할 때 학습을 멈추는 방법
+2. regularization: approximation의 complexity를 감소시킴 
+3. weights들 사이에 dependency를 도입하는 방법
+4. dropout 기법 : units 간 connections을 임의로 제거
+
+Batch Normalization/ Deep residual learning을 이용하는 경우도 있음
+
+* 이 둘의 방법은 alpha go 에서 사용됨
+

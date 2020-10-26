@@ -13,4 +13,4 @@ order: 7
 
 
 
-## n-step Off-policy Learning  
+## $n$-step Off-policy Learning  
