@@ -116,6 +116,7 @@ $$
 * $\alpha$는 learning rate
 * $\beta$는 지수이동평균 계수, 일반적으로 0.9 값을 가짐 
   * 즉, 최근 10개의 iteration의 gradients 평균을 계산하는 것과 비슷하다.
+  * $\beta=0$ 일 경우, 일반적인 gradient descent와 같다 (no momentum).
 * $v_{dW} = 0, v_{db} =0$
 
 ### 왜 Momentum이 먹히는 걸까?
