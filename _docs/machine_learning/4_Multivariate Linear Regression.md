@@ -66,43 +66,50 @@ $$
 
 ## Gradient Descent in Practice I - Feature Scaling
 
-* Feature scaling는 입력 값들이 rough하게 비슷한 범위의 값들을 가지게 만드는 방법을 뜻한다.
+Feature scaling(또는 normalization)은 입력 데이터의 각 차원 간 값의 범위가 rough하게 비슷하게 만드는 방법을 뜻한다.
 
-* Feature scaling을 이용하면 gradient descent의 속도를 향상 시킬 수 있다.
+Feature scaling을 이용하면 gradient descent의 속도를 향상 시킬 수 있다.
 
-* 입력 데이터 $x_i$에 대해, $x_i$의 모든 값들의 평균이 $\mu_i$ 이고, (max-min) 값 또는 표준 편차(standard deviation)값이 $s_i$ 라면, feature scaling 또는 mean normalization의 방법은 다음과 같다.
-  $$
-  x_i :=\frac{x_i-\mu_i}{s_i}
-  $$
+Andrew Ng에 의하면, 입력 데이터 $x_i$에 대한 값의 범위는 $-3 \le x_i\le3$ 또는 $-0.33 \le x_i \le 0.33$ 의 범위를 추천한다고 한다.
 
-  * 물론 $s_i$가 (max-min) 값인지 표준 편차인지에 따라 feature scaling 결과는 다르다.
-  * Andrew Ng에 의하면, 입력 데이터 $x_i$에 대한 값의 범위는 $-3 \le x_i\le3$ 또는 $-0.33 \le x_i \le 0.33$ 의 범위를 추천한다고 한다.
-  
-* z-score
+### Z-Score Normalization
 
-  * $$
-    x_i=\frac{x_i-\mu_i}{\sigma_i}
-    $$
+$$
+x_i=\frac{x_i-\mu_i}{\sigma_i}
+$$
 
-  * outlier를 잘 처리하지만, 정확히 동일한 척도로 정규화 된 데이터를 생성하지는 않는다.
+* $\mu_i$는 $i$ 번째 차원 데이터 값의 평균, 그리고 $\sigma_i$는 $i$번째 차원 데이터 값의 표준 편차
+  * 표준 편차 구하는 법: $\sigma=\sqrt{\frac{1}{N-1} \sum_{i=1}^{N}(x_{i}-\mu_i)^{2}}$ ($N$은 sample 개수)
 
-  * ![img](https://i.loli.net/2020/10/17/3SIZw4aopmRD6JU.png)
+장점 및 단점: outlier를 잘 처리하지만, 모든 차원 간 데이터 값의 간격이 동일하지는 않다.
 
-### Feature Scaling
+<img src="https://i.loli.net/2020/10/17/3SIZw4aopmRD6JU.png" alt="img" style="zoom:67%;" />
 
-* Scaling은 normalization과 다르다.
+### Min-max normalization
 
-* min-max
+$$
+x_i =\frac{x_i-min(X)}{max(X)-min(X)}
+$$
 
-  * $$
-    x_i =\frac{x_i-min(X)}{max(X)-min(X)}
-    $$
+* $X$는 모든 features($x_i$)들의 집합
 
-  * $X$는 모든 features($x_i$)들의 집합
+장점 및 단점: 모든 feature들의 스케일이 동일하지만, outlier를 잘 처리하지 못한다.
 
-  * 모든 feature들의 스케일이 동일하지만, outlier를 잘 처리하지 못한다.
+<img src="https://i.loli.net/2020/10/17/q86ZcBHiJLeKyt2.png" alt="img" style="zoom:67%;" />
 
-  * ![img](https://i.loli.net/2020/10/17/q86ZcBHiJLeKyt2.png)
+### 왜 Feature Scaling 또는 Normalization을 할까?
+
+모델의​ 학습 속도가 빨라지기 때문이다.
+
+다음과 같은 Loss Function의 경우, 2차원으로 contour map을 간단히 표현할 수 있다.
+$$
+J(w, b)=\frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)
+$$
+![image-20201028212048707](https://i.loli.net/2020/10/28/GxXcpEnhYSJuBAU.png)
+
+* 그림에서 보다시피, normalization이 수행되지 않은 경우는 loss function의 값이 특정 feature에 따라 큰 영향을 받을 수 있기 때문에, gradient descent 중에 loss 값이 oscillating 할 가능성이 높다. 즉, 학습 시간이 오래 걸린다.
+
+
 
 ## Gradient Descent in Practice II - Learning Rate
 

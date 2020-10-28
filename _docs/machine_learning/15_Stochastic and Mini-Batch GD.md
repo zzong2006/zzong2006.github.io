@@ -64,6 +64,14 @@ Mini-batch GD: Use $b$ examples in each iteration where $b<m$ is the mini-batch 
 
 ![image-20201018174133889](https://i.loli.net/2020/10/18/6TQ7IVo4YRJBcuv.png)
 
+### Choosing your mini-batch size ($m$)
+
+학습 데이터 개수가 작을 경우 (약 2000 이하), batch gradient descent를 사용
+
+일반적인 mini-batch sizes: 64, 128, 256, 512, (가끔 1024)
+
+* 추가로, 모든 mini-batch 사이즈가 CPU 또는 GPU 메모리에 들어가도록 할 것
+
 ## Stochastic Gradient Descent Convergence
 
 Batch gradient descent가 converge하는 것을 확인하기 위해서는 비용함수 $J_{train}(\theta)$의 값을 GD를 수행할 때마다 그려주면 되었다.
@@ -87,3 +95,4 @@ Batch gradient descent가 converge하는 것을 확인하기 위해서는 비용
 
 
  
+

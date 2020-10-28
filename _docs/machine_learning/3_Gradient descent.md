@@ -5,31 +5,29 @@ category: Machine Learning
 order: 3
 ---
 
-### Garident Descent의 간단한 정의 및 설명
+Gradient Descent란? 모델 $h$에 대한 적합한 ($\theta_i$ 와 같은) parameter를 찾기 위한 방법
 
-* 모델 $h$에 대한 적합한 ($\theta_i$ 와 같은) parameter를 찾기 위한 방법
+아래는 $\theta_0$ 와 $\theta_1$에 대한 등고선 그래프이다.   
 
-* 아래는 $\theta_0$ 와 $\theta_1$에 대한 등고선 그래프이다.   
-  이 그래프의 사용 목적은 비용 함수 $J(\theta_0,\theta_1)$가 등고면 바닥에 닿을 수 있는 parameter를 찾기 위함이다.  
-  즉, 두 parameter의 적절한 값을 찾기위해 비용 함수를 미분하여 어느 방향으로 parameter  값을 조정해야 하는지 확인해야한다.   
-  ![img](https://i.loli.net/2020/09/22/naC65JBiso8EeHp.png)
+![img](https://i.loli.net/2020/10/28/MuamBTrb8lK5ypz.png)
+
+* 이 그래프의 사용 목적은 비용 함수 $J(\theta_0,\theta_1)$가 등고면 바닥에 닿을 수 있는 parameter를 찾기 위함이다.  
+  * 즉, 두 parameter의 적절한 값을 찾기위해 비용 함수를 미분하여 어느 방향으로 parameter  값을 조정해야 하는지 확인해야한다.   
 
 * 위의 십자가 모양의 표시는 parameters $(\theta_0,\theta_1)$가 변화한 순간들을 포착한 것이다.   
-  변화한 순간의 간격이 일정한듯 보이는데, 이러한 간격(size of each step)을 결정하는 것은 $\alpha$라는 학습률(learning rate)이 결정한다.  
-* 또한 $(\theta_0,\theta_1)$의 값이 어디서 시작하냐에 따라서(그림에서의 두 빨간 동그라미들), parameter가 수렴하는 값이 달라진다.  
+  * 변화한 순간의 간격이 일정한듯 보이는데, 이러한 간격(size of each step)을 결정하는 것은 $\alpha$라는 학습률(learning rate)이 결정한다.  
+  * 또한 $(\theta_0,\theta_1)$의 값이 어디서 시작하냐에 따라서(그림에서의 두 빨간 동그라미들), parameter가 수렴하는 값이 달라진다.  
 
-* Gradient Descent 알고리즘은 다음과 같은 수식으로 표현된다.    
-  $$
-  \theta_j:=\theta_j-\alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1) \quad \text{where} \ \ j=0, 1
-  $$
+Gradient Descent 알고리즘은 다음과 같은 수식으로 표현된다.    
+$$
+\theta_j:=\theta_j-\alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1) \quad \text{where} \ \ j=0, 1
+$$
 
-  * 중요한 점은 각 parameter에 대하여 업데이트 할 값($\frac{\partial}{\partial\theta_j}$)을 먼저 모두 구하고, parameter의 값들을 update 해야 한다는 점이다.    
-    아래 그림은 올바른 또는 올바르지 않은 update 방식을 나타낸다.   
-    ![img](https://i.loli.net/2020/09/22/ohWbuw3XFTpN7KY.png)
-  * 추가적으로 $:=$는 assign의 의미가 있으며, $=$는 assert의 의미다 있다.  
-    즉, $a := b$ 는 $b$ 의 값을 $a$에 부여하고, $a=b$는 $a$와 $b$의 값이 일치하는지 확인하는 것이다.
-
-  
+* 중요한 점은 각 parameter에 대하여 업데이트 할 값($\frac{\partial}{\partial\theta_j}$)을 먼저 모두 구하고, parameter의 값들을 update 해야 한다는 점이다.    
+* 아래 그림은 올바른 또는 올바르지 않은 update 방식을 나타낸다. 
+* ![img](https://i.loli.net/2020/09/22/ohWbuw3XFTpN7KY.png)
+  * $:=$는 assign의 의미가 있으며, $=$는 assert의 의미다 있다.  
+  * 즉, $a := b$ 는 $b$ 의 값을 $a$에 부여하고, $a=b$는 $a$와 $b$의 값이 일치하는지 확인하는 것이다.
 
 ### Gradient Descent의 직관적 이해
 
