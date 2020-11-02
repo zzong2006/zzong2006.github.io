@@ -12,6 +12,7 @@ order: 6
 다음과 같은 신경망이 있다고 가정하자.
 
 <img src="https://i.loli.net/2020/10/27/PxZ15jGEuCLT37w.png" alt="image-20201027184032421" style="zoom:50%;" />
+
 $$
 \begin{aligned}
 &\text { Given } x:\\
@@ -21,7 +22,9 @@ $$
 & a^{[2]}=z^{[2]} \quad \\
 \end{aligned}
 $$
+
 보다시피 비선형 함수를 사용하지 않았다. 만약 $a^{[2]}$를 계산하면 어떻게 될까?
+
 $$
 \begin{aligned}
 a^{[1]}&=z^{[1]}=W^{[1]} x+b^{[1]} \\
@@ -31,6 +34,7 @@ a^{[2]}&=W^{[2]} (W^{[1]} x+b^{[1]})+b^{[2]} \\
 &=W'(x)+b'
 \end{aligned}
 $$
+
 $a^{[2]}$ 는 하나의 계층과 다를바가 없다.
 
 ## Sigmoid Function
@@ -75,15 +79,17 @@ tanh 함수는 sigmoid function을 평행이동 시킨것이다.
 ## Rectifier (ReLU function)
 
 <img src="https://i.loli.net/2020/10/27/vyfGMXkse3i9YVS.png" alt="ReLu(Rectified Linear Unit)" style="zoom: 80%;" />
+
 $$
 f(x)=\left\{\begin{array}{ll}
 0 & \text { for } x \leq 0 \\
 x & \text { for } x>0
 \end{array}=\max \{0, x\}\right.
 $$
+
 미분값
 
-* $f^{\prime}(x)=\left\{\begin{array}{ll}0 & \text { for } x \leq 0 \\ 1 & \text { for } x>0\end{array}\right.$
+* $$f^{\prime}(x)=\{\begin{array}{ll}0 & \text { for } x \leq 0 \\ 1 & \text { for } x>0\end{array}.$$
   * 원래는 $x=0$에서 undefined 이긴한데, 그냥 0 또는 1로 쳐준다.
 
 ### ReLU 함수의 단점

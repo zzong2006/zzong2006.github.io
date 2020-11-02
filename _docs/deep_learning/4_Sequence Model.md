@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  "Sequence Model"
+title:  "RNN: Sequence Model"
 category: Deep Learning
 order: 4
 ---
