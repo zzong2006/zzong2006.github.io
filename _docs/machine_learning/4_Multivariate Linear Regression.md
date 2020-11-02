@@ -8,11 +8,15 @@ order: 4
 * 여러개의 variables을 가지고 Linear regression 하는 것
 
 * $n+1$개의 feature가 존재할 때, 모델 $h_\theta(x)$는 다음과 같이 표현됨
-  $$
+
+
+$$
   h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_3+\cdots+\theta_nx_n
-  $$
+$$
 
 * 그리고 위의 식은 행렬 곱(matrix multiplication)으로 표현될 수 있음
+
+
 $$
 h_{\theta}(x)=\left[\begin{array}{llll}
 \theta_{0} & \theta_{1} & \ldots & \theta_{n}
@@ -102,9 +106,11 @@ $$
 모델의​ 학습 속도가 빨라지기 때문이다.
 
 다음과 같은 Loss Function의 경우, 2차원으로 contour map을 간단히 표현할 수 있다.
+
 $$
 J(w, b)=\frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)
 $$
+
 ![image-20201028212048707](https://i.loli.net/2020/10/28/GxXcpEnhYSJuBAU.png)
 
 * 그림에서 보다시피, normalization이 수행되지 않은 경우는 loss function의 값이 특정 feature에 따라 큰 영향을 받을 수 있기 때문에, gradient descent 중에 loss 값이 oscillating 할 가능성이 높다. 즉, 학습 시간이 오래 걸린다.
@@ -113,31 +119,33 @@ $$
 
 ## Gradient Descent in Practice II - Learning Rate
 
-* 학습률 $\alpha$를 적절하게 정하는 것이 중요하다. 
-  * 적절한 $\alpha$는 반드시 비용 함수 $J(\theta)$ 를 수렴하게 만든다.
-  * 일반적으로 매 반복(iteration) 마다 $J(\theta)$ 값이 $10^{-3}$ 이하 만큼 줄어들면 수렴한다고 한다.
-* 만약, $\alpha$값이 너무 작다면, 천천히 수렴할 것이다.
-* 그렇다고 $\alpha$ 값이 너무 크다면, 학습을 반복할 때 마다, 비용 함수 $J(\theta)$ 값이 줄어들지 않을 수 있다. 즉, 수렴하지 않을 것이다.
+학습률 $\alpha$를 적절하게 정하는 것이 중요하다. 
+* 적절한 $\alpha$는 반드시 비용 함수 $J(\theta)$ 를 수렴하게 만든다.
+* 일반적으로 매 반복(iteration) 마다 $J(\theta)$ 값이 $10^{-3}$ 이하 만큼 줄어들면 수렴한다고 한다.
+
+만약, $\alpha$값이 너무 작다면, 천천히 수렴할 것이다.
+
+그렇다고 $\alpha$ 값이 너무 크다면, 학습을 반복할 때 마다, 비용 함수 $J(\theta)$ 값이 줄어들지 않을 수 있다. 즉, 수렴하지 않을 것이다.
 
 ## Features and Polynomial Regression
 
-* 어떻게 하면 다항식(polynomial), 즉, 2차 또는 3차 함수를 데이터 맞게 표현할 수 있을까?
+어떻게 하면 다항식(polynomial), 즉, 2차 또는 3차 함수를 데이터 맞게 표현할 수 있을까?
 
-  *  만약 입력 값 $x$ 이 평수이고, 출력 값 $y$가 집값인 데이터가 있다고 가정하자.   
-    2차 함수를 이용하면 아래와 같은 데이터를 표현하기 힘들다. 왜냐하면 크기가 커지면 당연히 값은 오르기 때문이다.  
+*  만약 입력 값 $x$ 이 평수이고, 출력 값 $y$가 집값인 데이터가 있다고 가정하자.   
+  2차 함수를 이용하면 아래와 같은 데이터를 표현하기 힘들다. 왜냐하면 크기가 커지면 당연히 값은 오르기 때문이다.  
 
-    3차 함수 (초록색 박스)를 이용하면 좀 더 잘 표현할 수 있다.
+  3차 함수 (초록색 박스)를 이용하면 좀 더 잘 표현할 수 있다.
 
-    ![image-20200923232116390](https://i.loli.net/2020/09/23/QlR7Va1OX6vmCtS.png)
+  ![image-20200923232116390](https://i.loli.net/2020/09/23/QlR7Va1OX6vmCtS.png)
 
-  * feature는 size 하나인데, 다항식 $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x^2_1+\theta_3x^3_1$는 어떻게 표현될 수 있을까? 
 
-    * 하나의 feature를 제곱하는 형식을 이용하자. $(size), (size)^2,(size)^3$ 이렇게...
+feature는 size 하나인데, 다항식 $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x^2_1+\theta_3x^3_1$는 어떻게 표현될 수 있을까? 
 
-    * 주의할 점은 이 경우에 feature scaling이 필수적이라는 것이다.   
+* 하나의 feature를 제곱하는 형식을 이용하자. $(size), (size)^2,(size)^3$ 이렇게...
 
-      > if $x_1$ has range 1 - 1000 then range of $x_1^2$ becomes 1 - 1000000 and that of $x_1^3$ becomes 1 - 1000000000
+* 주의할 점은 이 경우에 feature scaling이 필수적이라는 것이다.   
 
-  * 이런 식의 함수도 가능하다: $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2\sqrt{x_1}$
+  > if $x_1$ has range 1 - 1000 then range of $x_1^2$ becomes 1 - 1000000 and that of $x_1^3$ becomes 1 - 1000000000
 
-  
+이런 식의 함수도 가능하다: $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2\sqrt{x_1}$
+

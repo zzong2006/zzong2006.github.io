@@ -131,12 +131,16 @@ $$
 
 Vanishing gradients : 미분값이 backpropagation을 통해 layer들을 지날 때 마다 exponential하게 감소하는 현상
 
-* 해결책: GRU / LSTM
+* 해결책: GRU / LSTM / Truncated BTT
 
 Exploding gradients : 미분값이 backpropagation을 통해 layer들을 지날 때 마다 exponential하게 **증가**하는 현상
 
 * 해결책: gradient clipping
 * ![image-20201101234742246](https://i.loli.net/2020/11/01/mvOLBftjAJn9Req.png)
+
+### Truncated Backpropagation through time
+
+
 
 ### Gated Recurrent Unit (GRU)
 

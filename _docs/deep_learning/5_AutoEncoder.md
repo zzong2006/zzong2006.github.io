@@ -11,7 +11,11 @@ order: 5
 
 * Self-Supervised 기술이다. (Similar to unsupervised)
   * self-supervised: 데이터로부터 target(label)을 만들어내는 학습
-* 
+* Data denoising 에 사용될 수 있다.
+
+![Applied Deep Lear](https://i.loli.net/2020/11/02/QtPuUBkdKWgCevm.png)
+
+* Data Restoration 에도 사용될 수 있다.
 
 ### 오토인코더의 장점
 

@@ -48,19 +48,26 @@ $$
 
 ### Gradient Descent For Linear Regression
 
-* $h_\theta(x_i )=\theta_0 +\theta_1x_i$ 의 비용 함수 $J(\theta_0,\theta_1)$을 이용하여 gradient descent를 진행해보자.    
+$h_\theta(x_i )=\theta_0 +\theta_1x_i$ 의 비용 함수 $J(\theta_0,\theta_1)$을 이용하여 gradient descent를 진행해보자.    
 
-  $$J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2$$
+$$
+J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2
+$$
 
-* 위에서 언급한 gradient descent를 사용.
-  $$
-  \theta_j:=\theta_j-\alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1) \quad \text{where} \ \ j=0, 1 \ \ \text{and} \ \ J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2
-  $$
-  
-  $$
-  \begin{align*} \text{repeat until convergence: } \lbrace & \newline \theta_0 := & \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline \theta_1 := & \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) \cdot x_{i}\right) \newline \rbrace& \end{align*}
-  $$
-  
+위에서 언급한 gradient descent를 사용.
+
+$$
+\theta_j:=\theta_j-\alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1) \quad\\ \text{where} \ \ j=0, 1 \ \ \text{and} \ \ J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2
+$$
+
+
+* 위 식은 모델이 수렴할때 까지 다음을 반복하라는 의미다.
+
+$$
+\theta_{0}:=\theta_{0}-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x_{i}\right)-y_{i}\right) \\
+\theta_{1}:=\theta_{1}-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(\left(h_{\theta}\left(x_{i}\right)-y_{i}\right) \cdot x_{i}\right)
+$$
+
 * 위와 같이 gradient descent를 진행할 때, 모든 training example을 전부 사용하는 것을 **batch gradient descent**라 부른다. 
 
 * 그리고 아래 그림과 같이 오직 하나의 minima (global minimum) 밖에 존재하지 않는 비용 함수 $J$를 convex quadratic function이라 부른다.    
