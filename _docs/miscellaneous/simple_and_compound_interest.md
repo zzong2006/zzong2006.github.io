@@ -47,13 +47,13 @@ $$
 #### 식 유도
 
 $$
-\begin{array}
+\begin{aligned} 
 S_1 &= A (1 + r) \ &,t = 1 \\
 S_2 &= S_1 (1+r) = A(1+r)^2 &,t=2 \\
 S_3 &= S_2 (1+r) = A(1+r)^3 &,t=3 \\
 \cdots \\
 S_n &= S_{n-1}(1+r) = A(1+r)^n &,t=n
-\end{array}
+\end{aligned}
 $$
 
 * $S_t$는 기간 $t$에 계산된 원리 합계
@@ -148,23 +148,23 @@ $$
 월 적금액이 $A$이고, 연 금리 $r$, $n$ 개월 만기 그리고 $m$ 개월 주기인 복리에서의 원리금 $S$를 계산해보자.
 
 $$
-\begin{array}
+\begin{aligned}
 &A\cdot(1 + \frac{r}{12} \cdot m)^{\frac{1}{m} \cdot n} &,\text{1 회차 적금액 A 에 대한 n 개월 원리금}\\
 & A\cdot(1 + \frac{r}{12} \cdot m)^{\frac{1}{m} \cdot (n-1)}&, \text{2 회차 적금액 A 에 대한 n 개월 원리금}\\
 & \cdots \\
 & A\cdot(1 + \frac{r}{12} \cdot m)^{\frac{1}{m} \cdot (2)}&, \text{n - 1 회차 적금액 A 에 대한 n 개월 원리금}\\
 & A\cdot(1 + \frac{r}{12} \cdot m)^{\frac{1}{m} \cdot (1)}&, \text{n 회차 적금액 A 에 대한 n 개월 원리금}\\
-\end{array}
+\end{aligned}
 $$
 
 위 원리금을 모두 다 합치는 것이 $S$ 값이 된다.
 
 $$
-\begin{array}
+\begin{aligned}
 S &=A \cdot\left(1+\frac{r}{12} m\right)^{\frac{1}{m} \cdot n}+ A \cdot\left(1+\frac{r}{12} m\right)^{\frac{1}{m} \cdot(n-1)}+\cdots + A \cdot\left(1+\frac{r}{12} m\right)^{\frac{1}{m} \cdot 2}+ A \cdot\left(1+\frac{r}{12} m\right)^{\frac{1}{m} \cdot 1} \\
 &= A \cdot\left(1+\frac{r}{12} m\right)^{\frac{1}{m}} \cdot \left[ 1 + (1+\frac{r}{12}m)^{} + \cdots +\cdots+\left(1+\frac{r}{12} m\right)^{(n-2)}+\left(1+\frac{r}{12} m\right)^{n-1}\right]
 
-\end{array}
+\end{aligned}
 $$
 
 등비 수열의 합 계산 공식을 활용한다 (초항 $a$이고 등비가 $r$일 때, 총 $n$개의 항에 대한 곱 공식).
@@ -188,13 +188,13 @@ $$
 월 적금액이 $A$이고, 연 금리 $r$, $n$ 개월 만기 그리고 $m$ 개월 주기인 단리에서의 원리금 $S$를 계산해보자.
 
 $$
-\begin{array}
+\begin{aligned}
 &A\cdot(1 + \frac{r}{12} \cdot n) &,\text{1 회차 적금액 A 에 대한 n 개월 원리금}\\
 & A\cdot(1 + \frac{r}{12} \cdot (n-1))&, \text{2 회차 적금액 A 에 대한 n 개월 원리금}\\
 & \cdots \\
 & A\cdot(1 + \frac{r}{12} \cdot 2)&, \text{n - 1 회차 적금액 A 에 대한 n 개월 원리금}\\
 & A\cdot(1 + \frac{r}{12} \cdot 1)&, \text{n 회차 적금액 A 에 대한 n 개월 원리금}\\
-\end{array}
+\end{aligned}
 $$
 
 위 원리금을 모두 다 합치는 것이 $S$ 값이 된다.
@@ -235,15 +235,15 @@ A는 매달 100만 원씩 적금을 해서 1년 동안 1,200만 원을 모았고
 * 즉, 첫번째 달에는 100만원에 3% ($3 \cdot \frac{12}{12}$) 금리 이율이 적용되어 3만원, 그리고 그 다음달에는 100만원에  2.75($3 \cdot \frac{11}{12}$)% 금리 이율이 적용되어 2.75만원 … 마지막 달에는 100만원에  0.25($3 \cdot \frac{1}{12}$)% 금리 이율이 적용되어 0.25 만원의 이자를 얻게된다.
 
 * $$
-  \begin{array}
+  \begin{aligned}
   &A \cdot\left(1 + \frac{r}{12}\right) \frac{\left(1+\frac{r}{12}\right)^{n+1} -1}{\frac{r}{12}} \\&=100\cdot(1+\frac{0.03}{12})\frac{\left(1+\frac{0.03}{12}\right)^{12} -1}{\frac{0.03}{12}}\\ 
   &= 1219.679
-  \end{array}
+  \end{aligned}
   $$
 
 * 즉, 약 20 만원의 이자를 얻게된다.
 
-<img src="https://i.loli.net/2020/11/03/qVtT3CjaunZeIp9.png" alt="image-20201103223612585" style="zoom:67%;" />
+<img src="https://i.loli.net/2020/11/03/qVtT3CjaunZeIp9.png" alt="image-20201103223612585" style="zoom: 80%;" />
 
 * 위 그림은 36개월 적금을 표현한 그림이지만, 12개월 적금에도 동일하게 적용된다. 중요한 점은 이러한 이자는 반드시 만기까지 꾸준히 적금 상품을 유지할 때 계산되는 이자라는 것이다(그림을 보면 왜 그런지 알수있다). 
 
