@@ -106,3 +106,22 @@ order: 99
   * Feature summary statistics or visualization
 * Data points
   * E.g. identification of prototypes of predicted classes
+
+
+
+---
+
+Network Dissection
+
+CNN channel highlighted (activated)
+
+![image-20201105150056147](https://i.loli.net/2020/11/05/MRn7jcAEHTz2OI4.png)
+
+which channel identify which object
+
+![image-20201105150230586](https://i.loli.net/2020/11/05/RczJ3FUd5jv6nu8.png)
+
+
+
+GAN Dissection - Dissecting explainable units in a GAN
+
