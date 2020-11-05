@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  "Convolutional Neural Networks"
+title:  "CNN: Convolutional Neural Networks"
 category: Deep Learning
 order: 9
 ---
@@ -85,7 +85,7 @@ Same
 
 stride $s$는 filter를 이미지에 적용할 때 사용할 step을 의미한다. 지금까지 보아왔던 stride는 전부 1을 가정하고 설명한 것이다.
 
-![Convolutional Neural Networks(CNN) #1 Kernel, Stride, Padding -  BrilliantCode.net](https://i.loli.net/2020/11/05/X1bSZinxPg5DumO.png)
+<img src="https://i.loli.net/2020/11/05/X1bSZinxPg5DumO.png" alt="Convolutional Neural Networks(CNN) #1 Kernel, Stride, Padding -  BrilliantCode.net" style="zoom: 50%;" />
 
 ### Output size 계산 방법
 
@@ -185,7 +185,7 @@ Pooling layer의 output size 계산도 Convolution layer의 계산과 똑같다.
 
 ### Max Pooling
 
-![Pooling ](https://i.loli.net/2020/11/05/okps9Efjym3gwXZ.png)
+<img src="https://i.loli.net/2020/11/05/okps9Efjym3gwXZ.png" alt="Pooling " style="zoom:80%;" />
 
 * 필터 내 가장 큰 값을 찾으면 된다.
 
