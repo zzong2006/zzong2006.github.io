@@ -149,6 +149,7 @@ linear 를 이용하는 경우 오직 하나의 최적값만 존재하므로, lo
 * 위에서 소개한 MC 수렴의 경우를 보았을 때, linear function 근사를 사용할 경우, 시간이 지나면서 $\alpha$가 조금씩 감소하면 global optimum으로 수렴한다.
 
 TD(0)의 경우는 조금 다른데, 우선 SGD는 다음과 같이 전개된다.
+
 $$
 \begin{aligned}
 \mathbf{w}_{t+1} & \doteq \mathbf{w}_{t}+\alpha\left(R_{t+1}+\gamma \mathbf{w}_{t}^{\top} \mathbf{x}_{t+1}-\mathbf{w}_{t}^{\top} \mathbf{x}_{t}\right) \mathbf{x}_{t} \\
@@ -159,6 +160,7 @@ $$
 * 간단하게 $\mathbf{x}_{t}=\mathbf{x}\left(S_{t}\right)$ 로 표현했다.
 
 그리고 학습을 하다보면, 주어진 임의의 $\mathbf{w}_{t}$ 에 대해서 next weight vector의 기대값은 다음과 같이 표현된다. 
+
 $$
 \mathbb{E}\left[\mathbf{w}_{t+1} \mid \mathbf{w}_{t}\right]=\mathbf{w}_{t}+\alpha\left(\mathbf{b}-\mathbf{A} \mathbf{w}_{t}\right)
 $$
@@ -169,6 +171,7 @@ $$
   * 너무 어렵게 생각할 필요 없이 $\mathbf{b}$와 $\mathbf{A}$를 그냥 대입해보면 된다.
 
 그리고 만약 linear semi-gradient TD(0)가 수렴한다고 하면, 다음과 같은 weight vector로 수렴한다고 한다. 증명은 생략한다.
+
 $$
 \begin{aligned}
 \mathbf{b}-\mathbf{A} \mathbf{w}_{\mathrm{TD}} &=\mathbf{0} \\
@@ -183,10 +186,13 @@ $$
 ![image-20201026150428627](https://i.loli.net/2020/10/26/rb6oZqdWIgBUOpm.png)
 
 위 알고리즘의 핵심은 다음과 같다.
+
 $$
 \mathbf{w}_{t+n} \doteq \mathbf{w}_{t+n-1}+\alpha\left[G_{t: t+n}-\hat{v}\left(S_{t}, \mathbf{w}_{t+n-1}\right)\right] \nabla \hat{v}\left(S_{t}, \mathbf{w}_{t+n-1}\right), \\ \quad 0 \leq t<T
 $$
+
 $n$-step은 아래와 같이 일반화될 수 있다.
+
 $$
 G_{t: t+n} \doteq R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} \hat{v}\left(S_{t+n}, \mathbf{w}_{t+n-1}\right), \\ \quad 0 \leq t \leq T-n
 $$
@@ -197,14 +203,19 @@ $$
 ### Polynomials  
 
 두개의 좌표 시스템의 경우 아래와 같이 표현될 수 있음
+
 $$
 \mathbf{x}(s)= \left(s_{1}, s_{2}\right)^{\top}
 $$
+
 하지만 위 feature들은 작아서, 추가로 더 많은 feature들을 넣을 수 있음
+
 $$
 \mathbf{x}(s)=\left(1, s_{1}, s_{2}, s_{1} s_{2}\right)^{\top}
 $$
+
 더욱 많은 features (higher-dimensional)
+
 $$
 \mathbf{x}(s)=\left(1, s_{1}, s_{2}, s_{1} s_{2}, s_{1}^{2}, s_{2}^{2}, s_{1} s_{2}^{2}, s_{1}^{2} s_{2}, s_{1}^{2} s_{2}^{2}\right)^{\top}
 $$
