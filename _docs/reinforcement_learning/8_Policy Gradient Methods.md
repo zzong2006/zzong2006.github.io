@@ -17,6 +17,7 @@ $$
 * $a$를 선택할 때, 학습된 value function $\hat{v}(s, \mathbf{w})$을 사용한다면, weight vector는  $\mathbf{w} \in \mathbb{R}^{d}$ 가 됨
 
 Policy parameter는 performance $J(\boldsymbol{\theta})$ 를 최대화하는 방향으로 나아간다.
+
 $$
 \boldsymbol{\theta}_{t+1}=\boldsymbol{\theta}_{t}+\alpha \widehat{\nabla J\left(\boldsymbol{\theta}_{t}\right)}
 $$
@@ -126,13 +127,16 @@ $$
 REINFORCE 방식은 몬테카를로 방식의 Policy Gradient이다. 즉, 큰 분산(high variance)을 가질 수 있고, 따라서 학습 속도가 느려질 수도 있다. 
 
 policy gradient theorem의 우변은 policy $\pi$ 하에서 얼마나 자주 state들이 발생할 것인지에 따라 가중치를 적용한 합계다. 즉, $\pi$를 따른다면, 가중치(weight)에 해당하는 비율로 각 state를 마주칠(encounter)것이다.
+
 $$
 \begin{aligned}
 \nabla J(\boldsymbol{\theta}) & \propto \sum_{s} \mu(s) \sum_{a} q_{\pi}(s, a) \nabla \pi(a \mid s, \boldsymbol{\theta}) \\
 &=\mathbb{E}_{\pi}\left[\sum_{a} q_{\pi}\left(S_{t}, a\right) \nabla \pi\left(a \mid S_{t}, \boldsymbol{\theta}\right)\right]
 \end{aligned}
 $$
+
 이제 위 식을 stochastic gradient-ascent algorithm에 사용할 수 있다.
+
 $$
 \boldsymbol{\theta}_{t+1} \doteq \boldsymbol{\theta}_{t}+\alpha \sum \hat{q}\left(S_{t}, a, \mathbf{w}\right) \nabla \pi\left(a \mid S_{t}, \boldsymbol{\theta}\right)
 $$
@@ -152,6 +156,7 @@ REINFORCE 알고리즘은 $S_t$ 대신, $A_t$에 대한 update를 수행한다.
 * $G_{t}$ 는 return을 의미한다.
 
 이제 이 식을 이용해서 stochastic gradient ascent algorithm을 수행한다. 이 방식을 REINFORCE update라 한다.
+
 $$
 \boldsymbol{\theta}_{t+1} \doteq \boldsymbol{\theta}_{t}+\alpha G_{t} \frac{\nabla \pi\left(A_{t} \mid S_{t}, \boldsymbol{\theta}_{t}\right)}{\pi\left(A_{t} \mid S_{t}, \boldsymbol{\theta}_{t}\right)}
 $$
@@ -239,22 +244,26 @@ J(\boldsymbol{\theta}) \doteq r(\pi) & \doteq \lim _{h \rightarrow \infty} \frac
 \end{aligned}
 $$
 
+![image-20201107020553440](https://i.loli.net/2020/11/07/sKFSgkCroa7qRcd.png)
 
-## Policy Gradient Loss function
+
+
+## Policy Parameterization for Continuous Actions  
+
+Continuous actions 에서는 많은 actions에 대해 선택할 확률보다는 확률 분포에 대한 통계 모델을 학습한다.
+
+Gaussian 분포의 경우 $\mu$와 $\sigma$를 찾아내는 parameter를 두 개 활용한다.
+
 
 $$
-\mathrm{L}=-\mathrm{Q}_{\mathrm{s}, \mathrm{a}} \log (\pi(\mathrm{a} \mid \mathrm{s}))
+\pi(a \mid s, \boldsymbol{\theta}) \doteq \frac{1}{\sigma(s, \boldsymbol{\theta}) \sqrt{2 \pi}} \exp \left(-\frac{(a-\mu(s, \boldsymbol{\theta}))^{2}}{2 \sigma(s, \boldsymbol{\theta})^{2}}\right)
 $$
 
-* 높은 reward에 대한 action이 선택될 확률을 최대화시켜야 하므로, loss는 - 값이어야 한다.
-* log를 사용하는 이유는 raw 확률 값을 계속 곱하게되면 0에 가까워지기 때문에 학습에 문제가 생길 수 있음
+* $$\mu: \mathcal{S} \times \mathbb{R}^{d^{\prime}} \rightarrow \mathbb{R}$$ and $$\sigma: \mathcal{S} \times \mathbb{R}^{d^{\prime}} \rightarrow \mathbb{R}^{+}$$
+
+표준 편차 $\sigma$의 경우 항상 양수여야 하므로, 선형 함수의 exponential을 활용하는 것이 좋다.
 
 
-
-## REINFORCE Algorithm
-
-Policy Gradient 알고리즘 중 하나
-
-1. 네트워크를 임의의 weights로 초기화한다.
-2. $N$번의 에피소드들을 플레이하고, transition들 $(s,a,r,s')$을 기록한다.
-3. $k$ 번째 에피소드의 $t$ step마다, subsequent steps을 계산한다.
+$$
+\mu(s, \boldsymbol{\theta}) \doteq \boldsymbol{\theta}_{\mu}^{\top} \mathbf{x}_{\mu}(s) \quad \text { and } \quad \sigma(s, \boldsymbol{\theta}) \doteq \exp \left(\boldsymbol{\theta}_{\sigma}^{\top} \mathbf{x}_{\sigma}(s)\right)
+$$
