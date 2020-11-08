@@ -17,6 +17,78 @@ python은 object-oriented programming(OOP) language이다. 즉, 모든 데이터
 
 객체는 절대로 명시적으로(explicitly) 없애지 못한다. 대신, 그 객체가 사용되지 않을 것이라 판단되면(unreachable), garbage collector에 의해 수집된다.
 
+## Python의 변수는 다른 언어와 무엇이 다른가?
+
+python은 변수라는 메모리 공간에 값을 직접 저장하지 않는다. 
+
+객체들은 모두 다른 메모리 공간에 저장되어 있고, 변수는 값 객체를 가리키고만 있다.
+
+그래서 숫자나 문자도 모두 객체인 python에는 동일한 객체의 값의 경우에는 같은 주소값을 가진다.
+
+```python
+a = 10
+b = 10
+c = 20
+
+print(id(a))  # 140734913394752
+print(id(b))  # 140734913394752
+print(id(c))  # 140734913395072
+```
+
+
+
+## 객체 지향 프로그래밍 (OOP)
+
+### 장/ 단점 
+
+* 장점
+
+1. 코드 재사용이 용이: 남이 만든 클래스를 가져와서 이용할 수 있고 상속을 통해 확장해서 사용할 수 있음.
+2. 유지보수가 쉬움: 절차 지향 프로그래밍에서는 코드를 수정해야할 때 일일이 찾아 수정해야하는 반면 객체 지향 프로그래밍에서는 수정해야 할 부분이 클래스 내부에 멤버 변수혹은 메서드로 있기 때문에 해당 부분만 수정하면 됨. 
+3. 대형 프로젝트에 적합: 클래스단위로 모듈화시켜서 개발할 수 있으므로 대형 프로젝트처럼 여러명, 여러회사에서 개발이 필요할 시 업무 분담하기 쉽다.
+
+* 단점
+
+1. 처리속도가 상대적으로 느림
+
+2. 객체가 많으면 용량이 커질 수 있음
+3. 설계시 많은 시간과 노력이 필요
+
+### OOP의 키워드 5가지 (주로 (1)을 제외하면 4가지)
+
+1. 클래스와 객체
+
+   * 클래스: 문제해결을 위한 데이터의 **속성**(attribute)과 **행위**(behavior)를 **변수**와 **메서드**로 정의한 것
+   * 객체: 클래스를 통해 실제 메모리상에 할당된 데이터
+
+2. 추상화
+
+   * 객체의 공통된 속성과 행위를 추출하는 과정
+   * 예) 토끼, 강아지, 고양이는 동물이라는 공통된 정보로 추상화 
+
+3. 캡슐화
+
+   * 객체의 상세한 내용은 객체 외부로부터 숨기고 제한된 데이터와 메소드만을 노출시켜 객체와 상호작용 할 수 있도록 하는 것
+     * 키워드: 정보 은닉, 접근 제한자 (public, private)
+
+4. 다형성
+
+   * 하나의 변수명, 함수명 등이 상황에 따라 다른 의미로 해석될 수 있는 것
+   * 즉, 오버라이딩(Overriding), 오버로딩(Overloading)이 가능하다는 얘기
+     * Overriding: 상위 **클래스**의 함수를 하위 클래스에서 똑같은 이름으로 재정의 하는것
+       * 함수의 return type와 parameter type, 개수는 동일해야 한다.
+     * Overloading: **함수**의 이름은 같으나 함수의 매개변수 숫자, 타입등을 달리해서 다르게 사용하는것을 의미
+
+5. 상속
+
+   * 클래스를 재사용 하는것
+
+   * 상위 클래스를 하위 클래스에서 상속 받게 되면 상위 클래스의 멤버변수나 메소드를 그대로 물려 받을 수 있다. 
+
+   * 상속이 있기 때문에 코드를 재활용할 수 있고 그렇기 때문에 생산성이 높고 유지보수 하기가 좋다. 
+
+     
+
 ## Python은 interpreted language이다. 그 의미는?
 
 interpreted language는 컴파일러를 거쳐서 기계어로 변환되지 않고 바로 실행되는 프로그래밍 언어를 의미한다.
@@ -362,6 +434,51 @@ print(get_min(x=10, y=20, z=30))
 
 ## Class
 
+### 추상 클래스 (abstract class)
+
+추상 클래스는 메서드의 목록만 가진 클래스이며 상속받는 클래스에서 메서드 구현을 강제하기 위해 사용
+
+* 추상 클래스는 인스턴스로 만들 수가 없다. 오직 상속의 목적만 있다.
+
+추상 클래스를 만들려면 `import`로 abc 모듈을 가져와야 한다( abc는 **a**bstract **b**ase **c**lass의 약자). 또한 클래스의 ( )(괄호) 안에 `metaclass=ABCMeta`를 지정하고, 메서드를 만들 때 위에 `@abstractmethod`를 붙여서 추상 메서드로 지정한다.
+
+```python
+from abc import *
+ 
+class 추상클래스이름(metaclass=ABCMeta):
+    @abstractmethod
+    def 메서드이름(self):
+        코드
+```
+
+#### 추상 클래스 예제
+
+```python
+from abc import *
+ 
+class StudentBase(metaclass=ABCMeta):
+    @abstractmethod
+    def study(self):
+        pass
+ 
+    @abstractmethod
+    def go_to_school(self):
+        pass
+ 
+class Student(StudentBase):
+    def study(self):
+        print('공부하기')
+ 
+    def go_to_school(self):
+        print('학교가기')
+ 
+james = Student()
+james.study()
+# 공부하기
+james.go_to_school()
+# 학교가기
+```
+
 
 
 ### super()로 부모 클래스 초기화하기
@@ -408,6 +525,56 @@ x.print_item_limit()    # 10
 print(Knight.__item_limit)    # 클래스 바깥에서는 접근할 수 없음 
 # AttributeError: type object 'Knight' has no attribute '__item_limit' 
 ```
+
+
+
+### static method 만들기
+
+정적 메서드는 다음과 같이 메서드 위에 `@staticmethod`를 붙임
+
+정적 메서드는 인스턴스의 상태를 변화시키지 않는 메서드를 만들 때 사용한다.
+
+```python
+class Calc:
+    @staticmethod
+    def add(a, b):
+        print(a + b)
+ 
+    @staticmethod
+    def mul(a, b):
+        print(a * b)
+ 
+Calc.add(10, 20)    # 클래스에서 바로 메서드 호출
+Calc.mul(10, 20)    # 클래스에서 바로 메서드 호출
+```
+
+
+
+### class method 만들기
+
+클래스 메서드는 다음과 같이 메서드 위에 `@classmethod`를 붙인다.
+
+클래스 메서드는 정적 메서드처럼 인스턴스 없이 호출할 수 있다는 점은 같다. 하지만 클래스 메서드는 **메서드 안에서 클래스 속성, 클래스 메서드에 접근해야 할 때 사용**한다.
+
+```python
+class Person:
+    count = 0    # 클래스 속성
+ 
+    def __init__(self):
+        Person.count += 1    # 인스턴스가 만들어질 때
+                             # 클래스 속성 count에 1을 더함
+ 
+    @classmethod
+    def print_count(cls):
+        print('{0}명 생성되었습니다.'.format(cls.count))    # cls로 클래스 속성에 접근
+ 
+james = Person()
+maria = Person()
+ 
+Person.print_count()    # 2명 생성되었습니다.
+```
+
+* 클래스 메서드는 첫 번째 매개변수가 `cls`인데 여기에는 현재 클래스가 들어온다. 따라서 `cls.count` 처럼 `cls`로 클래스 속성 `count`에 접근할 수 있다.
 
 
 
