@@ -302,6 +302,65 @@ h3 + .warning {
 	margin-top: 1.75em;
 }
 
+p code:not(pre) {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: #e8eaed;
+
+	padding: 1px 4px;
+	font-size: 1.1em;
+	line-height: 1;
+
+}
+
+li code {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: #e8eaed;
+
+	padding: 1px 4px;
+	font-size: 1.1em;
+}
+
+pre code {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: transparent;
+
+	font-size: 1.05em;
+
+}
+
+h1 code {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: transparent;
+	font-weight: 700;
+	padding: 0;
+	font-size: 1.1em;
+	line-height: 1;
+}
+
+
+h2 code {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: transparent;
+	font-weight: 700;
+	padding: 0;
+	font-size: 1.1em;
+	line-height: 1;
+}
+
+h3 code {
+	background: $nav-background-color;
+	color: $content-color;
+	background-color: transparent;
+	font-weight: 700;
+	padding: 0;
+	font-size: 1.1em;
+	line-height: 1;
+}
 
 h4 code {
 	background: $nav-background-color;

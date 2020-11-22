@@ -15,10 +15,10 @@ order: 1
 
 ```python
 # 이렇게 dictionary 입력이 가능하다.
-history = ae_rnn_model.fit({"encoder_input": seq_train_data, "decoder_input": seq_train_data},
-                                   seq_train_data,
-                                   epochs=20,
-                                   batch_size=512, shuffle=True)
+history = ae_rnn_model.fit({"encoder_input": seq_train_data, 
+                            "decoder_input": seq_train_data},
+                           seq_train_data, 
+                           epochs=20,batch_size=512, shuffle=True)
 
 # 그러면 모델 class의 call 함수에서 적절히 처리해줘야 한다.
 class AutoEncoder(tf.keras.Model):
