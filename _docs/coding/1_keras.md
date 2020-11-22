@@ -21,7 +21,7 @@ history = ae_rnn_model.fit({"encoder_input": seq_train_data, "decoder_input": se
                                    batch_size=512, shuffle=True)
 
 # 그러면 모델 class의 call 함수에서 적절히 처리해줘야 한다.
-class AutoEncoder(Model):
+class AutoEncoder(tf.keras.Model):
     def call(self, inputs, training=None, mask=None, **kwargs):
         encoder_input, decoder_input = inputs['encoder_input'], inputs['decoder_input']
     # ...
@@ -29,6 +29,48 @@ class AutoEncoder(Model):
 ```
 
 
+
+#### `Model.fit`  customize 하기
+
+학습 모델 클래스에서 `train_step`을 override 하면 된다.
+
+```python
+class CustomModel(keras.Model):
+    def train_step(self, data):
+        # Unpack the data. Its structure depends on your model and
+        # on what you pass to `fit()`.
+        x, y = data
+
+        with tf.GradientTape() as tape:
+            y_pred = self(x, training=True)  # Forward pass
+            # Compute the loss value
+            # (the loss function is configured in `compile()`)
+            loss = self.compiled_loss(y, y_pred, regularization_losses=self.losses)
+
+        # Compute gradients
+        trainable_vars = self.trainable_variables
+        gradients = tape.gradient(loss, trainable_vars)
+        # Update weights
+        self.optimizer.apply_gradients(zip(gradients, trainable_vars))
+        # Update metrics (includes the metric that tracks the loss)
+        self.compiled_metrics.update_state(y, y_pred)
+        # Return a dict mapping metric names to current value
+        return {m.name: m.result() for m in self.metrics}
+```
+
+* `self.optimizer`의 경우, `__init__` 함수에서 만들 필요가 없다. `fit` 호출 시, 알아서 만들어준다.
+
+  * 다만, `fit` 호출 전에 `compile` 함수를 꼭 호출해야 한다.
+
+  * ```python
+    model.compile(optimizer="adam", loss="mse", metrics=["mae"])
+    
+    # Just use `fit` as usual
+    # ... 
+    model.fit(x, y, epochs=3)
+    ```
+
+  
 
 
 
