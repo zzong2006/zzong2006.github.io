@@ -1,13 +1,40 @@
 ---
 layout: default
-title:  "Keras"
+title:  "Keras & TensorFlow"
 category: Coding
 order: 1
 ---
 
+## 텐서플로우 2.0 설치 시 유의사항
+
+TensorFlow 2.0은 cuda toolkit 10.1만 지원한다. 
+
+* 아래와 같이 현재 자신의 cuda toolkit 버전을 확인할 수 있다.
+
+```bash
+nvcc --version
+```
+
+* 혹시 PyTorch도 같이 깔아보고 싶다면, PyTorch도 10.1 버전으로 같이 맞출 것.
+* 그리고 cuda toolkit은 local 방식으로 설치하는게 가장 좋다.
+
+cuda toolkit 를 성공적으로 설치했다면, cudnn도 필요하다. cudnn 의 경우 반드시 7 버전으로 설치할 것. (8 이상 호환 불가능)
+
+* 총 3개 종류의 cudnn을 설치해야 한다. linux ubuntu의 경우, runtime, dev, (code) sample library
+
+
+
 ## 모델 만들기
 
+모델을 만들 때는 class에 `tensorflow.keras.models.Model` 클래스를 상속받게 만든다. 그리고 생성자, `call` , `get_config` 등을 정의한다.
 
+### `call` function
+
+`call` 함수는 모델이 호출되었을 때, 주어진 데이터를 생성된 레이어로 어떻게 흘려보내야 하는지 정의하는 함수다. 
+
+여기서 종종 레이어들의 동작을 구체적으로 정의하려는 경우가 있는데(e.g. Seq2Seq Encoder -> Decoder 의 경우), 그렇게 하지말고 custom layer를 만들어서 해당 layer 내부의 `call` 함수를 따로 정의하면 된다.
+
+ 
 
 ### 모델 학습하기
 
@@ -70,7 +97,11 @@ class CustomModel(keras.Model):
     model.fit(x, y, epochs=3)
     ```
 
-  
+* 아직까지는 custom loss function은 만들지 않는 것을 추천한다. 왜냐하면, `fit`로 훈련 시,  `val_loss`를 출력할 방법을 잘 모르기 때문이다.
+
+
+
+
 
 
 
@@ -168,6 +199,5 @@ dataset의 batch를 RAM에 미리 불러와서 pipeline의 performance를 향상
 
 ```python
 dataset = dataset.prefetch(tf.data.experimental.AUTOTUNE)
-
 ```
 
