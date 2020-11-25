@@ -234,7 +234,7 @@ $$
 
 ## Policy Gradient for Continuing Problems  
 
-episode boundaries가 없는 연속 문제에서는 매 time step마다 보상의 평균 비율에 대한 performance를 정의할 필요가 있다.ㅎ
+episode boundaries가 없는 연속 문제에서는 매 time step마다 보상의 평균 비율에 대한 performance를 정의할 필요가 있다.
 
 $$
 \begin{aligned}

@@ -144,7 +144,7 @@ one-step transitions을 통해 value를 update하는 DP diagram과 달리, MC는
     * 즉, soft 성질을 만족한다: $\pi(a \mid s) \geq \frac{\varepsilon}{\mid\mathcal{A}(s)\mid}$
 
 * ![image-20201022165158299](https://i.loli.net/2020/10/22/DnX7EsvSeuzT1io.png)
-  * 참고로 $A^{*} \leftarrow \arg \max _{a} Q\left(S_{t}, a\right)$ 에 해당하는 action은 딱 하나로 정해졌기에 다음이 성립한다.
+  * 참고로 $$A^{*} \leftarrow \arg \max _{a} Q\left(S_{t}, a\right)$$ 에 해당하는 action은 딱 하나로 정해졌기에 다음이 성립한다.
 
     * $$
       1 \cdot(1-\varepsilon+\varepsilon /\left|\mathcal{A}\left(S_{t}\right)\right|) + (1 -\left|\mathcal{A}\left(S_{t}\right)\right| )\cdot(\varepsilon /\left|\mathcal{A}\left(S_{t}\right)\right|) = 1
@@ -194,38 +194,38 @@ one-step transitions을 통해 value를 update하는 DP diagram과 달리, MC는
 
 ### Importance sampling
 
-* 대부분의 off-policy는 importance sampling(중요도 추출법)을 사용한다.
+대부분의 off-policy는 importance sampling(중요도 추출법)을 사용한다.
 
-  * 이 방법은 어떤 분포로 얻어진 sample이 주어질때, 그 sample을 이용하여 또 다른 분포에서의 expected value를 추정하는 방법이다.
-  * target 과 behavior policy를 통해 얻어지는 trajectory를 이용해 importance-sampling ratio라는 상대적 확률을 계산할 수 있다.
-  * 이 확률에 따라 return 값에 가중치를 부여하는 방식으로 importance sampling을 수행할 수 있다.
+* 이 방법은 어떤 분포로 얻어진 sample이 주어질때, 그 sample을 이용하여 또 다른 분포에서의 expected value를 추정하는 방법이다.
+* target 과 behavior policy를 통해 얻어지는 trajectory를 이용해 importance-sampling ratio라는 상대적 확률을 계산할 수 있다.
+* 이 확률에 따라 return 값에 가중치를 부여하는 방식으로 importance sampling을 수행할 수 있다.
 
-* $S_t$에서 시작해서, policy $\pi$하에 발생하는 state-action trajectory ($A_{t}, S_{t+1}, A_{t+1}, \ldots, S_{T}$)에 대한 확률은 다음과 같다.
+$S_t$에서 시작해서, policy $\pi$하에 발생하는 state-action trajectory ($A_{t}, S_{t+1}, A_{t+1}, \ldots, S_{T}$)에 대한 확률은 다음과 같다.
 
-  * $$
-    \begin{array}{l}
-    \operatorname{Pr}\left\{A_{t}, S_{t+1}, A_{t+1}, \ldots, S_{T} \mid S_{t}, A_{t: T-1} \sim \pi\right\} \\
-    \quad=\pi\left(A_{t} \mid S_{t}\right) p\left(S_{t+1} \mid S_{t}, A_{t}\right) \pi\left(A_{t+1} \mid S_{t+1}\right) \cdots p\left(S_{T} \mid S_{T-1}, A_{T-1}\right) \\
-    \quad=\prod_{k=t}^{T-1} \pi\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)
-    \end{array}
-    $$
-    * $p$는 state-transition probability function이다.
+* $$
+  \begin{array}{l}
+  \operatorname{Pr}\left\{A_{t}, S_{t+1}, A_{t+1}, \ldots, S_{T} \mid S_{t}, A_{t: T-1} \sim \pi\right\} \\
+  \quad=\pi\left(A_{t} \mid S_{t}\right) p\left(S_{t+1} \mid S_{t}, A_{t}\right) \pi\left(A_{t+1} \mid S_{t+1}\right) \cdots p\left(S_{T} \mid S_{T-1}, A_{T-1}\right) \\
+  \quad=\prod_{k=t}^{T-1} \pi\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)
+  \end{array}
+  $$
+  * $p$는 state-transition probability function이다.
 
-* 위 확률을 이용해서 얻어지는 target과 behavior polices의 relative probability는 다음과 같다.
+위 확률을 이용해서 얻어지는 target과 behavior polices의 relative probability는 다음과 같다.
 
-  * $$
-    \rho_{t: T-1} \doteq \frac{\prod_{k=t}^{T-1} \pi\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)}{\prod_{k=t}^{T-1} b\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)}=\prod_{k=t}^{T-1} \frac{\pi\left(A_{k} \mid S_{k}\right)}{b\left(A_{k} \mid S_{k}\right)}
-    $$
+* $$
+  \rho_{t: T-1} \doteq \frac{\prod_{k=t}^{T-1} \pi\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)}{\prod_{k=t}^{T-1} b\left(A_{k} \mid S_{k}\right) p\left(S_{k+1} \mid S_{k}, A_{k}\right)}=\prod_{k=t}^{T-1} \frac{\pi\left(A_{k} \mid S_{k}\right)}{b\left(A_{k} \mid S_{k}\right)}
+  $$
 
-  * $p$가 서로 동일하므로 서로 약분하여 사라지고, 결과적으로 importance-sampling ratio는 policy에 따른 결과에만 영향을 받는다.
+* $p$가 서로 동일하므로 서로 약분하여 사라지고, 결과적으로 importance-sampling ratio는 policy에 따른 결과에만 영향을 받는다.
 
-* 원래는 target policy로 부터 expected returns값을 추정했지만, 이제는 behavior policy에 의한 returns $G_t$값만 있다.
+원래는 target policy로 부터 expected returns값을 추정했지만, 이제는 behavior policy에 의한 returns $G_t$값만 있다.
 
-  * 이 값은 $v_b(s)$를 계산할수는 있지만, $v_\pi$를 계산할 수는 없다. 이때, importance sampling을 활용한다.
+* 이 값은 $v_b(s)$를 계산할수는 있지만, $v_\pi$를 계산할 수는 없다. 이때, importance sampling을 활용한다.
 
-  * $$
-    \mathbb{E}\left[\rho_{t: T-1} G_{t} \mid S_{t}=s\right]=v_{\pi}(s)
-    $$
+* $$
+  \mathbb{E}\left[\rho_{t: T-1} G_{t} \mid S_{t}=s\right]=v_{\pi}(s)
+  $$
 
 #### Ordinary importance sampling
 
@@ -268,33 +268,33 @@ one-step transitions을 통해 value를 update하는 DP diagram과 달리, MC는
 
 ### Incremental Methods
 
-* 다음과 같은 rewards의 평균 값 $Q_n$은 incremental method를 통해 효율적으로  구해질 수 있다.
+다음과 같은 rewards의 평균 값 $Q_n$은 incremental method를 통해 효율적으로  구해질 수 있다.
+
+$$
+Q_{n} \doteq \frac{R_{1}+R_{2}+\cdots+R_{n-1}}{n-1}
+$$
+$$
+\begin{aligned}
+Q_{n+1} &=\frac{1}{n} \sum_{i=1}^{n} R_{i} \\
+&=\frac{1}{n}\left(R_{n}+\sum_{i=1}^{n-1} R_{i}\right) \\
+&=\frac{1}{n}\left(R_{n}+(n-1) \frac{1}{n-1} \sum_{i=1}^{n-1} R_{i}\right) \\
+&=\frac{1}{n}\left(R_{n}+(n-1) Q_{n}\right) \\
+&=\frac{1}{n}\left(R_{n}+n Q_{n}-Q_{n}\right) \\
+&=Q_{n}+\frac{1}{n}\left[R_{n}-Q_{n}\right]
+\end{aligned}
+$$
+
+
+위의 업데이트 방식은 다음과 같은 구조로 자주 사용되니 기억하도록 하자.
 
 * $$
-   Q_{n} \doteq \frac{R_{1}+R_{2}+\cdots+R_{n-1}}{n-1}
+  
+  \text { NewEstimate } \leftarrow \text { OldEstimate }+\text { StepSize }[\text { Target }-\text { OldEstimate }]
   $$
-	* $$
-    \begin{aligned}
-    Q_{n+1} &=\frac{1}{n} \sum_{i=1}^{n} R_{i} \\
-    &=\frac{1}{n}\left(R_{n}+\sum_{i=1}^{n-1} R_{i}\right) \\
-    &=\frac{1}{n}\left(R_{n}+(n-1) \frac{1}{n-1} \sum_{i=1}^{n-1} R_{i}\right) \\
-    &=\frac{1}{n}\left(R_{n}+(n-1) Q_{n}\right) \\
-    &=\frac{1}{n}\left(R_{n}+n Q_{n}-Q_{n}\right) \\
-    &=Q_{n}+\frac{1}{n}\left[R_{n}-Q_{n}\right]
-    \end{aligned}
-    $$
-
-* 위의 업데이트 방식은 다음과 같은 구조로 자주 사용되니 기억하도록 하자.
-
-  * $$
-    \begin{equation} 
-    \text { NewEstimate } \leftarrow \text { OldEstimate }+\text { StepSize }[\text { Target }-\text { OldEstimate }]
-    \end{equation}
-    $$
-    * $\begin{equation}
-      [\text { Target }-\text { Old Estimate }]
-      \end{equation}$는 추정의 오차로, 학습을 진행할수록 0에 가까워진다.
-
+  * $
+    [\text { Target }-\text { Old Estimate }]
+    $는 추정의 오차로, 학습을 진행할수록 0에 가까워진다.
+  
 * 이제 MC 구현으로 돌아가서, 모두 같은 state에서 수행한 일련의 returns값 $G_{1}, G_{2}, \ldots, G_{n-1}$이 존재하고, 임의의 가중치 $W_i$ (e.g. $W_{i}=\rho_{t_{i}: T\left(t_{i}\right)-1}$)가 존재한다고 하자. 
 
   * 이들을 이용해서 $V_n$을 다음과 같이 추정한다 (weighted 방식).

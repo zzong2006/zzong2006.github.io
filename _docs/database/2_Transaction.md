@@ -52,7 +52,7 @@ Transaction의 실행 결과로 DB 상태가 모순되지 않도록 해야한다
 
 ## Transaction 상태
 
-![DBMS](https://www.tutorialspoint.com/dbms/images/transaction_states.png)
+<img src="https://i.loli.net/2020/11/26/1hkKFt4LizeMopN.png" alt="How to rollback using explicit SQL Server transactions" style="zoom:80%;" />
 
 1. **Active**: transaction이 실행중인 상태
 2. **Failed**: transaction 실행에 오류가 발생하여 중단된 상태
