@@ -27,6 +27,8 @@ Fraud Detection
 * $x^{(i)}$ is features of machine $i$
 * $x_1$ :메모리 사용량, $x_2$ :초당 디스크 액세스 횟수 …
 
+
+
 ## Gaussian (Normal) distribution
 
 $x \in \mathbb{R}$ 라고 하자. $x$는 평균이 $\mu$고, 분산이 $\sigma^2$인 distributed gaussian이라고 한다면, 다음과 같이 표현된다.
@@ -38,6 +40,8 @@ $$
 그리고 parameter인 $\mu$와 $\sigma$에 따라서 가우시안 확률 밀도(Gaussian probability density)는 다음과 같이 변한다.
 
 ![image-20201031001345543](https://i.loli.net/2020/10/30/3NiLzqvkfbmc2AZ.png)
+
+
 
 ### Parameter estimation
 
@@ -57,7 +61,8 @@ $$
 
 ### Density estimation
 
-학습 데이터: $\left\{x^{(1)}, \ldots, x^{(m)}\right\}$ (Each example is $x \in \mathbb{R}^{n}$) 가 주어졌을 때, $p(x)$를 추정하는 방법
+학습 데이터: $$\left\{x^{(1)}, \ldots, x^{(m)}\right\}$$ (Each example is $x \in \mathbb{R}^{n}$) 가 주어졌을 때, $p(x)$를 추정하는 방법
+
 $$
 \begin{array}{l}
 p(x) \\
@@ -66,28 +71,31 @@ p(x) \\
 \end{array}
 $$
 
+
+
 ## Anomaly Detection algorithm
 
 1. anomalous의 기준이 된다고 생각하는 features $x_i$를 고른다.
 
 2. parameter 학습(계산) $\mu_{1}, \ldots, \mu_{n}, \sigma_{1}^{2}, \ldots, \sigma_{n}^{2}$
 
-   * $$
-     \begin{aligned}
-     \mu_{j} &=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)} \\
-     \sigma_{j}^{2} &=\frac{1}{m} \sum_{i=1}^{m}\left(x_{j}^{(i)}-\mu_{j}\right)^{2}
-     \end{aligned}
-     $$
+
+$$
+\begin{aligned}
+\mu_{j} &=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)} \\
+\sigma_{j}^{2} &=\frac{1}{m} \sum_{i=1}^{m}\left(x_{j}^{(i)}-\mu_{j}\right)^{2}
+\end{aligned}
+$$
 
 3. 새로운 example $x$가 주어졌을 때, $p(x)$를 계산한다.
 
-   * $$
-     p(x)=\prod_{j=1}^{n} p\left(x_{j} ; \mu_{j}, \sigma_{j}^{2}\right)=\prod_{j=1}^{n} \frac{1}{\sqrt{2 \pi} \sigma_{j}} \exp \left(-\frac{\left(x_{j}-\mu_{j}\right)^{2}}{2 \sigma_{j}^{2}}\right)
-     $$
+$$
+p(x)=\prod_{j=1}^{n} p\left(x_{j} ; \mu_{j}, \sigma_{j}^{2}\right)=\prod_{j=1}^{n} \frac{1}{\sqrt{2 \pi} \sigma_{j}} \exp \left(-\frac{\left(x_{j}-\mu_{j}\right)^{2}}{2 \sigma_{j}^{2}}\right)
+$$
 
 4. 만약 $p(x) \lt \varepsilon$ 이면 anomaly이다.
 
-![image-20201031012809984](https://i.loli.net/2020/10/31/5KMr7mgeyHPbDzN.png)
+<img src="https://i.loli.net/2020/10/31/5KMr7mgeyHPbDzN.png" alt="image-20201031012809984" style="zoom: 67%;" />
 
 ## Evaluating an Anomaly Detection System
 
