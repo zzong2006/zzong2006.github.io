@@ -16,17 +16,25 @@ order: 7
 
 #### Bias
 
-* **Bias**는 데이터 내에 있는 모든 정보를 고려하지 않음으로 인해, 지속적으로 잘못된 것들을 학습하는 경향을 말한다. underfitting 이라고도 한다.
+* **Bias**는 데이터 내에 있는 모든 정보를 고려하지 않음으로 인해, 지속적으로 잘못된 것들을 학습하는 경향을 말한다. High Bias는 underfitting 이라고도 한다.
+* 어떤 모델을 학습시켰을 경우, 그 모델이 예측한 값과 실제 정답이 얼마나 멀리있는지를 나타내는가 생각해보면 된다. 너무 멀리있으면(오답이 크면) high bias, 가까이 있으면(예측이 정확하면) low bias 이다.
 
 #### Variance
 
-* **Variance**는 데이터 내에 있는 에러나 노이즈까지 잘 잡아내는 highly flexible models 에 데이터를 fitting시킴으로써, 실제 현상과 관계 없는 random한 것들까지 학습하는 알고리즘의 경향을 의미한다. overfitting 이라고도 한다.
+* **Variance**는 데이터 내에 있는 에러나 노이즈까지 잘 잡아내는 highly flexible models 에 데이터를 fitting시킴으로써, 실제 현상과 관계 없는 random한 것들까지 학습하는 알고리즘의 경향을 의미한다. High Variance는 overfitting 이라고도 한다.
+* 여러 모델로 학습을 반복한다고 했을 때, 학습된 각 모델별로 예측한 값들의 차이를 variance라고 생각할 수 있다. 만약, 모델 마다 예측한 값들이 서로 크게 다르다면, 특정 데이터에 대해서만 반복적으로 학습된 것이다(overfitting, high variance). 그러나, 모델 마다 예측한 값이 크게 다르지 않다면, 전반적인 데이터에 대한 학습이 잘 되었다고 생각할 수 있다(low variance).
+
+
+
+
 
 ### 2차원 데이터를 이용한 Bias와 Variance의 설명
 
 ![image-20201028202552847](https://i.loli.net/2020/10/28/Eldq6j7gMTG4rKs.png)
 
 고차원 데이터의 경우 어떻게 model의 variance와 bias를 판별할 수 있을까?
+
+
 
 ### 다차원 데이터의 경우 Bias와 Variance
 
