@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  "Space Filling Curve"
+title:  "Normalization"
 category: Database
 order: 1
 ---
