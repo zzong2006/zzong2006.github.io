@@ -1,0 +1,79 @@
+---
+layout: default
+title:  "Thread"
+category: Operating System
+order: 4
+---
+
+## Process
+
+OS로 부터 <u>시스템 자원을 할당</u>받고 메모리에 적재되어 실행되고 있는 프로그램(program)의 인스턴스
+* 프로그램: 실행 가능한 파일
+
+### Process가 할당 받는 시스템 자원
+
+* CPU
+* 주소 공간
+* code, data, stack, heap (아래 그림 참조, 순서도 중요)
+
+![img](https://i.loli.net/2020/10/19/jGfJd8MyWkE2Awu.png)
+* Code: 실행할 프로그램의 코드가 저장되는 영역 (컴파일 시 크기가 결정됨)
+* Data: 전역 변수, static variable 등 컴파일 시 결정되는 것들에 대한 영역
+* Stack: 지역 변수, parameters, return value 등 임시로 사용하는 값들에 대한 영역 (컴파일 시 크기가 결정됨)
+  * parameters와 return value는 함수 호출 시 생성되었다가 끝나면 그 영역을 반환함
+  * 데이터가 높은 주소부터 낮은 주로소 쓰여진다는 특징이 존재함 
+* Heap: new, malloc 등을 통한 동적 할당 객체에 대한 영역 (런타임 시 그 크기가 결정됨)
+
+
+
+:information_source: CPU의 프로세서(Processor, single core)는 하나의 프로세스(Process)만 구동할 수 있다.
+
+* 하나의 CPU로 여러 프로세스를 구동하기 위해 **시분할 방식**을 이용함 
+* 자세한 내용은 CPU Scheduling 포스트 참조
+
+
+
+### PCB
+
+각 프로세스는 OS 내에서 PCB(Process Control Block)에 의해 구분된다.
+
+#### PCB에 저장되는 정보들
+
+* process states: new, ready, running, waiting, terminated
+* program counter (PC): 프로세스가 다음에 실행할 명령어 주소
+* CPU registers: accumulator, stack register, index register
+  * stack register(Extended Stack Pointer, ESP): 스택 영역을 표시하기 위한 레지스터인 pointer register의 한 종류. 사용하고 있는 stack의 최상단 주소(lowest memory address)를 저장하는데 사용함
+  * Index register: 문자열의 조작에 사용되는 레지스터로 문자열의 시작 주소를 저장함
+  * Accumulator (EAX): 모든 연산 명령에 사용되는 레지스터. 주로 산술 연산을 통한 함수의 결과값을 저장한는데 사용함
+
+
+
+### 프로세스의 생명 주기 (process states)
+
+총 5개: new, ready, running, waiting, terminated
+
+![img](https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg)
+
+
+
+## Thread
+
+프로세스 내부에서 <u>프로세스 자원을 이용</u>하여 실행되는 실행의 단위
+* 이용하는 프로세스의 자원
+  * 프로세스의 stack과 레지스터만 개별적으로 할당받고, 나머지 영역(Code, data, heap)은 공유함
+
+<img src="https://i.loli.net/2020/10/19/tS9gkCPRbYpJnEU.png" alt="img" style="zoom:80%;" />
+
+## Multi Process < Multi Thread ?
+
+여러 프로세스를 구동하는 것보다, 하나의 프로세스에서 여러 스레드를 구동하는 것이 <u>장점이 많음</u>
+
+* 장점
+  1. Context switching
+     * 프로세스 간 context switching 시, CPU 레지스터 교체 뿐만 아니라 RAM과 CPU 사이의 cache memory에 대한 데이터까지 초기화되므로 오버헤드가 큼
+     * 반면 스레드 간 context switching 시, stack 영역만 처리하면 된다.
+  2. 스레드는 stack과 register를 제외한 모든 영역을 공유하므로, 프로세스간 통신 (IPC)보다 스레드간 통신이 적은 비용이 요구됨 
+
+* 단점
+  * 스레드 간 자원 공유에 Data 영역은 전역 변수를 저장하는 공간이므로, 해당 type의 변수를 사용할때 충돌이 발생할 수 있음
+
