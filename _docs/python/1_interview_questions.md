@@ -17,6 +17,8 @@ python은 object-oriented programming(OOP) language이다. 즉, 모든 데이터
 
 객체는 절대로 명시적으로(explicitly) 없애지 못한다. 대신, 그 객체가 사용되지 않을 것이라 판단되면(unreachable), garbage collector에 의해 수집된다.
 
+
+
 ## Python의 변수는 다른 언어와 무엇이 다른가?
 
 python은 변수라는 메모리 공간에 값을 직접 저장하지 않는다. 
@@ -160,7 +162,7 @@ namespace에는 세가지 계층적 종류가 존재한다. 가장 낮은 단계
 
 ## 객체의 복사는 어떻게 하는가? [출처](https://blueshw.github.io/2016/01/20/shallow-copy-deep-copy/)
 
-총 세가지가 존재한다.
+Python은 pass by assignment를 수행한다. 이는 총 세가지 형태로 존재한다.
 
 *  1) `=`를 이용한 단순 복사, 2) Shallow Copy (얕은 복사), 3) Deep Copy (깊은 복사)
 
@@ -206,6 +208,64 @@ namespace에는 세가지 계층적 종류가 존재한다. 가장 낮은 단계
 
 
 
+## Docstring 이란 무엇인가?
+
+모듈, 함수, 클래스 등에 적용되는 문서화를 위한 주석
+
+`""" """` 를 이용하여 아래와 같이 작성한다.
+
+```python
+  class CustomClass:
+  """
+  클래스의 문서화 내용을 입력합니다.    
+  """
+    
+      def custom_function(param):
+          '''
+          함수의 문서화 내용을 입력합니다.
+          '''
+          ... 코드  ...
+        
+```
+
+`help` 함수와 `__doc__` 속성을 이용하면 각 객체의 docstring을 확인할 수 있다.
+
+```python
+cc = CustomClass()
+help(cc)
+print(cc.__doc__)
+```
+
+```
+Help on CustomClass in module __main__ object: 
+
+class CustomClass(builtins.object)
+ |  클래스의 문서화 내용을 입력합니다.
+ |  
+ |  Methods defined here:
+ |  
+ |  custom_function(param)
+ |      함수의 문서화 내용을 입력합니다.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+
+    클래스의 문서화 내용을 입력합니다.    
+```
+
+
+
+## Exception은 어
+
+
+
 ## PEP8이란 무엇인가?
 
 PEP는 Python Enhancement Proposal을 의미한다. 
@@ -235,6 +295,73 @@ PEP는 python 코드의 가독성을 최대화 하기 위해 어떻게 코드를
     ```
 
 파이썬에서 모듈을 import해서 사용할 경우 그 모듈 안의 `__name__` 은 해당 모듈의 이름이 되며, 모듈을 스크립트로 실행할 경우 그 모듈 안의 `__name__`은 `"__main__"` 이 된다.
+
+
+
+## 가변 인수(*args 그리고 ** kwargs)란 무엇인가?
+
+정해지지 않는 개수의 인자를 함수의 입력으로 받을 때 사용한다. 
+
+함수에서 다음과 같이 **가장 마지막 parameter**에 `*args` 또는 `**kawrgs`를 포함시킨다.
+
+```python
+def func_param_with_var_args(name, age, *args):
+    print("name=",end=""), print(name)
+    print("age=",end=""), print(age)
+    print("args=",end=""), print(args)
+
+func_param_with_var_args("정우성", "01012341234", "seoul", 20)
+```
+
+```
+name=정우성
+age=01012341234
+args=('seoul', 20)
+```
+
+* `*args` 가 `tuple` 타입으로 함수에 입력되는 것을 확인할 수 있다.
+* 굳이 이름은 `*args`가 아니라 `*kiwis` 등 자신이 원하는 변수 명을 사용해도 상관없다.
+
+
+
+`**kwargs`는 keyword arguments의 준말이다. 키워드를 이용한 여러 인자들을 받을 때 사용한다.
+
+```python
+def func_param_with_kwargs(name, age,**kwargs):
+    print("name=",end=""), print(name)
+    print("age=",end=""), print(age)
+    print("kwargs=",end=""), print(kwargs)
+
+func_param_with_kwargs("정우성", "20", mobile="01012341234", address="seoul")
+```
+
+ ```
+name=정우성
+age=20
+kwargs={'mobile': '01012341234', 'address': 'seoul'}
+ ```
+
+* `**kwargs` 가 `dict` 타입으로 함수에 입력되는 것을 확인할 수 있다.
+* `*args`와 마찬가지로, 굳이 이름은 `**kwargs`가 아니라 `**kiwis` 등 자신이 원하는 변수 명을 사용해도 상관없다.
+
+
+
+## 함수의 인자 배치 순서는 어떻게 되는가?
+
+일반 인자 -> default 일반 인자 -> 가변 인자 -> Keyword-Only 인자 -> 키워드 가변 인자 순으로 진행된다.
+
+### 예시
+
+```python
+def mixed_params(age, name="아이유", *args, address, **kwargs):
+    pass
+
+mixed_params(20, "정우성", "01012341234", "male", address="seoul", mobile="01012341234")
+```
+
+
+
+<img src="https://i.loli.net/2020/11/27/AgV3zil1sx6ZNw4.png" alt="img" style="zoom: 50%;" />
 
 
 
@@ -361,90 +488,6 @@ for i in number_generator(3):
 ```
 
 
-
-## Decorator란 무엇인가?
-
-함수를 장식하는 기능, 데코레이터는 **함수를 수정하지 않은 상태에서 추가 기능을 구현할 때 사용**
-
-클래스에서 메서드를 만들 때 `@staticmethod`, `@classmethod`, `@abstractmethod` 등을 붙였는데, 이렇게 @로 시작하는 것들이 데코레이터이다.
-
-```python
-def trace(func):                             # 호출할 함수를 매개변수로 받음
-    def wrapper():
-        print(func.__name__, '함수 시작')    # __name__으로 함수 이름 출력
-        func()                               # 매개변수로 받은 함수를 호출
-        print(func.__name__, '함수 끝')
-    return wrapper                           # wrapper 함수 반환
- 
-@trace    # @데코레이터
-def hello():
-    print('hello')
- 
-@trace    # @데코레이터
-def world():
-    print('world')
- 
-hello()    # 함수를 그대로 호출
-# hello 함수 시작
-# hello
-# hello 함수 끝
-world()    # 함수를 그대로 호출
-# world 함수 시작
-# world
-# world 함수 끝
-```
-
-
-
-decorator가 함수의 parameter와 return값을 출력을 하는 경우도 존재한다.
-
-```python
-def trace(func):          # 호출할 함수를 매개변수로 받음
-    def wrapper(a, b):    # 호출할 함수 add(a, b)의 매개변수와 '똑같이' 지정
-        r = func(a, b)    # func에 매개변수 a, b를 넣어서 호출하고 반환값을 변수에 저장
-        print('{0}(a={1}, b={2}) -> {3}'.format(func.__name__, a, b, r))  # 매개변수와 반환값 출력
-        return r          # func의 반환값을 반환
-    return wrapper        # wrapper 함수 반환
- 
-@trace              # @데코레이터
-def add(a, b):      # 매개변수는 두 개
-    return a + b    # 매개변수 두 개를 더해서 반환
- 
-print(add(10, 20))
-# add(a=10, b=20) -> 30
-# 30
-```
-
-
-
-### *args, **kwargs
-
-parameter의 개수가 정해져 있지 않은 매개변수들도 decorator로 처리할 수 있다.
-
-```python
-def trace(func):                     # 호출할 함수를 매개변수로 받음
-    def wrapper(*args, **kwargs):    # 가변 인수 함수로 만듦
-        r = func(*args, **kwargs)    # func에 args, kwargs를 언패킹하여 넣어줌
-        print('{0}(args={1}, kwargs={2}) -> {3}'.format(func.__name__, args, kwargs, r))
-                                     # 매개변수와 반환값 출력
-        return r                     # func의 반환값을 반환
-    return wrapper                   # wrapper 함수 반환
- 
-@trace                   # @데코레이터
-def get_max(*args):      # 위치 인수를 사용하는 가변 인수 함수
-    return max(args)
- 
-@trace                   # @데코레이터
-def get_min(**kwargs):   # 키워드 인수를 사용하는 가변 인수 함수
-    return min(kwargs.values())
- 
-print(get_max(10, 20))
-# get_max(args=(10, 20), kwargs={}) -> 20
-# 20
-print(get_min(x=10, y=20, z=30))
-# get_min(args=(), kwargs={'x': 10, 'y': 20, 'z': 30}) -> 10
-# 10
-```
 
 
 
