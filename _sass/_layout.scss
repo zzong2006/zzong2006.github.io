@@ -306,7 +306,6 @@ p code:not(pre) {
 	background: $nav-background-color;
 	color: $content-color;
 	background-color: #e8eaed;
-
 	padding: 1px 4px;
 	font-size: 1.1em;
 	line-height: 1;
@@ -317,16 +316,13 @@ li code {
 	background: $nav-background-color;
 	color: $content-color;
 	background-color: #e8eaed;
-
 	padding: 1px 4px;
 	font-size: 1.1em;
 }
 
 pre code {
 	background: $nav-background-color;
-	color: $content-color;
 	background-color: transparent;
-
 	font-size: 1.05em;
 
 }

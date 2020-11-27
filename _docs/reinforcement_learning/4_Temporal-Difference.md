@@ -137,40 +137,44 @@ MC 방법과 마찬가지로, exploration과 exploitation의 trade off가 존재
 
 ## Q-learning: Off-policy TD Control  
 
-* $$
-  Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \max _{a} Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
-  $$
-  * $Q$에서 유도되는 policy에 상관없이 $\underset{a}{\mathrm{max}} \ Q(S_{t+1}, a)$ 를 통해서 최적의 action-value function를 통해 $Q$를 update한다.
-  * 즉, greedy policy가 하나 있고, $\varepsilon$-greedy와 같은 또 다른 policy가 존재하므로 Q-learning을 off-policy 라 부를 수 있다.
+$$
+Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \max _{a} Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
+$$
+* $Q$에서 유도되는 policy에 상관없이 $\underset{a}{\mathrm{max}} \ Q(S_{t+1}, a)$ 를 통해서 최적의 action-value function를 통해 $Q$를 update한다.
+* 즉, greedy policy가 하나 있고, $\varepsilon$-greedy와 같은 또 다른 policy가 존재하므로 Q-learning을 off-policy 라 부를 수 있다.
 
-* ![image-20201023175619321](https://i.loli.net/2020/10/23/a6LDEiPeUukvNgX.png)
+<img src="https://i.loli.net/2020/10/23/a6LDEiPeUukvNgX.png" alt="image-20201023175619321" style="zoom:67%;" />
 
-* ![image-20201023180629700](https://i.loli.net/2020/10/23/Bp152rmX3Rlsdi9.png)
+![image-20201023180629700](https://i.loli.net/2020/10/23/Bp152rmX3Rlsdi9.png)
 
 ## Expected SARSA
 
-* SARSA에서 기댓값을 사용한 SARSA 버전
+SARSA에서 기댓값을 사용한 SARSA 버전
 
-  * $$
-    \begin{aligned}
-    Q\left(S_{t}, A_{t}\right) & \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \mathbb{E}_{\pi}\left[Q\left(S_{t+1}, A_{t+1}\right) \mid S_{t+1}\right]-Q\left(S_{t}, A_{t}\right)\right] \\
-    & \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \sum_{a} \pi\left(a \mid S_{t+1}\right) Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
-    \end{aligned} 
-    $$
+$$
+\begin{aligned}
+  Q\left(S_{t}, A_{t}\right) & \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \mathbb{E}_{\pi}\left[Q\left(S_{t+1}, A_{t+1}\right) \mid S_{t+1}\right]-Q\left(S_{t}, A_{t}\right)\right] \\
+  & \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \sum_{a} \pi\left(a \mid S_{t+1}\right) Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
+  \end{aligned}
+$$
 
-  * 즉, $Q\left(S_{t+1}, A_{t+1}\right)$ 대신 $\mathbb{E}_{\pi}[Q(S_{t+1}, A_{t+1}) \mid S_{t+1}]$ 를 사용함
 
-* Expected SARSA는 SARSA보다 계산이 복잡하지만, $A_{t+1}$를 무작위로 선택할 때 발생하는 분산을 없애준다.
-* 일반적으로 Expected SARSA는 action을 결정하기 위해서 $\pi$와는 다른 정책(Expected value)을 사용할 것이고, 이 경우에는 off-policy algorithm이 된다.  
+즉, $Q\left(S_{t+1}, A_{t+1}\right)$ 대신 $$\mathbb{E}_{\pi}[Q(S_{t+1}, A_{t+1}) \mid S_{t+1}]$$ 를 사용함
+
+Expected SARSA는 SARSA보다 계산이 복잡하지만, $A_{t+1}$를 무작위로 선택할 때 발생하는 분산을 없애준다.
+
+일반적으로 Expected SARSA는 action을 결정하기 위해서 $\pi$와는 다른 정책(Expected value)을 사용할 것이고, 이 경우에는 off-policy algorithm이 된다.  
 
 ## Maximization Bias and Double Learning  
 
-* Q-Learning과 SARSA 둘 다 최대라는 개념을 활용하는데, 이럴 경우 maximization bias 문제가 발생할 수 있다.
-  * Maximization bias: $Q(s,a)$의 추정값이 일부는 양수고 일부는 음수를 가져서 최대값을 활용하는 action 선택에 영향을 미치는 것
-* 쉽게 예를 들어보자. 아래와 같은 MDP에서 right는 0의 보상 그리고 left는 평균 -0.1과 분산 1.0의 정규 분포를 따르는 보상을 준다. 
-  * 결과적으로 left 에 대한 이득의 기댓값은 -0.1이고 right를 선택하는 것이 옳다.
-  * 그러나 분산에 의해 maximization bias가 발생하여 Q-learning은 left를 선택할 것이다(보상이 종종 양수가 나오므로 right의 0보다 크기 때문에 최대값으로 right 선택).
-  *  ![image-20201023202144253](https://i.loli.net/2020/10/23/oFspJj3d94fOmLq.png)
+Q-Learning과 SARSA 둘 다 최대라는 개념을 활용하는데, 이럴 경우 maximization bias 문제가 발생할 수 있다.
+
+* Maximization bias: $Q(s,a)$의 추정값이 일부는 양수고 일부는 음수를 가져서 최대값을 활용하는 action 선택에 영향을 미치는 것
+
+쉽게 예를 들어보자. 아래와 같은 MDP에서 right는 0의 보상 그리고 left는 평균 -0.1과 분산 1.0의 정규 분포를 따르는 보상을 준다. 
+* 결과적으로 left 에 대한 이득의 기댓값은 -0.1이고 right를 선택하는 것이 옳다.
+* 그러나 분산에 의해 maximization bias가 발생하여 Q-learning은 left를 선택할 것이다(보상이 종종 양수가 나오므로 right의 0보다 크기 때문에 최대값으로 right 선택).
+*  ![image-20201023202144253](https://i.loli.net/2020/10/23/oFspJj3d94fOmLq.png)
 
 * maximization bias가 q-learning같은 학습에 영향을 미치는 원인은 maximizing action을 결정하는 것과 그 action의 값을 추정하는데 **동일한 samples**을 사용하기 때문이다.
 

@@ -315,8 +315,10 @@ x.start()
 
 ```
 
-    INFO:root:first
-    INFO:root:second
+```
+INFO:root:first
+INFO:root:second
+```
 
 
 비록 두번째 thread가 먼저 실행되었다 할지라도, 세마포어에 의해 첫번째 스레드가 실행되기를 기다린다.
