@@ -5,6 +5,10 @@ category: Deep Learning
 order: 7
 ---
 
+모델을 최적화하기 위해서 고려해야할 몇가지 사항들이 존재한다. 
+
+데이터셋의 분배, 그리고 모델의 bias와 variance에 대한 대처 등..
+
 ## Train/Dev/Test sets 
 
 모델을 학습시킬 때, 일반적으로 training, dev(cross validation), test set으로 데이터를 나눠서 학습하게 된다.
@@ -32,13 +36,11 @@ Bias와 Variance를 통해 모델을 최적화 하는 방법은 다음과 같다
    * NN architecture search (또 다른 신경망 구조를 탐색 및 시도)
 2. bias가 충분히 낮게 잡혔다면, 이제는 variance가 높은지 확인하자. 너무 높다면 다음과 같은 전략을 시도해볼 수 있다.
    * More Data
-   * Regularization
+   * Regularization / Dropout / Data Augment / Early Stopping
    * NN architecture search 
 3. 만약 variance를 낮추다가 다시 bias가 높아지면, (1)로 돌아간다. bias와 variance가 둘 다 낮다면, 최적화를 마친다.
 
 예전에는 Bias와 Variance가 trade-off 관계라 여겼다, 하지만 요즘에는 대규모 신경망과 대용량 데이터가 가능한 시대기 때문에, 가능하면 둘 다 잡을 수 있다.
-
-## Regularization 
 
 
 

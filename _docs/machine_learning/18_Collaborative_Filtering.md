@@ -5,13 +5,16 @@ category: Machine Learning
 order: 18
 ---
 
-## Content Based Recommendations
+## Content Based Recommendations(Filtering)
 
-item의 feature들을 이용하여 user의 선호도를 예측하는 시스템
+Content-based filtering 방식은 item의 feature들을 이용하여 user의 선호도를 예측하는 방법을 의미한다. 즉, 특정 사용자 A에 대한 아이템들의 선호 정보가 주어졌을 경우, 선호 정보가 없는 아이템의 A에 대한 선호도를 예측하는 과정에서, 아이템들이 가진 feature vector를 활용한다.
+
+이 방법은 각 사용자들에 대한 선호도가 중요하지 않고, 오직 예측하고자 하는 사용자에 대한 아이템 선호도만 중요하게 여긴다. 
 
 ![image-20201102190251093](https://i.loli.net/2020/11/02/b7xVAMYf6iCrRXj.png)
 
 * 각 영화에 두가지 feature를 사용하여 4명의 사용자들의 영화에 대한 선호도를 추정한다.
+* 이와 같은 feature들은 기계 학습으로 구해지는 것이 아니라, 직접 시스템 관리자가 작성한 것들이다. 
 
 Content Based 추천은 regression 문제와 비슷하다.
 
@@ -63,6 +66,8 @@ $$
 
 
 ## Collaborative Filtering
+
+Content-based 추천 방식의 단점은 item(content) 들의 feature vector들을 수치화하는 것이 어렵다는 것이다. 이러한 문제를 해결하기 위해 user의 parameter뿐만 아니라, item의 feature vector들을 기계 학습을 통해 찾는다.
 
 Collaborative filtering의 알고리즘 중 하나는 user based와 content based 방법을 번갈아 가면서 반복적으로 item과 rating 값을 갱신해나가는 방법이 존재한다.
 
