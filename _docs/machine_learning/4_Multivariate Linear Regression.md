@@ -117,6 +117,22 @@ $$
 
 
 
+### Min-max 와 Z-score를 동시에 적용하는 것이 가능한가?
+
+결론부터 말하면, 의미 없다. 둘 중 하나만 적용될 것이다: [Referece](https://stats.stackexchange.com/questions/318170/min-max-scaling-on-z-score-standardizd-data)
+
+Say that $X$ is your data. What you are trying to do is
+$$
+z=\frac{x-\operatorname{mean}(X)}{\operatorname{sd}(X)}, \quad y=\frac{z-\min (Z)}{\max (Z)-\min (Z)}
+$$
+Let us use thew $m,s,l,u$ symbols for the sample mean, standard deviation, minimum and maximum respectively. Notice that after zz-transforming also the minimum and maximum get $z$-transformed, so $\min (Z)=\frac{l-m}{s}$ etc. Now, if we combine both equations, we have
+$$
+\frac{\frac{x-m}{s}-\frac{l-m}{s}}{\frac{u-m}{s}-\frac{l-m}{s}}=\frac{\frac{x-\not{m}-(l-\not{m})}{s}}{\frac{u-\not{m}-(l-\not{m})}{s}}=\frac{\frac{x-l}{s}}{\frac{u-l}{s}}=\frac{x-l}{u-l}
+$$
+So basically, using $z$-transformation and then min-max scaling, leads to the same result as min-max scaling alone. Same can be shown about using min-max scaling and then $z$-transformation, as it gives same result as $z$-transformation alone.
+
+
+
 ## Gradient Descent in Practice II - Learning Rate
 
 학습률 $\alpha$를 적절하게 정하는 것이 중요하다. 

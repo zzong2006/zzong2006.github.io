@@ -1,79 +1,62 @@
 ---
 layout: default
-title:  "Thread"
+title:  "Deadlock"
 category: Operating System
-order: 4
+order: 5
 ---
 
-## Process
+## 교착상태 발생 조건
 
-OS로 부터 <u>시스템 자원을 할당</u>받고 메모리에 적재되어 실행되고 있는 프로그램(program)의 인스턴스
-* 프로그램: 실행 가능한 파일
+교착 상태는 한 시스템 내에서 다음의 네 가지 조건이 동시에 성립 할 때 발생한다. 따라서, 아래의 네 가지 조건 중 하나라도 성립하지 않도록 만든다면 교착 상태를 해결할 수 있다.
 
-### Process가 할당 받는 시스템 자원
+1. 상포배제(Mutual Exclusion) 
 
-* CPU
-* 주소 공간
-* code, data, stack, heap (아래 그림 참조, 순서도 중요)
+   * 자원은 한 번에 한 프로세스만이 사용할 수 있어야 한다.
 
-![img](https://i.loli.net/2020/10/19/jGfJd8MyWkE2Awu.png)
-* Code: 실행할 프로그램의 코드가 저장되는 영역 (컴파일 시 크기가 결정됨)
-* Data: 전역 변수, static variable 등 컴파일 시 결정되는 것들에 대한 영역
-* Stack: 지역 변수, parameters, return value 등 임시로 사용하는 값들에 대한 영역 (컴파일 시 크기가 결정됨)
-  * parameters와 return value는 함수 호출 시 생성되었다가 끝나면 그 영역을 반환함
-  * 데이터가 높은 주소부터 낮은 주로소 쓰여진다는 특징이 존재함 
-* Heap: new, malloc 등을 통한 동적 할당 객체에 대한 영역 (런타임 시 그 크기가 결정됨)
+2. 점유 및 대기 (hold And Wait) 
 
+   * 최소한 하나의 자원을 점유하고 있으면서 다른 프로세스에 할당되어 사용하고 있는 자원을 추가로 점유하기 위해 대기하는 프로세스가 있어야 한다. 
 
+3. 비선점(No preemption) 
 
-:information_source: CPU의 프로세서(Processor, single core)는 하나의 프로세스(Process)만 구동할 수 있다.
+   * 해당 작업이 완료되기 전까지는 자원이 반환되지 않는 것.
+   * 다른 프로세스에 할당된 자원은 사용이 끝날 때까지 강제로 빼앗을 수 없어야 한다.
 
-* 하나의 CPU로 여러 프로세스를 구동하기 위해 **시분할 방식**을 이용함 
-* 자세한 내용은 CPU Scheduling 포스트 참조
+4. 환형대기 (Circular Wait) 
 
+   * 연쇄적(꼬리에 꼬리를 무는, 뫼비우스)으로 자원을 기다리는 형태 .
+   * 프로세스의 집합 $\{P_0, P_1, …,P_n\}$에서 $P_0$는 $P_1$이 점유한 자원을 대기하고 $P_1$은 $P_2$가 점유한 자원을 대기하고 $P_2$ … $P_{n-1}$은 $P_n$이 점유한 자원을 대기하며 $P_n$은 $P_0$가 점유한 자원을 요구해야 한다.
 
+   
 
-### PCB
+## Deadlock 대비 방법
 
-각 프로세스는 OS 내에서 PCB(Process Control Block)에 의해 구분된다.
+교착 상태가 일어나기 전에 미리 대비하는 방법
 
-#### PCB에 저장되는 정보들
+### 예방(Prevention) 
 
-* process states: new, ready, running, waiting, terminated
-* program counter (PC): 프로세스가 다음에 실행할 명령어 주소
-* CPU registers: accumulator, stack register, index register
-  * stack register(Extended Stack Pointer, ESP): 스택 영역을 표시하기 위한 레지스터인 pointer register의 한 종류. 사용하고 있는 stack의 최상단 주소(lowest memory address)를 저장하는데 사용함
-  * Index register: 문자열의 조작에 사용되는 레지스터로 문자열의 시작 주소를 저장함
-  * Accumulator (EAX): 모든 연산 명령에 사용되는 레지스터. 주로 산술 연산을 통한 함수의 결과값을 저장한는데 사용함
+교착 상태 발생 조건 중 하나를 제거함으로써 해결한다. 발생하지 않은 상태를 대비하므로, 자원의 낭비가 심하다.
 
+1. 상호 배제 (Mutual exclusion) 부정
+   * 여러 개의 프로세스가 공유 자원을 사용할 수 있도록 한다.
+2. 점유 대기 (Hold and wait) 부정
+   * 프로세스가 실행되기 전 필요한 모든 자원을 할당한다.
+3. 비선점 (No preemption) 부정
+   * 자원을 점유하고 있는 프로세스가 다른 자원을 요구할 때 점유하고 있는 자원을 반납하고, 요구한 자원을 사용하기 위해 기다리게 한다.
+4. 순환 대기 (Circular wait) 부정
+   * 자원에 고유한 번호를 할당하고, 번호 순서대로 자원을 요구하도록 한다.
 
+### 회피(Avoidance)
 
-### 프로세스의 생명 주기 (process states)
+교착 상태가 발생하면 피해가는 방법이다.
 
-총 5개: new, ready, running, waiting, terminated
+* 은행원 알고리즘 : 다익스트라가 제안한 방법
+  * 교착 상태에 빠질 수 없는 안정 상태를 유지할 수 있는 요구만을 수락하고, 불안전 상태를 초래할 사용자의 요구는 나중에 만족될 수 있을 때까지 계속 거절 
+  * 안정 상태에 있으면 자원을 할당하고, 그렇지 않으면 다른 프로세스들이 자원을 해지할 때까지 대기함
+  * 사용자 수 그리고 할당할 수 있는 자원의 수가 일정해야함
+  * 항상 불안전 상태를 방지해야 하므로 자원 이용도가 낮음
 
-![img](https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg)
+## Deadlock 처리 방법
 
-
-
-## Thread
-
-프로세스 내부에서 <u>프로세스 자원을 이용</u>하여 실행되는 실행의 단위
-* 이용하는 프로세스의 자원
-  * 프로세스의 stack과 레지스터만 개별적으로 할당받고, 나머지 영역(Code, data, heap)은 공유함
-
-<img src="https://i.loli.net/2020/10/19/tS9gkCPRbYpJnEU.png" alt="img" style="zoom:80%;" />
-
-## Multi Process < Multi Thread ?
-
-여러 프로세스를 구동하는 것보다, 하나의 프로세스에서 여러 스레드를 구동하는 것이 <u>장점이 많음</u>
-
-* 장점
-  1. Context switching
-     * 프로세스 간 context switching 시, CPU 레지스터 교체 뿐만 아니라 RAM과 CPU 사이의 cache memory에 대한 데이터까지 초기화되므로 오버헤드가 큼
-     * 반면 스레드 간 context switching 시, stack 영역만 처리하면 된다.
-  2. 스레드는 stack과 register를 제외한 모든 영역을 공유하므로, 프로세스간 통신 (IPC)보다 스레드간 통신이 적은 비용이 요구됨 
-
-* 단점
-  * 스레드 간 자원 공유에 Data 영역은 전역 변수를 저장하는 공간이므로, 해당 type의 변수를 사용할때 충돌이 발생할 수 있음
+교착 상태가 일어난 후 
 

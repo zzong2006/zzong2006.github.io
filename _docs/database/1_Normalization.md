@@ -234,6 +234,8 @@ order: 1
 
 
 
+
+
 ## Reference
 
 https://yaboong.github.io/database/2018/03/09/database-normalization-1/
