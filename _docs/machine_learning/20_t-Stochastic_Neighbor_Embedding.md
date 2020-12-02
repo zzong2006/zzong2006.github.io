@@ -51,7 +51,7 @@ $$
 
 * 모든 점 $x_i$ 마다 $\sigma_{i}$가 다른 이유는 outlier에 robust한 확률 값 $p_{i j}$ 를 찾기 위해서다.
   
-  * 어떤 점 사이가 매우 거리가 멀면 $$\left|x_{i}-x_{j}\right|^{2}$$ 는 매우 커지는데, 이때 $\sigma$ 값도 같이 커진다. 그래서 $$\exp \left(-\left|x_{k}-x_{l}\right|^{2} / 2 \sigma^{2}\right)$$ 값은 작아진다.
+  * 어떤 점 사이가 매우 거리가 멀면 $$\mid x_{i}-x_{j}\mid^{2}$$ 는 매우 커지는데, 이때 $\sigma$ 값도 같이 커진다. 그래서 $$\exp \left(-\mid x_{k}-x_{l}\mid)^{2} / 2 \sigma^{2}\right)$$ 값은 작아진다.
 
 ### $q_{i j}$
 
