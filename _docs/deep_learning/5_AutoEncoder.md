@@ -29,19 +29,19 @@ order: 5
 
 ### 오토인코더의 단점
 
-* 훈련에 많은 시간이 필요하다.
-  
-* A lot of data, processing time, hyperparameter tuning, 그리고, 모델 검증 등
-  
+* 훈련에 많은 시간이 필요하다 (A lot of data, processing time, hyperparameter tuning, 그리고, 모델 검증 등)
+
 * data-specific하다. 즉, 훈련된 데이터와 비슷한 데이터만 올바르게 압축 및 복원할 수 있다.
 
   * 다른 말로 하면, AE는 training set이 형성하는 manifold 와 비슷한 형질을 지닌 데이터만 올바르게 복원할 수 있다.
+  * 어떻게 생각하면 AE의 디코더의 디코딩 기능이 인코더가 특정 데이터를 인코딩 해 놓은 좌표에만 잘 작동하게끔 오버피팅(overfitting)되어 있는 상태라고도 말할 수 있을 것이다.
 
 * AE 학습을 위해서는 축소된 차원을 복원하는 과정을 거쳐야 하는데, hidden layer의 unit이 일정 차원수 이상을 보장하지 않으면 축소 과정에서 정보 손실이 너무 커져서 올바른 복원이 되지 않고, 학습이 잘 이루어지지 않음
 
   * 결과적으로 일정 차원수 이상을 보장해야 하는데, 이로 인해서 간접적인manifold의 표현밖에 가능하지 않음
+* 인코딩 시 표현 벡터들의 위치를 선택하는 특정한 규칙이 없다. (군집 강도 형성이 부족함)
 
-  
+
 
 ## Stacked AutoEncoder (SAE)
 
@@ -61,12 +61,19 @@ order: 5
 
 이렇게 층별 레이어 학습을 통해서 gradient vanishing 문제를 완화시킬 수 있었기에, 혁신적인 연구였지만, 지금은 GPU 성능 향상 및 대용량 데이터 확보와 같은 외부적인 영향으로 예비 학습 과정을 거치지 않아도 충분한 성능을 얻을 수 있게 되었다.
 
+
+
 ## Variant AutoEncoder(VAE)
 
-VAE는 AE보다 높은 군집 강도를 형성할 수 있게끔 도와주는 신경망이다.
+VAE는 학습 데이터의 확률 분포에 대한 latent vector를 찾아서, AE보다 높은 군집 강도를 형성할 수 있게끔 도와주는 신경망이다.
+
 * VAE를 통해 생성된 latent vectors는 AE보다 차원상에서 compact하게 뭉쳐져 있다.
-* AE와 VAE를 통해 4차원으로 압축된 latent vectors를 PCA로 2차원에 압축 된 데이터를 표현한 그래프
-  * ![image-20201020181647374](https://i.loli.net/2020/10/20/ECfRQAz6xBvbqNG.png)
+* 아래 그림은 AE와 VAE를 통해 4차원으로 압축된 latent vectors를 PCA로 2차원에 압축 된 데이터를 표현한 그래프이다.
+* ![image-20201020181647374](https://i.loli.net/2020/10/20/ECfRQAz6xBvbqNG.png)
+
+VAE는 분포에 대한 예측과 이 분포에 대한 sampling을 수행하므로, generative model이라고 할 수 있다.
+
+* Generative Model이란 training data가 주어졌을 때, 이 training data가 가지는 real 분포와 같은 분포에서 sampling된 값으로 new data를 생성하는 model을 말한다.
 
 VAE는 오토인코더의 latent vectors를 단일 value로 표현하지 않고, gaussian probability distribution에 기반한 확률값으로 나타낸다.
 
@@ -78,7 +85,25 @@ VAE는 오토인코더의 latent vectors를 단일 value로 표현하지 않고,
 
 1. VAE의 encoder 네트워크는 입력 샘플 `x`를 잠재공간(latent space)에서 두 개의 매개 변수 $\mu$와 $\sigma$로 변환시킨다. 
 
-2. $z=\mu+e^{\log{\sigma}} \cdot \varepsilon$ 를 잠재정규분포(latent normal distribution)로 정하고, $z$과 유사한 데이터를 무작위로 sampling한다.
+2. Reparameterization Trick: $z=\mu+e^{\log{\sigma}} \cdot \varepsilon$ 를 잠재정규분포(latent normal distribution)로 정하고, $z$과 유사한 데이터를 무작위로 sampling한다.
    * $\varepsilon$은 gaussian noise로, 임의의 정규 tensor다.
+   * 위 식은 "예측된 평균값 $\mu$" + 평균이 0이고 "예측된 표준편차" 만큼의 표준편차 $\sigma$를 갖는 정규분포로부터 샘플링된 값으로 해석될 수 있다.
 3. decoder 네트워크는 sampling된 데이터를 원래의 입력 데이터로 복원한다(완벽하진 않지만).
 
+
+
+### VAE의 장/단점
+
+#### 장점
+
+VAE는 GAN에 비해 학습이 안정적인 편 
+
+* 손실함수에서 확인할 수 있듯 *reconstruction error*과 같이 평가 기준이 명확하기 때문
+
+* 아울러 데이터뿐 아니라 데이터에 내재한 잠재변수 $z$도 학습 가능 (*feature learning*)
+
+#### 단점
+
+* 출력이 선명하지 않고 평균값 형태로 표시됨
+
+* *reparameterization trick*이 모든 경우에 적용되지 않음
