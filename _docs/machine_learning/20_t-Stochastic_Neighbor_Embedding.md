@@ -1,13 +1,13 @@
 ---
 layout: default
-title:  "t-Stochastic Neighbor Embedding"
+title:  "T-SNE"
 category: Machine Learning
 order: 20
 ---
 
 >  출처: https://lovit.github.io/nlp/representation/2018/09/28/tsne/
 
-t-Stochastic Nearest Neighbor (t-SNE) 는 vector visualization 을 위하여 자주 이용되는 알고리즘이다. 
+t-Stochastic Nearest Embedding (t-SNE) 는 vector visualization 을 위하여 자주 이용되는 알고리즘이다. 
 
 ![Visualizing Fixed Income ETFs with T-SNE ](https://i.loli.net/2020/11/04/XilLkywO3n2Fxvh.png)
 

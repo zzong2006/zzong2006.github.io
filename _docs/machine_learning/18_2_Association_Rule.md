@@ -139,7 +139,7 @@ Eclat은 교집합을 이용한 DFS 방식이다. Apriori 알고리즘과 달리
 
 ### FP(Frequent Pattern)-growth algorithm
 
-FP-growth 알고리즘은 FP tree를 이용한다.
+FP-growth 알고리즘은 FP-tree를 이용한다. DB를 두번만 scan해서 association rule를 찾는것이 가능한데, 한번은 frequency table을 만들기 위해서 scan하고(Frequency 측정), 그 다음은 기존의 transaction에 포함된 itemset을 통해 새로운 itemset을 구성하기 위해 scan한다(FP-Tree 구성).
 
 #### FP-Tree Construction
 
