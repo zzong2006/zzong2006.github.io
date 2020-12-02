@@ -98,7 +98,11 @@ lift 값에 대한 해석은 1을 기준으로 달라진다.
 
 과정 (2)는 상당히 직관적이지만, (1)에 대해서는 많은 연산량이 요구된다. $I$ 에 존재하는 $n$개의 item들에 대한 frequent itemset을 찾는 것은 $2^n-1$ 개의 경우의 수를 고려해야 한다(empty set 제외).
 
-이러한 많은 경우의 수를 효율적으로 고려하기 위해서 support 값의 downward-closure 속성(또는 anti-monotonicity 라고 부름)을 활용하는데, 이것은 어떤 itemset 이 frequent 하지 않으면, 해당 itemset을 포함하는 모든 superset(초집합)도 frequent하지 않다는 특성을 의미한다.
+### Anti monotone property
+
+이러한 많은 경우의 수를 효율적으로 고려하기 위해서 support 값의 downward-closure 속성(또는 anti-monotonicity 라고 부름)을 활용하는데, 이것은 어떤 itemset 이 frequent 하지 않으면, 해당 itemset을 포함하는 모든 superset(초집합)도 frequent하지 않다(infrequent)는 특성을 의미한다.
+
+* 예를 들어 {사과, 바나나}같은 itemset이 frequent 하지 않다고 가정하면, {사과, 바나나, 수박}과 같은 패턴 역시 frequent 하지 않다.
 
 
 
@@ -108,10 +112,54 @@ lift 값에 대한 해석은 1을 기준으로 달라진다.
 
 ### Apriori algorithm
 
+Apriori는 BFS 방식을 사용해서 itemset의 support 값을 계산하고, anti-monotone property를 활용해 후보들을 생성해나가는 방법이다.
+
+![Example of the A PRIORI algorithm, with support set to 2 .](https://i.loli.net/2020/12/02/wrjsHEJhfNYz5Xk.png)
+
+* 위 그림은 최소 support 값이 0.5이고, 최소 confidence 값이 1.0인 Apriori 알고리즘 동작 예시다.
+* PHASE 1과 2를 통해서 유효한 itemset 을 구하고 (Apriori), 구해진 itemset을 이용해 rule을 만들어서 confidence를 계산한다.
+
 
 
 ### Eclat algorithm
 
+Eclat은 교집합을 이용한 DFS 방식이다. Apriori 알고리즘과 달리 parallel하게 수행하는 것이 가능하다.
+
+* Eclat은 Apriori와 비교했을 때 메모리에 모두 적재될 수 있는 적은 데이터셋에 적합하다. 즉, Eclat 방식은 확장성에 취약한 모습을 보인다.
+* 또한, Apriori는 candidate itemset에 대해서 support 값을 반복적으로 계산해야 했지만, Eclat은 그러지 않는다. 이미 itemset에 대한 Transaction 정보를 메모리에 저장하고 있기 때문이다.
+
+![Image for post](https://i.loli.net/2020/12/02/aNiRQdl5ProKeO1.png)
+
+* Eclat 알고리즘은 vertical layout을 이용한다. 즉, 한 transaction이 어떤 itemset을 보유하는지 나타내는 테이블을 이용하는 것이 아니라, 한 itemset 이 어떤 transaction에 속해있는지(TID) 나타내는 테이블을 이용한다.
+* 그리고 이러한 테이블에서 minimum support 값을 만족하는 itemset 만을 남겨두고, 같은 테이블 내의 다른 itemset에 대한 TID 간 교집합을 계산한다. 이후, 다시 minimum support 값 이상인 itemset을 남겨두고, 같은 과정을 반복한다.
+
+![Image for post](https://i.loli.net/2020/12/02/opHqRwGASgZ3yzr.png)
 
 
-### FP-growth algorithm
+
+### FP(Frequent Pattern)-growth algorithm
+
+FP-growth 알고리즘은 FP tree를 이용한다.
+
+#### FP-Tree Construction
+
+![img](https://i.loli.net/2020/12/02/K61QErzjJBqluk2.jpg)
+
+1. 우선 Apriori 와 동일하게, 각 transaction에 해당하는 itemset의 원소들을 count 하여 table 형태를 만든다. (위 그림의 Header Table)
+2. 이후, 최소 support 값을 만족하는 item만을 남기고, table내의 item 순서를 frequency순으로 정렬한다.
+3. 각 transaction의 itemset 도, table에 해당하는 item만 남기고 frequency 순으로 정렬한다 (위 그림의 (ordered) frequent items).
+4. 이제 FP-tree를 만들어야 한다. 정렬된 transactions(TID: 100,200,300,400,500)을 root tree에 넣으면서 각 노드의 원소마다 count를 증가시킨다. 이 구조는 Trie 와 흡사하다.
+5. 또한, 트리의 노드를 만들때 마다, 해당 노드를 가리키는 포인터를 table에 저장한다(Header Table의 header). 
+
+
+
+#### FP-Tree Mining
+
+<img src="https://i.loli.net/2020/12/02/mREyx15dZ29u8Uf.jpg" alt="img" style="zoom: 90%;" />
+
+![img](https://i.loli.net/2020/12/02/PAjJnNclqLmOpDo.png)
+
+* 각 table의 item에 해당하는 subtree만 구성하여 frequency를 만족하는 item을 찾는다.
+  * subtree를 구성하는 방법은 각 item에 대한 node pointer 를 통해, root node로 올라가면서 만나는 node의 item들을 subtree의 일부로 생각하는 것이다.
+    * 예를 들어, 위 그림에서 item $m$ 을 기준으로 생각했을 때, 상위 root로 올라가면서 만나는 $a$, $c$, $f$ 를 subtree의 노드로 지정한다 ($b$ 는 count 가 1이므로 무시한다.)
+

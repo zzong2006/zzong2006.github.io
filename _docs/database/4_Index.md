@@ -12,6 +12,10 @@ Indexing은 원하는 데이터 접근 속도를 높이기 위해 Index file을 
 
 <img src="https://i.loli.net/2020/11/26/i1xMCgXNd8c7eTy.png" alt="image-20201126005222757" style="zoom: 67%;" />
 
+**Indexing은 언제 사용해야 하나?**
+
+* Indexing은 주로, 검색(SELECT)이 많고 DB 변경(INSERT, UPDATE, DELETE)이 적게 일어나는 테이블에서 인덱스를 사용하면 좋다.
+
 Indexing은 크게 두 종류로 구성된다: Ordered indices, Hash indices
 
 * Ordered indices : search key들이 순서에 의해 정렬됨
