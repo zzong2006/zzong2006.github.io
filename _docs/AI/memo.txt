@@ -1,8 +1,0 @@
-Search
-– Uninformed Search (3.4)
-– Heuristic Search (3.5, 3.6)
-• Knowledge Representation
-• Quantifying Uncertainty and
-Probabilistic Reasoning – Uncertainties, Probabilities
-– Probabilistic Reasoning, Bayesian Networks
-• Learning
