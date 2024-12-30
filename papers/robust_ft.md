@@ -1,8 +1,7 @@
 ---
-layout: post
-title: "RobustFT: Robust Supervised Fine-tuning for Large Language Models under Noisy Response"
-date: 2024-12-30 12:00:00 -0000
-categories: review
+layout: page
+title: "RobustFT"
+permalink: /papers/robust_ft
 ---
 
 # RobustFT: Robust Supervised Fine-tuning for Large Language Models under Noisy Response
