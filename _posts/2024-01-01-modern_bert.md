@@ -8,19 +8,6 @@ tags:
   - BERT
 ---
 
-## 논문 정보
-
-### 제목
-
-Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference
-
-### Paper URL
-
-- blog: https://huggingface.co/blog/modernbert
-- paper: https://huggingface.co/papers/2412.13663
-
-
-## 배경
 
 기존 BERT family 들의 성능과 속도를 모두 이길 수 있는 ModernBERT 가 나왔다고 한다. 
 
@@ -129,3 +116,10 @@ FlashAttention 기반의 Sequence Packing 을 적용했다는 점, attention 방
 
 그리고 단순히 고품질 데이터가 문제가 아니라 더 다양한 데이터 역시 성능에 중요한 영향을 미친다는 것도 중요한 포인트인듯 싶다.
 
+
+## References
+
+Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference
+
+- blog: https://huggingface.co/blog/modernbert
+- paper: https://huggingface.co/papers/2412.13663
