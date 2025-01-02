@@ -1,4 +1,6 @@
 markdown: kramdown
+highlighter: rouge
+lsi: false
 remote_theme: mmistakes/minimal-mistakes
 minimal_mistakes_skin: default
 search: true
