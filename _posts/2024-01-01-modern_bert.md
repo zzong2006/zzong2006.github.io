@@ -27,7 +27,7 @@ ModernBERT 는 기존의 BERT 대비 다음과 같은 장점을 가지고 있다
 
 아래의 세가지 방법론을 적용해서 ModernBERT 를 만들었다고 한다.
 
-1. 현대화된 transforrmer 구조
+1. 현대화된 transformer 구조
 2. Particular attention to efficiency
 3. 학습 데이터셋을 현대적으로 재구성
 
