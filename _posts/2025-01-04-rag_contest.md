@@ -24,9 +24,12 @@ https://www.kaggle.com/competitions/icaif-24-finance-rag-challenge/overview
 
 ### 2. Dacon: [재정정보 AI 검색 알고리즘 경진대회](https://dacon.io/competitions/official/236295/overview/description) (종료)
 
+대회 기간: 2024년 7월 29일 ~ 2024년 8월 23일
 
 특이한점은 RAG 로 활용할 데이터를 PDF 형태로 제공한다는 점이다.
 
 물론 LLM 학습에 필요한 Question-Answer pair 역시 제공된다.
+
+대부분 e5 모델로 vector search 를 위한 임베딩을 진행하였다.
 
 한 우승팀에서는 YOLOv10 기반 Document Layout Analysis를 통해 PDF parser를 구현하였다고 한다.
