@@ -20,3 +20,13 @@ RAG 관련 대회 목록을 정리해보려 한다.
 이번 경진대회는 참가자들이 직접 RAG 시스템을 구현해볼 수 있도록 준비 하였습니다. Linq에서 직접 미국의 증권시장 공시, 리포트 등을 바탕으로 query-corpus dataset을 세심하게 준비해주셨습니다. 특히 금융분야에는 이러한 데이터셋이 없는데요, 참가자들이 매우 좋은 데이터셋을 바탕으로 RAG 시스템을 구현해보고 evaluation도 해볼 수 있는 매우 좋은 기회라고 생각합니다.
 
 https://www.kaggle.com/competitions/icaif-24-finance-rag-challenge/overview
+
+
+### 2. Dacon: [재정정보 AI 검색 알고리즘 경진대회](https://dacon.io/competitions/official/236295/overview/description) (종료)
+
+
+특이한점은 RAG 로 활용할 데이터를 PDF 형태로 제공한다는 점이다.
+
+물론 LLM 학습에 필요한 Question-Answer pair 역시 제공된다.
+
+한 우승팀에서는 YOLOv10 기반 Document Layout Analysis를 통해 PDF parser를 구현하였다고 한다.
