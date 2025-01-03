@@ -1,6 +1,6 @@
 ---
 title: "행렬 미분 기초 (with Trace)"
-last_modified_at: 2025-01-02 12:00:00 -0000
+last_modified_at: 2025-01-03 12:00:00 -0000
 categories:
   - Derivative
 tags:
@@ -15,7 +15,11 @@ tags:
 
 ## 규칙 1: $ \frac{\partial}{\partial W_d} \text{Tr}(A W_d) = A^\top $
 
-여기서 \( A \)는 \( m \times n \) 행렬이고 \( W_d \)는 \( n \times p \) 행렬이라고 가정한다.
+여기서 \( A \)는 \( m \times n \) 행렬이고 \( W_d \)는 \( n \times m \) 행렬이라고 가정한다.
+
+행렬 미분의 결과는 미분한 행렬의 크기를 따라야 하므로, 이를 맞추기 위해서 transpose 를 취한다고 생각하면 편하다.
+
+(참고) Trace 는 정사각행렬에 대해서만 정의된다.
 
 ### 예시
 
@@ -70,4 +74,3 @@ $$
 2 & 4 \\
 \end{bmatrix}
 $$
-
