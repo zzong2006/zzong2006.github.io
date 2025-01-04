@@ -87,7 +87,7 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2024/robust_ft/";
+          window.location.href = "/blog/2024/robust-ft/";
         
       },
     },{id: "post-a-post-with-image-galleries",
