@@ -1,9 +1,12 @@
 ---
+layout: post
+tags: llm encoder bert
 title: "새로운 Bert 모델: ModernBERT"
-last_modified_at: 2025-01-01 12:00:00 -0000
-categories:
-  - Review
-tags: Encoder BERT
+date: 2025-01-01
+giscus_comments: true
+related_posts: false
+toc:
+  beginning: true
 ---
 
 
