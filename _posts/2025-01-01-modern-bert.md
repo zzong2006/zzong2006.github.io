@@ -14,7 +14,8 @@ toc:
 
 여기서 성능이라하면 GLUE score 를 의미하고, 속도라 하면 초당 토큰 처리를 의미한다. 아래 그래프를 참고하자.
 
-<img src="https://cdn-lfs.hf.co/datasets/huggingface/documentation-images/32fba11bd9e3594f1f9b9eba90e4651cc565275afa85af5c68eae87aad19ccd0?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27modernbert_pareto_curve.png%3B+filename%3D%22modernbert_pareto_curve.png%22%3B&response-content-type=image%2Fpng&Expires=1735985095&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTczNTk4NTA5NX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy5oZi5jby9kYXRhc2V0cy9odWdnaW5nZmFjZS9kb2N1bWVudGF0aW9uLWltYWdlcy8zMmZiYTExYmQ5ZTM1OTRmMWY5YjllYmE5MGU0NjUxY2M1NjUyNzVhZmE4NWFmNWM2OGVhZTg3YWFkMTljY2QwP3Jlc3BvbnNlLWNvbnRlbnQtZGlzcG9zaXRpb249KiZyZXNwb25zZS1jb250ZW50LXR5cGU9KiJ9XX0_&Signature=TIQgVGH8PBIQYSnxWKvBRBEN7U4UGxL8HBZedeYaAhSg5I4OxXHyXgUYlZ5IWSWzzGof48OIDb8eiam-afiVsxNzT9PhmctUUYmYSZKRn2CuS6tOzkpBUjZ%7EbxridS6pXebaEr%7E-EcLpfNms20p9DTxbYtJm4qGuaNd7zlJabh7ihNbnagwPqFUNm9k7%7EtNSsuoJ2gsRLt4h-aONxmKP9dQZ0woIPzSf%7E3Ab3nmzeAYOWtECeXFa5Gm-AQ4RJBFd0F5v3GlQ0YbGNZ%7EDbx5SQkcS-GGRLz34GycQNwU83hBx77ylxuXSKXInHzIOSXT2I70X3rSGh17bXacspmidWw__&Key-Pair-Id=K3RPWS32NSSJCE" style="width: 100%;">
+<img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/modernbert/modernbert_pareto_curve.png" style="width: 85%;">
+
 
 ## 특징
 
