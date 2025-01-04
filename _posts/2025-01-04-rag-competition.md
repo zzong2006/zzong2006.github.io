@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "RAG Competition"
-last_modified_at: 2025-01-04 03:00:00 -0000
-categories:
-  - Competition
-tags:
-  - RAG
+date: 2025-01-04
+giscus_comments: true
+related_posts: false
+toc:
+  beginning: true
+tags: RAG Competition
 ---
 
 RAG 관련 대회 목록을 정리해보려 한다.
