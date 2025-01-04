@@ -167,28 +167,6 @@ ninja.data = [{
           window.location.href = "/blog/2024/post-citation/";
         
       },
-    },{id: "post-a-post-with-tikzjax",
-      
-        title: "a post with TikZJax",
-      
-      description: "this is what included TikZ code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2023/tikzjax/";
-        
-      },
-    },{id: "post-a-post-with-jupyter-notebook",
-      
-        title: "a post with jupyter notebook",
-      
-      description: "an example of a blog post with jupyter notebook",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2023/jupyter-notebook/";
-        
-      },
     },{id: "post-a-post-with-custom-blockquotes",
       
         title: "a post with custom blockquotes",
@@ -233,16 +211,8 @@ ninja.data = [{
           window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
         
       },
-    },{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
-          description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+    },{id: "news-construction-새로운-블로그-스타일로-변경했습니다-blog-위주로-수정하고-있습니다-sparkles",
+          title: ':construction: 새로운 블로그 스타일로 변경했습니다. blog 위주로 수정하고 있습니다.:sparkles:',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
