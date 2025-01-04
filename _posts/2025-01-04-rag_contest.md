@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "RAG Competition"
 last_modified_at: 2025-01-04 03:00:00 -0000
 categories:
