@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Semantic Retrieval at Walmart"
-last_modified_at: 2025-01-03 15:00:00 -0000
-categories:
-  - Retrieval
-tags: walmart ann rag
+date: 2025-01-03
+giscus_comments: true
+related_posts: false
+toc:
+  beginning: true
+tags: Walmart ANN RAG
 ---
 
 
