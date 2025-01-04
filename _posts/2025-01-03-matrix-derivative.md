@@ -1,11 +1,12 @@
 ---
+layout: post
+tags: matrix calculus
 title: "행렬 미분 기초 (with Trace)"
-last_modified_at: 2025-01-03 12:00:00 -0000
-categories:
-  - Derivative
-tags:
-  - Matrix
-  - Calculus
+date: 2025-01-03
+giscus_comments: true
+related_posts: false
+toc:
+  beginning: true
 ---
 
 

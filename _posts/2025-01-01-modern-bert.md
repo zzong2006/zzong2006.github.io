@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: llm encoder bert
+tags: llm encoder bert flash_attention
 title: "새로운 Bert 모델: ModernBERT"
 date: 2025-01-01
 giscus_comments: true
