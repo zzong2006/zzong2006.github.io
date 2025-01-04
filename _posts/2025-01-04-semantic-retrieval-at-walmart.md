@@ -3,9 +3,10 @@ layout: post
 title: "Semantic Retrieval at Walmart"
 date: 2025-01-03
 giscus_comments: true
-related_posts: false
+categories: paper-review
 toc:
   beginning: true
+  sidebar: left
 tags: Walmart ANN RAG
 ---
 

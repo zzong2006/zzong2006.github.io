@@ -3,9 +3,9 @@ layout: post
 title: "RAG Competition"
 date: 2025-01-04
 giscus_comments: true
-related_posts: false
 toc:
   beginning: true
+  sidebar: left
 tags: RAG Competition
 ---
 

@@ -3,10 +3,11 @@ layout: post
 tags: matrix calculus
 title: "행렬 미분 기초 (with Trace)"
 date: 2025-01-03
+categories: math
 giscus_comments: true
-related_posts: false
 toc:
   beginning: true
+  sidebar: left
 ---
 
 
