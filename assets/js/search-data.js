@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-a-post-with-image-galleries",
+            },{id: "post-sft-데이터셋의-노이즈를-줄여보자",
+      
+        title: "SFT 데이터셋의 노이즈를 줄여보자",
+      
+      description: "데이터 디노이징 프레임워크 RobustFT",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2024/robust_ft/";
+        
+      },
+    },{id: "post-a-post-with-image-galleries",
       
         title: "a post with image galleries",
       
@@ -110,17 +121,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2024/post-citation/";
-        
-      },
-    },{id: "post-a-post-with-pseudo-code",
-      
-        title: "a post with pseudo code",
-      
-      description: "this is what included pseudo code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/pseudocode/";
         
       },
     },{id: "post-a-post-with-code-diff",
