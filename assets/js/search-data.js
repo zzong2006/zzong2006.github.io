@@ -79,7 +79,62 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-sft-데이터셋의-노이즈를-줄여보자",
+            },{id: "post-rag-competition",
+      
+        title: "RAG Competition",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/rag-competition/";
+        
+      },
+    },{id: "post-semantic-retrieval-at-walmart",
+      
+        title: "Semantic Retrieval at Walmart",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/semantic-retrieval-at-walmart/";
+        
+      },
+    },{id: "post-행렬-미분-기초-with-trace",
+      
+        title: "행렬 미분 기초 (with Trace)",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/matrix-derivative/";
+        
+      },
+    },{id: "post-text-embedding-모델-e5",
+      
+        title: "Text Embedding 모델: E5",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/e5/";
+        
+      },
+    },{id: "post-새로운-bert-모델-modernbert",
+      
+        title: "새로운 Bert 모델: ModernBERT",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/modern-bert/";
+        
+      },
+    },{id: "post-sft-데이터셋의-노이즈를-줄여보자",
       
         title: "SFT 데이터셋의 노이즈를 줄여보자",
       
@@ -121,50 +176,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2024/post-citation/";
-        
-      },
-    },{id: "post-a-post-with-code-diff",
-      
-        title: "a post with code diff",
-      
-      description: "this is how you can display code diffs",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/code-diff/";
-        
-      },
-    },{id: "post-a-post-with-advanced-image-components",
-      
-        title: "a post with advanced image components",
-      
-      description: "this is what advanced image components could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/advanced-images/";
-        
-      },
-    },{id: "post-a-post-with-vega-lite",
-      
-        title: "a post with vega lite",
-      
-      description: "this is what included vega lite code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/vega-lite/";
-        
-      },
-    },{id: "post-a-post-with-geojson",
-      
-        title: "a post with geojson",
-      
-      description: "this is what included geojson code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/geojson-map/";
         
       },
     },{id: "post-a-post-with-echarts",
@@ -255,17 +266,6 @@ ninja.data = [{
           window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
         
       },
-    },{id: "post-a-post-with-redirect",
-      
-        title: "a post with redirect",
-      
-      description: "you can also redirect to assets like pdf",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/assets/pdf/example_pdf.pdf";
-        
-      },
     },{id: "post-a-post-with-diagrams",
       
         title: "a post with diagrams",
@@ -277,17 +277,6 @@ ninja.data = [{
           window.location.href = "/blog/2021/diagrams/";
         
       },
-    },{id: "post-a-distill-style-blog-post",
-      
-        title: "a distill-style blog post",
-      
-      description: "an example of a distill-style blog post and main elements",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2021/distill/";
-        
-      },
     },{id: "post-a-post-with-twitter",
       
         title: "a post with twitter",
@@ -297,39 +286,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2020/twitter/";
-        
-      },
-    },{id: "post-a-post-with-disqus-comments",
-      
-        title: "a post with disqus comments",
-      
-      description: "an example of a blog post with disqus comments",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2015/disqus-comments/";
-        
-      },
-    },{id: "post-a-post-with-code",
-      
-        title: "a post with code",
-      
-      description: "an example of a blog post with some code",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2015/code/";
-        
-      },
-    },{id: "post-a-post-with-images",
-      
-        title: "a post with images",
-      
-      description: "this is what included images could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2015/images/";
         
       },
     },{id: "post-a-post-with-formatting-and-links",
