@@ -145,17 +145,6 @@ ninja.data = [{
           window.location.href = "/blog/2024/robust-ft/";
         
       },
-    },{id: "post-a-post-with-image-galleries",
-      
-        title: "a post with image galleries",
-      
-      description: "this is what included image galleries could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/photo-gallery/";
-        
-      },
     },{id: "post-a-post-with-typograms",
       
         title: "a post with typograms",
@@ -242,17 +231,6 @@ ninja.data = [{
       handler: () => {
         
           window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
-        
-      },
-    },{id: "post-a-post-with-formatting-and-links",
-      
-        title: "a post with formatting and links",
-      
-      description: "march &amp; april, looking forward to summer",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2015/formatting-and-links/";
         
       },
     },{id: "news-a-simple-inline-announcement",
