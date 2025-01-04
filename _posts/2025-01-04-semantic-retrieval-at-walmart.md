@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Semantic Retrieval at Walmart"
+title: Semantic Retrieval at Walmart
 date: 2025-01-03
 giscus_comments: true
 categories: paper-review

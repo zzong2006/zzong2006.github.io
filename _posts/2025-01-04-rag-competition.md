@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RAG Competition"
+title: The collection of RAG competitions
 date: 2025-01-04
 giscus_comments: true
 toc:

@@ -7,7 +7,6 @@ categories: math
 giscus_comments: true
 toc:
   beginning: true
-  sidebar: left
 ---
 
 
