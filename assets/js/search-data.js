@@ -178,28 +178,6 @@ ninja.data = [{
           window.location.href = "/blog/2024/post-citation/";
         
       },
-    },{id: "post-a-post-with-echarts",
-      
-        title: "a post with echarts",
-      
-      description: "this is what included echarts code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/echarts/";
-        
-      },
-    },{id: "post-a-post-with-chart-js",
-      
-        title: "a post with chart.js",
-      
-      description: "this is what included chart.js code could look like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/chartjs/";
-        
-      },
     },{id: "post-a-post-with-tikzjax",
       
         title: "a post with TikZJax",
@@ -264,28 +242,6 @@ ninja.data = [{
       handler: () => {
         
           window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
-        
-      },
-    },{id: "post-a-post-with-diagrams",
-      
-        title: "a post with diagrams",
-      
-      description: "an example of a blog post with diagrams",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2021/diagrams/";
-        
-      },
-    },{id: "post-a-post-with-twitter",
-      
-        title: "a post with twitter",
-      
-      description: "an example of a blog post with twitter",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2020/twitter/";
         
       },
     },{id: "post-a-post-with-formatting-and-links",
