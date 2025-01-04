@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: llm encoder bert flash_attention
+tags: LLM encoder BERT Flash_Attention
 title: "새로운 Bert 모델: ModernBERT"
 date: 2025-01-01
 categories: paper-review

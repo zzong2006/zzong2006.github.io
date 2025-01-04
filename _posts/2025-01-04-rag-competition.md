@@ -6,7 +6,7 @@ giscus_comments: true
 toc:
   beginning: true
   sidebar: left
-tags: RAG Competition
+tags: RAG competition
 ---
 
 RAG 관련 대회 목록을 정리해보려 한다.
