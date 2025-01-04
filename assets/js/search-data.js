@@ -65,7 +65,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-the-collection-of-rag-competitions",
+            },{id: "post-don-39-t-do-rag",
+      
+        title: "Don&#39;t do RAG",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/no-rag/";
+        
+      },
+    },{id: "post-the-collection-of-rag-competitions",
       
         title: "The collection of RAG competitions",
       
