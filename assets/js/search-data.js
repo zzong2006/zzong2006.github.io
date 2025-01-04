@@ -65,9 +65,9 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-rag-competition",
+            },{id: "post-the-collection-of-rag-competitions",
       
-        title: "RAG Competition",
+        title: "The collection of RAG competitions",
       
       description: "",
       section: "Posts",
@@ -129,39 +129,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2024/robust-ft/";
-        
-      },
-    },{id: "post-a-post-that-can-be-cited",
-      
-        title: "a post that can be cited",
-      
-      description: "this is what a post that can be cited looks like",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2024/post-citation/";
-        
-      },
-    },{id: "post-a-post-with-custom-blockquotes",
-      
-        title: "a post with custom blockquotes",
-      
-      description: "an example of a blog post with custom blockquotes",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2023/custom-blockquotes/";
-        
-      },
-    },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
-      
-        title: "a post with table of contents on a sidebar",
-      
-      description: "an example of a blog post with table of contents on a sidebar",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2023/sidebar-table-of-contents/";
         
       },
     },{id: "news-construction-새로운-블로그-스타일로-변경했습니다-blog-위주로-수정하고-있습니다-sparkles",
