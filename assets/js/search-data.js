@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-semantic-retrieval-at-walmart",
+            },{id: "post-algorithm-lesson-learned-array",
+      
+        title: "Algorithm lesson learned - array",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/algorithm-lesson-learned-array/";
+        
+      },
+    },{id: "post-semantic-retrieval-at-walmart",
       
         title: "Semantic Retrieval at Walmart",
       
