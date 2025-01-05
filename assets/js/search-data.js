@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-algorithm-lesson-learned-array",
+            },{id: "post-llama-에-대해서-알아보자",
+      
+        title: "llama 에 대해서 알아보자",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/llama/";
+        
+      },
+    },{id: "post-algorithm-lesson-learned-array",
       
         title: "Algorithm lesson learned - array",
       
