@@ -26,5 +26,5 @@ auxiliary array (difference array) 을 사용하여 범위 업데이트 작업�
 
 ### 관련 문제
 
-- [leetcode: shifting-letters-ii](https://leetcode.com/problems/shifting-letters-ii)
+- [leetcode: shifting-letters-ii](https://leetcode.com/problems/shifting-letters-ii/description/)
 
