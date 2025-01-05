@@ -58,18 +58,7 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-kv-cache-에-대해-알아보자",
-      
-        title: "KV-Cache 에 대해 알아보자",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/kv-cache/";
-        
-      },
-    },{id: "post-don-39-t-do-rag",
+            },{id: "post-don-39-t-do-rag",
       
         title: "Don&#39;t do RAG",
       
@@ -89,17 +78,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/rag-competition/";
-        
-      },
-    },{id: "post-semantic-retrieval-at-walmart",
-      
-        title: "Semantic Retrieval at Walmart",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/semantic-retrieval-at-walmart/";
         
       },
     },{id: "post-행렬-미분-기초-with-trace",
