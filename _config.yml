@@ -91,6 +91,7 @@ blog_name:  # blog_name will be displayed in your blog page
 blog_description: 
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
+future: true  # You can make the post visible when the post's date is in the future
 
 # Pagination
 pagination:
