@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-don-39-t-do-rag",
+            },{id: "post-kv-cache-에-대해-알아보자",
+      
+        title: "KV-Cache 에 대해 알아보자",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/kv-cache/";
+        
+      },
+    },{id: "post-don-39-t-do-rag",
       
         title: "Don&#39;t do RAG",
       
@@ -192,7 +203,7 @@ ninja.data = [{
         title: 'RSS Feed',
         section: 'Socials',
         handler: () => {
-          window.open("/feed.xml", "_blank");
+          window.open("//feed.xml", "_blank");
         },
       },{
         id: 'social-scholar',
