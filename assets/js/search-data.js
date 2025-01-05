@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-kv-cache-에-대해-알아보자",
+            },{id: "post-semantic-retrieval-at-walmart",
+      
+        title: "Semantic Retrieval at Walmart",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/semantic-retrieval-at-walmart/";
+        
+      },
+    },{id: "post-kv-cache-에-대해-알아보자",
       
         title: "KV-Cache 에 대해 알아보자",
       
