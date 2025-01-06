@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-llama-에-대해서-알아보자",
+            },{id: "post-llm-이-json-응답을-잘-하도록-하는법",
+      
+        title: "LLM 이 json 응답을 잘 하도록 하는법",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/constrained-decoding/";
+        
+      },
+    },{id: "post-llama-에-대해서-알아보자",
       
         title: "llama 에 대해서 알아보자",
       
