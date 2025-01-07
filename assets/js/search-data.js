@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-multi-agent-관련-리소스-모음",
+            },{id: "post-fc-보다는-code-실행이-더-좋은-agent-를-만든다",
+      
+        title: "FC 보다는 Code 실행이 더 좋은 Agent 를 만든다",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/code-act/";
+        
+      },
+    },{id: "post-multi-agent-관련-리소스-모음",
       
         title: "Multi-Agent 관련 리소스 모음",
       
@@ -66,7 +77,7 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/multi-agents/";
+          window.location.href = "/blog/2025/multi-agents-resources/";
         
       },
     },{id: "post-llm-이-json-응답을-잘-하도록-하는법",
