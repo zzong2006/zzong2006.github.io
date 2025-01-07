@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-llm-이-json-응답을-잘-하도록-하는법",
+            },{id: "post-multi-agent-관련-리소스-모음",
+      
+        title: "Multi-Agent 관련 리소스 모음",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/multi-agents/";
+        
+      },
+    },{id: "post-llm-이-json-응답을-잘-하도록-하는법",
       
         title: "LLM 이 json 응답을 잘 하도록 하는법",
       
@@ -100,6 +111,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/semantic-retrieval-at-walmart/";
+        
+      },
+    },{id: "post-차원-축소-전략-중-하나인-linear-discriminant-analysis",
+      
+        title: "차원 축소 전략 중 하나인 Linear Discriminant Analysis",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/lda/";
         
       },
     },{id: "post-kv-cache-에-대해-알아보자",
@@ -222,7 +244,7 @@ ninja.data = [{
         title: 'email',
         section: 'Socials',
         handler: () => {
-          window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D", "_blank");
+          window.open("mailto:%7A%7A%6F%6E%67%32%30%30%36@%67%6D%61%69%6C.%63%6F%6D", "_blank");
         },
       },{
         id: 'social-inspire',
