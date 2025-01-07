@@ -10,6 +10,7 @@ toc:
 tags: LLM 
 ---
 
+- [huggingface/smolagents](https://github.com/huggingface/smolagents): huggingface 에서 제공하는 agent 라이브러리
 - [GAIA](https://github.com/aymeric-roucher/GAIA): Multi-Agent 벤치마크 (2023, Meta)
 
 ## References
