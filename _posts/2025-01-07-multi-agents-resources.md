@@ -22,6 +22,8 @@ tags: LLM agent
 ## References
 
 - [huggingface/smolagents](https://github.com/huggingface/smolagents): huggingface 에서 제공하는 agent 라이브러리
-- [GAIA](https://github.com/aymeric-roucher/GAIA): Multi-Agent 벤치마크 (2023, Meta)
+- [GAIA (github)](https://github.com/aymeric-roucher/GAIA): Multi-Agent 벤치마크 (2023, Meta)
 - [Orchestrating Agents](https://cookbook.openai.com/examples/orchestrating_agents): OpenAI 에서 제공하는 agent 예제
 - [Executable Code Actions Elicit Better LLM Agents (arxiv, 2024)](https://arxiv.org/abs/2402.01030)
+- [AutoGen (github)](https://github.com/microsoft/autogen): Agent library from Microsoft
+- [Building Effective Agents (anthropic blog)](https://www.anthropic.com/research/building-effective-agents)
