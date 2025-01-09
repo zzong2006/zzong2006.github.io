@@ -58,9 +58,20 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-meta-에서-만든-agent-벤치마크-gaia",
+            },{id: "post-google-의-agent-라이브러리-langfun",
       
-        title: "Meta 에서 만든 Agent 벤치마크 GAIA",
+        title: "Google 의 agent 라이브러리, langfun",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/langfun/";
+        
+      },
+    },{id: "post-meta-에서-만든-agent-벤치마크-gaia",
+      
+        title: "Meta 에서 만든 Agent 벤치마크, GAIA",
       
       description: "",
       section: "Posts",
