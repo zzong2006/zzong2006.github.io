@@ -58,7 +58,29 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-fc-보다는-code-실행이-더-좋은-agent-를-만든다",
+            },{id: "post-agent-벤치마크",
+      
+        title: "Agent 벤치마크",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/gaia/";
+        
+      },
+    },{id: "post-llm-을-이용한-dense-retrieval",
+      
+        title: "LLM 을 이용한 Dense Retrieval",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/use-llm-for-dense-retrieval/";
+        
+      },
+    },{id: "post-fc-보다는-code-실행이-더-좋은-agent-를-만든다",
       
         title: "FC 보다는 Code 실행이 더 좋은 Agent 를 만든다",
       
