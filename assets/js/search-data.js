@@ -58,9 +58,9 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-agent-벤치마크",
+            },{id: "post-meta-에서-만든-agent-벤치마크-gaia",
       
-        title: "Agent 벤치마크",
+        title: "Meta 에서 만든 Agent 벤치마크 GAIA",
       
       description: "",
       section: "Posts",
