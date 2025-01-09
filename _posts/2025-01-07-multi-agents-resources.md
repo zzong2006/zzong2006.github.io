@@ -28,6 +28,12 @@ tags: LLM agent
 
 - It's better to allow the LLM freedom to code but give access to reliable tools. It's ok if one uses function calling to access a finite set of tools (say ~30 or so, depending upon the model) as long as it has access to code and can call those same functions via code. But a pure function calling is very limiting to a general agent.
 
+## Rag-Agent
+
+Agentic RAG: RAG 에이전트는 **검색 도구(Retriever Tool)**를 사용하는 에이전트
+
+- 스스로 검색 쿼리를 작성: 더 관련성 높은 문서를 찾기 위해 질문을 재구성.
+- 결과를 평가하고 재검색: 결과가 부족하면 재검색.
 
 ## References
 

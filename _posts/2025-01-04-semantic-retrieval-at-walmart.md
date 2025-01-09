@@ -15,7 +15,6 @@ Walmart 에서 적용한 Embedding-based neural retrieval (EBR) 에 대한 논�
 2022년, 2024년에 각각 하나씩 시리즈물 느낌으로 발표되었다.
 
 
-
 ## (1) Summary of the proposed method
 
 1. A hybrid system for e-commerce search deployed at Walmart that combines traditional inverted index and embedding-based neural retrieval to better answer user tail queries.
@@ -84,4 +83,4 @@ A very deep model or very large embedding size is not necessary to achieve top p
 Papers
 
 - [1] [Semantic Retrieval at Walmart](https://arxiv.org/pdf/2412.04637)
-- [2] [Enhancing Relevance of Embedding-based Retrieval at Walmart](https://arxiv.org/abs/2408.04884)
+- [2] [Enhancing Relevance of Embedding-based Retrieval at Walmart](https://arxiv.org/abs/2408.04884  )
