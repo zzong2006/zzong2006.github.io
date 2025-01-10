@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-microsoft-에서-만든-multi-agent-framework-autogen",
+            },{id: "post-간단한-방법으로-ai-모델-속이기-bon-jail-breaking",
+      
+        title: "간단한 방법으로 AI 모델 속이기, BoN Jail-breaking",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/best-of-n-jailbreaking/";
+        
+      },
+    },{id: "post-microsoft-에서-만든-multi-agent-framework-autogen",
       
         title: "Microsoft 에서 만든 Multi-Agent framework, AutoGen",
       
