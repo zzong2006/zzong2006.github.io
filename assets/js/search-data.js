@@ -58,9 +58,9 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-autogen",
+            },{id: "post-microsoft-에서-만든-multi-agent-framework-autogen",
       
-        title: "Autogen",
+        title: "Microsoft 에서 만든 Multi-Agent framework, AutoGen",
       
       description: "",
       section: "Posts",
