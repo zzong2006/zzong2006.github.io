@@ -58,15 +58,15 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-dd",
+            },{id: "post-autogen",
       
-        title: "Dd",
+        title: "Autogen",
       
       description: "",
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/dd/";
+          window.location.href = "/blog/2025/autogen/";
         
       },
     },{id: "post-google-의-agent-프레임워크-langfun",
