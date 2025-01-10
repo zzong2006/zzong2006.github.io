@@ -43,3 +43,4 @@ Agentic RAG: RAG 에이전트는 **검색 도구(Retriever Tool)**를 사용하�
 - [Executable Code Actions Elicit Better LLM Agents (arxiv, 2024)](https://arxiv.org/abs/2402.01030)
 - [AutoGen (github)](https://github.com/microsoft/autogen): Agent library from Microsoft
 - [Building Effective Agents (anthropic blog)](https://www.anthropic.com/research/building-effective-agents)
+- [Web-Arena (github)](https://github.com/web-arena-x/webarena): standalone, self-hostable web environment for building autonomous agents (벤치마크 포함)
