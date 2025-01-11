@@ -45,6 +45,65 @@ $e_t ← \text{LLaMA}(T)[⟨\text{EOS}⟩]$
 
 LLaRA 에서는 sentence-level features 을 예측하는 것은 LLM 의 linear projection 을 통해 이루어지고, 추가적인 decoding process 는 필요하지 않다. 즉, 기존의 pretrained model 에 대해 LLaRA 를 적용하는 것이 가능하므로, 효율적인 접근 방법이라고 할 수 있다.
 
+### Prediction & Training
+
+EBAE 와 EBAR 은 다음과 같이 동시에 예측 및 훈련된다.
+
+**Inference**
+
+Prompt 는 어떤 sequence $T$ 와 SELF 문장 (`The original sentence:`), `<\s>` 그리고 NEXT 문장 (`The next sentence:`), `<\s>` 를 사용한다. 여기서 T 는 학습할 시퀀스를 의미하고, SELF 는 원본 문장에 대한 임베딩, 그리고 NEXT 는 원본 문장에 대한 다음 문장의 임베딩을 의미한다. 즉, 프롬프트로 구성하면 `T The original sentence: <\s> The next sentence: <\s>` 으로 구성하고 이걸 LLM 에 밀어넣어서 각 `<\s>` 에 대한 임베딩을 추출하면 EBAE 와 EBAR 의 값을 얻을 수 있는것이다.
+
+근데 이렇게 하면 SELF 문장이 NEXT 문장에 영향을 줄 수 있으므로, 아래 그림처럼 attention mask 를 수정해서 이를 방지한다. 
+
+![Image](https://i.imgur.com/wqPpY48.png){: width="50%"}
+
+여기서 보면 NEXT 문장에 대해 예측할때 SELF 문장에 대한 정보를 볼 수 없도록 masking 하는 것을 확인할 수 있다.
+
+**Training**
+
+위 EBAE 와 EBAR 의 예측 과정을 통해 얻은 임베딩을 $e_t$ 라고 하면, linear projection matrix $W ∈ R^{|V|×d}$ 을 적용하고, original 문장에 대한 토큰들 (for EBAE) 과 다음 문장에 대한 토큰들 (for EBAR) 에 대한 확률 값을 최대화하는 것을 목표로 학습을 진행한다.
+
+[Loss 를 계산하는 모델 forward 코드](https://github.com/FlagOpen/FlagEmbedding/blob/808b6c8cc9b36e02278bd572909cf13d10d78598/research/LLARA/pretrain/modeling.py#L314-L388)를 찾았긴 했는데 논문에 나와있는 내용과 꽤 다른것 같다.
+
+```python
+# Logit 계산 부분
+outputs = self.model(...)
+hidden_states = outputs[0]
+if self.config.pretraining_tp > 1:
+    lm_head_slices = self.lm_head.weight.split(self.vocab_size // self.config.pretraining_tp, dim=0)
+    logits = [F.linear(hidden_states, lm_head_slices[i]) for i in range(self.config.pretraining_tp)]
+    logits = torch.cat(logits, dim=-1)
+else:
+    logits = self.lm_head(hidden_states)
+logits = logits.float()
+
+# AR Loss 계산 부분 (AR 은 EBAR 인건지?)
+ar_loss = None
+if labels is not None:
+    # Shift so that tokens < n predict n
+    shift_logits = logits[..., :-1, :].contiguous()
+    shift_labels = labels[..., 1:].contiguous()
+    # Flatten the tokens
+    loss_fct = CrossEntropyLoss()
+    shift_logits = shift_logits.view(-1, self.config.vocab_size)
+    shift_labels = shift_labels.view(-1)
+    # Enable model parallelism
+    shift_labels = shift_labels.to(shift_logits.device)
+    ar_loss = loss_fct(shift_logits, shift_labels)
+```
+
+
+## 실험 결과
+
+LLaMA 2-7B 을 base 모델로 삼았으며, unlabeled 위키피디아 데이터를 학습에 사용했다고 한다.
+또한, LoRA 를 이용해서 먼저 학습 후 ANN hard negative sampling 을 통해 추가적인 학습(contrastive learning)을 진행했다고 한다.
+
+BEIR 벤치마크에서 LLaRA 는 56.1 (NDCG@10), BERT 는 40.1, BM25 는 43.7 점을 달성했다. 참고로 openai 의 ada-2 모델은 52.1 점을 달성했다.
+
+## 느낀점
+
+- 뭔가 정리가 잘 안된 논문같다. 코드도 좀 복잡해서 이해하기 어려웠다.
+- EBAR 과 EBAE 내용을 쭉 설명하다가 갑자기 실험에는 ANN 을 사용해서 contrastive learning 을 진행했다고 하는데 갑툭튀 느낌이라 당황스러웠다. 코드를 살펴보니 pretrained 과정과 finetuning 과정이 따로 있어서 그런듯 해보였음.
 
 
 ## Reference
@@ -52,8 +111,9 @@ LLaRA 에서는 sentence-level features 을 예측하는 것은 LLM 의 linear p
 paper
 
 - [Making Large Language Models A Better Foundation For Dense Retrieval](https://arxiv.org/pdf/2312.15503)
+- [Approximate nearest neighbor negative contrastive learning for dense text retrieval](https://arxiv.org/abs/2007.00808): 실험 진행할 때 사용한 방법
 
 Others
 
 - [BAAI/bge-reranker-v2-gemma (huggingface model)](https://huggingface.co/BAAI/bge-reranker-v2-gemma)
-- [FlagEmbedding (github)](https://github.com/FlagOpen/FlagEmbedding)
+- [FlagEmbedding (github)](https://github.com/FlagOpen/FlagEmbedding/tree/master/research/LLARA): 구현 코드
