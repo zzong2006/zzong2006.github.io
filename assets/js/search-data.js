@@ -58,15 +58,26 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-llm-을-이용한-dense-retrieval-llara",
+            },{id: "post-llm-기반-dense-retrieval-을-위한-학습방법-llara",
       
-        title: "LLM 을 이용한 Dense Retrieval, LLaRA",
+        title: "LLM 기반 Dense Retrieval 을 위한 학습방법, LLaRA",
       
       description: "",
       section: "Posts",
       handler: () => {
         
           window.location.href = "/blog/2025/use-llm-for-dense-retrieval/";
+        
+      },
+    },{id: "post-algorithm-lesson-learned-string",
+      
+        title: "Algorithm lesson learned - string",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/algorithm-lesson-learned-string/";
         
       },
     },{id: "post-간단한-방법으로-ai-모델-속이기-bon-jail-breaking",
