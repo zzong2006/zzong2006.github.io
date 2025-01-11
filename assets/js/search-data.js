@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-간단한-방법으로-ai-모델-속이기-bon-jail-breaking",
+            },{id: "post-llm-을-이용한-dense-retrieval-llara",
+      
+        title: "LLM 을 이용한 Dense Retrieval, LLaRA",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/use-llm-for-dense-retrieval/";
+        
+      },
+    },{id: "post-간단한-방법으로-ai-모델-속이기-bon-jail-breaking",
       
         title: "간단한 방법으로 AI 모델 속이기, BoN Jail-breaking",
       
@@ -100,17 +111,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/gaia/";
-        
-      },
-    },{id: "post-llm-을-이용한-dense-retrieval",
-      
-        title: "LLM 을 이용한 Dense Retrieval",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/use-llm-for-dense-retrieval/";
         
       },
     },{id: "post-fc-보다는-code-실행이-더-좋은-agent-를-만든다",
