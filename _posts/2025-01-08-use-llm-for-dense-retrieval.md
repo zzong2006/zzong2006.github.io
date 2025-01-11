@@ -61,7 +61,7 @@ Prompt 는 어떤 sequence $T$ 와 SELF 문장 (`The original sentence:`), `<\s>
 
 **Training**
 
-위 EBAE 와 EBAR 의 예측 과정을 통해 얻은 임베딩을 $e_t$ 라고 하면, linear projection matrix $W ∈ R^{|V|×d}$ 을 적용하고, original 문장에 대한 토큰들 (for EBAE) 과 다음 문장에 대한 토큰들 (for EBAR) 에 대한 확률 값을 최대화하는 것을 목표로 학습을 진행한다.
+위 EBAE 와 EBAR 의 예측 과정을 통해 얻은 임베딩을 $e_t$ 라고 하면, linear projection matrix $W ∈ R^{\text{vocab_size}×d}$ 을 적용하고, original 문장에 대한 토큰들 (for EBAE) 과 다음 문장에 대한 토큰들 (for EBAR) 에 대한 확률 값을 최대화하는 것을 목표로 학습을 진행한다.
 
 [Loss 를 계산하는 모델 forward 코드](https://github.com/FlagOpen/FlagEmbedding/blob/808b6c8cc9b36e02278bd572909cf13d10d78598/research/LLARA/pretrain/modeling.py#L314-L388)를 찾았긴 했는데 논문에 나와있는 내용과 꽤 다른것 같다.
 
