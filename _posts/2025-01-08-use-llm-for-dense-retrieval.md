@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LLM 을 이용한 Dense Retrieval, LLaRA
+title: LLM 기반 Dense Retrieval 을 위한 학습방법, LLaRA
 date: 2025-01-11 16:00:00
 giscus_comments: true
 categories: paper-review

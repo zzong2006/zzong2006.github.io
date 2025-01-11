@@ -7,7 +7,7 @@ categories: algorithm
 toc:
   beginning: true
   sidebar: left
-tags: competitive-programming array string lesson-learned
+tags: competitive-programming array lesson-learned
 ---
 
 알고리즘 문제를 풀면서 인사이트를 얻은 내용들을 정리합니다.
