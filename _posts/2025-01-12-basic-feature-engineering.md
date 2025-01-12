@@ -48,9 +48,9 @@ B, C
 
 Correlation 이슈를 해결하기 위한 또 다른 방법은 PCA (Principal Component Analysis) 를 통해서 차원을 축소하는 방법이 있다.
 
-### Other Encoding methods
+## Other Encoding methods
 
-#### (1) Ordinal encoding
+### (1) Ordinal encoding
 
 범주형 데이터를 순서를 고려한 숫자로 변환하는 방법이다.
 
@@ -58,7 +58,7 @@ Correlation 이슈를 해결하기 위한 또 다른 방법은 PCA (Principal Co
 
 직관적인 방법이지만, 서로 관련없는 클래스도 하나의 숫자로 변환하는 것이 문제가 될 수 있어서 underfitting 이 발생할 수 있다.
 
-#### (2) Target encoding
+### (2) Target encoding
 
 범주형 데이터를 대상 변수의 평균값으로 변환하는 방법이다. 범주형 데이터의 cardinality 가 높아서 one-hot encoding 을 적용하기 어려울 때 이 방법이 효과적이다. 주로 zip code 나 region 과 같은 feature 에 적용된다.
 
