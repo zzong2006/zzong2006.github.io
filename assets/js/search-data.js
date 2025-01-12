@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-llm-기반-dense-retrieval-을-위한-학습방법-llara",
+            },{id: "post-embedding-과-reranker-은-무슨-차이일까",
+      
+        title: "Embedding 과 Reranker 은 무슨 차이일까?",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/embed-and-rerank/";
+        
+      },
+    },{id: "post-llm-기반-dense-retrieval-을-위한-학습방법-llara",
       
         title: "LLM 기반 Dense Retrieval 을 위한 학습방법, LLaRA",
       
