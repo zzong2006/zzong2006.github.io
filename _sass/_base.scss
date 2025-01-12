@@ -614,6 +614,10 @@ footer.sticky-bottom {
     padding-top: 1rem;
     padding-bottom: 1rem;
 
+    h3, h4 {
+      margin-bottom: 0.2em;
+    }
+
     .post-meta {
       color: var(--global-text-color-light);
       font-size: 0.875rem;
@@ -624,6 +628,7 @@ footer.sticky-bottom {
       color: var(--global-text-color-light);
       font-size: 0.875rem;
       padding-top: 0.25rem;
+      margin-block-end: 0.01rem;
       padding-bottom: 0;
     }
 

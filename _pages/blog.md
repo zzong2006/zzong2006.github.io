@@ -8,7 +8,7 @@ pagination:
   enabled: true
   collection: posts
   permalink: /page/:num/
-  per_page: 5
+  per_page: 10
   sort_field: date
   sort_reverse: true
   trail:
@@ -16,6 +16,7 @@ pagination:
     after: 3 # The number of links after the current page
 ---
 
+<!-- markdownlint-disable MD033 -->
 <div class="post">
 
 {% assign blog_name_size = site.blog_name | size %}
@@ -127,7 +128,7 @@ pagination:
 <div class="row">
           <div class="col-sm-9">
 {% endif %}
-        <h3>
+        <h4>
         {% if post.redirect == blank %}
           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
         {% elsif post.redirect contains '://' %}
@@ -138,7 +139,7 @@ pagination:
         {% else %}
           <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
         {% endif %}
-      </h3>
+      </h4>
       <p>{{ post.description }}</p>
       <p class="post-tags">
         <a href="{{ year | prepend: '/blog/' | prepend: site.baseurl}}">
@@ -187,3 +188,4 @@ pagination:
 {% endif %}
 
 </div>
+<!-- markdownlint-enable MD033 -->
