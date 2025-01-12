@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ml-recap-linear-regression",
+            },{id: "post-ml-recap-basic-feature-engineering",
+      
+        title: "ML Recap - Basic Feature Engineering",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/basic-feature-engineering/";
+        
+      },
+    },{id: "post-ml-recap-linear-regression",
       
         title: "ML Recap - Linear Regression",
       
