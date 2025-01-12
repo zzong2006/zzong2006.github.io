@@ -92,7 +92,6 @@ if labels is not None:
     ar_loss = loss_fct(shift_logits, shift_labels)
 ```
 
-
 ## 실험 결과
 
 LLaMA 2-7B 을 base 모델로 삼았으며, unlabeled 위키피디아 데이터를 학습에 사용했다고 한다.
