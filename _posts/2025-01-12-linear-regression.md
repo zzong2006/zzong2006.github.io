@@ -26,7 +26,11 @@ regression parameter $\lambda$ 는 성능에 큰 영향을 미친다. 아래 그
 
 ![20250112223049](https://i.imgur.com/wYVpKQH.png){: width="85%"}
 
-### vs. Ridge Regression
+### Limitation
+
+Lasso 는 독립 변수들 간에 강한 상관관계가 존재하는 현상인 다중공선성(multicollinearity) 문제를 해결하기엔 한계가 있다. 왜냐하면 lasso 는 다중공선성에 관련된 변수들 중 임의로 하나만 살려두기 때문에, 모델 해석에 어려움을 줄 수 있기 때문이다 (동시에 성능 하락은 덤).
+
+## Ridge Regression
 
 Ridge regression 은 과적합을 방지하기 위해 회귀 계수(coefficient)의 제곱의 합을 작게 만들어 준다. 하지만, 이 방식은 변수 선택을 하지 않기 때문에 모델을 해석하는데 어려움이 있다.
 
@@ -36,9 +40,15 @@ Ridge regression 은 과적합을 방지하기 위해 회귀 계수(coefficient)
 
 ![20250112221358](https://i.imgur.com/vDcn664.png){: width="80%"}
 
-**Limitation**
+### As classification
 
-Lasso 는 독립 변수들 간에 강한 상관관계가 존재하는 현상인 다중공선성(multicollinearity) 문제를 해결하기엔 한계가 있다. 왜냐하면 lasso 는 다중공선성에 관련된 변수들 중 임의로 하나만 살려두기 때문에, 모델 해석에 어려움을 줄 수 있기 때문이다 (동시에 성능 하락은 덤).
+Ridge 방식은 regression 뿐만 아니라 분류 task 를 해결하는데도 자주 사용되는데, 종종 Logistic Regression 보다 선호되는 경우가 많다. 왜냐하면 계수를 찾기위해서는 아래와 같이 projection matrix 를 한번만 계산하면 되기 때문이다.
+
+$$
+\hat{\beta}_{\text {ridge }}=\left(X^T X+\lambda I\right)^{-1} X^T y
+$$
+
+그래서 계산 효율적인 특성이 있으며 대규모 데이터셋을 처리할때 자주 사용된다. 또한 accuracy 나 recall 에서도 SVM 이나 Logistic Regression 대비해서 유사한 결과를 얻는 사례가 많다.
 
 ## ElasticNet
 
@@ -53,7 +63,7 @@ $$
 
 ElasticNet 은 상관관계가 높은 변수들이 함께 선택되거나 제외되는 그룹화 효과(grouping effect)를 보인다. 그래서 ElasticNet은 여러 특성(feature)들이 서로 상관관계가 있을 때 유용하다. Lasso는 이러한 특성들 중 하나를 무작위로 선택하는 경향이 있는 반면, ElasticNet은 이들 모두를 선택하는 경향이 있다.
 
-**Limitation**
+### Limitation
 
 L1 과 L2 비율을 조절하는 과정이 필요하므로, 기존의 lasso 나 ridige 보다 튜닝이 복잡해지거나 계산 비용이 증가할 수 있다. 또한 L1 방식과 달리 모델의 해석이 좀 더 복잡해지는 것도 단점으로 생각할 수 있다.
 
