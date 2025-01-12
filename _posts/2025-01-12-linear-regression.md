@@ -3,9 +3,10 @@ layout: post
 title: ML Recap - Linear Regression 
 date: 2025-01-12 21:00:00
 giscus_comments: true
-categories: fundamental
+categories: ml-fundamentals
 toc:
   beginning: true
+  sidebar: left
 tags: machine-learning linear-regression
 ---
 
