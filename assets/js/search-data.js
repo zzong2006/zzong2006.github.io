@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-kaggle-의-multilingual-chatbot-arena-대회",
+            },{id: "post-ml-recap-linear-regression",
+      
+        title: "ML Recap - Linear Regression",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/linear-regression/";
+        
+      },
+    },{id: "post-kaggle-의-multilingual-chatbot-arena-대회",
       
         title: "kaggle 의 multilingual-chatbot-arena 대회",
       
