@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ml-recap-basic-feature-engineering",
+            },{id: "post-ml-recap-beta-distribution",
+      
+        title: "ML Recap - Beta Distribution",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/beta-distribution/";
+        
+      },
+    },{id: "post-ml-recap-basic-feature-engineering",
       
         title: "ML Recap - Basic Feature Engineering",
       
