@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-embedding-과-reranker-은-무슨-차이일까",
+            },{id: "post-kaggle-의-multilingual-chatbot-arena-대회",
+      
+        title: "kaggle 의 multilingual-chatbot-arena 대회",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/kaggle-wsdm-cup/";
+        
+      },
+    },{id: "post-embedding-과-reranker-은-무슨-차이일까",
       
         title: "Embedding 과 Reranker 은 무슨 차이일까?",
       
