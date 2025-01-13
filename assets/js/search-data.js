@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ml-recap-beta-distribution",
+            },{id: "post-임베딩도-더-좋은-데이터가-필요하다-kalm-embedding",
+      
+        title: "임베딩도 더 좋은 데이터가 필요하다, KaLM-Embedding",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/kalm-embedding/";
+        
+      },
+    },{id: "post-ml-recap-beta-distribution",
       
         title: "ML Recap - Beta Distribution",
       
