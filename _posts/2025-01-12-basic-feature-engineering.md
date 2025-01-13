@@ -6,6 +6,7 @@ giscus_comments: true
 categories: ml-fundamentals
 toc:
   beginning: true
+  sidebar: left
 tags: machine-learning feature-engineering pre-processing WIP
 ---
 

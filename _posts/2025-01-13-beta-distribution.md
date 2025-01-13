@@ -6,7 +6,7 @@ giscus_comments: true
 categories: ml-fundamentals
 toc:
   beginning: true
-tags: machine-learning probability
+tags: machine-learning probability WIP
 ---
 
 확률 내용이긴 하지만, ML 에서도 자주 사용되는 beta distribution 에 대해서 정리해보자.
