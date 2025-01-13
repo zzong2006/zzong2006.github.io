@@ -6,10 +6,14 @@ giscus_comments: true
 categories: ml-fundamentals
 toc:
   beginning: true
-tags: machine-learning feature-engineering pre-processing
+tags: machine-learning feature-engineering pre-processing WIP
 ---
 
 numerical & categorical 데이터에 대해서 간단한 전처리 기술을 복습해보자.
+
+## Normalization
+
+...
 
 ## One-hot encoding
 

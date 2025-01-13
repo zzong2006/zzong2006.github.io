@@ -14,3 +14,7 @@ tags: machine-learning probability
 ---
 
 WIP
+
+## References
+
+- [Beta distribution (wikipedia)](https://en.wikipedia.org/wiki/Beta_distribution)
