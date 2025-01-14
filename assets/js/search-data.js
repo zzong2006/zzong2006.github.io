@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-임베딩도-더-좋은-데이터가-필요하다-kalm-embedding",
+            },{id: "post-ann-방법론중-하나인-hnsw-알고리즘-정리",
+      
+        title: "ANN 방법론중 하나인 HNSW 알고리즘 정리",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/hnsw/";
+        
+      },
+    },{id: "post-임베딩도-더-좋은-데이터가-필요하다-kalm-embedding",
       
         title: "임베딩도 더 좋은 데이터가 필요하다, KaLM-Embedding",
       
