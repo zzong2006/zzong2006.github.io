@@ -52,7 +52,7 @@ KaLM-Embedding이라는 multi-lingual 임베딩 모델을 소개한다. Qwen2-0.
 
 아래는 semi-homogeneous ratio (다른 taks 끼리 얼마나 데이터를 섞을지 비율) 에 따른 MTEB 점수 결과이다.
 
-![Image](https://i.imgur.com/SktSktk.png){: width="70%"}
+![Image](https://i.imgur.com/SktSktk.png){: width="50%"}
 
 보다시피 semi-homogeneous ratio 가 높으면 성능이 감소해서 최종 모델에는 채택이 되지 않았다 (근데 왜 논문에는 소개했을까..).
 
@@ -62,11 +62,11 @@ KaLM-Embedding이라는 multi-lingual 임베딩 모델을 소개한다. Qwen2-0.
 
 아래 실험 결과에서도 차원수가 작으면 MRL 방식이 효과가 좋은것으로 보인다.
 
-![Image](https://i.imgur.com/fkz5LZg.png){: width="70%"}
+![Image](https://i.imgur.com/fkz5LZg.png){: width="50%"}
 
 ## Ablation Study
 
-![Image](https://i.imgur.com/5rYgKvt.png){: width="100%"}
+![Image](https://i.imgur.com/5rYgKvt.png){: width="70%"}
 
 가장 효과가 좋았던건 task instruction ... 인데, 이건 임베딩 모델을 파인튜닝 할때 task 마다 instruction 을 다르게 주는 방식이다.
 
