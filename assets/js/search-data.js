@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ann-방법론중-하나인-hnsw-알고리즘-정리",
+            },{id: "post-bge-임베딩-학습-방법-탐방해보기",
+      
+        title: "BGE 임베딩 학습 방법 탐방해보기",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/bge-embed-train/";
+        
+      },
+    },{id: "post-ann-방법론중-하나인-hnsw-알고리즘-정리",
       
         title: "ANN 방법론중 하나인 HNSW 알고리즘 정리",
       
