@@ -13,7 +13,7 @@ tags: machine-learning probability WIP
 
 ---
 
-베타 분포는 확률의 분포를 나타내는 것으로 이해할 수 있다. 즉, 우리가 어떤 확률이 무엇인지 모를 때 그 확률의 모든 가능한 값을 나타낸다. 
+베타 분포는 확률의 분포를 나타내는 것으로 이해할 수 있다. 즉, 우리가 어떤 확률이 무엇인지 모를 때 그 확률의 모든 가능한 값을 나타낸다.
 
 > The Beta distribution is best for representing **a probabilistic distribution of probabilities**: the case where we don't know what a probability is in advance, but we have some reasonable guesses.
 
