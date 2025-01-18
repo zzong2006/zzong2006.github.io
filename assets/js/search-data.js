@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-bge-임베딩-학습-방법-탐방해보기",
+            },{id: "post-ml-recap-beta-distribution",
+      
+        title: "ML Recap - Beta Distribution",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/beta-distribution/";
+        
+      },
+    },{id: "post-bge-임베딩-학습-방법-탐방해보기",
       
         title: "BGE 임베딩 학습 방법 탐방해보기",
       
@@ -89,17 +100,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/kalm-embedding/";
-        
-      },
-    },{id: "post-ml-recap-beta-distribution",
-      
-        title: "ML Recap - Beta Distribution",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/beta-distribution/";
         
       },
     },{id: "post-ml-recap-basic-feature-engineering",
