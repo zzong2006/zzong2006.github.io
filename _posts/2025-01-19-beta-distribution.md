@@ -19,7 +19,7 @@ tags: machine-learning probability WIP
 
 예를 들어 어떤 야구 선수의 타율에 대해서 베타 분포를 사용할 수 있다. 평균 타율이 0.26 정도이고, 0.21 과 0.35 사이에 타율이 분포(prior)하고 있는 야구선수에 대해서 Beta 분포로 표현하자면 $\alpha = 81, \beta = 219$ 로 아래와 같이 모델링할 수 있다.
 
-![beta distribution](https://i.sstatic.net/RJDrz.png){: width="50%"}
+![Image](https://i.imgur.com/9V5Lg8o.png){: width="50%"}
 
 베타 분포 밀도 그래프에서 x축은 선수의 타율을 나타낸다. 따라서 이 그래프에서 y축이 확률(또는 더 정확히는 probability density)일 뿐만 아니라 x축도 확률이다 (타율은 결국 안타의 확률이다).
 
@@ -33,7 +33,7 @@ $$
 
 여기서 $\alpha_0$ 와 $\beta_0$ 는 초기 베타 분포의 파라미터이다. 위 안타 사례에 의하면 alpha 쪽은 100, beta 쪽은 200 (300 - 100) 을 증가시키면 된다.
 
-![beta distribution](https://i.sstatic.net/oBgYH.png){: width="50%"}
+![Image](https://i.imgur.com/DJdG0wJ.png){: width="50%"}
 
 선수의 타율에 대해 더 잘 알게 되었으므로, 이제 곡선이 더 얇아지고 오른쪽으로 이동했다(더 높은 타율).
 
@@ -65,7 +65,6 @@ The initialization strategy is important.
 - Pessimistic initialization: the prior was Beta(1, 99)
 
 That pessimistic initialization performed better due to the lower prior probabilities which were more reflective of real-world reward.
-
 
 ## References
 
