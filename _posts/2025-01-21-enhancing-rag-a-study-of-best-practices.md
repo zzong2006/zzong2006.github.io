@@ -27,7 +27,7 @@ tags: RAG Retrieval WIP
 - RAG 에서 Contrastive In-Context Learning 은 성능 향상에 유의미한 영향을 미침
 - 정확하면서도 간결한 문서를 이용하는것이 성능에 핵심 요소
 - 쿼리 확장, 문서 크기, retrieval stride 같은 요소들은 의미 있는 개선을 가져오지 않았음
-- RAG 지식 베이스의 크기도 반드시 중요한것은 아니며, 오히려 문서의 품질과 관련성이 중요
+- RAG 지식 베이스의 크기도 반드시 중요한것은 아니며, 오히려 **문서의 품질과 관련성**이 중요
 
 ## Experiments
 
@@ -98,3 +98,7 @@ WIP
 
 - 더 많은 문서에서 문장을 가져올수록 성능이 향상되었지만 80개 이상으로 가져오니 큰 성능 향상이 없었다.
 - 120Doc 이 80Doc 보다 성능이 유의미하게 좋아지지 않는 이유는 (4) 의 지식 베이스 크기나 (3) 의 청크 사이즈가 커져도 큰 성능 향상이 없는것과 비슷하다고 생각할 수 있겠다.
+
+## References
+
+- [Enhancing Retrieval-Augmented Generation: A Study of Best Practices (pdf)](https://arxiv.org/pdf/2501.07391.pdf)
