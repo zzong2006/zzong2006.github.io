@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ml-recap-beta-distribution",
+            },{id: "post-rag-구축-레슨런",
+      
+        title: "RAG 구축 레슨런",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/enhancing-rag-a-study-of-best-practices/";
+        
+      },
+    },{id: "post-ml-recap-beta-distribution",
       
         title: "ML Recap - Beta Distribution",
       
