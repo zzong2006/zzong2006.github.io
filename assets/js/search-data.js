@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-rag-구축-레슨런",
+            },{id: "post-kv-cache-에-대해-알아보자",
+      
+        title: "KV-Cache 에 대해 알아보자",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/kv-cache/";
+        
+      },
+    },{id: "post-rag-구축-레슨런",
       
         title: "RAG 구축 레슨런",
       
@@ -298,17 +309,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/lda/";
-        
-      },
-    },{id: "post-kv-cache-에-대해-알아보자",
-      
-        title: "KV-Cache 에 대해 알아보자",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/kv-cache/";
         
       },
     },{id: "post-don-39-t-do-rag",
