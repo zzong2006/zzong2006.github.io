@@ -44,7 +44,7 @@ KaLM-Embedding이라는 multi-lingual 임베딩 모델을 소개한다. Qwen2-0.
 
 **최종 모델에 적용된 방법은 아니지만**, 제안 느낌으로 소개되었다.
 
-![Image](https://i.imgur.com/8daD7KG.png){: width="100%"}
+![Image](https://i.imgur.com/8daD7KG.png){: width="70%"}
 
 동일한(homogeneous) task 내에서 negative sample 을 뽑으면 in-batch negative sample 에서 hardness 를 높이므로 성능에 좋은 영향을 줄 수 있지만, 동시에 대용량 데이터를 다룬다고 생각해보면 false negative 의 위험도 감수해야 한다.
 
