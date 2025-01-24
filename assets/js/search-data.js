@@ -69,6 +69,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/kv-cache/";
         
       },
+    },{id: "post-llm-이용해서-임베딩-모델의-품질-높이기",
+      
+        title: "LLM 이용해서 임베딩 모델의 품질 높이기",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/improving-text-embeddings-with-llm/";
+        
+      },
     },{id: "post-rag-구축-레슨런",
       
         title: "RAG 구축 레슨런",
