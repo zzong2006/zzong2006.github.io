@@ -88,7 +88,7 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/improving-text-embeddings-with-llm/";
+          window.location.href = "/blog/2025/improving-text-embeddings-with-llm-copy/";
         
       },
     },{id: "post-rag-구축-레슨런",
