@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-kv-cache-에-대해-알아보자",
+            },{id: "post-deepseek-r1-o1-을-이기는-중국의-reasoning-모델",
+      
+        title: "DeepSeek-R1, o1 을 이기는 중국의 reasoning 모델",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/deepseek-r1/";
+        
+      },
+    },{id: "post-kv-cache-에-대해-알아보자",
       
         title: "KV-Cache 에 대해 알아보자",
       
