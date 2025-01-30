@@ -11,6 +11,8 @@ tags: RAG Retrieval Embedding
 ---
 
 
+Main Contribution
+
 - leverage proprietary LLMs to generate diverse synthetic data for hundreds of thousands of text embedding tasks across 93 languages
 - fine-tune open-source decoder-only LLMs on the synthetic data using standard contrastive loss.
 
