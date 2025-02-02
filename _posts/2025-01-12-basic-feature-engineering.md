@@ -14,7 +14,28 @@ numerical & categorical 데이터에 대해서 간단한 전처리 기술을 복
 
 ## Normalization
 
-...
+정규화 (Normalization) 과 표준화 (Standardization) 의 차이를 정리해보자.
+
+- 정규화 (Normalization): 값의 범위를 0~1 사이로 만드는 것
+
+$$
+x_{\mathrm{norm}}=\frac{x-x_{\min }}{x_{\max }-x_{\min }}
+$$
+
+- 표준화 (Standardization): 값의 평균을 0, 표준편차를 1로 만드는 것
+
+$$
+x_{\mathrm{norm}}=\frac{x-\mu}{\sigma}
+$$
+
+표로 정리해보면 다음과 같다.
+
+| 구분       | 정규화 (Normalization)       | 표준화 (Standardization)       |
+|------------|-------------------------------|---------------------------------|
+| **범위**   | [0, 1] 또는 지정 범위         | 평균 0, 표준편차 1             |
+| **사용 사례** | 이미지 픽셀, Min-Max 스케일링 | Z-Score, 머신러닝 입력 특성    |
+| **장점**   | 고정 범위로 해석 용이         | 이상치 영향을 덜 받음          |
+
 
 ## One-hot encoding
 
