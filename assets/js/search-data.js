@@ -69,6 +69,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/confusion-matrix/";
         
       },
+    },{id: "post-ml-recap-bm25-amp-tf-idf",
+      
+        title: "ML Recap - BM25 &amp; TF-IDF",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/bm25/";
+        
+      },
     },{id: "post-airflow-개념-정리",
       
         title: "Airflow 개념 정리",
