@@ -12,29 +12,35 @@ tags: machine-learning feature-engineering pre-processing WIP
 
 numerical & categorical 데이터에 대해서 간단한 전처리 기술을 복습해보자.
 
-## Normalization
+## 데이터 정규화 방법
 
-정규화 (Normalization) 과 표준화 (Standardization) 의 차이를 정리해보자.
+KNN 이나 SVM 같이 특성의 스케일에 민감하게 반응하는 모델에서는 정규화가 필요하다 (하지만 Tree 계열 모델에서는 필요하지 않다). 
 
-- 정규화 (Normalization): 값의 범위를 0~1 사이로 만드는 것
+정규화 방식은 크게 Normalization, Standardization, Robust Scaling 으로 나뉜다.
+
+### Normalization
+
+값의 범위를 0~1 사이로 만드는 것이다. 범위가 명확한 데이터 (예: 온도, 나이)를 일반적으로 정규화 하는 편이고, 이미지 픽셀 값 (0~255 → 0~1) 이 대표적인 예시이다.
 
 $$
 x_{\mathrm{norm}}=\frac{x-x_{\min }}{x_{\max }-x_{\min }}
 $$
 
-- 표준화 (Standardization): 값의 평균을 0, 표준편차를 1로 만드는 것
+### Standardization
+
+값의 평균을 0, 표준편차를 1로 만드는 것. 이상치(outlier)가 적은 데이터, 분포가 정규분포에 가까울 때 사용한다.
 
 $$
 x_{\mathrm{norm}}=\frac{x-\mu}{\sigma}
 $$
 
-표로 정리해보면 다음과 같다.
+### Robust Scaling
 
-| 구분       | 정규화 (Normalization)       | 표준화 (Standardization)       |
-|------------|-------------------------------|---------------------------------|
-| **범위**   | [0, 1] 또는 지정 범위         | 평균 0, 표준편차 1             |
-| **사용 사례** | 이미지 픽셀, Min-Max 스케일링 | Z-Score, 머신러닝 입력 특성    |
-| **장점**   | 고정 범위로 해석 용이         | 이상치 영향을 덜 받음          |
+중앙값(median)과 사분위 범위(IQR)를 이용하여 이상치에 덜 민감한 스케일링을 수행한다.
+
+$$
+x_{\text {robust }}=\frac{x-\operatorname{median}(x)}{\operatorname{IQR}(x)}
+$$
 
 
 ## One-hot encoding
