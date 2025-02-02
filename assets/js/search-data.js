@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-deepseek-r1-o1-을-이기는-중국의-reasoning-모델",
+            },{id: "post-네이버-컨퍼런스-dan-24-정리",
+      
+        title: "네이버 컨퍼런스 DAN 24 정리",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/naver-dan-2024/";
+        
+      },
+    },{id: "post-deepseek-r1-o1-을-이기는-중국의-reasoning-모델",
       
         title: "DeepSeek-R1, o1 을 이기는 중국의 reasoning 모델",
       
