@@ -28,7 +28,7 @@ tags: machine-learning probability WIP
 베타 분포가 유용한 이유는 새로운 피드백에 대한 반영이 간단하다는 점이다. 예를 들어, 위의 선수가 300 번 나가서 100번 안타를 쳤다고 가정해보자. 이러한 정보를 반영하기 위해서 아래와 같은 수식을 활용할 수 있다.
 
 $$
-\mbox{Beta}(\alpha_0+\mbox{hits}, \beta_0+\mbox{misses})
+\text{Beta}(\alpha_0+\text{hits}, \beta_0+\text{misses})
 $$
 
 여기서 $\alpha_0$ 와 $\beta_0$ 는 초기 베타 분포의 파라미터이다. 위 안타 사례에 의하면 alpha 쪽은 100, beta 쪽은 200 (300 - 100) 을 증가시키면 된다.
@@ -45,13 +45,13 @@ $$
 P(s, f \vert \theta) = \binom{s + f}{s} \theta^s (1 - \theta)^f \tag{2}
 $$
 
-Thomson Sampling models uncertainty by building a probability distribution from historical rewards and then samples from the distribution when choosing actions. In the simple case where rewards are binary, a Beta distribution is used. The Beta distribution takes two parameters, α and β, and the mean value of the distribution is α/α + β which can be thought of as successes / successes + failures. To select an action, we sample from each arm’s Beta distribution and choose the arm with the highest sampled values.
+Thompson Sampling은 불확실성을 모델링하기 위해 과거 보상 데이터를 기반으로 확률 분포를 생성하고, 행동을 선택할 때 이 분포에서 샘플링하는 방법입니다. 보상이 이진(binary)인 간단한 경우에는 Beta 분포가 사용됩니다. Beta 분포는 두 개의 파라미터 α와 β를 가지며, 분포의 평균값은 α/α + β로 계산됩니다. 이는 성공 횟수 / (성공 횟수 + 실패 횟수)로 이해할 수 있습니다. 행동을 선택하기 위해 각 팔(arm)의 Beta 분포에서 샘플링을 수행하고, 가장 높은 샘플 값을 가진 팔을 선택합니다.
 
-## Usage of the Beta Distribution
+## Beta 분포의 활용
 
-An example of Thompson Sampling is Doordash’s bandits for cuisine recommendations. User preferences for a cuisine is modeled via Beta(α=number of orders of the cuisine, β=number of orders of other cuisines). When selecting a set of cuisine filters to show on the explore page, the value for each cuisine is sampled from the cuisine’s Beta distribution. These values are then sorted in descending order to select the top cuisines to display.
+Thompson Sampling의 예로 Doordash의 요리 추천을 위한 밴딧(bandit) 시스템을 들 수 있습니다. 사용자의 특정 요리에 대한 선호도는 Beta(α=해당 요리 주문 횟수, β=다른 요리 주문 횟수)로 모델링됩니다. 탐색 페이지에서 보여줄 요리 필터를 선택할 때, 각 요리의 값은 해당 요리의 Beta 분포에서 샘플링됩니다. 그런 다음 이 값들을 내림차순으로 정렬하여 상위 요리들을 선택해 표시합니다.
 
-Doordash shared how they warm-start their cuisine bandits via higher-level regional data. For each cuisine, they learn a bandit policy at multiple levels (i.e., regional, subregional, user). The top-level bandit is initialized at Beta(α=1, β=1). Then, for each lower-level bandit, they update α by adding the average number of orders for the cuisine (at that level) and update β by adding the average number of orders for other cuisines (at that level). Finally, for the user-level bandit, α and β are updated with the user’s order data. As a result, a new user’s cuisine bandit is warm-started with higher-level marketplace data before each new order updates the bandit with their personal preferences.
+Doordash는 상위 레벨의 지역 데이터를 활용하여 요리 밴딧을 초기화(warm-start)하는 방법을 공유했습니다. 각 요리에 대해 여러 레벨(예: 지역, 하위 지역, 사용자)에서 밴딧 정책을 학습합니다. 최상위 레벨 밴딧은 Beta(α=1, β=1)로 초기화됩니다. 그런 다음, 하위 레벨 밴딧마다 α는 해당 레벨에서 요리의 평균 주문 횟수를 더해 업데이트하고, β는 해당 레벨에서 다른 요리의 평균 주문 횟수를 더해 업데이트합니다. 마지막으로 사용자 레벨 밴딧에서는 α와 β가 사용자의 주문 데이터를 통해 업데이트됩니다. 결과적으로, 새로운 사용자의 요리 밴딧은 상위 레벨의 마켓플레이스 데이터를 기반으로 초기화되며, 이후 각 새로운 주문이 사용자의 개인 선호도를 반영하여 밴딧을 업데이트합니다.
 
 Reference: [Carousel Personalization in Music Streaming Apps with Contextual Bandits](https://arxiv.org/abs/2009.06546)
 
