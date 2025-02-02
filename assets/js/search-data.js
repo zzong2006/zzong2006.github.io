@@ -58,7 +58,29 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-네이버-컨퍼런스-dan-24-정리",
+            },{id: "post-airflow-개념-정리",
+      
+        title: "Airflow 개념 정리",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/airflow/";
+        
+      },
+    },{id: "post-ab-test-개념-정리",
+      
+        title: "AB Test 개념 정리",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/ab-test/";
+        
+      },
+    },{id: "post-네이버-컨퍼런스-dan-24-정리",
       
         title: "네이버 컨퍼런스 DAN 24 정리",
       
