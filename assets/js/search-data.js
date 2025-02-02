@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-airflow-개념-정리",
+            },{id: "post-ml-recap-confusion-matrix",
+      
+        title: "ML Recap - Confusion Matrix",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/confusion-matrix/";
+        
+      },
+    },{id: "post-airflow-개념-정리",
       
         title: "Airflow 개념 정리",
       
