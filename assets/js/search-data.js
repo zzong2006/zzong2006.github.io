@@ -80,9 +80,9 @@ ninja.data = [{
           window.location.href = "/blog/2025/bm25/";
         
       },
-    },{id: "post-airflow-개념-정리",
+    },{id: "post-airflow-amp-pyspark-개념-정리",
       
-        title: "Airflow 개념 정리",
+        title: "Airflow &amp; PySpark 개념 정리",
       
       description: "",
       section: "Posts",
