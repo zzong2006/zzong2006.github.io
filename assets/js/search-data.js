@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-multi-head-latent-attention",
+            },{id: "post-python-accelerate-라이브러리-함수-조사기",
+      
+        title: "python accelerate 라이브러리 함수 조사기",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/accelerate/";
+        
+      },
+    },{id: "post-multi-head-latent-attention",
       
         title: "Multi-Head Latent Attention",
       
