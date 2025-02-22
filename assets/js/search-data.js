@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ml-recap-confusion-matrix",
+            },{id: "post-multi-head-latent-attention",
+      
+        title: "Multi-Head Latent Attention",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/multi-head-latent-attention/";
+        
+      },
+    },{id: "post-ml-recap-confusion-matrix",
       
         title: "ML Recap - Confusion Matrix",
       
