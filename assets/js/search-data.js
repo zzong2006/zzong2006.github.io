@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-python-accelerate-라이브러리-함수-조사기",
+            },{id: "post-deepseek-v3",
+      
+        title: "deepseek-v3",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/deepseek-v3/";
+        
+      },
+    },{id: "post-python-accelerate-라이브러리-함수-조사기",
       
         title: "python accelerate 라이브러리 함수 조사기",
       
