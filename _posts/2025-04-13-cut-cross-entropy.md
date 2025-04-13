@@ -27,6 +27,43 @@ CCE의 핵심 목표는 **logit 행렬 전체를 메모리에 저장하지 않�
 2. **Log-Sum-Exp 즉석 연산**: 나머지 모든 logit에 대한 log-sum-exp 연산은 전체 행렬을 구성하지 않고 즉석에서(on the fly) 수행됩니다.
 3. **맞춤형 커널 활용**: 행렬 곱셈과 log-sum-exp 감소(reduction) 연산을 플래시 메모리(flash memory)에서 수행하는 맞춤형 커널을 구현했습니다. 이를 통해 cross-entropy 계산에 필요한 전역 메모리(global memory) 사용량을 거의 무시할 수 있는 수준으로 줄입니다.
 
+### 수학적 원리: Logit 행렬 없이 계산하기
+
+표준적인 cross-entropy 손실 $ L $ 은 다음과 같이 계산됩니다. 다음 토큰을 예측할 때, 모델은 어휘(vocabulary) 크기 $ V $ 만큼의 점수 벡터인 logit $ z $ 를 출력합니다. 정답 토큰의 인덱스를 $ y $ 라고 하면, 손실은 다음과 같습니다.
+
+$$ L = -\log(\text{softmax}(z)_y) $$
+
+여기서 $ \text{softmax}(z)_y $ 는 logit 벡터 $ z $ 에 softmax 함수를 적용했을 때 정답 토큰 $ y $ 에 해당하는 확률값입니다. Softmax 함수의 정의는 다음과 같습니다.
+
+$$ \text{softmax}(z)_i = \frac{\exp(z_i)}{\sum_{j=1}^{V} \exp(z_j)} $$ 
+
+따라서 정답 토큰 $ y $ 에 대한 softmax 값은 $\frac{\exp(z_y)}{\sum_{j=1}^{V} \exp(z_j)}$ 이 됩니다. 이를 손실 함수 $ L $ 에 대입하면:
+
+$$ L = -\log\left( \frac{\exp(z_y)}{\sum_{j=1}^{V} \exp(z_j)} \right) $$ 
+
+로그의 성질 $\log(a/b) = \log(a) - \log(b)$ 를 이용하면 다음과 같이 식을 전개할 수 있습니다:
+
+$$ L = - \left( \log(\exp(z_y)) - \log\left(\sum_{j=1}^{V} \exp(z_j)\right) \right) $$ 
+
+$ \log(\exp(z_y)) = z_y $ 이므로, 식은 다음과 같이 간단해집니다:
+
+$$ L = - (z_y - \log\left(\sum_{j=1}^{V} \exp(z_j)\right)) $$ 
+
+괄호를 풀면 최종적으로 다음 식을 얻습니다:
+
+$$ L = -z_y + \log\left(\sum_{j=1}^{V} \exp(z_j)\right) $$ 
+
+여기서 $ z_y $ 는 정답 토큰에 해당하는 logit 값이고, $ \log(\sum_{j=1}^{V} \exp(z_j)) $ 는 모든 logit 값에 대한 log-sum-exp (LSE) 연산입니다.
+
+**문제점:** $ z $ 는 보통 마지막 레이어의 가중치 행렬 $ W $ (크기 $ V \times d $) 와 입력 임베딩 $ x $ (크기 $ d $) 의 곱 $ Wx $ 로 계산됩니다. $ V $ 가 매우 크면 (수십만 이상), logit 벡터 $ z $ 또는 배치(batch) 단위의 logit 행렬 $ Z $ 전체를 메모리에 저장하는 것이 엄청난 부담이 됩니다.
+
+**CCE 해결책:** CCE는 위 손실 함수 $ L = -z_y + \text{LSE}(z) $ 를 계산할 때, 전체 logit 벡터 $ z $ 를 메모리에 생성하지 않습니다.
+
+1.  **$ z_y $ 직접 계산:** 정답 토큰 $ y $ 에 해당하는 logit $ z_y $ 만 계산합니다. 이는 가중치 행렬 $ W $ 에서 $ y $ 번째 행 $ W_y $ 만 가져와 입력 $ x $ 와 내적하여 $ z_y = W_y x $ 와 같이 효율적으로 계산할 수 있습니다. 전체 $ W $ 행렬이 필요하지 않습니다.
+2.  **$ \text{LSE}(z) $ 즉석 계산:** 모든 logit $ z_j $ 에 대한 $ \text{LSE}(z) = \log(\sum_{j=1}^{V} \exp(z_j)) $ 항은 전체 $ z $ 벡터를 만들지 않고 *즉석에서(on-the-fly)* 계산합니다. 논문에서 언급된 "맞춤형 커널"은 $ Wx $ 계산과 $ \sum \exp(\cdot) $ 연산을 융합(fuse)하여 수행합니다. 즉, $ W $ 의 작은 블록들을 순차적으로 로드하여 $ \exp(W_j x) $ 를 계산하고 합산한 뒤 마지막에 로그를 취하는 방식으로, 전체 $ z $ 를 저장할 필요 없이 최종 LSE 값을 얻습니다. 이 과정은 GPU의 빠른 공유 메모리(shared memory) 또는 캐시(cache)를 활용하여 전역 메모리(global memory) 접근을 최소화합니다.
+
+결과적으로, CCE는 거대한 logit 행렬 $ Z $ 를 메모리에 저장하는 단계를 완전히 생략함으로써 메모리 사용량을 획기적으로 줄입니다.
+
 ### 메모리 절감 효과
 
 CCE는 놀라운 메모리 절감 효과를 보여줍니다. 예를 들어 **Gemma 2 (2B)** 모델의 경우:
