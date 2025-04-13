@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-deepseek-v3",
+            },{id: "post-cut-your-losses-대규모-어휘-언어-모델의-메모리-문제-해결",
+      
+        title: "Cut Your Losses: 대규모 어휘 언어 모델의 메모리 문제 해결",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/cut-cross-entropy/";
+        
+      },
+    },{id: "post-deepseek-v3",
       
         title: "deepseek-v3",
       
