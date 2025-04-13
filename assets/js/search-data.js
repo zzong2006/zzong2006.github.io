@@ -69,6 +69,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/cut-cross-entropy/";
         
       },
+    },{id: "post-grpo-대신-dapo-rl-최적화로-llm-추론-능력-끌어올리기",
+      
+        title: "GRPO 대신 DAPO: RL 최적화로 LLM 추론 능력 끌어올리기",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/dapo/";
+        
+      },
     },{id: "post-deepseek-v3-기술-요약",
       
         title: "DeepSeek-V3 기술 요약",
