@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cut Your Losses: 대규모 어휘 언어 모델의 메모리 문제 해결"
+title: "학습할때 메모리가 터진다고? Cut Your Losses!"
 date: 2025-04-13 10:00:00
 giscus_comments: true
 categories: paper-review
@@ -17,6 +17,7 @@ tags: LLM training memory optimization cross-entropy CCE Apple
 이 논문에서는 **Cut Cross-Entropy (CCE)** 라는 혁신적인 방법을 제안하여 이 문제를 해결합니다.
 
 ![Figure 1](https://i.imgur.com/T9QT7rk.png){: width="100%"}
+
 *Figure 1: 다양한 모델에서의 메모리 사용량 및 최대 배치 크기 비교. 표준 Cross-Entropy 방식(왼쪽)과 CCE 방식(오른쪽)을 비교합니다. CCE는 cross-entropy 계산에 필요한 메모리(짙은 파란색 부분)를 극적으로 줄여, 동일한 하드웨어에서 더 큰 배치 크기(1.5배~10배)로 학습 가능하게 합니다.*
 
 ## Cut Cross-Entropy (CCE): 핵심 아이디어
@@ -59,8 +60,8 @@ $$ L = -z_y + \log\left(\sum_{j=1}^{V} \exp(z_j)\right) $$
 
 **CCE 해결책:** CCE는 위 손실 함수 $ L = -z_y + \text{LSE}(z) $ 를 계산할 때, 전체 logit 벡터 $ z $ 를 메모리에 생성하지 않습니다.
 
-1.  **$ z_y $ 직접 계산:** 정답 토큰 $ y $ 에 해당하는 logit $ z_y $ 만 계산합니다. 이는 가중치 행렬 $ W $ 에서 $ y $ 번째 행 $ W_y $ 만 가져와 입력 $ x $ 와 내적하여 $ z_y = W_y x $ 와 같이 효율적으로 계산할 수 있습니다. 전체 $ W $ 행렬이 필요하지 않습니다.
-2.  **$ \text{LSE}(z) $ 즉석 계산:** 모든 logit $ z_j $ 에 대한 $ \text{LSE}(z) = \log(\sum_{j=1}^{V} \exp(z_j)) $ 항은 전체 $ z $ 벡터를 만들지 않고 *즉석에서(on-the-fly)* 계산합니다. 논문에서 언급된 "맞춤형 커널"은 $ Wx $ 계산과 $ \sum \exp(\cdot) $ 연산을 융합(fuse)하여 수행합니다. 즉, $ W $ 의 작은 블록들을 순차적으로 로드하여 $ \exp(W_j x) $ 를 계산하고 합산한 뒤 마지막에 로그를 취하는 방식으로, 전체 $ z $ 를 저장할 필요 없이 최종 LSE 값을 얻습니다. 이 과정은 GPU의 빠른 공유 메모리(shared memory) 또는 캐시(cache)를 활용하여 전역 메모리(global memory) 접근을 최소화합니다.
+1. **$ z_y $ 직접 계산:** 정답 토큰 $ y $ 에 해당하는 logit $ z_y $ 만 계산합니다. 이는 가중치 행렬 $ W $ 에서 $ y $ 번째 행 $ W_y $ 만 가져와 입력 $ x $ 와 내적하여 $ z_y = W_y x $ 와 같이 효율적으로 계산할 수 있습니다. 전체 $ W $ 행렬이 필요하지 않습니다.
+2. **$ \text{LSE}(z) $ 즉석 계산:** 모든 logit $ z_j $ 에 대한 $ \text{LSE}(z) = \log(\sum_{j=1}^{V} \exp(z_j)) $ 항은 전체 $ z $ 벡터를 만들지 않고 *즉석에서(on-the-fly)* 계산합니다. 논문에서 언급된 "맞춤형 커널"은 $ Wx $ 계산과 $ \sum \exp(\cdot) $ 연산을 융합(fuse)하여 수행합니다. 즉, $ W $ 의 작은 블록들을 순차적으로 로드하여 $ \exp(W_j x) $ 를 계산하고 합산한 뒤 마지막에 로그를 취하는 방식으로, 전체 $ z $ 를 저장할 필요 없이 최종 LSE 값을 얻습니다. 이 과정은 GPU의 빠른 공유 메모리(shared memory) 또는 캐시(cache)를 활용하여 전역 메모리(global memory) 접근을 최소화합니다.
 
 결과적으로, CCE는 거대한 logit 행렬 $ Z $ 를 메모리에 저장하는 단계를 완전히 생략함으로써 메모리 사용량을 획기적으로 줄입니다.
 
@@ -82,6 +83,7 @@ CCE는 메모리 절감 외에도 처리량(throughput)을 개선하기 위해 �
 이 최적화를 통해 CCE는 메모리 효율성뿐만 아니라 계산 속도 측면에서도 이점을 제공합니다.
 
 ![Figure 3](https://i.imgur.com/CE8IPUi.png){: width="50%"}
+
 *Figure 3: 토큰 예측 확률 분포 (로그-로그 스케일). 모델이 예측하는 다음 토큰 후보들의 확률은 순위가 낮아질수록 급격히 감소하여, 소수 상위 토큰을 제외한 나머지는 확률이 거의 0에 가까워(수치 정밀도 이하로 떨어져) 계산에서 생략 가능함을 보여줍니다. CCE는 이 점을 활용하여 처리량을 높입니다.*
 
 ## 실험 결과 및 의의
@@ -89,6 +91,7 @@ CCE는 메모리 절감 외에도 처리량(throughput)을 개선하기 위해 �
 실험 결과, CCE는 메모리 사용량을 극적으로 줄이면서도 **학습 속도나 수렴 성능 저하 없이** 목표를 달성했음을 보여주었습니다.
 
 ![Figure 4](https://i.imgur.com/1uKQuQL.png){: width="100%"}
+
 *Figure 4: Alpaca 데이터셋에서의 학습 손실(Loss) 곡선 비교. CCE(파란색)와 표준 방식(torch.compile, 주황색)의 손실 곡선이 거의 일치합니다. 이는 CCE의 기울기 계산 최적화(일부 기울기 생략)가 모델의 최종 수렴 성능에 영향을 주지 않음을 나타냅니다.*
 
 이는 대규모 어휘를 가진 LLM을 더 적은 메모리 자원으로 효율적으로 학습시킬 수 있는 가능성을 열어주며, 특히 메모리가 제한적인 환경에서 LLM 연구 및 개발의 장벽을 낮추는 데 기여할 수 있습니다.
