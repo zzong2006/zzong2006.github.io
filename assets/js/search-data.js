@@ -69,9 +69,9 @@ ninja.data = [{
           window.location.href = "/blog/2025/cut-cross-entropy/";
         
       },
-    },{id: "post-deepseek-v3",
+    },{id: "post-deepseek-v3-기술-요약",
       
-        title: "deepseek-v3",
+        title: "DeepSeek-V3 기술 요약",
       
       description: "",
       section: "Posts",
