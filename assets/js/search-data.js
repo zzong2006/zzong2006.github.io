@@ -58,9 +58,9 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-cut-your-losses-대규모-어휘-언어-모델의-메모리-문제-해결",
+            },{id: "post-학습할때-메모리가-터진다고-cut-your-losses",
       
-        title: "Cut Your Losses: 대규모 어휘 언어 모델의 메모리 문제 해결",
+        title: "학습할때 메모리가 터진다고? Cut Your Losses!",
       
       description: "",
       section: "Posts",
