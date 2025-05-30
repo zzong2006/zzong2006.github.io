@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-학습할때-메모리가-터진다고-cut-your-losses",
+            },{id: "post-deepseek-r1-모델",
+      
+        title: "Deepseek-R1 모델",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/deepseek-r1-may/";
+        
+      },
+    },{id: "post-학습할때-메모리가-터진다고-cut-your-losses",
       
         title: "학습할때 메모리가 터진다고? Cut Your Losses!",
       
