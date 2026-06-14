@@ -51,9 +51,6 @@ $$
 \end{aligned}
 $$
 
-\
-
-$$
 # Model Estimation
 
 ## Using MLE
@@ -69,8 +66,6 @@ $$
 
 \end{aligned}
 
-$$
-\
 $$
 
 * 여기서 $x_i$ 는 $K \times 1$ 크기를 가지는 vector 이다.

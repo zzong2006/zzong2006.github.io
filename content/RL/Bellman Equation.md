@@ -24,24 +24,17 @@ $$
 v(s)=\sum_{s^{\prime}, r} p\left(s^{\prime}, r \mid s\right)\left[r+\gamma v\left(s^{\prime}\right)\right]
 $$
 
-v
-
-$$
-
 여기서 $v(s)$ 는 state $s$ 의 value 를 의미하며, $s$ 에서 시작했을 때 expected [[expected return|discounted return]] 을 의미한다.
 
 $$
-
 v(s)=E\left[G_{t} \mid S_{t}=s\right]=E\left[\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1} \mid S_{t}=s\right]
-
-$$v
 $$
 
 위 Bellman 공식은 다음과 같이 matrix form 으로 간략화 할 수 있다.
 
 $$
-
-v=P R+\gamma P v$$
+v=P R+\gamma P v
+$$
 
 * $v$ 는 column vector 로, 각 원소는 state 의 value 를 나타낸다.
 * $R$ 는 또 다른 column vector 로, 각 원소는 그 순서에 해당하는 state 로 전이되었을 때 얻을 수 있는 reward 를 의미한다.

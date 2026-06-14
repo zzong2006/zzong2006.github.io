@@ -89,7 +89,9 @@ flowchart TD
 Bayesian Experimental Design에서 가져온 핵심 개념.
 
 **Expected Information Gain (EIG):**
-$$\text{EIG}(q) = \mathbb{H}[\text{질문 전 solution 분포}] - \mathbb{E}_a[\mathbb{H}[\text{답변 후 solution 분포}]]$$
+$$\text{EIG}(q) = \mathbb{H}[S_{\text{before}}] - \mathbb{E}_a[\mathbb{H}[S_{\text{after}} \mid a]]$$
+
+여기서 $S_{\text{before}}$ 는 질문 전 solution 분포, $S_{\text{after}}$ 는 답변 후 solution 분포를 뜻한다.
 
 - 질문 전 엔트로피 (불확실성) 에서 답변 후 엔트로피를 뺀 값
 - 즉, **이 질문을 하면 불확실성이 얼마나 줄어드는가?** 의 기댓값

@@ -55,10 +55,10 @@ aliases: [MF]
 	* We can add regularization terms that will address the folding issue.
 	* We use two types of regularization:
 		* $\ell_2$ regularization term: Regularization of the model parameters.
-This is given by $r(U, V) = \frac{1}{N} \sum_i \|U_i\|^2 + \frac{1}{M}\sum_j \|V_j\|^2$.
+This is given by $r(U, V) = \frac{1}{N} \sum_i \|U_i\|^2 + \frac{1}{M}\sum_j \|V_j\|^2$.
 		* Gravity term : A global prior that pushes the prediction of any pair towards zero.
-This is given by $g(U, V) = \frac{1}{MN} \sum_{i = 1}^N \sum_{j = 1}^M \langle U_i, V_j \rangle^2$.
+This is given by $g(U, V) = \frac{1}{MN} \sum_{i = 1}^N \sum_{j = 1}^M \langle U_i, V_j \rangle^2$.
 	* The total loss is then given by
-: $\displaystyle\frac{1}{|\Omega|}\sum_{(i, j) \in \Omega} (A_{ij} - \langle U_i, V_j\rangle)^2 + \lambda _r r(U, V) + \lambda_g g(U, V)$
+: $\displaystyle\frac{1}{|\Omega|}\sum_{(i, j) \in \Omega} (A_{ij} - \langle U_i, V_j\rangle)^2 + \lambda _r r(U, V) + \lambda_g g(U, V)$
 		* where $\lambda_r$ and $\lambda_g$ are two [[regularization]] coefficients (hyper-parameters).
 * [[matrix factorization implementation]]

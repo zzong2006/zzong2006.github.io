@@ -103,7 +103,7 @@ AliBoost 배포 전, **cold item의 41.1%가 30일이 지나도 일 노출 10회
 
 전체 incremental exposure 모델링:
 
-$$\Delta E_i = \underbrace{E^{\text{boost}}_i}_{\text{직접 부스팅}} + \underbrace{\alpha(\text{CTR}^{\text{boost}}_i) \cdot E^{\text{boost}}_i}_{\text{자연 추천 증폭}}$$
+$$\Delta E_i = E^{\text{boost}}_i + \alpha(\text{CTR}^{\text{boost}}_i) \cdot E^{\text{boost}}_i$$
 
 - 부스팅으로 얻은 노출($E^{\text{boost}}_i$) + 그 성과로 인한 자연 추천 증폭 효과
 - $\alpha(\cdot)$는 CTR이 높을수록 **지수적으로 증가** → 좋은 아이템은 자연 추천에서도 더 많이 노출
@@ -241,7 +241,7 @@ Foundation CTR 모델의 출력을 **입력 feature로 재활용** 하는 stacki
 
 Stacked feature vector:
 
-$$\mathbf{x}^{\text{stack}}_{u,i} = [\underbrace{\hat{y}^{\text{foun}}_{u,i}, \mathbf{e}_u^{\text{foun}}, \mathbf{f}_u^{\text{foun}}}_{\text{Foundation에서 가져옴}}, \underbrace{\mathbf{e}_i^{\text{cold}}, \mathbf{f}_i^{\text{boost}}, \mathbf{f}_i^{\text{natural}}}_{\text{Cold item 전용}}]$$
+$$\mathbf{x}^{\text{stack}}_{u,i} = [\hat{y}^{\text{foun}}_{u,i}, \mathbf{e}_u^{\text{foun}}, \mathbf{f}_u^{\text{foun}}, \mathbf{e}_i^{\text{cold}}, \mathbf{f}_i^{\text{boost}}, \mathbf{f}_i^{\text{natural}}]$$
 
 - **왜 Stacking인가?** Foundation 모델은 전체 플랫폼 최적화된 거대 모델(0.4B 유저, 142B 인터랙션으로 학습). 이걸 fine-tune하면 warm item 성능이 떨어진다. Stacking으로 Foundation은 freeze하고 그 위에 cold-specific layer만 학습하면 두 마리 토끼를 잡을 수 있다.
 

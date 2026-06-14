@@ -92,7 +92,7 @@ posterior $p$ 에 대한 정보가 없어서 $q(z)$ 를 [[Gaussian distribution
 * $q(z)$ 의 parameter 를 $θ_q$, likelihood function 의 parameter 를 $\theta_l$ 라고 둘 때 EM algorithm 은 다음과 같은 과정을 수렴할 때까지 반복한다.
 	* Expectation: $D_{KL}(q(z)\|p(z\mid x))$ 를 줄이는 $θ_q$ 를 찾는다.
 		* Monte Carlo method 을 활용한 VI 또는 SVI 등 적용
-	* Maximization : E-step 에서 찾은 $θ_q$ 를 고정한 상태에서 $\log⁡p(x)$ 의 하한 (lower bound, ELBO) 을 최대화하는 $p(x|z)$ 의 파라메터 $θ_l$ 를 찾는다.
+	* Maximization : E-step 에서 찾은 $θ_q$ 를 고정한 상태에서 $\log p(x)$ 의 하한 (lower bound, ELBO) 을 최대화하는 $p(x|z)$ 의 파라메터 $θ_l$ 를 찾는다.
 * ELBO:: Evidence Lower Bound
 	* KLD 식에서 evidence $p(x)$(정확히는 $\log p(x)$) 에 대한 하한을 계산할 수 있다.
 	* $D_{KL}(q(z)\|p(z\mid x))=D_{KL}(q(z)\|p(z))+\log p(x)-E_{z\sim q(z)}[\log p(x\mid z)]$

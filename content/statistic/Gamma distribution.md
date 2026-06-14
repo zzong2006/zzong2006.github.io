@@ -5,7 +5,7 @@ tags: ["probability_distribution"]
 
 # A) Gamma Distribution ?
 
-* The gamma distribution can be parameterized in terms of a shape parameter $α = k$ and an inverse scale parameter $β =1/θ$, called a rate parameter.
+* The gamma distribution can be parameterized in terms of a shape parameter $α = k$ and an inverse scale parameter $β =1/θ$, called a rate parameter.
 	* [[exponential distribution]] 에서는 rate parameter 는 event 의 발생 빈도 (rate) 로 해석되고, $\lambda=1/\theta$ 로 표현된다.
 	* 또한 $k$ 는 당신이 기다리는 $k$ 번째 event 를 의미한다.
 * A random variable $X$ that is gamma-distributed with shape __α__ and rate __β__ is denoted

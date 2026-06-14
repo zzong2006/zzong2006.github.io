@@ -67,7 +67,9 @@ $$
 
 $$
 \displaystyle\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)
-$$ 여기서 $\displaystyle J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2$ 를 의미한다.
+$$
+
+여기서 $\displaystyle J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2$ 를 의미한다.
 
 위 식을 풀어 쓰면 다음과 같다.
 - $\displaystyle\theta_{0}:=\theta_{0}-\alpha\frac{1}{m}\sum_{i=1}^{m}\left(h_{\theta}\left(x_{i}\right)-y_{i}\right)$

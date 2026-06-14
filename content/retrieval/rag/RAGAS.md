@@ -9,8 +9,10 @@ aliases: ["라가스"]
 context recall의 수식은 다음과 같습니다.
 
 $$
-\text{context recall} = \frac{|\text{정답(GT) 문장 중 context에서 근거를 찾을 수 있는 문장 수}|}{|\text{전체 정답(GT) 문장 수}|}
+\text{context recall} = \frac{|S_{\text{supported}}|}{|S_{\text{gt}}|}
 $$
+
+여기서 $S_{\text{gt}}$ 는 정답(GT) 문장 집합이고, $S_{\text{supported}}$ 는 context 안에서 근거를 찾을 수 있는 정답 문장 집합입니다.
 
 context recall은 정답 데이터의 각 문장이, retriever가 반환한 context 안에서 실제로 답을 찾을 수 있는지를 확인합니다. 그리고 전체 정답 문장 중 몇 개의 문장이 해당 context만으로 답변 가능했는지 그 비율을 계산합니다. retrieval 단계에서 더 많은 결과를 반환할수록, 정답 문장과 관련된 context를 포함할 확률이 높아지기 때문에, 일반적으로 context recall 값이 함께 증가하는 경향이 있습니다.
 
@@ -22,10 +24,12 @@ context recall은 정답 데이터의 각 문장이, retriever가 반환한 cont
 
 $$
 \begin{gathered}
-\text{Context Precision@k} = \frac{\sum \text{precision@k}}{\text{top K 결과 내에서 관련 항목의 총 개수}} \\
+\text{Context Precision@k} = \frac{\sum_{i=1}^{k}\text{precision@i}}{|R_{\text{relevant}}|} \\
 \text{Precision@k} = \frac{\text{true positives@k}}{\text{true positives@k} + \text{false positives@k}}
 \end{gathered}
 $$
+
+여기서 $R_{\text{relevant}}$ 는 top K 결과 안에 포함된 relevant item 집합입니다.
 
 즉, 상위 K개의 retrieval 결과 중 실제 답변에 근거로 활용될 수 있는 context(정답)가 얼마나 비율로 포함되어 있는지를 측정하는 것입니다. 이 지표는 retrieval 결과의 정확성을 평가하고, 특히 관련도가 높은 정보가 앞쪽에 잘 배치되는지를 확인하는 데 유용하게 활용됩니다.
 

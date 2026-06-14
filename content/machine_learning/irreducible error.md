@@ -9,7 +9,9 @@ tags: ["machine_learning linear_regression"]
 
 $$
 Y=\beta_{0}+X_{1}\beta_{1}+\cdots+X_{p}\beta_{p}+\epsilon
-$$ 중 에러 $\epsilon$ 를 의미한다.
+$$
+
+여기서 에러 $\epsilon$ 를 의미한다.
 
 
 # 2. Related

@@ -29,10 +29,6 @@ $$
 \begin{aligned}v_{*}(s)&=\max_{a\in\mathcal{A}(s)}q_{\pi_{*}}(s,a)\\&=\max_{a}\mathbb{E}_{\pi_{*}}\left[G_{t}\mid S_{t}=s,A_{t}=a\right]\\&=\max_{a}\mathbb{E}_{\pi_{*}}\left[R_{t+1}+\gamma G_{t+1}\mid S_{t}=s,A_{t}=a\right]\\&=\max_{a}\mathbb{E}\left[R_{t+1}+\gamma v_{*}\left(S_{t+1}\right)\mid S_{t}=s,A_{t}=a\right]\\&=\max_{a}\sum_{s^{\prime},r}p\left(s^{\prime},r\mid s,a\right)\left[r+\gamma v_{*}\left(s^{\prime}\right)\right]\end{aligned}
 $$
 
-\
-
-$$
-
 여기서 $G_t\rightarrow R_{t+1}+\gamma G_{t+1}$ 는 이전에 수식을 활용하여 유도된다.
 
 $$
@@ -40,6 +36,7 @@ $$
 \begin{aligned}G_{t}&\doteq R_{t+1}+\gamma R_{t+2}+\gamma^{2}R_{t+3}+\gamma^{3}R_{t+4}+\cdots\\&=R_{t+1}+\gamma\left(R_{t+2}+\gamma R_{t+3}+\gamma^{2}R_{t+4}+\cdots\right)\\&=R_{t+1}+\gamma G_{t+1}\end{aligned}
 
 $$
+
 ## A.2) For Action-value Function
 
 optimal [[action-value function]] $q_*$ 에 대한 Bellman Optimality Equation 은 다음과 같다.
@@ -47,9 +44,10 @@ $$
 
 \begin{aligned}q_{*}(s,a)&=E\left[R_{t+1}+\gamma v_{*}\left(s^{\prime}\right) \mid S_{t}=s, A_{t}=a\right]\\
 
-&=E\left[R_{t+1}+\gamma \max *{a^{\prime}} q*{*}\left(S_{t+1}, a^{\prime}\right) \mid S_{t}=s, A_{t}=a\right]
+&=E\left[R_{t+1}+\gamma \max_{a^{\prime}} q_{*}\left(S_{t+1}, a^{\prime}\right) \mid S_{t}=s, A_{t}=a\right]
 
-\\&=\sum_{s^{\prime},r}p\left(s^{\prime},r\mid s,a\right)\left[r+\gamma\max_{a^{\prime}}q_{*}\left(s^{\prime},a^{\prime}\right)\right]\end{aligned}$$
+\\&=\sum_{s^{\prime},r}p\left(s^{\prime},r\mid s,a\right)\left[r+\gamma\max_{a^{\prime}}q_{*}\left(s^{\prime},a^{\prime}\right)\right]\end{aligned}
+$$
 
 ![|500](https://i.loli.net/2020/10/21/ixHBJoLt21Pn9jF.png)
 

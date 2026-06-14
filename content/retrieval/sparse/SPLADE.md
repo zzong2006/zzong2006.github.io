@@ -101,7 +101,9 @@ Ranking Loss만으로 학습하면 벡터의 0이 아닌 차원이 많아질 수
 
 SPLADE는 **FLOPS Regularizer** 를 도입한다. 원리는 간단하면서도 강력하다: 배치 내에서 **각 토큰의 평균 활성화 빈도를 계산하고, 이 값을 제곱하여 loss로 사용** 한다:
 
-$$a_j = \frac{1}{N} \sum_{i=1}^{N} w_j^{(d_i)} \quad \text{(배치에서 항 } j \text{의 평균 활성화)}$$
+$$a_j = \frac{1}{N} \sum_{i=1}^{N} w_j^{(d_i)}$$
+
+여기서 $a_j$ 는 batch에서 term $j$ 의 평균 활성화를 뜻한다.
 
 $$\ell_{\text{FLOPS}} = \sum_{j \in V} a_j^2$$
 

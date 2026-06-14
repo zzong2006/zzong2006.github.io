@@ -11,13 +11,13 @@ paper Link: https://arxiv.org/pdf/1205.2606.pdf
 * [[KWIK Linear Regression]]
 	* KWIK (Knows What It Knows) is a framework for studying supervised learning algorithms and was designed to unify the analysis of model-based reinforcement-learning algorithms.
 	* Formally, a KWIK learner operates over an input space $X$ and an output space $Y$. At every time step $t$, an input $x_t\in X$ is chosen and presented to the learner.
-	* If the learner can make an accurate prediction on this input, it can predict $\widehat{y}_{t}$, otherwise it must admit it does not know by returning $⊥$ (“I don’t know”), allowing it to see the true $y_t$ or a noisy version $z_t$.
+	* If the learner can make an accurate prediction on this input, it can predict $\widehat{y}_{t}$, otherwise it must admit it does not know by returning $\bot$ (“I don’t know”), allowing it to see the true $y_t$ or a noisy version $z_t$.
 		* $z_{t}\in\mathbb{R}$ and $y_t\in\mathbb{R}$
-	* An algorithm is said to be KWIK if and only if, with high $(1−\delta)$ probability, $\left\|\widehat{y}_{t}-y_{t}\right\|<\epsilon$ and the number of $⊥$s returned over the agent’s lifetime is bounded by a polynomial function over the size of the input problem.
+	* An algorithm is said to be KWIK if and only if, with high $(1−\delta)$ probability, $\left\|\widehat{y}_{t}-y_{t}\right\|<\epsilon$ and the number of $\bot$s returned over the agent’s lifetime is bounded by a polynomial function over the size of the input problem.
 	* One of the first uses of the KWIK framework was in the analysis of an online linear regression algorithm used to learn linear transitions in continuous state MDPs.
 		* This algorithm uses the least squares estimate of the weight vector for inputs where the output is known with high certainty.
 			* Certainty is measured by two terms representing (1) the number and proximity of previous samples to the current point and (2) the appropriateness of the previous samples for making a least squares estimate.
-		* When certainty is low for either measure, the algorithm reports $⊥$.
+		* When certainty is low for either measure, the algorithm reports $\bot$.
 	* Some notation
 		* Let $X:=\left\{\vec{x}\in\mathbb{R}^{n}\mid\|\vec{x}\|\leq1\right\}$, and let $f:X\rightarrow\mathbb{R}$ be a linear function with slope $\theta^{*}\in\mathbb{R}^{n},\left\|\theta^{*}\right\|\leq M$, i.e. $f(\vec{x}):=\vec{x}^{T}\theta^{*}$.
 		* Fix a timestep $t$.

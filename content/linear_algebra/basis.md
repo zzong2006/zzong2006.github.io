@@ -62,10 +62,8 @@ $$
 \tilde{A}_{\Phi}=\boldsymbol{T}^{-1} A_{\Phi} \boldsymbol{S}
 $$
 
-$$
-\
-
 [[transformation matrix|변환 행렬]]이 다음과 같다고 하자.
+
 $$
 
 A=\left[\begin{array}{ll}2 & 1 \\ 1 & 2\end{array}\right]
@@ -78,7 +76,9 @@ $$
 
 B=\left(\left[\begin{array}{l}1 \\ 1\end{array}\right],\left[\begin{array}{c}1 \\ -1\end{array}\right]\right)
 
-$$ 를 정의한다면, 다음과 같은 $B$ 에 대한 새로운 대각 변환 행렬을 얻을 수 있다.
+$$
+
+이를 $B$ 에 대한 basis로 정의한다면, 다음과 같은 새로운 대각 변환 행렬을 얻을 수 있다.
 
 $$
 \tilde{A}=\left[\begin{array}{ll}3 & 0 \\ 0 & 1\end{array}\right]$$
