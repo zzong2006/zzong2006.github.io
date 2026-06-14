@@ -27,6 +27,52 @@ const latexSymbols = new Map([
   ["cdot", "·"],
 ])
 
+const subscriptMap = new Map(
+  Object.entries({
+    0: "₀",
+    1: "₁",
+    2: "₂",
+    3: "₃",
+    4: "₄",
+    5: "₅",
+    6: "₆",
+    7: "₇",
+    8: "₈",
+    9: "₉",
+    i: "ᵢ",
+    j: "ⱼ",
+    k: "ₖ",
+    n: "ₙ",
+  }),
+)
+
+const superscriptMap = new Map(
+  Object.entries({
+    0: "⁰",
+    1: "¹",
+    2: "²",
+    3: "³",
+    4: "⁴",
+    5: "⁵",
+    6: "⁶",
+    7: "⁷",
+    8: "⁸",
+    9: "⁹",
+    "+": "⁺",
+    "-": "⁻",
+    "=": "⁼",
+    n: "ⁿ",
+    k: "ᵏ",
+  }),
+)
+
+function scriptText(value, scriptMap) {
+  return String(value ?? "")
+    .split("")
+    .map((char) => scriptMap.get(char) ?? char)
+    .join("")
+}
+
 function stripMath(value) {
   return String(value ?? "")
     .replace(/```[\s\S]*?```/g, " ")
@@ -45,6 +91,8 @@ function simplifyLatex(value) {
     .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
     .replace(/\\(?:left|right|displaystyle|limits|top)\b/g, " ")
     .replace(/\\([A-Za-z]+)(?=[^A-Za-z]|$)/g, (_, name) => latexSymbols.get(name) ?? " ")
+    .replace(/_\{?([A-Za-z0-9]+)\}?/g, (_, value) => scriptText(value, subscriptMap))
+    .replace(/\^\{?([A-Za-z0-9+=-]+)\}?/g, (_, value) => scriptText(value, superscriptMap))
     .replace(/\\\\/g, " ")
     .replace(/[{}]/g, "")
 }
@@ -175,6 +223,27 @@ function excerpt(sourceText, terms, snippetLength) {
   }
 }
 
+function renderTextWithMath(text) {
+  const nodes = []
+  const pattern =
+    /(?:[A-Z]\([A-Za-z0-9₀-₉ᵢⱼₖₙ⁰-⁹⁺⁻⁼ⁿᵏα-ωΑ-ΩθμπΣγλ|,\s.]{1,36}\)|[A-Za-zα-ωΑ-ΩθμπΣγλ][₀-₉ᵢⱼₖₙ]+|[θμπΣγλ](?:\s*[=∝]\s*[\d.]+)?)/g
+  let lastIndex = 0
+  let match
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index))
+    }
+    nodes.push(h("span", { class: "linked-mention-math" }, match[0]))
+    lastIndex = pattern.lastIndex
+  }
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex))
+  }
+  return nodes
+}
+
 function compareMentions(a, b) {
   const aTitle = String(a.frontmatter?.title ?? "")
   const bTitle = String(b.frontmatter?.title ?? "")
@@ -233,9 +302,9 @@ export const LinkedMentions = (opts) => {
                   title,
                 ),
                 h("p", { class: "linked-mention-snippet" }, [
-                  snippet.before,
-                  snippet.match ? h("mark", null, snippet.match) : null,
-                  snippet.after,
+                  ...renderTextWithMath(snippet.before),
+                  snippet.match ? h("mark", null, renderTextWithMath(snippet.match)) : null,
+                  ...renderTextWithMath(snippet.after),
                 ]),
               ])
             }),
@@ -296,6 +365,12 @@ export const LinkedMentions = (opts) => {
   padding: 0 0.1rem;
   background: var(--textHighlight);
   color: inherit;
+}
+
+.linked-mention-math {
+  font-family: "KaTeX_Main", "Times New Roman", serif;
+  font-size: 0.98em;
+  white-space: nowrap;
 }
 
 .linked-mentions-empty {
