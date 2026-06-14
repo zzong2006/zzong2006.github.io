@@ -1,4 +1,5 @@
 ---
+title: "seq2seq"
 tags: ["RNN", "deep_learning"]
 ---
 

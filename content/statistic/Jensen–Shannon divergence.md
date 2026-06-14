@@ -1,4 +1,5 @@
 ---
+title: "Jensen–Shannon divergence"
 tags: ["statistic"]
 ---
 

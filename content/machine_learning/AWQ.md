@@ -1,4 +1,5 @@
 ---
+title: "AWQ"
 tags: ["quantization"]
 aliases: ["Activation-aware Weight Quantization"]
 ---

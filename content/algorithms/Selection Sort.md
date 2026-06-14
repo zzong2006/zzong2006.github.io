@@ -1,4 +1,5 @@
 ---
+title: "Selection Sort"
 tags: ["algorithm", "sorting"]
 ---
 

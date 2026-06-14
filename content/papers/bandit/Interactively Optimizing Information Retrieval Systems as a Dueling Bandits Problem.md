@@ -1,4 +1,5 @@
 ---
+title: "Interactively Optimizing Information Retrieval Systems as a Dueling Bandits Problem"
 tags: ["bandit", "optimization", "paper_review"]
 aliases: ["DBGD", "Dueling Bandit Gradient Descent"]
 ---

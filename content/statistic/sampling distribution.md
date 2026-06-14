@@ -1,4 +1,5 @@
 ---
+title: "sampling distribution"
 tags: ["statistic"]
 aliases: ["표본 분포"]
 ---

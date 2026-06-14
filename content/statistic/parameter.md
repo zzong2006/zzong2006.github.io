@@ -1,4 +1,5 @@
 ---
+title: "parameter"
 tags: ["machine_learning", "statistic"]
 aliases: ["parameters"]
 ---

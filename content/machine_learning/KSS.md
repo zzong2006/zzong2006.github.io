@@ -1,4 +1,5 @@
 ---
+title: "KSS"
 tags: ["self_dev"]
 ---
 

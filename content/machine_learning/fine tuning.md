@@ -1,4 +1,5 @@
 ---
+title: "fine tuning"
 tags: ["deep_learning machine_learning"]
 aliases: ["파인 튜닝"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "StorageClass"
 tags: ["Kubernetes"]
 ---
 

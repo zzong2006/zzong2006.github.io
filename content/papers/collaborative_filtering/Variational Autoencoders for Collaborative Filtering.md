@@ -1,4 +1,5 @@
 ---
+title: "Variational Autoencoders for Collaborative Filtering"
 tags: ["WWW", "bayesian_inference", "deep_learning", "collaborative_filtering", "paper_review", "y2018"]
 aliases: ["Mult-VAE"]
 ---

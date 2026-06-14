@@ -1,4 +1,5 @@
 ---
+title: "Scaling Laws For Dense Retrieval"
 tags: ["retrieval", "IR", "embedding", "dense_retrieval", "SIGIR", "nlp", "paper_review", "y2024"]
 ---
 

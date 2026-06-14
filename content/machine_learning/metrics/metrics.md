@@ -1,4 +1,5 @@
 ---
+title: "metrics"
 tags: ["machine_learning", "metrics"]
 aliases: ["classification metrics"]
 ---

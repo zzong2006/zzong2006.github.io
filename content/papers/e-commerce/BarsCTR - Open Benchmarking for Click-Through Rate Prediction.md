@@ -1,4 +1,5 @@
 ---
+title: "BarsCTR - Open Benchmarking for Click-Through Rate Prediction"
 tags: ["e-commerce", "CIKM", "paper_review", "recommendation_system", "y2021"]
 ---
 

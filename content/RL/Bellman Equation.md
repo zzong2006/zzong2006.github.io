@@ -1,4 +1,5 @@
 ---
+title: "Bellman Equation"
 tags: ["reinforcement_learning", "linear_algebra"]
 ---
 

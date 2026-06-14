@@ -1,4 +1,5 @@
 ---
+title: "MapReduce"
 tags: ["hadoop"]
 aliases: ["맵리듀스"]
 ---

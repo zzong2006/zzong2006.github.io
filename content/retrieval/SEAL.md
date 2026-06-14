@@ -1,4 +1,5 @@
 ---
+title: "SEAL"
 tags: ["retrieval", "generative_retrieval", "paper_review", "y2022", "Meta"]
 aliases: ["SEAL", "Autoregressive Search Engines"]
 ---

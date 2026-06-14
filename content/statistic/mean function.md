@@ -1,4 +1,5 @@
 ---
+title: "mean function"
 tags: ["statistic"]
 ---
 

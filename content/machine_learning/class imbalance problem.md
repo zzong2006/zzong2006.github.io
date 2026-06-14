@@ -1,4 +1,5 @@
 ---
+title: "class imbalance problem"
 tags: ["classification"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "trace"
 tags: ["linear_algebra"]
 ---
 

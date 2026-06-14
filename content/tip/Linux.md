@@ -1,4 +1,5 @@
 ---
+title: "Linux"
 tags: ["tip", "linux"]
 ---
 

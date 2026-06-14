@@ -1,4 +1,5 @@
 ---
+title: "hashing trick"
 tags: ["machine_learning", "feature_engineering"]
 ---
 

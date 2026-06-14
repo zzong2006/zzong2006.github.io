@@ -1,4 +1,5 @@
 ---
+title: "least squares estimation"
 tags: ["machine_learning", "linear_regression", "optimization"]
 ---
 

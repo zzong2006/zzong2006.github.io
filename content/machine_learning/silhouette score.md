@@ -1,4 +1,5 @@
 ---
+title: "silhouette score"
 tags: ["clustering", "metrics"]
 aliases: ["실루엣 점수"]
 ---

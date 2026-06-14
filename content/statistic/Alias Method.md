@@ -1,4 +1,5 @@
 ---
+title: "Alias Method"
 tags: ["statistic"]
 ---
 

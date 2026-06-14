@@ -1,4 +1,5 @@
 ---
+title: "An Empirical Study on Recommendation with Multiple Types of Feedback"
 tags: ["KDD", "LinkedIn", "multiple_feedback", "paper_review", "recommendation_system", "y2016"]
 ---
 

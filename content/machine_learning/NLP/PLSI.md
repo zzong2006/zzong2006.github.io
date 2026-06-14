@@ -1,4 +1,5 @@
 ---
+title: "PLSI"
 tags: ["machine_learning", "NLP", "topic_modeling"]
 aliases: ["pLSA", "Probabilistic Latent Semantic Indexing"]
 ---

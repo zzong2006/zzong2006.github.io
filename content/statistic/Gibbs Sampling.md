@@ -1,4 +1,5 @@
 ---
+title: "Gibbs Sampling"
 tags: ["bayesian_inference", "statistic"]
 aliases: ["깁스 샘플링"]
 ---

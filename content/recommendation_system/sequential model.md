@@ -1,4 +1,5 @@
 ---
+title: "sequential model"
 tags: ["recommendation_system"]
 ---
 

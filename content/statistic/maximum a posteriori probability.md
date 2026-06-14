@@ -1,4 +1,5 @@
 ---
+title: "maximum a posteriori probability"
 tags: ["statistic", "bayesian_inference"]
 aliases: ["MAP"]
 ---

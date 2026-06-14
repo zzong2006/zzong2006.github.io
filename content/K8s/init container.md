@@ -1,4 +1,5 @@
 ---
+title: "init container"
 tags: ["Kubernetes"]
 ---
 

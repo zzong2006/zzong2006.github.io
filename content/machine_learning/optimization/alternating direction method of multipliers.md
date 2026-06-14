@@ -1,4 +1,5 @@
 ---
+title: "alternating direction method of multipliers"
 tags: ["statistic", "optimization"]
 aliases: ["ADMM"]
 ---

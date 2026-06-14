@@ -1,4 +1,5 @@
 ---
+title: "Inductive"
 tags: ["machine_learning"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Solving Ax=b"
 tags: ["linear_algebra"]
 ---
 

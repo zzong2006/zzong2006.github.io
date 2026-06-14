@@ -1,4 +1,5 @@
 ---
+title: "dimension"
 tags: ["linear_algebra"]
 aliases: ["차원"]
 ---

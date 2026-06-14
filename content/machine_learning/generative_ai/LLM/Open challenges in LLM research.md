@@ -1,4 +1,5 @@
 ---
+title: "Open challenges in LLM research"
 tags: ["LLM research"]
 ---
 

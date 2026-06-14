@@ -1,4 +1,5 @@
 ---
+title: "weight decay"
 tags: ["deep_learning"]
 ---
 

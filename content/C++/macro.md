@@ -1,4 +1,5 @@
 ---
+title: "macro"
 tags: ["Cpp"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "An Efficiency Study for SPLADE Models"
 tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "SPLADE", "paper_review"]
 ---
 

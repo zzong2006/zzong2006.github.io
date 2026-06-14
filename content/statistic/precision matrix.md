@@ -1,4 +1,5 @@
 ---
+title: "precision matrix"
 tags: ["statistic", "probability_distribution"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "K-means"
 tags: ["machine_learning", "clustering"]
 aliases: ["k-means clustering"]
 ---

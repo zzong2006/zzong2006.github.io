@@ -1,4 +1,5 @@
 ---
+title: "probe(k8s)"
 tags: ["Kubernetes"]
 ---
 

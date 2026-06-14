@@ -1,4 +1,5 @@
 ---
+title: "Insertion Sort"
 tags: ["algorithm"]
 ---
 

@@ -1,3 +1,7 @@
+---
+title: "random variable"
+---
+
 
 # A) Random Variable ?
 

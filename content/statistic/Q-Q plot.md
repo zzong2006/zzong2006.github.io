@@ -1,4 +1,5 @@
 ---
+title: "Q-Q plot"
 tags: ["statistic", "probability_distribution"]
 aliases: ["Quantile-Quantile Plot"]
 ---

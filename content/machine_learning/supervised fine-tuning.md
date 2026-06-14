@@ -1,4 +1,5 @@
 ---
+title: "supervised fine-tuning"
 tags: ["deep_learning", "LLM"]
 aliases: ["SFT"]
 ---

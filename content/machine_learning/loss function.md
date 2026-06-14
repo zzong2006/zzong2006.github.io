@@ -1,4 +1,5 @@
 ---
+title: "loss function"
 tags: ["machine_learning", "optimization", "loss_function"]
 aliases: ["loss", "objective loss"]
 ---

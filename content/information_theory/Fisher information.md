@@ -1,4 +1,5 @@
 ---
+title: "Fisher information"
 tags: ["statistic"]
 ---
 

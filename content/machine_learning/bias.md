@@ -1,4 +1,5 @@
 ---
+title: "bias"
 tags: ["machine_learning", "statistic"]
 ---
 

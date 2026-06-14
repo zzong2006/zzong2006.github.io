@@ -1,4 +1,5 @@
 ---
+title: "Random search"
 tags: ["machine_learning", "hyperparameter_optimization"]
 aliases: ["random search"]
 ---

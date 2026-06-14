@@ -1,4 +1,5 @@
 ---
+title: "bag of words"
 tags: ["NLP", "word2vec"]
 aliases: ["BoW"]
 ---

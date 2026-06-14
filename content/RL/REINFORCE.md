@@ -1,4 +1,5 @@
 ---
+title: "REINFORCE"
 tags: ["reinforcement_learning"]
 ---
 

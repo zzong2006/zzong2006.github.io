@@ -1,4 +1,5 @@
 ---
+title: "embedding matrix"
 tags: ["embedding"]
 ---
 

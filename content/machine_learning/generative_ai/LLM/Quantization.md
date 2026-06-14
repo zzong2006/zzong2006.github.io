@@ -1,4 +1,5 @@
 ---
+title: "Quantization"
 tags: ["deep_learning", "quantization"]
 aliases: ["양자화"]
 ---

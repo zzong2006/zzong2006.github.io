@@ -1,4 +1,5 @@
 ---
+title: "Contrastive Learning for Cold-Start Recommendation"
 tags: ["deep_learning", "paper_review", "recommendation_system"]
 ---
 [2107.05315](https://arxiv.org/pdf/2107.05315)

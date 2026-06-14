@@ -1,4 +1,5 @@
 ---
+title: "parquet"
 tags: ["database"]
 aliases: ["파켓", "파케이"]
 ---

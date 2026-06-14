@@ -1,4 +1,5 @@
 ---
+title: "min-max scaling"
 tags: ["feature_scaling"]
 ---
 

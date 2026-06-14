@@ -1,4 +1,5 @@
 ---
+title: "deployment(Kubernetes)"
 tags: ["Kubernetes"]
 aliases: ["디플로이먼트"]
 ---

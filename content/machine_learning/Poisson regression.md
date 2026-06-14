@@ -1,4 +1,5 @@
 ---
+title: "Poisson regression"
 tags: ["linear_regression"]
 ---
 

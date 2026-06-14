@@ -1,3 +1,7 @@
+---
+title: "exploding gradients"
+---
+
 
 # Exploding Gradients ?
 

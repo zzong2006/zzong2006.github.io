@@ -1,4 +1,5 @@
 ---
+title: "Newton-Raphson method"
 tags: ["machine_learning", "optimization"]
 ---
 

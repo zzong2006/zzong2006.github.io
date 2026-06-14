@@ -1,4 +1,5 @@
 ---
+title: "data warehouse"
 aliases: ["DWH"]
 ---
 

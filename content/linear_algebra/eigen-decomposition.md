@@ -1,4 +1,5 @@
 ---
+title: "eigen-decomposition"
 tags: ["linear_algebra"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "maximum inner product search"
 tags: ["retrieval", "IR", "vector_search"]
 aliases: ["MIPS"]
 ---

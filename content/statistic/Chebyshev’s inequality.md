@@ -1,4 +1,5 @@
 ---
+title: "Chebyshev’s inequality"
 tags: ["statistic"]
 aliases: ["Chebyshev's theorem"]
 ---

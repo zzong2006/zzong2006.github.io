@@ -1,4 +1,5 @@
 ---
+title: "ReLU function"
 tags: ["activation_function"]
 ---
 

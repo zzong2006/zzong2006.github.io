@@ -1,4 +1,5 @@
 ---
+title: "tech blogs"
 tags: ["tech_blog"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Theorem"
 tags: ["math"]
 aliases: ["정리"]
 ---

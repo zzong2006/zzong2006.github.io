@@ -1,4 +1,5 @@
 ---
+title: "Gaussian Error Linear Units"
 tags: ["activation_function"]
 aliases: ["GELU"]
 ---

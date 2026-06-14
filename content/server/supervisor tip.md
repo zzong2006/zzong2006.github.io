@@ -1,4 +1,5 @@
 ---
+title: "supervisor tip"
 tags: ["tip", "linux"]
 ---
 

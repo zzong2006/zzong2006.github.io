@@ -1,4 +1,5 @@
 ---
+title: "covariance"
 tags: ["statistic", "metrics", "linear_regression"]
 aliases: ["covariance matrix", "공분산"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "negative log likelihood"
 tags: ["statistic", "machine_learning"]
 aliases: ["NLL"]
 ---

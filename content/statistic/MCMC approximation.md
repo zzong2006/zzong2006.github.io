@@ -1,4 +1,5 @@
 ---
+title: "MCMC approximation"
 tags: ["bayesian_inference", "sampling"]
 aliases: ["MCMC"]
 ---

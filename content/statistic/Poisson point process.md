@@ -1,3 +1,7 @@
+---
+title: "Poisson point process"
+---
+
 * Related
 	* [[Poisson distribution]]
 	* [[exponential distribution]]

@@ -1,4 +1,5 @@
 ---
+title: "cache"
 tags: ["operating_system", "computer_architecture"]
 aliases: ["cache"]
 ---

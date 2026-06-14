@@ -1,4 +1,5 @@
 ---
+title: "A study of methods for negative relevance feedback"
 tags: ["SIGIR", "paper_review", "y2008"]
 ---
 

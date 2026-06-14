@@ -1,3 +1,7 @@
+---
+title: "Stratified k-fold"
+---
+
 
 # 1. Stratified K-fold ?
 

@@ -1,4 +1,5 @@
 ---
+title: "DistributedDataParallel"
 tags: ["deep_learning", "LLM"]
 aliases: ["DDP"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "hyperparameter"
 tags: ["machine_learning"]
 aliases: ["하이퍼파라매터"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "mutual information"
 tags: ["information_theory", "statistic"]
 aliases: ["MI"]
 ---

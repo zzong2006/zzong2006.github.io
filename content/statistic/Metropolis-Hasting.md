@@ -1,4 +1,5 @@
 ---
+title: "Metropolis-Hasting"
 tags: ["sampling statistic"]
 ---
 

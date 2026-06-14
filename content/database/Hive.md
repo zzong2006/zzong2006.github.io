@@ -1,4 +1,5 @@
 ---
+title: "Hive"
 tags: ["database"]
 ---
 

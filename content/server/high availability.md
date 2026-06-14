@@ -1,4 +1,5 @@
 ---
+title: "high availability"
 tags: ["server"]
 aliases: ["HA", "고가용성"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Mortal Multi Armed Bandit (2008)"
 tags: ["recoteam", "MAB"]
 ---
 

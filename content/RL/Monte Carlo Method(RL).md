@@ -1,4 +1,5 @@
 ---
+title: "Monte Carlo Method(RL)"
 tags: ["reinforcement_learning"]
 ---
 

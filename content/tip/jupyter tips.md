@@ -1,4 +1,5 @@
 ---
+title: "jupyter tips"
 tags: ["tip", "python", "jupyter"]
 ---
 

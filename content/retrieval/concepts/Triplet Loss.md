@@ -1,4 +1,5 @@
 ---
+title: "Triplet Loss"
 tags: ["loss_function", "metric_learning", "retrieval"]
 aliases: ["Triplet Loss", "triplet loss"]
 ---

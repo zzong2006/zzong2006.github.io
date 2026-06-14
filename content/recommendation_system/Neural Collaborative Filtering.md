@@ -1,4 +1,5 @@
 ---
+title: "Neural Collaborative Filtering"
 tags: ["recommendation_system", "implicit_feedback", "deep_learning"]
 aliases: ["NCF", "NeuMF"]
 ---

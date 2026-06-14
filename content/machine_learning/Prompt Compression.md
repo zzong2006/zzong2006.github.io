@@ -1,4 +1,5 @@
 ---
+title: "Prompt Compression"
 tags: ["LLM"]
 ---
 LLMLingua의 식별 과정 중심에는 **퍼플렉시티([[perplexity]])** 라는 개념이 있습니다.

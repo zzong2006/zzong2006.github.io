@@ -1,4 +1,5 @@
 ---
+title: "polynomial regression"
 tags: ["linear_regression"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "MT-bench"
 tags: ["LMSYS", "LLM", "evaluation"]
 ---
 

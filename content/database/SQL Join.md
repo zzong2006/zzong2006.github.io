@@ -1,4 +1,5 @@
 ---
+title: "SQL Join"
 tags: ["database SQL"]
 ---
 

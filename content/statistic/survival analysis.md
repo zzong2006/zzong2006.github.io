@@ -1,4 +1,5 @@
 ---
+title: "survival analysis"
 tags: ["statistic"]
 aliases: ["생존분석"]
 ---

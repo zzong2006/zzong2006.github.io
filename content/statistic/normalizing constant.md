@@ -1,4 +1,5 @@
 ---
+title: "normalizing constant"
 tags: ["math", "statistic"]
 aliases: ["normalization coefficient", "정규화 상수"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "token pooling"
 tags: ["ColBERT", "IR"]
 ---
 

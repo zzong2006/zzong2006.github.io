@@ -1,4 +1,5 @@
 ---
+title: "InfoNCE"
 tags: ["loss_function", "contrastive_learning", "retrieval"]
 aliases: ["InfoNCE", "Info-NCE", "Noise Contrastive Estimation"]
 ---

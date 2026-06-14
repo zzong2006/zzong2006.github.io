@@ -1,4 +1,5 @@
 ---
+title: "curse of dimensionality"
 tags: ["machine_learning", "feature_engineering"]
 aliases: ["차원의 저주"]
 ---

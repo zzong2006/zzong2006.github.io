@@ -1,4 +1,5 @@
 ---
+title: "Role Based Access Control"
 tags: ["security"]
 aliases: ["RBAC"]
 ---

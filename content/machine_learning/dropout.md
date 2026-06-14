@@ -1,4 +1,5 @@
 ---
+title: "dropout"
 tags: ["deep_learning"]
 ---
 

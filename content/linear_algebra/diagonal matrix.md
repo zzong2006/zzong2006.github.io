@@ -1,4 +1,5 @@
 ---
+title: "diagonal matrix"
 tags: ["linear_algebra"]
 aliases: ["대각 행렬"]
 ---

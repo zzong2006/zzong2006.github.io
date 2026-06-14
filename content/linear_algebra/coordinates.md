@@ -1,4 +1,5 @@
 ---
+title: "coordinates"
 tags: ["linear_algebra"]
 ---
 

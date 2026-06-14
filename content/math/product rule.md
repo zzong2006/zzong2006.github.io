@@ -1,4 +1,5 @@
 ---
+title: "product rule"
 tags: ["statistic", "bayesian"]
 ---
 

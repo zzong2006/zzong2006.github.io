@@ -1,4 +1,5 @@
 ---
+title: "bound optimization"
 tags: ["optimization"]
 ---
 

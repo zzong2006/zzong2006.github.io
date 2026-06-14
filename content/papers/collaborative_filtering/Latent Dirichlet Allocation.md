@@ -1,4 +1,5 @@
 ---
+title: "Latent Dirichlet Allocation"
 tags: ["nlp", "paper_review", "topic_modeling"]
 aliases: ["LDA"]
 ---

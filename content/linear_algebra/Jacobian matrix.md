@@ -1,4 +1,5 @@
 ---
+title: "Jacobian matrix"
 tags: ["calculus", "linear_algebra", "differentitation"]
 aliases: ["자코비안"]
 ---

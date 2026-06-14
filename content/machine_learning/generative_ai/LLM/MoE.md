@@ -1,4 +1,5 @@
 ---
+title: "MoE"
 aliases: ["Mixture-of-Experts"]
 ---
 

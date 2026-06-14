@@ -1,4 +1,5 @@
 ---
+title: "Recommendation System"
 aliases: ["RS", "추천 시스템"]
 ---
 

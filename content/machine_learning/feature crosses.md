@@ -1,4 +1,5 @@
 ---
+title: "feature crosses"
 tags: ["feature_engineering"]
 aliases: ["특성 교차"]
 ---

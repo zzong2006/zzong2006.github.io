@@ -1,4 +1,5 @@
 ---
+title: "LIMA"
 tags: ["language_model", "LLM", "nlp", "paper_review"]
 ---
 

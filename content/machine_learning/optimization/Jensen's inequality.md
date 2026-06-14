@@ -1,4 +1,5 @@
 ---
+title: "Jensen's inequality"
 tags: ["optimization"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Geometric distribution"
 tags: ["statistic", "probability_distribution"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Microservice Architecture"
 aliases: ["MSA"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Doc2Vec"
 tags: ["NLP"]
 ---
 

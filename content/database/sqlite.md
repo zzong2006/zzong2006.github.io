@@ -1,4 +1,5 @@
 ---
+title: "sqlite"
 tags: ["database"]
 ---
 

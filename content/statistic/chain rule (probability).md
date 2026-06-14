@@ -1,4 +1,5 @@
 ---
+title: "chain rule (probability)"
 tags: ["statistic"]
 aliases: ["chain rule"]
 ---

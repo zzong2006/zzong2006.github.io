@@ -1,4 +1,5 @@
 ---
+title: "stateless"
 tags: ["server"]
 aliases: ["무상태"]
 ---

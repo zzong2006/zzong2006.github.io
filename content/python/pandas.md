@@ -1,3 +1,7 @@
+---
+title: "pandas"
+---
+
 * [[tip/Pandas]]
 
 # A) `groupby`

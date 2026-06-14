@@ -1,4 +1,5 @@
 ---
+title: "Lagrange multiplier method"
 tags: ["optimization"]
 ---
 

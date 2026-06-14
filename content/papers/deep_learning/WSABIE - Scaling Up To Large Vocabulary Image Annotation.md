@@ -1,4 +1,5 @@
 ---
+title: "WSABIE - Scaling Up To Large Vocabulary Image Annotation"
 tags: ["deep_learning", "paper_review", "recommendation_system"]
 aliases: ["WARP", "WSABIE"]
 ---

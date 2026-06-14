@@ -1,4 +1,5 @@
 ---
+title: "django"
 tags: ["server"]
 ---
 

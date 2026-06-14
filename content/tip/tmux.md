@@ -1,4 +1,5 @@
 ---
+title: "tmux"
 tags: ["tip"]
 ---
 

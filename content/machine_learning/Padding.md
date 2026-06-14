@@ -1,4 +1,5 @@
 ---
+title: "Padding"
 tags: ["deep_learning CNN", "plzlookup"]
 ---
 

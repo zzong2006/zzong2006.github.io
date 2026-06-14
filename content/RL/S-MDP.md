@@ -1,4 +1,5 @@
 ---
+title: "S-MDP"
 tags: ["reinforcement_learning"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "correlation"
 tags: ["metrics", "statistic"]
 aliases: ["상관"]
 ---

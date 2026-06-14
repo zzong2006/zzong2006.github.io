@@ -1,4 +1,5 @@
 ---
+title: "Gaussian elimination"
 tags: ["linear_algebra"]
 ---
 

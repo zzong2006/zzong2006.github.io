@@ -1,4 +1,5 @@
 ---
+title: "computational graph"
 tags: ["machine_learning"]
 ---
 

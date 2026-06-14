@@ -1,4 +1,5 @@
 ---
+title: "Kernel Fusion"
 tags: ["server", "inference"]
 ---
 

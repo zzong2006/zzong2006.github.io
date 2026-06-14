@@ -1,4 +1,5 @@
 ---
+title: "Information Noise-Contrastive Estimation"
 tags: ["language_model", "NLP", "nlp", "paper_review"]
 aliases: ["InfoNCE"]
 ---

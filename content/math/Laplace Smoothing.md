@@ -1,3 +1,7 @@
+---
+title: "Laplace Smoothing"
+---
+
 
 # Laplace Smoothing ?
 

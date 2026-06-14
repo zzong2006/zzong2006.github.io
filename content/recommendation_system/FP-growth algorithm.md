@@ -1,4 +1,5 @@
 ---
+title: "FP-growth algorithm"
 tags: ["algorithm", "recommendation_system"]
 ---
 

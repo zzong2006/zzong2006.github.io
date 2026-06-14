@@ -1,4 +1,5 @@
 ---
+title: "analogous to"
 tags: ["word"]
 ---
 

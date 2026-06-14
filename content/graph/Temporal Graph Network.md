@@ -1,4 +1,5 @@
 ---
+title: "Temporal Graph Network"
 tags: ["GNN", "graph", "deep_learning"]
 ---
 

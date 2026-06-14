@@ -1,4 +1,5 @@
 ---
+title: "gradient accumulation"
 tags: ["deep_learning", "generative_model"]
 ---
 

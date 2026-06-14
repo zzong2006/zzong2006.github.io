@@ -1,4 +1,5 @@
 ---
+title: "approximate posterior inference"
 tags: ["bayesian_inference"]
 ---
 

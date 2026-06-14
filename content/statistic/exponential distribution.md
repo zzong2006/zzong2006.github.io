@@ -1,4 +1,5 @@
 ---
+title: "exponential distribution"
 tags: ["probability_distribution"]
 ---
 

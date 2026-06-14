@@ -1,4 +1,5 @@
 ---
+title: "sampling"
 tags: ["machine_learning"]
 ---
 

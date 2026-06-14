@@ -1,4 +1,5 @@
 ---
+title: "joint distribution"
 tags: ["probability_distribution", "statistic"]
 ---
 

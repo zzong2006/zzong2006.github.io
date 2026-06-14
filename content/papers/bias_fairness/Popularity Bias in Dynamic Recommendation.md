@@ -1,4 +1,5 @@
 ---
+title: "Popularity Bias in Dynamic Recommendation"
 tags: ["KDD", "bias", "fairness", "paper_review", "popularity_bias", "recommendation_system", "y2021"]
 ---
 

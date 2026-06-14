@@ -1,4 +1,5 @@
 ---
+title: "Pyro"
 tags: ["python", "statistic", "library", "PyTorch", "bayesian_inference"]
 ---
 

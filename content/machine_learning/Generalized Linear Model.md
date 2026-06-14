@@ -1,4 +1,5 @@
 ---
+title: "Generalized Linear Model"
 tags: ["linear_regression", "machine_learning"]
 aliases: ["GLM"]
 ---

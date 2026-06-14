@@ -1,4 +1,5 @@
 ---
+title: "vicuna"
 tags: ["LLM"]
 aliases: ["비쿠나"]
 ---

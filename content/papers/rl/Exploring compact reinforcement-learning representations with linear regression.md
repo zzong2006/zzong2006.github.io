@@ -1,4 +1,5 @@
 ---
+title: "Exploring compact reinforcement-learning representations with linear regression"
 tags: ["MAB", "linear_regression", "paper_review", "reinforcement_learning"]
 aliases: ["KWIK"]
 ---

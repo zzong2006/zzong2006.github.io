@@ -1,4 +1,5 @@
 ---
+title: "Isotonic Regression"
 tags: ["linear_regression"]
 ---
 

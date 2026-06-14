@@ -1,3 +1,7 @@
+---
+title: "Hidden Markov Model과 추천"
+---
+
 
 # A) Hidden Markov Model 과 추천
 

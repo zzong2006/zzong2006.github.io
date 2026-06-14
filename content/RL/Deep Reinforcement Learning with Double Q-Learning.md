@@ -1,4 +1,5 @@
 ---
+title: "Deep Reinforcement Learning with Double Q-Learning"
 tags: ["reinforcement_learning Google y2016 AAAI"]
 aliases: ["DDQN"]
 ---

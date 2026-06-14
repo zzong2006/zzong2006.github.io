@@ -1,3 +1,7 @@
+---
+title: "confusion matrix"
+---
+
 # A) Confusion Matrix
 
 ![Confusion Matrix](https://i.loli.net/2020/11/05/mRcQTGMuyaCpKJV.jpg)

@@ -1,4 +1,5 @@
 ---
+title: "Beam search"
 tags: ["NLP"]
 ---
 

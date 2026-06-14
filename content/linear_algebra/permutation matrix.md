@@ -1,4 +1,5 @@
 ---
+title: "permutation matrix"
 tags: ["linear_algebra"]
 ---
 

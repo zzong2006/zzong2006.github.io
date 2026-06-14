@@ -1,4 +1,5 @@
 ---
+title: "interpolation"
 tags: ["math"]
 aliases: ["보간법"]
 ---

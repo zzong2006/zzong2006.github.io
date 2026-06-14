@@ -1,4 +1,5 @@
 ---
+title: "Graph Neural Network"
 tags: ["graph", "deep_learning"]
 aliases: ["GNN"]
 ---

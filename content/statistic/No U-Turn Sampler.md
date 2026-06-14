@@ -1,4 +1,5 @@
 ---
+title: "No U-Turn Sampler"
 tags: ["sampling"]
 aliases: ["NUTS sampler"]
 ---

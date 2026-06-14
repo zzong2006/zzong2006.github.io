@@ -1,4 +1,5 @@
 ---
+title: "BEQUE - Large Language Model based Long-tail Query Rewriting in Taobao Search"
 tags: ["e-commerce", "WWW", "paper_review", "query_rewriting", "LLM", "y2024", "todo"]
 aliases: ["BEQUE", "Taobao Query Rewriting"]
 ---

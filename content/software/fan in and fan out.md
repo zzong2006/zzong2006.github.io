@@ -1,4 +1,5 @@
 ---
+title: "fan in and fan out"
 tags: ["software_design"]
 ---
 

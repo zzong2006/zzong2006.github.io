@@ -1,4 +1,5 @@
 ---
+title: "Inverse matrix"
 tags: ["linear_algebra"]
 aliases: ["regular matrix", "invertible matrix", "nonsingular matrix", "regular", "invertible", "nonsingular", "역행렬"]
 ---

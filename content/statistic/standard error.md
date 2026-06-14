@@ -1,4 +1,5 @@
 ---
+title: "standard error"
 tags: ["metrics", "machine_learning", "statistic"]
 aliases: ["SE", "표준 오차"]
 ---

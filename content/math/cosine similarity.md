@@ -1,4 +1,5 @@
 ---
+title: "cosine similarity"
 tags: ["math", "metrics", "machine_learning"]
 ---
 

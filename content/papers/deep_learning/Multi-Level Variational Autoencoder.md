@@ -1,4 +1,5 @@
 ---
+title: "Multi-Level Variational Autoencoder"
 tags: ["deep_learning", "paper_review"]
 aliases: ["multi-VAE"]
 ---

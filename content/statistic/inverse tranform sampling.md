@@ -1,4 +1,5 @@
 ---
+title: "inverse tranform sampling"
 tags: ["statistic"]
 ---
 

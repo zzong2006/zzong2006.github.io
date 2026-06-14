@@ -1,4 +1,5 @@
 ---
+title: "upstream(NGINX)"
 tags: ["server"]
 ---
 

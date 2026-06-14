@@ -1,4 +1,5 @@
 ---
+title: "General Language Understanding Evaluation"
 tags: ["NLP"]
 aliases: ["GLUE"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "CLIP"
 tags: ["machine_learning", "multimodal", "contrastive_learning"]
 aliases: ["CLIP", "Contrastive Language-Image Pre-training"]
 ---

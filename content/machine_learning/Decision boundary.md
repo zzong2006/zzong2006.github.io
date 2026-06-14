@@ -1,4 +1,5 @@
 ---
+title: "Decision boundary"
 tags: ["machine_learning classification"]
 ---
 

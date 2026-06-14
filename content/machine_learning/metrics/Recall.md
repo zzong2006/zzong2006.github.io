@@ -1,4 +1,5 @@
 ---
+title: "Recall"
 tags: ["machine_learning", "metrics"]
 aliases: ["sensitivity", "hit rate", "true positive rate", "TPR", "재현율"]
 ---

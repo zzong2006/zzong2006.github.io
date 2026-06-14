@@ -1,4 +1,5 @@
 ---
+title: "Latent Semantic Analysis"
 tags: ["topic_modeling", "embedding"]
 aliases: ["LSA"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "data type of C++"
 tags: ["Cpp"]
 ---
 

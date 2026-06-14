@@ -1,3 +1,7 @@
+---
+title: "Sampling the Imaginary"
+---
+
 * Tags
 	* [[Statistical Rethinking]]
 * Sampling to simulate prediction

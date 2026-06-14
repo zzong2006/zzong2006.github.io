@@ -1,4 +1,5 @@
 ---
+title: "Self-Rewarding Language Models"
 tags: ["language_model", "Meta", "nlp", "paper_review", "y2024"]
 ---
 

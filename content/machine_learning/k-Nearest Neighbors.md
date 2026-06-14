@@ -1,4 +1,5 @@
 ---
+title: "k-Nearest Neighbors"
 tags: ["machine_learning", "clustering", "classification"]
 aliases: ["KNN"]
 ---

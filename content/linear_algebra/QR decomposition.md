@@ -1,4 +1,5 @@
 ---
+title: "QR decomposition"
 tags: ["linear_algebra"]
 ---
 

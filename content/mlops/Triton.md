@@ -1,4 +1,5 @@
 ---
+title: "Triton"
 tags: ["server", "deep_learning", "MLOps"]
 aliases: ["트리톤"]
 ---

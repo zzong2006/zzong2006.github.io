@@ -1,4 +1,5 @@
 ---
+title: "Batch Decoding"
 tags: ["LLM"]
 ---
 

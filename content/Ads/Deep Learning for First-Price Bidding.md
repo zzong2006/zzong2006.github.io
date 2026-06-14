@@ -1,3 +1,7 @@
+---
+title: "Deep Learning for First-Price Bidding"
+---
+
 
 ### Z.1.1) **최소 승리 가격(Minimum Winning Price)**
 

@@ -1,4 +1,5 @@
 ---
+title: "WARP - An Efficient Engine for Multi-Vector Retrieval"
 tags: ["retrieval", "IR", "embedding", "multi_vector", "paper_review", "SIGIR", "y2025"]
 aliases: ["WARP"]
 ---

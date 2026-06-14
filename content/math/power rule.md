@@ -1,4 +1,5 @@
 ---
+title: "power rule"
 tags: ["differentitation"]
 aliases: ["멱함수 미분공식"]
 ---

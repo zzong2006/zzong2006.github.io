@@ -1,4 +1,5 @@
 ---
+title: "True Positive Rate"
 tags: ["metrics", "machine_learning"]
 aliases: ["TPR", "sensitivity", "true positive rate"]
 ---

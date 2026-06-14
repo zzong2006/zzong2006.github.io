@@ -1,4 +1,5 @@
 ---
+title: "pivot"
 tags: ["linear_algebra"]
 aliases: ["pivot column"]
 ---

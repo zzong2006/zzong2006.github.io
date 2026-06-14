@@ -1,4 +1,5 @@
 ---
+title: "sample space"
 tags: ["statistic", "probability"]
 ---
 

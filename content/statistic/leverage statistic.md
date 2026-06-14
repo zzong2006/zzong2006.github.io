@@ -1,4 +1,5 @@
 ---
+title: "leverage statistic"
 tags: ["statistic"]
 ---
 

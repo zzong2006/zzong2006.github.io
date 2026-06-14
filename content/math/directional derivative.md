@@ -1,4 +1,5 @@
 ---
+title: "directional derivative"
 tags: ["calculus", "differentitation"]
 aliases: ["방향도함수"]
 ---

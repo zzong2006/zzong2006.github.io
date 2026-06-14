@@ -1,4 +1,5 @@
 ---
+title: "torch.diagonal"
 tags: ["PyTorch", "NLP", "attention"]
 ---
 

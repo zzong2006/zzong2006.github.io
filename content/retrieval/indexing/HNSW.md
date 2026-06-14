@@ -1,4 +1,5 @@
 ---
+title: "HNSW"
 tags: ["ANN", "vector_search", "graph_based"]
 aliases: ["Hierarchical Navigable Small World", "HSNW"]
 ---

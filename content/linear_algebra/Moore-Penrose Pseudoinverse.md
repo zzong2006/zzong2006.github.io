@@ -1,4 +1,5 @@
 ---
+title: "Moore-Penrose Pseudoinverse"
 tags: ["linear_algebra"]
 ---
 

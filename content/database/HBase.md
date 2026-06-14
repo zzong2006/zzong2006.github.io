@@ -1,4 +1,5 @@
 ---
+title: "HBase"
 tags: ["NoSQL"]
 ---
 

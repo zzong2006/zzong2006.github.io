@@ -1,4 +1,5 @@
 ---
+title: "Bayesian network"
 tags: ["PGM"]
 aliases: ["directed graphical model", "BN", "베이지안 네트워크"]
 ---

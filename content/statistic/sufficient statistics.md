@@ -1,3 +1,7 @@
+---
+title: "sufficient statistics"
+---
+
 
 # 1. Sufficient Statistics ?
 

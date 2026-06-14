@@ -1,4 +1,5 @@
 ---
+title: "orthogonal"
 tags: ["linear_algebra"]
 ---
 

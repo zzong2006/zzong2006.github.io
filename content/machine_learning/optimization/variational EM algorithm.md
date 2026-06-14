@@ -1,4 +1,5 @@
 ---
+title: "variational EM algorithm"
 tags: ["optimization bayesian_inference"]
 ---
 

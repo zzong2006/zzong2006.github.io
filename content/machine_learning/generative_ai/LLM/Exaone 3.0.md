@@ -1,4 +1,5 @@
 ---
+title: "Exaone 3.0"
 tags: ["LG"]
 ---
 

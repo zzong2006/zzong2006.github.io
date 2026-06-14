@@ -1,4 +1,5 @@
 ---
+title: "Factorization Machines"
 tags: ["collaborative_filtering", "paper_review", "machine_learning"]
 aliases: ["FM"]
 ---

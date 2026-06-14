@@ -1,4 +1,5 @@
 ---
+title: "salt (hash)"
 tags: ["info_sec"]
 ---
 

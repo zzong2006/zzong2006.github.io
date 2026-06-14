@@ -1,4 +1,5 @@
 ---
+title: "Semaphore"
 tags: ["operating_system"]
 ---
 

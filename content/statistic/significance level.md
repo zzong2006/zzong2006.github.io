@@ -1,4 +1,5 @@
 ---
+title: "significance level"
 tags: ["hypothesis_test"]
 aliases: ["유의 수준"]
 ---

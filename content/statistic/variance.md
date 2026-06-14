@@ -1,4 +1,5 @@
 ---
+title: "variance"
 tags: ["statistic", "machine_learning"]
 aliases: ["분산"]
 ---

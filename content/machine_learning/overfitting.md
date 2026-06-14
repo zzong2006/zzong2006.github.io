@@ -1,4 +1,5 @@
 ---
+title: "overfitting"
 tags: ["machine_learning"]
 aliases: ["오버피팅"]
 ---

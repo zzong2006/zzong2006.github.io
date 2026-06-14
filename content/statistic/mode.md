@@ -1,4 +1,5 @@
 ---
+title: "mode"
 tags: ["statistic"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "hyperplane"
 tags: ["linear_algebra"]
 ---
 

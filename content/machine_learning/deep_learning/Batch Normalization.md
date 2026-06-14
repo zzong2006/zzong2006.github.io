@@ -1,4 +1,5 @@
 ---
+title: "Batch Normalization"
 tags: ["deep_learning"]
 aliases: ["BN"]
 ---

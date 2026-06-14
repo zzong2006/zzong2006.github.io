@@ -1,4 +1,5 @@
 ---
+title: "residual"
 tags: ["statistic", "optimization"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "basis"
 tags: ["linear_algebra"]
 aliases: ["기저"]
 ---

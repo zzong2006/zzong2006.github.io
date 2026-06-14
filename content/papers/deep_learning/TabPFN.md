@@ -1,4 +1,5 @@
 ---
+title: "TabPFN"
 tags: ["deep_learning", "kaggle", "paper_review", "tabular"]
 ---
 

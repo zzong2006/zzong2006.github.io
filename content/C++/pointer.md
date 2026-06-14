@@ -1,4 +1,5 @@
 ---
+title: "pointer"
 tags: ["Cpp"]
 ---
 

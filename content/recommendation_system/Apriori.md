@@ -1,4 +1,5 @@
 ---
+title: "Apriori"
 tags: ["algorithm", "recommendation_system"]
 ---
 

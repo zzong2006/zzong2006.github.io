@@ -1,4 +1,5 @@
 ---
+title: "lua"
 tags: ["programming", "language"]
 ---
 

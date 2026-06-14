@@ -1,4 +1,5 @@
 ---
+title: "Seesaw Effect"
 tags: ["retrieval", "ranking", "pre-ranking", "trade-off", "cascade-ranking", "e-commerce"]
 aliases: ["Seesaw Phenomenon", "시소 효과"]
 ---

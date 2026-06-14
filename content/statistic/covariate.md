@@ -1,4 +1,5 @@
 ---
+title: "covariate"
 tags: ["statistic"]
 aliases: ["공변량"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "out of fold prediction"
 tags: ["machine_learning"]
 aliases: ["OOF", "stacking"]
 ---

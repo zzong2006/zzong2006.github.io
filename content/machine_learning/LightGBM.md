@@ -1,4 +1,5 @@
 ---
+title: "LightGBM"
 tags: ["GBM"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "basic variable"
 tags: ["linear_algebra"]
 ---
 

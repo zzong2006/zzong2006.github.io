@@ -1,4 +1,5 @@
 ---
+title: "Policy Gradient"
 tags: ["reinforcement_learning"]
 aliases: ["정책 경사"]
 ---

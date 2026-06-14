@@ -1,4 +1,5 @@
 ---
+title: "Factorization Meets the Item Embedding - Regularizing Matrix Factorization with Item Co-occurrence"
 tags: ["RecSyS", "collaborative_filtering", "paper_review", "recommendation_system", "word2vec", "y2016"]
 aliases: ["CFR", "CoFactor"]
 ---

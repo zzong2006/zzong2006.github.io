@@ -1,4 +1,5 @@
 ---
+title: "downsampling"
 tags: ["machine_learning"]
 ---
 

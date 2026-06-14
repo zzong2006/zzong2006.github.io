@@ -1,4 +1,5 @@
 ---
+title: "classification"
 tags: ["classification"]
 aliases: ["분류"]
 ---

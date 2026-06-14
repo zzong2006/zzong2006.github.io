@@ -1,4 +1,5 @@
 ---
+title: "Consumer"
 tags: ["kafka", "streaming", "data_engineering"]
 aliases: ["Kafka Consumer"]
 ---

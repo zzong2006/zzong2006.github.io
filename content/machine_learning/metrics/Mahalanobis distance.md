@@ -1,4 +1,5 @@
 ---
+title: "Mahalanobis distance"
 tags: ["metrics"]
 ---
 

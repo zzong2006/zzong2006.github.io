@@ -1,4 +1,5 @@
 ---
+title: "morphemes"
 tags: ["NLP"]
 aliases: ["형태소"]
 ---

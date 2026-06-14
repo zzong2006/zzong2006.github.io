@@ -1,4 +1,5 @@
 ---
+title: "Cholesky Decomposition"
 tags: ["linear_algebra"]
 aliases: ["숄레스키 분해"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "regularization"
 tags: ["machine_learning", "deep_learning", "linear_regression"]
 ---
 

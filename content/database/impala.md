@@ -1,4 +1,5 @@
 ---
+title: "impala"
 tags: ["SQL", "open_source"]
 aliases: ["임팔라"]
 ---

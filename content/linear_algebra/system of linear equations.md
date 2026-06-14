@@ -1,4 +1,5 @@
 ---
+title: "system of linear equations"
 tags: ["linear_algebra"]
 ---
 

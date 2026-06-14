@@ -1,4 +1,5 @@
 ---
+title: "prediction interval"
 tags: ["statistic"]
 ---
 

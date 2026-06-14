@@ -1,4 +1,5 @@
 ---
+title: "Rules of ML"
 tags: ["tech_blog", "machine_learning", "Google", "lessons"]
 ---
 

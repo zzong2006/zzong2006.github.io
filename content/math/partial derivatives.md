@@ -1,4 +1,5 @@
 ---
+title: "partial derivatives"
 tags: ["differentitation", "calculus"]
 ---
 

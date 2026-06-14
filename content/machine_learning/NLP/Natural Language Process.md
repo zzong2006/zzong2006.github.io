@@ -1,4 +1,5 @@
 ---
+title: "Natural Language Process"
 aliases: ["자연어처리"]
 ---
 

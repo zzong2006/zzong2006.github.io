@@ -1,4 +1,5 @@
 ---
+title: "Mutex"
 tags: ["operating_system"]
 ---
 

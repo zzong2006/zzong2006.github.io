@@ -1,4 +1,5 @@
 ---
+title: "Bellman optimality equation"
 tags: ["reinforcement_learning"]
 ---
 

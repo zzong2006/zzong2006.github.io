@@ -1,4 +1,5 @@
 ---
+title: "random forest"
 tags: ["ensemble", "machine_learning"]
 aliases: ["RF"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Gated Recurrent Unit"
 aliases: ["GRU"]
 ---
 

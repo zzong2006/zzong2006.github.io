@@ -1,4 +1,5 @@
 ---
+title: "tangent plane"
 tags: ["differentitation", "calculus"]
 aliases: ["접평면"]
 ---

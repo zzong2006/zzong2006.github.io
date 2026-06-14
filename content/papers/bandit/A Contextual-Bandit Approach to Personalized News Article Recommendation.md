@@ -1,4 +1,5 @@
 ---
+title: "A Contextual-Bandit Approach to Personalized News Article Recommendation"
 tags: ["MAB", "bandit", "linear_regression", "paper_review", "recommendation_system"]
 aliases: ["LinUCB"]
 ---

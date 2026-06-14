@@ -1,4 +1,5 @@
 ---
+title: "BFGS"
 tags: ["optimization", "machine_learning", "deep_learning"]
 aliases: ["BFGS algorithm"]
 ---

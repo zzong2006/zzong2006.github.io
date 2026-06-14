@@ -1,4 +1,5 @@
 ---
+title: "Machine Learning project lifecycle"
 tags: ["MLOps", "machine_learning"]
 ---
 

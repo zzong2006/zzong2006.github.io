@@ -1,4 +1,5 @@
 ---
+title: "real-time bidding"
 tags: ["advertisement"]
 aliases: ["RTB"]
 ---

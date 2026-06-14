@@ -1,4 +1,5 @@
 ---
+title: "greedy algorithm"
 tags: ["algorithm"]
 aliases: ["greedy"]
 ---

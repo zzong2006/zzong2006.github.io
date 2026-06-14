@@ -1,4 +1,5 @@
 ---
+title: "effect size"
 tags: ["statistic", "experiments"]
 ---
 

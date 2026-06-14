@@ -1,4 +1,5 @@
 ---
+title: "KoRean based Bert pre-trained"
 tags: ["NLP y2020"]
 aliases: ["KR-BERT"]
 ---

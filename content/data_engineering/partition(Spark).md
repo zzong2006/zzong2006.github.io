@@ -1,4 +1,5 @@
 ---
+title: "partition(Spark)"
 tags: ["Spark"]
 aliases: ["partition"]
 ---

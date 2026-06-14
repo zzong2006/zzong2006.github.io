@@ -1,4 +1,5 @@
 ---
+title: "posterior"
 tags: ["statistic bayesian_inference"]
 ---
 

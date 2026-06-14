@@ -1,4 +1,5 @@
 ---
+title: "factor of PGM"
 tags: ["PGM", "paper_review"]
 aliases: ["factor"]
 ---

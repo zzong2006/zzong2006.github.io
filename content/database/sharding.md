@@ -1,4 +1,5 @@
 ---
+title: "sharding"
 tags: ["database"]
 aliases: ["샤딩", "shard"]
 ---

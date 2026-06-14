@@ -1,4 +1,5 @@
 ---
+title: "dimension reduction"
 tags: ["feature_engineering"]
 ---
 

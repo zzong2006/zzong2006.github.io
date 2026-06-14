@@ -1,4 +1,5 @@
 ---
+title: "Graph Learning based Recommender Systems"
 tags: ["deep_learning", "graph", "paper_review", "recommendation_system"]
 aliases: ["GLRS"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "likelihood"
 tags: ["statistic"]
 ---
 

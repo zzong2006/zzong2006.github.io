@@ -1,4 +1,5 @@
 ---
+title: "all-mpnet-base-v2"
 tags: ["embedding", "dense_retrieval"]
 ---
 

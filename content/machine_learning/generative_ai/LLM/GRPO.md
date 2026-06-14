@@ -1,4 +1,5 @@
 ---
+title: "GRPO"
 tags: ["reinforcement_learning", "LLM"]
 aliases: ["Group Relative Policy Optimization"]
 ---

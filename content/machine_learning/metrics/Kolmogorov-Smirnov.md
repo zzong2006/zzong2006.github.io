@@ -1,4 +1,5 @@
 ---
+title: "Kolmogorov-Smirnov"
 tags: ["metrics", "activation_function"]
 aliases: ["KS"]
 ---

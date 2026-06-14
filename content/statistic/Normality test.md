@@ -1,4 +1,5 @@
 ---
+title: "Normality test"
 tags: ["statistic"]
 ---
 

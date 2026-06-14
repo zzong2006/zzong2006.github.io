@@ -1,4 +1,5 @@
 ---
+title: "method of moments"
 tags: ["MAB", "reinforcement_learning"]
 aliases: ["moment method"]
 ---

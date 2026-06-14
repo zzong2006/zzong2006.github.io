@@ -1,4 +1,5 @@
 ---
+title: "Z-test"
 tags: ["hypothesis_test statistic"]
 ---
 

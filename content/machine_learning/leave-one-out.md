@@ -1,4 +1,5 @@
 ---
+title: "leave-one-out"
 tags: ["machine_learning offline_evaluation"]
 aliases: ["LOOCV"]
 ---

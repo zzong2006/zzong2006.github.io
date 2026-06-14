@@ -1,4 +1,5 @@
 ---
+title: "Tutorial on Probablistic Latent Semantic Analysis"
 tags: ["nlp", "paper_review"]
 ---
 

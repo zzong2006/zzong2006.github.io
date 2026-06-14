@@ -1,4 +1,5 @@
 ---
+title: "Kronecker product"
 tags: ["linear_algebra"]
 ---
 

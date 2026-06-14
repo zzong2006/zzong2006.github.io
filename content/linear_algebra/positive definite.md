@@ -1,4 +1,5 @@
 ---
+title: "positive definite"
 tags: ["linear_algebra"]
 aliases: ["positive semi-definite"]
 ---

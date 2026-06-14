@@ -1,4 +1,5 @@
 ---
+title: "expectation"
 tags: ["statistic"]
 aliases: ["기댓값", "기대값", "expected value"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "xRAG"
 tags: ["retrieval", "RAG", "IR", "paper_review"]
 ---
 

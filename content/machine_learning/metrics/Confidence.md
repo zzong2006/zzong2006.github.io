@@ -1,3 +1,7 @@
+---
+title: "Confidence"
+---
+
 
 # A) Confidence ?
 

@@ -1,4 +1,5 @@
 ---
+title: "alignment tax"
 tags: ["generative_model"]
 ---
 

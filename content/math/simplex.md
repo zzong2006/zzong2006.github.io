@@ -1,4 +1,5 @@
 ---
+title: "simplex"
 tags: ["math"]
 ---
 

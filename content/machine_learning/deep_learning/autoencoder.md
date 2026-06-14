@@ -1,4 +1,5 @@
 ---
+title: "autoencoder"
 aliases: ["AE", "오토인코더"]
 ---
 

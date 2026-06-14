@@ -1,4 +1,5 @@
 ---
+title: "research idea"
 tags: ["brainstroming"]
 ---
 

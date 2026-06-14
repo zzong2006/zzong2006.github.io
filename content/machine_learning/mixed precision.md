@@ -1,3 +1,7 @@
+---
+title: "mixed precision"
+---
+
 
 # A) Mixed Precision ?
 

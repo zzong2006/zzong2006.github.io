@@ -1,4 +1,5 @@
 ---
+title: "Kendall rank correlation"
 tags: ["statistic"]
 ---
 

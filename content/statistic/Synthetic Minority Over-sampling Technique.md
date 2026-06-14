@@ -1,4 +1,5 @@
 ---
+title: "Synthetic Minority Over-sampling Technique"
 tags: ["sampling machine_learning"]
 aliases: ["SMOTE"]
 ---

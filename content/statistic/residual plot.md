@@ -1,4 +1,5 @@
 ---
+title: "residual plot"
 tags: ["statistic", "machine_learning"]
 ---
 

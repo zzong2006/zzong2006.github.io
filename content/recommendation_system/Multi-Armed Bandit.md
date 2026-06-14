@@ -1,4 +1,5 @@
 ---
+title: "Multi-Armed Bandit"
 tags: ["MAB", "reinforcement_learning"]
 aliases: ["MAB"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "scale invariant"
 tags: ["machine_learning", "linear_regression"]
 ---
 

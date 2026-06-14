@@ -1,4 +1,5 @@
 ---
+title: "n-gram"
 tags: ["NLP"]
 ---
 

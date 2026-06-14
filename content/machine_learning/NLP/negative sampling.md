@@ -1,4 +1,5 @@
 ---
+title: "negative sampling"
 tags: ["supervised_learning", "word2vec", "classification"]
 ---
 

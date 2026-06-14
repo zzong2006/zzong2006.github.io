@@ -1,4 +1,5 @@
 ---
+title: "MUVERA"
 tags: ["retrieval", "IR", "ANN", "multi_vector"]
 aliases: ["무베라"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Hypothesis"
 tags: ["statistic hypothesis_test"]
 ---
 

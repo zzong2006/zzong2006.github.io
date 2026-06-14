@@ -1,4 +1,5 @@
 ---
+title: "layer normalization"
 tags: ["deep_learning machine_learning"]
 ---
 

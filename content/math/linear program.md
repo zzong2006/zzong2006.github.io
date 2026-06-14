@@ -1,4 +1,5 @@
 ---
+title: "linear program"
 tags: ["optimization"]
 aliases: ["linear programming"]
 ---

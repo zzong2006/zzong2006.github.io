@@ -1,4 +1,5 @@
 ---
+title: "Maximum Likelihood Estimation"
 aliases: ["MLE"]
 ---
 

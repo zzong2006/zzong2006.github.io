@@ -1,4 +1,5 @@
 ---
+title: "coroutine"
 tags: ["python"]
 aliases: ["코루틴"]
 ---

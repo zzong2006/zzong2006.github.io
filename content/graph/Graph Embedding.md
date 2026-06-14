@@ -1,4 +1,5 @@
 ---
+title: "Graph Embedding"
 tags: ["graph", "representation_learning"]
 aliases: ["graph embedding"]
 ---

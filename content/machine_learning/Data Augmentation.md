@@ -1,4 +1,5 @@
 ---
+title: "Data Augmentation"
 tags: ["machine_learning", "deep_learning"]
 ---
 

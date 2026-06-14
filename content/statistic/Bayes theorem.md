@@ -1,4 +1,5 @@
 ---
+title: "Bayes theorem"
 tags: ["statistic", "bayesian"]
 ---
 

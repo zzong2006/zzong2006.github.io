@@ -1,4 +1,5 @@
 ---
+title: "residual connection"
 tags: ["resnet", "residual", "machine_learning", "CNN", "deep_learning"]
 ---
 

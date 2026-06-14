@@ -1,4 +1,5 @@
 ---
+title: "Mean Normalization"
 tags: ["feature_engineering"]
 ---
 

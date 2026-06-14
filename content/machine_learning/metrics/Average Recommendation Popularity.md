@@ -1,4 +1,5 @@
 ---
+title: "Average Recommendation Popularity"
 tags: ["bias", "recommendation_system"]
 aliases: ["ARP"]
 ---

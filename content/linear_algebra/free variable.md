@@ -1,4 +1,5 @@
 ---
+title: "free variable"
 tags: ["linear_algebra", "programming"]
 ---
 

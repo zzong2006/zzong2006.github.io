@@ -1,4 +1,5 @@
 ---
+title: "Vectorization (mathematics)"
 tags: ["linear_algebra"]
 ---
 

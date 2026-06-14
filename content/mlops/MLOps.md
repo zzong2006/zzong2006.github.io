@@ -1,4 +1,5 @@
 ---
+title: "MLOps"
 tags: ["machine_learning", "pipeline"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "categorical distribution"
 tags: ["statistic", "probability_distribution"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "outer product"
 tags: ["linear_algebra"]
 aliases: ["외적"]
 ---

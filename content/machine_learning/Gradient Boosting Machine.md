@@ -1,4 +1,5 @@
 ---
+title: "Gradient Boosting Machine"
 tags: ["ensemble", "machine_learning"]
 aliases: ["GBM", "gradient boosting"]
 ---

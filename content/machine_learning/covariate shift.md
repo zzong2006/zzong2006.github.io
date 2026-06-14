@@ -1,4 +1,5 @@
 ---
+title: "covariate shift"
 tags: ["machine_learning"]
 ---
 

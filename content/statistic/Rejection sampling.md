@@ -1,4 +1,5 @@
 ---
+title: "Rejection sampling"
 tags: ["sampling", "statistic"]
 ---
 

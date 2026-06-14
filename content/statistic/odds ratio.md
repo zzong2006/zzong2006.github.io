@@ -1,4 +1,5 @@
 ---
+title: "odds ratio"
 tags: ["statistic"]
 aliases: ["odds"]
 ---

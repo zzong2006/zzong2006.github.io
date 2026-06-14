@@ -1,4 +1,5 @@
 ---
+title: "rule of probabilities"
 tags: ["statistic", "probability"]
 ---
 

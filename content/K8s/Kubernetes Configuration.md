@@ -1,3 +1,7 @@
+---
+title: "Kubernetes Configuration"
+---
+
 * 각 configuration 파일은 3 개의 파트로 구성되어 있음
 	* metadata
 		* label: service 의 selector 가 해당 label 의 이름을 선택하도록 한다.

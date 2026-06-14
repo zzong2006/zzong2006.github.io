@@ -1,4 +1,5 @@
 ---
+title: "scale up and scale out"
 tags: ["server"]
 aliases: ["scale up", "scale out"]
 ---

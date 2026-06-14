@@ -1,4 +1,5 @@
 ---
+title: "FQDN"
 tags: ["network"]
 aliases: ["fully qualified domain name"]
 ---

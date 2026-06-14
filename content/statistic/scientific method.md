@@ -1,4 +1,5 @@
 ---
+title: "scientific method"
 tags: ["hypothesis_test"]
 ---
 
