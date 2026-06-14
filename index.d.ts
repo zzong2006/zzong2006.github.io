@@ -12,5 +12,7 @@ interface CustomEventMap {
   render: CustomEvent<{}>
 }
 
-type ContentIndex = Record<FullSlug, ContentDetails>
+type ContentIndex = Record<FullSlug, Pick<ContentDetails, "slug" | "title">>
+type SearchIndex = Record<FullSlug, Pick<ContentDetails, "slug" | "title" | "content">>
 declare const fetchData: Promise<ContentIndex>
+declare const fetchSearchData: () => Promise<SearchIndex>

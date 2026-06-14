@@ -72,7 +72,15 @@ export function pageResources(
   })
 
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
-  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
+  const searchIndexPath = joinSegments(baseDir, "static/searchIndex.json")
+  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())
+let fetchSearchDataPromise
+const fetchSearchData = () => {
+  if (!fetchSearchDataPromise) {
+    fetchSearchDataPromise = fetch("${searchIndexPath}").then(data => data.json())
+  }
+  return fetchSearchDataPromise
+}`
 
   const resources: StaticResources = {
     css: [

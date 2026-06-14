@@ -1,10 +1,17 @@
 import { PageFrame, PageFrameProps } from "./types"
 import HeaderConstructor from "../Header"
+import { QuartzComponent, QuartzComponentProps } from "../types"
 
 const Header = HeaderConstructor()
 
+function renderComponents(components: QuartzComponent[], componentData: QuartzComponentProps) {
+  return components
+    .filter((Component): Component is QuartzComponent => typeof Component === "function")
+    .map((Component) => <Component {...componentData} />)
+}
+
 /**
- * Full-width page frame — no sidebars. The center content area spans the
+ * Full-width page frame - no sidebars. The center content area spans the
  * full width of the page. Header, beforeBody, body, afterBody, and footer
  * are all rendered in a single column.
  *
@@ -25,24 +32,14 @@ export const FullWidthFrame: PageFrame = {
       <>
         <div class="center full-width">
           <div class="page-header">
-            <Header {...componentData}>
-              {header.map((HeaderComponent) => (
-                <HeaderComponent {...componentData} />
-              ))}
-            </Header>
+            <Header {...componentData}>{renderComponents(header, componentData)}</Header>
             <div class="popover-hint">
-              {beforeBody.map((BodyComponent) => (
-                <BodyComponent {...componentData} />
-              ))}
+              {renderComponents(beforeBody, componentData)}
             </div>
           </div>
           <Content {...componentData} />
           <hr />
-          <div class="page-footer">
-            {afterBody.map((BodyComponent) => (
-              <BodyComponent {...componentData} />
-            ))}
-          </div>
+          <div class="page-footer">{renderComponents(afterBody, componentData)}</div>
         </div>
         <Footer {...componentData} />
       </>

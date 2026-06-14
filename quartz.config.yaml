@@ -139,6 +139,10 @@ plugins:
       priority: 10
   - source: github:quartz-community/search
     enabled: true
+    options:
+      fieldPriority:
+        - title
+        - content
     layout:
       position: left
       priority: 20
