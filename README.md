@@ -8,9 +8,10 @@ The site is deployed to GitHub Pages from `main` using GitHub Actions.
 
 ```powershell
 npm ci
-npx quartz plugin install --from-config
+node quartz/bootstrap-cli.mjs plugin install --from-config
+npm run patch-search
 npm run normalize-frontmatter
-npx quartz build --serve
+node quartz/bootstrap-cli.mjs build --serve
 ```
 
 To serve an already-built `public/` directory quickly:

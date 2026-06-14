@@ -50,6 +50,9 @@ jobs:
       - name: Install Quartz plugins
         run: node quartz/bootstrap-cli.mjs plugin install --from-config
 
+      - name: Patch search tokenizer
+        run: npm run patch-search
+
       - name: Normalize Obsidian frontmatter
         run: npm run normalize-frontmatter
 
