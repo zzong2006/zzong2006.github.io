@@ -133,7 +133,7 @@ plugins:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -146,10 +146,19 @@ plugins:
       groupOptions:
         grow: true
   - source: github:quartz-community/backlinks
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 50
+  - source: ./plugins/linked-mentions
+    enabled: true
+    options:
+      hideWhenEmpty: true
+      maxMentions: 10
+      snippetLength: 220
+    layout:
+      position: afterBody
+      priority: 5
   - source: github:quartz-community/article-title
     enabled: true
     layout:

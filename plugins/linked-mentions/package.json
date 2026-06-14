@@ -1,0 +1,32 @@
+{
+  "name": "linked-mentions",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./components/index.js"
+  },
+  "quartz": {
+    "name": "linked-mentions",
+    "displayName": "Linked Mentions",
+    "description": "Shows Obsidian-style linked mentions with short context snippets.",
+    "version": "1.0.0",
+    "category": "component",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "hideWhenEmpty": true,
+      "maxMentions": 8,
+      "snippetLength": 180
+    },
+    "components": {
+      "LinkedMentions": {
+        "name": "LinkedMentions",
+        "displayName": "Linked Mentions",
+        "description": "Shows pages that link to the current page with context snippets.",
+        "version": "1.0.0",
+        "defaultPosition": "afterBody",
+        "defaultPriority": 5
+      }
+    }
+  }
+}
