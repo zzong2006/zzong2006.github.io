@@ -7,12 +7,55 @@ const defaultOptions = {
   snippetLength: 180,
 }
 
-function cleanText(value) {
+const latexSymbols = new Map([
+  ["alpha", "α"],
+  ["beta", "β"],
+  ["gamma", "γ"],
+  ["lambda", "λ"],
+  ["mu", "μ"],
+  ["pi", "π"],
+  ["theta", "θ"],
+  ["sigma", "σ"],
+  ["Sigma", "Σ"],
+  ["mid", "|"],
+  ["sum", "∑"],
+  ["infty", "∞"],
+  ["leq", "≤"],
+  ["geq", "≥"],
+  ["neq", "≠"],
+  ["times", "×"],
+  ["cdot", "·"],
+])
+
+function stripMath(value) {
   return String(value ?? "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/\$\$[\s\S]*?\$\$/g, " ")
+    .replace(/\\\[[\s\S]*?\\\]/g, " ")
+    .replace(/\$[^$\n]*\$/g, " ")
+    .replace(/\\\([\s\S]*?\\\)/g, " ")
+}
+
+function simplifyLatex(value) {
+  return String(value ?? "")
+    .replace(/\\(?:operatorname|mathrm|mathbf|boldsymbol|mathbb|text)\{([^{}]*)\}/g, "$1")
+    .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
+    .replace(/\\(?:left|right|displaystyle|limits|top)\b/g, " ")
+    .replace(/\\([A-Za-z]+)\b/g, (_, name) => latexSymbols.get(name) ?? " ")
+    .replace(/\\\\/g, " ")
+    .replace(/[{}]/g, "")
+}
+
+function cleanText(value) {
+  return simplifyLatex(stripMath(value))
     .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias ?? target)
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/[`*_~>#-]+/g, " ")
+    .replace(/^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)*\|?\s*$/gm, " ")
+    .replace(/[`*_~>#]+/g, " ")
+    .replace(/-{2,}/g, " ")
+    .replace(/\s+([,.;:)])/g, "$1")
+    .replace(/([(])\s+/g, "$1")
     .replace(/\s+/g, " ")
     .trim()
 }
