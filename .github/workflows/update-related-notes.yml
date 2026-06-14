@@ -1,0 +1,49 @@
+name: Update related note embeddings
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: related-note-embeddings
+  cancel-in-progress: false
+
+jobs:
+  update-related-notes:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build related note embeddings
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RELATED_NOTES_EMBED_LIMIT: 900
+          RELATED_NOTES_REQUEST_DELAY_MS: 350
+        run: npm run build-related-notes
+
+      - name: Commit embedding cache
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/related-notes/embeddings.json
+          if git diff --cached --quiet; then
+            echo "No embedding cache changes."
+          else
+            git commit -m "Update related note embeddings"
+            git push
+          fi

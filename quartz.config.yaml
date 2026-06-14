@@ -159,6 +159,17 @@ plugins:
     layout:
       position: afterBody
       priority: 5
+  - source: ./plugins/related-notes
+    enabled: true
+    options:
+      title: 함께 보면 좋은 글
+      limit: 5
+      hideWhenEmpty: true
+      cachePath: data/related-notes/related-notes.json
+      showReasons: true
+    layout:
+      position: afterBody
+      priority: 20
   - source: github:quartz-community/article-title
     enabled: true
     layout:

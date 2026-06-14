@@ -56,6 +56,9 @@ jobs:
       - name: Normalize Obsidian frontmatter
         run: npm run normalize-frontmatter
 
+      - name: Build related notes
+        run: npm run build-related-notes
+
       - name: Build Quartz
         env:
           NODE_OPTIONS: --max-old-space-size=6144

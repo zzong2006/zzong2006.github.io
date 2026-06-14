@@ -1,0 +1,27 @@
+export const manifest = {
+  name: "related-notes",
+  displayName: "Related Notes",
+  description: "Shows semantically related notes computed during the build.",
+  version: "1.0.0",
+  category: "component",
+  defaultEnabled: true,
+  defaultOptions: {
+    title: "함께 보면 좋은 글",
+    limit: 5,
+    hideWhenEmpty: true,
+    cachePath: "data/related-notes/related-notes.json",
+    showReasons: true,
+  },
+  components: {
+    RelatedNotes: {
+      name: "RelatedNotes",
+      displayName: "Related Notes",
+      description: "Related note recommendations for the current page.",
+      version: "1.0.0",
+      defaultPosition: "afterBody",
+      defaultPriority: 20,
+    },
+  },
+}
+
+export { RelatedNotes } from "./components/index.js"

@@ -14,6 +14,7 @@
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
+    "build-related-notes": "node scripts/build-related-notes.mjs",
     "normalize-frontmatter": "node scripts/normalize-frontmatter.mjs",
     "patch-search": "node scripts/patch-search-plugin.mjs",
     "preview": "node scripts/serve-public.mjs",
