@@ -1,11 +1,11 @@
 ---
 layout: cv
 permalink: /cv/
-title: cv
+title: CV
 nav: true
 nav_order: 5
 cv_pdf: hwang-woosung-resume-250603.pdf
-description: Resume PDF for Hwang Woo Sung.
+description: Machine Learning Engineer focused on LLMs, recommendation systems, and production ML.
 toc:
   sidebar: left
 ---

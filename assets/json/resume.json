@@ -1,200 +1,274 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "황우성 (Woosung Hwang)",
+    "label": "Machine Learning Engineer",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
-    "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
-    },
+    "email": "zzong2006@gmail.com",
+    "phone": "",
+    "url": "https://zzong2006.github.io/",
+    "summary": "카카오에서 추천, 광고, QA, 요약, 장소 추천 등 다양한 도메인의 production ML/LLM 시스템을 개발했습니다. 최근에는 LLM fine-tuning, model routing, RAG, tool/function calling, 평가 자동화, vLLM 기반 서빙처럼 실제 서비스 품질과 비용에 직접 영향을 주는 문제에 집중하고 있습니다. 빠르게 변하는 연구 흐름을 서비스 문제로 번역하고, 데이터 기반 실험으로 개선 폭을 확인하는 일을 좋아합니다.",
+    "location": {},
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "network": "GitHub",
+        "username": "zzong2006",
+        "url": "https://github.com/zzong2006"
       }
     ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
-    }
-  ],
-  "volunteer": [
+      "name": "Kakao",
+      "position": "Machine Learning Engineer",
+      "url": "https://www.kakaocorp.com/",
+      "startDate": "2021-04-01",
+      "endDate": "",
+      "summary": "LLM Alignment Team and Recommendation Team. Worked on LLM applications, recommendation systems, keyword ads, QA, summarization, and place recommendation.",
+      "highlights": [
+        "Developed LLM-based services including place recommendation, KBO game summarization, QA chatbots, model routing, and domain-specific fine-tuned models.",
+        "Led cost-aware LLM router development, reducing LLM operating cost by about 60% while retaining 99% of GPT-4o-level quality in the target scenario.",
+        "Built keyword ads ranking and matching improvements that increased ad CTR by 4% in online A/B tests and contributed about KRW 700M in annual incremental revenue.",
+        "Applied bandit-based personalized recommendation to KakaoTalk Viewtab and Piccoma, improving CTR by up to 5.27% across several content domains.",
+        "Designed data pipelines, evaluation metrics, and serving workflows with Kafka, PySpark, Airflow, Kubernetes, RAG, vLLM, and model fine-tuning frameworks."
+      ]
+    },
     {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
+      "name": "Kakao",
+      "position": "Machine Learning Engineer Intern",
+      "url": "https://www.kakaocorp.com/",
+      "startDate": "2020-12-01",
+      "endDate": "2021-02-01",
+      "summary": "Recommendation Team internship focused on Piccoma webtoon recommendation algorithm optimization.",
+      "highlights": [
+        "Improved a Random Walk with Restart based TPA recommendation logic for Piccoma webtoon recommendation.",
+        "Applied Alias Method, parallel processing with numba/cupy, and graph pruning to reduce sequence similarity matching cost.",
+        "Achieved more than 2x response speed improvement and about 50% memory reduction, with CTR improvement after production deployment.",
+        "Published an internship retrospective on the Kakao Tech Blog."
+      ]
     }
   ],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "10",
-      "courses": ["Theory of Relativity"]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
-    }
-  ],
-  "certificates": [
-    {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-location-dot"
+      "institution": "Yonsei University (Wonju Campus)",
+      "location": "Wonju, Korea",
+      "url": "https://www.yonsei.ac.kr/",
+      "area": "Computer Science, Database Lab",
+      "studyType": "M.S.",
+      "startDate": "2019-03-01",
+      "endDate": "2020-08-01",
+      "score": "",
+      "courses": [
+        "Thesis: Efficient Data Sequence Matching Using Index Structures",
+        "Researched sequence matching methods for monotonic data domains and efficient similarity search."
+      ]
     },
     {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-tag"
+      "institution": "Yonsei University (Wonju Campus)",
+      "location": "Wonju, Korea",
+      "url": "https://www.yonsei.ac.kr/",
+      "area": "Computer Engineering",
+      "studyType": "B.S.",
+      "startDate": "2011-03-01",
+      "endDate": "2019-02-01",
+      "score": "",
+      "courses": [
+        "Graduated with highest honors, GPA above 4.0 / 4.3.",
+        "Worked on dimensionality reduction for time-series data and optimal precoder selection for MIMO systems."
+      ]
     },
     {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-envelope"
-    },
-    {
-      "name": "Quantum Cryptography",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-hashtag"
-    },
-    {
-      "name": "Quantum Communication",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-calendar"
-    },
-    {
-      "name": "Quantum Teleportation",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-clipboard-check"
+      "institution": "Toronto University",
+      "location": "Ontario, Canada",
+      "url": "",
+      "area": "Exchange Student",
+      "studyType": "Exchange Program",
+      "startDate": "2016-08-01",
+      "endDate": "2017-05-01",
+      "score": "",
+      "courses": []
     }
   ],
   "publications": [
     {
-      "name": "Zur Elektrody/namik bewegter Körper",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-06-30",
-      "url": "https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies",
-      "summary": "It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source."
+      "name": "색인 구조를 활용한 효율적인 데이터 시퀀스 매칭 기법 연구",
+      "publisher": "연세대학교 대학원 국내석사학위논문",
+      "releaseDate": "2020-08-01",
+      "url": "",
+      "summary": "Master's thesis on efficient data sequence matching using index structures."
     },
     {
-      "name": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-03-18",
-      "url": "https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt",
-      "summary": "In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921."
+      "name": "단조 증가 성질을 지닌 데이터 도메인에서의 집합 유사 시퀀스 매칭 방법",
+      "publisher": "정보과학회",
+      "releaseDate": "2021-01-01",
+      "url": "",
+      "summary": "Hwang, W. and Lim, H.-S. Study on set similarity sequence matching in monotonic data domains."
     },
     {
-      "name": "Die Grundlage der allgemeinen Relativitätstheorie",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1916-03-20",
-      "url": "https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie",
-      "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
-    }
-  ],
-  "skills": [
-    {
-      "name": "Physics",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
-      "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
-      ]
-    }
-  ],
-  "languages": [
-    {
-      "language": "German",
-      "fluency": "Native speaker",
-      "icon": ""
+      "name": "Optimal Precoder Selection for Spatially Multiplexed Multiple-Input Multiple-Output Systems With Maximum Likelihood Detection: Exploiting the Concept of Sphere Decoding",
+      "publisher": "IEEE Access",
+      "releaseDate": "2020-01-01",
+      "url": "",
+      "summary": "W. Hwang, J. Park, J. Kim and H.-S. Lim. Research on optimal precoder selection algorithms for MIMO systems."
     },
     {
-      "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
-    }
-  ],
-  "interests": [
-    {
-      "name": "Physics",
-      "icon": "fa-solid fa-tag",
-      "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
-      ]
-    }
-  ],
-  "references": [
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
-    },
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
+      "name": "Clustering Performance Analysis for Time Series Data: Wavelet vs. Autoencoder",
+      "publisher": "한국정보처리학회",
+      "releaseDate": "2018-01-01",
+      "url": "",
+      "summary": "Hwang, W. and Lim, H.-S. Comparison of wavelet and autoencoder approaches for time-series data clustering."
     }
   ],
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01",
-      "url": "https://example.com"
+      "name": "LLM-based Place Recommendation Model",
+      "summary": "Developed an in-house LLM for conversational place recommendation on KakaoMap, focusing on user intent understanding, tool/function calling, and recommendation quality.",
+      "highlights": [
+        "Built synthetic and refined training datasets reflecting real user search patterns and place recommendation intents.",
+        "Fine-tuned in-house LLMs to improve tool-call accuracy and place recommendation quality.",
+        "Developed a lightweight rerank model trained with GRPO to order retrieved places by user preference and dialogue context.",
+        "Explored large-scale GRPO training with Verl, Axolotl, Megatron-LM, Slurm, and multi-node distributed training.",
+        "Verified that a relatively lightweight 12B model could approach GPT-4.1 API-level performance in the target workflow, while improving inference speed."
+      ],
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "url": ""
+    },
+    {
+      "name": "Cost-aware LLM Router",
+      "summary": "Led development of an LLM routing system that selects the most cost-effective model for each user query while maintaining service quality.",
+      "highlights": [
+        "Led a four-person development team, including system architecture, roadmap planning, and sprint execution.",
+        "Designed router evaluation metrics and an evaluation pipeline.",
+        "Generated router tuning data using Instruction Evolution and Magpie-style strategies.",
+        "Introduced Prompt Compression and model routing to reduce LLM operating cost by about 60%.",
+        "Maintained 99% of existing GPT-4o performance in the target scenario and presented the model orchestration case at if(kakao) 2024 CEO Keynote."
+      ],
+      "startDate": "2024-09-01",
+      "endDate": "2024-12-01",
+      "url": ""
+    },
+    {
+      "name": "KBO Baseball Bot Summarization Service",
+      "summary": "Led LLM development for KakaoTalk Pro Baseball Bot, delivering game summaries, live cheer analysis, and short-form summaries.",
+      "highlights": [
+        "Developed GPT-based prompt engineering prototypes and production summarization logic for KBO game content.",
+        "Built evaluation pipelines for iterative prompt and model improvements.",
+        "Secured high-quality training data through synthetic data generation and collaboration with labeling teams.",
+        "Served models with vLLM and proposed patches to prevent unwanted Chinese responses.",
+        "Achieved 61% human preference over GPT-4-Turbo for KBO game summaries; channel metrics improved with MAU +52% and friends +40% year over year."
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2024-09-01",
+      "url": ""
+    },
+    {
+      "name": "Domain QA LLM and RAG System",
+      "summary": "Built domain-specific QA models and RAG pipelines for high-traffic chatbot scenarios using open-source LLMs and retrieval systems.",
+      "highlights": [
+        "Designed a two-stage lightweight open-source LLM architecture for production QA.",
+        "Built RAG systems combining BM25 and vector search, and evaluated them with RAGAS, ROUGE, partial matching, and TruthfulQA-inspired hallucination metrics.",
+        "Fine-tuned embedding models with small domain datasets, improving retrieval quality by up to 30% in RAGAS-based evaluation.",
+        "Led human labeling guidelines and data collection tooling for high-quality QA training data.",
+        "Demonstrated Llama 2 based QA quality comparable to GPT-3.5-turbo in the target medical-domain evaluation setting."
+      ],
+      "startDate": "2023-06-01",
+      "endDate": "2024-01-01",
+      "url": ""
+    },
+    {
+      "name": "Keyword Ads Recommendation and Matching",
+      "summary": "Improved Daum Search keyword ad ranking and matching logic by combining expected revenue prediction, CTR modeling, and embedding-based query-ad matching.",
+      "highlights": [
+        "Compared LR, DNN, FM, and GBRT for ad CTR prediction; FM improved offline AUC by about 12%.",
+        "Improved online ad CTR by 4% in A/B tests.",
+        "Expanded ad exposure coverage from 35% to 64% in offline experiments.",
+        "Designed distributed ANN search over about 10M ad units using Word2Vec and BERT embeddings.",
+        "Contributed to about KRW 700M in annual incremental revenue from improved ad exposure logic, with further upside from expanded logic coverage."
+      ],
+      "startDate": "2022-07-01",
+      "endDate": "2023-03-01",
+      "url": ""
+    },
+    {
+      "name": "Bandit-based Personalized Recommendation Platform",
+      "summary": "Developed and operated bandit-based personalized recommendation systems for KakaoTalk Viewtab, Piccoma, and other content domains.",
+      "highlights": [
+        "Built Kafka-based real-time data pipelines to use user behavior as learning data.",
+        "Improved CTR by up to 5.27% across domains such as news and entertainment.",
+        "Introduced cold-start recommendation logic, improving new-user conversion by about 3%.",
+        "Refactored Sanic serving APIs and training modules to reduce I/O load and memory usage.",
+        "Deployed and operated recommendation services in Kubernetes-based clusters."
+      ],
+      "startDate": "2021-05-01",
+      "endDate": "2023-03-01",
+      "url": ""
+    }
+  ],
+  "awards": [
+    {
+      "title": "DACON 국내 LLM 경진대회 3위",
+      "date": "2024-03-01",
+      "awarder": "DACON",
+      "url": "",
+      "summary": "도배 하자 질의 응답 처리: 한솔데코 시즌2 AI 경진대회."
+    },
+    {
+      "title": "Kakao 사내 AI 해커톤 2023 24K 1위",
+      "date": "2023-07-01",
+      "awarder": "Kakao",
+      "url": "",
+      "summary": "Stable Diffusion 기반 카카오톡 이모티콘 생성 서비스 제안. 팀 리드로 참여했으며 300명 이상이 참가한 사내 해커톤에서 1위 수상."
+    }
+  ],
+  "skills": [
+    {
+      "name": "LLM & Generative AI",
+      "level": "Production",
+      "icon": "fa-solid fa-wand-magic-sparkles",
+      "keywords": [
+        "SFT",
+        "DPO",
+        "GRPO",
+        "RLHF",
+        "RAG",
+        "Function Calling",
+        "Prompt Engineering",
+        "Synthetic Data Generation",
+        "LLM Evaluation",
+        "vLLM"
+      ]
+    },
+    {
+      "name": "Machine Learning & Recommendation",
+      "level": "Production",
+      "icon": "fa-solid fa-chart-line",
+      "keywords": [
+        "Recommendation Systems",
+        "Contextual Bandit",
+        "Thompson Sampling",
+        "CTR Prediction",
+        "Learning to Rank",
+        "Embedding Model Fine-Tuning",
+        "Hybrid Search",
+        "ANN"
+      ]
+    },
+    {
+      "name": "Data, Serving & MLOps",
+      "level": "Production",
+      "icon": "fa-solid fa-server",
+      "keywords": [
+        "Python",
+        "PySpark",
+        "Kafka",
+        "Airflow",
+        "Kubernetes",
+        "RocksDB",
+        "SQLite",
+        "MongoDB",
+        "Sanic",
+        "Distributed Training"
+      ]
     }
   ]
 }
