@@ -10,6 +10,9 @@ aliases: ["Home"]
 
 처음 들어온 독자는 [[retrieval/retrieval|retrieval]], [[machine_learning/machine learning|machine learning]], [[recommendation_system/Recommendation System|recommendation system]], [[papers/language_model/Attention Is All You Need|paper notes]] 쪽부터 읽으면 흐름을 잡기 좋습니다.
 
+> [!info] Resume
+> Machine Learning Engineer로서의 경력, 주요 프로젝트, 논문/수상, PDF 이력서는 [[resume]]에서 확인할 수 있습니다.
+
 # B) Main Paths
 
 | Area | Notes |
