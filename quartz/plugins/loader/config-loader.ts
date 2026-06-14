@@ -701,19 +701,19 @@ export async function loadQuartzLayout(layoutOverrides?: {
     }
   }
 
+  const EmptyFooter: QuartzComponent = () => null
+
   // Apply structural defaults
   defaultLayout.head = head
   defaultLayout.header = defaultLayout.header ?? []
-  if (footer) {
-    defaultLayout.footer = footer
-  }
+  defaultLayout.footer = footer ?? EmptyFooter
 
   // Ensure all byPageType entries inherit structural slots
   for (const pageType of Object.keys(byPageType)) {
     const pt = byPageType[pageType]
     if (!pt.head) pt.head = head
     if (!pt.header) pt.header = []
-    if (footer && !pt.footer) pt.footer = footer
+    if (!pt.footer) pt.footer = footer ?? EmptyFooter
   }
 
   const mergedDefaults = { ...defaultLayout, ...layoutOverrides?.defaults }

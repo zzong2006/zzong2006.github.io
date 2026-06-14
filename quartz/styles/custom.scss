@@ -14,6 +14,54 @@
   --codeFont: var(--appleMono);
 }
 
+@media all and (min-width: 800px) {
+  html {
+    font-size: 15px;
+  }
+
+  .page > #quartz-body {
+    column-gap: 0;
+  }
+
+  .page > #quartz-body .sidebar {
+    gap: 1rem;
+    padding: 5.4rem 1.55rem 1.8rem;
+  }
+
+  .page > #quartz-body .page-header {
+    margin-top: 5.4rem;
+  }
+
+  .page article > h1 {
+    font-size: 1.88rem;
+  }
+
+  h1 {
+    font-size: 1.62rem;
+    margin-top: 2rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 1.7rem;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    margin-top: 1.45rem;
+  }
+
+  tbody,
+  li,
+  p {
+    line-height: 1.52rem;
+  }
+
+  .content-meta {
+    font-size: 0.92rem;
+  }
+}
+
 .page > #quartz-body .sidebar.left .explorer {
   gap: 0.45rem;
 }
@@ -139,6 +187,21 @@
   }
 }
 
+body[data-slug$="/index"] .content-meta {
+  display: none;
+}
+
+.folder-page-listing {
+  margin-top: 2rem;
+}
+
+.folder-page-listing > .folder-page-count {
+  margin: 0 0 1.25rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 .page-listing ul.section-ul {
   display: grid;
   gap: 1.15rem;
@@ -238,4 +301,21 @@
   .page-listing li.section-li > .section > .meta {
     font-size: 0.85rem;
   }
+}
+
+.page-listing.folder-page-listing li.section-li > .section {
+  grid-template-areas:
+    "title"
+    "tags";
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0.15rem;
+  column-gap: 0;
+}
+
+.page-listing.folder-page-listing li.section-li > .section > .desc > h3 {
+  font-size: 1.05rem;
+}
+
+.page-listing.folder-page-listing li.section-li > .section > .tags {
+  margin-top: 0.22rem;
 }

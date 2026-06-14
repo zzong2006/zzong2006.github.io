@@ -1,0 +1,20 @@
+{
+  "name": "folder-page-clean",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "quartz": {
+    "name": "folder-page-clean",
+    "displayName": "Clean Folder Page",
+    "description": "Renders folder pages as quiet blog category indexes.",
+    "version": "1.0.0",
+    "category": "pageType",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "showFolderCount": true,
+      "showSubfolders": true
+    }
+  }
+}
