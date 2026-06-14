@@ -41,7 +41,7 @@ function simplifyLatex(value) {
     .replace(/\\(?:operatorname|mathrm|mathbf|boldsymbol|mathbb|text)\{([^{}]*)\}/g, "$1")
     .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
     .replace(/\\(?:left|right|displaystyle|limits|top)\b/g, " ")
-    .replace(/\\([A-Za-z]+)\b/g, (_, name) => latexSymbols.get(name) ?? " ")
+    .replace(/\\([A-Za-z]+)(?=[^A-Za-z]|$)/g, (_, name) => latexSymbols.get(name) ?? " ")
     .replace(/\\\\/g, " ")
     .replace(/[{}]/g, "")
 }
