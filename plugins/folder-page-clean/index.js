@@ -215,7 +215,8 @@ function FolderContent(opts = {}) {
     const slug = fileData?.slug
 
     if (!slug) return null
-    if (hasRenderedContent(tree)) return h(ContentBody, props)
+    const isGeneratedFolderPage = fileData?.frontmatter?.folderPage === true
+    if (!isGeneratedFolderPage && hasRenderedContent(tree)) return h(ContentBody, props)
 
     let allPagesInFolder
     if (trie) {
@@ -327,7 +328,7 @@ export const FolderPage = (opts = {}) => {
           title,
           data: {
             description,
-            frontmatter: { title, tags: [], description },
+            frontmatter: { title, tags: [], description, folderPage: true },
           },
         })
       }
