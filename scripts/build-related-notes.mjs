@@ -45,6 +45,10 @@ async function readJson(file, fallback) {
   }
 }
 
+async function writeJson(file, value, options = {}) {
+  await fs.writeFile(file, `${JSON.stringify(value, null, options.pretty ? 2 : 0)}\n`, "utf8")
+}
+
 async function* walk(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
     if (ignoredSegments.has(entry.name)) continue
@@ -293,7 +297,7 @@ async function ensureEmbeddings(docs) {
         updatedAt: new Date().toISOString(),
       }
       created += 1
-      await fs.writeFile(embeddingCachePath, JSON.stringify(cache), "utf8")
+      await writeJson(embeddingCachePath, cache)
       await sleep(requestDelayMs)
     } catch (error) {
       failed += 1
@@ -302,7 +306,7 @@ async function ensureEmbeddings(docs) {
     }
   }
 
-  await fs.writeFile(embeddingCachePath, JSON.stringify(cache), "utf8")
+  await writeJson(embeddingCachePath, cache)
   return { cache, stats: { reused, created, failed, skippedByLimit } }
 }
 
@@ -366,10 +370,10 @@ await fs.mkdir(cacheDir, { recursive: true })
 
 if (!(await pathExists(contentDir))) {
   console.warn("[related-notes] content directory was not found; writing empty related-note map")
-  await fs.writeFile(
+  await writeJson(
     relatedOutputPath,
-    JSON.stringify({ version: 1, generatedAt: new Date().toISOString(), relatedBySlug: {} }),
-    "utf8",
+    { version: 1, generatedAt: new Date().toISOString(), relatedBySlug: {} },
+    { pretty: true },
   )
   process.exit(0)
 }
@@ -383,24 +387,20 @@ const embeddedCount = docs.filter((doc) => {
   return entry?.hash === doc.hash && Array.isArray(entry.embedding)
 }).length
 
-await fs.writeFile(
+await writeJson(
   relatedOutputPath,
-  JSON.stringify(
-    {
-      version: 1,
-      generatedAt: new Date().toISOString(),
-      strategy: embeddedCount > 0 ? "gemini-embedding-plus-heuristic" : "heuristic",
-      model,
-      outputDimensionality,
-      topK,
-      documents: docs.length,
-      embeddedDocuments: embeddedCount,
-      relatedBySlug,
-    },
-    null,
-    2,
-  ),
-  "utf8",
+  {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    strategy: embeddedCount > 0 ? "gemini-embedding-plus-heuristic" : "heuristic",
+    model,
+    outputDimensionality,
+    topK,
+    documents: docs.length,
+    embeddedDocuments: embeddedCount,
+    relatedBySlug,
+  },
+  { pretty: true },
 )
 
 console.log(
