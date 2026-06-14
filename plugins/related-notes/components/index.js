@@ -9,6 +9,8 @@ const defaultOptions = {
   hideWhenEmpty: true,
   cachePath: "data/related-notes/related-notes.json",
   showReasons: true,
+  showSnippets: true,
+  snippetLength: 180,
 }
 
 let relatedCache
@@ -44,6 +46,46 @@ function titleOf(page) {
   const relativePath = String(page.relativePath ?? "")
   const fallback = relativePath.replace(/\.md$/i, "") || page.slug
   return String(page.frontmatter?.title ?? fallback)
+}
+
+function cleanSnippetText(value) {
+  return String(value ?? "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/\$\$[\s\S]*?\$\$/g, " ")
+    .replace(/\\\[[\s\S]*?\\\]/g, " ")
+    .replace(/\$[^$\n]*\$/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias ?? target)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[`*_~>#]+/g, " ")
+    .replace(/-{2,}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+function clipSnippet(value, limit) {
+  const text = cleanSnippetText(value)
+  if (!text || text.length <= limit) return text
+
+  const head = text.slice(0, Math.max(0, limit - 3)).trim()
+  const sentenceEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "))
+  const spaceEnd = head.lastIndexOf(" ")
+  const boundary = sentenceEnd >= limit * 0.45 ? sentenceEnd + 1 : spaceEnd >= limit * 0.6 ? spaceEnd : -1
+  const clipped = boundary > 0 ? head.slice(0, boundary).trim() : head
+  return `${clipped}...`
+}
+
+function snippetOf(entry, page, options) {
+  const source =
+    entry?.snippet ??
+    page.frontmatter?.description ??
+    page.frontmatter?.summary ??
+    page.description ??
+    page.text ??
+    ""
+  const snippet = clipSnippet(source, options.snippetLength)
+  return snippet === titleOf(page) ? "" : snippet
 }
 
 function folderOf(slug) {
@@ -186,8 +228,11 @@ export const RelatedNotes = (opts = {}) => {
         : h(
             "div",
             { class: "related-notes__list" },
-            entries.map(({ page, reasons = [] }) =>
-              h("article", { class: "related-notes__item" }, [
+            entries.map((entry) => {
+              const { page, reasons = [] } = entry
+              const snippet = options.showSnippets ? snippetOf(entry, page, options) : ""
+
+              return h("article", { class: "related-notes__item" }, [
                 h(
                   "h3",
                   { class: "related-notes__title" },
@@ -200,6 +245,7 @@ export const RelatedNotes = (opts = {}) => {
                     titleOf(page),
                   ),
                 ),
+                snippet ? h("p", { class: "related-notes__snippet" }, snippet) : null,
                 options.showReasons && reasons.length > 0
                   ? h(
                       "div",
@@ -215,8 +261,8 @@ export const RelatedNotes = (opts = {}) => {
                         .filter(Boolean),
                     )
                   : null,
-              ]),
-            ),
+              ])
+            }),
           ),
     )
   }
@@ -247,7 +293,7 @@ export const RelatedNotes = (opts = {}) => {
 
 .related-notes__item {
   display: grid;
-  gap: 0.18rem;
+  gap: 0.22rem;
   padding: 0;
 }
 
@@ -271,6 +317,18 @@ export const RelatedNotes = (opts = {}) => {
 .related-notes__link.internal:hover {
   background: transparent;
   color: var(--tertiary);
+}
+
+.related-notes__snippet {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--darkgray);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  opacity: 0.82;
 }
 
 .related-notes__meta {

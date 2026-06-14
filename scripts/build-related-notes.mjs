@@ -14,6 +14,7 @@ const apiKey = process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY ?? ""
 const model = process.env.GEMINI_EMBEDDING_MODEL ?? "gemini-embedding-2"
 const outputDimensionality = Number(process.env.RELATED_NOTES_EMBEDDING_DIM ?? "768")
 const maxChars = Number(process.env.RELATED_NOTES_MAX_CHARS ?? "3500")
+const snippetLength = Number(process.env.RELATED_NOTES_SNIPPET_LENGTH ?? "180")
 const topK = Number(process.env.RELATED_NOTES_LIMIT ?? "8")
 const requestDelayMs = Number(process.env.RELATED_NOTES_REQUEST_DELAY_MS ?? "250")
 const embedLimit = Number(process.env.RELATED_NOTES_EMBED_LIMIT ?? "900")
@@ -96,6 +97,78 @@ function cleanText(value) {
     .replace(/-{2,}/g, " ")
     .replace(/\s+/g, " ")
     .trim()
+}
+
+function clipText(value, limit) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim()
+  if (!text || text.length <= limit) return text
+
+  const head = text.slice(0, Math.max(0, limit - 3)).trim()
+  const sentenceEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "))
+  const spaceEnd = head.lastIndexOf(" ")
+  const boundary = sentenceEnd >= limit * 0.45 ? sentenceEnd + 1 : spaceEnd >= limit * 0.6 ? spaceEnd : -1
+  const clipped = boundary > 0 ? head.slice(0, boundary).trim() : head
+  return `${clipped}...`
+}
+
+function snippetBlocks(markdown) {
+  const blocks = []
+  let current = []
+  let inCode = false
+  let inMath = false
+
+  const flush = () => {
+    if (current.length > 0) {
+      blocks.push(current.join(" "))
+      current = []
+    }
+  }
+
+  for (const line of String(markdown ?? "").split(/\r?\n/)) {
+    const trimmed = line.trim()
+
+    if (trimmed.startsWith("```")) {
+      inCode = !inCode
+      flush()
+      continue
+    }
+    if (trimmed === "$$") {
+      inMath = !inMath
+      flush()
+      continue
+    }
+    if (inCode || inMath) continue
+
+    if (
+      !trimmed ||
+      /^#{1,6}\s/.test(trimmed) ||
+      /^-{3,}$/.test(trimmed) ||
+      /^\|/.test(trimmed) ||
+      /^!\[/.test(trimmed)
+    ) {
+      flush()
+      continue
+    }
+
+    current.push(trimmed)
+  }
+  flush()
+
+  return blocks
+}
+
+function snippetFromBody(body, frontmatter) {
+  const summary = frontmatter.description ?? frontmatter.summary
+  const summaryText = cleanText(summary)
+  if (summaryText) return clipText(summaryText, snippetLength)
+
+  const snippet =
+    snippetBlocks(body)
+      .map(cleanText)
+      .filter((block) => block.length >= 16)
+      .find((block) => !/^references?$/i.test(block)) ?? ""
+
+  return clipText(snippet, snippetLength)
 }
 
 function slugFromRelativePath(relativePath) {
@@ -183,6 +256,7 @@ async function loadDocuments() {
     const tags = arrayFromValue(frontmatter.tags)
     const aliases = arrayFromValue(frontmatter.aliases)
     const cleaned = cleanText(body)
+    const snippet = snippetFromBody(body, frontmatter)
     const embeddingInput = `title: ${title} | text: ${[...aliases, ...tags, cleaned]
       .filter(Boolean)
       .join("\n")
@@ -194,6 +268,7 @@ async function loadDocuments() {
       relativePath: relativePath.replaceAll(path.sep, "/"),
       tags,
       aliases,
+      snippet,
       rawLinks: extractWikiLinks(body),
       folder: folderOf(slug),
       titleTokens: tokenize(`${title} ${slug.replace(/[-_/]/g, " ")} ${aliases.join(" ")}`),
@@ -355,6 +430,7 @@ function buildRelatedMap(docs, embeddings) {
         return {
           slug: candidate.slug,
           title: candidate.title,
+          snippet: candidate.snippet,
           score: Number(score.toFixed(6)),
           reasons,
         }
@@ -395,6 +471,7 @@ await writeJson(
     strategy: embeddedCount > 0 ? "gemini-embedding-plus-heuristic" : "heuristic",
     model,
     outputDimensionality,
+    snippetLength,
     topK,
     documents: docs.length,
     embeddedDocuments: embeddedCount,
