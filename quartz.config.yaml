@@ -113,6 +113,12 @@ plugins:
     options:
       enableSiteMap: true
       enableRSS: true
+  - source: ./plugins/semantic-search-index
+    enabled: true
+    options:
+      cachePath: data/related-notes/embeddings.json
+      outputPath: static/semanticIndex.json
+      snippetLength: 180
   - source: github:quartz-community/favicon
     enabled: true
   - source: github:quartz-community/og-image
@@ -145,6 +151,16 @@ plugins:
       group: toolbar
       groupOptions:
         grow: true
+  - source: ./plugins/semantic-search
+    enabled: true
+    options:
+      indexPath: ""
+      limit: 8
+      minScore: 0.12
+      queryMaxLength: 300
+    layout:
+      position: beforeBody
+      priority: 1
   - source: github:quartz-community/backlinks
     enabled: false
     layout:
