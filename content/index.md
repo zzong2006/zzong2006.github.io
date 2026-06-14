@@ -20,6 +20,7 @@ aliases: ["Home"]
 | Papers | [[papers/language_model]], [[papers/recommender_system]], [[papers/e-commerce]] |
 | Statistics | [[statistic/Probability]], [[statistic/Bayesian]], [[statistic/hypothesis test]] |
 | Systems | [[data_engineering/Kafka]], [[server/Docker]], [[K8s/Kubernetes]] |
+| Resume | [[resume]] |
 
 # C) Publishing Notes
 
