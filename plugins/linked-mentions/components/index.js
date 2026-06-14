@@ -34,6 +34,9 @@ function stripMath(value) {
     .replace(/\\\[[\s\S]*?\\\]/g, " ")
     .replace(/\$[^$\n]*\$/g, " ")
     .replace(/\\\([\s\S]*?\\\)/g, " ")
+    .split(/\r?\n/)
+    .map((line) => (isMathHeavyLine(line) ? " " : line))
+    .join("\n")
 }
 
 function simplifyLatex(value) {
@@ -44,6 +47,25 @@ function simplifyLatex(value) {
     .replace(/\\([A-Za-z]+)(?=[^A-Za-z]|$)/g, (_, name) => latexSymbols.get(name) ?? " ")
     .replace(/\\\\/g, " ")
     .replace(/[{}]/g, "")
+}
+
+function mathNoise(value) {
+  const text = String(value ?? "")
+  const latexCommands = text.match(/\\[A-Za-z]+/g)?.length ?? 0
+  const equationMarks = text.match(/[=^_{}]/g)?.length ?? 0
+  return latexCommands * 4 + equationMarks
+}
+
+function isMathHeavyLine(value) {
+  const text = String(value ?? "").trim()
+  if (!text) {
+    return false
+  }
+
+  const latexCommands = text.match(/\\[A-Za-z]+/g)?.length ?? 0
+  const equationMarks = text.match(/[=^_{}]/g)?.length ?? 0
+  const proseWords = text.match(/[A-Za-z가-힣]{2,}/g)?.length ?? 0
+  return latexCommands >= 2 && equationMarks >= 2 && proseWords <= 8
 }
 
 function cleanText(value) {
@@ -58,6 +80,40 @@ function cleanText(value) {
     .replace(/([(])\s+/g, "$1")
     .replace(/\s+/g, " ")
     .trim()
+}
+
+function textBlocks(value) {
+  const blocks = []
+  let current = []
+
+  const flush = () => {
+    if (current.length > 0) {
+      blocks.push(current.join(" "))
+      current = []
+    }
+  }
+
+  for (const line of String(value ?? "").split(/\r?\n/)) {
+    if (!line.trim() || isMathHeavyLine(line)) {
+      flush()
+      continue
+    }
+    current.push(line)
+  }
+  flush()
+  return blocks
+}
+
+function bestSnippetText(sourceText, terms) {
+  const candidates = textBlocks(sourceText)
+    .map((block) => ({
+      text: cleanText(block),
+      score: mathNoise(block),
+    }))
+    .filter(({ text }) => text && findTerm(text, terms))
+    .sort((a, b) => a.score - b.score || a.text.length - b.text.length)
+
+  return candidates[0]?.text ?? cleanText(sourceText)
 }
 
 function titleTerms(fileData) {
@@ -93,7 +149,7 @@ function findTerm(text, terms) {
 }
 
 function excerpt(sourceText, terms, snippetLength) {
-  const text = cleanText(sourceText)
+  const text = bestSnippetText(sourceText, terms)
   if (!text) {
     return { before: "", match: "", after: "" }
   }
