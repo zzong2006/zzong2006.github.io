@@ -64,8 +64,13 @@ function isMathHeavyLine(value) {
 
   const latexCommands = text.match(/\\[A-Za-z]+/g)?.length ?? 0
   const equationMarks = text.match(/[=^_{}]/g)?.length ?? 0
-  const proseWords = text.match(/[A-Za-z가-힣]{2,}/g)?.length ?? 0
-  return latexCommands >= 2 && equationMarks >= 2 && proseWords <= 8
+  const proseText = text.replace(/\\[A-Za-z]+/g, " ").replace(/[=^_{}()[\],|+\-*/]/g, " ")
+  const proseWords = proseText.match(/[A-Za-z가-힣]{2,}/g)?.length ?? 0
+  return (
+    (latexCommands >= 4 && equationMarks >= 2) ||
+    (latexCommands >= 2 && equationMarks >= 2 && proseWords <= 12) ||
+    (latexCommands >= 1 && equationMarks >= 1 && proseWords <= 4)
+  )
 }
 
 function cleanText(value) {
