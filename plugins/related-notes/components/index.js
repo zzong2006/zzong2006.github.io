@@ -189,20 +189,30 @@ export const RelatedNotes = (opts = {}) => {
             entries.map(({ page, reasons = [] }) =>
               h("article", { class: "related-notes__item" }, [
                 h(
-                  "a",
-                  {
-                    class: "internal related-notes__link",
-                    href: resolveRelative(fileData.slug, page.slug),
-                  },
-                  titleOf(page),
+                  "h3",
+                  { class: "related-notes__title" },
+                  h(
+                    "a",
+                    {
+                      class: "internal related-notes__link",
+                      href: resolveRelative(fileData.slug, page.slug),
+                    },
+                    titleOf(page),
+                  ),
                 ),
                 options.showReasons && reasons.length > 0
                   ? h(
                       "div",
-                      { class: "related-notes__reasons" },
-                      reasons.slice(0, 3).map((reason) =>
-                        h("span", { class: "related-notes__reason" }, reasonLabel(reason)),
-                      ),
+                      { class: "related-notes__meta" },
+                      reasons
+                        .slice(0, 3)
+                        .flatMap((reason, index) => [
+                          index > 0
+                            ? h("span", { class: "related-notes__separator", "aria-hidden": "true" }, "·")
+                            : null,
+                          h("span", { class: "related-notes__reason" }, reasonLabel(reason)),
+                        ])
+                        .filter(Boolean),
                     )
                   : null,
               ]),
@@ -213,18 +223,21 @@ export const RelatedNotes = (opts = {}) => {
 
   Component.css = `
 .related-notes {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--lightgray);
 }
 
 .related-notes__header {
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 .related-notes__header h2 {
   margin: 0;
-  font-size: 1.25rem;
+  color: var(--darkgray);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .related-notes__list {
@@ -234,35 +247,48 @@ export const RelatedNotes = (opts = {}) => {
 
 .related-notes__item {
   display: grid;
-  gap: 0.4rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--lightgray);
+  gap: 0.18rem;
+  padding: 0;
 }
 
-.related-notes__item:last-child {
-  border-bottom: 0;
+.related-notes__title {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.4;
 }
 
-.related-notes__link {
+.related-notes__link.internal {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--secondary);
   width: fit-content;
   font-weight: 650;
-  line-height: 1.45;
+  line-height: 1.4;
   overflow-wrap: anywhere;
 }
 
-.related-notes__reasons {
+.related-notes__link.internal:hover {
+  background: transparent;
+  color: var(--tertiary);
+}
+
+.related-notes__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.15rem 0.38rem;
+  color: var(--gray);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.related-notes__separator {
+  color: var(--lightgray);
 }
 
 .related-notes__reason {
-  padding: 0.1rem 0.45rem;
-  border: 1px solid var(--lightgray);
-  border-radius: 999px;
-  color: var(--gray);
-  font-size: 0.78rem;
-  line-height: 1.5;
+  white-space: nowrap;
 }
 
 .related-notes__empty {
