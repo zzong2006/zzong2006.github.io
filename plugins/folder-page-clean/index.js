@@ -1,6 +1,7 @@
 import path from "node:path"
 import { h } from "preact"
 import { getDate, isFolderPath, resolveRelative } from "@quartz-community/utils"
+import { htmlToJsx } from "@quartz-community/utils/jsx"
 
 export const manifest = {
   name: "folder-page-clean",
@@ -137,6 +138,18 @@ function folderDescription(folderName, count) {
   return `${folderName} 카테고리의 글 ${count}개를 모아둔 목록입니다.`
 }
 
+function hasRenderedContent(tree) {
+  return Array.isArray(tree?.children) && tree.children.length > 0
+}
+
+function ContentBody({ fileData, tree }) {
+  const content = htmlToJsx(tree)
+  const classes = fileData?.frontmatter?.cssclasses ?? []
+  return h("article", { class: ["popover-hint", ...classes].join(" ") }, [
+    h("div", { class: "markdown-preview-view markdown-rendered" }, content),
+  ])
+}
+
 function PageList({ cfg, fileData, allFiles, limit, sort }) {
   const sorter = sort ?? byFolderThenTitle
   let list = [...allFiles].sort(sorter)
@@ -197,11 +210,12 @@ function FolderContent(opts = {}) {
   }
 
   const Component = (props) => {
-    const { fileData, allFiles, cfg } = props
+    const { fileData, allFiles, cfg, tree } = props
     const trie = props.ctx?.trie
     const slug = fileData?.slug
 
     if (!slug) return null
+    if (hasRenderedContent(tree)) return h(ContentBody, props)
 
     let allPagesInFolder
     if (trie) {
@@ -228,18 +242,10 @@ function FolderContent(opts = {}) {
     ])
   }
 
-  Component.css = `
-.folder-index article {
-  display: none;
-}
-`
-
   return Component
 }
 
-// Virtual folder pages are emitted from generate() with this layout directly.
-// Real index.md files, such as home and resume, should remain normal content pages.
-const folderMatcher = () => false
+const folderMatcher = ({ slug }) => slug.endsWith("/index")
 
 export const FolderPage = (opts = {}) => {
   const body = () => FolderContent(opts)
