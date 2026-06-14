@@ -24,9 +24,3 @@ aliases: ["Home"]
 | Statistics | [[statistic/Probability]], [[statistic/Bayesian]], [[statistic/hypothesis test]] |
 | Systems | [[data_engineering/Kafka]], [[server/Docker]], [[K8s/Kubernetes]] |
 | Resume | [[resume]] |
-
-# C) Publishing Notes
-
-이 사이트는 Obsidian vault의 공개 가능한 기술 폴더만 Quartz로 빌드합니다.
-
-`diary`, `work`, `finance`, `.obsidian` 같은 개인/업무 폴더는 공개 content에 포함하지 않습니다.
