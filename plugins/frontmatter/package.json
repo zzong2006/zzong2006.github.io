@@ -1,0 +1,14 @@
+{
+  "name": "frontmatter",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "quartz": {
+    "name": "frontmatter",
+    "displayName": "Frontmatter",
+    "description": "Parse YAML frontmatter and remove it from rendered Markdown.",
+    "version": "1.0.0",
+    "category": "transformer",
+    "defaultOrder": 1
+  }
+}
