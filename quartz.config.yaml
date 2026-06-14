@@ -206,11 +206,7 @@ plugins:
       position: afterBody
       priority: 10
   - source: github:quartz-community/footer
-    enabled: true
-    options:
-      links:
-        GitHub: https://github.com/zzong2006/zzong2006.github.io
-        Vault: https://github.com/zzong2006/obisidan
+    enabled: false
   - source: ./plugins/recent-updated-notes
     enabled: true
     options:
