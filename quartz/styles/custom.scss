@@ -13,3 +13,104 @@
   --bodyFont: var(--appleSans);
   --codeFont: var(--appleMono);
 }
+
+.page-listing ul.section-ul {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 2rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.page-listing li.section-li {
+  margin-bottom: 0;
+}
+
+.page-listing li.section-li > .section {
+  display: grid;
+  grid-template-areas:
+    "date title"
+    "date tags";
+  grid-template-columns: minmax(8.5rem, max-content) minmax(0, 1fr);
+  column-gap: 1.65rem;
+  align-items: start;
+}
+
+.page-listing li.section-li > .section > .meta {
+  grid-area: date;
+  margin: 0.2rem 0 0;
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.page-listing li.section-li > .section > .desc {
+  grid-area: title;
+  min-width: 0;
+}
+
+.page-listing li.section-li > .section > .desc > h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.page-listing li.section-li > .section > .desc > h3 > a {
+  background-color: transparent;
+  padding: 0;
+}
+
+.page-listing li.section-li > .section > .tags {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.45rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-listing li.section-li > .section > .tags:empty {
+  display: none;
+}
+
+.page-listing li.section-li > .section > .tags > li {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.page-listing li.section-li > .section > .tags a.internal.tag-link {
+  background: color-mix(in srgb, var(--highlight) 55%, transparent);
+  color: var(--gray);
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.25;
+  padding: 0.03rem 0.22rem;
+}
+
+.page-listing li.section-li > .section > .tags a.internal.tag-link:hover {
+  background: var(--highlight);
+  color: var(--secondary);
+}
+
+@media all and (max-width: 800px) {
+  .page-listing ul.section-ul {
+    gap: 1rem;
+  }
+
+  .page-listing li.section-li > .section {
+    grid-template-areas:
+      "date"
+      "title"
+      "tags";
+    grid-template-columns: 1fr;
+    row-gap: 0.2rem;
+  }
+
+  .page-listing li.section-li > .section > .meta {
+    font-size: 0.85rem;
+  }
+}
