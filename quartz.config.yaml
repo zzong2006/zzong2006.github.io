@@ -12,12 +12,12 @@ configuration:
     - templates
     - .obsidian
   theme:
-    fontOrigin: googleFonts
+    fontOrigin: local
     cdnCaching: true
     typography:
-      header: Noto Sans KR
-      body: Noto Sans KR
-      code: IBM Plex Mono
+      header: system-ui
+      body: system-ui
+      code: ui-monospace
     colors:
       lightMode:
         light: "#faf8f8"
@@ -101,7 +101,7 @@ plugins:
     enabled: false
     order: 92
   - source: github:quartz-community/fonts
-    enabled: true
+    enabled: false
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
