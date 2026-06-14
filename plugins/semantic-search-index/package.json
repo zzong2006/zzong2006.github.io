@@ -1,0 +1,22 @@
+{
+  "name": "semantic-search-index",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "quartz": {
+    "name": "semantic-search-index",
+    "displayName": "Semantic Search Index",
+    "description": "Emits a compact vector index for client-side semantic search.",
+    "version": "1.0.0",
+    "category": "emitter",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "cachePath": "data/related-notes/embeddings.json",
+      "outputPath": "static/semanticIndex.json",
+      "snippetLength": 180
+    }
+  }
+}
