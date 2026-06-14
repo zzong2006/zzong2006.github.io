@@ -237,7 +237,9 @@ function FolderContent(opts = {}) {
   return Component
 }
 
-const folderMatcher = ({ slug }) => slug.endsWith("/index")
+// Virtual folder pages are emitted from generate() with this layout directly.
+// Real index.md files, such as home and resume, should remain normal content pages.
+const folderMatcher = () => false
 
 export const FolderPage = (opts = {}) => {
   const body = () => FolderContent(opts)
