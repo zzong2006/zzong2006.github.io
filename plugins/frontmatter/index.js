@@ -11,6 +11,18 @@ export const manifest = {
 }
 
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/
+const TITLE_PREFIX_RE = /^(?:[A-Z](?:\.\d+)*|\d+(?:\.\d+)*)(?:[.)])\s+/i
+const TRAILING_QUESTION_RE = /\s*[?？]\s*$/
+
+function cleanDisplayTitle(value) {
+  let title = String(value ?? "").trim()
+
+  while (TITLE_PREFIX_RE.test(title)) {
+    title = title.replace(TITLE_PREFIX_RE, "").trim()
+  }
+
+  return title.replace(TRAILING_QUESTION_RE, "").replace(/\s+/g, " ").trim()
+}
 
 function textFromNode(node) {
   if (!node) {
@@ -31,16 +43,31 @@ function textFromNode(node) {
 function titleFromPath(file) {
   const filePath = String(file.data.relativePath ?? file.path ?? "")
   const extension = path.extname(filePath)
-  return path.basename(filePath, extension).replace(/[-_]+/g, " ").trim()
+  return cleanDisplayTitle(path.basename(filePath, extension).replace(/[-_]+/g, " "))
 }
 
 function fallbackTitle(tree, file) {
   const heading =
     tree.children.find((node) => node.type === "heading" && node.depth === 1) ??
     tree.children.find((node) => node.type === "heading")
-  const headingTitle = textFromNode(heading).trim()
+  const headingTitle = cleanDisplayTitle(textFromNode(heading))
 
   return headingTitle || titleFromPath(file)
+}
+
+function cleanPrimaryHeading(tree) {
+  const heading = tree.children.find((node) => node.type === "heading" && node.depth === 1)
+
+  if (!heading || !Array.isArray(heading.children)) {
+    return
+  }
+
+  const originalTitle = textFromNode(heading).trim()
+  const cleanedTitle = cleanDisplayTitle(originalTitle)
+
+  if (cleanedTitle && cleanedTitle !== originalTitle) {
+    heading.children = [{ type: "text", value: cleanedTitle }]
+  }
 }
 
 function remarkFrontmatter() {
@@ -61,7 +88,11 @@ function remarkFrontmatter() {
       })
     }
 
-    if (!frontmatter.title || String(frontmatter.title).trim() === "") {
+    cleanPrimaryHeading(tree)
+
+    frontmatter.title = cleanDisplayTitle(frontmatter.title)
+
+    if (!frontmatter.title) {
       frontmatter.title = fallbackTitle(tree, file)
     }
 
