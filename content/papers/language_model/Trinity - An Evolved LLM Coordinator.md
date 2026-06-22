@@ -1,9 +1,8 @@
 ---
+title: "Trinity, 여러 LLM을 조율하는 진화된 코디네이터"
 tags: ["language_model", "multi_agent", "evolution_strategy", "paper_review", "ICLR2026"]
 aliases: ["Trinity", "Trinity LLM Coordinator"]
 ---
-
-# A) Trinity, 여러 LLM을 조율하는 진화된 코디네이터
 
 GPT-5, Gemini, Claude 같은 폐쇄형 모델부터 Qwen3, DeepSeek-R1 같은 오픈소스 모델까지, 이미 강력한 기초 모델이 여러 개 나와 있다. 이들의 장점을 하나로 모으려는 가장 흔한 시도는 **가중치 병합(weight merging)**이지만, 두 가지 벽에 부딪힌다.
 
