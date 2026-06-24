@@ -298,6 +298,8 @@ MAP@8과 AUC는 Perfect Match만 positive로 두고, 나머지는 negative로 bi
 
 ## G.1) Ablation
 
+여기서 `OOTB`는 **Out-of-the-box** 의 줄임말이다. 별도 fine-tuning이나 도메인 학습 없이, 공개된 embedding model을 그대로 가져다 쓴 baseline이라는 뜻이다.
+
 | Configuration | MAP@8 | NDCG@8 | AUC |
 |---|---:|---:|---:|
 | Qwen3-Embedding-0.6B OOTB | 0.5454 | 0.7801 | 0.6634 |
@@ -310,7 +312,7 @@ MAP@8과 AUC는 Perfect Match만 positive로 두고, 나머지는 negative로 bi
 | Recommendation/session data | 0.7131 | 0.8920 | 0.8350 |
 | Data augmentation, final 256D | 0.7163 | 0.8974 | 0.8441 |
 
-가장 큰 도약은 Stage 1 contrastive fine-tuning에서 나온다. OOTB embedding model을 그대로 쓰는 것보다, 도메인 로그와 annotation으로 semantic space를 다시 맞추는 효과가 훨씬 크다.
+가장 큰 도약은 Stage 1 contrastive fine-tuning에서 나온다. OOTB embedding model, 즉 기본 모델을 그대로 쓰는 것보다 도메인 로그와 annotation으로 semantic space를 다시 맞추는 효과가 훨씬 크다.
 
 그다음으로 눈에 띄는 단계는 ROAR다. hard negative를 추가한 상태에서 ROAR를 얹으면 MAP@8, NDCG@8, AUC가 모두 오른다. 특히 AUC 상승폭이 크다. 이는 graded preference가 단순 exact/non-exact 구분에도 도움을 준다는 뜻으로 볼 수 있다.
 
