@@ -139,6 +139,19 @@ $$
 
 Stage 2의 핵심은 **Relative Odds Alignment for Retrieval (ROAR)** 이다. graded relevance group을 그대로 학습하기 위한 preference optimization objective라고 보면 된다.
 
+ROAR가 필요한 이유는 Stage 1의 contrastive learning만으로는 “좋은 후보들 사이의 순서”를 충분히 표현하기 어렵기 때문이다. exact product와 substitute product를 모두 positive로 두면 둘 다 query 근처로 오지만, exact가 substitute보다 위에 있어야 한다는 조건은 약해진다. 반대로 substitute를 negative로 두면, 실제로는 사용자가 받아들일 수 있는 대체 상품까지 멀리 밀어내게 된다.
+
+그래서 이 논문은 한 query에 대해 **multi positive가 있지만, positive마다 강도가 다르다** 고 본다. 더 정확히는 다음과 같은 preference ladder를 둔다.
+
+| Grade | 직관 |
+|---|---|
+| Exact | 사용자가 입력한 의도와 정확히 맞는 상품 |
+| Substitute | exact는 아니지만 같은 목적을 만족할 수 있는 대체 상품 |
+| Complementary | 같이 쓰이거나 연관은 있지만, query의 직접 답은 아닌 상품 |
+| Irrelevant | 의도와 맞지 않는 상품 |
+
+즉 `Exact`와 `Substitute`는 둘 다 retrieval 대상이 될 수 있지만, 같은 세기의 positive는 아니다. 이 차이를 학습하지 않으면 모델은 “대체 상품도 관련 있으니 위로 올려도 되겠네”라고 배울 수 있다.
+
 각 query에 대해 relevance 순서가 있는 product group을 만든다.
 
 $$
@@ -151,6 +164,8 @@ $$
 Perfect Match > Substitute > Complementary > Irrelevant
 ```
 
+이 목록은 “정답 하나”를 고르는 구조가 아니라, 하나의 query에 대한 후보들의 선호 순서다. ROAR는 모든 후보쌍을 다 비교하기보다, 인접한 grade끼리만 비교한다. `Exact > Substitute`, `Substitute > Complementary`, `Complementary > Irrelevant`가 맞으면 전체 순서도 자연스럽게 맞춰진다고 보는 것이다.
+
 모델은 query $q_i$가 product $p_j$를 선택할 확률을 row-wise softmax로 계산한다.
 
 $$
@@ -162,6 +177,8 @@ $$
 $$
 \text{odds}_\theta(p_j | q_i) = \frac{P_\theta(p_j | q_i)}{1 - P_\theta(p_j | q_i)}
 $$
+
+odds는 “이 후보를 고를 확률 / 이 후보를 고르지 않을 확률”이다. raw score 차이를 바로 비교하지 않고 softmax 확률과 odds를 쓰는 이유는, query마다 후보 수와 score scale이 달라도 같은 query 안에서 상대 선호를 비교하기 위해서다.
 
 상위 grade product와 바로 아래 grade product의 log odds ratio를 계산한다.
 
@@ -182,13 +199,15 @@ L_{align} =
 \log \sigma(\Delta^{OR}_{i,k})
 $$
 
+수식이 요구하는 것은 단순하다. 위 grade 후보의 odds가 아래 grade 후보의 odds보다 커지도록 만든다. 예를 들어 `Exact`의 odds가 `Substitute`보다 커지고, `Substitute`의 odds가 `Complementary`보다 커지면 loss가 작아진다.
+
 최종 objective는 contrastive loss와 alignment loss를 같이 쓴다.
 
 $$
 L_{total} = L_{contrast} + \beta L_{align}
 $$
 
-이 설계의 장점은 query마다 relevance grade 수가 달라도 처리할 수 있다는 데 있다. 어떤 query에는 Exact와 Irrelevant만 있을 수 있고, 어떤 query에는 Exact, Substitute, Complementary, Irrelevant가 모두 있을 수 있다.
+이 설계의 장점은 query마다 relevance grade 수가 달라도 처리할 수 있다는 데 있다. 어떤 query에는 Exact와 Irrelevant만 있을 수 있고, 어떤 query에는 Exact, Substitute, Complementary, Irrelevant가 모두 있을 수 있다. ROAR는 “이 query 안에서 더 좋은 후보가 덜 좋은 후보보다 선택될 odds가 높아야 한다”는 조건만 걸기 때문에 이런 가변적인 group을 다룰 수 있다.
 
 # E) 데이터 구성
 
