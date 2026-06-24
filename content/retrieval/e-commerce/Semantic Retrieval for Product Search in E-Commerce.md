@@ -145,7 +145,9 @@ $$
 
 ## D.3) Stage 2: ROAR
 
-Stage 2의 핵심은 **Relative Odds Alignment for Retrieval (ROAR)** 이다. 이 부분은 수식부터 보면 직관이 잘 안 온다. 먼저 문제를 검색 품질 관점에서 보면 쉽다.
+Stage 2의 핵심은 **Relative Odds Alignment for Retrieval (ROAR)** 이다. 정확히 말하면 ROAR는 별도의 retriever 구조가 아니라, Stage 1 contrastive fine-tuning이 끝난 encoder를 한 번 더 fine-tuning할 때 쓰는 **Stage 2 alignment objective** 다.
+
+즉 학습 순서는 `Stage 1: contrastive fine-tuning -> Stage 2: ROAR fine-tuning`이다. 이 부분은 수식부터 보면 직관이 잘 안 온다. 먼저 문제를 검색 품질 관점에서 보면 쉽다.
 
 Stage 1의 contrastive learning은 query와 관련 product를 가까이 모으는 데 강하다. 하지만 상품 검색에서는 “관련 있음” 안에서도 순서가 갈린다. exact product와 substitute product를 모두 positive로 두면 둘 다 query 근처로 오지만, exact가 substitute보다 위에 있어야 한다는 조건은 약해진다. 반대로 substitute를 negative로 두면, 실제로는 사용자가 받아들일 수 있는 대체 상품까지 멀리 밀어내게 된다.
 
