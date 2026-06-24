@@ -64,7 +64,11 @@ flowchart TD
 
 구조만 보면 단순하다. query와 product를 같은 encoder로 각각 embedding하는 [[retrieval/dense/Two-tower Model]] 계열이다. product embedding은 미리 만들어 두고, 온라인에서는 query embedding과 nearest-neighbor search로 후보를 찾는다.
 
-차이는 학습 목표에 있다. Stage 1에서는 query-product semantic space를 만든다. Stage 2에서는 같은 query 안에서 exact product, substitute product, complementary product, irrelevant product의 순서를 직접 학습한다. 즉 Stage 1이 “관련 후보를 가까이 모으는 단계”라면, Stage 2는 “가까이 온 후보들 사이의 순서를 다시 맞추는 단계”다.
+차이는 학습 목표에 있다. Stage 1에서는 query-product semantic space를 만든다. Stage 2에서는 같은 query 안에서 exact product, substitute product, complementary product, irrelevant product의 순서를 직접 학습한다.
+
+여기서 `positive`의 의미가 단계마다 조금 다르다. Stage 1의 positive는 “이 query 주변으로 끌어와도 되는 후보”에 가깝다. 반면 Stage 2의 label은 “검색 결과에서 누가 더 위에 와야 하는가”를 나타낸다. 그래서 substitute product가 Stage 1에서는 positive일 수 있지만, Stage 2에서는 exact보다 낮은 등급으로 다뤄진다.
+
+즉 Stage 1이 “관련 후보를 가까이 모으는 단계”라면, Stage 2는 “가까이 온 후보들 사이의 순서를 다시 맞추는 단계”다.
 
 # C) 배경 지식
 
@@ -151,7 +155,7 @@ Stage 1의 contrastive learning은 query와 관련 product를 가까이 모으�
 | `Substitute`를 negative로 둠 | 쓸 만한 대체 상품까지 retrieval에서 사라질 수 있음 |
 | `Exact > Substitute > Complementary > Irrelevant` 순서를 둠 | 후보를 살리면서도 intent에 맞는 순서를 학습할 수 있음 |
 
-그래서 이 논문은 한 query에 대해 **multi-positive가 있지만, positive마다 강도가 다르다** 고 본다. 여기서 positive라는 말은 “무조건 같은 정답”이라는 뜻이 아니라, retrieval 후보로 살릴 가치가 있다는 뜻에 가깝다. ordering 관점에서는 이 후보들 사이에도 선호 순서가 있다.
+그래서 이 논문은 한 query에 대해 **multi-positive가 있지만, positive마다 강도가 다르다** 고 본다. 여기서 positive라는 말은 “무조건 같은 정답”이라는 뜻이 아니다. 특히 Stage 1에서의 positive는 “negative로 밀어낼 상품은 아니다”에 가깝다. ordering 관점에서는 이 후보들 사이에도 선호 순서가 있다.
 
 | Grade | Retrieval 관점 | Ordering 관점 |
 |---|---|---|
@@ -231,9 +235,13 @@ $$
 | Session reformulation | 같은 session 내 query 변형 | 초기 query와 최종 engagement product 연결 |
 | LLM augmentation | synonym, typo, phrasing, transliteration | long-tail query와 noise 대응 |
 
-Recommendation substitutes를 쓰는 방식이 특히 눈에 띈다. Stage 1에서는 branded query에 대해 recommendation-derived substitute를 positive로 둔다. 이렇게 하면 functionally interchangeable product가 query 근처로 온다.
+Recommendation substitutes를 쓰는 방식이 특히 눈에 띈다. 다만 여기서 `positive`라는 단어가 헷갈릴 수 있다. Stage 1과 Stage 2가 같은 단어를 조금 다른 목적으로 쓰기 때문이다.
 
-하지만 Stage 2에서는 exact product와 substitute product를 같은 positive로 보지 않는다. exact는 가장 강한 positive로, recommendation-derived product는 substitute-level label로 둔다. 이 차이가 이 논문의 핵심 감각이다. **대체 상품은 retrieve해야 하지만, exact보다 앞서면 안 된다.**
+Stage 1에서는 branded query에 대해 recommendation-derived substitute를 positive로 둔다. 예를 들어 사용자가 `Nandini Milk`를 검색했는데 로그상으로 다른 브랜드의 우유를 자주 함께 보고 구매했다면, 그 다른 브랜드 우유도 query 근처로 끌어온다. 이 단계의 목적은 exact만 좁게 잡는 것이 아니라, functionally interchangeable product를 retrieval 후보로 살리는 것이다.
+
+하지만 Stage 2에서는 exact product와 substitute product를 같은 급의 positive로 보지 않는다. 같은 `Nandini Milk` query라도 `Nandini milk 1L`은 exact라서 가장 위에 와야 하고, 다른 브랜드의 우유는 substitute라서 그 아래에 와야 한다. 즉 Stage 2는 Stage 1에서 살려 둔 후보에 “검색 결과에서의 우선순위”를 다시 매긴다.
+
+따라서 두 문장은 모순이 아니다. **Stage 1에서는 대체 상품을 버리지 않기 위해 positive로 끌어오고, Stage 2에서는 그 대체 상품이 exact를 이기지 못하도록 상대 순서를 학습한다.** 이 차이가 이 논문의 핵심 감각이다.
 
 ## E.2) 왜 추천 신호가 retrieval에 도움이 되나
 
