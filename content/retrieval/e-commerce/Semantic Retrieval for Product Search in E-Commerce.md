@@ -99,7 +99,7 @@ flowchart TD
 
 ## D.1) 모델 아키텍처
 
-모델은 query tower와 product tower가 같은 Qwen3-Embedding-4B backbone을 공유하는 Siamese dual encoder다. decoder-only embedding model을 encoder처럼 사용하며, sequence embedding은 마지막 토큰의 hidden state를 pooling해서 만든다.
+모델은 query tower와 product tower가 같은 Qwen3-Embedding-4B backbone을 공유하는 Siamese dual encoder다. 여기서 Siamese는 “쌍둥이”라는 뜻처럼, query 쪽과 product 쪽이 별도 경로처럼 보이지만 실제로는 같은 encoder 가중치를 공유한다는 의미다. decoder-only embedding model을 encoder처럼 사용하며, sequence embedding은 마지막 토큰의 hidden state를 pooling해서 만든다.
 
 학습은 [[machine_learning/generative_ai/LLM/LoRA]]로 수행한다.
 
