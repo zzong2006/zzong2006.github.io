@@ -1,16 +1,18 @@
 ---
-title: "GRPO"
-tags: ["reinforcement_learning", "LLM"]
-aliases: ["Group Relative Policy Optimization"]
+tags:
+  - reinforcement_learning
+  - LLM
+aliases:
+  - Group Relative Policy Optimization
 ---
 
 # A) GRPO ?
 
 GRPO(Group Relative Policy Optimization) 는 **대규모 언어 모델 (LLM) 의 추론 능력을 강화하기 위한 강화학습 (RL) 알고리즘**입니다.
 
-GRPO 의 가장 큰 특징은 기존 강화학습 알고리즘 (예: PPO) 이 사용하던 **별도의 ‘가치 모델 (Value Model)’ 없이 작동**한다는 점입니다. GRPO 의 가장 큰 특징은 기존 강화학습 알고리즘 (예: PPO) 이 사용하던 **별도의 ‘가치 모델 (Value Model)’ 없이 작동**한다는 점입니다
+GRPO 의 가장 큰 특징은 기존 강화학습 알고리즘 (예: PPO) 이 사용하던 **별도의 ‘가치 모델 (Value Model)’ 없이 작동**한다는 점입니다. 2026년 post-training 흐름에서는 GRPO 자체뿐 아니라 `DAPO`, `GSPO`, `RLOO`, `REINFORCE++` 같은 변형과, verifiable reward를 쓰는 RLVR 파이프라인까지 함께 봐야 한다. 자연스러운 한국어 instruction tuning 관점의 위치는 [[LLM Post-Training for Natural Korean]]에 따로 정리해둔다.
 
-**작동 방식은 다음과 같은 단계로 이루어집니다.
+**작동 방식은 다음과 같은 단계로 이루어집니다.**
 
 * **그룹 생성 (Group Sampling):** 하나의 문제 (프롬프트) 에 대해 모델이 여러 개의 잠재적 답변을 생성하여 ‘그룹’을 만듭니다.
 * **보상 측정 (Reward Assignment):** 생성된 각각의 답변이 얼마나 좋은지 ‘보상 모델’을 통해 점수를 매깁니다. 예를 들어, 수학 문제의 정답 여부에 따라 점수를 부여합니다.

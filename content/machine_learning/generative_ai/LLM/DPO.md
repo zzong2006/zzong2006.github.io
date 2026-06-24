@@ -1,6 +1,7 @@
 ---
-title: "DPO"
-tags: ["LLM"]
+tags:
+  - LLM
+aliases: []
 ---
 
 # A) DPO 란 무엇인가요? (개념)
@@ -11,6 +12,8 @@ tags: ["LLM"]
 거대 언어 모델 (LLM) 을 우리가 원하는 방향 (유용하고, 정직하며, 무해하게) 으로 미세조정하는 것을 ‘얼라인먼트’라고 합니다. 기존에는 **RLHF(Reinforcement Learning from Human Feedback)** 라는 강화학습 기반의 방법이 주로 사용되었습니다.
 
 하지만 RLHF 는 과정이 복잡하고 비용이 많이 든다는 단점이 있었습니다. DPO 는 이러한 RLHF 의 단점을 해결하기 위해 등장했으며, **별도의 보상 모델 없이** 인간의 선호도 데이터를 가지고 LLM 을 직접 최적화하는 방식입니다.
+
+2026년 기준으로 DPO 는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline** 에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확히 만들기 어려운 문제에서는 여전히 쓸모가 크지만, 수학/코딩/tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, `GSPO` 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
 
 ---
 
