@@ -20,7 +20,7 @@ aliases:
 
 # B) 2026년의 감각은 어디로 이동했나
 
-2023-2024년에는 `SFT -> [[DPO]]`가 오픈소스 instruction tuning의 가장 현실적인 조합처럼 보였다. 별도 [[reward model]]과 PPO 파이프라인 없이 preference pair만으로 모델을 맞출 수 있었기 때문이다.
+2023-2024년에는 SFT 이후 [[DPO]]를 붙이는 방식이 오픈소스 instruction tuning의 가장 현실적인 조합처럼 보였다. 별도 [[reward model]]과 PPO 파이프라인 없이 preference pair만으로 모델을 맞출 수 있었기 때문이다.
 
 하지만 2025년 DeepSeek-R1 이후 분위기가 바뀌었다. 수학, 코딩, tool use처럼 정답 검증이 가능한 문제에서는 `RLVR(Reinforcement Learning from Verifiable Rewards)`가 강한 축이 되었고, `GRPO`, `DAPO`, `GSPO`, `RLOO`, `REINFORCE++` 같은 on-policy RL 계열이 라이브러리 전면에 올라왔다.
 
