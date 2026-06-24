@@ -1,4 +1,5 @@
 ---
+title: 자연스러운 한국어를 위한 LLM Post-Training
 tags:
   - LLM
   - post_training
@@ -11,7 +12,7 @@ aliases:
   - LLM Post-Training
 ---
 
-# A) 한줄 요약
+# A) 자연스러운 한국어를 위한 LLM Post-Training
 
 2026년 기준 LLM post-training의 중심은 더 이상 `DPO` 하나를 잘 고르는 문제가 아니다. 큰 흐름은 **좋은 cold-start SFT로 행동과 말투를 먼저 잡고, verifiable reward가 있는 영역은 [[GRPO]] 계열 RL로 밀고, 자연스러운 한국어처럼 보상이 애매한 영역은 SFT/Preference/Distillation/Eval 설계를 촘촘히 하는 방향**에 가깝다.
 
