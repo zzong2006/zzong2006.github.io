@@ -17,6 +17,8 @@ Flipkart의 **Semantic Retrieval for Product Search in E-Commerce** 는 [[retrie
 
 더 짧게 말하면, 이 논문은 **LLM embedding model을 이커머스 first-stage retrieval에 넣을 때 exact match와 substitute를 어떻게 함께 다룰 것인가** 에 대한 실무 레시피에 가깝다.
 
+회사 맥락도 중요하다. Flipkart는 인도 대표 이커머스 기업 중 하나이고, Walmart가 2018년에 지분 77%를 160억 달러에 인수했을 정도로 큰 플랫폼이다. 2023년 추가 지분 거래에서는 약 350억 달러 valuation이 언급되었고, 2026년 기준 quick commerce에서도 Amazon India와 함께 기존 소비자 기반을 활용하는 주요 플레이어로 다뤄진다. 그래서 이 논문은 작은 쇼핑몰의 실험이라기보다, **인도 최상위권 이커머스 플랫폼이 실제 검색 retrieval stack에 LLM embedding을 넣은 사례** 로 읽는 편이 맞다.
+
 # B) 전체 구조
 
 ```mermaid
@@ -62,7 +64,7 @@ flowchart TD
 
 구조만 보면 단순하다. query와 product를 같은 encoder로 각각 embedding하는 [[retrieval/dense/Two-tower Model]] 계열이다. product embedding은 미리 만들어 두고, 온라인에서는 query embedding과 nearest-neighbor search로 후보를 찾는다.
 
-차이는 학습 목표에 있다. Stage 1에서는 query-product semantic space를 만든다. Stage 2에서는 같은 query 안에서 exact product, substitute product, complementary product, irrelevant product의 순서를 직접 학습한다.
+차이는 학습 목표에 있다. Stage 1에서는 query-product semantic space를 만든다. Stage 2에서는 같은 query 안에서 exact product, substitute product, complementary product, irrelevant product의 순서를 직접 학습한다. 즉 Stage 1이 “관련 후보를 가까이 모으는 단계”라면, Stage 2는 “가까이 온 후보들 사이의 순서를 다시 맞추는 단계”다.
 
 # C) 배경 지식
 
@@ -99,7 +101,9 @@ flowchart TD
 
 ## D.1) 모델 아키텍처
 
-모델은 query tower와 product tower가 같은 Qwen3-Embedding-4B backbone을 공유하는 Siamese dual encoder다. 여기서 Siamese는 “쌍둥이”라는 뜻처럼, query 쪽과 product 쪽이 별도 경로처럼 보이지만 실제로는 같은 encoder 가중치를 공유한다는 의미다. decoder-only embedding model을 encoder처럼 사용하며, sequence embedding은 마지막 토큰의 hidden state를 pooling해서 만든다.
+모델은 query tower와 product tower가 같은 Qwen3-Embedding-4B backbone을 공유하는 Siamese dual encoder다. 여기서 Siamese는 “쌍둥이”라는 뜻처럼, query 쪽과 product 쪽이 별도 경로처럼 보이지만 실제로는 같은 encoder 가중치를 공유한다는 의미다. 즉 query와 product를 처리하는 입력 경로는 둘이지만, 모델 파라미터는 하나다.
+
+이 선택은 query와 product를 같은 embedding space에 강하게 묶는다. query 전용 encoder와 product 전용 encoder를 따로 두는 것보다 유연성은 줄 수 있지만, first-stage retrieval에서는 두 embedding을 바로 dot product나 cosine similarity로 비교해야 하므로 같은 기준으로 표현된다는 장점이 크다. 논문은 decoder-only embedding model을 encoder처럼 사용하며, sequence embedding은 마지막 토큰의 hidden state를 pooling해서 만든다.
 
 학습은 [[machine_learning/generative_ai/LLM/LoRA]]로 수행한다.
 
@@ -137,22 +141,26 @@ $$
 
 ## D.3) Stage 2: ROAR
 
-Stage 2의 핵심은 **Relative Odds Alignment for Retrieval (ROAR)** 이다. graded relevance group을 그대로 학습하기 위한 preference optimization objective라고 보면 된다.
+Stage 2의 핵심은 **Relative Odds Alignment for Retrieval (ROAR)** 이다. 이 부분은 수식부터 보면 직관이 잘 안 온다. 먼저 문제를 검색 품질 관점에서 보면 쉽다.
 
-ROAR가 필요한 이유는 Stage 1의 contrastive learning만으로는 “좋은 후보들 사이의 순서”를 충분히 표현하기 어렵기 때문이다. exact product와 substitute product를 모두 positive로 두면 둘 다 query 근처로 오지만, exact가 substitute보다 위에 있어야 한다는 조건은 약해진다. 반대로 substitute를 negative로 두면, 실제로는 사용자가 받아들일 수 있는 대체 상품까지 멀리 밀어내게 된다.
+Stage 1의 contrastive learning은 query와 관련 product를 가까이 모으는 데 강하다. 하지만 상품 검색에서는 “관련 있음” 안에서도 순서가 갈린다. exact product와 substitute product를 모두 positive로 두면 둘 다 query 근처로 오지만, exact가 substitute보다 위에 있어야 한다는 조건은 약해진다. 반대로 substitute를 negative로 두면, 실제로는 사용자가 받아들일 수 있는 대체 상품까지 멀리 밀어내게 된다.
 
-그래서 이 논문은 한 query에 대해 **multi positive가 있지만, positive마다 강도가 다르다** 고 본다. 더 정확히는 다음과 같은 preference ladder를 둔다.
-
-| Grade | 직관 |
+| 처리 방식 | 생기는 문제 |
 |---|---|
-| Exact | 사용자가 입력한 의도와 정확히 맞는 상품 |
-| Substitute | exact는 아니지만 같은 목적을 만족할 수 있는 대체 상품 |
-| Complementary | 같이 쓰이거나 연관은 있지만, query의 직접 답은 아닌 상품 |
-| Irrelevant | 의도와 맞지 않는 상품 |
+| `Exact`와 `Substitute`를 모두 같은 positive로 둠 | 대체 상품이 exact보다 위로 올라올 수 있음 |
+| `Substitute`를 negative로 둠 | 쓸 만한 대체 상품까지 retrieval에서 사라질 수 있음 |
+| `Exact > Substitute > Complementary > Irrelevant` 순서를 둠 | 후보를 살리면서도 intent에 맞는 순서를 학습할 수 있음 |
 
-즉 `Exact`와 `Substitute`는 둘 다 retrieval 대상이 될 수 있지만, 같은 세기의 positive는 아니다. 이 차이를 학습하지 않으면 모델은 “대체 상품도 관련 있으니 위로 올려도 되겠네”라고 배울 수 있다.
+그래서 이 논문은 한 query에 대해 **multi-positive가 있지만, positive마다 강도가 다르다** 고 본다. 여기서 positive라는 말은 “무조건 같은 정답”이라는 뜻이 아니라, retrieval 후보로 살릴 가치가 있다는 뜻에 가깝다. ordering 관점에서는 이 후보들 사이에도 선호 순서가 있다.
 
-각 query에 대해 relevance 순서가 있는 product group을 만든다.
+| Grade | Retrieval 관점 | Ordering 관점 |
+|---|---|---|
+| Exact | 반드시 살려야 하는 후보 | 가장 위에 와야 함 |
+| Substitute | 살릴 가치가 있는 대체 후보 | exact보다는 아래 |
+| Complementary | 관련은 있지만 직접 답은 아님 | substitute보다 아래 |
+| Irrelevant | 제거 대상 | 가장 아래 |
+
+각 query에 대해 relevance 순서가 있는 product group을 만들면 다음처럼 쓸 수 있다.
 
 $$
 p_{i,1} \succ p_{i,2} \succ \cdots \succ p_{i,g_i}
@@ -166,7 +174,7 @@ Perfect Match > Substitute > Complementary > Irrelevant
 
 이 목록은 “정답 하나”를 고르는 구조가 아니라, 하나의 query에 대한 후보들의 선호 순서다. ROAR는 모든 후보쌍을 다 비교하기보다, 인접한 grade끼리만 비교한다. `Exact > Substitute`, `Substitute > Complementary`, `Complementary > Irrelevant`가 맞으면 전체 순서도 자연스럽게 맞춰진다고 보는 것이다.
 
-모델은 query $q_i$가 product $p_j$를 선택할 확률을 row-wise softmax로 계산한다.
+모델은 먼저 query $q_i$가 product $p_j$를 선택할 확률을 row-wise softmax로 계산한다.
 
 $$
 P_\theta(p_j | q_i) = \text{softmax}(S_i / \tau_a)_j
@@ -199,7 +207,7 @@ L_{align} =
 \log \sigma(\Delta^{OR}_{i,k})
 $$
 
-수식이 요구하는 것은 단순하다. 위 grade 후보의 odds가 아래 grade 후보의 odds보다 커지도록 만든다. 예를 들어 `Exact`의 odds가 `Substitute`보다 커지고, `Substitute`의 odds가 `Complementary`보다 커지면 loss가 작아진다.
+수식이 요구하는 것은 단순하다. 위 grade 후보의 odds가 아래 grade 후보의 odds보다 커지면 된다. 예를 들어 `Exact`의 odds가 `Substitute`보다 커지고, `Substitute`의 odds가 `Complementary`보다 커지면 loss가 작아진다.
 
 최종 objective는 contrastive loss와 alignment loss를 같이 쓴다.
 
@@ -404,6 +412,8 @@ GRAM은 LLM이 identifier를 생성하고 inverted-index-like retrieval로 후�
 
 - [Semantic Retrieval for Product Search in E-Commerce](https://arxiv.org/abs/2606.01504)
 - [PDF](https://arxiv.org/pdf/2606.01504)
+- [Walmart Raises Stake in Indian Retailer Flipkart](https://www.investopedia.com/walmart-hikes-stake-in-indian-retailer-flipkart-7567556)
+- [Q-commerce growth: Flipkart, Amazon bet on large base](https://timesofindia.indiatimes.com/business/india-business/q-commerce-growth-flipkart-amazon-bet-on-large-base/articleshow/131949859.cms)
 - [[retrieval/dense/Qwen3 Embedding]]
 - [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model]]
 - [[retrieval/e-commerce/Multimodal Semantic Retrieval for Product Search]]
