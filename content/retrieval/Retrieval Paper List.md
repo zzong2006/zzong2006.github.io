@@ -10,6 +10,7 @@ tags: ["retrieval", "IR", "paper_list", "SIGIR", "y2025"]
 
 - **GRAIN: Group-Reinforced Adaptive Interaction Network for Cold-Start CTR Prediction in E-commerce Search:** 이커머스 검색에서 콜드 스타트 클릭률 예측을 위한 그룹 강화 적응형 상호 작용 네트워크에 관한 논문입니다.
 - **From Keywords to Concepts: A Late Interaction Approach to Semantic Product Search on IKEA.com:** IKEA.com의 시맨틱 제품 검색에 대한 후기 상호 작용 접근 방식을 다룹니다.
+- **[[retrieval/e-commerce/Semantic Retrieval for Product Search in E-Commerce]]:** Flipkart의 Qwen3-Embedding-4B 기반 상품 검색 retrieval 사례입니다. contrastive fine-tuning과 ROAR로 Exact, Substitute, Complementary, Irrelevant의 graded relevance 순서를 학습합니다.
 - **Retrieval for Semantic People Search:** 시맨틱 인물 검색을 위한 검색 기술에 관한 논문입니다.
 - **Defining & Optimizing Quality of LinkedIn’s Content Search:** 링크드인 콘텐츠 검색의 품질을 정의하고 최적화하는 방법을 다룹니다.
 - **Content Moderation in TV Search: Balancing Policy Compliance, Relevance, and User Experience:** TV 검색에서의 콘텐츠 조정에 대한 내용으로, 정책 준수, 관련성 및 사용자 경험의 균형을 맞추는 방법을 논의합니다.
