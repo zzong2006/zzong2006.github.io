@@ -370,7 +370,9 @@ Mobiles와 Lifestyle에서 개선폭이 크다. brand, specification, style attr
 | Nominal load | 200 | 40 ms | 135 ms |
 | Peak tested load | 680 | 80 ms | 236 ms |
 
-Qwen3-4B를 NVIDIA H200의 1g.18GB MIG partition에서 bfloat16으로 서빙한다. GPU memory footprint는 약 7.5GB이고, vLLM을 사용한다. 4B embedding model도 MRL, 256D deployment, MIG partition, vLLM을 조합하면 first-stage retrieval query encoder로 쓸 수 있음을 보여주는 사례다.
+Qwen3-4B를 NVIDIA H200의 `1g.18GB` MIG partition에서 bfloat16으로 서빙한다. 여기서 MIG는 **Multi-Instance GPU** 의 줄임말로, 물리 GPU 한 장을 여러 개의 격리된 작은 GPU처럼 나눠 쓰는 기능이다. `1g.18GB`는 H200에서 1개의 compute slice와 약 18GB GPU memory를 가진 가장 작은 GPU instance profile에 가깝다. H200 한 장에서 이런 `1g.18GB` instance를 최대 7개까지 만들 수 있으므로, 논문의 serving 설정은 “H200 전체를 query encoder 하나에 통째로 쓴다”가 아니라 “H200의 작은 조각 하나로 4B embedding query encoder를 돌린다”는 의미다.
+
+GPU memory footprint는 약 7.5GB이고, vLLM을 사용한다. 4B embedding model도 MRL, 256D deployment, MIG partition, vLLM을 조합하면 first-stage retrieval query encoder로 쓸 수 있음을 보여주는 사례다.
 
 # H) 실무적 시사점
 
@@ -424,6 +426,7 @@ GRAM은 LLM이 identifier를 생성하고 inverted-index-like retrieval로 후�
 - [PDF](https://arxiv.org/pdf/2606.01504)
 - [Walmart Raises Stake in Indian Retailer Flipkart](https://www.investopedia.com/walmart-hikes-stake-in-indian-retailer-flipkart-7567556)
 - [Q-commerce growth: Flipkart, Amazon bet on large base](https://timesofindia.indiatimes.com/business/india-business/q-commerce-growth-flipkart-amazon-bet-on-large-base/articleshow/131949859.cms)
+- [NVIDIA Multi-Instance GPU User Guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/latest/)
 - [[retrieval/dense/Qwen3 Embedding]]
 - [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model]]
 - [[retrieval/e-commerce/Multimodal Semantic Retrieval for Product Search]]
