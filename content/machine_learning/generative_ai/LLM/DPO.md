@@ -14,7 +14,7 @@ DPO(Direct Preference Optimization)는 `chosen/rejected` 답변 쌍을 이용해
 
 여기서 중요한 점은 "좋은 답변의 확률을 무조건 크게 만든다"가 아니다. DPO는 **기존 SFT 모델이 보던 확률 분포를 기준점으로 삼고**, 그 기준점에서 `chosen`을 더 선호하고 `rejected`는 상대적으로 덜 선호하도록 조정한다.
 
-2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline**에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 좋은 선택지다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, `GSPO` 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
+2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline** 에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 좋은 선택지다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, `GSPO` 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
 
 # B) DPO가 왜 필요한가
 
@@ -77,7 +77,7 @@ $$
 - $\pi_\theta$: 지금 학습 중인 policy model
 - $y_t$: 답변의 $t$번째 token
 
-DPO는 현재 모델의 log probability만 보지 않는다. **reference model과 비교해서 얼마나 달라졌는지**를 본다.
+DPO는 현재 모델의 log probability만 보지 않는다. **reference model과 비교해서 얼마나 달라졌는지** 를 본다.
 
 $$
 s_\theta(x, y)
@@ -248,6 +248,8 @@ DPO를 프로젝트에 적용할 때는 알고리즘보다 데이터 설계와 �
 간단히 말하면, `중국어 rejected / 한국어 chosen` DPO는 방향은 맞지만 너무 약한 처방일 때가 많다. 한국어만 안정적으로 내게 하려면 **SFT로 기본 언어 습관을 잡고, 실제 실패 로그 기반 DPO/ORPO로 언어 혼합에 패널티를 주고, 필요하면 RL의 language reward와 inference guardrail을 붙이는 식** 으로 여러 층을 겹치는 편이 낫다.
 
 관련 연구도 이 방향과 잘 맞는다. Language confusion benchmark 계열 연구는 LLM이 사용자가 원하는 언어로 항상 답하지 못하며, 복잡한 prompt와 높은 sampling temperature에서 문제가 커질 수 있다고 보고한다. 또 ORPO처럼 unwanted output style에 penalty를 추가하는 방식이 language-confused generation을 줄이는 데 효과적이라는 결과도 있다. RLVR/GRPO 계열에서도 target-language consistency reward가 도움이 되지만, task accuracy와 언어 일관성 사이의 trade-off가 생길 수 있다는 보고가 있다.
+
+이 문제를 더 세밀하게 다룬 방법으로 [[papers/language_model/TLPO - Token-Level Policy Optimization for Mitigating Language Confusion in Large Language Models|TLPO]]도 볼 만하다. DPO가 `chosen/rejected` 답변 전체의 선호 순서를 조정한다면, TLPO는 모델이 실제로 생성한 실패 답변 안에서 **처음 언어가 틀어지는 token 위치** 를 찾고, 그 지점의 후보 token들에만 보상을 준다. 그래서 `DPO pair는 실제 실패 로그에서 만든다`는 말은 TLPO 쪽으로 가면 더 구체적으로 `실패 로그에서 confusion point를 찾는다`는 절차로 이어진다.
 
 # K) 면접에서 이렇게 말하면 된다
 
