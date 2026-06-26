@@ -173,7 +173,15 @@ function getRelatedEntries(fileData, allFiles, options) {
   const seen = new Set()
   const entries = []
 
-  for (const entry of fromCache) {
+  for (const cachedEntry of fromCache) {
+    const entry =
+      typeof cachedEntry === "string"
+        ? { slug: cachedEntry }
+        : cachedEntry && typeof cachedEntry === "object"
+          ? cachedEntry
+          : null
+    if (!entry) continue
+
     const page = bySlug.get(entry.slug)
     if (!page || seen.has(entry.slug)) continue
     seen.add(entry.slug)

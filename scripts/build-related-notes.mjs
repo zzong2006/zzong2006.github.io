@@ -438,6 +438,7 @@ function buildRelatedMap(docs, embeddings) {
       .filter((entry) => entry.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, topK)
+      .map((entry) => entry.slug)
   }
   return relatedBySlug
 }
@@ -475,6 +476,7 @@ await writeJson(
     topK,
     documents: docs.length,
     embeddedDocuments: embeddedCount,
+    format: "slug-array",
     relatedBySlug,
   },
   { pretty: true },
