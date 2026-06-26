@@ -146,9 +146,6 @@ plugins:
     enabled: true
     options:
       datesPath: ""
-    layout:
-      position: left
-      priority: 51
   - source: github:quartz-community/graph
     enabled: false
     layout:
