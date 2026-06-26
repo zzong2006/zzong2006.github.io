@@ -1,6 +1,15 @@
 name: Update related note embeddings
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/**/*.md"
+      - "scripts/build-related-notes.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/update-related-notes.yml"
   workflow_dispatch:
   schedule:
     - cron: "17 18 * * *"
@@ -28,6 +37,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Normalize Obsidian frontmatter
+        run: npm run normalize-frontmatter
 
       - name: Build related note embeddings
         env:
