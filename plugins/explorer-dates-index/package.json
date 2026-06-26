@@ -1,0 +1,20 @@
+{
+  "name": "explorer-dates-index",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "quartz": {
+    "name": "explorer-dates-index",
+    "displayName": "Explorer Dates Index",
+    "description": "Emits latest modified timestamps for explorer folder ordering.",
+    "version": "1.0.0",
+    "category": "emitter",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "outputPath": "static/explorerDates.json"
+    }
+  }
+}

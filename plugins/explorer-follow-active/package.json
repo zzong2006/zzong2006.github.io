@@ -1,0 +1,31 @@
+{
+  "name": "explorer-follow-active",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./components/index.js"
+  },
+  "quartz": {
+    "name": "explorer-follow-active",
+    "displayName": "Explorer Follow Active",
+    "description": "Keeps the explorer focused on the current note and recent folders.",
+    "version": "1.0.0",
+    "category": "component",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "datesPath": ""
+    },
+    "components": {
+      "ExplorerFollowActive": {
+        "name": "ExplorerFollowActive",
+        "displayName": "Explorer Follow Active",
+        "description": "Invisible explorer navigation enhancer.",
+        "version": "1.0.0",
+        "defaultPosition": "left",
+        "defaultPriority": 51
+      }
+    }
+  }
+}

@@ -113,6 +113,10 @@ plugins:
     options:
       enableSiteMap: true
       enableRSS: true
+  - source: ./plugins/explorer-dates-index
+    enabled: true
+    options:
+      outputPath: static/explorerDates.json
   - source: ./plugins/semantic-search-index
     enabled: true
     options:
@@ -138,6 +142,13 @@ plugins:
     layout:
       position: left
       priority: 50
+  - source: ./plugins/explorer-follow-active
+    enabled: true
+    options:
+      datesPath: ""
+    layout:
+      position: left
+      priority: 51
   - source: github:quartz-community/graph
     enabled: false
     layout:
