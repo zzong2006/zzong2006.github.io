@@ -9,24 +9,26 @@ aliases: ["Apache Flink", "Flink"]
 
 # A) Apache Flink
 
-Apache Flink는 **bounded stream과 unbounded stream을 같은 실행 모델로 처리하는 stateful stream processing engine** 이다. 파일이나 테이블처럼 끝이 있는 데이터도 stream으로 보고, Kafka topic처럼 끝없이 들어오는 데이터도 stream으로 본다.
+Apache Flink는 [[Kafka]] 같은 곳에서 계속 들어오는 이벤트를 읽어, 집계·조인·알림·feature 계산을 계속 돌려 주는 분산 처리 엔진이다. 한 번 실행하고 끝나는 스크립트라기보다, 데이터가 들어오는 동안 계속 살아 있으면서 계산 결과를 갱신하는 시스템에 가깝다.
 
-그래서 Flink를 볼 때 핵심은 "빠른 batch engine인가?"가 아니라 "이벤트가 계속 들어오는 동안, key별 상태를 잃지 않고, event time 기준으로 결과를 언제 확정할 것인가?"이다.
+Flink 문서에서 말하는 **bounded stream**은 로그 파일이나 일 단위 partition처럼 끝이 있는 데이터이고, **unbounded stream**은 Kafka topic처럼 끝없이 들어오는 데이터다. Flink는 둘을 완전히 다른 세계로 보지 않는다. "데이터가 순서대로 흘러온다"는 관점에서 같은 stream 모델 위에 올려 처리한다.
 
-[[Kafka]]가 event log를 오래 보관하고 전달하는 쪽에 가깝다면, Flink는 그 event를 읽어서 window aggregation, join, enrichment, alerting, feature 계산 같은 **계속 살아 있는 계산**을 수행한다. [[Apache Spark]]와도 겹치는 영역이 있지만, Flink의 기본 감각은 micro-batch보다 record-by-record streaming runtime에 더 가깝다.
+그래서 Flink를 이해할 때 첫 질문은 "빠른 batch engine인가?"가 아니다. 더 중요한 질문은 "이벤트가 계속 들어오는 동안 무엇을 기억해야 하고, 결과를 언제 확정해야 하며, 장애가 나면 어디서 다시 이어서 처리할 것인가?"이다.
 
-2026년 6월 기준 공식 문서의 stable 버전은 Flink 2.3이며, Apache Flink 2.3.0은 2026-06-25에 release되었다. 2.3에서는 SQL changelog 변환, materialized table 개선, native S3 filesystem, watermark alignment 개선, recovery 중 checkpoint 지원 같은 운영/SQL 쪽 변화가 들어왔다.
+[[Kafka]]가 event log를 오래 보관하고 전달하는 쪽에 가깝다면, Flink는 그 event를 읽어 window aggregation, join, enrichment, alerting, feature 계산 같은 **계속 살아 있는 계산**을 수행한다. [[Apache Spark]]와 겹치는 영역도 있지만, Flink의 기본 감각은 micro-batch보다 record-by-record streaming runtime에 더 가깝다.
+
+2026년 6월 기준 공식 문서의 stable 버전은 Flink 2.3이고, Apache Flink 2.3.0은 2026-06-25에 release되었다. 2.3에는 SQL changelog 변환, materialized table 개선, native S3 filesystem, watermark alignment 개선, recovery 중 checkpoint 지원처럼 SQL과 운영에 가까운 변화가 들어왔다.
 
 # B) Flink가 풀려는 문제
 
-실시간 데이터 처리는 단순히 "빨리 처리한다"로 끝나지 않는다. 실제로 어려운 부분은 다음 질문들이다.
+실시간 데이터 처리는 "빨리 처리한다"로 끝나지 않는다. 운영에서 어려운 부분은 대체로 이런 질문들이다.
 
 1. 이벤트가 늦게 도착하면 이미 낸 집계 결과를 어떻게 수정할 것인가?
 2. 장애가 나면 어디까지 처리했다고 보고 다시 시작할 것인가?
 3. 사용자, 상품, 세션처럼 key별로 쌓인 상태를 어디에 저장하고 어떻게 scale-out할 것인가?
 4. sink에 쓴 결과까지 exactly-once에 가깝게 맞출 수 있는가?
 
-Flink는 이 문제를 **state + time + checkpoint** 조합으로 푼다.
+Flink는 이 문제를 **state + time + checkpoint** 조합으로 푼다. 무엇을 기억할지, 어떤 시간을 기준으로 볼지, 어디까지 처리했는지 남겨 두는지가 핵심이다.
 
 ```mermaid
 flowchart TD
@@ -40,47 +42,47 @@ flowchart TD
     style F fill:#E7F6D5
 ```
 
-그림에서 중요한 점은 state가 외부 DB에 매번 왕복하는 값이 아니라는 것이다. Flink operator는 key별 state를 TaskManager 쪽 local state로 들고 있고, checkpoint 시점에 durable storage로 snapshot을 남긴다.
+여기서 중요한 점은 state가 매번 외부 DB에 왕복하는 값이 아니라는 것이다. Flink operator는 key별 state를 TaskManager 쪽 local state로 들고 있다가, checkpoint 시점에 durable storage로 snapshot을 남긴다.
 
 # C) 핵심 모델
 
 ## C.1) Bounded Stream과 Unbounded Stream
 
-Flink는 모든 데이터를 stream으로 본다.
+Flink는 모든 데이터를 stream으로 본다. 차이는 stream이 언젠가 끝나는지, 아니면 계속 이어지는지에 있다.
 
 | 구분 | 의미 | 예시 | 처리 감각 |
 | --- | --- | --- | --- |
 | Bounded stream | 시작과 끝이 있는 데이터 | 과거 로그 파일, 일 단위 partition | batch처럼 전체를 읽고 끝낼 수 있음 |
 | Unbounded stream | 시작은 있지만 끝이 없는 데이터 | Kafka topic, click event, sensor event | 계속 실행되며 결과를 갱신해야 함 |
 
-이 관점이 중요한 이유는 batch와 streaming을 완전히 다른 시스템으로 나누지 않아도 되기 때문이다. 같은 Table API/SQL 또는 DataStream API 위에서 입력이 bounded인지 unbounded인지에 따라 실행 전략이 달라진다.
+이 관점이 중요한 이유는 batch와 streaming을 완전히 다른 시스템으로 나누지 않아도 되기 때문이다. 같은 Table API/SQL이나 DataStream API 위에서 작업을 표현하고, 입력이 bounded인지 unbounded인지에 따라 실행 전략을 달리 가져간다.
 
 ## C.2) State
 
-Flink에서 state는 operator가 여러 event에 걸쳐 기억해야 하는 값이다.
+Flink에서 state는 operator가 여러 event에 걸쳐 기억해야 하는 값이다. 쉽게 말하면 "지금까지 본 것 중 다음 event를 처리할 때 다시 꺼내 봐야 하는 정보"다.
 
-예를 들어 5분 단위 클릭 수를 집계한다면 아직 닫히지 않은 window의 누적 count가 state다. 사용자의 최근 행동 sequence를 보고 fraud pattern을 찾는다면 지금까지 관측된 event sequence가 state다. online feature를 만든다면 user_id별 최신 통계량이 state다.
+예를 들어 5분 단위 클릭 수를 집계한다면, 아직 닫히지 않은 window의 누적 count가 state다. 사용자의 최근 행동 sequence로 fraud pattern을 찾는다면 지금까지 본 event sequence가 state다. online feature를 만든다면 user_id별 최신 통계량이 state가 된다.
 
-가장 자주 보는 형태는 **keyed state**다. `keyBy(user_id)`처럼 stream을 key 기준으로 partitioning하면, 해당 key의 state는 같은 parallel subtask 안에서 local하게 갱신된다. 이 구조 덕분에 매 event마다 분산 transaction을 걸지 않고도 key 단위 일관성을 유지할 수 있다.
+가장 자주 보는 형태는 **keyed state**다. `keyBy(user_id)`처럼 stream을 key 기준으로 나누면, 같은 key의 state는 같은 parallel subtask 안에서 local하게 갱신된다. 덕분에 매 event마다 분산 transaction을 걸지 않고도 key 단위 일관성을 유지할 수 있다.
 
-state가 커지면 state backend 선택이 중요해진다. Heap 기반 backend는 접근이 빠르지만 JVM heap과 GC 영향을 받는다. RocksDB 기반 backend는 serialization 비용 때문에 느릴 수 있지만 local disk를 활용해 memory보다 큰 state를 다루기 좋고 incremental checkpoint를 활용할 수 있다.
+state가 커지면 state backend 선택이 중요해진다. Heap 기반 backend는 접근이 빠르지만 JVM heap과 GC 영향을 받는다. RocksDB 기반 backend는 serialization 비용 때문에 느릴 수 있지만, local disk를 활용해 memory보다 큰 state를 다루기 좋고 incremental checkpoint도 쓸 수 있다.
 
 ## C.3) Event Time과 Watermark
 
-streaming에서 시간은 하나가 아니다.
+streaming에서 시간은 하나가 아니다. "처리한 시간"과 "이벤트가 실제로 발생한 시간"이 다를 수 있기 때문이다.
 
 | 시간 기준 | 의미 | 장점 | 주의점 |
 | --- | --- | --- | --- |
 | Processing time | operator가 실행되는 machine의 wall-clock 시간 | 단순하고 latency가 낮음 | 재처리, 지연, 장애 상황에서 결과가 흔들릴 수 있음 |
 | Event time | event가 실제로 발생한 시간 | 늦게 도착한 event와 재처리에 강함 | watermark와 allowed lateness 설계가 필요함 |
 
-실무에서는 "어제 10:00-10:05 사이의 클릭 수"처럼 event가 실제로 발생한 시간을 기준으로 보고 싶은 경우가 많다. 이때 Flink는 event timestamp를 추출하고, watermark로 "이 시각 이전 event는 대체로 도착했다고 보자"는 진행 신호를 보낸다.
+실무에서는 "어제 10:00-10:05 사이의 클릭 수"처럼 event가 실제로 발생한 시간을 기준으로 보고 싶은 경우가 많다. 이때 Flink는 event timestamp를 꺼내고, watermark로 "이 시각 이전 event는 대체로 도착했다고 보자"는 진행 신호를 보낸다.
 
-watermark는 완벽한 정답 선언이 아니다. 너무 빠르게 밀면 late event가 많이 생기고, 너무 보수적으로 잡으면 window가 늦게 닫혀 latency가 커진다. 결국 watermark는 데이터 지연 분포와 비즈니스 허용 오차를 반영한 운영 파라미터다.
+watermark는 완벽한 정답 선언이 아니다. 너무 빠르게 밀면 late event가 많이 생기고, 너무 보수적으로 잡으면 window가 늦게 닫혀 latency가 커진다. 결국 watermark는 데이터 지연 분포와 비즈니스 허용 오차를 함께 반영하는 운영 파라미터다.
 
 # D) Checkpoint와 Savepoint
 
-Flink의 fault tolerance는 snapshot을 중심으로 이해하면 편하다.
+Flink의 fault tolerance는 snapshot을 중심으로 이해하면 편하다. 실행 중인 job의 상태를 주기적으로 찍어 두고, 장애가 나면 그 지점에서 다시 이어 간다고 보면 된다.
 
 | 개념 | 트리거 | 목적 | 실무 감각 |
 | --- | --- | --- | --- |
@@ -88,7 +90,7 @@ Flink의 fault tolerance는 snapshot을 중심으로 이해하면 편하다.
 | Externalized checkpoint | 자동 checkpoint를 job 종료 후에도 보존 | 수동 복구 | 운영 사고 대응용으로 쓸 수 있음 |
 | Savepoint | 사용자가 수동으로 생성 | upgrade, rescale, migration | 배포/버전 변경 전 의식적으로 남기는 기준점 |
 
-checkpoint에는 operator state뿐 아니라 Kafka offset 같은 source position도 함께 들어간다. 장애가 나면 Flink는 마지막 성공 checkpoint로 state와 source position을 되돌린 뒤 다시 읽는다. 그래서 source는 replay가 가능해야 하고, checkpoint storage는 durable해야 한다. production에서는 JobManager heap보다 HDFS, S3 같은 외부 durable filesystem을 쓰는 구성이 일반적이다.
+checkpoint에는 operator state뿐 아니라 Kafka offset 같은 source position도 함께 들어간다. 장애가 나면 Flink는 마지막으로 성공한 checkpoint로 state와 source position을 되돌린 뒤 다시 읽는다. 그래서 source는 replay가 가능해야 하고, checkpoint storage는 durable해야 한다. production에서는 JobManager heap보다 HDFS, S3 같은 외부 durable filesystem을 쓰는 구성이 일반적이다.
 
 ```java
 StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -98,11 +100,11 @@ env.getCheckpointConfig().setCheckpointTimeout(10 * 60_000);
 env.getCheckpointConfig().setMinPauseBetweenCheckpoints(30_000);
 ```
 
-`exactly-once`라는 표현은 조심해서 읽어야 한다. Flink 내부 state의 exactly-once와 end-to-end exactly-once는 다르다. end-to-end로 맞추려면 source replay, checkpoint, sink commit protocol이 함께 맞아야 한다. 예를 들어 Kafka transaction sink나 two-phase commit이 가능한 sink는 맞추기 쉽지만, 일반 REST API 호출처럼 side effect가 바로 외부에 나가는 sink는 idempotency나 deduplication 설계를 따로 해야 한다.
+`exactly-once`라는 표현은 조심해서 읽어야 한다. Flink 내부 state의 exactly-once와 end-to-end exactly-once는 다르다. end-to-end로 맞추려면 source replay, checkpoint, sink commit protocol이 함께 맞아야 한다. Kafka transaction sink나 two-phase commit이 가능한 sink는 비교적 맞추기 쉽지만, 일반 REST API 호출처럼 side effect가 바로 외부에 나가는 sink는 idempotency나 deduplication 설계를 따로 해야 한다.
 
 # E) API를 어떻게 고를까
 
-Flink는 추상화 수준이 여러 층이다.
+Flink는 추상화 수준이 여러 층이다. 처음부터 가장 낮은 API로 내려가기보다, 하고 싶은 일을 어느 수준에서 자연스럽게 표현할 수 있는지 먼저 보는 편이 좋다.
 
 | API | 잘 맞는 작업 | 장점 | 한계 |
 | --- | --- | --- | --- |
@@ -117,13 +119,13 @@ Flink는 추상화 수준이 여러 층이다.
 
 ## F.1) State 크기와 backend
 
-Flink job이 무거워지는 가장 흔한 이유는 CPU보다 state다. key cardinality, window 크기, join retention, late event 허용 시간, deduplication TTL이 state 크기를 만든다.
+Flink job이 무거워지는 가장 흔한 이유는 CPU보다 state다. key cardinality, window 크기, join retention, late event 허용 시간, deduplication TTL이 state 크기를 키운다.
 
 state가 작고 latency가 민감하면 heap 기반 backend가 단순할 수 있다. state가 크거나 window가 길고 recovery 비용이 중요하면 RocksDB backend와 incremental checkpoint를 검토한다. 다만 RocksDB는 serialization, compaction, local disk I/O가 성능 병목이 될 수 있으므로 metric을 같이 봐야 한다.
 
 ## F.2) Checkpoint가 성공하는가
 
-checkpoint는 켜는 것보다 계속 성공하게 만드는 것이 어렵다. 체크할 항목은 다음과 같다.
+checkpoint는 켜는 것보다 계속 성공하게 만드는 일이 더 어렵다. 먼저 볼 항목은 다음과 같다.
 
 1. checkpoint duration이 interval보다 길어지고 있지 않은가?
 2. checkpoint storage가 병목이 되지 않는가?
@@ -147,7 +149,7 @@ streaming job은 한 operator가 느려지면 upstream까지 압력이 전파된
 | [[Apache Spark]] Structured Streaming | Spark ecosystem 위의 streaming/batch 통합 | lakehouse batch와 streaming을 함께 다루기 좋음 | low-latency event-by-event 처리 감각은 Flink와 다름 |
 | Kafka Streams | Kafka application 안의 lightweight stream processing | Kafka-native topology, embedded app | cluster-level resource management와 큰 state 운영은 별도 고민 필요 |
 
-대략적으로, 이미 Spark 중심 lakehouse가 있고 latency 요구가 초 단위 이상이면 Spark Structured Streaming이 자연스러울 수 있다. Kafka topic 사이의 가벼운 변환이나 join을 app 안에 넣고 싶으면 Kafka Streams가 단순하다. 반대로 event time, 큰 keyed state, 복잡한 window/join, 별도 cluster에서 오래 살아 있는 streaming job이 중요하면 Flink를 검토할 이유가 커진다.
+대략적으로 보면, 이미 Spark 중심 lakehouse가 있고 latency 요구가 초 단위 이상이면 Spark Structured Streaming이 자연스러울 수 있다. Kafka topic 사이의 가벼운 변환이나 join을 app 안에 넣고 싶다면 Kafka Streams가 단순하다. 반대로 event time, 큰 keyed state, 복잡한 window/join, 별도 cluster에서 오래 살아 있는 streaming job이 중요하면 Flink를 검토할 이유가 커진다.
 
 # H) Flink를 쓸 때의 감각
 
