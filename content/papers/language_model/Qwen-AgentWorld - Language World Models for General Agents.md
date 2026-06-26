@@ -17,11 +17,11 @@ aliases:
 
 # A) 한줄 요약
 
-**Qwen-AgentWorld** 는 agent가 어떤 행동을 했을 때 환경이 다음에 어떤 관측값을 돌려줄지 예측하는 **Language World Model (LWM)** 을 만든 논문이다. 일반 LLM을 나중에 simulator처럼 쓰는 것이 아니라, 처음부터 `history + action -> next observation`을 학습 목표로 둔다.
+**Qwen-AgentWorld** 는 agent가 action을 실행한 뒤 환경이 어떤 관측값을 돌려줄지 예측하는 **Language World Model (LWM)** 을 다룬다. 기존 LLM에 simulator 역할을 나중에 맡기는 방식이 아니라, 처음부터 `history + action -> next observation`을 학습 목표로 둔다.
 
-Qwen Team은 `MCP`, `Search`, `Terminal`, `SWE`, `Android`, `Web`, `OS`까지 7개 agent 환경을 하나의 모델로 시뮬레이션한다. 모델은 `Qwen-AgentWorld-35B-A3B`와 `Qwen-AgentWorld-397B-A17B` 두 규모로 보고되며, 공개 release는 35B-A3B weight와 AgentWorldBench benchmark 중심이다.
+Qwen Team은 `MCP`, `Search`, `Terminal`, `SWE`, `Android`, `Web`, `OS`까지 7개 agent 환경을 하나의 모델로 묶어 시뮬레이션한다. 논문에는 `Qwen-AgentWorld-35B-A3B`와 `Qwen-AgentWorld-397B-A17B` 두 규모가 보고되며, 공개 release는 35B-A3B weight와 AgentWorldBench benchmark를 중심으로 이뤄졌다.
 
-짧게 말하면, 이 논문은 **agent를 더 많이 실행시키기 위한 논문** 이라기보다 **agent가 실행할 세계를 더 잘 예측하고 조작하기 위한 논문** 에 가깝다. 실제 환경만 붙잡고 RL을 돌리는 대신, world model을 통해 더 많은 환경, 더 나쁜 edge case, 더 통제된 실패 상황을 만들어 agent를 훈련시키려는 시도다.
+짧게 말하면, 이 논문은 **agent를 더 많이 실행시키는 법** 보다 **agent가 실행될 세계를 어떻게 예측하고 통제할지** 에 초점을 둔다. 실제 환경에만 의존해 RL을 돌리면 비용과 위험, 관측 가능한 실패 사례가 제한된다. Qwen-AgentWorld는 world model로 환경 분포를 넓히고, edge case와 failure mode를 의도적으로 조절해 agent를 훈련하려는 시도다.
 
 - **저자**: Qwen Team, Yuxin Zuo et al.
 - **발표**: arXiv 2606.24597, 2026-06-23
@@ -33,14 +33,14 @@ Qwen Team은 `MCP`, `Search`, `Terminal`, `SWE`, `Android`, `Web`, `OS`까지 7�
 
 ![Qwen-AgentWorld overview](https://arxiv.org/html/2606.24597v1/x1.png)
 
-이 논문의 전체 그림은 두 층으로 나눠보면 이해하기 쉽다.
+전체 구조는 두 층으로 나눠보면 이해하기 쉽다.
 
-첫 번째 층은 **world model 자체를 만드는 일** 이다. 실제 agent가 환경과 상호작용한 trajectory를 모아, agent의 action 뒤에 나올 environment observation을 예측하도록 모델을 학습한다. 이때 환경은 terminal, web, search, Android UI처럼 서로 매우 다르지만, 모두 텍스트 형태의 `action -> observation` 예측 문제로 통일된다.
+첫 번째 층은 **world model 자체를 학습하는 단계** 다. 실제 agent가 환경과 상호작용한 trajectory를 모아, agent의 action 뒤에 이어질 environment observation을 예측하도록 모델을 훈련한다. terminal, web, search, Android UI처럼 환경은 서로 다르지만, 모두 텍스트 형태의 `action -> observation` 예측 문제로 맞춰진다.
 
-두 번째 층은 **이 world model을 agent 학습에 쓰는 방식** 이다. 논문은 두 가지 사용법을 제시한다.
+두 번째 층은 **학습된 world model을 agent 학습에 쓰는 방법** 이다. 논문은 두 가지 사용법을 제시한다.
 
 1. **Decoupled simulator**: agent는 따로 두고, Qwen-AgentWorld를 environment simulator로 사용한다. 실제 MCP server, 검색 엔진, terminal sandbox를 매번 띄우지 않고도 Sim RL을 돌릴 수 있다.
-2. **Unified agent foundation model**: world model training을 agent model의 warm-up처럼 사용한다. agent가 행동하기 전에 "이 행동을 하면 다음에 어떤 observation이 나올까?"를 예측하는 습관을 갖게 만드는 것이다.
+2. **Unified agent foundation model**: world model training을 agent model의 warm-up처럼 사용한다. agent가 행동하기 전에 "이 행동을 하면 다음에 어떤 observation이 나올까?"를 예측하는 습관을 심어준다.
 
 ```mermaid
 flowchart TD
@@ -61,33 +61,33 @@ flowchart TD
     style Warm fill:#FFF3E0
 ```
 
-여기서 중요한 점은 world model이 **답변 생성기** 가 아니라 **환경 반응 생성기** 라는 것이다. Search domain이라면 검색 결과 snippet을, Terminal domain이라면 command output과 shell prompt를, MCP domain이라면 JSON tool response를 예측한다.
+여기서 world model은 **답변 생성기** 가 아니라 **환경 반응 생성기** 에 가깝다. Search domain에서는 검색 결과 snippet을, Terminal domain에서는 command output과 shell prompt를, MCP domain에서는 JSON tool response를 예측한다.
 
 # C) 배경 지식
 
 ## C.1) World Model이란?
 
-World model은 현재 상태와 행동이 주어졌을 때 다음 상태를 예측하는 모델이다. RL이나 planning에서 오래된 개념이고, visual world model이나 robotics world model에서는 주로 이미지/비디오의 다음 상태를 예측한다.
+World model은 현재 상태와 행동이 주어졌을 때 다음 상태를 예측하는 모델이다. RL이나 planning에서 오래전부터 쓰인 개념이고, visual world model이나 robotics world model에서는 주로 이미지/비디오의 다음 상태를 예측한다.
 
-LLM agent에서는 상태가 꼭 픽셀일 필요가 없다. terminal output, API response, browser accessibility tree, search result snippet처럼 **텍스트로 표현되는 환경 상태** 가 많다. 그래서 Qwen-AgentWorld는 다음과 같은 문제로 world model을 정의한다.
+LLM agent에서는 상태가 꼭 픽셀일 필요가 없다. terminal output, API response, browser accessibility tree, search result snippet처럼 **텍스트로 표현되는 환경 상태** 가 많기 때문이다. Qwen-AgentWorld는 이 상황을 다음 문제로 정리한다.
 
 ```text
 입력: system prompt + 이전 interaction history + 현재 agent action
 출력: 다음 environment observation
 ```
 
-예를 들어 agent가 terminal에서 `pip install torch`를 실행했다면, world model은 단순히 "설치 완료"를 만드는 게 아니라 현재 disk 용량, package 상태, 이전 command history를 보고 실제 terminal처럼 stdout/stderr와 prompt를 예측해야 한다.
+예를 들어 agent가 terminal에서 `pip install torch`를 실행했다면, world model은 단순히 "설치 완료"를 출력해서는 안 된다. 현재 disk 용량, package 상태, 이전 command history를 보고 실제 terminal처럼 stdout/stderr와 prompt를 예측해야 한다.
 
 ## C.2) Environment Trajectory와 Agentic Trajectory
 
-논문은 trajectory 용어를 둘로 나눈다.
+논문은 trajectory를 두 종류로 나눠 설명한다.
 
 | 용어 | 의미 | 학습에서 쓰는 부분 |
 |---|---|---|
 | Environment trajectory | agent의 action과 environment observation만 남긴 상호작용 기록 | world model의 핵심 학습 데이터 |
 | Agentic trajectory | agent의 reasoning, action 선택, tool call, observation까지 포함한 전체 실행 trace | 여기서 reasoning을 제거하거나 변환해 environment trajectory를 만든다 |
 
-이 구분이 중요하다. Qwen-AgentWorld는 "agent가 어떻게 생각했는가"를 그대로 흉내 내는 모델이 아니다. 더 좁게는 **환경이 action에 어떻게 반응했는가** 를 학습한다.
+이 구분을 해두면 논문의 의도가 선명해진다. Qwen-AgentWorld는 "agent가 어떻게 생각했는가"를 그대로 흉내 내는 모델이 아니다. 더 좁게는 **환경이 action에 어떻게 반응했는가** 를 학습한다.
 
 ## C.3) 7개 도메인
 
@@ -103,13 +103,13 @@ Qwen-AgentWorld는 7개 agent interaction domain을 하나의 schema로 묶는�
 | Web | click, type, navigate | accessibility tree, browser state | visual state reasoning |
 | OS | mouse, keyboard | accessibility tree, window/app state | visual state reasoning |
 
-GUI domain도 pixel을 직접 다루지 않는다. Android, Web, OS는 accessibility tree나 UI view hierarchy처럼 텍스트화된 state representation을 사용한다. 그래서 "language world model"이라는 이름이 붙는다.
+GUI domain도 pixel을 직접 다루지는 않는다. Android, Web, OS는 accessibility tree나 UI view hierarchy처럼 텍스트화된 state representation을 사용한다. "language world model"이라는 이름은 여기서 나온다.
 
 # D) 기존 방법의 한계
 
 ## D.1) Agent 연구가 policy 쪽에 치우쳐 있었다
 
-LLM agent 연구는 보통 `state -> action`을 잘 고르는 데 집중한다. 어떤 tool을 부를지, 어떤 검색어를 넣을지, 어떤 file을 수정할지 결정하는 policy 문제다.
+LLM agent 연구는 보통 `state -> action`을 잘 고르는 데 집중한다. 어떤 tool을 부를지, 어떤 검색어를 넣을지, 어떤 file을 수정할지 정하는 policy 문제다.
 
 그런데 agent가 실제로 강해지려면 반대 방향도 필요하다.
 
@@ -118,26 +118,26 @@ policy:      state -> action
 world model: state + action -> next state
 ```
 
-행동을 잘 고르는 agent는 "이 action을 실행하면 무슨 일이 벌어질지"를 어느 정도 예측할 수 있어야 한다. Qwen-AgentWorld는 이 빠진 절반을 직접 학습 대상으로 만든다.
+행동을 잘 고르는 agent라면 "이 action을 실행하면 무슨 일이 벌어질지"도 어느 정도 예측해야 한다. Qwen-AgentWorld는 그 빠진 절반을 직접 학습 대상으로 만든다.
 
 ## D.2) 실제 환경만으로는 scaling과 control이 어렵다
 
-실제 환경에서 agent를 훈련시키면 fidelity는 높다. 하지만 실무적으로는 몇 가지 문제가 있다.
+실제 환경에서 agent를 훈련시키면 fidelity는 높다. 문제는 운영 비용과 통제 가능성이다.
 
 1. **비용과 인프라**: terminal sandbox, browser, Android VM, MCP server를 대규모로 유지해야 한다.
 2. **위험한 action**: 실제 DB 변경, 외부 API 호출, irreversible operation은 마음껏 시도하기 어렵다.
 3. **edge case 부족**: real environment에서는 흔치 않은 partial failure, pagination, intermittent API error를 충분히 자주 만날 수 없다.
 4. **controllability 부족**: agent가 특정 약점을 드러내도록 환경을 의도적으로 조절하기 어렵다.
 
-논문이 말하는 핵심은 "world model이 실제 환경을 싸게 대체한다"가 아니다. 더 정확히는 **실제 환경만으로는 만들기 어려운 분포를 통제해서 만들 수 있다** 는 점이다.
+논문의 핵심은 "world model이 실제 환경을 싸게 대체한다"가 아니다. 더 정확히는 **실제 환경만으로는 만들기 어려운 분포를 통제해서 만든다** 는 데 있다.
 
 ## D.3) 일반 LLM을 simulator로 쓰면 fidelity가 부족하다
 
-일반 instruction model도 "terminal output을 예측해봐"라고 시키면 그럴듯한 답을 낼 수 있다. 하지만 agent training에 쓰려면 그럴듯함만으로 부족하다.
+일반 instruction model도 "terminal output을 예측해봐"라고 시키면 그럴듯한 답을 낼 수 있다. 하지만 agent training에 쓰려면 그 정도로는 부족하다.
 
 Terminal에서는 byte count, file-system mutation, shell prompt가 맞아야 한다. MCP에서는 API schema와 cross-turn object ID가 유지되어야 한다. Search에서는 agent가 아직 모르는 정답을 snippet에 새어 나오게 하면 안 된다.
 
-즉 language simulator에는 다음이 동시에 필요하다.
+language simulator에는 다음 조건이 동시에 필요하다.
 
 - format fidelity
 - factual fidelity
@@ -145,7 +145,7 @@ Terminal에서는 byte count, file-system mutation, shell prompt가 맞아야 �
 - domain-specific realism
 - enough information, but not too much leakage
 
-Qwen-AgentWorld는 이 조건을 맞추기 위해 training objective, prompt construction, benchmark, RL reward를 모두 world-modeling 중심으로 설계한다.
+Qwen-AgentWorld는 이 조건을 맞추려고 training objective, prompt construction, benchmark, RL reward를 모두 world-modeling 중심으로 설계한다.
 
 # E) 제안 방법: Qwen-AgentWorld
 
@@ -153,7 +153,7 @@ Qwen-AgentWorld는 이 조건을 맞추기 위해 training objective, prompt con
 
 ## E.1) Unified Environment Trajectory Schema
 
-모든 도메인은 아래 구조로 정규화된다.
+모든 도메인은 아래 구조로 정규화한다.
 
 ```text
 System prompt:
@@ -172,13 +172,13 @@ Turn 2:
   assistant: environment observation
 ```
 
-`initial state`는 domain마다 다르다. Terminal이면 OS, package, working directory, file-system snapshot이 될 수 있고, Web이면 browser state나 page tree가 될 수 있다.
+`initial state`는 domain마다 다르다. Terminal이라면 OS, package, working directory, file-system snapshot이 될 수 있고, Web이라면 browser state나 page tree가 될 수 있다.
 
-`simulation instruction`은 controllable simulation을 위해 쓰인다. 예를 들어 Search domain에서는 reference answer를 model이 내부적으로 알고 있더라도, agent의 현재 query가 그 정보를 아직 찾아내지 못했다면 snippet에 답을 흘리지 말라는 제약을 줄 수 있다.
+`simulation instruction`은 simulation을 통제하기 위해 쓰인다. 예를 들어 Search domain에서는 reference answer를 model이 내부적으로 알고 있더라도, agent의 현재 query가 그 정보를 아직 찾아내지 못했다면 snippet에 답을 흘리지 말라는 제약을 줄 수 있다.
 
 ## E.2) Training Data
 
-논문은 1,000만 개 이상의 real-world interaction trajectory를 활용했다고 설명한다. 데이터는 크게 세 경로에서 온다.
+논문은 1,000만 개 이상의 real-world interaction trajectory를 활용했다고 설명한다. 데이터는 크게 세 경로에서 모은다.
 
 1. **Dedicated agent infrastructure**: container sandbox, MCP server, persistent terminal session, Android/browser/desktop environment를 직접 운영하며 agent interaction을 수집한다.
 2. **Open environment interaction traces**: public terminal recording, open-source tool-call log, code repository execution trace 등을 multi-agent cleaning pipeline으로 정제한다.
@@ -197,19 +197,19 @@ SFT와 RL에 사용된 downstream pool의 규모는 아래와 같다.
 | OS | 1,102 | 5,628 | 25,439 | 12.4 |
 | **Total** | **7,094** | **92,308** | **19,443** | **13.4** |
 
-눈에 띄는 점은 MCP와 SWE의 평균 context가 매우 길다는 것이다. MCP는 평균 62K tokens, SWE도 36K tokens 수준이다. 그래서 이 모델의 256K context window는 단순 스펙 자랑이 아니라, multi-turn environment simulation에 실질적으로 필요하다.
+눈에 띄는 부분은 MCP와 SWE의 평균 context가 매우 길다는 점이다. MCP는 평균 62K tokens, SWE도 36K tokens 수준이다. 이 모델의 256K context window는 단순한 스펙 과시가 아니라, multi-turn environment simulation에 실제로 필요하다.
 
 ## E.3) Stage 1: CPT
 
-CPT는 environment trajectory를 일반 language modeling 형식으로 학습한다. 다만 일반 문서 next-token prediction이 아니라, prompt와 interaction history를 보고 다음 environment observation을 맞히는 문제로 구성한다.
+CPT는 environment trajectory를 일반 language modeling 형식으로 학습한다. 다만 일반 문서 next-token prediction이 아니라, prompt와 interaction history를 보고 다음 environment observation을 맞히는 문제로 구성된다.
 
-논문은 여기에 domain world knowledge corpus도 넣는다. 예를 들어 법률 시스템을 시뮬레이션하려면 법률 지식이 필요하고, 병원 시스템을 시뮬레이션하려면 의료 도메인 지식이 필요하다. 환경 trajectory만으로는 이런 배경 지식을 충분히 넣기 어렵기 때문이다.
+논문은 여기에 domain world knowledge corpus도 함께 넣는다. 예를 들어 법률 시스템을 시뮬레이션하려면 법률 지식이 필요하고, 병원 시스템을 시뮬레이션하려면 의료 도메인 지식이 필요하다. 환경 trajectory만으로는 이런 배경 지식을 충분히 담기 어렵다.
 
-중요한 기법은 **turn-level information-theoretic loss masking** 이다.
+여기서 중요한 기법이 **turn-level information-theoretic loss masking** 이다.
 
-Tool-use trajectory에는 학습 가치가 낮은 turn이 많다. 예를 들어 API가 입력을 그대로 echo하거나, tool이 단순 status만 돌려주는 경우가 있다. 이런 token까지 동일하게 loss를 걸면 모델은 환경 dynamics보다 boilerplate를 학습하게 된다.
+Tool-use trajectory에는 학습 가치가 낮은 turn이 많다. API가 입력을 그대로 echo하거나, tool이 단순 status만 돌려주는 경우가 대표적이다. 이런 token까지 동일하게 loss를 걸면 모델은 환경 dynamics보다 boilerplate를 더 많이 학습하게 된다.
 
-논문은 action과 observation 사이의 overlap, novelty, Jaccard, length ratio를 계산해 turn을 분류하고, 학습 가치가 낮은 turn은 context로는 유지하되 loss에서는 줄인다.
+논문은 action과 observation 사이의 overlap, novelty, Jaccard, length ratio를 계산해 turn을 분류한다. 학습 가치가 낮은 turn은 context에는 남겨두되 loss에서는 비중을 낮춘다.
 
 | Turn category | 직관 | Loss keep ratio |
 |---|---|---:|
@@ -221,13 +221,13 @@ Tool-use trajectory에는 학습 가치가 낮은 turn이 많다. 예를 들어 
 | echo | 거의 그대로 반복 | 5% |
 | other | 그 외 | 100% |
 
-이 설계가 꽤 실용적이다. tool 이름으로 rule을 박는 대신 표면 통계로 판단하므로, domain을 바꿔도 어느 정도 재사용된다.
+이 설계는 꽤 실용적이다. tool 이름별 rule을 박아두는 대신 표면 통계로 판단하므로, domain을 바꿔도 어느 정도 재사용할 수 있다.
 
 ## E.4) Stage 2: SFT
 
 CPT가 "환경이 어떻게 반응하는지"를 암묵적으로 학습한다면, SFT는 이 능력을 **명시적 next-state prediction reasoning** 으로 끌어낸다.
 
-SFT 데이터는 reasoning trace가 포함된 trajectory로 구성된다. 논문은 prompt template을 다양화하고, 여러 rollout 후보를 만든 뒤 judge score로 rejection sampling을 수행한다. 시작 후보 10,250개 중 최종 SFT 데이터는 7,094개가 남았고, retention rate는 69.2%다.
+SFT 데이터는 reasoning trace가 포함된 trajectory로 구성된다. 논문은 prompt template을 다양화하고, 여러 rollout 후보를 만든 뒤 judge score로 rejection sampling을 한다. 시작 후보 10,250개 중 최종 SFT 데이터는 7,094개가 남았고, retention rate는 69.2%다.
 
 | Domain | Candidates | Retain rate | Final SFT | Avg turns |
 |---|---:|---:|---:|---:|
@@ -240,11 +240,11 @@ SFT 데이터는 reasoning trace가 포함된 trajectory로 구성된다. 논문
 | OS | 1,623 | 67.9% | 1,102 | 5.4 |
 | **Total** | **10,250** | **69.2%** | **7,094** | **8.5** |
 
-여기서 목표는 "더 친절한 답변"이 아니라, 모델이 observation을 생성하기 전에 action이 무엇을 요청하는지, 이전 state가 무엇이었는지, 어떤 response format이 나와야 하는지를 생각하게 만드는 것이다.
+여기서 목표는 "더 친절한 답변"이 아니다. 모델이 observation을 생성하기 전에 action이 무엇을 요청하는지, 이전 state가 무엇이었는지, 어떤 response format이 나와야 하는지를 따져보게 만드는 쪽에 가깝다.
 
 ## E.5) Stage 3: RL
 
-RL stage는 `GSPO`를 사용한다. 이때 LWM RL은 일반 answer RL과 조금 다르다. prompt는 수만 token의 interaction history인데, output은 다음 observation 하나라서 **prompt-output asymmetry** 가 매우 크다. 논문은 RL pool에서 prompt를 128K tokens로 제한한다.
+RL stage는 `GSPO`를 사용한다. 이때 LWM RL은 일반 answer RL과 조금 다르다. prompt는 수만 token의 interaction history인데, output은 다음 observation 하나라서 **prompt-output asymmetry** 가 매우 크다. 그래서 논문은 RL pool에서 prompt를 128K tokens로 제한한다.
 
 Reward는 두 신호를 섞는다.
 
@@ -253,7 +253,7 @@ Reward는 두 신호를 섞는다.
 | Five-dimensional rubric | Format, Factuality, Consistency, Realism, Quality를 LLM judge가 1-5로 평가 |
 | Rule-based verifier | executable check가 가능한 샘플에서 0/1 correctness anchor 제공 |
 
-두 reward는 `rubric:rule = 9:1`로 결합된다. LLM judge만 쓰면 그럴듯한 자기칭찬 문구나 prompt echo로 reward hacking이 생길 수 있으므로, rule-based verifier가 anchor 역할을 한다.
+두 reward는 `rubric:rule = 9:1`로 결합된다. LLM judge만 쓰면 그럴듯한 자기칭찬 문구나 prompt echo로 reward hacking이 생길 수 있다. 그래서 rule-based verifier가 anchor 역할을 한다.
 
 논문이 보고한 안정화 포인트도 실전적이다.
 
@@ -265,16 +265,16 @@ Reward는 두 신호를 섞는다.
 
 ![AgentWorldBench composition](https://arxiv.org/html/2606.24597v1/x6.png)
 
-AgentWorldBench는 language world model의 simulation fidelity를 평가하기 위한 benchmark다. 총 2,170개 turn-level sample, 7개 domain, 9개 source benchmark, 5개 frontier model trajectory로 구성된다.
+AgentWorldBench는 language world model의 simulation fidelity를 평가하기 위한 benchmark다. 총 2,170개 turn-level sample로 구성되며, 7개 domain, 9개 source benchmark, 5개 frontier model trajectory를 포함한다.
 
-중요한 설계 원칙은 네 가지다.
+설계 원칙은 네 가지로 정리된다.
 
 1. **Widely-used queries**: 자체 제작 문제만 쓰지 않고 기존 agent benchmark의 query를 사용한다.
 2. **Frontier-agent trajectories**: 강한 frontier model agent가 만든 복잡한 action sequence를 평가 대상으로 삼는다.
 3. **Real observations**: 모든 sample은 실제 환경 실행에서 얻은 ground-truth observation을 갖는다.
 4. **Out-of-distribution split**: training data와 benchmark query를 source level에서 분리해 memorization을 줄인다.
 
-평가는 open-ended rubric judge가 수행한다. 하지만 judge에게 정답 없이 "이게 괜찮아 보여?"라고 묻는 방식이 아니다. predicted observation과 실제 ground-truth observation을 함께 보여주고 비교시킨다.
+평가는 open-ended rubric judge가 수행한다. 다만 judge에게 정답 없이 "이게 괜찮아 보여?"라고 묻지는 않는다. predicted observation과 실제 ground-truth observation을 함께 보여주고 비교시킨다.
 
 | Dimension | 평가 내용 |
 |---|---|
@@ -284,7 +284,7 @@ AgentWorldBench는 language world model의 simulation fidelity를 평가하기 �
 | Realism | 실제 환경의 response pattern과 style을 따르는지 |
 | Quality | reference 대비 필요한 정보가 빠지지 않고 과하게 장황하지 않은지 |
 
-이 reference-grounded judging이 핵심이다. world model 평가는 그럴듯함이 아니라 **실제 환경과의 차이** 를 봐야 하기 때문이다.
+reference-grounded judging을 쓰는 이유도 여기에 있다. world model 평가는 그럴듯함이 아니라 **실제 환경과의 차이** 를 봐야 하기 때문이다.
 
 # G) 실험 결과와 실무적 시사점
 
@@ -292,7 +292,7 @@ AgentWorldBench는 language world model의 simulation fidelity를 평가하기 �
 
 ![AgentWorldBench results](https://arxiv.org/html/2606.24597v1/x7.png)
 
-주요 결과는 Qwen-AgentWorld가 일반 frontier model보다 environment simulation에 더 강하다는 것이다.
+주요 결과는 Qwen-AgentWorld가 일반 frontier model보다 environment simulation에 더 강하다는 점이다.
 
 | Model | MCP | Search | Terminal | SWE | Android | Web | OS | Overall |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -303,11 +303,11 @@ AgentWorldBench는 language world model의 simulation fidelity를 평가하기 �
 | Qwen-AgentWorld-35B-A3B | 64.79 | 36.69 | 53.96 | 65.63 | 58.17 | 49.55 | 65.92 | 56.39 |
 | Qwen-AgentWorld-397B-A17B | 68.24 | 37.82 | 57.73 | 68.49 | 60.20 | 50.98 | 67.89 | **58.71** |
 
-397B-A17B는 overall 58.71로 가장 높고, 35B-A3B도 같은 규모의 Qwen3.5-35B-A3B 대비 +8.66점 개선된다. 여기서 성능 차이는 "Qwen 계열이라서 좋다"보다 **world-modeling objective가 들어가면 같은 계열 base보다 환경 예측이 좋아진다** 는 쪽으로 읽는 게 맞다.
+397B-A17B는 overall 58.71로 가장 높고, 35B-A3B도 같은 규모의 Qwen3.5-35B-A3B 대비 +8.66점 개선된다. 여기서 성능 차이는 "Qwen 계열이라서 좋다"보다 **world-modeling objective가 들어가면 같은 계열 base보다 환경 예측이 좋아진다** 는 쪽으로 읽는 편이 맞다.
 
 ## G.2) Decoupled Simulator: Sim RL
 
-Qwen-AgentWorld를 simulator로 쓰면 agent가 실제 환경 대신 simulated environment에서 RL을 할 수 있다. 논문은 이 효과를 세 방식으로 보여준다.
+Qwen-AgentWorld를 simulator로 쓰면 agent가 실제 환경 대신 simulated environment에서 RL을 할 수 있다. 논문은 이 효과를 세 가지 실험으로 보여준다.
 
 ### G.2.1) OpenClaw 환경 scaling
 
@@ -333,7 +333,7 @@ MCP에서는 tool call이 많고, 중간 결과를 조심스럽게 다뤄야 한
 | Sim RL with controlled Qwen-AgentWorld | **36.1** | **33.8** |
 | Gain | +3.7 | +12.3 |
 
-흥미로운 건 uncontrolled simulation이 별 효과가 없거나 오히려 떨어질 수 있다는 점이다. 이건 실무에서도 중요하다. simulator를 붙이는 것만으로 되는 게 아니라, **무엇을 숨기고, 어디서 실패시키고, 어떤 정보만 단계적으로 줄지** 를 설계해야 한다.
+흥미로운 대목은 uncontrolled simulation이 별 효과가 없거나 오히려 성능을 떨어뜨릴 수 있다는 점이다. 실무에서도 이 부분이 중요하다. simulator를 붙이는 것만으로는 부족하고, **무엇을 숨길지, 어디서 실패시킬지, 어떤 정보만 단계적으로 줄지** 를 따로 설계해야 한다.
 
 ### G.2.3) Search fictional-world construction
 
@@ -353,11 +353,11 @@ Search domain에서는 더 과감하게 완전히 fictional한 world를 만든�
 | 397B + controlled Sim RL | **73.98** | **51.74** |
 | Gain | +3.87 | +6.05 |
 
-검색 agent 학습에서 이 아이디어가 특히 좋다. 실제 검색 문제는 모델이 이미 알고 있는 지식과 search result가 섞여서 "검색을 잘해서 맞혔는지"와 "그냥 알고 있어서 맞혔는지"가 헷갈린다. fictional world는 이 leakage를 줄여준다.
+검색 agent 학습에서는 이 아이디어가 특히 쓸모 있다. 실제 검색 문제는 모델이 이미 알고 있는 지식과 search result가 섞여, "검색을 잘해서 맞혔는지"와 "그냥 알고 있어서 맞혔는지"가 헷갈린다. fictional world는 이 leakage를 줄여준다.
 
 ## G.3) Unified Agent Foundation Model
 
-두 번째 사용법은 world model training을 agent model의 pre-training처럼 쓰는 것이다. 논문은 LWM RL warm-up을 한 뒤 agentic RL을 수행하면 여러 benchmark에서 성능이 오른다고 보고한다.
+두 번째 사용법은 world model training을 agent model의 pre-training처럼 쓰는 방식이다. 논문은 LWM RL warm-up 이후 agentic RL을 수행하면 여러 benchmark에서 성능이 오른다고 보고한다.
 
 | Benchmark | Baseline | With LWM RL | Gain |
 |---|---:|---:|---:|
@@ -369,23 +369,23 @@ Search domain에서는 더 과감하게 완전히 fictional한 world를 만든�
 | QwenClawBench | 39.76 | 49.43 | +9.67 |
 | BFCL v4 | 62.29 | 71.25 | +8.96 |
 
-이 결과는 단순히 "simulator가 agent를 대신 훈련했다"가 아니다. agent 모델 내부에 **행동 전 예측** 능력이 생겼다는 쪽에 가깝다.
+이 결과는 단순히 "simulator가 agent를 대신 훈련했다"는 뜻이 아니다. agent 모델 내부에 **행동 전 예측** 능력이 생긴 것으로 보는 편이 더 자연스럽다.
 
 논문은 Terminal-Bench 2.0의 Mailman/Postfix 예시를 든다. LWM RL 전 모델은 `transport_maps`만 수정하면 메일이 LMTP로 갈 것이라고 잘못 예측한다. 반면 LWM RL 후 모델은 Postfix가 transport routing보다 먼저 local recipient validation을 한다는 점을 예측하고, `local_recipient_maps`를 고쳐야 한다고 행동을 수정한다.
 
-이건 agent 관점에서 굉장히 실용적인 능력이다. 실행하기 전에 "이거 해도 실패할 것 같은데?"를 생각할 수 있으면, 실제 tool call budget을 낭비하지 않는다.
+agent 관점에서는 꽤 실용적인 능력이다. 실행하기 전에 "이거 해도 실패할 것 같은데?"를 떠올릴 수 있으면, 실제 tool call budget을 덜 낭비한다.
 
 ## G.4) RL은 micro-level fidelity를 올린다
 
 ![Micro-level fidelity improvements](https://arxiv.org/html/2606.24597v1/x12.png)
 
-논문 후반부의 분석이 꽤 재미있다. RL은 큰 rubric score만 올리는 것이 아니라, 아주 작은 fidelity도 개선한다.
+논문 후반부의 분석도 재미있다. RL은 큰 rubric score만 올리는 게 아니라, 아주 작은 fidelity도 개선한다.
 
 - Search: URL identifier, source ranking, snippet specificity가 ground truth에 가까워진다.
 - Terminal: 이전 `cat` 출력에 포함된 invisible newline까지 세어 `wc -c` byte count를 맞힌다.
 - MCP: Notion API를 9번 연속 호출하는 동안 user ID, parent page ID, UUID format, nested schema를 유지한다.
 
-이런 디테일은 output token 중 극히 일부다. 그런데도 RL reward가 그 수준까지 영향을 준다는 점은 중요하다. agent 환경에서는 작은 schema mismatch 하나가 전체 task failure로 이어지기 때문이다.
+이런 디테일은 output token 중 극히 일부다. 그런데도 RL reward가 그 수준까지 영향을 준다는 점이 눈에 띈다. agent 환경에서는 작은 schema mismatch 하나가 전체 task failure로 이어질 수 있기 때문이다.
 
 # H) 구현 디테일
 
@@ -405,21 +405,21 @@ Hugging Face에 공개된 `Qwen-AgentWorld-35B-A3B` 기준 스펙은 다음과 �
 | Experts | 256 experts, 8 routed + 1 shared activated |
 | Serving | Transformers, vLLM, SGLang |
 
-논문 결과에는 397B-A17B도 포함되지만, 공개 weight는 35B-A3B가 중심이다. 따라서 직접 실험하려면 35B-A3B를 보고, 397B 결과는 large-scale reference로 보는 편이 자연스럽다.
+논문 결과에는 397B-A17B도 포함되지만, 공개 weight는 35B-A3B가 중심이다. 직접 실험할 때는 35B-A3B를 기준으로 보고, 397B 결과는 large-scale reference로 보는 편이 자연스럽다.
 
 ## H.2) 실무 적용 관점
 
-이 논문을 agent 시스템에 바로 가져온다면, 가장 먼저 볼 지점은 세 가지다.
+이 논문을 agent 시스템에 가져온다면, 먼저 볼 지점은 세 가지다.
 
 1. **Tool simulator를 만들 때 정답을 모두 알려주지 말 것**: Search나 MCP simulation에서 answer leakage가 생기면 agent는 search나 tool use를 배우지 않고 shortcut을 배운다.
 2. **실제 환경 + controlled simulation을 섞을 것**: simulator 단독보다 실제 환경에서 보기 어려운 edge case를 보강하는 축으로 쓰는 게 더 안전하다.
 3. **world model 평가에는 reference가 필요하다**: "그럴듯한 observation"이 아니라 실제 tool/server/browser가 반환한 observation과 비교해야 한다.
 
-특히 사내 agent training에서는 MCP나 internal API가 가장 먼저 맞아 보인다. 실제 production API를 계속 때리는 대신, schema와 hidden state를 가진 simulator를 만들고 partial failure, permission error, pagination을 의도적으로 주입할 수 있기 때문이다.
+특히 사내 agent training에서는 MCP나 internal API가 먼저 떠오른다. 실제 production API를 계속 호출하는 대신, schema와 hidden state를 가진 simulator를 만들고 partial failure, permission error, pagination을 의도적으로 주입할 수 있기 때문이다.
 
 ## H.3) 한계와 주의점
 
-이 논문이 강한 방향을 보여주지만, 몇 가지 주의점도 있다.
+이 논문이 흥미로운 방향을 보여주지만, 몇 가지 주의할 점도 있다.
 
 첫째, world model이 틀리면 agent는 틀린 세계에서 학습한다. Sim RL은 environment fidelity가 낮을 때 독이 될 수 있다. 논문에서도 uncontrolled simulation은 MCP에서 큰 이득을 주지 못했다.
 
