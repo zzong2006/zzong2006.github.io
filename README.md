@@ -36,7 +36,7 @@ in `quartz.config.yaml` to the Worker URL.
 `함께 보면 좋은 글` is precomputed before Quartz renders pages.
 
 - `data/related-notes/embeddings.json` stores per-note Gemini embeddings keyed by slug and content hash.
-- `scripts/build-related-notes.mjs` computes each note's top-k related note slugs and writes them to `data/related-notes/related-notes.json`.
+- `scripts/build-related-notes.mjs` computes each note's top-10 related note slugs and writes them to `data/related-notes/related-notes.json`.
 - The `related-notes` Quartz component displays those slugs using page metadata from Quartz, so the runtime site does not need embeddings or API keys.
 - The `Update related note embeddings` workflow runs on content pushes, manual dispatch, and a nightly schedule. It refreshes the tracked embedding cache when `GEMINI_API_KEY` is set as a GitHub secret.
 - The workflow mirrors the deploy build's frontmatter normalization before hashing notes, so edited documents get fresh embeddings for the next Pages build.

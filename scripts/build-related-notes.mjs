@@ -15,7 +15,7 @@ const model = process.env.GEMINI_EMBEDDING_MODEL ?? "gemini-embedding-2"
 const outputDimensionality = Number(process.env.RELATED_NOTES_EMBEDDING_DIM ?? "768")
 const maxChars = Number(process.env.RELATED_NOTES_MAX_CHARS ?? "3500")
 const snippetLength = Number(process.env.RELATED_NOTES_SNIPPET_LENGTH ?? "180")
-const topK = Number(process.env.RELATED_NOTES_LIMIT ?? "8")
+const topK = Number(process.env.RELATED_NOTES_LIMIT ?? "10")
 const requestDelayMs = Number(process.env.RELATED_NOTES_REQUEST_DELAY_MS ?? "250")
 const embedLimit = Number(process.env.RELATED_NOTES_EMBED_LIMIT ?? "900")
 

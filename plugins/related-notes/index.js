@@ -7,7 +7,7 @@ export const manifest = {
   defaultEnabled: true,
   defaultOptions: {
     title: "함께 보면 좋은 글",
-    limit: 5,
+    limit: 10,
     hideWhenEmpty: true,
     cachePath: "data/related-notes/related-notes.json",
     showReasons: true,
