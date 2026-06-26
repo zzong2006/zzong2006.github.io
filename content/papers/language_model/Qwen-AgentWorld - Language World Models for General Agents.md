@@ -259,7 +259,13 @@ SFT 데이터는 reasoning trace가 포함된 trajectory로 구성된다. 논문
 
 ## E.5) Stage 3: RL
 
-RL stage는 `GSPO`를 사용한다. 이때 LWM RL은 일반 answer RL과 조금 다르다. prompt는 수만 token의 interaction history인데, output은 다음 observation 하나라서 **prompt-output asymmetry** 가 매우 크다. 그래서 논문은 RL pool에서 prompt를 128K tokens로 제한한다.
+RL stage는 `GSPO`를 사용한다. 이때 LWM RL은 일반 answer RL과 조금 다르다.
+
+일반 answer RL에서는 질문과 답변 길이가 비교적 비슷한 편이다. 예를 들어 1K token prompt를 보고 1K token 답변을 만들고, 그 답변 전체에 reward가 걸린다. 하지만 LWM RL에서는 prompt가 수만 token의 interaction history다. 지금까지의 terminal 출력, file state, tool response, agent action이 모두 들어간다. 반면 모델이 새로 생성해야 하는 output은 방금 action에 대한 **다음 observation 하나** 뿐이다.
+
+이 불균형이 **prompt-output asymmetry** 다. 모델은 긴 history를 읽어야 하지만, 학습 신호는 짧은 observation에서만 나온다. 비유하면 두꺼운 사건 기록을 다 읽고 다음 한 줄짜리 판결 메모를 맞히는 훈련에 가깝다. context가 길어질수록 계산 비용은 커지지만, output 쪽에서 얻는 reward와 gradient는 상대적으로 작다.
+
+그래서 논문은 RL pool에서 prompt를 128K tokens로 제한한다. history를 무한히 길게 넣으면 realism은 조금 올라갈 수 있어도, 학습은 비싸지고 불안정해진다. 핵심은 충분한 과거 state를 보존하되, 다음 observation을 맞히는 데 필요한 범위 안에서 prompt를 잘라내는 것이다.
 
 Reward는 두 신호를 섞는다.
 
