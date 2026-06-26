@@ -122,7 +122,7 @@ world model: state + action -> next state
 
 ## D.2) 실제 환경만으로는 scaling과 control이 어렵다
 
-실제 환경에서 agent를 훈련시키면 fidelity는 높다. 문제는 운영 비용과 통제 가능성이다.
+실제 환경에서 agent를 훈련시키면 fidelity, 즉 **환경 재현도** 는 높다. 여기서 fidelity는 agent의 action에 대해 환경이 실제 서비스나 tool처럼 정확하고 일관되게 반응하는 정도를 뜻한다. 문제는 운영 비용과 통제 가능성이다.
 
 1. **비용과 인프라**: terminal sandbox, browser, Android VM, MCP server를 대규모로 유지해야 한다.
 2. **위험한 action**: 실제 DB 변경, 외부 API 호출, irreversible operation은 마음껏 시도하기 어렵다.
@@ -131,19 +131,19 @@ world model: state + action -> next state
 
 논문의 핵심은 "world model이 실제 환경을 싸게 대체한다"가 아니다. 더 정확히는 **실제 환경만으로는 만들기 어려운 분포를 통제해서 만든다** 는 데 있다.
 
-## D.3) 일반 LLM을 simulator로 쓰면 fidelity가 부족하다
+## D.3) 일반 LLM을 simulator로 쓰면 환경 재현도가 부족하다
 
-일반 instruction model도 "terminal output을 예측해봐"라고 시키면 그럴듯한 답을 낼 수 있다. 하지만 agent training에 쓰려면 그 정도로는 부족하다.
+일반 instruction model도 "terminal output을 예측해봐"라고 시키면 그럴듯한 답을 낼 수 있다. 하지만 agent training에 쓰려면 그 정도로는 부족하다. 여기서 부족한 것은 말투의 자연스러움이 아니라, 실제 환경이 보일 반응을 얼마나 정확히 재현하느냐이다.
 
 Terminal에서는 byte count, file-system mutation, shell prompt가 맞아야 한다. MCP에서는 API schema와 cross-turn object ID가 유지되어야 한다. Search에서는 agent가 아직 모르는 정답을 snippet에 새어 나오게 하면 안 된다.
 
 language simulator에는 다음 조건이 동시에 필요하다.
 
-- format fidelity
-- factual fidelity
-- cross-turn consistency
-- domain-specific realism
-- enough information, but not too much leakage
+- **format fidelity**: 응답 schema와 출력 형식을 실제 환경처럼 맞추는 정도
+- **factual fidelity**: file content, search result, tool return value 같은 사실 내용이 실제 결과와 맞는 정도
+- **cross-turn consistency**: 이전 turn의 상태, ID, object reference가 뒤에서 깨지지 않는 정도
+- **domain-specific realism**: 각 domain의 response pattern과 관례를 따르는 정도
+- **enough information, but not too much leakage**: agent가 관찰할 수 있는 정보는 주되 정답을 과하게 흘리지 않는 정도
 
 Qwen-AgentWorld는 이 조건을 맞추려고 training objective, prompt construction, benchmark, RL reward를 모두 world-modeling 중심으로 설계한다.
 
@@ -265,7 +265,7 @@ Reward는 두 신호를 섞는다.
 
 ![AgentWorldBench composition](https://arxiv.org/html/2606.24597v1/x6.png)
 
-AgentWorldBench는 language world model의 simulation fidelity를 평가하기 위한 benchmark다. 총 2,170개 turn-level sample로 구성되며, 7개 domain, 9개 source benchmark, 5개 frontier model trajectory를 포함한다.
+AgentWorldBench는 language world model의 simulation fidelity, 즉 시뮬레이션이 실제 환경을 얼마나 잘 재현하는지를 평가하기 위한 benchmark다. 총 2,170개 turn-level sample로 구성되며, 7개 domain, 9개 source benchmark, 5개 frontier model trajectory를 포함한다.
 
 설계 원칙은 네 가지로 정리된다.
 
@@ -320,7 +320,7 @@ Qwen-AgentWorld-397B-A17B로 4K out-of-distribution OpenClaw 환경을 시뮬레
 | Sim RL with Qwen-AgentWorld-397B-A17B | **69.7** | **55.0** |
 | Gain | +4.3 | +7.1 |
 
-일반 LLM simulator보다 Qwen-AgentWorld simulator가 더 잘 작동한다. world model fidelity가 낮으면 Sim RL signal 자체가 노이즈가 되기 때문이다.
+일반 LLM simulator보다 Qwen-AgentWorld simulator가 더 잘 작동한다. world model의 환경 재현도가 낮으면 Sim RL signal 자체가 노이즈가 되기 때문이다.
 
 ### G.2.2) MCP controllable simulation
 
@@ -375,11 +375,11 @@ Search domain에서는 더 과감하게 완전히 fictional한 world를 만든�
 
 agent 관점에서는 꽤 실용적인 능력이다. 실행하기 전에 "이거 해도 실패할 것 같은데?"를 떠올릴 수 있으면, 실제 tool call budget을 덜 낭비한다.
 
-## G.4) RL은 micro-level fidelity를 올린다
+## G.4) RL은 작은 단위의 환경 재현도도 올린다
 
 ![Micro-level fidelity improvements](https://arxiv.org/html/2606.24597v1/x12.png)
 
-논문 후반부의 분석도 재미있다. RL은 큰 rubric score만 올리는 게 아니라, 아주 작은 fidelity도 개선한다.
+논문 후반부의 분석도 재미있다. RL은 큰 rubric score만 올리는 게 아니라, 아주 작은 단위의 환경 재현도도 개선한다.
 
 - Search: URL identifier, source ranking, snippet specificity가 ground truth에 가까워진다.
 - Terminal: 이전 `cat` 출력에 포함된 invisible newline까지 세어 `wc -c` byte count를 맞힌다.
@@ -421,7 +421,7 @@ Hugging Face에 공개된 `Qwen-AgentWorld-35B-A3B` 기준 스펙은 다음과 �
 
 이 논문이 흥미로운 방향을 보여주지만, 몇 가지 주의할 점도 있다.
 
-첫째, world model이 틀리면 agent는 틀린 세계에서 학습한다. Sim RL은 environment fidelity가 낮을 때 독이 될 수 있다. 논문에서도 uncontrolled simulation은 MCP에서 큰 이득을 주지 못했다.
+첫째, world model이 틀리면 agent는 틀린 세계에서 학습한다. Sim RL은 environment fidelity, 즉 환경 재현도가 낮을 때 독이 될 수 있다. 논문에서도 uncontrolled simulation은 MCP에서 큰 이득을 주지 못했다.
 
 둘째, benchmark judge가 reference-grounded라고 해도 LLM judge를 포함한다. ranking consistency를 확인했지만, 실제 deployment에서 중요한 domain-specific failure가 rubric에 충분히 반영되는지는 별도 검증이 필요하다.
 
