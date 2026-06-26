@@ -13,6 +13,7 @@ function buildScript(options) {
   const state = {
     datesPromise: null,
     basePrefix: null,
+    scriptBasePrefix: inferScriptBasePrefix(),
     syncToken: 0,
   };
 
@@ -38,12 +39,22 @@ function buildScript(options) {
     return "";
   }
 
+  function inferScriptBasePrefix() {
+    const scriptSrc = document.currentScript?.getAttribute("src") || "";
+    if (!scriptSrc) return "/";
+
+    const pathname = new URL(scriptSrc, document.baseURI).pathname;
+    const staticIndex = pathname.lastIndexOf("/static/");
+    if (staticIndex === -1) return "/";
+    return pathname.slice(0, staticIndex + 1) || "/";
+  }
+
   function getBasePrefix() {
     if (state.basePrefix !== null) return state.basePrefix;
     const contentIndexUrl = findContentIndexUrl();
     state.basePrefix = contentIndexUrl
       ? contentIndexUrl.replace(/static\\/contentIndex\\.json$/, "")
-      : new URL("./", document.baseURI).pathname;
+      : state.scriptBasePrefix;
     return state.basePrefix;
   }
 
@@ -52,7 +63,7 @@ function buildScript(options) {
 
     const contentIndexUrl = findContentIndexUrl();
     if (contentIndexUrl) return contentIndexUrl.replace(/contentIndex\\.json$/, "explorerDates.json");
-    return new URL("static/explorerDates.json", document.baseURI).toString();
+    return new URL(getBasePrefix() + "static/explorerDates.json", location.origin).toString();
   }
 
   async function loadDates() {
