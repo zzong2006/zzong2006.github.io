@@ -6,15 +6,15 @@ aliases: []
 
 # A) DPO를 한 문장으로 잡기
 
-DPO(Direct Preference Optimization)는 `chosen/rejected` 답변 쌍을 이용해 LLM을 선호도에 맞게 미세조정하는 방법이다. 핵심은 [[RLHF]]에서 따로 학습하던 [[reward model]]과 PPO 단계를, 하나의 preference loss로 접어버리는 데 있다.
+DPO(Direct Preference Optimization)는 `chosen/rejected` 답변 쌍을 이용해 LLM을 선호도에 맞게 미세조정하는 방법이다. 핵심은 [[RLHF]]에서 따로 처리하던 [[reward model]] 학습과 PPO 단계를, 하나의 preference loss로 직접 최적화한다는 데 있다.
 
 한 줄로 줄이면 이렇게 말할 수 있다.
 
-> DPO는 reference model 대비 `chosen` 답변의 log probability는 더 올리고, `rejected` 답변의 log probability는 상대적으로 낮추도록 학습하는 offline preference tuning 방법이다.
+> DPO는 reference model보다 `chosen` 답변을 더 그럴듯하게 보고, `rejected` 답변은 상대적으로 덜 그럴듯하게 보도록 학습하는 offline preference tuning 방법이다.
 
-여기서 중요한 점은 "좋은 답변의 확률을 무조건 크게 만든다"가 아니다. DPO는 **기존 SFT 모델이 보던 확률 분포를 기준점으로 삼고**, 그 기준점에서 `chosen` 쪽으로는 더 밀고 `rejected` 쪽으로는 덜 밀리게 만든다.
+여기서 중요한 점은 "좋은 답변의 확률을 무조건 크게 만든다"가 아니다. DPO는 **기존 SFT 모델이 보던 확률 분포를 기준점으로 삼고**, 그 기준점에서 `chosen`을 더 선호하고 `rejected`는 상대적으로 덜 선호하도록 조정한다.
 
-2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline**에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 쓸모가 크다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, `GSPO` 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
+2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline**에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 좋은 선택지다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, `GSPO` 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
 
 # B) DPO가 왜 필요한가
 
@@ -25,9 +25,9 @@ LLM alignment의 전통적인 출발점은 [[RLHF]]다. RLHF는 사람이 선호
 1. [[supervised fine-tuning|SFT]]로 모델이 기본적인 instruction-following 형식을 배우게 한다.
 2. 같은 prompt에 대한 여러 답변을 사람이 비교하고, 어떤 답변이 더 좋은지 preference data를 만든다.
 3. 그 preference data로 별도의 reward model을 학습한다.
-4. reward model을 점수판처럼 사용해 PPO 같은 강화학습으로 policy model을 업데이트한다.
+4. reward model을 채점기처럼 사용해 PPO 같은 강화학습으로 policy model을 업데이트한다.
 
-이 구조는 직관적이지만 운영하기 어렵다. reward model을 따로 만들어야 하고, PPO 학습도 튜닝이 까다롭다. reward가 조금만 이상해도 모델이 점수만 잘 받는 방향으로 비틀릴 수 있다.
+이 구조는 직관적이지만 운영하기 어렵다. reward model을 따로 만들어야 하고, PPO 학습도 튜닝이 까다롭다. reward가 조금만 어긋나도 모델이 실제 품질보다 reward만 높이는 방향으로 흘러가기 쉽다.
 
 DPO는 여기서 질문을 바꾼다.
 
@@ -37,7 +37,7 @@ DPO는 여기서 질문을 바꾼다.
 
 # C) Preference 데이터는 어떻게 생겼나
 
-DPO에 필요한 데이터는 복잡하지 않다. 하나의 prompt와, 그 prompt에 대한 두 개의 답변이 있으면 된다.
+DPO에 필요한 데이터는 복잡하지 않다. prompt 하나와 그에 대한 두 개의 답변이 있으면 된다.
 
 ```text
 x   = "배송이 늦어졌을 때 고객에게 어떻게 답해야 하나요?"
@@ -97,11 +97,11 @@ $$
 
 - 현재 모델이 reference model보다 어떤 답변을 더 그럴듯하게 보면, 그 답변의 implicit reward는 커진다.
 - 현재 모델이 reference model보다 어떤 답변을 덜 그럴듯하게 보면, 그 답변의 implicit reward는 작아진다.
-- 그래서 DPO는 "답변 자체의 절대 확률"보다 "reference 대비 어느 답변을 더 밀어 올렸는가"를 본다.
+- 그래서 DPO는 "답변 자체의 절대 확률"보다 "reference 대비 어느 답변을 더 선호하게 되었는가"를 본다.
 
-이 기준점이 중요하다. reference model이 없으면 모델은 `chosen`만 과하게 따라가다가 기존 언어 능력이나 포맷 안정성을 잃기 쉽다. reference model은 일종의 출발선이자 브레이크 역할을 한다.
+이 기준점이 중요하다. reference model이 없으면 모델은 `chosen`만 과하게 따라가다가 기존 언어 능력이나 포맷 안정성을 잃기 쉽다. reference model은 일종의 출발선이자 안전장치 역할을 한다.
 
-# E) DPO loss는 무엇을 벌주는가
+# E) DPO loss가 줄이려는 것
 
 DPO의 목표는 간단하다.
 
@@ -109,7 +109,7 @@ $$
 s_\theta(x, y_w) > s_\theta(x, y_l)
 $$
 
-즉, reference model 대비 `chosen` 답변을 더 많이 밀어 올리고, `rejected` 답변은 덜 밀어 올리거나 낮추고 싶다.
+즉, reference model 대비 `chosen` 답변은 더 선호하고, `rejected` 답변은 상대적으로 덜 선호하게 만들고 싶다.
 
 이를 loss로 쓰면 다음과 같다.
 
@@ -133,14 +133,14 @@ $$
 \right)
 $$
 
-이 loss가 하는 일은 다음과 같다.
+이 loss가 모델에 요구하는 것은 다음과 같다.
 
-1. `chosen`의 reference 대비 log ratio를 키운다.
+1. `chosen`의 reference 대비 log ratio를 크게 만든다.
 2. `rejected`의 reference 대비 log ratio는 상대적으로 낮춘다.
 3. 두 값의 차이가 충분히 커지면 loss가 작아진다.
 4. 두 값의 차이가 작거나 거꾸로 되면 loss가 커진다.
 
-분류 문제처럼 보면 더 쉽다. 모델은 매번 "`y_w`가 `y_l`보다 선호된 답변이다"라는 이진 비교 문제를 푼다. 다만 일반 분류기 대신, language model의 sequence log probability를 이용해 그 비교를 수행한다는 점이 다르다.
+분류 문제처럼 보면 더 쉽다. 모델은 매번 "`y_w`가 `y_l`보다 선호된 답변이다"라는 이진 비교 문제를 푼다. 다만 일반적인 분류기 대신, language model의 sequence log probability로 그 비교를 수행한다는 점이 다르다.
 
 # F) 학습 중 실제로 일어나는 일
 
@@ -149,28 +149,28 @@ DPO 학습 루프는 보통 이렇게 흘러간다.
 1. SFT가 끝난 모델을 하나 복사해 reference model로 고정한다.
 2. 같은 초기 모델에서 policy model을 시작하되, 이 모델만 업데이트한다.
 3. 각 preference pair에 대해 policy model과 reference model의 log probability를 모두 계산한다.
-4. `chosen`이 reference 대비 충분히 더 좋아지지 않았으면 loss가 커진다.
+4. policy model이 reference model보다 `chosen`을 충분히 더 선호하지 못하면 loss가 커진다.
 5. optimizer는 그 loss를 줄이는 방향으로 policy model을 업데이트한다.
 
 이때 reference model은 학습되지 않는다. 계속 고정되어 있어야 "원래 모델과 비교했을 때 지금 모델이 얼마나 움직였는가"를 측정할 수 있다.
 
 그래서 DPO를 실제로 이해할 때는 다음 문장이 가장 중요하다.
 
-> DPO는 `chosen`을 무작정 외우게 하는 방법이 아니라, reference model에서 너무 멀어지지 않는 범위 안에서 `chosen`과 `rejected`의 상대적 선호 순서를 바꾸는 방법이다.
+> DPO는 `chosen`을 무작정 외우게 하는 방법이 아니다. reference model에서 너무 멀어지지 않는 범위 안에서 `chosen`과 `rejected`의 상대적 선호 순서를 정렬하는 방법이다.
 
 # G) 장점과 한계
 
 | 구분 | 직관적 설명 | 실무에서 볼 점 |
 | --- | --- | --- |
 | 단순성 | reward model과 PPO 없이 preference pair만으로 학습한다. | 실험을 빨리 시작하기 좋다. |
-| 안정성 | on-policy rollout 없이 offline dataset으로 학습한다. | PPO보다 운영 부담이 작지만, 데이터 분포 밖으로 탐험하지는 못한다. |
-| 데이터 의존성 | loss가 pair의 품질을 그대로 믿는다. | pair가 애매하면 모델도 애매한 방향으로 간다. |
+| 안정성 | on-policy rollout 없이 offline dataset으로 학습한다. | PPO보다 운영 부담이 작지만, 데이터 분포 밖의 답변을 새로 탐색하지는 못한다. |
+| 데이터 의존성 | loss가 pair의 품질을 그대로 반영한다. | pair가 애매하면 모델이 배우는 방향도 흐려진다. |
 | Reference 제약 | SFT 모델에서 너무 멀어지지 않게 잡아준다. | reference model 선택과 $\beta$ 설정이 중요하다. |
 | 한계 | 이미 있는 pair 안에서 선호 순서를 학습한다. | 수학/코딩/tool use처럼 검증 가능한 reward가 있으면 [[GRPO]] 같은 RL 계열도 비교해야 한다. |
 
-DPO에서 가장 흔한 실패는 알고리즘 문제가 아니라 데이터 문제다. `chosen`과 `rejected`의 차이가 너무 많은 축에 걸쳐 있으면 모델이 무엇을 배워야 하는지 헷갈린다.
+DPO에서 가장 흔한 실패는 알고리즘보다 데이터에서 나온다. `chosen`과 `rejected` 사이에 여러 요인이 한꺼번에 섞이면 모델이 무엇을 배워야 하는지 헷갈린다.
 
-예를 들어 `chosen`은 짧고 자연스러운데 `rejected`는 길고 딱딱하다면, 모델은 "자연스러운 문체"를 배우는 대신 "짧게 말하면 이긴다"는 잘못된 신호를 배울 수 있다. 그래서 pair를 만들 때는 가능하면 비교하고 싶은 속성을 분명히 잡아야 한다.
+예를 들어 `chosen`은 짧고 자연스러운데 `rejected`는 길고 딱딱하다면, 모델은 "자연스러운 문체"가 아니라 "짧을수록 좋다"는 잘못된 신호를 배울 수 있다. 그래서 pair를 만들 때는 가능하면 비교하고 싶은 기준을 분명히 잡아야 한다.
 
 # H) SFT, RLHF, GRPO와 어떻게 구분할까
 
@@ -181,7 +181,7 @@ DPO에서 가장 흔한 실패는 알고리즘 문제가 아니라 데이터 문
 | [[RLHF]] | reward model + rollout | reward를 높이는 행동 | 정교한 reward model과 RL 운영 비용을 감당할 수 있을 때 |
 | [[GRPO]] 계열 | rollout + 검증 가능한 reward | 정답 검증이 가능한 문제에서 성능을 끌어올림 | 수학, 코딩, tool use, agentic task처럼 채점 기준이 비교적 명확할 때 |
 
-정리하면, DPO는 SFT 다음에 붙이기 좋은 가벼운 preference tuning 방법이다. 모델에게 "이런 답변을 더 좋아해"라고 방향을 잡아주는 데 강하다. 하지만 모델이 새로운 해결 전략을 rollout으로 탐색해야 하거나, 검증 가능한 reward를 반복적으로 최적화해야 하는 문제라면 on-policy RL 계열이 더 적합할 수 있다.
+정리하면, DPO는 SFT 다음에 붙이기 좋은 가벼운 preference tuning 방법이다. 모델에게 "이런 답변을 더 선호하라"는 방향을 잡아주는 데 잘 맞다. 하지만 모델이 새로운 해결 전략을 rollout으로 탐색해야 하거나, 검증 가능한 reward를 반복해서 최적화해야 하는 문제라면 on-policy RL 계열이 더 적합할 수 있다.
 
 # I) 실무 체크리스트
 
@@ -192,9 +192,9 @@ DPO를 프로젝트에 적용할 때는 알고리즘보다 데이터 설계와 �
 3. reference model은 어떤 checkpoint를 쓸 것인가?
 4. $\beta$를 너무 크게 잡아 모델이 과하게 움직이지 않는가?
 5. holdout pair에서 win rate가 오르는가?
-6. 실제 사용자 평가나 domain judge 평가에서도 좋아졌는가?
+6. 실제 사용자 평가나 domain judge 평가에서도 개선이 확인되는가?
 
-특히 한국어 문체 개선처럼 reward를 수식으로 만들기 어려운 작업에서는 DPO가 꽤 자연스러운 선택지다. 다만 "자연스러운 답변 vs 번역투 답변" pair를 만들 때, 내용 정확도와 문체 품질을 섞어버리면 안 된다. 문체를 학습시키고 싶다면 내용은 최대한 같게 두고 표현만 다르게 만든 pair가 좋다.
+특히 한국어 문체 개선처럼 reward를 수식으로 만들기 어려운 작업에서는 DPO가 꽤 자연스러운 선택지다. 다만 "자연스러운 답변 vs 번역투 답변" pair를 만들 때 내용 정확도와 문체 품질을 섞으면 안 된다. 문체를 학습시키고 싶다면 내용은 최대한 같게 두고, 표현만 다르게 만든 pair가 좋다.
 
 # J) 면접에서 이렇게 말하면 된다
 
@@ -204,11 +204,11 @@ DPO를 프로젝트에 적용할 때는 알고리즘보다 데이터 설계와 �
 
 **Q2. DPO의 핵심 아이디어는 무엇인가요?**
 
-> 핵심은 reward model이 하던 비교를 모델의 log probability 비교로 바꾸는 것입니다. 어떤 답변을 현재 모델이 reference model보다 더 그럴듯하게 보면 그 답변의 implicit reward가 올라갑니다. DPO는 이 값을 이용해 `chosen` 답변은 reference 대비 더 밀어 올리고, `rejected` 답변은 상대적으로 낮추도록 학습합니다.
+> 핵심은 reward model이 하던 비교를 모델의 log probability 비교로 바꾸는 것입니다. 현재 모델이 어떤 답변을 reference model보다 더 그럴듯하게 보면, 그 답변의 implicit reward가 커집니다. DPO는 이 값을 이용해 `chosen` 답변은 reference 대비 더 선호하고, `rejected` 답변은 상대적으로 덜 선호하도록 학습합니다.
 
 **Q3. DPO를 실제 프로젝트에 적용한다면 무엇을 가장 중요하게 보나요?**
 
-> preference data의 품질을 가장 먼저 봅니다. DPO는 pair를 그대로 믿고 학습하기 때문에, `chosen`과 `rejected`의 차이가 명확해야 합니다. 예를 들어 문체를 개선하려는 실험이라면 두 답변의 사실 내용은 최대한 같게 두고, 자연스러움이나 친절함 같은 비교 축만 다르게 만드는 편이 좋습니다. 그다음에는 reference model 선택, $\beta$ 설정, holdout pair와 실제 사용자 평가를 함께 확인해야 합니다.
+> preference data의 품질을 가장 먼저 봅니다. DPO는 pair의 신호를 그대로 반영하기 때문에, `chosen`과 `rejected`의 차이가 명확해야 합니다. 예를 들어 문체를 개선하려는 실험이라면 두 답변의 사실 내용은 최대한 같게 두고, 자연스러움이나 친절함 같은 비교 축만 다르게 만드는 편이 좋습니다. 그다음에는 reference model 선택, $\beta$ 설정, holdout pair와 실제 사용자 평가를 함께 확인해야 합니다.
 
 **Q4. DPO가 RLHF를 완전히 대체할 수 있나요?**
 
