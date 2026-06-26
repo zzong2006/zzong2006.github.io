@@ -196,7 +196,47 @@ DPO를 프로젝트에 적용할 때는 알고리즘보다 데이터 설계와 �
 
 특히 한국어 문체 개선처럼 reward를 수식으로 만들기 어려운 작업에서는 DPO가 꽤 자연스러운 선택지다. 다만 "자연스러운 답변 vs 번역투 답변" pair를 만들 때 내용 정확도와 문체 품질을 섞으면 안 된다. 문체를 학습시키고 싶다면 내용은 최대한 같게 두고, 표현만 다르게 만든 pair가 좋다.
 
-# J) 면접에서 이렇게 말하면 된다
+# J) 한국어 답변으로만 고정하려는 DPO가 잘 안 먹는 경우
+
+실무에서 꽤 자주 겪는 패턴이 있다. 모델이 한국어로 답해야 하는 상황에서 종종 중국어, 영어, 혹은 다른 언어를 섞어 내보내고, 이를 고치려고 `chosen = 한국어 답변`, `rejected = 중국어 답변` pair로 DPO를 돌리는 경우다.
+
+직관적으로는 맞아 보인다. 하지만 실제로는 생각보다 잘 안 먹는 경우가 많다. 이유는 DPO가 "언어 정책"을 직접 학습한다기보다, 같은 prompt 아래에서 `chosen`과 `rejected`의 상대적 log probability 차이를 조정하는 방식이기 때문이다.
+
+특히 다음 조건이면 효과가 약해지기 쉽다.
+
+1. `rejected` 중국어 답변이 실제 모델이 자주 내뱉는 실패 형태와 다르다.
+2. `chosen`과 `rejected`가 언어만 다른 것이 아니라 길이, 정보량, 친절함, 포맷까지 같이 다르다.
+3. 데이터가 너무 쉬워서 모델이 "중국어는 나쁘다"는 일반 규칙을 배우기보다, 특정 pair만 구분한다.
+4. base/SFT 모델 자체가 중국어 prior를 강하게 갖고 있다.
+5. inference에서 temperature가 높거나, prompt가 복잡해서 language control이 흔들린다.
+
+이 문제는 보통 `DPO를 세게 돌리면 해결된다` 쪽으로 접근하면 잘 안 된다. 언어 일관성은 문체 preference라기보다 **출력 제약에 가까운 행동** 이라서, DPO만으로 고치기에는 신호가 간접적이다.
+
+더 안정적인 접근은 다음 순서다.
+
+1. **먼저 SFT로 한국어 답변 형식을 고정한다.**
+   "이런 질문에는 반드시 한국어로 답한다"는 기본 행동은 preference tuning보다 SFT가 더 잘 잡는다.
+
+2. **DPO pair는 실제 실패 로그에서 만든다.**
+   임의로 번역한 중국어 답변보다, 모델이 실제로 뱉은 중국어/혼합언어 답변을 `rejected`로 쓰는 편이 낫다. 그래야 학습 신호가 실제 실패 분포와 맞는다.
+
+3. **비교 축을 언어 하나로 최대한 좁힌다.**
+   `chosen`과 `rejected`의 내용, 길이, 포맷은 최대한 비슷하게 두고 언어만 다르게 만든다. 그래야 모델이 "짧아서 chosen인가?", "더 친절해서 chosen인가?" 같은 부수 신호를 덜 배운다.
+
+4. **DPO loss에 SFT loss를 섞는다.**
+   순수 DPO만 쓰면 `rejected`를 낮추는 효과는 있어도 한국어 답변 형식 자체가 안정적으로 고정되지 않을 수 있다. TRL 기준으로는 DPO 계열에서도 `sft` loss를 함께 섞는 MPO 스타일 구성이 가능하다.
+
+5. **가능하면 language consistency reward를 별도로 둔다.**
+   요즘 RL을 쓰는 흐름에서는 이 부분이 더 명확해진다. 예를 들어 rollout 답변에 대해 한국어 비율, 중국어 문자 포함 여부, line-level language ID pass 여부를 reward로 주고, task quality reward와 함께 최적화한다. 다만 언어 reward를 너무 세게 주면 답변 품질이나 reasoning 성능이 떨어질 수 있으므로, language reward는 hard constraint처럼 쓰기보다 보조 reward로 두는 편이 안전하다.
+
+6. **디코딩/서빙 레벨에서도 막는다.**
+   학습만 믿지 말고, 시스템 프롬프트, 낮은 temperature, language ID 기반 후처리 retry, 중국어 문자 감지 시 재생성 같은 guardrail을 같이 둔다. 제품 문제라면 이쪽이 학습보다 훨씬 즉각적으로 효과가 난다.
+
+간단히 말하면, `중국어 rejected / 한국어 chosen` DPO는 방향은 맞지만 너무 약한 처방일 때가 많다. 한국어만 안정적으로 내게 하려면 **SFT로 기본 언어 습관을 잡고, 실제 실패 로그 기반 DPO/ORPO로 언어 혼합에 패널티를 주고, 필요하면 RL의 language reward와 inference guardrail을 붙이는 식** 으로 여러 층을 겹치는 편이 낫다.
+
+관련 연구도 이 방향과 잘 맞는다. Language confusion benchmark 계열 연구는 LLM이 사용자가 원하는 언어로 항상 답하지 못하며, 복잡한 prompt와 높은 sampling temperature에서 문제가 커질 수 있다고 보고한다. 또 ORPO처럼 unwanted output style에 penalty를 추가하는 방식이 language-confused generation을 줄이는 데 효과적이라는 결과도 있다. RLVR/GRPO 계열에서도 target-language consistency reward가 도움이 되지만, task accuracy와 언어 일관성 사이의 trade-off가 생길 수 있다는 보고가 있다.
+
+# K) 면접에서 이렇게 말하면 된다
 
 **Q1. DPO를 RLHF와 비교해서 설명해주세요.**
 
@@ -217,6 +257,11 @@ DPO를 프로젝트에 적용할 때는 알고리즘보다 데이터 설계와 �
 # References
 
 - Rafailov et al., [Direct Preference Optimization: Your Language Model is Secretly a Reward Model](https://arxiv.org/abs/2305.18290)
+- Marchisio et al., [Understanding and Mitigating Language Confusion in LLMs](https://arxiv.org/abs/2406.20052)
+- Lee et al., [Controlling Language Confusion in Multilingual LLMs](https://arxiv.org/abs/2505.19116)
+- Choo et al., [TLPO: Token-Level Policy Optimization for Mitigating Language Confusion in Large Language Models](https://arxiv.org/abs/2604.26553)
+- Hugging Face TRL, [DPO Trainer](https://huggingface.co/docs/trl/main/en/dpo_trainer)
+- Hugging Face TRL, [GRPO Trainer](https://huggingface.co/docs/trl/main/en/grpo_trainer)
 - [[RLHF]]
 - [[reward model]]
 - [[supervised fine-tuning]]
