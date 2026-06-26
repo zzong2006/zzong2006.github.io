@@ -135,7 +135,9 @@ world model: state + action -> next state
 
 일반 instruction model도 "terminal output을 예측해봐"라고 시키면 그럴듯한 답을 낼 수 있다. 하지만 agent training에 쓰려면 그 정도로는 부족하다. 여기서 부족한 것은 말투의 자연스러움이 아니라, 실제 환경이 보일 반응을 얼마나 정확히 재현하느냐이다.
 
-Terminal에서는 byte count, file-system mutation, shell prompt가 맞아야 한다. MCP에서는 API schema와 cross-turn object ID가 유지되어야 한다. Search에서는 agent가 아직 모르는 정답을 snippet에 새어 나오게 하면 안 된다.
+Terminal에서는 byte count, file-system mutation, shell prompt가 맞아야 한다. MCP에서는 API schema와 cross-turn object ID가 유지되어야 한다. Search에서는 simulator가 내부적으로 reference answer를 알고 있더라도, agent의 query가 아직 그 답에 닿지 못했다면 snippet에 정답을 몰래 흘리면 안 된다.
+
+검색 예시로 보면 더 직관적이다. agent가 아직 애매한 query만 던졌는데 검색 snippet에 바로 최종 정답이 들어 있으면, agent는 query를 좁히거나 결과를 비교하는 법을 배우지 않는다. 그냥 아무 검색이나 한 뒤 simulator가 흘린 정답을 줍는 shortcut을 배운다. 그래서 Search world model은 "진짜 검색 엔진이라면 이 query에 무엇을 보여줬을까?"와 "agent가 이 시점에 알아도 되는 정보는 어디까지인가?"를 동시에 지켜야 한다.
 
 language simulator에는 다음 조건이 동시에 필요하다.
 
@@ -174,7 +176,7 @@ Turn 2:
 
 `initial state`는 domain마다 다르다. Terminal이라면 OS, package, working directory, file-system snapshot이 될 수 있고, Web이라면 browser state나 page tree가 될 수 있다.
 
-`simulation instruction`은 simulation을 통제하기 위해 쓰인다. 예를 들어 Search domain에서는 reference answer를 model이 내부적으로 알고 있더라도, agent의 현재 query가 그 정보를 아직 찾아내지 못했다면 snippet에 답을 흘리지 말라는 제약을 줄 수 있다.
+`simulation instruction`은 simulation을 통제하기 위해 쓰인다. 예를 들어 Search domain에서는 reference answer를 model이 내부적으로 알고 있더라도, agent의 현재 query가 그 정보를 아직 찾아내지 못했다면 snippet에 답을 흘리지 말라는 제약을 줄 수 있다. simulator에게는 정답지가 필요하지만, agent에게는 그 정답지가 곧바로 보이면 안 되는 셈이다.
 
 ## E.2) Training Data
 
@@ -205,11 +207,24 @@ CPT는 environment trajectory를 일반 language modeling 형식으로 학습한
 
 논문은 여기에 domain world knowledge corpus도 함께 넣는다. 예를 들어 법률 시스템을 시뮬레이션하려면 법률 지식이 필요하고, 병원 시스템을 시뮬레이션하려면 의료 도메인 지식이 필요하다. 환경 trajectory만으로는 이런 배경 지식을 충분히 담기 어렵다.
 
-여기서 중요한 기법이 **turn-level information-theoretic loss masking** 이다.
+여기서 중요한 기법이 **turn-level information-theoretic loss masking** 이다. 이름은 복잡하지만 직관은 단순하다. **모든 observation token을 똑같이 시험 문제로 내지 말고, 환경에 대한 새 정보를 담은 turn만 세게 채점하자** 는 것이다.
 
 Tool-use trajectory에는 학습 가치가 낮은 turn이 많다. API가 입력을 그대로 echo하거나, tool이 단순 status만 돌려주는 경우가 대표적이다. 이런 token까지 동일하게 loss를 걸면 모델은 환경 dynamics보다 boilerplate를 더 많이 학습하게 된다.
 
-논문은 action과 observation 사이의 overlap, novelty, Jaccard, length ratio를 계산해 turn을 분류한다. 학습 가치가 낮은 turn은 context에는 남겨두되 loss에서는 비중을 낮춘다.
+예를 들어 `create_issue(title="bug", body="...")` 같은 action 뒤에 observation이 `{"title":"bug", "body":"...", "status":"created"}`처럼 대부분 입력을 되풀이한다면, 이 turn에서 배울 핵심은 긴 title/body를 복사하는 능력이 아니다. 새로 생긴 `status`, `id`, permission 변화, 다음 turn에서 참조할 object state가 중요하다. 반대로 `read_file`이나 search result처럼 observation 안에 action에는 없던 새 내용이 많이 들어 있으면, 그 turn은 world model이 제대로 배워야 할 정보가 많다.
+
+그래서 논문은 action과 observation 사이의 overlap, novelty, Jaccard, length ratio를 계산해 turn을 분류한다. 학습 가치가 낮은 turn은 context에는 남겨두되 loss에서는 비중을 낮춘다.
+
+여기서 "context에는 남긴다"가 중요하다. echo성 turn도 뒤 turn의 원인이 될 수 있기 때문이다. 예를 들어 API가 단순히 `created`만 돌려줬더라도, 그 결과로 생성된 object ID나 상태는 다음 tool call의 전제가 된다. 따라서 기록에서는 지우지 않고, 그 token을 맞히는 학습 신호만 약하게 만든다.
+
+네 가지 통계량은 대략 이렇게 보면 된다.
+
+| Statistic | 직관 |
+|---|---|
+| Overlap | observation이 action 단어를 얼마나 반복하는가 |
+| Novelty | observation에 action에는 없던 새 단어가 얼마나 많은가 |
+| Jaccard | action과 observation의 단어 집합이 전반적으로 얼마나 비슷한가 |
+| Length ratio | observation 길이가 action 대비 얼마나 길거나 짧은가 |
 
 | Turn category | 직관 | Loss keep ratio |
 |---|---|---:|
