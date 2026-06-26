@@ -358,12 +358,19 @@ MCP에서는 tool call이 많고, 중간 결과를 조심스럽게 다뤄야 한
 
 ### G.2.3) Search fictional-world construction
 
-Search domain에서는 더 과감하게 완전히 fictional한 world를 만든다. 예를 들어 실제 브랜드 이름은 쓰되 존재하지 않는 2029년 스마트폰 ranking이나 가상의 database를 구성한다.
+Search domain에서는 더 과감하게 **실제로는 존재하지 않지만, 검색 문제처럼 작동하는 세계** 를 만든다. 여기서 fictional world는 단순히 가짜 문서를 몇 개 생성한다는 뜻이 아니다. 논문은 300-500 row 규모의 relational database를 먼저 만들고, 그 안의 사실을 바탕으로 검색 결과, 웹페이지, 자연어 query, 정답 table을 구성한다.
 
-이 방식의 장점은 두 가지다.
+예를 들어 "2029년 스마트폰 시장"이라는 가상 세계를 만든다고 하자. 브랜드 이름은 Apple, Samsung처럼 현실적인 이름을 쓸 수 있지만, 모델명, 가격, 순위, 출시일, regional availability는 실제 세계에 없는 값으로 채운다. 그다음 이 가상 DB에서 SQL로 ground-truth answer를 뽑고, 그 답을 찾도록 natural-language search query를 역생성한다.
 
-1. agent가 parametric memory로 답을 맞힐 수 없다.
-2. 실제 세계와 충돌하는 fabricated fact가 모델 안에 섞일 위험이 줄어든다.
+검색 조직 관점에서 중요한 점은 **사실은 가짜지만, 검색 행위는 진짜처럼 만든다** 는 데 있다. agent는 한 번의 search snippet만 보고 답을 끝낼 수 없다. query를 바꿔 보고, 여러 source를 비교하고, 필요한 경우 page extraction으로 상세 페이지를 열어 보고, 마지막에 row/item 단위로 answer table을 조립해야 한다.
+
+이 방식의 장점은 세 가지다.
+
+1. agent가 parametric memory로 답을 맞힐 수 없다. 답은 모델이 사전학습에서 본 적 없는 가상 세계 안에만 있다.
+2. 실제 검색 index나 private data 없이도 long-tail, sparse result, conflicting source, partial snippet 같은 검색 실패 상황을 마음대로 만들 수 있다.
+3. fabricated fact가 실제 세계 지식처럼 모델 안에 섞일 위험이 줄어든다. 가짜 사실은 처음부터 "가상 세계 안의 사실"로 닫혀 있기 때문이다.
+
+그래서 이 실험은 검색 ranking 자체를 학습한다기보다, **검색 agent의 정보 수집 행동** 을 훈련하는 데 가깝다. 검색 조직에서 보면 query reformulation, source triangulation, snippet 의존도 제어, structured answer aggregation 같은 능력을 simulator로 따로 훈련하는 아이디어로 읽을 수 있다.
 
 | Model | WideSearch F1 Item | WideSearch F1 Row |
 |---|---:|---:|
@@ -374,7 +381,27 @@ Search domain에서는 더 과감하게 완전히 fictional한 world를 만든�
 | 397B + controlled Sim RL | **73.98** | **51.74** |
 | Gain | +3.87 | +6.05 |
 
-검색 agent 학습에서는 이 아이디어가 특히 쓸모 있다. 실제 검색 문제는 모델이 이미 알고 있는 지식과 search result가 섞여, "검색을 잘해서 맞혔는지"와 "그냥 알고 있어서 맞혔는지"가 헷갈린다. fictional world는 이 leakage를 줄여준다.
+이 결과는 꽤 강하다. 35B 모델에서는 F1 Item이 34.02에서 50.31로 +16.29 오르고, 397B 모델에서도 이미 baseline이 높은데 70.11에서 73.98로 +3.87 오른다. 실제 검색 환경을 쓰지 않고, 완전히 가상으로 만든 검색 세계에서 훈련했는데도 real WideSearch task로 transfer가 된 것이다.
+
+### G.2.4) 실제 검색 환경 대비 효과는 어디를 보면 되나
+
+"world model이 실제 환경 대비 얼마나 효과적인가?"를 보려면 논문에서는 **6.1.2 Controllable Simulation의 Real RL vs. Sim RL** 을 보면 된다. 특히 Search에서는 WideSearch에서 live search engine으로 훈련한 Real RL과, fictional-world simulator로 훈련한 controllable Sim RL을 직접 비교한다.
+
+핵심 숫자는 다음과 같다.
+
+| Training setup | WideSearch F1 Item | 관찰 |
+|---|---:|---|
+| Real RL with live search engine | 45.6 | 실제 search snippet이 충분한 정보를 주는 경우가 많아 page extraction 사용이 줄어듦 |
+| Controllable Sim RL with Qwen-AgentWorld | **50.3** | snippet이 일부 정보만 주도록 설계되어, agent가 page extraction과 cross-checking을 더 많이 학습 |
+
+여기서 중요한 해석은 "simulator가 실제 검색 엔진보다 항상 더 정확하다"가 아니다. 오히려 실제 검색 엔진은 fidelity가 높지만, 훈련 분포를 마음대로 어렵게 만들기 어렵다. 반대로 world model은 완벽한 현실 복제는 아니지만, snippet에 정답을 덜 주거나, 여러 source를 보게 만들거나, long-tail query를 많이 만드는 식으로 **학습시키고 싶은 행동을 유도할 수 있다**.
+
+논문이 보여주는 포인트는 그래서 두 가지다.
+
+1. **성능 비교**: WideSearch F1 Item에서 controllable Sim RL이 Real RL보다 높게 나온다. 논문 수치로는 50.3 대 45.6이다.
+2. **행동 비교**: Sim RL agent는 `web_extractor` 사용이 2.5회에서 4.0회로 늘고, Real RL agent는 2.5회에서 1.5회로 줄어든다. simulator가 snippet에 완성 답을 덜 주도록 설계되어 있어서, Sim RL agent가 상세 페이지를 열어 보고 근거를 모으는 습관을 더 강하게 배운다.
+
+검색 조직 관점에서는 이 두 번째 결과가 더 흥미롭다. 실제 검색 로그만 붙잡고 RL을 돌리면 agent가 "snippet만 보고 빨리 답하기" 같은 shortcut을 배울 수 있다. 반면 fictional-world simulator는 의도적으로 snippet을 불완전하게 만들 수 있어서, agent에게 더 깊은 retrieval 행동을 강제한다.
 
 ## G.3) Unified Agent Foundation Model
 
