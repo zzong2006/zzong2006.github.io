@@ -82,6 +82,24 @@ $$
 
 이 목적 함수는 어드밴티지가 양수인 답변 ($A_G > 0$), 즉 그룹 평균보다 잘한 답변의 생성 확률 (π_θ(y|x)) 은 높이고, 어드밴티지가 음수인 답변 ($A_G < 0$) 의 생성 확률은 낮추는 방향으로 모델 θ를 업데이트하도록 유도합니다.
 
+다만 위 식은 직관을 위해 response 단위로 줄여 쓴 형태에 가깝다. 실제 LLM 학습에서는 답변 $y_i$가 여러 token으로 이루어져 있으므로, policy ratio를 token마다 계산하는 식으로 쓰는 경우가 많다.
+
+$$
+r_{i,t}(\theta)
+=
+\frac{
+  \pi_\theta(y_{i,t} \mid x, y_{i,<t})
+}{
+  \pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})
+}
+$$
+
+여기서 $y_{i,t}$는 $i$번째 답변의 $t$번째 token이고, $y_{i,<t}$는 그 token 앞에 이미 생성된 prefix다. 이 ratio는 "같은 prefix에서 같은 token을 현재 모델이 이전 모델보다 얼마나 더, 또는 덜 내려고 하는가"를 뜻한다.
+
+중요한 점은, GRPO가 token마다 reward를 따로 주는 것은 아니라는 점이다. reward와 advantage는 보통 답변 전체에 붙는다. 그 답변이 group 평균보다 좋으면 같은 positive advantage가 답변 안의 token들에 공유되고, group 평균보다 나쁘면 같은 negative advantage가 공유된다.
+
+따라서 GRPO의 token-level ratio는 token-level update 장치이지, token-level credit assignment는 아니다. 각 token의 gradient와 clipping 여부는 달라질 수 있지만, "이 reasoning step은 좋고 저 reasoning step은 나쁘다"를 reward가 직접 구분해주는 구조는 아니다. 그런 세밀한 구분이 필요하면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다.
+
 # C) PPO 와 GRPO 의 수식상 핵심 차이 요약
 
 | 항목                 | PPO (Proximal Policy Optimization)                       | GRPO (Group Relative Policy Optimization)                             |

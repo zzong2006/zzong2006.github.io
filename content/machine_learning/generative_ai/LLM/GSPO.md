@@ -43,7 +43,26 @@ response-level reward
 token-level importance ratio
 ```
 
-이 불일치가 GSPO 논문의 출발점이다. token-level ratio는 각 token position에서 old policy와 current policy의 확률 차이를 본다. 긴 답변에서는 이 작은 차이가 많이 쌓이고, clipping까지 거치면서 gradient noise가 커질 수 있다.
+## B.1) Token-Level Importance Ratio가 하는 일
+
+importance ratio는 "old policy가 이미 뽑은 token을 current policy가 지금은 얼마나 더, 또는 덜 뽑으려 하는가"를 보는 비율이다.
+
+답변 $y_i$의 $t$번째 token에 대해 GRPO는 보통 다음 값을 쓴다.
+
+$$
+w_{i,t}(\theta) =
+\frac{
+  \pi_\theta(y_{i,t} \mid x, y_{i,<t})
+}{
+  \pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})
+}
+$$
+
+예를 들어 old policy가 어떤 자리에서 `4` token을 낼 확률을 `0.20`으로 봤고, current policy가 `0.30`으로 본다면 ratio는 `1.5`다. 현재 모델이 그 token을 이전보다 더 밀고 있다는 뜻이다. 반대로 current policy 확률이 `0.10`이면 ratio는 `0.5`다. 그 token을 이전보다 덜 내려고 한다는 뜻이다.
+
+이 값은 policy update에서 advantage와 곱해진다. response-level advantage가 양수라면, GRPO는 그 답변을 구성한 token들의 확률을 높이는 방향으로 간다. advantage가 음수라면 반대로 낮춘다. 여기서 token-level ratio는 "이 답변이 좋은가"를 판단하는 점수가 아니라, 좋은 답변 또는 나쁜 답변을 바탕으로 각 token 확률을 얼마나 바꿀지 정하는 update lever에 가깝다.
+
+문제는 advantage는 response 하나에 하나인데, ratio와 clipping은 token마다 따로 걸린다는 점이다. 같은 좋은 답변 안에서도 이미 확률이 많이 오른 token은 clip되고, 덜 오른 token은 더 밀릴 수 있다. 이 불일치가 GSPO 논문의 출발점이다. 긴 답변에서는 token별 작은 차이가 많이 쌓이고, clipping까지 거치면서 gradient noise가 커질 수 있다.
 
 MoE 모델에서는 문제가 더 심해진다. 같은 token이라도 gradient update 전후로 활성화되는 expert가 달라질 수 있다. 그러면 token-level likelihood ratio가 더 흔들린다. GSPO 논문은 이 현상이 GRPO 기반 MoE RL training의 불안정성과 collapse로 이어질 수 있다고 본다.
 
@@ -89,6 +108,20 @@ w_{i,t}(\theta) =
 }
 $$
 
+여기서 notation은 다음처럼 읽으면 된다.
+
+| 기호 | 뜻 | 읽는 법 |
+| --- | --- | --- |
+| $x$ | prompt 또는 query | 모델에게 들어간 문제 |
+| $y_i$ | $i$번째 response | 같은 prompt에서 샘플링한 여러 답변 중 하나 |
+| $y_{i,t}$ | $i$번째 response의 $t$번째 token | 답변 안의 특정 token |
+| $y_{i,<t}$ | $t$번째 token 앞의 prefix | 지금 token을 내기 전까지 이미 생성된 앞부분 |
+| $\pi_\theta$ | current policy | 지금 업데이트하려는 모델 |
+| $\pi_{\theta_{\mathrm{old}}}$ | old policy | rollout을 만들 때 쓴 업데이트 이전 모델 |
+| $w_{i,t}(\theta)$ | token-level importance ratio | 같은 prefix에서 같은 token을 current policy가 old policy보다 얼마나 더, 또는 덜 내려고 하는지 |
+
+분모는 old policy의 확률이고, 분자는 current policy의 확률이다. 그래서 $w_{i,t}(\theta) > 1$이면 현재 모델이 그 token을 이전보다 더 밀고 있다는 뜻이고, $w_{i,t}(\theta) < 1$이면 덜 밀고 있다는 뜻이다.
+
 GSPO는 response 전체의 likelihood ratio를 쓴다. 다만 response 길이가 다르면 값의 scale이 크게 흔들리므로, 길이로 정규화한 geometric mean 형태를 사용한다.
 
 $$
@@ -110,7 +143,20 @@ s_i(\theta)
 \right)
 $$
 
-직관적으로는 "답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는가"를 보는 값이다.
+여기서 $\pi_\theta(y_i \mid x)$는 response 전체를 한 번에 내는 확률처럼 보이지만, 실제로는 token 확률의 곱이다.
+
+$$
+\pi_\theta(y_i \mid x)
+=
+\prod_{t=1}^{\lvert y_i \rvert}
+\pi_\theta(y_{i,t} \mid x, y_{i,<t})
+$$
+
+그런데 긴 답변은 token 확률을 많이 곱하므로 likelihood 값이 자연스럽게 작아진다. 그래서 GSPO는 전체 sequence ratio를 그대로 쓰지 않고, token 수 $\lvert y_i \rvert$로 나눈 평균 log ratio를 만든 뒤 다시 $\exp$를 씌운다.
+
+직관적으로는 "답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는가"를 보는 값이다. GRPO가 token마다 따로 ratio를 보고 clip한다면, GSPO는 답변 하나에 ratio 하나를 만들고 그 값을 clip한다.
+
+주의할 점은, 여기서 길이로 정규화되는 대상이 reward가 아니라 policy ratio라는 점이다. reward와 advantage는 여전히 response 단위로 계산된다. 즉 GSPO는 "답변이 얼마나 좋은가"를 token 수로 나눠서 평가하는 방법이 아니다. "old policy 대비 current policy가 이 답변을 얼마나 더 그럴듯하게 보는가"를 길이에 맞춰 비교하는 방법이다.
 
 # D) GSPO Objective
 
@@ -176,9 +222,32 @@ GSPO는 다음 상황에서 특히 볼 만하다.
 
 GSPO는 GRPO의 token-level ratio 문제를 줄이지만, 모든 문제를 끝내지는 않는다.
 
-가장 먼저 볼 한계는 length bias다. 후속 연구인 LUSPO는 GSPO objective가 response length에 대해 bias를 만들 수 있고, 특히 sequence-level clipping이 response length collapse를 유발할 수 있다고 지적한다. 그래서 GSPO를 쓸 때는 reward curve만 보지 말고 response length, correct/incorrect sample의 길이 분포, clipped token 비율도 함께 봐야 한다.
+가장 먼저 볼 한계는 length bias다. 여기서 헷갈리기 쉬운 부분이 있다. GSPO는 sequence ratio를 길이로 정규화하지만, reward를 길이로 정규화하는 것은 아니다. 또 objective 안에서는 각 response의 loss를 sequence 하나 단위로 평균내기 때문에, 긴 답변의 token 하나하나가 loss에 기여하는 비중은 짧은 답변보다 작아질 수 있다.
 
-또 다른 한계는 credit assignment다. sequence 전체에 같은 weight를 주면 안정성은 좋아지지만, 답변 안에서 어느 reasoning step이 좋았고 나빴는지를 세밀하게 구분하기 어렵다. ESPO, DHPO 같은 후속 연구가 token-level과 sequence-level 사이의 trade-off를 다시 조정하려는 이유도 여기에 있다.
+후속 연구인 LUSPO는 이 지점을 GSPO의 length bias로 본다. 특히 sequence-level clipping은 token-level clipping보다 더 많은 token을 한꺼번에 clip할 수 있고, practical setting의 Clip-Higher와 결합되면 positive/negative sample의 token 기여가 불균형해질 수 있다고 지적한다. 그 결과 GSPO가 response length collapse, 즉 답변이 점점 짧아지는 방향으로 치우칠 수 있다는 것이다.
+
+LUSPO의 보정은 reward를 길이로 나누는 쪽이 아니다. 오히려 GSPO loss에 response 길이 $\lvert y_i \rvert$를 곱해서, 긴 sequence의 token 기여가 과소평가되지 않도록 맞춘다.
+
+$$
+\mathcal{J}_{\mathrm{LUSPO}}(\theta)
+=
+\mathbb{E}
+\left[
+\frac{1}{G}
+\sum_{i=1}^{G}
+\min \left(
+  s_i(\theta)\widehat{A}_i,
+  \mathrm{clip}(s_i(\theta), 1-\varepsilon, 1+\varepsilon)\widehat{A}_i
+\right)
+\cdot \lvert y_i \rvert
+\right]
+$$
+
+그래서 GSPO를 쓸 때는 reward curve만 보지 말고 response length, correct/incorrect sample의 길이 분포, clipped token 비율도 함께 봐야 한다.
+
+또 다른 한계는 credit assignment다. 다만 이 말은 "GRPO는 각 reasoning step의 좋고 나쁨을 정확히 안다"는 뜻은 아니다. GRPO도 보통 reward와 advantage는 답변 전체에 붙이고, 그 같은 advantage를 답변 안의 token들이 공유한다. token-level ratio는 각 token 확률을 얼마나 바꿀지 정하는 update 장치일 뿐, 어느 step이 맞고 틀렸는지를 reward가 직접 표시해주는 신호는 아니다.
+
+차이는 정도에 있다. GRPO는 token마다 ratio와 clipping이 달라서 token별 gradient 크기가 달라질 수 있다. 그래서 sequence 전체를 같은 ratio로 다루는 GSPO보다 token 단위 변화가 더 살아 있다. 하지만 이것만으로 "답변 중 세 번째 추론 step은 좋고, 다섯 번째 step은 나쁘다"까지 구분하기는 어렵다. 그런 세밀한 credit assignment가 필요하면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다. ESPO, DHPO 같은 후속 연구가 token-level과 sequence-level 사이의 trade-off를 다시 조정하려는 이유도 여기에 있다.
 
 # H) Qwen-AgentWorld에서 왜 쓰였나
 
@@ -191,7 +260,19 @@ output: 다음 environment observation 하나
 
 모델은 긴 history를 읽고, 방금 agent action 뒤에 나올 observation을 예측해야 한다. reward는 이 observation 전체의 format, factuality, consistency, realism, quality에 붙는다.
 
-이런 구조에서는 token 하나하나의 ratio보다, 생성된 observation sequence 전체가 old policy 대비 얼마나 안정적으로 움직였는지가 더 중요하다. 그래서 Qwen-AgentWorld가 GSPO를 채택한 것은 자연스럽다. 긴 context, long trajectory, MoE serving 비용까지 겹치기 때문에, training stability와 infrastructure 단순화가 모두 중요하기 때문이다.
+예를 들어 observation이 다음처럼 생겼다고 하자.
+
+```json
+{
+  "screen": "checkout page",
+  "status": "payment failed",
+  "message": "card expired"
+}
+```
+
+이때 reward가 보는 것은 `screen`이라는 token 하나가 따로 좋았는지가 아니다. JSON 형식이 맞는지, 현재 agent action 뒤에 나올 만한 상태인지, 앞선 interaction history와 모순되지 않는지, observation 전체가 실제 환경처럼 보이는지를 함께 본다. 즉 평가 단위가 token 하나가 아니라 observation 한 덩어리다.
+
+그래서 이 구조에서는 token마다 ratio를 따로 흔드는 것보다, observation sequence 전체의 확률을 한 단위로 보고 업데이트하는 편이 자연스럽다. GSPO는 좋은 observation이면 그 sequence 전체의 likelihood를 올리고, 나쁜 observation이면 전체 likelihood를 낮춘다. 긴 context, long trajectory, MoE serving 비용까지 겹치기 때문에 Qwen-AgentWorld에서는 training stability와 infrastructure 단순화가 모두 중요하고, 그 점에서 GSPO가 잘 맞는다.
 
 # I) 실무 체크리스트
 
