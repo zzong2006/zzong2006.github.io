@@ -1,7 +1,9 @@
 ---
-title: "Quantization"
-tags: ["deep_learning", "quantization"]
-aliases: ["양자화"]
+title: Quantization
+aliases: [양자화]
+tags:
+  - deep_learning
+  - quantization
 ---
 
 # A) Quantization ?
@@ -147,6 +149,10 @@ Bitsandbytes는 LLM을 8비트 및 4비트로 쉽게 양자화할 수 있도록 
 ## D.4) QLoRA (Quantized [[LoRA|Low-Rank Adaptation]])
 
 QLoRA는 4비트 NF4(NormalFloat) 데이터 타입과 이중 양자화(Double Quantization)라는 두 가지 핵심 기술을 사용하여 메모리 요구 사항을 획기적으로 줄인 방식입니다. 이를 통해 단일 GPU에서도 대규모 모델을 미세조정(Fine-tuning)하는 것을 가능하게 합니다.
+
+## D.5) FP8 Quantization
+
+[[FP8 Quantization]]은 weight, activation, 때로는 KV cache를 8-bit floating point로 낮춰 LLM serving 비용을 줄이는 방식이다. H100/H200 같은 Hopper GPU와 Blackwell GPU에서는 FP8 Tensor Core 경로를 활용할 수 있어, 모델 메모리뿐 아니라 throughput 개선도 기대할 수 있다. 다만 small batch decode나 KV cache 병목에서는 latency 개선이 제한될 수 있다.
 
 # E) 양자화 파라매터
 
