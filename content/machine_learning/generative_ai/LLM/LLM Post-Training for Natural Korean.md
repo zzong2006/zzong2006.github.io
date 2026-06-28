@@ -22,7 +22,7 @@ aliases:
 
 2023-2024년에는 SFT 이후 [[DPO]]를 붙이는 방식이 오픈소스 instruction tuning의 기본 조합에 가까웠다. 별도 [[reward model]]과 PPO 파이프라인 없이 preference pair만으로 모델을 맞출 수 있었기 때문이다.
 
-하지만 2025년 DeepSeek-R1 이후 분위기가 바뀌었다. 수학, 코딩, tool use처럼 정답 검증이 가능한 문제에서는 `RLVR(Reinforcement Learning from Verifiable Rewards)`가 중요한 축이 되었고, `GRPO`, `DAPO`, `GSPO`, `RLOO`, `REINFORCE++` 같은 on-policy RL 계열이 주요 라이브러리에서 더 크게 다뤄지기 시작했다.
+하지만 2025년 DeepSeek-R1 이후 분위기가 바뀌었다. 수학, 코딩, tool use처럼 정답 검증이 가능한 문제에서는 `RLVR(Reinforcement Learning from Verifiable Rewards)`가 중요한 축이 되었고, [[GRPO]], `DAPO`, [[GSPO]], `RLOO`, `REINFORCE++` 같은 on-policy RL 계열이 주요 라이브러리에서 더 크게 다뤄지기 시작했다.
 
 다만 이런 변화를 한국어 자연스러움에 그대로 가져오면 위험하다. 자연스러운 한국어는 정답/오답이 깔끔히 갈리는 문제가 아니다. 존댓말의 일관성, 문장 리듬, 번역투, 기술 용어의 보존, 과도한 친절함, 문체의 과장 같은 요소가 얽혀 있다. 그래서 reward를 만들더라도 모델이 점수만 맞추는 방향으로 빠지기 쉽고, reward hacking도 쉽게 생긴다.
 
@@ -30,7 +30,7 @@ aliases:
 
 1. `SFT`는 여전히 가장 중요한 출발점이다.
 2. `DPO/SimPO/KTO/ORPO`는 낡았다기보다 offline preference baseline이 되었다.
-3. `GRPO/DAPO/GSPO`는 정답을 검증할 수 있는 task나 agentic task에서 강하다.
+3. `GRPO/DAPO/GSPO` 계열은 정답을 검증할 수 있는 task나 agentic task에서 강하다.
 4. 문체 품질은 알고리즘보다 데이터, judge rubric, human eval이 더 크게 좌우한다.
 
 # C) Post-Training을 어떻게 나눠 볼까
@@ -43,7 +43,7 @@ aliases:
 | DFT/CADFT | positive demonstration | SFT loss 안정화 | SFT 자체 개선 | noisy하거나 난도 차가 큰 instruction data에 후보 |
 | DPO/SimPO/KTO/ORPO | chosen/rejected pair | 선호 방향 | 안정적 baseline | 자연스러운 한국어 vs 번역투 pair에 잘 맞음 |
 | GKD | teacher/student output | teacher 지식 증류 | 작은 모델에 실용적 | 좋은 teacher의 한국어 문체를 작은 모델에 이전 |
-| GRPO/DAPO/GSPO | rollout + reward | reward가 검증 가능한 행동 | RLVR 중심축 | 형식/언어 일관성 같은 보조 reward에 제한적으로 사용 |
+| [[GRPO]]/DAPO/[[GSPO]] | rollout + reward | reward가 검증 가능한 행동 | RLVR 중심축 | 형식/언어 일관성 같은 보조 reward에 제한적으로 사용 |
 | Agentic RL | tool/env trajectory | multi-turn task 성공 | 빠르게 커지는 영역 | 한국어 상담, 검색, 도구 호출에서는 가능하지만 설계 비용이 큼 |
 
 # D) 헷갈리는 용어들
@@ -109,7 +109,7 @@ GKD: student가 직접 답해봄 -> teacher가 그 답변을 보고 분포/피�
 
 절반은 맞고 절반은 아니다.
 
-`DPO`가 연구적으로 가장 뜨거운 키워드는 아니다. 2026년에 새로 나오는 라이브러리와 논문은 on-policy RL, RLVR, multi-turn agent, multi-reward optimization 쪽을 더 많이 다룬다. `verl` 문서도 `PPO`, `GRPO`, `DAPO`, `GSPO` 같은 RL recipe를 앞쪽에 두고, `ms-swift`도 GRPO family를 강하게 지원한다.
+`DPO`가 연구적으로 가장 뜨거운 키워드는 아니다. 2026년에 새로 나오는 라이브러리와 논문은 on-policy RL, RLVR, multi-turn agent, multi-reward optimization 쪽을 더 많이 다룬다. `verl` 문서도 `PPO`, [[GRPO]], `DAPO`, [[GSPO]] 같은 RL recipe를 앞쪽에 두고, `ms-swift`도 GRPO family를 강하게 지원한다.
 
 하지만 DPO가 실무에서 쓸모를 잃은 것은 아니다. 비용이 낮고, 구현이 쉽고, reward hacking 위험이 상대적으로 작다. 특히 자연스러운 한국어처럼 reward를 완전히 규칙화하기 어려운 문제에서는, 좋은 pairwise preference data만 있다면 DPO류가 여전히 좋은 출발점이다.
 
@@ -155,7 +155,7 @@ GKD: student가 직접 답해봄 -> teacher가 그 답변을 보고 분포/피�
 4. DFT/CADFT를 SFT 대안으로 소규모 실험
 5. DPO/SimPO/KTO로 자연스러움 preference 반영
 6. GKD로 큰 teacher의 좋은 한국어 답변을 작은 모델에 증류
-7. GRPO/DAPO/GSPO는 reward를 분명하게 만들 수 있는 하위 task에만 제한적으로 적용
+7. [[GRPO]]/DAPO/[[GSPO]]는 reward를 분명하게 만들 수 있는 하위 task에만 제한적으로 적용
 
 한국어 자연스러움만 놓고 보면 SFT 이후 [[DPO]]/SimPO를 붙이고 eval로 확인하는 방식이 가장 먼저 시도할 만하다. RL은 그다음이다. 단, format following, tool calling, 한국어만 쓰기, 금칙어 회피처럼 reward를 비교적 안정적으로 만들 수 있는 부분은 RL로 따로 분리해볼 수 있다.
 
@@ -196,13 +196,13 @@ Axolotl은 YAML 기반으로 SFT, LoRA/QLoRA, preference tuning, GRPO 계열을 
 
 ## G.2) ms-swift
 
-ms-swift는 Qwen/ModelScope 생태계와 잘 맞고, CPT/SFT/DPO/GRPO/GKD를 한 파이프라인 안에서 다루기 좋다. 문서상으로도 GRPO family를 `GRPO`, `DAPO`, `GSPO`, `SAPO`, `CISPO`, `CHORD`, `RLOO`, `Reinforce++`까지 넓게 지원한다.
+ms-swift는 Qwen/ModelScope 생태계와 잘 맞고, CPT/SFT/DPO/GRPO/GKD를 한 파이프라인 안에서 다루기 좋다. 문서상으로도 GRPO family를 [[GRPO]], `DAPO`, [[GSPO]], `SAPO`, `CISPO`, `CHORD`, `RLOO`, `Reinforce++`까지 넓게 지원한다.
 
 Qwen 계열 한국어 실험, GKD, 대규모 multi-GPU/Megatron 쪽을 염두에 둔다면 먼저 볼 만하다.
 
 ## G.3) verl
 
-verl은 연구/대규모 RL post-training에 더 가깝다. `PPO`, `GRPO`, `DAPO`, `GSPO` recipe와 large-scale rollout/inference pipeline을 다루기 좋다.
+verl은 연구/대규모 RL post-training에 더 가깝다. `PPO`, [[GRPO]], `DAPO`, [[GSPO]] recipe와 large-scale rollout/inference pipeline을 다루기 좋다.
 
 한국어 문체만 다듬는 목적이라면 과할 수 있다. 하지만 tool calling, code execution, search agent처럼 rewardable environment가 있는 한국어 agent를 학습한다면 볼 만하다.
 

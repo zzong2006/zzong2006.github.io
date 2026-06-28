@@ -259,7 +259,7 @@ SFT의 목표는 "더 친절한 답변"이 아니다. 모델이 observation을 �
 
 ## E.5) Stage 3: RL
 
-RL stage는 `GSPO`를 사용한다. LWM RL은 일반 answer RL과 조금 다르다.
+RL stage는 [[GSPO]]를 사용한다. LWM RL은 일반 answer RL과 조금 다르다.
 
 일반 answer RL에서는 질문과 답변 길이가 비교적 비슷하다. 예를 들어 1K token prompt를 보고 1K token 답변을 만들고, 그 답변 전체에 reward가 걸린다. 하지만 LWM RL에서는 prompt가 수만 token의 interaction history다. 지금까지의 terminal 출력, file state, tool response, agent action이 모두 들어간다. 반면 모델이 새로 생성해야 하는 output은 방금 action에 대한 **다음 observation 하나** 뿐이다.
 
@@ -445,7 +445,7 @@ Hugging Face에 공개된 `Qwen-AgentWorld-35B-A3B` 기준 스펙은 아래와 �
 |---|---|
 | Type | Causal Language Model, Language World Model |
 | Base model | Qwen3.5-35B-A3B-Base |
-| Training stage | CPT -> SFT -> RL with GSPO |
+| Training stage | CPT -> SFT -> RL with [[GSPO]] |
 | Parameters | 35B total, 3B activated |
 | Context length | 262,144 tokens |
 | Hidden dimension | 2048 |
