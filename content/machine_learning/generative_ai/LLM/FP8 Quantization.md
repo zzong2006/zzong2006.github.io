@@ -13,9 +13,9 @@ aliases:
 
 # A) 한줄 요약
 
-FP8 Quantization은 LLM의 weight, activation, 때로는 KV cache를 8-bit floating point로 낮춰 inference 비용을 줄이는 방법이다.
+FP8 Quantization은 LLM의 weight, activation tensor, 때로는 KV cache를 8-bit floating point로 낮춰 inference 비용을 줄이는 방법이다.
 
-핵심 이점은 단순히 모델 파일이 작아지는 데서 끝나지 않는다. H100/H200 같은 Hopper GPU와 Blackwell GPU에서는 FP8 Tensor Core를 쓸 수 있으므로, FP8 kernel이 제대로 붙으면 메모리 사용량, memory bandwidth, GEMM 처리량이 함께 좋아질 수 있다.
+핵심 이점은 단순히 모델 파일이 작아지는 데서 끝나지 않는다. H100/H200 같은 Hopper GPU와 Blackwell GPU에서는 FP8 Tensor Core를 쓸 수 있으므로, FP8 kernel이 제대로 붙으면 메모리 사용량, memory bandwidth, [[Prefill|prefill]] 구간의 matrix multiplication/GEMM 처리량이 함께 좋아질 수 있다.
 
 다만 FP8이 항상 latency를 줄이는 것은 아니다. small batch decode, KV cache 병목, MoE routing, 통신, scheduler overhead가 병목이면 weight를 FP8로 줄여도 체감이 작을 수 있다. 그래서 FP8은 "메모리를 줄이는 옵션"이면서 동시에 "하드웨어와 serving engine이 맞아야 빨라지는 옵션"으로 봐야 한다.
 
@@ -42,10 +42,16 @@ FP8은 float 포맷이다. INT4/AWQ/GPTQ처럼 정수 grid에 값을 맞추는 �
 | --- | --- | --- | --- |
 | FP8 | H100/H200/Blackwell inference | 품질과 성능의 균형이 좋고 hardware support가 좋음 | A100에서는 네이티브 이점이 약함 |
 | INT8 | 범용 quantization | 안정적이고 지원 폭이 넓음 | FP8 Tensor Core 경로보다 느릴 수 있음 |
-| INT4/AWQ/GPTQ | weight-only 압축 | VRAM 절감 폭이 큼 | activation은 보통 고정밀로 남아 compute 이득이 제한될 수 있음 |
+| INT4/AWQ/GPTQ | weight-only 압축 | VRAM 절감 폭이 큼 | activation tensor는 보통 고정밀로 남아 compute 이득이 제한될 수 있음 |
 | NVFP4 | Blackwell 중심 inference | FP8보다 더 강한 압축 | Blackwell 의존성이 크고 scale/calibration에 민감함 |
 
 일반적으로 H200을 쓴다면 FP8이 가장 자연스러운 선택지다. A100은 FP8 Tensor Core가 없으므로 INT4/AWQ/GPTQ나 BF16 serving이 더 현실적일 수 있다. Blackwell이면 FP8뿐 아니라 NVFP4 같은 더 공격적인 포맷도 검토할 수 있다.
+
+여기서 activation은 sigmoid, ReLU, GELU 같은 activation function을 뜻하는 말이 아니다. quantization 문맥에서는 layer 사이를 흘러가는 중간 tensor, 즉 hidden state나 MLP/attention의 중간 출력값을 가리키는 경우가 많다.
+
+weight와 activation tensor를 따로 보는 이유는 둘의 성격이 다르기 때문이다. weight는 모델 파일에 고정된 값이라 offline에서 한 번 quantize해둘 수 있다. 반면 activation tensor는 요청마다, token마다, layer마다 값의 분포가 달라진다. 그래서 activation까지 FP8로 낮추려면 runtime scale 계산, calibration, kernel 지원이 더 중요해진다.
+
+INT4/AWQ/GPTQ 같은 weight-only quantization은 weight 메모리를 크게 줄이지만, activation tensor가 BF16/FP16으로 남는 경우가 많다. 이때 kernel이 실제 곱셈을 어떻게 처리하느냐에 따라 compute 이득이 제한될 수 있다. 반대로 FP8 W8A8처럼 weight와 activation을 함께 낮추면 Tensor Core가 더 직접적으로 이득을 볼 수 있다.
 
 # D) FP8 적용 방식
 
@@ -122,7 +128,7 @@ FP8이 잘 먹히는 조건은 꽤 분명하다.
 2. serving engine이 해당 모델 구조의 FP8 kernel을 제대로 지원한다.
 3. batch가 충분히 커서 GEMM 처리량이 병목이다.
 4. weight memory bandwidth가 병목이다.
-5. activation과 KV cache까지 함께 줄여야 하는 workload다.
+5. activation tensor와 KV cache까지 함께 줄여야 하는 workload다.
 
 이 조건이 맞으면 FP8은 throughput을 꽤 올릴 수 있다. 같은 GPU에서 더 큰 batch를 처리하거나, 같은 batch를 더 낮은 VRAM으로 돌릴 수 있다.
 
@@ -134,7 +140,7 @@ FP8이 잘 먹히는 조건은 꽤 분명하다.
 4. quantize/dequantize overhead가 kernel 이득보다 크다.
 5. CPU scheduler, tokenizer, network overhead가 더 크다.
 
-즉 FP8은 "항상 빨라지는 스위치"가 아니다. prefill throughput, decode throughput, first-token latency, per-token latency를 나눠서 봐야 한다.
+즉 FP8은 "항상 빨라지는 스위치"가 아니다. [[Prefill|prefill throughput]], decode throughput, first-token latency, per-token latency를 나눠서 봐야 한다.
 
 # F) Qwen FP8 모델을 볼 때 체크할 것
 
@@ -159,7 +165,7 @@ H200을 가지고 있다면 FP8은 꽤 좋은 기본 선택지다. BF16보다 VR
 
 1. BF16 baseline을 먼저 측정한다.
 2. 같은 모델의 official `-FP8` checkpoint가 있으면 그것부터 써본다.
-3. prefill throughput, decode throughput, first-token latency, per-token latency를 나눠서 측정한다.
+3. [[Prefill|prefill throughput]], decode throughput, first-token latency, per-token latency를 나눠서 측정한다.
 4. KV cache memory가 문제라면 `--kv-cache-dtype fp8`도 따로 비교한다.
 5. 품질은 benchmark score뿐 아니라 긴 reasoning, tool use, multilingual output을 따로 본다.
 
@@ -175,3 +181,4 @@ H200을 가지고 있다면 FP8은 꽤 좋은 기본 선택지다. BF16보다 VR
 - NVIDIA, [Introducing NVFP4](https://developer.nvidia.com/blog/introducing-nvfp4-for-efficient-and-accurate-low-precision-inference/)
 - [[Quantization]]
 - [[AWQ]]
+- [[Prefill]]
