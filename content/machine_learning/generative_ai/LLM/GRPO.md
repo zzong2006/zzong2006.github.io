@@ -1,88 +1,86 @@
 ---
+title: Group Relative Policy Optimization
 tags:
   - reinforcement_learning
   - LLM
 aliases:
+  - GRPO
   - Group Relative Policy Optimization
 ---
 
-# A) GRPO ?
+# A) 한줄 요약
 
-GRPO(Group Relative Policy Optimization) 는 **대규모 언어 모델 (LLM) 의 추론 능력을 강화하기 위한 강화학습 (RL) 알고리즘**입니다.
+GRPO(Group Relative Policy Optimization)는 LLM의 추론 능력을 강화하기 위해 쓰는 policy optimization 방법이다.
 
-GRPO 의 가장 큰 특징은 기존 강화학습 알고리즘 (예: PPO) 이 사용하던 **별도의 ‘가치 모델 (Value Model)’ 없이 작동**한다는 점입니다. 2026년 post-training 흐름에서는 GRPO 자체뿐 아니라 `DAPO`, [[GSPO]], `RLOO`, `REINFORCE++` 같은 변형과, verifiable reward를 쓰는 RLVR 파이프라인까지 함께 봐야 한다. 자연스러운 한국어 instruction tuning 관점의 위치는 [[LLM Post-Training for Natural Korean]]에 따로 정리해둔다.
+핵심은 PPO처럼 별도의 value model을 두지 않고, 같은 prompt에서 나온 여러 답변을 서로 비교해 advantage를 만든다는 점이다. 한 prompt에 대해 답변을 여러 개 뽑고, 그중 group 평균보다 좋은 답변은 더 나오게 만들고, 평균보다 나쁜 답변은 덜 나오게 만든다.
 
-**작동 방식은 다음과 같은 단계로 이루어집니다.**
+수학, 코딩, tool use처럼 verifier가 답변 전체를 비교적 명확하게 채점할 수 있는 RLVR 환경에서 특히 잘 맞는다. 2026년 post-training 흐름에서는 GRPO 자체뿐 아니라 `DAPO`, [[GSPO]], `RLOO`, `REINFORCE++` 같은 변형도 함께 봐야 한다. 자연스러운 한국어 instruction tuning 관점의 위치는 [[LLM Post-Training for Natural Korean]]에 따로 정리해둔다.
 
-* **그룹 생성 (Group Sampling):** 하나의 문제 (프롬프트) 에 대해 모델이 여러 개의 잠재적 답변을 생성하여 ‘그룹’을 만듭니다.
-* **보상 측정 (Reward Assignment):** 생성된 각각의 답변이 얼마나 좋은지 ‘보상 모델’을 통해 점수를 매깁니다. 예를 들어, 수학 문제의 정답 여부에 따라 점수를 부여합니다.
-* **상대적 이점 계산 (Advantage Calculation):** 그룹 내 모든 답변의 평균 점수를 기준선으로 삼습니다.그리고 각 답변의 점수를 이 평균 점수와 비교하여 ‘이점 (Advantage)’을 계산합니다. 평균보다 높으면 긍정적인 이점을, 낮으면 부정적인 이점을 갖게 됩니다.
-* **모델 업데이트:** 모델은 더 높은 이점을 가진 답변을 생성하도록 정책을 업데이트합니다. 이때 KL 발산 (KL-divergence) 을 통해 모델이 너무 급격하게 변하지 않도록 안정성을 유지합니다.
+# B) 왜 PPO 대신 GRPO를 쓰나
+
+PPO는 policy model과 value model을 함께 쓴다.
+
+```text
+policy model: 다음 token이나 action을 고른다
+value model: 지금 상태에서 보통 어느 정도 reward가 나올지 예측한다
+```
+
+value model이 있으면 advantage를 안정적으로 추정할 수 있다. 하지만 LLM post-training에서는 이 모델을 따로 학습하고 저장해야 하므로 메모리와 학습 비용이 커진다.
+
+GRPO는 이 부분을 단순화한다. "이 답변이 절대적으로 몇 점짜리인가"를 value model로 예측하는 대신, 같은 prompt에서 나온 답변들끼리 상대평가한다.
+
+예를 들어 한 수학 문제에 대해 모델이 답변 4개를 냈다고 하자.
+
+| 답변 | Reward |
+| --- | --- |
+| A | 1 |
+| B | 0 |
+| C | 1 |
+| D | 0 |
+
+group 평균 reward는 `0.5`다. A와 C는 평균보다 좋으므로 positive advantage를 받고, B와 D는 평균보다 나쁘므로 negative advantage를 받는다. value model 없이도 "이 prompt에서 어떤 답변이 상대적으로 나았는가"를 만들 수 있다.
 
 ![](https://i.imgur.com/jiyj3x2.png)
 
----
+# C) 동작 흐름
 
-## A.1) 비교를 위한 PPO (Proximal Policy Optimization) 의 목적 함수
+GRPO의 흐름은 네 단계로 보면 된다.
 
-PPO 는 강화학습에서 가장 널리 쓰이는 알고리즘 중 하나입니다. PPO 의 목적 (Objective) 은 다음과 같이 표현됩니다.
+1. 하나의 prompt $x$에 대해 old policy에서 여러 답변을 샘플링한다.
+2. 각 답변 $y_i$를 reward model이나 verifier로 채점한다.
+3. 같은 group 안에서 평균보다 얼마나 좋은지 계산해 advantage를 만든다.
+4. positive advantage를 받은 답변의 확률은 높이고, negative advantage를 받은 답변의 확률은 낮춘다.
 
-$$
-L_{PPO}(θ) = E [ \text{min}( r_t(θ) * A_t, \text{clip}(r_t(θ), 1-ε, 1+ε) * A_t ) - β * KL(π_θ || π_{old}) ]
-$$
-
-* $π_θ$: 현재 학습하려는 **정책 (Policy) 모델**입니다.
-* $π_{old}$: 업데이트 이전의 정책 모델입니다.
-* $r_t(θ) = π_θ(a_t|s_t) / π_{old}(a_t|s_t)$: 이전 정책 대비 현재 정책의 **확률 비율 (Probability Ratio)** 입니다.
-* $A_t$: **어드밴티지 (Advantage)** 함수. $A_t = Q(s_t, a_t) - V(s_t)$ 로, 현재 행동이 평균적인 행동보다 얼마나 더 좋은지를 나타냅니다. 이 값을 계산하기 위해 **별도의 가치 모델 (Value Model, $V$)** 이 필요합니다.
-* clip(…): 확률 비율이 너무 커지거나 작아지는 것을 막아 학습 안정성을 높이는 장치입니다.
-* KL(…): 두 정책 분포의 차이 (KL Divergence) 를 나타내는 항으로, 정책이 급격하게 변하는 것을 막는 규제 (Regularization) 역할을 합니다.
-
-**PPO 의 핵심:** 별도의 **가치 모델 $V(s_t)$** 를 학습하여 어드밴티지 $A_t$ 를 “절대적인” 기준으로 추정합니다.
-
-# B) GRPO 의 핵심 아이디어와 수식
-
-GRPO 는 PPO 의 “가치 모델” 부분을 없애고, 대신 **“그룹 내 상대 평가”** 라는 개념을 도입합니다.
-
-## B.1) 단계: 그룹 샘플링 (Group Sampling)
-
-하나의 프롬프트 (입력) $x$ 에 대해, 현재 정책 모델 $π_{ref}$ (PPO 의 $π_{old}$ 와 유사한 고정된 모델) 를 사용하여 $k$ 개의 서로 다른 답변 (출력) $y_i$ 를 생성합니다. 이 답변들의 집합을 그룹 G 라고 합니다.
-
-* 프롬프트: $x$
-* 생성된 답변들 (Group): $G = {y_1, y_2, …, y_k}$ where $y_i ~ π_{ref}(·|x)$
-
-## B.2) 단계: 보상 계산 (Reward Calculation)
-
-각 답변 $y_i$ 에 대해 **보상 함수 $R(x, y_i)$** 를 사용하여 점수를 매깁니다. 예를 들어, 수학 문제라면 정답이면 1, 오답이면 0 을 부여할 수 있습니다.
-
-* $i$ 번째 답변의 보상: $R_i = R(x, y_i)$
-
-## B.3) 단계: 그룹 상대 어드밴티지 (Group-Relative Advantage) 계산
-
-**이것이 GRPO 의 가장 핵심적인 부분입니다.** GRPO 는 절대적인 가치 모델 V(s) 대신, 그룹 G 내의 평균 보상을 기준선 (Baseline) 으로 사용합니다.
-
-* **그룹의 평균 보상 계산 (Baseline):** $R_{bar}(x) = (1/k) * Σ_i=1^k R(x, y_i)$
-	* R_bar(x) 는 그룹 내 모든 답변 보상의 산술 평균입니다. 이것이 PPO 의 가치 함수 V(s) 를 대체하는 기준선이 됩니다.
-* **그룹 상대 어드밴티지 계산:** $A_G(x, y_i) = R(x, y_i) - R_{bar}(x)$
-	* $A_G(x, y_i)$ 는 개별 답변의 보상이 그룹 평균보다 얼마나 더 좋은지 (또는 나쁜지) 를 나타내는 **상대적인 값**입니다.
-	* 만약 $y_i$ 의 보상이 그룹 평균보다 높으면 $A_G$ 는 양수가 되고, 낮으면 음수가 됩니다.
-
-## B.4) 단계: GRPO 목적 함수 (Objective Function)
-
-이제 계산된 상대 어드밴티지 $A_G$ 를 사용하여 정책 모델 $π_θ$ 를 업데이트합니다. GRPO 의 목적 함수는 다음과 같습니다.
+하나의 prompt $x$에 대해 $G$개의 답변을 샘플링하면 다음처럼 쓸 수 있다.
 
 $$
-L_{GRPO}(θ) = E_{x,y}~π_{ref} [ A_G(x, y) * (π_θ(y|x) / π_{ref}(y|x)) - β * KL(π_θ(·|x) || π_{ref}(·|x)) ]
+y_1, y_2, \ldots, y_G \sim \pi_{\theta_{\mathrm{old}}}(\cdot \mid x)
 $$
 
-* $E_{x,y}~π_{ref}$ \[…\]: 프롬프트 x 와 그에 대한 답변 y 가 참조 정책 $π_{ref}$ 를 통해 샘플링될 때의 기댓값입니다.
-* $A_G(x, y)$: 위에서 계산한 **그룹 상대 어드밴티지**입니다.
-* $π_θ(y|x) / π_{ref}(y|x)$: PPO 의 확률 비율과 동일한 항입니다.
-* $β * KL(…)$: PPO 와 마찬가지로, 정책이 π_ref 에서 너무 멀어지지 않도록 제어하는 규제 항입니다.
+각 답변은 reward를 받는다.
 
-이 목적 함수는 어드밴티지가 양수인 답변 ($A_G > 0$), 즉 그룹 평균보다 잘한 답변의 생성 확률 (π_θ(y|x)) 은 높이고, 어드밴티지가 음수인 답변 ($A_G < 0$) 의 생성 확률은 낮추는 방향으로 모델 θ를 업데이트하도록 유도합니다.
+$$
+R_i = R(x, y_i)
+$$
 
-다만 위 식은 직관을 위해 response 단위로 줄여 쓴 형태에 가깝다. 실제 LLM 학습에서는 답변 $y_i$가 여러 token으로 이루어져 있으므로, policy ratio를 token마다 계산하는 식으로 쓰는 경우가 많다.
+그다음 group 안에서 상대 advantage를 계산한다.
+
+$$
+\widehat{A}_i =
+\frac{
+  R_i - \mathrm{mean}(\{R_j\}_{j=1}^{G})
+}{
+  \mathrm{std}(\{R_j\}_{j=1}^{G})
+}
+$$
+
+직관적으로는 "같은 문제를 푼 다른 답변들과 비교했을 때, 이 답변이 얼마나 더 나았는가"를 보는 값이다. 표준편차로 나누는 부분을 생략해 단순히 $R_i - \mathrm{mean}(R)$로 설명하기도 하지만, 실제 구현에서는 group 안의 reward scale을 맞추기 위해 normalize하는 형태가 자주 쓰인다.
+
+# D) Policy Update에서 실제로 바뀌는 것
+
+GRPO는 response-level advantage를 만든 뒤, policy update에서는 token-level importance ratio를 자주 쓴다.
+
+답변 $y_i$의 $t$번째 token에 대해 ratio는 다음과 같다.
 
 $$
 r_{i,t}(\theta)
@@ -94,106 +92,95 @@ r_{i,t}(\theta)
 }
 $$
 
-여기서 $y_{i,t}$는 $i$번째 답변의 $t$번째 token이고, $y_{i,<t}$는 그 token 앞에 이미 생성된 prefix다. 이 ratio는 "같은 prefix에서 같은 token을 현재 모델이 이전 모델보다 얼마나 더, 또는 덜 내려고 하는가"를 뜻한다.
+notation은 이렇게 읽으면 된다.
 
-중요한 점은, GRPO가 token마다 reward를 따로 주는 것은 아니라는 점이다. reward와 advantage는 보통 답변 전체에 붙는다. 그 답변이 group 평균보다 좋으면 같은 positive advantage가 답변 안의 token들에 공유되고, group 평균보다 나쁘면 같은 negative advantage가 공유된다.
+| 기호 | 뜻 |
+| --- | --- |
+| $x$ | prompt |
+| $y_i$ | $i$번째 response |
+| $y_{i,t}$ | $i$번째 response의 $t$번째 token |
+| $y_{i,<t}$ | $t$번째 token 앞에 이미 생성된 prefix |
+| $\pi_\theta$ | 지금 업데이트하려는 current policy |
+| $\pi_{\theta_{\mathrm{old}}}$ | rollout을 만들 때 쓴 old policy |
+| $r_{i,t}(\theta)$ | old policy 대비 current policy가 같은 token을 얼마나 더, 또는 덜 내려고 하는지 |
+
+예를 들어 old policy가 어떤 자리에서 `4` token을 낼 확률을 `0.20`으로 봤고, current policy가 `0.30`으로 본다면 ratio는 `1.5`다. 현재 모델이 그 token을 이전보다 더 밀고 있다는 뜻이다. 반대로 current policy 확률이 `0.10`이면 ratio는 `0.5`다.
+
+이 ratio는 advantage와 곱해져 update의 방향과 크기를 정한다.
+
+```text
+advantage > 0  -> 해당 답변의 token 확률을 올리는 방향
+advantage < 0  -> 해당 답변의 token 확률을 내리는 방향
+```
+
+여기서 중요한 점이 있다. GRPO가 token마다 ratio를 계산한다고 해서 token마다 reward를 따로 주는 것은 아니다. reward와 advantage는 보통 답변 전체에 붙는다. 같은 답변 안의 token들은 같은 response-level advantage를 공유한다.
 
 따라서 GRPO의 token-level ratio는 token-level update 장치이지, token-level credit assignment는 아니다. 각 token의 gradient와 clipping 여부는 달라질 수 있지만, "이 reasoning step은 좋고 저 reasoning step은 나쁘다"를 reward가 직접 구분해주는 구조는 아니다. 그런 세밀한 구분이 필요하면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다.
 
-# C) PPO 와 GRPO 의 수식상 핵심 차이 요약
+# E) PPO와 GRPO의 차이
 
-| 항목                 | PPO (Proximal Policy Optimization)                       | GRPO (Group Relative Policy Optimization)                             |
-| ------------------ | -------------------------------------------------------- | --------------------------------------------------------------------- |
-| **어드밴티지 계산**       | $A(s, a) = R + γV(s') - V(s)$ <br> (TD-error 기반의 절대적 이점) | $A_G(x, y) = R(x, y) - (1/k)* Σ R(x, y_i)$ <br> (그룹 평균 보상 기반의 상대적 이점) |
-| **필요한 모델**         | 정책 모델 $π$ + **가치 모델 $V$**                                | **정책 모델 $π$ 단독**                                                      |
-| **기준선 (Baseline)** | 학습된 **가치 함수 $V(s)$**                                     | 샘플링된 **그룹의 경험적 평균 $R_{bar}(x)$**                                      |
+| 항목 | PPO | GRPO |
+| --- | --- | --- |
+| Advantage 기준 | value model이 예측한 값 | 같은 prompt에서 나온 답변 group의 평균 |
+| 필요한 모델 | policy model + value model | policy model 중심 |
+| 메모리 비용 | value model 때문에 큼 | 상대적으로 작음 |
+| 잘 맞는 reward | token/action 단위 reward나 value 추정이 필요한 경우 | 답변 전체를 verifier로 채점할 수 있는 경우 |
+| 대표 상황 | 일반 RL, RLHF | 수학, 코딩, RLVR |
 
-결론적으로 GRPO 는 **가치 모델을 그룹 내 답변들의 평균 보상으로 대체**함으로써, 메모리 효율성을 크게 높이고, 특히 정답/오답이 명확하여 보상 설정이 용이한 추론 문제에서 안정적이고 효과적인 학습을 가능하게 하는 알고리즘입니다.
+PPO는 "이 상태에서 보통 어느 정도 reward가 나와야 하는가"를 value model로 추정한다. GRPO는 "같은 prompt에서 나온 답변들 중 이 답변이 평균보다 나은가"를 본다.
 
-## C.1) **PPO 방식: 전문가 심판 (가치 모델) 을 데려온다**
+그래서 GRPO는 value model 비용을 줄이면서도, 정답/오답이 비교적 명확한 reasoning task에서 policy를 강화할 수 있다.
 
-* PPO 는 AI 모델 (선수) 외에, **‘이 문제가 얼마나 어려운지’, ‘이 선수가 보통 몇 점을 받을지’를 예측하는 ‘전문가 심판 (가치 모델)’**을 따로 둡니다.
-* AI 가 문제를 풀면, 이 ‘전문가 심판’이 예측한 점수보다 잘했는지 못했는지를 따집니다.
-* **단점:** 선수 (AI 모델) 와 심판 (가치 모델) 을 둘 다 훈련시켜야 해서 **메모리 (자원) 가 두 배로 듭니다.**
+# F) GSPO와 이어지는 지점
 
-> **PPO 의 평가:** “심판이 보기에 이 선수는 80 점 받을 거라 예상했는데, 90 점을 받았네? 아주 잘했군! 이 방향으로 더 학습시켜야겠다.”
+GRPO의 장점은 단순함이다. value model을 없애고 group-relative advantage만으로 학습할 수 있다.
 
-## C.2) **GRPO 방식: 상대평가 (그룹 평균) 로 해결한다**
+하지만 구조적인 불일치가 하나 남는다.
 
-* GRPO 는 ‘전문가 심판’을 따로 두지 않습니다. 대신, AI 에게 **같은 문제를 여러 번 풀게 해서 답변 그룹 (A, B, C, D) 을 만듭니다.**
-* 그다음 이 답변 그룹의 **평균 점수**를 계산합니다.
-* 개별 답변이 이 ‘그룹 평균’보다 잘했는지 못했는지를 따집니다.
-* **장점:** 심판이 없으니 **메모리 (자원) 를 훨씬 아낄 수 있습니다.**
+```text
+reward / advantage: response level
+importance ratio / clipping: token level
+```
 
-> **GRPO 의 평가:** “이번에 AI 가 낸 4 개 답안의 평균 점수가 70 점이네. 그중 A 답안은 95 점을 받았으니 아주 잘한 답이구나! 이 A 답안처럼 생각하도록 학습시켜야겠다.”
+즉 답변 전체에 대한 reward를 받은 뒤, 실제 update에서는 token마다 ratio와 clipping을 따로 적용한다. 긴 reasoning 답변에서는 token-level ratio가 많이 쌓이고, token마다 clipping 여부도 달라질 수 있다.
 
-# D) GRPO 의 장점
+[[GSPO]]는 이 지점을 바꾼다. reward가 response 단위라면 policy ratio와 clipping도 response sequence 단위로 맞추자는 접근이다.
 
-* **메모리 효율성:** 별도의 가치 모델을 학습시키지 않으므로, 모델 훈련에 필요한 메모리 (VRAM) 요구사항이 낮습니다. 이는 거대한 언어 모델을 제한된 하드웨어 리소스에서도 효율적으로 훈련할 수 있게 합니다.
-* **추론 능력 강화:** 수학, 코딩 등 복잡한 추론이 필요한 작업에서 모델의 성능을 효과적으로 향상시킬 수 있도록 설계되었습니다.
-* **안정적인 학습:** 그룹 기반의 보상 평균을 사용함으로써 학습 과정에서 발생할 수 있는 편차를 줄여 더 안정적인 업데이트가 가능합니다.
+# G) 장점과 주의점
 
-# E) QnA
+GRPO의 장점은 명확하다.
 
-## E.1) Advantage A 와 Action Ratio R 을 곱하는 이유
+1. value model이 필요 없어 메모리와 학습 비용을 줄일 수 있다.
+2. 같은 prompt 안의 답변들을 비교하므로 reward scale 변화에 비교적 강하다.
+3. 수학, 코딩처럼 verifier가 명확한 task에서 적용하기 쉽다.
+4. PPO보다 LLM RLVR 파이프라인을 단순하게 만들 수 있다.
 
-PPO 목적 함수에서 확률 비율 r 과 어드밴티지 A 를 곱하는 이유는, **‘어떤 행동이 얼마나 좋았는지 (A)’를 ‘그 행동을 앞으로 얼마나 더 할지 (r)’에 직접적으로 연결**하기 위해서입니다.
+다만 한계도 같이 봐야 한다.
 
-간단히 말해, 이 곱셈은 **“좋은 행동은 더 자주 하도록, 나쁜 행동은 덜 하도록”** 만드는 가장 직관적인 방법입니다.
+1. reward가 답변 전체에 붙기 때문에 reasoning step별 credit assignment는 약하다.
+2. group size가 너무 작으면 평균과 표준편차가 불안정해진다.
+3. reward model이나 verifier가 틀리면 group-relative advantage도 같이 흔들린다.
+4. token-level ratio와 response-level reward 사이의 mismatch가 긴 답변이나 MoE training에서 문제가 될 수 있다.
 
-각각의 의미를 다시 짚어보며 설명해 드리겠습니다.
+# H) 면접에서 이렇게 말하면 된다
 
-### E.1.1) 1. $A_t$ (어드밴티지): 행동의 ‘방향’과 ‘크기’를 알려주는 신호
+**Q1. GRPO를 한 문장으로 설명해주세요.**
 
-$A_t$ 는 특정 상태에서 한 행동이 평균적으로 얼마나 더 좋았는지를 나타내는 ‘평가 점수’입니다.
+> GRPO는 value model 없이, 같은 prompt에서 나온 여러 답변의 group 평균 reward를 기준으로 advantage를 만들고 policy를 업데이트하는 LLM RL 알고리즘입니다.
 
-* **$A_t > 0$ (양수):** “방금 한 행동은 평균보다 좋은 결과를 냈어! 잘했어!”
-	* 이 값의 **크기가 클수록** “엄청나게 좋은 행동이었어!”라는 의미입니다.
-* **$A_t < 0$ (음수):** “방금 한 행동은 평균보다 나쁜 결과를 냈어. 다음엔 피하는 게 좋겠어.”
-	* 이 값의 **절댓값이 클수록** “정말 최악의 행동이었어!”라는 의미입니다.
+**Q2. PPO와 가장 큰 차이는 무엇인가요?**
 
-즉, $A_t$ 는 우리가 정책을 어느 **방향**으로, 얼마나 **강하게** 업데이트해야 할지에 대한 **신호 (signal)** 역할을 합니다.
+> PPO는 value model로 advantage를 추정하지만, GRPO는 같은 prompt에서 샘플링한 답변들의 평균 reward를 baseline으로 씁니다. 그래서 value model 비용을 줄일 수 있습니다.
 
-### E.1.2) 2. $r_t(θ)$ (확률 비율): 정책의 ‘변화’를 나타내는 레버
+**Q3. GRPO가 token-level reward를 주는 방법인가요?**
 
-$r_t(θ) = π_θ(a_t|s_t) / π_{old}(a_t|s_t)$ 는 업데이트 이전 정책 대비 현재 정책이 같은 행동을 할 확률이 얼마나 변했는지를 나타냅니다. 이것은 우리가 실제로 조절하는 **’레버 (lever)‘**입니다.
+> 아닙니다. GRPO는 보통 답변 전체 reward로 response-level advantage를 만들고, update할 때 token-level policy ratio를 씁니다. token마다 ratio는 다르지만 reward 자체가 token마다 따로 붙는 것은 아닙니다.
 
-* r_t(θ) > 1: 이 행동을 할 확률이 **증가했다.**
-* r_t(θ) < 1: 이 행동을 할 확률이 **감소했다.**
-* r_t(θ) = 1: 확률이 **변하지 않았다.**
+**Q4. GSPO는 왜 나왔나요?**
 
-### E.1.3) 핵심: $r_t(θ) * A_t$ 곱셈의 마법
+> GRPO는 reward와 advantage는 response 단위로 만들면서, ratio와 clipping은 token 단위로 적용합니다. GSPO는 이 mismatch를 줄이기 위해 ratio와 clipping도 sequence 단위로 맞춘 방법입니다.
 
-이제 이 둘을 왜 곱하는지 두 가지 시나리오로 살펴보겠습니다. PPO 의 목표는 이 곱셈의 결과 (기댓값) 를 **최대화**하는 것입니다.
+# References
 
-#### E.1.3.1) 시나리오 1: 좋은 행동을 했을 때 (A_t > 0)
-
-* A_t 가 양수입니다.
-* r_t(θ) * A_t 라는 전체 값을 최대화하려면, r_t(θ) 를 **최대한 크게 만들어야** 합니다.
-* r_t(θ) 를 크게 만든다는 것은, 이 좋은 행동을 할 확률 π_θ(a_t|s_t) 를 이전보다 **높이도록** 정책을 업데이트한다는 의미입니다.
-	
-* **결론:** 좋은 행동 (A_t > 0) 을 하면, 그 행동의 확률을 높이는 방향 (r_t > 1) 으로 보상을 받습니다.
-
-#### E.1.3.2) 시나리오 2: 나쁜 행동을 했을 때 (A_t < 0)
-
-* $A_t$ 가 음수입니다.
-* $r_t(θ) * A_t$ 라는 전체 값을 최대화하려면 (즉, 음수 값을 0 에 가깝게 만들려면), r_t(θ) 를 **최대한 작게 만들어야** 합니다.
-	
-* r_t(θ) 를 작게 만든다는 것은, 이 나쁜 행동을 할 확률 π_θ(a_t|s_t) 를 이전보다 **낮추도록** 정책을 업데이트한다는 의미입니다.
-	
-* **결론:** 나쁜 행동 (A_t < 0) 을 하면, 그 행동의 확률을 낮추는 방향 (r_t < 1) 으로 보상을 받습니다.
-
-### E.1.4) 쉬운 비유: 공부 방법과 성적
-
-* **학생** = 정책 모델 π
-* **새로운 공부 방법** = 행동 a
-	
-* **성적 향상도 (평균 대비)** = 어드밴티지 A
-	
-* **이 공부법을 채택할 비중** = 확률 π(a|s)
-
-학생이 새로운 공부법을 시도했는데 성적이 평균보다 많이 올랐다면 (A 가 큼), 앞으로 그 공부법을 더 많이 사용해야겠죠 (π를 높임). 반대로 성적이 떨어졌다면 (A 가 음수), 그 공부법은 버려야 합니다 (π를 낮춤).
-
-r * A 의 곱셈은 이 과정을 수학적으로 정확하게 표현한 것입니다. 즉, **“성적 향상도 (A) 가 높은 공부법일수록, 앞으로 더 많이 쓰도록 (r 을 키우도록) 유도하자”** 는 논리를 그대로 수식으로 옮긴 것입니다.
-
-이것이 강화학습의 기본 원리인 ‘정책 경사 (Policy Gradient)’의 핵심이며, PPO 는 이를 더 안정적으로 구현한 알고리즘입니다.
+- [[GSPO]]
+- [[LLM Post-Training for Natural Korean]]
