@@ -22,11 +22,36 @@ Flink 문서에서는 **bounded stream**과 **unbounded stream**이라는 말을
 
 Flink는 둘을 완전히 다른 방식으로 보지 않는다. "데이터가 순서대로 흘러온다"는 관점에서 같은 stream 모델 위에 올린다. 끝이 있으면 언젠가 job이 끝나고, 끝이 없으면 계속 실행된다.
 
-그래서 Flink를 이해할 때 첫 질문은 "빠른 batch engine인가?"가 아니다. 더 중요한 질문은 "데이터가 계속 들어오는 동안 무엇을 기억해야 하고, 결과를 언제 확정해야 하며, 장애가 나면 어디서 다시 이어서 처리할 것인가?"이다.
+그래서 Flink를 이해할 때 첫 질문은 "빠른 batch engine인가?"가 아니다. 더 중요한 질문은 "데이터가 계속 들어오는 동안 무엇을 기억해야 하고, 결과를 언제 확정해야 하며, 장애가 나면 어디서 다시 이어서 처리할 것인가?"이다. 이 질문이 중요해지는 상황에서 Flink가 빛난다.
 
 2026년 6월 기준 공식 문서의 stable 버전은 Flink 2.3이고, Apache Flink 2.3.0은 2026-06-25에 release되었다. 2.3에는 SQL changelog 변환, materialized table 개선, native S3 filesystem, watermark alignment 개선, recovery 중 checkpoint 지원처럼 SQL과 운영에 가까운 변화가 들어왔다.
 
-# B) 예시로 먼저 보기
+# B) Flink가 유용한 순간
+
+Flink는 "실시간"이라는 말이 붙는 모든 작업에 필요한 도구는 아니다. 단순히 데이터를 빨리 옮기는 정도라면 더 가벼운 선택지가 많다.
+
+Flink가 잘 맞는 순간은 보통 **stream이 계속 살아 있고, 그 안에서 기억해야 할 상태가 커지며, 장애가 나도 계산을 이어 가야 할 때**다.
+
+| 상황 | 왜 Flink가 잘 맞나 | 예시 |
+| --- | --- | --- |
+| key별 중간값을 오래 기억해야 할 때 | state를 job 안에서 관리하고 checkpoint로 복구할 수 있음 | 사용자별 최근 행동, 상품별 실시간 집계, session state |
+| event가 늦게 도착해도 정확한 시간 기준으로 집계해야 할 때 | event time과 watermark로 window를 닫는 시점을 제어할 수 있음 | 5분 클릭 수, 광고 노출/클릭 집계, 센서 데이터 집계 |
+| 장애가 나도 중복·누락을 줄이며 이어서 처리해야 할 때 | checkpoint로 state와 source 위치를 함께 복구할 수 있음 | Kafka 소비 후 DB/Kafka/lakehouse에 결과 쓰기 |
+| 실시간 ETL이나 CDC pipeline을 운영해야 할 때 | SQL/Table API로 지속 실행되는 변환 job을 만들 수 있음 | DB 변경 로그를 정제해 Kafka나 warehouse로 전달 |
+| stream 결과가 제품 기능에 바로 연결될 때 | latency와 복구, state 크기를 함께 관리할 수 있음 | 실시간 추천 feature, fraud detection, alerting |
+
+반대로 이런 경우에는 Flink가 과할 수 있다.
+
+| 상황 | 더 단순한 선택 |
+| --- | --- |
+| 하루치 로그를 한 번 읽고 끝나는 분석 | batch Spark, SQL warehouse |
+| Kafka topic 하나를 거의 그대로 다른 topic으로 옮기는 작업 | Kafka Connect, 작은 consumer app |
+| 요청이 올 때마다 모델을 호출하는 online API | 일반 serving stack |
+| 몇 분마다 작은 테이블을 갱신하는 cron job | scheduler + SQL/script |
+
+짧게 말하면, Flink는 **계속 들어오는 event를 보면서, 큰 중간 상태를 들고, 시간 기준 집계와 장애 복구까지 챙겨야 할 때** 검토할 만하다. 단순히 "실시간"이라는 이유만으로 바로 Flink를 쓰는 것은 좋은 판단 기준이 아니다.
+
+# C) 예시로 먼저 보기
 
 Flink를 처음 볼 때는 "사용자별 클릭 수를 계속 세는 job"을 떠올리면 이해하기 쉽다.
 
@@ -50,7 +75,7 @@ flowchart TD
 
 Flink의 핵심 개념인 **state**, **event time**, **checkpoint**는 모두 이 문제에서 나온다.
 
-# C) Flink가 풀려는 문제
+# D) Flink가 풀려는 문제
 
 실시간 데이터 처리는 "빨리 처리한다"로 끝나지 않는다. 운영에서 어려운 부분은 대체로 이런 질문들이다.
 
@@ -67,9 +92,9 @@ Flink는 이 문제를 **state + time + checkpoint** 조합으로 푼다.
 | Time | event를 어떤 시간 기준으로 볼지 | window 집계와 late event 처리를 정하려고 |
 | Checkpoint | 중간 계산값의 주기적 백업 | 장애 후 같은 지점에서 다시 시작하려고 |
 
-# D) 핵심 개념
+# E) 핵심 개념
 
-## D.1) Stream
+## E.1) Stream
 
 Flink는 데이터를 stream으로 본다. stream은 "데이터가 순서대로 흘러온다"는 뜻에 가깝다.
 
@@ -80,7 +105,7 @@ Flink는 데이터를 stream으로 본다. stream은 "데이터가 순서대로 
 
 batch와 streaming을 완전히 다른 시스템으로 나누지 않는다는 점이 중요하다. 같은 Table API/SQL이나 DataStream API 위에서 작업을 표현하고, 입력이 끝나는 데이터인지 끝없는 데이터인지에 따라 실행 방식이 달라진다.
 
-## D.2) State
+## E.2) State
 
 Flink에서 state는 **다음 event를 처리할 때 다시 꺼내 봐야 하는 중간 계산값**이다.
 
@@ -99,7 +124,7 @@ Flink에서 state는 **다음 event를 처리할 때 다시 꺼내 봐야 하는
 
 state가 작으면 memory에 두는 방식이 단순하고 빠르다. state가 커지면 RocksDB 같은 backend를 써서 local disk까지 활용한다. 이 선택은 성능, memory 사용량, recovery 시간에 영향을 준다.
 
-## D.3) Event Time과 Watermark
+## E.3) Event Time과 Watermark
 
 streaming에서는 "처리한 시간"과 "event가 실제로 발생한 시간"이 다를 수 있다.
 
@@ -114,7 +139,7 @@ streaming에서는 "처리한 시간"과 "event가 실제로 발생한 시간"�
 
 이때 필요한 것이 **watermark**다. watermark는 "이 시각 이전의 event는 대체로 도착했다고 보고 window를 닫자"는 신호다. 너무 빨리 닫으면 늦게 온 event를 놓칠 수 있고, 너무 늦게 닫으면 결과가 늦게 나온다. 그래서 watermark는 데이터 지연 분포와 비즈니스 허용 오차를 보고 정해야 한다.
 
-## D.4) Checkpoint와 Savepoint
+## E.4) Checkpoint와 Savepoint
 
 checkpoint는 **Flink job의 중간 계산 상태를 주기적으로 백업하는 장치**다.
 
@@ -138,7 +163,7 @@ env.getCheckpointConfig().setMinPauseBetweenCheckpoints(30_000);
 
 `exactly-once`라는 표현도 조심해서 읽어야 한다. Flink 내부 state를 exactly-once로 복구하는 것과, 외부 sink까지 end-to-end exactly-once로 맞추는 것은 다르다. Kafka transaction sink나 two-phase commit이 가능한 sink는 비교적 맞추기 쉽지만, REST API 호출처럼 외부 side effect가 바로 생기는 sink는 idempotency나 deduplication 설계를 따로 해야 한다.
 
-# E) API를 어떻게 고를까
+# F) API를 어떻게 고를까
 
 Flink는 여러 수준의 API를 제공한다. 처음부터 가장 낮은 API로 내려가기보다, 하고 싶은 일을 어느 수준에서 자연스럽게 표현할 수 있는지 먼저 보는 편이 좋다.
 
@@ -151,9 +176,9 @@ Flink는 여러 수준의 API를 제공한다. 처음부터 가장 낮은 API로
 
 SQL로 표현 가능한 pipeline은 SQL/Table API로 시작하는 편이 좋다. 정말 event별 state machine이 필요할 때 DataStream API나 ProcessFunction으로 내려가면 된다.
 
-# F) 운영에서 먼저 보는 것들
+# G) 운영에서 먼저 보는 것들
 
-## F.1) State 크기
+## G.1) State 크기
 
 Flink job이 무거워지는 가장 흔한 이유는 CPU보다 state다.
 
@@ -161,7 +186,7 @@ state는 key cardinality, window 크기, join retention, late event 허용 시�
 
 state가 작고 latency가 중요하면 memory 기반 backend가 단순할 수 있다. state가 크거나 recovery 시간이 중요하면 RocksDB backend와 incremental checkpoint를 검토한다. 다만 RocksDB는 serialization, compaction, local disk I/O가 병목이 될 수 있으므로 metric을 같이 봐야 한다.
 
-## F.2) Checkpoint가 계속 성공하는가
+## G.2) Checkpoint가 계속 성공하는가
 
 checkpoint는 켜는 것보다 계속 성공하게 만드는 일이 더 어렵다. 먼저 볼 항목은 다음과 같다.
 
@@ -173,7 +198,7 @@ checkpoint는 켜는 것보다 계속 성공하게 만드는 일이 더 어렵�
 
 Flink에서 "장애 복구가 된다"는 말은 마지막 checkpoint로 돌아갈 수 있다는 뜻이다. checkpoint가 계속 timeout되면 복구 지점도 오래된 상태로 밀린다.
 
-## F.3) Backpressure
+## G.3) Backpressure
 
 streaming job은 한 단계가 느려지면 앞 단계까지 밀린다. 이것을 backpressure라고 부른다.
 
@@ -181,7 +206,7 @@ sink가 느리거나, 특정 key에 데이터가 몰리거나, RocksDB compactio
 
 Flink Web UI에서는 backpressure, busy time, checkpoint metric을 같이 봐야 한다.
 
-# G) Spark Streaming, Kafka Streams와 비교
+# H) Spark Streaming, Kafka Streams와 비교
 
 | 도구 | 중심 문제 | 강한 영역 | 조심할 점 |
 | --- | --- | --- | --- |
@@ -193,7 +218,7 @@ Flink Web UI에서는 backpressure, busy time, checkpoint metric을 같이 봐�
 
 반대로 event time, 큰 keyed state, 복잡한 window/join, 별도 cluster에서 오래 살아 있는 streaming job이 중요하면 Flink를 검토할 이유가 커진다.
 
-# H) Flink를 쓸 때의 감각
+# I) Flink를 쓸 때의 감각
 
 Flink는 "streaming SQL도 되는 빠른 engine" 정도로 보면 장점이 잘 안 보인다. 더 정확히는 **계속 들어오는 event를 보면서, 중간 상태를 기억하고, 장애가 나도 이어서 계산하게 해 주는 runtime**이다.
 
@@ -208,7 +233,7 @@ Flink는 "streaming SQL도 되는 빠른 engine" 정도로 보면 장점이 잘 
 
 이 질문에 답할 수 있으면 Flink job은 꽤 명확해진다. 반대로 이 질문이 흐릿하면 코드가 짧아도 운영에서 흔들린다.
 
-# I) References
+# J) References
 
 - [Apache Flink - Stateful Computations over Data Streams](https://flink.apache.org/)
 - [Apache Flink Architecture](https://flink.apache.org/what-is-flink/flink-architecture/)
