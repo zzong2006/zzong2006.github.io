@@ -17,9 +17,9 @@ aliases:
 
 # A) 한줄 요약
 
-**Ko-WideSearch** 는 한국어 웹 에이전트가 "정답 하나"가 아니라 **닫힌 집합 전체와 각 item의 속성 테이블** 을 얼마나 빠짐없이 찾는지 평가하는 benchmark다. 기존 browsing benchmark가 깊은 추론 경로를 따라 하나의 obscure answer를 찾는 **depth search** 에 치우쳤다면, 이 논문은 여러 Korean web source를 훑어 완전한 row set과 cell value를 채우는 **breadth search** 를 본다.
+**Ko-WideSearch** 는 한국어 웹 에이전트가 "정답 하나"가 아니라 **닫힌 집합 전체와 각 item의 속성 테이블** 을 얼마나 빠짐없이 찾는지 평가하는 benchmark다. 기존 browsing benchmark가 여러 단서를 따라가며 숨은 정답 하나를 찾는 **depth search** 에 치우쳤다면, 이 논문은 여러 Korean web source를 훑어 완전한 row set과 cell value를 채우는 **breadth search** 를 본다.
 
-Minbyul Jeong은 190개 set-parent entity에서 228개 table, 4,262개 gold row, 14,560개 attribute cell을 만들고, 이를 `Item-F1`, `Column-F1`, `Row-F1`, `Table Success` 로 평가한다. 결과는 꽤 명확하다. frontier web agent도 set membership은 잘 찾지만, full row를 완성하는 데 크게 실패한다. GPT-5.5도 `Item-F1 92.8`에 비해 `Row-F1 53.7`, `Table Success 19.3`에 그친다.
+Minbyul Jeong은 190개 set-parent entity에서 228개 table, 4,262개 gold row, 14,560개 attribute cell을 만들고, 이를 `Item-F1`, `Column-F1`, `Row-F1`, `Table Success` 로 평가한다. 결과는 명확하다. frontier web agent도 "무엇을 찾아야 하는지"는 꽤 잘 잡지만, 각 item의 속성을 끝까지 정확히 채워 full row로 완성하는 데 실패한다. GPT-5.5도 `Item-F1 92.8`에 비해 `Row-F1 53.7`, `Table Success 19.3`에 그친다.
 
 - **저자**: Minbyul Jeong
 - **발표**: arXiv 2606.27595, 2026-06-25
@@ -28,7 +28,7 @@ Minbyul Jeong은 190개 set-parent entity에서 228개 table, 4,262개 gold row,
 
 # B) 전체 구조
 
-논문이 보는 문제는 간단히 말하면 "검색해서 표를 완성하라"다.
+논문이 보는 문제는 한 문장으로 줄이면 "검색해서 표를 완성하라"다. 다만 여기서 중요한 것은 표의 크기가 아니라 **완전성** 이다. 몇 개를 많이 찾는 것이 아니라, 정의된 set을 빠짐없이 찾고 각 row의 속성까지 맞춰야 한다.
 
 예를 들어 이런 task를 생각하면 된다.
 
@@ -37,16 +37,16 @@ Minbyul Jeong은 190개 set-parent entity에서 228개 table, 4,262개 gold row,
 각 항공사별 모회사, 운항 시작 연도, 주요 허브, 보유 항공기 수를 채워라.
 ```
 
-여기서 agent는 두 가지를 동시에 해야 한다.
+이 task에서 agent는 두 가지를 동시에 해야 한다.
 
 1. **membership 찾기**: 한국 저비용항공사 전체 set을 빠짐없이 찾는다.
 2. **attribute 채우기**: 각 항공사 row마다 모회사, 연도, 허브, 항공기 수를 채운다.
 
-정답이 "Aero K" 같은 item 하나가 아니라, 여러 row와 여러 column으로 된 table이라는 점이 핵심이다. 하나의 item을 빠뜨리거나, fleet size 한 칸을 잘못 채우면 full row는 틀린다.
+정답이 "Aero K" 같은 item 하나가 아니라, 여러 row와 여러 column으로 된 table이라는 점이 핵심이다. 항공사 하나를 빠뜨려도 틀리고, 항공사 목록은 맞았더라도 fleet size 한 칸을 잘못 채우면 그 row는 완성되지 않는다.
 
 ![Ko-WideSearch benchmark overview](https://arxiv.org/html/2606.27595v1/x1.png)
 
-논문의 pipeline은 아래처럼 볼 수 있다.
+그래서 benchmark를 만들 때도 단순히 질문만 만들 수는 없다. Gold table이 정말 complete한지, cell value가 source로 확인되는지, 모델이 외워서 풀 수 있는 문제는 아닌지까지 검증해야 한다. 논문의 pipeline은 이 과정을 아래처럼 구성한다.
 
 ```mermaid
 flowchart TD
@@ -67,13 +67,13 @@ flowchart TD
     style H fill:#FFF3E0
 ```
 
-이 benchmark는 [[Qwen-AgentWorld - Language World Models for General Agents]]에서 언급된 WideSearch 계열과도 잘 이어진다. Agent가 web search를 많이 한다고 끝나는 문제가 아니라, 여러 source에서 찾은 정보를 **row 단위로 정렬하고 검증하는 능력** 이 병목이라는 점을 보여준다.
+이 benchmark는 [[Qwen-AgentWorld - Language World Models for General Agents]]에서 언급된 WideSearch 계열과도 잘 이어진다. Agent가 web search를 많이 한다고 끝나는 문제가 아니라, 여러 source에서 찾은 정보를 **row 단위로 정렬하고 검증하는 능력** 이 병목이라는 점을 보여주기 때문이다.
 
 # C) 배경 지식
 
 ## C.1) Depth Search와 Breadth Search
 
-기존 web-agent benchmark는 대체로 **depth search** 를 본다. BrowseComp, K-BrowseComp류 task는 여러 조건을 따라가며 하나의 어려운 답을 찾는 문제에 가깝다.
+Ko-WideSearch를 이해하려면 먼저 "search가 어렵다"는 말을 둘로 나눠야 한다. 기존 web-agent benchmark는 대체로 **depth search** 를 본다. BrowseComp, K-BrowseComp류 task는 여러 조건을 따라가며 하나의 어려운 답을 찾는 문제에 가깝다.
 
 ```text
 depth search:
@@ -83,9 +83,9 @@ breadth search:
   닫힌 집합 정의 -> 모든 item 찾기 -> item별 속성 table 완성
 ```
 
-둘은 요구 능력이 다르다.
+둘은 비슷해 보이지만 요구 능력이 다르다.
 
-Depth search에서는 agent가 한 줄의 정답에 도달하면 된다. 반면 breadth search에서는 "여기서 더 찾아야 할 item이 남았는가?", "이 row의 attribute는 어느 source에서 확인해야 하는가?", "동명이인이나 행정구역 표기가 섞이지 않았는가?"를 계속 관리해야 한다.
+Depth search에서는 agent가 한 줄의 정답에 도달하면 된다. 반면 breadth search에서는 "여기서 더 찾아야 할 item이 남았는가?", "이 row의 attribute는 어느 source에서 확인해야 하는가?", "동명이인이나 행정구역 표기가 섞이지 않았는가?"를 계속 관리해야 한다. 정답을 찾는 문제라기보다, 검색으로 작은 database를 만드는 문제에 가깝다.
 
 그래서 breadth search는 검색 능력만 보는 문제가 아니다. 실제로는 다음 능력을 함께 본다.
 
@@ -97,7 +97,7 @@ Depth search에서는 agent가 한 줄의 정답에 도달하면 된다. 반면 
 
 ## C.2) 왜 한국어 benchmark인가
 
-한국어 web search는 영어 web search와 다르다. 로컬 entity, 행정구역 표기, 선거/스포츠/방송 정보의 출처 구조, 검색어 관습이 다르다. 따라서 영어 browsing benchmark에서 잘하던 agent가 한국어 source에서도 같은 방식으로 잘한다고 보기 어렵다.
+여기에 한국어라는 축이 더해진다. 한국어 web search는 영어 web search와 다르다. 로컬 entity, 행정구역 표기, 선거/스포츠/방송 정보의 출처 구조, 검색어 관습이 다르다. 따라서 영어 browsing benchmark에서 잘하던 agent가 한국어 source에서도 같은 방식으로 잘한다고 보기 어렵다.
 
 논문은 기존 한국어 평가가 주로 static benchmark였다고 본다. KorQuAD, KLUE, KMMLU처럼 유용한 평가가 있지만, live web을 검색하고, source를 넘나들며, 최신 정보를 row 단위로 정리하는 agent 능력은 잘 보지 못한다.
 
@@ -107,7 +107,7 @@ Depth search에서는 agent가 한 줄의 정답에 도달하면 된다. 반면 
 
 ## D.1) 단일 정답 benchmark는 set 누락을 잘 드러내지 못한다
 
-agent가 하나의 obscure answer를 맞히는 능력과, 전체 item set을 빠짐없이 채우는 능력은 다르다. 단일 정답 benchmark에서는 한두 개 row를 빼먹는 문제가 잘 드러나지 않는다.
+앞의 구분을 놓고 보면 기존 benchmark의 빈틈이 보인다. Agent가 하나의 어려운 정답을 맞히는 능력과, 전체 item set을 빠짐없이 채우는 능력은 다르다. 단일 정답 benchmark에서는 한두 개 row를 빼먹는 문제가 잘 드러나지 않는다.
 
 하지만 실무에서는 breadth task가 많다.
 
@@ -116,21 +116,21 @@ agent가 하나의 obscure answer를 맞히는 능력과, 전체 item set을 빠
 - 여러 지역/기간 조합의 지표 table 만들기
 - source마다 흩어진 attribute를 하나의 spreadsheet로 정리하기
 
-이런 task에서는 "대충 많이 찾았다"가 부족하다. 마지막 몇 row, 틀린 cell, parse 실패가 실제 품질을 좌우한다.
+이런 task에서는 "대충 많이 찾았다"가 부족하다. 마지막 몇 row를 빠뜨리는지, cell을 다른 row에 잘못 붙이는지, 최종 결과가 parse 가능한 table인지가 실제 품질을 좌우한다.
 
 ## D.2) gold table을 손으로 만들기 어렵다
 
-Breadth benchmark를 만들기 어려운 이유는 gold construction 비용이다.
+그렇다고 breadth benchmark를 만들기 쉬운 것도 아니다. 가장 큰 문제는 gold construction 비용이다.
 
 정답 하나를 검증하는 것보다, 전체 set이 complete한지와 각 cell이 맞는지를 검증하는 비용이 훨씬 크다. 기존 WideSearch는 사람이 손으로 200개 table을 만들었는데, 논문은 이 방식을 한국어로 그대로 확장하기에는 비싸고 느리다고 본다.
 
-Ko-WideSearch의 핵심 contribution은 그래서 benchmark 자체뿐 아니라, **synthesize-and-verify pipeline** 이다. 모델이 gold를 만들되, 다른 model family와 live search 기반 gate로 다시 검증해 pipeline-verified benchmark를 만든다.
+그래서 Ko-WideSearch의 핵심 contribution은 benchmark 자체뿐 아니라 **synthesize-and-verify pipeline** 에 있다. 모델이 gold를 만들되, 다른 model family와 live search 기반 gate로 다시 검증해 pipeline-verified benchmark를 만든다.
 
 # E) 제안 방법: Ko-WideSearch
 
 ## E.1) Task Definition
 
-Ko-WideSearch task는 닫힌 finite set을 정의하는 질문이다. Gold answer는 table이다.
+이제 논문이 task를 어떻게 정의하는지 보자. Ko-WideSearch task는 닫힌 finite set을 정의하는 질문이고, gold answer는 table이다.
 
 ```text
 question:
@@ -150,7 +150,7 @@ gold answer:
 
 ## E.2) Metric
 
-Ko-WideSearch는 WideSearch 계열의 네 metric을 쓴다.
+Task가 table이므로, 평가도 한 점수로 끝내지 않는다. Ko-WideSearch는 WideSearch 계열의 네 metric을 쓴다.
 
 | Metric | 의미 | 무엇을 놓치면 떨어지나 |
 |---|---|---|
@@ -159,11 +159,11 @@ Ko-WideSearch는 WideSearch 계열의 네 metric을 쓴다.
 | `Row-F1` | key와 모든 attribute cell이 맞은 row 비율 | row 안의 cell 하나만 틀려도 실패 |
 | `Table Success` | table 전체가 완전히 맞은 비율 | row 하나, cell 하나라도 틀리면 실패 |
 
-이 중 논문이 실질적인 ranking metric으로 보는 것은 `Row-F1`이다. `Table Success`가 가장 엄격한 end-to-end outcome이지만, 너무 낮은 값에 몰려 모델 간 차이를 덜 보여주기 때문이다.
+이 중 논문이 실질적인 ranking metric으로 보는 것은 `Row-F1`이다. `Table Success`가 가장 엄격한 end-to-end outcome이기는 하지만, 대부분의 모델이 낮은 값에 몰려 모델 간 차이를 덜 보여주기 때문이다.
 
 ## E.3) Construction Pipeline
 
-Gold table은 frontier model 기반 build agent와 verification gate로 만든다. Build agent는 Korean web에서 `search`, `open`, `find` tool을 사용해 complete set과 attribute를 채운다.
+이제 문제는 gold table을 어떻게 믿을 수 있느냐다. 논문은 frontier model 기반 build agent와 verification gate를 조합한다. Build agent는 Korean web에서 `search`, `open`, `find` tool을 사용해 complete set과 attribute를 채운다.
 
 그 뒤 세 gate를 통과해야 한다.
 
@@ -173,11 +173,11 @@ Gold table은 frontier model 기반 build agent와 verification gate로 만든�
 | Completeness | membership이 빠지지 않았는지 확인 | 다른 model family가 재열거한 set과 `set-F1 >= 0.7` |
 | Cross-source verification | attribute cell이 source로 확인되는지 검증 | 독립 fact-check에서 column agreement가 0.6 미만이면 drop |
 
-Column을 drop하면 질문도 다시 쓴다. 즉 질문이 gold에 없는 cell을 요구하지 않도록 맞춘다. 또 중복 task를 제거하고, 5,744개 질문으로 된 8개 기존 evaluation set과 contamination check를 수행한다. 논문은 shingle Jaccard, n-gram containment, answer overlap을 사용했고, 0.6 threshold에서 걸린 질문이 없었다고 보고한다.
+검증 중 attribute column이 불안정하다고 판단되면 column만 빼는 데서 끝내지 않는다. 질문도 다시 써서, gold에 없는 cell을 agent에게 요구하지 않도록 맞춘다. 또 중복 task를 제거하고, 5,744개 질문으로 된 8개 기존 evaluation set과 contamination check를 수행한다. 논문은 shingle Jaccard, n-gram containment, answer overlap을 사용했고, 0.6 threshold에서 걸린 질문이 없었다고 보고한다.
 
 ## E.4) Difficulty Tier
 
-난이도는 두 structural knob으로 만든다.
+Gold가 만들어졌다면 다음은 난이도다. Ko-WideSearch는 난이도를 감으로 나누지 않고, 두 structural knob으로 조절한다.
 
 1. **Table width**: 채워야 할 column 수가 많아질수록 어려워진다.
 2. **2-D composite key**: 단순 list가 아니라 cross-product grid가 되면 membership 관리가 어려워진다.
@@ -193,7 +193,7 @@ Hard tier는 모두 2-D key다. 다만 논문도 이 tier가 sports-season 쪽�
 
 ## E.5) Normalization-Aware Comparator
 
-Table benchmark에서 의외로 중요한 부분은 scorer다. 같은 날짜, 같은 숫자, 같은 이름도 표기 형식이 조금씩 다를 수 있기 때문이다.
+Table benchmark에서는 scorer도 중요하다. 같은 날짜, 같은 숫자, 같은 이름도 source마다 표기 형식이 조금씩 다를 수 있기 때문이다.
 
 Ko-WideSearch는 gold construction과 grading에 같은 type-aware comparator를 사용한다.
 
@@ -205,7 +205,7 @@ Ko-WideSearch는 gold construction과 grading에 같은 type-aware comparator를
 | Name / Location | normalized text, substring, token overlap |
 | Free-text | headline score에서는 LLM judge가 아니라 deterministic normalized-text match |
 
-이 설계가 중요한 이유는 둘이다.
+이 설계가 중요한 이유는 두 가지다.
 
 첫째, gold를 만들 때 안정적인 column을 formatting 차이 때문에 과하게 drop하지 않는다. 둘째, agent output을 평가할 때도 같은 기준을 쓰므로 construction과 grading이 서로 어긋나지 않는다.
 
@@ -213,7 +213,7 @@ Ko-WideSearch는 gold construction과 grading에 같은 type-aware comparator를
 
 ## E.6) Sourcing Label
 
-각 table은 sourcing 관점에서도 나뉜다.
+마지막으로, 논문은 table이 어디서 완성되는지도 따로 본다. 같은 list page에서 대부분의 값을 확인할 수 있는 문제와, item별 page를 다시 열어야 하는 문제는 성격이 다르기 때문이다.
 
 | Label | 의미 |
 |---|---|
@@ -224,7 +224,7 @@ Ko-WideSearch는 gold construction과 grading에 같은 type-aware comparator를
 
 # F) 벤치마크/데이터셋
 
-Ko-WideSearch는 16개 category와 190개 distinct set-parent entity를 포함한다. 전체 228개 task 중 83%가 unique set을 enumerate한다. Sports/Games category가 크지만, 대부분 다른 league, season, tournament를 다룬다.
+이렇게 만든 Ko-WideSearch는 16개 category와 190개 distinct set-parent entity를 포함한다. 전체 228개 task 중 83%가 unique set을 enumerate한다. Sports/Games category가 크지만, 대부분 다른 league, season, tournament를 다룬다.
 
 대표 task는 아래처럼 나뉜다.
 
@@ -234,7 +234,7 @@ Ko-WideSearch는 16개 category와 190개 distinct set-parent entity를 포함�
 | Medium | 2026-06 기준 한국 저비용항공사와 모회사/허브/fleet size | 9 rows, 5 columns, 1-D key |
 | Hard | 17개 광역자치단체 x 7/8회 지방선거 당선자와 투표율/나이/득표율 | 34 rows, 7 columns, 2-D key |
 
-평가 harness는 모든 model을 web-search agent로 돌린다. Tool은 `search`, `open`, `find`로 통일하고, 답변 마지막에는 정확히 하나의 JSON block을 내도록 요구한다. 최종 answer가 JSON, Markdown table, CSV로 parse되지 않으면 free-text fallback은 recall만 제한적으로 보고 table score는 0이 된다.
+평가할 때는 모든 model을 같은 web-search agent harness에 넣는다. Tool은 `search`, `open`, `find`로 통일하고, 답변 마지막에는 정확히 하나의 JSON block을 내도록 요구한다. 최종 answer가 JSON, Markdown table, CSV로 parse되지 않으면 free-text fallback은 recall만 제한적으로 보고 table score는 0이 된다.
 
 평가한 model은 총 20개다.
 
@@ -246,7 +246,7 @@ Ko-WideSearch는 16개 category와 190개 distinct set-parent entity를 포함�
 
 ## G.1) Main Results
 
-핵심 결과는 "membership은 찾지만 full row는 못 채운다"다.
+결과를 한 문장으로 요약하면 "membership은 찾지만 full row는 못 채운다"다. 즉 agent가 검색을 전혀 못하는 것은 아니다. 다만 찾은 item마다 필요한 속성을 끝까지 맞춰 넣지 못한다.
 
 | Model | Item-F1 | Column-F1 | Row-F1 | Table Success | Parse |
 |---|---:|---:|---:|---:|---:|
@@ -256,6 +256,7 @@ Ko-WideSearch는 16개 category와 190개 distinct set-parent entity를 포함�
 | Claude-Opus-4.6 | 92.0 | 72.7 | 48.9 | 14.9 | 100.0 |
 | Gemini-3.1-Pro | 88.2 | 65.6 | 45.9 | 14.5 | 93.0 |
 | Gemini-3.1-Flash-Lite | 89.0 | 69.7 | 45.9 | 7.0 | 99.1 |
+| Gemini-3.5-Flash | 79.9 | 63.3 | 44.1 | 12.7 | 86.8 |
 | DeepSeek-V4-Pro | 80.4 | 63.9 | 45.0 | 12.3 | 87.3 |
 | Claude-Sonnet-4.6 | 90.2 | 67.7 | 43.6 | 11.8 | 100.0 |
 | GPT-5.4 | 89.0 | 61.5 | 41.6 | 10.5 | 100.0 |
@@ -286,13 +287,13 @@ Pooled score는 난이도별로 이렇게 떨어진다.
 | Exhaustive-only | 86.9 | 68.7 | 60.4 | 25.0 |
 | Cross-source | 74.5 | 51.9 | 32.3 | 7.6 |
 
-흥미로운 점은 `Item-F1`은 생각보다 버틴다는 것이다. agent가 "무엇을 찾아야 하는지"는 어느 정도 잡는다. 하지만 column 수가 늘고 2-D key가 들어가면 full row 완성률이 무너진다.
+여기서 중요한 점은 `Item-F1`은 생각보다 버틴다는 것이다. agent가 "무엇을 찾아야 하는지"는 어느 정도 잡는다. 하지만 column 수가 늘고 2-D key가 들어가면 full row 완성률이 무너진다.
 
 즉 문제는 단순히 "더 많은 item을 찾아야 해서" 생기는 것이 아니다. 논문은 set size별 Row-F1도 거의 flat하다고 보고한다. 8-15 row에서는 35.4, 16-30 row에서는 31.2, 30 row 초과에서도 35.0이다. 더 큰 set 자체보다, **row마다 정확한 attribute를 찾아 붙이는 과정** 이 어렵다.
 
 ## G.3) 더 많이 검색하거나 더 많이 쓰면 해결되는가
 
-논문의 답은 "아직은 아니다"에 가깝다.
+그렇다면 검색을 더 많이 하거나 더 비싼 모델을 쓰면 해결될까? 논문의 답은 "아직은 아니다"에 가깝다.
 
 가장 검색을 많이 한 Qwen3.6-35B와 Solar-Open-2-preview는 각각 평균 66회, 57회 tool call을 썼지만 하위권이다. 반면 GPT-5.5와 Claude-Opus-4.8은 각각 평균 33회, 26회 정도의 moderate search로 최상위권이다.
 
@@ -309,7 +310,7 @@ Pooled score는 난이도별로 이렇게 떨어진다.
 
 ## G.4) 어떤 cell이 어려운가
 
-논문 분석에 따르면 format이 정해진 cell은 상대적으로 쉽다. 날짜, 숫자, 표준 이름처럼 comparator가 안정적으로 처리할 수 있는 값은 잘 맞는 편이다.
+Row-F1이 낮다면 어떤 cell에서 깨지는지도 봐야 한다. 논문 분석에 따르면 format이 정해진 cell은 상대적으로 쉽다. 날짜, 숫자, 표준 이름처럼 comparator가 안정적으로 처리할 수 있는 값은 잘 맞는 편이다.
 
 가장 어려운 것은 open-ended free-text cell이다. 예를 들어 주소, 발견자, 설명형 속성, 출처마다 표기가 다른 이름은 agent가 그럴듯한 값을 만들거나, 너무 coarse하게 쓰거나, 다른 entity의 값을 가져오기 쉽다.
 
@@ -319,7 +320,7 @@ LLM semantic judge로 재채점하면 일부 surface variant가 구제된다. �
 
 ## G.5) Failure Taxonomy
 
-논문이 보여준 실패는 대략 다섯 가지로 나눌 수 있다.
+앞의 결과를 failure type으로 나누면 원인이 더 잘 보인다. 논문이 보여준 실패는 대략 다섯 가지다.
 
 | Failure | 설명 |
 |---|---|
@@ -333,7 +334,7 @@ LLM semantic judge로 재채점하면 일부 surface variant가 구제된다. �
 
 ## G.6) 실무적 시사점
 
-Ko-WideSearch는 agent evaluation을 설계할 때 "최종 답이 맞았는가"만으로는 부족하다는 점을 잘 보여준다. 특히 business workflow에서 web agent가 spreadsheet나 report table을 만들어야 한다면, `Item-F1`처럼 membership만 보는 metric은 낙관적일 수 있다.
+실무 관점에서 이 논문의 메시지는 단순하다. Agent evaluation을 설계할 때 "최종 답이 맞았는가"만 보면 부족하다. 특히 business workflow에서 web agent가 spreadsheet나 report table을 만들어야 한다면, `Item-F1`처럼 membership만 보는 metric은 낙관적일 수 있다.
 
 실무 eval을 만든다면 최소한 아래를 따로 봐야 한다.
 
@@ -347,7 +348,7 @@ Ko-WideSearch는 agent evaluation을 설계할 때 "최종 답이 맞았는가"�
 
 ## G.7) 한계
 
-Ko-WideSearch는 pipeline-verified benchmark다. native speaker spot-check가 있지만, 외부 paid annotator 기반의 formal inter-annotator agreement study는 아니다. Gold construction에 model이 들어가기 때문에 verification gate를 믿어야 하고, web source가 바뀌면 gold도 낡을 수 있다.
+마지막으로 한계도 분명하다. Ko-WideSearch는 pipeline-verified benchmark다. Native speaker spot-check가 있지만, 외부 paid annotator 기반의 formal inter-annotator agreement study는 아니다. Gold construction에 model이 들어가기 때문에 verification gate를 믿어야 하고, web source가 바뀌면 gold도 낡을 수 있다.
 
 데이터 release도 leakage를 막기 위해 request-based다. pipeline과 scorer는 공개하지만 evaluation data를 검색 가능한 web에 그대로 올리지 않는다. benchmark contamination을 줄이는 데는 좋지만, 완전히 open dataset처럼 즉시 재현하기는 어렵다.
 
