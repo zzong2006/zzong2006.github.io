@@ -94,9 +94,9 @@ TabFM 블로그에서는 TabFM 평가를 TabArena 로 수행했다고 설명한�
 
 이 맥락에서 TabArena 는 "TabFM 이 기존 tree model 대비 어느 정도인지 확인하는 공개 경기장"에 가깝다. 특히 [[papers/deep_learning/TabPFN|TabPFN]], TabICL, TabFM 같은 tabular foundation model 이 늘어나면서 공정한 비교 기준으로 중요해졌다.
 
-# G) Hugging Face: google/tabfm-1.0.0-pytorch
+# G) Hugging Face: [google/tabfm-1.0.0-pytorch](https://huggingface.co/google/tabfm-1.0.0-pytorch)
 
-`google/tabfm-1.0.0-pytorch` 는 TabFM 1.0.0 의 PyTorch weight 를 올려둔 Hugging Face 모델 저장소다. JAX/Flax weight 는 별도 저장소로 제공된다.
+[`google/tabfm-1.0.0-pytorch`](https://huggingface.co/google/tabfm-1.0.0-pytorch) 는 TabFM 1.0.0 의 PyTorch weight 를 올려둔 Hugging Face 모델 저장소다. JAX/Flax weight 는 별도 저장소로 제공된다.
 
 모델 카드 기준 사용 범위는 다음과 같다.
 
