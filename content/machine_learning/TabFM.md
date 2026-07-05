@@ -72,6 +72,14 @@ Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|T
 
 압축된 row embedding sequence 를 Transformer 가 처리한다. train row 는 context 역할을 하고, test row 에 대해서는 이 context 를 바탕으로 label 또는 regression target 을 예측한다. 모델 파라미터를 업데이트하지 않는다는 점이 일반적인 supervised learning 과 다르다.
 
+## D.4) Gemma 같은 LLM 기반인가?
+
+아니다. 여기서 FM 은 Gemma 나 Gemini 같은 language model 계열을 가져다 썼다는 뜻이 아니라, 많은 tabular task 로 미리 학습된 foundation model 이라는 뜻에 가깝다.
+
+TabFM 은 텍스트 tokenizer, vocabulary, language modeling head 를 중심으로 돌아가는 LLM 이 아니다. numerical / categorical cell 을 embedding 하고, column / row attention 과 row compression 을 거친 뒤, tabular ICL Transformer 로 target 을 예측하는 tabular-native architecture 에 가깝다.
+
+비슷한 이름 때문에 헷갈릴 수 있는 별도 흐름으로 TabGemma 같은 연구가 있다. 그런 접근은 Gemma 계열 LLM 을 tabular ICL 에 맞게 계속 학습시키는 쪽이고, TabFM 은 TabPFN / TabICL 계열에 더 가깝다.
+
 # E) 학습 데이터
 
 TabFM 은 실제 산업 데이터를 그대로 대량 수집해서 학습한 모델이 아니라, structural causal model 기반으로 생성한 수억 개의 synthetic dataset 으로 학습했다고 설명된다.
@@ -137,3 +145,4 @@ API 모양보다 중요한 것은 table completion 관점이다. TabFM 은 현�
 * [google-research/tabfm](https://github.com/google-research/tabfm)
 * [TabArena: A Living Benchmark for Machine Learning on Tabular Data](https://arxiv.org/abs/2506.16791)
 * [autogluon/tabarena](https://github.com/autogluon/tabarena)
+* [TabGemma: Text-Based Tabular ICL via LLM using Continued Pretraining and Retrieval](https://arxiv.org/abs/2511.03570)
