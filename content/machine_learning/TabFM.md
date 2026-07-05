@@ -66,7 +66,26 @@ Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|T
 
 반면 row compression 뒤에는 각 row 가 `h_i` 같은 하나의 row embedding 으로 바뀐다. 그러면 최종 ICL Transformer 는 `n` 개의 row embedding sequence 만 보면 된다. 즉 attention 의 단위가 "개별 cell" 에서 "예시 row" 로 바뀌고, test row embedding 이 train row embedding 들과 그 label context 를 참조해 target 을 예측하는 구조가 된다.
 
-그래서 "다루기 쉽게 만든다"는 것은 정보가 단순히 작아진다는 뜻만은 아니다. feature interaction 은 앞단의 row / column attention 에서 어느 정도 반영해두고, 뒤쪽 ICL Transformer 에는 "이 row 들 사이에서 어떤 row 가 어떤 label 로 이어졌는가"를 보게 만드는 것이다.
+여기서 헷갈리면 안 되는 점은, row compression 이 TabFM 전체 비용을 그냥 `n^2` 로 만든다는 뜻은 아니라는 것이다. `n^2` 로 보는 부분은 row compression 뒤의 최종 ICL Transformer 다.
+
+```text
+raw cell sequence 로 보면:
+sequence length = n * d
+self-attention cost ~= O((n * d)^2)
+
+row compression 뒤 ICL 로 보면:
+sequence length = n
+self-attention cost ~= O(n^2)
+```
+
+엄밀히는 앞단에서 row / column attention 으로 cell representation 을 contextualize 하는 비용이 따로 남는다. 다만 그 단계는 table 을 무작정 `n * d` 길이의 1차원 sequence 로 펴서 full attention 을 거는 방식이 아니라, row 방향과 column 방향을 나눠서 처리한다. 단순화해서 보면 한 layer 에서 row 방향은 `O(d * n^2)`, column 방향은 `O(n * d^2)` 같은 형태로 생각할 수 있다.
+
+따라서 "다루기 쉽게 만든다"는 것은 두 가지 의미가 있다.
+
+1. feature interaction 은 앞단의 row / column attention 에서 먼저 섞어둔다.
+2. 뒤쪽 ICL Transformer 에서는 `n * d` 개 cell 이 아니라 `n` 개 row embedding 만 보고, "어떤 row pattern 이 어떤 label 로 이어지는가"를 학습한다.
+
+즉 최종 ICL 단계의 attention 단위가 cell 에서 row 로 바뀐다. train row 가 `n_train` 개이고 test row 가 `n_test` 개라면 이 단계의 sequence length 는 대략 `n_train + n_test` 이고, attention 비용은 `O((n_train + n_test)^2)` 로 보면 된다.
 
 ## D.3) In-context learning
 
