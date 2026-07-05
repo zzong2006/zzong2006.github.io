@@ -16,29 +16,71 @@ Tabular data 는 고객 이탈 예측, 금융 사기 탐지, 수요 예측처럼
 
 TabFM 은 이 반복 작업을 줄이는 쪽을 노린다. 모델 weight 를 task 마다 업데이트하지 않고, 예시 row 들을 보고 inference time 에 컬럼과 row 사이의 관계를 해석한다. 그래서 "학습 없이 바로 쓰는 baseline" 또는 "기존 tree model 의 challenger" 로 보기 좋다.
 
-# C) 구조
+# C) 입력과 출력 구조
+
+TabFM 을 이해할 때 제일 중요한 점은 `fit(X_train, y_train)` 이 일반적인 모델 학습과 다르다는 것이다. XGBoost 나 neural network 학습처럼 gradient 를 계산해서 weight 를 업데이트하는 단계가 아니다. TabFM 의 weight 는 이미 pretraining 으로 고정되어 있고, `fit` 은 예시 row 들을 context 로 쓰기 위해 전처리하고 보관하는 단계에 가깝다.
+
+Scikit-learn 스타일 API 로 보면 입력과 출력은 다음처럼 생겼다.
+
+```python
+clf.fit(X_train, y_train)
+probs = clf.predict_proba(X_test)
+preds = clf.predict(X_test)
+```
+
+분류 문제라면 `X_train` 은 feature column 들만 들어 있는 DataFrame 이고, `y_train` 은 각 row 의 class label 이다. `X_test` 는 예측하고 싶은 row 들이며, `X_train` 과 같은 feature column 을 가져야 한다. 출력은 `predict` 의 경우 class label, `predict_proba` 의 경우 row 별 class probability matrix 다.
+
+shape 으로 보면 `X_train` 은 `(n_train, d)`, `y_train` 은 `(n_train,)`, `X_test` 는 `(n_test, d)` 이다. class 수를 `K` 라고 하면 `predict(X_test)` 는 `(n_test,)`, `predict_proba(X_test)` 는 `(n_test, K)` 형태가 된다.
+
+회귀 문제도 구조는 거의 같다.
+
+```python
+reg.fit(X_train, y_train)
+preds = reg.predict(X_test)
+```
+
+여기서 `y_train` 은 class label 이 아니라 연속값 target 이고, 출력 `preds` 도 row 별 숫자 예측값이다.
+
+회귀에서는 `predict(X_test)` 의 출력이 `(n_test,)` 형태의 숫자 배열이다.
+
+개념적으로는 아래와 같은 표를 모델에 주는 것에 가깝다.
+
+```text
+age  job       income   target
+25   engineer   80000   low_risk
+45   manager   120000   high_risk
+35   engineer   90000   low_risk
+30   engineer   85000   ?
+48   manager   125000   ?
+```
+
+위쪽의 target 이 채워진 row 들이 context 이고, 아래쪽의 `?` row 들이 예측 대상이다. TabFM 은 이 합쳐진 table 안에서 column 관계와 row 관계를 읽고, `?` 에 들어갈 값을 한 번의 forward pass 로 출력한다.
+
+그래서 "학습 없이 예측한다"는 말을 너무 문자 그대로 이해하면 헷갈린다. 사용자는 여전히 `X_train`, `y_train` 을 넘긴다. 다만 그 데이터로 모델 weight 를 새로 학습하지 않고, inference 시점의 context 로만 사용한다는 뜻이다.
+
+# D) 내부 구조
 
 Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|TabPFN]] 과 TabICL 계열 아이디어를 섞은 hybrid architecture 에 가깝다.
 
-## C.1) Row / column attention
+## D.1) Row / column attention
 
 표는 텍스트처럼 1차원 sequence 가 아니다. row 나 column 의 순서를 바꿔도 본질적인 의미가 유지되는 경우가 많다. 그래서 TabFM 은 raw table 에 대해 row 방향과 column 방향 attention 을 번갈아 적용하면서 feature interaction 과 row-level pattern 을 잡는다.
 
-## C.2) Row compression
+## D.2) Row compression
 
 각 row 에 대해 cross-attention 으로 얻은 정보를 dense vector 로 압축한다. raw grid 전체에 그대로 attention 을 적용하면 계산량이 커지기 때문에, row 단위 embedding 으로 줄여 이후 ICL Transformer 가 다루기 쉽게 만든다.
 
-## C.3) In-context learning
+## D.3) In-context learning
 
 압축된 row embedding sequence 를 Transformer 가 처리한다. train row 는 context 역할을 하고, test row 에 대해서는 이 context 를 바탕으로 label 또는 regression target 을 예측한다. 모델 파라미터를 업데이트하지 않는다는 점이 일반적인 supervised learning 과 다르다.
 
-# D) 학습 데이터
+# E) 학습 데이터
 
 TabFM 은 실제 산업 데이터를 그대로 대량 수집해서 학습한 모델이 아니라, structural causal model 기반으로 생성한 수억 개의 synthetic dataset 으로 학습했다고 설명된다.
 
 Google 의 설명에 따르면, 고품질 tabular dataset 은 schema 가 제각각이고 민감정보나 소유권 문제가 많아 foundation model pretraining 에 충분한 규모로 모으기 어렵다. 그래서 다양한 causal structure 와 feature relationship 을 갖는 synthetic table 을 생성해 학습 데이터로 사용한 것이다.
 
-# E) TabArena
+# F) TabArena
 
 TabArena 는 tabular ML 모델을 비교하기 위한 living benchmark 다. 고정된 벤치마크가 아니라, 데이터셋, 모델, 평가 방식, 리더보드를 계속 유지보수하는 시스템이라는 점이 중요하다.
 
@@ -46,7 +88,7 @@ TabFM 블로그에서는 TabFM 평가를 TabArena 로 수행했다고 설명한�
 
 이 맥락에서 TabArena 는 "TabFM 이 기존 tree model 대비 어느 정도인지 확인하는 공개 경기장"에 가깝다. 특히 [[papers/deep_learning/TabPFN|TabPFN]], TabICL, TabFM 같은 tabular foundation model 이 늘어나면서 공정한 비교 기준으로 중요해졌다.
 
-# F) Hugging Face: google/tabfm-1.0.0-pytorch
+# G) Hugging Face: google/tabfm-1.0.0-pytorch
 
 `google/tabfm-1.0.0-pytorch` 는 TabFM 1.0.0 의 PyTorch weight 를 올려둔 Hugging Face 모델 저장소다. JAX/Flax weight 는 별도 저장소로 제공된다.
 
@@ -60,19 +102,13 @@ TabFM 블로그에서는 TabFM 평가를 TabArena 로 수행했다고 설명한�
 
 다만 classification 은 최대 10개 class 로 제한된다. 또한 모든 training row 를 context 로 넘기므로 row 수가 늘수록 메모리 사용량도 커진다. feature 수는 500개 정도까지를 주요 대상처럼 설명하며, 매우 wide 한 table 에서는 성능이 떨어질 수 있다.
 
-# G) TabFM-Ensemble
+# H) TabFM-Ensemble
 
 Google 블로그에서는 기본 TabFM 과 TabFM-Ensemble 을 구분한다.
 
 기본 TabFM 은 tuning 이나 cross-validation 없이 single forward pass 로 예측한다. TabFM-Ensemble 은 cross feature, [[Singular Value Decomposition|SVD]] feature, 32-way ensemble, non-negative least squares blending 을 사용한다. classification 에서는 [[probability calibration|Platt scaling]] 도 추가한다.
 
 그래서 "TabFM 이 튜닝 없이 강하다"는 주장과 "TabFM-Ensemble 이 최고 성능을 낸다"는 주장은 구분해서 봐야 한다. 후자는 이미 여러 보강 절차가 들어간 설정이다.
-
-# H) BigQuery 통합
-
-Google Research 블로그는 TabFM 을 BigQuery 에 직접 통합할 계획도 언급한다. 예고대로라면 사용자는 BigQuery 에서 `AI.PREDICT` SQL 명령으로 regression 또는 classification 을 수행할 수 있게 된다.
-
-이 부분이 실무적으로 중요하다. TabFM 을 단순히 Python 모델로 배포하는 것이 아니라, [[data_engineering/data warehouse|data warehouse]] 안에서 바로 호출하는 prediction primitive 로 만들려는 방향이기 때문이다.
 
 # I) 주의할 점
 
@@ -84,7 +120,7 @@ Hugging Face weight 는 TabFM Non-Commercial License v1.0 이다. 비상업, 비
 
 TabFM 은 tabular ML 에서 "foundation model workflow" 가 실제로 들어오기 시작했다는 신호로 볼 수 있다. 지금 당장 기존 tree model 을 완전히 대체한다기보다는, feature engineering 과 tuning 없이 빠르게 baseline 을 세우고 기존 모델과 비교하는 용도가 현실적이다.
 
-특히 BigQuery 통합이 잘 되면 데이터 분석가가 별도 모델 학습 파이프라인 없이 SQL 로 예측을 시도할 수 있다는 점에서 영향이 클 수 있다. 반대로 production 적용은 라이선스, 비용, latency, 메모리, 데이터 보안, explainability 를 모두 확인해야 한다.
+특히 `fit` 이라는 이름 때문에 처음에는 일반 학습처럼 보이지만, 실제로는 "예시 row 를 context 로 주고 test row 의 target 을 채우게 한다"는 관점으로 보는 편이 이해하기 쉽다. production 적용은 라이선스, 비용, latency, 메모리, 데이터 보안, explainability 를 모두 확인해야 한다.
 
 # K) Related
 
