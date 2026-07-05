@@ -60,7 +60,7 @@ age  job       income   target
 
 # D) 내부 구조
 
-Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|TabPFN]] 과 TabICL 계열 아이디어를 섞은 hybrid architecture 에 가깝다.
+Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|TabPFN]] 과 TabICL 계열 아이디어를 섞은 hybrid architecture 에 가깝다. 여기서 ICL 은 in-context learning 이고, TabICL 도 tabular data 에서 in-context learning 을 크게 확장하려는 모델이다.
 
 ## D.1) Row / column attention
 
@@ -68,7 +68,13 @@ Google Research 블로그 기준으로 TabFM 은 [[papers/deep_learning/TabPFN|T
 
 ## D.2) Row compression
 
-각 row 에 대해 cross-attention 으로 얻은 정보를 dense vector 로 압축한다. raw grid 전체에 그대로 attention 을 적용하면 계산량이 커지기 때문에, row 단위 embedding 으로 줄여 이후 ICL Transformer 가 다루기 쉽게 만든다.
+각 row 에 대해 cross-attention 으로 얻은 정보를 dense vector 로 압축한다. 이 말은 table 을 구성하는 모든 cell 을 끝까지 별도 token 처럼 다루지 않고, column 관계가 반영된 row 하나를 fixed-dimensional vector 하나로 요약한다는 뜻이다.
+
+예를 들어 row 수가 `n`, feature 수가 `d` 라면 raw grid 는 대략 `n * d` 개의 cell representation 으로 볼 수 있다. 여기에 최종 Transformer attention 을 그대로 걸면 sequence length 가 `n * d` 가 되고, attention 비용은 대략 `(n * d)^2` 쪽으로 커진다.
+
+반면 row compression 뒤에는 각 row 가 `h_i` 같은 하나의 row embedding 으로 바뀐다. 그러면 최종 ICL Transformer 는 `n` 개의 row embedding sequence 만 보면 된다. 즉 attention 의 단위가 "개별 cell" 에서 "예시 row" 로 바뀌고, test row embedding 이 train row embedding 들과 그 label context 를 참조해 target 을 예측하는 구조가 된다.
+
+그래서 "다루기 쉽게 만든다"는 것은 정보가 단순히 작아진다는 뜻만은 아니다. feature interaction 은 앞단의 row / column attention 에서 어느 정도 반영해두고, 뒤쪽 ICL Transformer 에는 "이 row 들 사이에서 어떤 row 가 어떤 label 로 이어졌는가"를 보게 만드는 것이다.
 
 ## D.3) In-context learning
 
