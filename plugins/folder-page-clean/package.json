@@ -5,6 +5,9 @@
   "exports": {
     ".": "./index.js"
   },
+  "scripts": {
+    "build": "node -e \"\""
+  },
   "quartz": {
     "name": "folder-page-clean",
     "displayName": "Clean Folder Page",

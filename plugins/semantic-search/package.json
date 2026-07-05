@@ -7,6 +7,9 @@
     ".": "./index.js",
     "./components": "./components/index.js"
   },
+  "scripts": {
+    "build": "node -e \"\""
+  },
   "quartz": {
     "name": "semantic-search",
     "displayName": "Semantic Search",

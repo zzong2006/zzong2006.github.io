@@ -6,6 +6,9 @@
     ".": "./index.js",
     "./components": "./components/index.js"
   },
+  "scripts": {
+    "build": "node -e \"\""
+  },
   "quartz": {
     "name": "linked-mentions",
     "displayName": "Linked Mentions",

@@ -6,6 +6,9 @@
   "exports": {
     ".": "./index.js"
   },
+  "scripts": {
+    "build": "node -e \"\""
+  },
   "quartz": {
     "name": "semantic-search-index",
     "displayName": "Semantic Search Index",
