@@ -16,34 +16,11 @@ Tabular data 는 고객 이탈 예측, 금융 사기 탐지, 수요 예측처럼
 
 TabFM 은 이 반복 작업을 줄이는 쪽을 노린다. 모델 weight 를 task 마다 업데이트하지 않고, 예시 row 들을 보고 inference time 에 컬럼과 row 사이의 관계를 해석한다. 그래서 "학습 없이 바로 쓰는 baseline" 또는 "기존 tree model 의 challenger" 로 보기 좋다.
 
-# C) 입력과 출력 구조
+# C) TabFM 이 문제를 보는 방식
 
-TabFM 을 이해할 때 제일 중요한 점은 `fit(X_train, y_train)` 이 일반적인 모델 학습과 다르다는 것이다. XGBoost 나 neural network 학습처럼 gradient 를 계산해서 weight 를 업데이트하는 단계가 아니다. TabFM 의 weight 는 이미 pretraining 으로 고정되어 있고, `fit` 은 예시 row 들을 context 로 쓰기 위해 전처리하고 보관하는 단계에 가깝다.
+TabFM 의 핵심은 tabular prediction 을 "새 모델을 학습하는 문제"가 아니라 "비어 있는 target cell 을 채우는 문제"로 본다는 점이다.
 
-Scikit-learn 스타일 API 로 보면 입력과 출력은 다음처럼 생겼다.
-
-```python
-clf.fit(X_train, y_train)
-probs = clf.predict_proba(X_test)
-preds = clf.predict(X_test)
-```
-
-분류 문제라면 `X_train` 은 feature column 들만 들어 있는 DataFrame 이고, `y_train` 은 각 row 의 class label 이다. `X_test` 는 예측하고 싶은 row 들이며, `X_train` 과 같은 feature column 을 가져야 한다. 출력은 `predict` 의 경우 class label, `predict_proba` 의 경우 row 별 class probability matrix 다.
-
-shape 으로 보면 `X_train` 은 `(n_train, d)`, `y_train` 은 `(n_train,)`, `X_test` 는 `(n_test, d)` 이다. class 수를 `K` 라고 하면 `predict(X_test)` 는 `(n_test,)`, `predict_proba(X_test)` 는 `(n_test, K)` 형태가 된다.
-
-회귀 문제도 구조는 거의 같다.
-
-```python
-reg.fit(X_train, y_train)
-preds = reg.predict(X_test)
-```
-
-여기서 `y_train` 은 class label 이 아니라 연속값 target 이고, 출력 `preds` 도 row 별 숫자 예측값이다.
-
-회귀에서는 `predict(X_test)` 의 출력이 `(n_test,)` 형태의 숫자 배열이다.
-
-개념적으로는 아래와 같은 표를 모델에 주는 것에 가깝다.
+개념적으로는 아래와 같은 하나의 table 을 모델에 주는 것에 가깝다.
 
 ```text
 age  job       income   target
@@ -54,9 +31,24 @@ age  job       income   target
 48   manager   125000   ?
 ```
 
-위쪽의 target 이 채워진 row 들이 context 이고, 아래쪽의 `?` row 들이 예측 대상이다. TabFM 은 이 합쳐진 table 안에서 column 관계와 row 관계를 읽고, `?` 에 들어갈 값을 한 번의 forward pass 로 출력한다.
+위쪽의 target 이 채워진 row 들은 context 이고, 아래쪽의 `?` row 들은 예측 대상이다. TabFM 은 이 table 전체를 보고, feature column 과 target column 사이의 관계를 추론한 뒤 `?` 에 들어갈 값을 한 번의 forward pass 로 채운다.
 
-그래서 "학습 없이 예측한다"는 말을 너무 문자 그대로 이해하면 헷갈린다. 사용자는 여전히 `X_train`, `y_train` 을 넘긴다. 다만 그 데이터로 모델 weight 를 새로 학습하지 않고, inference 시점의 context 로만 사용한다는 뜻이다.
+일반적인 supervised learning 은 특정 데이터셋에 맞는 parameter 를 새로 찾는다.
+
+```text
+theta_D = train(D_train)
+y_hat = f_theta_D(x_test)
+```
+
+반면 TabFM 은 이미 pretraining 된 고정된 모델 $F_{\phi}$ 를 사용한다.
+
+```text
+y_hat = F_phi({(x_i, y_i)} context, x_test)
+```
+
+여기서 $\phi$ 는 synthetic table 들로 미리 학습된 TabFM 의 weight 이고, 현재 데이터셋을 넣는다고 업데이트되지 않는다. 즉 `X_train, y_train` 은 parameter 를 학습하기 위한 재료라기보다, 이번 table 에서 "이런 feature pattern 은 이런 target 으로 이어진다"는 것을 보여주는 in-context example 이다.
+
+그래서 TabFM 에서 "zero-shot" 이라는 말은 아무 예시도 안 준다는 뜻이 아니다. 데이터셋별 gradient update 나 hyperparameter tuning 없이, train rows 를 context 로 읽고 test rows 의 target 을 채운다는 뜻에 가깝다.
 
 # D) 내부 구조
 
@@ -126,7 +118,7 @@ Hugging Face weight 는 TabFM Non-Commercial License v1.0 이다. 비상업, 비
 
 TabFM 은 tabular ML 에서 "foundation model workflow" 가 실제로 들어오기 시작했다는 신호로 볼 수 있다. 지금 당장 기존 tree model 을 완전히 대체한다기보다는, feature engineering 과 tuning 없이 빠르게 baseline 을 세우고 기존 모델과 비교하는 용도가 현실적이다.
 
-특히 `fit` 이라는 이름 때문에 처음에는 일반 학습처럼 보이지만, 실제로는 "예시 row 를 context 로 주고 test row 의 target 을 채우게 한다"는 관점으로 보는 편이 이해하기 쉽다. production 적용은 라이선스, 비용, latency, 메모리, 데이터 보안, explainability 를 모두 확인해야 한다.
+API 모양보다 중요한 것은 table completion 관점이다. TabFM 은 현재 데이터셋에 맞는 모델을 새로 만드는 대신, "label 이 채워진 row 들을 보고 label 이 비어 있는 row 를 완성하는 pretrained inference machine" 에 가깝다. production 적용은 라이선스, 비용, latency, 메모리, 데이터 보안, explainability 를 모두 확인해야 한다.
 
 # K) Related
 
