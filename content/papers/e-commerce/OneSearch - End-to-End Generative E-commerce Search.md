@@ -19,7 +19,7 @@ aliases: [OneSearch, OneSearch E-commerce Search]
 
 # B) 왜 이 논문이 흥미로운가
 
-대규모 e-commerce search는 보통 multi-stage cascade로 운영된다.
+대규모 e-commerce search는 보통 **MCA(Multi-stage Cascading Architecture)** 로 운영된다. 말 그대로 후보를 한 번에 정렬하지 않고, 여러 stage를 거치며 점점 줄이는 funnel 구조다.
 
 ```mermaid
 flowchart TD
@@ -33,7 +33,9 @@ flowchart TD
     style K fill:#d9edf7
 ```
 
-이 구조는 빠르고 검증된 방식이다. 하지만 단계별 목표가 조금씩 다르다. recall과 pre-ranking은 좋은 후보를 놓치지 않는 것이 중요하고, ranking은 이미 좁혀진 후보 사이에서 정확한 순서를 만드는 것이 중요하다. 이 차이 때문에 [[retrieval/ranking/Seesaw Effect]] 와 비슷한 문제가 생긴다.
+이 구조는 빠르고 검증된 방식이다. 수억 개 상품 전체에 무거운 ranking model을 바로 태울 수 없으므로, recall은 넓게 후보를 모으고, pre-ranking은 가볍게 줄이고, ranking은 좁혀진 후보만 정밀하게 본다.
+
+하지만 단계별 목표가 조금씩 다르다. recall과 pre-ranking은 좋은 후보를 놓치지 않는 것이 중요하고, ranking은 이미 좁혀진 후보 사이에서 정확한 순서를 만드는 것이 중요하다. 이 차이 때문에 [[retrieval/ranking/Seesaw Effect]] 와 비슷한 문제가 생긴다.
 
 OneSearch의 문제의식은 단순하다.
 
@@ -164,7 +166,7 @@ CTR과 CVR도 쓰지만 그대로 믿지는 않는다. 신규 item의 CTR은 노
 
 데이터는 2025년 5월부터 8월까지 Kuaishou mall search platform에서 추출한 약 1B PV 규모의 user interaction log다. 91일 중 90일은 학습, 마지막 1일은 테스트로 썼다.
 
-가장 눈에 띄는 결과는 recall과 ranking 사이의 차이다.
+가장 눈에 띄는 결과는 recall과 ranking 사이의 차이다. 여기서 `Online MCA`는 Kuaishou가 실제 운영하던 기존 multi-stage search system이고, `MCA without ranking`은 그중 마지막 ranking stage를 뺀 baseline이다.
 
 | Method | Order HR@350 | Order MRR@350 | Click HR@350 | Click MRR@350 |
 | --- | ---: | ---: | ---: | ---: |
