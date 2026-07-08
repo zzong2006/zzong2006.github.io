@@ -138,6 +138,17 @@ compression overhead < 줄어든 target LLM prefill / decoding / memory / API co
 
 특히 RAG에서는 압축을 [[Context Precision]]의 후처리처럼만 보면 부족하다. retrieval, reranking, compression, answer generation이 한 덩어리로 품질을 만든다. 잘못 압축하면 relevant chunk를 가져와도 답변에 필요한 조건이 사라진다.
 
+또 하나의 중요한 기준은 **압축된 입력을 어느 단계에 쓰는가** 다. token pruning 기반 compression은 문장을 사람이 읽기 어렵게 만들 수 있고, LLM이 자연스러운 답변을 만들 때 필요한 구문 관계도 약해질 수 있다. 그래서 압축문을 그대로 최종 generation context로 넣는 것은 위험하다.
+
+반면 reranker나 relevance judge는 상황이 다르다. 이 단계의 목표는 자연스러운 답변 생성이 아니라 "질문과 후보 문서가 관련 있는가"를 판단하는 것이다. 관련성 판단에는 핵심 키워드, 고유명사, 도메인 단서, 일부 조건만으로도 충분한 경우가 많다. 그래서 LLMLingua류 압축은 **최종 답변용 context** 보다 **rerank/filter 단계의 가벼운 입력 표현** 으로 보는 편이 더 보수적이고 실용적이다.
+
+| 사용 위치 | 실무 판단 |
+| --- | --- |
+| Retrieval 이후 후보 filtering | 압축문 활용 가능. 관련성 신호만 빠르게 보면 됨 |
+| Reranker / LLM judge 입력 | 활용 가능. 단, 숫자/부정/조건이 중요한 task는 검증 필요 |
+| 최종 answer generation | 조심. 압축문만 넣으면 hallucination, citation 오류, 응답 자연스러움 저하 위험 |
+| Evidence display / 감사 로그 | 원문 span 유지 필요. 압축문은 근거로 보여주기 부적합 |
+
 # E) 남은 문제
 
 첫째, faithfulness가 어렵다. token을 지우거나 문장을 rewrite하면 원문과 압축문 사이에 미묘한 의미 차이가 생길 수 있다. 요약 평가보다 더 까다롭다. 압축문은 최종 답변의 근거가 되기 때문이다.
