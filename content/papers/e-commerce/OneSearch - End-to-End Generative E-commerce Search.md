@@ -94,17 +94,101 @@ OneSearch의 KHQE는 세 단계를 섞는다.
 
 논문은 18개 structured attribute를 사용한다. 예를 들면 brand, material, style, function, audience, color, season, price, model 같은 속성이다. item 쪽은 Qwen-VL로 keyword를 식별하고, query 쪽은 Aho-Corasick automaton으로 실시간 matching을 수행한다.
 
-최종 tokenization은 대략 다음처럼 이해하면 된다.
+### D.1.1) Aho-Corasick는 query keyword를 빠르게 찾는 장치다
+
+**Aho-Corasick automaton** 은 여러 keyword를 한 번에 찾는 string matching 알고리즘이다. 하나의 keyword를 찾을 때는 단순 검색으로 충분하지만, e-commerce search에서는 "나이키", "아디다스", "검정", "아이폰 15", "실버", "여성용" 같은 keyword dictionary가 매우 크다.
+
+이때 query를 keyword마다 따로 훑으면 느리다. Aho-Corasick는 keyword dictionary를 trie와 failure link 형태로 미리 컴파일해 두고, query 문자열을 한 번만 왼쪽에서 오른쪽으로 읽으면서 매칭되는 모든 keyword를 찾는다.
+
+예를 들면 dictionary가 다음과 같다고 하자.
 
 ```text
-Item text / metadata / behavior signal
-    -> keyword-enhanced embedding
-    -> RQ-Kmeans: 4096, 1024, 512
-    -> OPQ residual: 256, 256
-    -> item SID sequence
+brand:  나이키, 아디다스, 애플
+color:  검정, 흰색, 실버
+model:  아이폰 15, 갤럭시 S24
+category: 운동화, 케이스, 반지
 ```
 
-즉 앞의 RQ token은 coarse-to-fine semantic cluster를 담고, 뒤의 OPQ token은 비슷한 상품 사이의 구분 정보를 보존한다. e-commerce에서는 이 residual 구분이 중요하다. 같은 "나이키 운동화"라도 모델, 색상, 성별, 사이즈, 가격대가 다르면 검색 품질이 바로 흔들리기 때문이다.
+사용자가 `검정 나이키 운동화`를 입력하면 Aho-Corasick는 한 번의 scan으로 다음 keyword를 찾는다.
+
+```text
+query = "검정 나이키 운동화"
+matches = {
+  color: "검정",
+  brand: "나이키",
+  category: "운동화"
+}
+```
+
+즉 Aho-Corasick 자체가 semantic model은 아니다. **query 안에 어떤 구조화 속성 keyword가 들어 있는지 빠르게 찾는 deterministic matcher** 에 가깝다. OneSearch에서는 이 keyword들이 query embedding과 SID 생성에 들어가서, 짧은 query의 핵심 속성이 semantic ID에서 희석되지 않게 돕는다.
+
+### D.1.2) RQ-Kmeans는 embedding을 여러 단계 cluster ID로 바꾼다
+
+`RQ-Kmeans`는 Residual Quantization K-means로 이해하면 된다. 기본 [[machine_learning/K-means|K-means]] 는 vector를 가장 가까운 centroid ID 하나로 바꾼다. RQ-Kmeans는 여기서 끝내지 않고, 첫 centroid로 설명하지 못한 residual을 다시 다음 K-means로 보낸다.
+
+흐름은 이렇다.
+
+```text
+v = keyword-enhanced item embedding
+
+1단계: v와 가장 가까운 coarse centroid 선택
+      token_1 = 1832
+      residual_1 = v - centroid_1832
+
+2단계: residual_1과 가장 가까운 centroid 선택
+      token_2 = 77
+      residual_2 = residual_1 - centroid_77
+
+3단계: residual_2와 가장 가까운 centroid 선택
+      token_3 = 401
+      residual_3 = residual_2 - centroid_401
+```
+
+논문에서 RQ codebook 크기는 `4096 -> 1024 -> 512`다. 그래서 첫 token은 4096개 cluster 중 하나, 두 번째 token은 1024개 residual cluster 중 하나, 세 번째 token은 512개 residual cluster 중 하나를 고른다.
+
+직관적으로는 앞 token일수록 큰 의미 단위에 가깝고, 뒤 token일수록 더 세밀한 차이를 담는다. 다만 `token_1 = 운동화`, `token_2 = 러닝화`처럼 사람이 읽을 수 있는 label이 붙어 있는 것은 아니다. 실제로는 embedding space의 centroid 번호다.
+
+### D.1.3) item SID sequence는 RQ token과 OPQ token을 이어 붙인 것이다
+
+최종 tokenization은 대략 다음처럼 이해하면 된다. 아래 숫자는 논문에 공개된 실제 상품 ID가 아니라, 구조를 설명하기 위한 가상 예시다.
+
+```text
+item:
+  title: "나이키 에어 줌 검정 남성 러닝화"
+  structured keywords:
+    brand: "나이키"
+    color: "검정"
+    audience: "남성"
+    category: "러닝화"
+
+keyword-enhanced embedding
+  -> RQ-Kmeans level 1, codebook 4096: 1832
+  -> RQ-Kmeans level 2, codebook 1024: 77
+  -> RQ-Kmeans level 3, codebook 512: 401
+  -> OPQ residual level 1, codebook 256: 23
+  -> OPQ residual level 2, codebook 256: 198
+
+item SID sequence:
+  [RQ1_1832, RQ2_77, RQ3_401, OPQ1_23, OPQ2_198]
+```
+
+즉 앞의 RQ token은 coarse-to-fine semantic cluster를 담고, 뒤의 OPQ token은 비슷한 상품 사이의 residual unique feature를 보존한다. OPQ는 [[retrieval/indexing/faiss|Product Quantization]] 계열의 아이디어로, vector를 더 작은 코드 조합으로 표현해 세부 차이를 남기는 방식이라고 보면 된다.
+
+e-commerce에서는 이 residual 구분이 중요하다. 같은 "나이키 운동화"라도 모델, 색상, 성별, 사이즈, 가격대가 다르면 검색 품질이 바로 흔들리기 때문이다.
+
+온라인 생성 단계에서 decoder는 자연어 문장을 만드는 대신 이런 SID sequence를 만든다.
+
+```text
+input:
+  user profile + query("검정 나이키 운동화") + short/long behavior
+
+decoder output:
+  [RQ1_1832, RQ2_77, RQ3_401, OPQ1_23, OPQ2_198]
+  [RQ1_1832, RQ2_91, RQ3_12,  OPQ1_88, OPQ2_7]
+  ...
+```
+
+이 SID sequence를 catalog의 실제 item ID로 다시 매핑하면 사용자에게 보여줄 상품 목록이 된다. 그래서 OneSearch의 생성은 "답변 문장 생성"이 아니라 **상품을 가리키는 압축된 주소 sequence 생성** 에 가깝다.
 
 ## D.2) User behavior를 세 가지 관점으로 넣는다
 
