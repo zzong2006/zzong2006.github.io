@@ -1,14 +1,7 @@
 ---
-title: Prefill
-tags:
-  - LLM
-  - inference
-  - serving
-  - latency
-aliases:
-  - prefill
-  - prefill phase
-  - prefill throughput
+title: "Prefill"
+tags: ["LLM", "inference", "serving", "latency"]
+aliases: ["prefill", "prefill phase", "prefill throughput"]
 ---
 
 # A) 한줄 요약
@@ -126,6 +119,8 @@ prefill throughput = processed input tokens / prefill time
 5. vLLM/SGLang에서 TTFT가 크게 튀는 상황 분석
 
 여기서 조심할 점은 prefill throughput이 좋아졌다고 항상 사용자가 느끼는 전체 응답이 좋아지는 것은 아니라는 점이다. 첫 token은 빨라질 수 있지만, 긴 답변을 생성하는 구간은 decode 병목의 영향을 따로 받는다.
+
+입력 token 자체가 병목이라면 [[LLMLingua]] 같은 prompt compression도 선택지가 된다. 이 접근은 모델 실행 방식을 바꾸는 대신 prompt를 짧게 만들어 prefill 부담을 줄인다. 다만 compressor를 먼저 돌리는 시간이 있으므로, 전체 latency 기준으로 이득이 나는지 따로 재야 한다.
 
 # F) FP8과 Prefill의 관계
 

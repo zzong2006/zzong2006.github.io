@@ -1,32 +1,45 @@
 ---
 title: "Prompt Compression"
-tags: ["LLM"]
+tags: ["LLM", "inference", "prompt_compression"]
+aliases: ["프롬프트 압축", "prompt compression"]
 ---
-LLMLingua의 식별 과정 중심에는 **퍼플렉시티([[perplexity]])** 라는 개념이 있습니다.
 
-- **퍼플렉시티란?**: 언어 모델이 특정 단어 시퀀스 다음에 나올 단어를 얼마나 잘 예측하는지를 나타내는 척도입니다.
-	- **낮은 퍼플렉시티**: 다음에 나올 단어를 예측하기 쉬움을 의미합니다. 즉, 해당 부분은 정보량이 적고 예측 가능하며, 다소 중복될 수 있습니다. (예: "하늘은 매우...") 다음에 "푸르다"가 나올 확률이 높습니다.
-	- **높은 퍼플렉시티**: 다음에 나올 단어를 예측하기 어려움을 의미합니다. 즉, 해당 부분은 정보량이 많고 핵심적인 내용을 담고 있을 가능성이 높습니다.
-- **LLMLingua의 활용**: LLMLingua는 이 원리를 역으로 이용하여, **퍼플렉시티가 낮은, 즉 가장 예측하기 쉬운 토큰부터 제거**합니다. 정보량이 적은 단어를 없애 프롬프트의 핵심 의미를 보존하려는 것입니다.
+# A) 한줄 요약
 
-### Z.1.1) LLMLingua의 2단계 압축 과정
+Prompt Compression은 [[Large Language Model|LLM]]에 넣는 prompt를 더 짧게 줄이되, 답변에 필요한 정보는 최대한 남기려는 input 최적화 방법이다. 긴 [[Retrieval-Augmented Generation|RAG]] context나 대화 기록을 그대로 넣으면 [[Prefill]] 비용과 input token 비용이 커지므로, 불필요하거나 중복된 token을 제거해 정보 밀도를 높인다.
 
-#### Z.1.1.1) 1단계: 거시적 압축 (Coarse-grained Compression) - 문장/요소 단위
+대표적인 hard prompt compression 방법이 [[LLMLingua]] 다. LLMLingua는 사람이 읽기 좋은 요약을 만드는 것이 아니라, LLM이 답변하는 데 필요한 단서를 남기는 쪽에 가깝다.
 
-먼저 프롬프트 전체를 큰 덩어리로 보고 어떤 부분을 더 많이 압축할지 결정합니다.이 단계는 **'예산 컨트롤러(Budget Controller)'** 가 담당합니다.
+# B) Hard Compression과 Soft Compression
 
-- **구성 요소 분석**: 프롬프트는 보통 여러 부분으로 구성됩니다 (예: 지시문, 몇 가지 예시(Few-shot examples), 실제 질문).
-- **압축 예산 할당**: 예산 컨트롤러는 각 구성 요소의 중요도를 평가하여 압축률(압축 '예산')을 다르게 할당합니다. 예를 들어, 핵심적인 '지시문'이나 '질문'보다는 반복적인 패턴을 보이는 '예시' 부분을 더 높은 비율로 압축하도록 결정합니다.이 중요도 평가 역시 퍼플렉시티를 기반으로 이루어집니다.
+Prompt compression은 크게 두 흐름으로 볼 수 있다.
 
-#### Z.1.1.2) 2단계: 미시적 압축 (Fine-grained Compression) - 토큰 단위
+| 구분 | 설명 | 장점 | 단점 |
+| --- | --- | --- | --- |
+| Hard compression | 원본 prompt를 더 짧은 텍스트로 바꿈 | black-box LLM API에 붙이기 쉬움 | 문장이 깨지고 정보 손실 가능 |
+| Soft compression | prompt를 embedding이나 special token으로 압축 | token 절감 폭이 클 수 있음 | target LLM 학습이나 내부 접근이 필요 |
 
-거시적 압축 단계에서 할당된 예산에 맞춰 각 부분의 텍스트를 토큰 수준에서 실제로 압축합니다.
+[[LLMLingua]]는 hard compression 쪽이다. 압축 결과가 일반 텍스트이므로 GPT, Claude, hosted open model처럼 내부를 바꿀 수 없는 LLM에도 적용하기 쉽다. 반대로 [[xRAG]]는 document embedding을 LLM이 직접 이해하게 만드는 접근이라 token 절감은 더 공격적일 수 있지만, 모델 수정이나 학습이 필요하다.
 
-- **반복적 토큰 제거**: LLMLingua는 텍스트 내에서 가장 중요도가 낮은 토큰(가장 퍼플렉시티가 낮은 토큰)을 찾아 제거합니다.
-- **중요도 재계산**: 중요한 점은 하나의 토큰을 제거한 뒤, 문장 전체의 문맥이 바뀌므로 주변 토큰들의 중요도(퍼플렉시티)를 다시 계산한다는 것입니다. 이 과정을 **반복적으로(iteratively)** 수행하며 설정된 압축률에 도달할 때까지 가장 불필요한 토큰을 순차적으로 계속 제거합니다.
+# C) 실무에서 봐야 할 지표
 
-### Z.1.2) 추가적인 최적화: 분포 정렬 (Distribution Alignment)
+Prompt compression은 항상 이득이 아니다. compressor를 먼저 실행하는 시간이 있고, 압축 과정에서 중요한 정보가 빠질 수도 있다.
 
-LLMLingua는 압축을 위해 BERT나 LLaMA-7B 같은 작은 모델을 사용하지만, 최종적으로 프롬프트를 처리하는 것은 GPT-4와 같은 거대 언어 모델(LLM)입니다 이 두 모델 간의 언어적 이해(분포) 차이를 줄이기 위해, **명령어 튜닝(Instruction Tuning)을 통해 작은 모델이 큰 모델의 관점에서 중요한 정보를 더 잘 보존하도록 조정**합니다. 이를 '분포 정렬'이라고 하며 압축된 프롬프트의 품질을 높이는 데 기여합니다.
+도입 여부는 아래 지표를 같이 보고 판단해야 한다.
 
-결론적으로 LLMLingua는 **퍼플렉시티**라는 정보량 척도를 기준으로, **예산 컨트롤러를 통한 거시적 제어**와 **반복적 토큰 제거를 통한 미시적 압축**을 결합하여 프롬프트의 핵심 의미는 최대한 보존하면서 불필요한 정보는 효과적으로 제거하는 방식으로 작동합니다. 이렇게 압축된 프롬프트는 사람이 읽기에는 어색할 수 있지만, 기계(LLM)가 이해하기에는 충분한 정보를 담고 있어 더 빠르고 저렴한 추론을 가능하게 합니다.
+1. compression time
+2. target LLM TTFT
+3. end-to-end latency
+4. input token cost
+5. answer correctness
+6. citation faithfulness
+7. compression ratio adherence
+
+짧은 prompt에서는 압축 overhead가 이득을 잡아먹기 쉽다. 반대로 5k token 이상 RAG context처럼 input이 길고 [[Prefill]]이 병목인 경우에는 LLMLingua 계열을 평가해볼 만하다.
+
+# References
+
+- [[LLMLingua]]
+- [[Prefill]]
+- [[Retrieval-Augmented Generation]]
+- [[xRAG]]
