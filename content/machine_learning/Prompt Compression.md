@@ -10,6 +10,8 @@ Prompt Compression은 [[Large Language Model|LLM]]에 넣는 prompt를 더 짧�
 
 대표적인 hard prompt compression 방법이 [[LLMLingua]] 다. LLMLingua는 사람이 읽기 좋은 요약을 만드는 것이 아니라, LLM이 답변하는 데 필요한 단서를 남기는 쪽에 가깝다.
 
+최근 흐름은 단순 token 삭제를 넘어 query-aware RAG compression, generative rewrite, gist token이나 memory slot 같은 representation-level compression, 그리고 실제 serving break-even 평가로 넓어지고 있다. 이 변화는 [[Prompt Compression Trends|Prompt Compression Trends - From Token Pruning to Context Engineering]]에서 따로 정리한다.
+
 # B) Hard Compression과 Soft Compression
 
 Prompt compression은 크게 두 흐름으로 볼 수 있다.
@@ -39,6 +41,7 @@ Prompt compression은 항상 이득이 아니다. compressor를 먼저 실행하
 
 # References
 
+- [[Prompt Compression Trends|Prompt Compression Trends - From Token Pruning to Context Engineering]]
 - [[LLMLingua]]
 - [[Prefill]]
 - [[Retrieval-Augmented Generation]]

@@ -236,8 +236,11 @@ LLMLingua는 "긴 prompt를 더 싼 prompt로 바꾸는 요약기"가 아니다.
 
 하지만 모든 prompt에 무작정 붙일 기술은 아니다. 짧은 prompt, 정밀한 citation, 숫자/조건이 많은 업무, compressor overhead가 큰 환경에서는 이득이 사라지거나 답변 품질이 떨어질 수 있다. 도입 기준은 "압축률"이 아니라 **원본 대비 품질, 전체 latency, 비용, memory를 함께 본 break-even point** 여야 한다.
 
+LLMLingua 이후의 흐름은 token pruning에서 끝나지 않는다. query-aware RAG compression, generative rewrite, gist token과 memory slot 기반 soft compression까지 넓어지고 있으며, 큰 그림은 [[Prompt Compression Trends|Prompt Compression Trends - From Token Pruning to Context Engineering]]에서 따로 정리한다.
+
 # References
 
+- [[Prompt Compression Trends|Prompt Compression Trends - From Token Pruning to Context Engineering]]
 - Jiang et al., [LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models](https://aclanthology.org/2023.emnlp-main.825/) (EMNLP 2023)
 - Jiang et al., [LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression](https://aclanthology.org/2024.acl-long.91/) (ACL 2024)
 - Pan et al., [LLMLingua-2: Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression](https://aclanthology.org/2024.findings-acl.57/) (Findings of ACL 2024)
