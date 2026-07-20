@@ -50,7 +50,7 @@ $$
 
 # B) Forward KL vs. Reverse KL
 
-![|600](https://i.imgur.com/YdAEMhR.png)
+![[kl-forward-reverse.svg]]
 
 비대칭성 때문에 어느 방향을 최소화하느냐에 따라, 학습되는 분포 $Q$의 행동이 달라진다. 목표 분포를 $P$, 우리가 학습하는 분포를 $Q$라 하자. $P$는 봉우리(mode)가 여러 개인데 $Q$는 용량이 부족해 전부 정교하게 표현할 수 없는 상황이 문제의 핵심이다.
 
