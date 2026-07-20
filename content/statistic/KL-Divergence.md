@@ -1,33 +1,44 @@
 ---
-title: "KL-Divergence"
-tags: ["statistic", "probability_distribution", "metrics", "machine_learning"]
+title: KL-Divergence
+tags:
+  - statistic
+  - probability_distribution
+  - metrics
+  - machine_learning
+  - information_theory
+aliases:
+  - Kullback-Leibler Divergence
+  - KLD
+  - relative entropy
 ---
 
 # A) KL-Divergence ?
 
-KL-Divergence(Kullback-Leibler Divergence) 는 서로 다른 두 분포의 차이 (dissimilarity) 를 측정하는데 쓰이는 metric 이다.
+KL-Divergence(Kullback-Leibler Divergence)는 서로 다른 두 분포의 차이(dissimilarity)를 측정하는 데 쓰이는 metric이다. relative entropy라고도 부른다.
 
-두 분포, $q$(실제) 와 $p$(예측) 가 있을 때, KL-Divergence 는 다음과 같다.
+두 분포, $q$(실제)와 $p$(예측)가 있을 때, KL-Divergence는 다음과 같다.
 
 $$
 \displaystyle D_{KL}(q\|p)=-\sum_{c=1}^{C}q\left(y_{c}\right)\left[\log\left(p\left(y_{c}\right)\right)-\log\left(q\left(y_{c}\right)\right)\right]=H_{p}(q)-H(q)
 $$
 
-보다시피, [[cross-entropy]] 값에 [[entropy]] 값을 뺀 것이 KL-Divergence 다. 
-Cross-entropy 의 값은 entropy 값보다 항상 크므로, KL-Divergence 값은 $0$ 보다 항상 크다.
+보다시피, [[cross-entropy]] 값에 [[entropy]] 값을 뺀 것이 KL-Divergence다.
+Cross-entropy 값은 entropy 값보다 항상 크므로, KL-Divergence 값은 $0$보다 항상 크다.
 
 ## A.1) KL-Divergence 의 의미
 
-예측 분포인 $p$ 를 실제분포 $q$ 에 가깝게 하는 것이, 예측 모형이 이루고자 하는 것이며, $p$ 가 $q$ 에 가까이갈 수록 KL-Divergence 값은 $0$ 에 가까워질 것이다.
+예측 분포인 $p$를 실제분포 $q$에 가깝게 하는 것이 예측 모형이 이루고자 하는 것이며, $p$가 $q$에 가까이 갈수록 KL-Divergence 값은 $0$에 가까워질 것이다.
 
-$H(q)$ 는 고정이기 때문에, $H_p(q)$ 를 최소화 시키는 것이 예측 모형을 최적화 시키는 것이라고 할 수 있다. 따라서 cross-entropy 를 최소화 시키는 것이 KL-Divergence 를 최소화 시키는 것이며, 이것이 불확실성을 제어하고자 하는 예측 모형의 실질적인 목적이라고 볼 수 있다.
+$H(q)$는 고정이기 때문에, $H_p(q)$를 최소화하는 것이 예측 모형을 최적화하는 것이라고 할 수 있다. 따라서 cross-entropy를 최소화하는 것이 KL-Divergence를 최소화하는 것이며, 이것이 불확실성을 제어하고자 하는 예측 모형의 실질적인 목적이라고 볼 수 있다.
 
 ## A.2) KL-divergence Properties
 
 $\displaystyle\mathcal{K}\mathcal{L}(q\|p)=\int q(x)\log\frac{q(x)}{p(x)}dx$ 이라고 가정할때 아래를 만족한다.
 
-* $\mathcal{KL}(q\|p)\neq\mathcal{KL}(p\|q)$ 그리고 $\mathcal{K}\mathcal{L}(q\|q)=0$
-* $\mathcal{K}\mathcal{L}(q\|p)\geq0$
+- $\mathcal{KL}(q\|p)\neq\mathcal{KL}(p\|q)$ 그리고 $\mathcal{K}\mathcal{L}(q\|q)=0$
+- $\mathcal{K}\mathcal{L}(q\|p)\geq0$
+
+비대칭이고 삼각부등식도 만족하지 않으므로 엄밀한 의미의 거리(metric)는 아니다. 그래서 "divergence"라고 부른다.
 
 ### A.2.1) Proof
 
@@ -37,16 +48,54 @@ $$
 
 여기서 log 함수는 [[concave function]] 이므로, [[Jensen's inequality]] 에 의해 Expectation sign 이 안으로 들어갈 수 있다. 또한, $\log\int p(x)dx=1$ 이다.
 
-- [ ] Forward KL vs. Reverse KL ([link](https://blog.evjang.com/2016/08/variational-bayes.html))
-
-# B) As Objective Function
+# B) Forward KL vs. Reverse KL
 
 ![|600](https://i.imgur.com/YdAEMhR.png)
 
-# C) Related
+비대칭성 때문에 어느 방향을 최소화하느냐에 따라, 학습되는 분포 $Q$의 행동이 달라진다. 목표 분포를 $P$, 우리가 학습하는 분포를 $Q$라 하자. $P$는 봉우리(mode)가 여러 개인데 $Q$는 용량이 부족해 전부 정교하게 표현할 수 없는 상황이 문제의 핵심이다.
+
+## B.1) Forward KL — $D_{KL}(P\|Q)$: mode-covering
+
+$$
+D_{KL}(P\|Q)=\mathbb{E}_{x\sim P}\left[\log\frac{P(x)}{Q(x)}\right]
+$$
+
+기대값을 $P$ 위에서 취한다. 즉 $P$가 확률을 주는 곳(P>0)에서 $Q(x)\approx 0$이면 $\log\frac{P}{Q}$가 폭발한다. 그래서 $Q$는 $P$의 모든 mode에 조금씩이라도 확률을 발라야 한다 → **mode-covering** (zero-avoiding). 용량이 부족하면 mode 사이의 빈 공간까지 확률이 새어 분포가 뭉개진다(mean-seeking).
+
+MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문.
+
+## B.2) Reverse KL — $D_{KL}(Q\|P)$: mode-seeking
+
+$$
+D_{KL}(Q\|P)=\mathbb{E}_{x\sim Q}\left[\log\frac{Q(x)}{P(x)}\right]
+$$
+
+기대값을 $Q$ 위에서 취한다. $Q$가 확률을 주는 곳에 $P(x)\approx 0$이면 벌점이 폭발하고, 반대로 $Q$가 포기한 영역은 아예 채점 대상이 아니다. 그래서 $Q$는 감당되는 가장 확실한 mode 하나에 집중한다 → **mode-seeking** (zero-forcing). "아는 것만 말해라, 대신 틀린 말은 하지 마라."
+
+Variational Inference(VB)가 reverse KL을 쓴다. $Q$에서 샘플링해 계산할 수 있어 intractable한 $P$를 다룰 때 유리하기 때문.
+
+## B.3) JSD — 둘 사이의 절충
+
+Jensen-Shannon Divergence는 두 방향을 대칭으로 섞은 것이다.
+
+$$
+JSD(P\|Q)=\tfrac{1}{2}D_{KL}(P\|M)+\tfrac{1}{2}D_{KL}(Q\|M),\quad M=\tfrac{1}{2}(P+Q)
+$$
+
+forward만큼 전부 커버하라고 강요하지도, reverse만큼 한 mode로 쏠리지도 않는 중간 성격이다. 항상 유한하고 대칭이라 GAN의 원조 objective로도 쓰였다.
+
+# C) LLM 학습에서의 KL
+
+- **지식 증류**: supervised KD는 forward KL로 교사 분포를 흉내 낸다. [[GKD]]는 작은 학생이 교사의 모든 mode를 커버하다 분포가 뭉개지는 문제를 지적하며, 학생 생성문 위에서 reverse KL이나 JSD를 쓰는 선택지를 연다. 작은 모델일수록 mode-seeking이 유리한 경우가 많다.
+- **RLHF의 KL penalty**: [[RLHF]]에서 policy가 reference 모델에서 너무 멀어지지 않게 거는 페널티 $D_{KL}(\pi\|\pi_{ref})$는 reverse KL이다. 그래서 RLHF 모델이 다양성을 잃고 특정 스타일로 쏠리는 mode collapse가 생기는 것도 같은 원리다.
+- **[[KL annealing]]**: VAE 학습에서 KL 항의 가중치를 서서히 올려 posterior collapse를 막는 테크닉.
+
+# D) Related
 
 [[Kolmogorov-Smirnov|KS]] 방식은 두 [[Cumulative Distribution Function|CDF]] 의 차이를 계산한다.
 
-# D) References
+# E) References
 
-* https://timvieira.github.io/blog/post/2014/10/06/kl-divergence-as-an-objective-function/
+- https://timvieira.github.io/blog/post/2014/10/06/kl-divergence-as-an-objective-function/
+- https://blog.evjang.com/2016/08/variational-bayes.html — Forward/Reverse KL 시각화
+- Agarwal et al., 2023, GKD — 증류에서의 divergence 선택
