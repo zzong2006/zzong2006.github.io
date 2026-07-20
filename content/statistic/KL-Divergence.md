@@ -62,7 +62,7 @@ $$
 
 기대값을 $P$ 위에서 취한다. 즉 $P$가 확률을 주는 곳(P>0)에서 $Q(x)\approx 0$이면 $\log\frac{P}{Q}$가 폭발한다. 그래서 $Q$는 $P$의 모든 mode에 조금씩이라도 확률을 발라야 한다 → **mode-covering** (zero-avoiding). 용량이 부족하면 mode 사이의 빈 공간까지 확률이 새어 분포가 뭉개진다(mean-seeking).
 
-MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문.
+MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문. 유도는 [[#B.4) KL과 MLE의 관계|B.4]] 참고.
 
 ## B.2) Reverse KL — $D_{KL}(Q\|P)$: mode-seeking
 
@@ -83,6 +83,33 @@ JSD(P\|Q)=\tfrac{1}{2}D_{KL}(P\|M)+\tfrac{1}{2}D_{KL}(Q\|M),\quad M=\tfrac{1}{2}
 $$
 
 forward만큼 전부 커버하라고 강요하지도, reverse만큼 한 mode로 쏠리지도 않는 중간 성격이다. 항상 유한하고 대칭이라 GAN의 원조 objective로도 쓰였다.
+
+## B.4) KL과 MLE의 관계
+
+MLE는 데이터의 log-likelihood를 최대화하는 파라미터를 찾는다.
+
+$$
+\hat{\theta}_{MLE}=\arg\max_{\theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta}(x_i)
+$$
+
+이것이 forward KL 최소화와 같다는 걸 보이자. 데이터의 실제 분포를 $P$라 하고, forward KL을 전개하면:
+
+$$
+D_{KL}(P\|Q_{\theta})=\mathbb{E}_{x\sim P}[\log P(x)]-\mathbb{E}_{x\sim P}[\log Q_{\theta}(x)]=-H(P)-\mathbb{E}_{x\sim P}[\log Q_{\theta}(x)]
+$$
+
+첫 항 $-H(P)$는 데이터의 entropy라 $\theta$와 무관한 상수다. 따라서:
+
+$$
+\arg\min_{\theta}D_{KL}(P\|Q_{\theta})=\arg\max_{\theta}\mathbb{E}_{x\sim P}[\log Q_{\theta}(x)]\approx\arg\max_{\theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta}(x_i)
+$$
+
+마지막 근사는 기대값을 데이터 샘플 평균으로 대체한 것(대수의 법칙)이다. 즉 **MLE = 경험 분포에 대한 forward KL 최소화 = [[cross-entropy]] 최소화**로, 셋은 같은 문제다. 분류 학습에서 cross-entropy loss를 쓰는 이유, 그리고 A.1에서 "cross-entropy 최소화가 곧 KL 최소화"라 한 것이 정확히 이 관계다.
+
+따름정리처럼 얻는 직관 두 가지:
+
+- MLE로 학습한 생성 모델은 forward KL의 mode-covering 성질을 물려받는다. 용량이 부족하면 mode 사이에 확률을 흘려 흐릿한(blurry) 샘플을 만든다 — VAE 샘플이 뿌연 이유 중 하나.
+- 반대로 MLE는 데이터가 있는 곳을 절대 버리지 못하므로, 데이터 커버리지가 중요한 언어 모델 사전학습(next-token prediction도 cross-entropy = forward KL)과 잘 맞는다.
 
 # C) LLM 학습에서의 KL
 
