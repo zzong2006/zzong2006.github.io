@@ -101,7 +101,7 @@ forward만큼 전부 커버하라고 강요하지도, reverse만큼 한 mode로 
 
 # D) KL과 MLE의 관계
 
-MLE는 데이터의 log-likelihood를 최대화하는 파라미터를 찾는다.
+[[Maximum Likelihood Estimation|MLE]]는 데이터의 [[negative log likelihood|log-likelihood]]를 최대화하는 파라미터를 찾는다.
 
 $$
 \hat{\theta}_{MLE}=\arg\max_{\theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta}(x_i)
