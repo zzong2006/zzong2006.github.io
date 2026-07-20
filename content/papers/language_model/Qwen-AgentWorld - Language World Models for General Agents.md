@@ -31,7 +31,7 @@ Qwen Team은 `MCP`, `Search`, `Terminal`, `SWE`, `Android`, `Web`, `OS`까지 7�
 
 # B) 전체 구조
 
-![Qwen-AgentWorld overview](https://arxiv.org/html/2606.24597v1/x1.png)
+![[img-84552ac6f3.png|Qwen-AgentWorld overview]]
 
 전체 구조는 두 층이다.
 
@@ -151,7 +151,7 @@ Qwen-AgentWorld는 이 조건을 맞추기 위해 training objective, prompt con
 
 # E) 제안 방법: Qwen-AgentWorld
 
-![Three-stage training pipeline](https://arxiv.org/html/2606.24597v1/x5.png)
+![[img-221cb6d66f.png|Three-stage training pipeline]]
 
 ## E.1) Unified Environment Trajectory Schema
 
@@ -284,7 +284,7 @@ Reward는 두 신호를 섞는다.
 
 # F) AgentWorldBench
 
-![AgentWorldBench composition](https://arxiv.org/html/2606.24597v1/x6.png)
+![[img-9ba2f53b16.png|AgentWorldBench composition]]
 
 AgentWorldBench는 language world model의 simulation fidelity, 즉 시뮬레이션이 실제 환경을 얼마나 잘 재현하는지 평가하는 benchmark다. 총 2,170개 turn-level sample로 구성되며, 7개 domain, 9개 source benchmark, 5개 frontier model trajectory를 포함한다.
 
@@ -311,7 +311,7 @@ reference-grounded judging을 쓰는 이유가 여기에 있다. world model 평
 
 ## G.1) AgentWorldBench 결과
 
-![AgentWorldBench results](https://arxiv.org/html/2606.24597v1/x7.png)
+![[img-ee0db5cb5a.png|AgentWorldBench results]]
 
 주요 결과는 Qwen-AgentWorld가 일반 frontier model보다 environment simulation에 강하다는 점이다.
 
@@ -425,7 +425,7 @@ fictional-world construction의 장점은 세 가지다.
 
 ## G.4) RL은 작은 단위의 환경 재현도도 올린다
 
-![Micro-level fidelity improvements](https://arxiv.org/html/2606.24597v1/x12.png)
+![[img-2e32f3fbb2.png|Micro-level fidelity improvements]]
 
 논문 후반부의 분석도 재미있다. RL은 큰 rubric score만 올리는 게 아니라, 아주 작은 단위의 환경 재현도까지 개선한다.
 

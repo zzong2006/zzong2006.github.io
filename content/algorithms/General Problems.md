@@ -1,7 +1,8 @@
 ---
 title: "General Problems"
+aliases: []
+tags: 
 ---
-
 
 # A) 문자열 압축
 
@@ -72,7 +73,7 @@ https://www.acmicpc.net/problem/2422
 		* 이 문제의 경우, memoization 의 이유 말고도, 이미 방문한 곳은 절대 방문하지 않는다.. 왜? 판다의 특성 때문에
 		* 다시 한번 살펴보는게 좋을 것 같다.
 * [골드바흐의 추측](https://www.acmicpc.net/problem/6588)
-* ![https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif](https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif)
+* ![[img-0014a4fc8d.gif|https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif]]
 	* 에라스토테네스의 채를 이용해 소수를 빠르게 구하는 방법을 터득하자.
 	* 참고 : math.sqrt(m) 대신에 m ** 0.5 를 사용하면 편리하다.
 * [ABCDE](https://www.acmicpc.net/problem/13023)
@@ -91,7 +92,7 @@ https://www.acmicpc.net/problem/2422
 	* 이분 그래프의 정의
 		* 그래프의 정점의 집합을 둘로 분할하여, 각 집합에 속한 정점끼리는 서로 인접하지 않도록 분할할 수 있을 때, 그러한 그래프를 특별히 이분 그래프 (Bipartite [[Graph]]) 라 부른다.
 		* 인접한 정점끼리 서로 다른 색으로 칠해서 모든 정점을 두 가지 색으로만 칠할 수 있는 그래프
-		* ![https://gmlwjd9405.github.io/images/data-structure-[[Graph/bipartite-Graph1.gif](https://gmlwjd9405.github.io/images/data-structure-graph/bipartite-graph1.gif)
+		* ![[img-ba8ce65c7b.gif|https://gmlwjd9405.github.io/images/data-structure-[[Graph/bipartite-Graph1.gif]]
 	* **각 정점에 대해서** BFS 또는 [[DFS]] 사용
 		* BFS 또는 [[DFS]] 를 사용하면서 특정 정점에 인접한 정점들은 특정 정점과 반대의 색을 칠한다.
 		* 칠하는 도중, 만약 이미 칠해진 정점을 발견한 경우, 그 정점이 인접한 정점과 같은 색이라면 이분 그래프가 아니다.
@@ -238,7 +239,7 @@ https://www.acmicpc.net/problem/2422
 	* stack 을 활용한다 (우선순위 연산자 (`'*'`,`'/'`) 가 나오면 stack 에서 pop, 아니면 (‘+’,‘-’) push)).
 	* 항상 ‘+’ 가 있다고 생각하고 계산한다. (e.g. 1+2+3 -> +1+2+3), 시작 연산자가 ‘+’.
 * [Longest Substring with At Least K Repeating Characters](https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/)
-* ![https://i.loli.net/2020/11/27/gTCw2Ia9HmdSinB.png](https://i.loli.net/2020/11/27/gTCw2Ia9HmdSinB.png)
+* ![[img-f2e9aa1675.png|https://i.loli.net/2020/11/27/gTCw2Ia9HmdSinB.png]]
 	* Divide Conquer 또는 Sliding Window 를 사용하여 해결하는 문제
 	* Divide Conquer
 		* 전체 문자열의 알파벳 중 k 이상 존재하지 않는 알파벳을 발견한 경우, 해당 알파벳의 index 기준으로 문자열을 반으로 나눠서 반복
@@ -254,7 +255,7 @@ https://www.acmicpc.net/problem/2422
 		* if a[i] == 0 and (i == 0 or a[i - 1] == 0) and (i == len(a) - 1 or a[i + 1] == 0):
 * [Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 	* 이진 트리의 노드 중
-	* ![https://assets.leetcode.com/uploads/2019/02/15/117_sample.png](https://assets.leetcode.com/uploads/2019/02/15/117_sample.png)
+	* ![[img-63b95e576c.png|https://assets.leetcode.com/uploads/2019/02/15/117_sample.png]]
 * [Generate Random Point in a Circle](https://programming.guide/random-point-within-circle.html)
 	* 원의 x, y 좌표 그리고 반지름 r 이 주어졌을 때, 원 안에 랜덤한 점을 균등하게 샘플링하는 문제
 	* 중요한 점은 균등하게 샘플링을 해야한다는 점이다: 원의 둘레는 반지름이 비례하므로, uniform sampling 을 위해서는 중심에서 넓어질수록 더 많은 점들이 sampling 되어야 한다.

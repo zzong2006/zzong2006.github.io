@@ -1,7 +1,8 @@
 ---
 title: "Process"
-tags: ["operating_system"]
 aliases: ["프로세스"]
+tags:
+  - operating_system
 ---
 
 # A) Process 란
@@ -23,8 +24,6 @@ OS 로 부터 시스템 자원을 할당받고 메모리에 적재되어 실행�
 # C) 프로세스의 생명 주기 (process states)
 
 총 5 개: new, ready, running, waiting, terminated
-![https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg](https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg)
+![[img-5b465fa094.jpg|https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg]]
 
-# D) Related
-
-# E) References
+# D) References

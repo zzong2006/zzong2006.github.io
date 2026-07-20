@@ -1,6 +1,8 @@
 ---
 title: "policy iteration"
-tags: ["reinforcement_learning DP"]
+tags:
+  - reinforcement_learning
+  - DP
 aliases: ["정책 반복 알고리즘", "generalized policy iteration", "GPI"]
 ---
 
@@ -22,12 +24,10 @@ $$
 
 ## A.1) 알고리즘
 
-![image-20201022003841657](https://i.loli.net/2020/10/21/1KLVos9kdpv7iDl.png)
+![[img-eb855a2aee.png|image-20201022003841657]]
 
 ## A.2) 단점
 
 policy improvement step 전에 항상 policy evaluation 을 수행해야하므로 높은 계산 비용이 요구된다. 이러한 이슈를 완화하기 위해 [[value iteration]] 알고리즘을 이용할 수 있다.
 
-# B) Related
-
-# C) References
+# B) References

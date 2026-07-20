@@ -1,6 +1,8 @@
 ---
 title: "embedding matrix"
-tags: ["embedding"]
+tags:
+  - embedding
+aliases: []
 ---
 
 # A) Embedding Matrix 란?
@@ -26,7 +28,7 @@ tags: ["embedding"]
 
 위 과정을 시각적으로 나타낸 그림
 
-![https://i.loli.net/2020/11/04/tfWTIsQaUZ3nFMD.png](https://i.loli.net/2020/11/04/tfWTIsQaUZ3nFMD.png)
+![[img-f30b65e8f7.png|https://i.loli.net/2020/11/04/tfWTIsQaUZ3nFMD.png]]
 
 # D) Context 와 Target Pair 설계
 
@@ -36,4 +38,4 @@ tags: ["embedding"]
 * 이를 보완하기 위해 다양한 방법들이 있으며 대표적으로 [[CBOW]](Continuous Bag of Words Model) 와 [[skip-gram]] 이 있습니다.
 	* 두 방법 모두 [[Word2Vec]] 알고리즘에 속하는 기법들입니다.
 * 관련된 예시 그림
-	* ![https://i.loli.net/2020/11/04/hdZHfz4eSVltqMG.png](https://i.loli.net/2020/11/04/hdZHfz4eSVltqMG.png)
+	* ![[img-0721db3ced.png|https://i.loli.net/2020/11/04/hdZHfz4eSVltqMG.png]]

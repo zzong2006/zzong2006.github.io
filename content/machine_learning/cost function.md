@@ -1,6 +1,10 @@
 ---
 title: "cost function"
-tags: ["machine_learning", "deep_learning", "calculus", "differentitation"]
+tags:
+  - machine_learning
+  - deep_learning
+  - calculus
+  - differentitation
 aliases: ["objective function", "loss function", "비용 함수"]
 ---
 
@@ -29,22 +33,22 @@ $$
 
 아래의 왼쪽 그림은 예측 모델 $h_\theta(x)=\theta_1x$ 그리고 오른쪽은 비용 함수 $J({\theta}_1)$ 이다.
 
-* ![img](https://i.loli.net/2020/09/21/hYT3EF8lOCDLaZA.png)
+* ![[img-a2b3a6e5a5.png|img]]
 
 		- 학습 데이터는 $\theta_1=1$일 때의 모델 $h$와 정확하게 직선상에 일치하고, 오른쪽 그림에 $(\theta_1,J(\theta_1))$은 $(1,0)$으로 표기된다.
 
 * 이후 계속 $J(\theta_1)$ 를 그려보면 다음과 같다.
-	* ![img](https://i.loli.net/2020/09/21/Kcgs7mowzE6ALnf.png)
-	* ![img](https://i.loli.net/2020/09/21/eCiF4aHw7pPQnbr.png)
+	* ![[img-8c89b62c00.png|img]]
+	* ![[img-3474bc7a81.png|img]]
 		* 비용 함수를 최소화 하는 것이 목적이므로, $\theta_1=1$ 을 선택하고, 이를 [[global minimum]] 이라 부른다.
 * 이제 $\theta_0=0$ 이었던, $\theta_0$ 를 다시 사용해보자.
 	* 더 이상 $J(\theta_0,\theta_1)$ 은 일반적인 선 그래프로 표현하기 힘들다.
 	* 두 개의 features($\theta_0,\theta_1$) 를 사용하는 경우, 등고선 (contour plot) 을 사용한다.
-		* ![img](https://i.loli.net/2020/09/21/yLlMfOEQit6xceA.png)
+		* ![[img-8ffbc0eed5.png|img]]
 
 모델 $h_\theta(x)$ 가 학습 데이터에 더욱 적합해질수록, $J(\theta_0,\theta_1)$ 값은 등고선의 중심에 다가간다.
 
-* ![img](https://i.loli.net/2020/09/21/9zHTwKDbg1WnxhJ.png)
+* ![[img-bccd6ee0ec.png|img]]
 
 # 3. L1 Loss and [[L2 Loss]]
 

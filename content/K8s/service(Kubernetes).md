@@ -1,6 +1,6 @@
 ---
 title: "service(Kubernetes)"
-tags: ["Kubernetes"]
+tags: Kubernetes 
 aliases: ["service", "서비스"]
 ---
 
@@ -29,11 +29,9 @@ Service 가 대상으로 하는 pod set 은 보통 LabelSelector 에 의해 결�
 			* 임베디드된 버전 태그들
 			* 태그들을 이용하는 객체들에 대한 분류
 		* label 은 object 의 생성 시점 또는 이후 시점에 붙여질 수 있고 언제든지 수정할 수 있음
-	* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FuJvwttdEVL.png?alt=media&token=d72899e3-18b8-47ff-8799-392b3edce02f)
+	* ![[img-40bfbada27.png]]
 	* Service 는 pod set 에 걸쳐 traffic 을 routing 한다.
 		* 그리고 종속적인 pod 들 사이에서 discovery 와 routing 은 [[service(Kubernetes)]] 들에 의해 처리됨
 	* 
 
-# B) Related
-
-# C) References
+# B) References

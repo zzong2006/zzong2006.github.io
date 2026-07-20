@@ -1,6 +1,9 @@
 ---
 title: "bagging"
-tags: ["machine_learning", "ensemble"]
+tags:
+  - machine_learning
+  - ensemble
+aliases: []
 ---
 
 # A) Bagging ?
@@ -9,7 +12,7 @@ tags: ["machine_learning", "ensemble"]
 
 ## A.1) Figure
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FDQ5r_-qXCp.png?alt=media&token=6817752a-4353-4bc9-a426-ea528ce9129e)
+![[img-3b3ad96452.png]]
 
 ## A.2) 특징
 
@@ -24,6 +27,4 @@ tags: ["machine_learning", "ensemble"]
 
 [[random forest]] 는 feature selection 주로 사용된다.
 
-# D) Related
-
-# E) References
+# D) References

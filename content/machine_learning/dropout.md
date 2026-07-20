@@ -1,13 +1,15 @@
 ---
 title: "dropout"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
+aliases: []
 ---
 
 # A) Dropout ?
 
 Dropout 방식은 [[neural network]] 의 [[overfitting]] 문제를 완화하기 위해, 사용자 정의된 확률에 기반하여 각 레이어의 일부 노드들을 계산에 포함시키지 않는 방법을 의미한다.
 
-![image-20201128145351257|400](https://i.loli.net/2020/11/28/sbX2cQ7oLPVlHxm.png)
+![[img-4da4eab087.png|image-20201128145351257|400]]
 
 # B) Example
 
@@ -46,7 +48,7 @@ dropout 확률을 자동으로 조절하는 방식이다.
 
 직관적으로 설명하면 어떤 하나의 특징에만 의존할 수 없으므로, 가중치를 분산시켜야 하는 것이다.
 
-![image-20201128151109570|100](https://i.loli.net/2020/11/28/Ipzj5lV2uLrboZQ.png)  
+![[img-028652f133.png|image-20201128151109570|100]]  
 위 그림과 같이, 4 개의 units 중에 어떤 하나의 units 이 다음 output 을 결정하는데 중요한 역할을 한다고 해보자. dropout 은 그런 units 들을 종종 확률적으로 죽여서 다른 units 도 output 을 결정하는데 중요한 역할을 하게끔 만들어 준다.
 
 이러한 효과는 weights 를 shrink 하게 하는 효과를 내는데, L2 norm 을 이용한 [[regularization]] 과 비슷한 효과를 발생시킨다.
@@ -57,6 +59,4 @@ Dropout 을 통해 학습하는 것은 확률적으로 units 을 죽이거나 �
 
 이런 모델이 올바르게 학습하고 있는지 확인하기 위해서는 Dropout 을 제거하고, cost function 이 단조적으로 감소하는지 확인하여 버그가 없는지 체크후, dropout 을 이용해 학습하는 것을 추천한다.
 
-# G) Related
-
-# H) References
+# G) References

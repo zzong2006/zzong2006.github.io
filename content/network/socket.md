@@ -1,6 +1,7 @@
 ---
 title: "socket"
-tags: ["network"]
+tags: network 
+aliases: []
 ---
 
 # Socket ?
@@ -24,13 +25,13 @@ tags: ["network"]
 
 참고로 서버 소켓은 클라이언트 소켓의 **연결 요청을 받아들이는 역할만 수행**할 뿐, 직접적인 데이터 송수신은 서버 소켓의 연결 요청 수락의 결과로 만들어지는 새로운 소켓을 통해 처리된다.
 
-![클라이언트 소켓과 서버 소켓의 연결](https://i.loli.net/2020/11/26/jNUoLAlIZtap8sr.png)
+![[img-ec91fa0085.png|클라이언트 소켓과 서버 소켓의 연결]]
 
 # Socket API 실행 흐름
 
 대부분의 프로그래밍 언어와 개발 플랫폼에서 소켓 (Socket) 관련 API 가 제공된다. 이러한 API 를 사용하였을 때, 구체적으로 각 Socket 이 처리되는 흐름을 알아보자.
 
-<img src="https://i.loli.net/2020/11/26/1a2sQxr9pih6wVJ.png" alt="소켓 API 실행 흐름" style="zoom:80%;" />
+<img src="/images/img-8ff53dcf7d.png" alt="소켓 API 실행 흐름" style="zoom:80%;" />
 
 ## Client Socket
 
@@ -54,8 +55,6 @@ tags: ["network"]
 5. 새로운 소켓을 통해 연결이 수립되면, 데이터를 송/수신 한다. (`send()`/`recv()`)
 6. 데이터 송/수신이 완료되면, 소켓을 닫는다. (`close()`)
 	* 이때 `socket()` 에 의해 생성된 서버 소켓 뿐만 아니라, `accept()` 에 의해 생성된 소켓도 같이 관리해 준다.
-
-# Related
 
 # References
 

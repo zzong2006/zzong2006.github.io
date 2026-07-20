@@ -1,6 +1,7 @@
 ---
 title: "Monte Carlo Method(RL)"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # A) Monte Carlo Method
@@ -34,7 +35,7 @@ MC 도 transition 확률을 알 필요는 있다. 그렇지만 이것도 DP 처�
 
 one-step transitions 을 통해 value 를 update 하는 DP diagram 과 달리, 몬테카를로 방법은 terminal state 까지의 trajectory 를 확인하고 value 를 estimate 한다.  
 이를 도식화 하면 아래와 같다.  
-![|300](https://i.loli.net/2020/10/22/MDP9BWjQp4cb2Gy.png)
+![[img-b8edc653e0.png|300]]
 
 또한 MC 의 state 에 대한 value 추정값은 독립적이다. DP 는 반대로 다른 state 를 활용하여 특정 state 의 value 추정을 시도한다 (bootstrap).
 
@@ -56,7 +57,7 @@ Monte Carlo Control
 
 DP 와 비슷한 [[GPI]](Generalized policy iteration) 방식으로 MC 도 optimal policies 를 approximate 할 수 있다.
 
-![|240](https://i.loli.net/2020/10/22/H8GIRZK3hUoVe9t.png)
+![[img-a1d183165d.png|240]]
 
 $$
 \pi_{0}\stackrel{\mathrm{E}}{\longrightarrow}q_{\pi_{0}}\stackrel{\mathrm{I}}{\longrightarrow}\pi_{1}\stackrel{\mathrm{E}}{\longrightarrow}q_{\pi_{1}}\stackrel{\mathrm{I}}{\longrightarrow}\pi_{2}\stackrel{\mathrm{E}}{\longrightarrow}\cdots\stackrel{\mathrm{I}}{\longrightarrow}\pi_{*}\stackrel{\mathrm{E}}{\longrightarrow}q_{*}
@@ -85,7 +86,7 @@ MC 는 episode 마다 evaluation 과 improvement 를 번갈아 수행하는 것�
 
 각 에피소드마다 관측된 returns 값들은 evaluation 과, 에피소드에서 마주친 모든 $s$ 에 대한 improvement 에 사용된다.
 
-![image-20201022162002317](https://i.loli.net/2020/10/22/13uXASDFh9ReZ67.png)  
+![[img-fecd29aabe.png|image-20201022162002317]]  
 	- 여기서 exploring starts 의 가정을 위해, 특정 state $s$ 에서 시작하는 것이 아니라, 임의의 $(s,a)$ pair 에서 시작해서 episode 를 진행한다.  
 	- MC ES 는 조금 비 효율적이다. 왜냐면, $G$ 를 저장하는 list 를 계속 보관하면서 평균 ($Q\left(S_{t},A_{t}\right)\leftarrow$ average $\left(\right.$Returns $\left.\left(S_{t},A_{t}\right)\right)$) 을 구하기 때문이다. (이를 조금만 수정하면 좋아질수있다)
 
@@ -106,7 +107,7 @@ On-policy 방법은 생성된 sample 을 기반으로 policy improvement 와 eva
 			- 대부분 action 을 결정할 때, 추정된 action 값 중 최대 값에 해당하는 action 을 고르지만, 확률 $\varepsilon$ 으로 임의의 행동을 선택한다.  
 			- 이 말은 모든 nongreedy 값에 대한 action 은 최소한의 선택 확률이 존재한다는 것이다 ($\displaystyle\frac{\varepsilon}{\mid\mathcal{A}(s)\mid}$).  
 				- 즉, soft 성질을 만족한다: $\displaystyle\pi(a\mids)\geq\frac{\varepsilon}{\mid\mathcal{A}(s)\mid}$  
-		- ![image-20201022165158299](https://i.loli.net/2020/10/22/DnX7EsvSeuzT1io.png)  
+		- ![[img-ccde18b166.png|image-20201022165158299]]  
 			- 참고로 $A^{*}\leftarrow\arg\max_{a}Q\left(S_{t},a\right)$ 에 해당하는 action 은 딱 하나로 정해졌기에 다음이 성립한다.  
 				- $1\cdot(1-\varepsilon+\varepsilon/\left|\mathcal{A}\left(S_{t}\right)\right|)+(1-\left|\mathcal{A}\left(S_{t}\right)\right|)\cdot(\varepsilon/\left|\mathcal{A}\left(S_{t}\right)\right|)=1$  
 		- Policy improvement theorem of On-policy first-visit MC control  
@@ -174,7 +175,7 @@ On-policy 방법은 생성된 sample 을 기반으로 policy improvement 와 eva
 	* $C_{n+1}\doteq C_{n}+W_{n+1}$
 	* $C_n$ 은 $n$ 개의 returns 에 주어지는 가중치의 누적합을 의미하고, $C_0=0$ 이다.
 		* (또한 $V_n$ 은 임의의 값으로 처리해도 무방함)  
-![image-20201022204431508](https://i.loli.net/2020/10/22/z7rgThXm2Hi3Aqy.png)
+![[img-54727d8fc7.png|image-20201022204431508]]
 	* 위 알고리즘은 weighted importance sampling 을 이용한 off-policy 방법이지만, target 과 behavior policy 를 동일하게 만든 on-policy 경우에도 동일하게 먹힌다.
 		* 이 경우 $\pi=b$ 이고, $W$ 는 항상 1 이다.
 	* $b$ 가 $\pi$ 와 다른 정책을 통해 모든 action 이 선택되는 동안 근사 $Q$ 값은 $q_\pi$ 에 수렴한다.
@@ -182,7 +183,7 @@ On-policy 방법은 생성된 sample 을 기반으로 policy improvement 와 eva
 	* 근사 $q_\pi$ 를 찾았다면, 이를 활용하여 policy $\pi$ 를 update 하는 control 을 살펴보자.
 	* Control 방법은 behavior policy 를 따르고 target policy 를 improve 한다.
 		* behavior policy 는 target policy 가 선택할 수 있는 모든 actions 들을 수행할 확률이 있어야 한다. (soft policy: all actions in all states with nonzero probability)  
-![image-20201022210157822](https://i.loli.net/2020/10/22/XCLWqB38S1iPhmK.png)
+![[img-b9bc47b73b.png|image-20201022210157822]]
 		* weighted importance sampling 과 GPI 에 기반한 control method  
 		* 이전의 policy evaluation 과 달리 control 은 $W$ update 를 위해서 $\frac{\pi\left(A_{t}\midS_{t}\right)}{b\left(A_{t}\midS_{t}\right)}$ 대신 $\frac{1}{b\left(A_{t}\midS_{t}\right)}$ 를 곱한다.
 			* 이래도 올바르게 동작하는 이유는 $W$ 가 $A_t=\pi(S_t)$ 의 경우에만 업데이트 될 뿐더러, $\pi$ 가 deterministic 하므로 $\pi(A_t\midS_t)=1$ 로 설정해도 $W$ 업데이트에 문제가 없다.
@@ -190,6 +191,4 @@ On-policy 방법은 생성된 sample 을 기반으로 policy improvement 와 eva
 			* 만약, $A_t\neq\pi(S_t)$ 조건을 지웠다면 $W$ 업데이트 방식도 이전과 동일해야한다.
 		* 실제 구현을 해보니 이전의 evaluation version 이 훨씬 수렴성이 좋다.
 
-# G) Related
-
-# H) References
+# G) References

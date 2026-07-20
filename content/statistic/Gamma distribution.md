@@ -1,6 +1,8 @@
 ---
 title: "Gamma distribution"
-tags: ["probability_distribution"]
+aliases: []
+tags:
+  - probability_distribution
 ---
 
 # A) Gamma Distribution ?
@@ -36,7 +38,7 @@ The exponential distribution, Erlang distribution, and chi-square distribution a
 	* $\Gamma(\alpha)=(\alpha-1)!$ 는 [[gamma function]]
 
 plots
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F1K2GrVvbRx.png?alt=media&token=34179ce3-9089-4b6c-9b7a-6bfe7a3d7807)
+![[img-8d9229b8e2.png]]
 
 # E) Related
 

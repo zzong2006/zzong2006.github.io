@@ -1,6 +1,7 @@
 ---
 title: "Early Stopping"
-tags: ["machine_learning"]
+tags: machine_learning 
+aliases: []
 ---
 
 # 1. Early Stopping ?
@@ -9,7 +10,7 @@ tags: ["machine_learning"]
 
 Early Stopping 은 overfitting 현상을 완화하는 방법으로, 학습을 하다가 일정 기준에 의해 학습을 중간에 멈추는 방법을 의미한다.
 
-![image-20201128173444275](https://i.loli.net/2020/11/28/mnZlsbFN8MwECPz.png)
+![[img-c105d6d208.png|image-20201128173444275]]
 
 모델 학습 시, weight 가 처음에는 0 과 비슷한 값으로 설정되고, 이후 학습을 거칠 수록 weight 가 커질 것이다.
 

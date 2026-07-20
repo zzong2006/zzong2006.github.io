@@ -1,11 +1,14 @@
 ---
 title: "B+Tree"
-tags: ["index database"]
+tags:
+  - index
+  - database
+aliases: []
 ---
 
 # 1. B+Tree ?
 
-![image-20201202014318881](https://i.loli.net/2020/12/02/jliFt7pS3fyTZ5x.png)
+![[img-2c42a52750.png|image-20201202014318881]]
 
 * [[B+Tree]] 는 indexed-sequential 파일의 개선책이다.
 	* indexed-sequential 의 단점

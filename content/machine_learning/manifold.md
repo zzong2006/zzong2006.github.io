@@ -1,6 +1,10 @@
 ---
 title: "manifold"
-tags: ["machine_learning", "feature_engineering", "statistic"]
+tags:
+  - machine_learning
+  - feature_engineering
+  - statistic
+aliases: []
 ---
 
 # A) Manifold ?
@@ -13,4 +17,4 @@ tags: ["machine_learning", "feature_engineering", "statistic"]
 	* 이 저차원의 [[manifold]] 를 벗어나는 순간 급격히 밀도는 낮아진다.
 		* Probability density decreases very rapidly when moving away from the supporting manifold.
 
-![image-20201202171754694](https://i.loli.net/2020/12/02/yI3FfKYk8L4zEtd.png)
+![[img-c4e010306a.png|image-20201202171754694]]

@@ -1,7 +1,12 @@
 ---
 title: "Reciprocal Rank Fusion"
-tags: ["retrieval", "ranking", "ensemble", "fusion", "learning_to_rank"]
-aliases: ["RRF"]
+tags:
+  - retrieval
+  - ranking
+  - ensemble
+  - fusion
+  - learning_to_rank
+aliases: [RRF]
 ---
 
 # A) Reciprocal Rank Fusion
@@ -46,7 +51,7 @@ $$
 | 60 (기본값) | 일반적으로 잘 작동 |
 | 80-100 | 순위 간 점수 차이가 더 완만 |
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fqssv56RZbr.png?alt=media&token=dce906a6-5d99-43f6-89f2-922aa3d09598)
+![[img-d76884f4ca.png]]
 
 Table 1: Effect of $k$ on MAP for RRF of 30 model system results on TREC topics 351-400.
 

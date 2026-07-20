@@ -1,6 +1,14 @@
 ---
 title: "Bias and Debias in Recommender System - A Survey and Future Directions"
-tags: ["ACM", "bias", "fairness", "paper_review", "recommendation_system", "survey", "y2020"]
+aliases: []
+tags:
+  - ACM
+  - bias
+  - fairness
+  - paper_review
+  - recommendation_system
+  - survey
+  - y2020
 ---
 
 [paper link](https://arxiv.org/pdf/2010.03240.pdf)
@@ -81,7 +89,7 @@ selection bias 는 사용자가 어떤 아이템을 평가할 것인지에서 �
 
 ## D.4) Feedback Loop 는 Bias 를 증폭시킨다
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FY4n6AK6_5g.png?alt=media&token=cd217805-7ede-4b75-9373-85ca244b911a)
+![[img-5ef50b835f.png]]
 
 # E) Debiasing Methods
 

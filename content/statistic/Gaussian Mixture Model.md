@@ -1,13 +1,14 @@
 ---
 title: "Gaussian Mixture Model"
 aliases: ["GMM"]
+tag: bayesian_inference, statistic, machine_learning, 
 ---
 
 # A) GMM?
 
 GMM 이란, 여러 [[Gaussian distribution]] 이 혼합된 모델을 의미한다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fh3EYTta4xx.png?alt=media&token=2e05b453-3149-4111-9b29-6942216938ff)
+![[img-263d3d1cfa.png]]
 
 # B) GMM
 
@@ -92,6 +93,6 @@ mixing coefficient $\pi_k$ 는 constraint 이 존재하므로 [[Lagrange multipl
 
 # D) Expression of GMM by [[Bayesian network]]
 
-![|200](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F7sX1oOjYVZ.png?alt=media&token=0ed31d9b-378c-455e-8b0f-7d2a923a3712)
+![[img-42f8fed99a.png|200]]
 
 * 파란색 원은 parameters, 갈색 원은 observations, $N$ 은 데이터셋 개수를 의미

@@ -1,6 +1,7 @@
 ---
 title: "bias correction"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # A) Bias Correction ?
@@ -9,7 +10,7 @@ bias correction 은 지수이동평균을 구할 때, 처음에 평균에 발생
 
 $\beta=0.98$ 의 경우, 이전 예제에서의 지수이동평균 값은 아래와 같이 보인다.
 
-![image-20201028231820932](https://i.loli.net/2020/10/28/JQfSBKXRcMq6ujG.png)
+![[img-8a8bee996a.png|image-20201028231820932]]
 
 * 여기서 보라색은 $\beta=0.98$ 일 때, bias correction 을 적용하지 않은 그래프이고, 초록색은 적용한 그래프이다.
 
@@ -49,6 +50,4 @@ $$
 
 실제로는 optimization 알고리즘에 bias correction 을 잘 적용하지 않는데, 그 이유는 그냥 몇 번 더 학습하면 알아서 bias 가 사라지기 때문이다.
 
-# B) Related
-
-# C) References
+# B) References

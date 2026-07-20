@@ -1,6 +1,8 @@
 ---
 title: "logistic regression"
-tags: ["classification", "machine_learning"]
+tags:
+  - classification
+  - machine_learning
 aliases: ["로지스틱 회귀"]
 ---
 
@@ -57,7 +59,7 @@ $$
 
 아래의 그림의 경우 linear model $h_\theta(x)=\theta^Tx$ 가 magenta 색에서 잘 분리하는 듯 보였지만, outlier 의 등장에 취약한 모습을 보인다.  
 
-![image-20200929000946847|500](https://i.loli.net/2020/09/28/HY9mdTgvWO8p6lB.png)
+![[img-be213e509a.png|image-20200929000946847|500]]
 
 # D) Optimization
 

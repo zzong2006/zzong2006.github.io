@@ -1,6 +1,7 @@
 ---
 title: "challenges of linear regression"
-tags: ["linear_regression"]
+tags: linear_regression 
+aliases: []
 ---
 
 # A) Challenges of Linear Regression ?
@@ -21,9 +22,9 @@ tags: ["linear_regression"]
 * Another important assumption of the linear regression model is that the error terms have a constant variance, $\operatorname{Var}\left(\epsilon_{i}\right)=\sigma^{2}$
 * error term 에 대한 variance 들이 non-constant 한 현상을 [[heteroscedasticity]] 라고 부른다.
 	* 이 현상에서는 주로 [[residual plot]] 에서 꼬깔콘 (funnel) 모양이 나오는 것으로 확인할 수 있다.
-		* ![|400](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FnxsS91BicH.png?alt=media&token=0f664762-437f-4e62-9aa6-6f4ced1a99fa)
+		* ![[img-d39369fa2b.png|400]]
 		* response $Y$ 값이 점점 커질수록 잔차가 커진다는 의미인데, 이럴 경우 $\log Y$ 또는 $\sqrt{Y}$ 를 적용해서 이러한 현상을 완화할 수 있다.
-		* ![|460](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F0WveosQMQe.png?alt=media&token=e0d28e95-e80b-4792-b567-d3ce5d842261)
+		* ![[img-90eacc4bc4.png|460]]
 
 ## A.4) Outlier
 
@@ -33,7 +34,7 @@ tags: ["linear_regression"]
 * [[residual plot]]s can be used to identify outliers.
 	* 그러나 이 방법보다는 [[studentized residuals]] 을 그려봄으로써 outlier 를 찾을 수 있다.
 	* Observations whose studentized residuals are greater than 3 in absolute value are possible [[outlier]]s.
-		* ![|460](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fw81Dfmhw7u.png?alt=media&token=9e028d95-c26c-4ae2-969a-30f5a52bb36a)
+		* ![[img-78e5baa0a6.png|460]]
 * High-leverage points
 	* [[outlier]] 와 비슷한 개념이지만, model 형성에 큰 영향을 준다는 점이 다르다.
 		* [[outlier]] 의 경우 model 학습에 큰 영향을 주진 않지만, 해석 (interpretation) 에 영향을 줄 수 있다.
@@ -54,6 +55,4 @@ Since collinearity reduces the accuracy of the estimates of the regression coeff
 * collinearity 를 판단하는 방법은 [[correlation]] matrix 를 이용하면 되지만, 세 개 이상의 변수가 correlated 하다면, 발견해내기 힘들다.
 	* 이 경우, [[variance inflation factor]] 를 활용해서 multicollinearity 를 판단한다.
 
-# B) Related
-
-# C) References
+# B) References

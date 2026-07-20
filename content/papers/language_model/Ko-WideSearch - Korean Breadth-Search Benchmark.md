@@ -44,7 +44,7 @@ Minbyul Jeong은 190개 상위 대상에서 228개 표, 4,262개 정답 행, 14,
 
 정답이 "Aero K" 같은 항목 하나가 아니라, 여러 행과 여러 열로 된 표라는 점이 핵심이다. 항공사 하나를 빠뜨려도 틀리고, 항공사 목록은 맞았더라도 보유 항공기 수 한 칸을 잘못 채우면 그 행은 완성되지 않는다.
 
-![Ko-WideSearch benchmark overview](https://arxiv.org/html/2606.27595v1/x1.png)
+![[img-0e91a1a61a.png|Ko-WideSearch benchmark overview]]
 
 그래서 벤치마크를 만들 때도 단순히 질문만 만들 수는 없다. 정답 표가 정말 빠짐없는지, 각 칸의 값이 출처로 확인되는지, 모델이 외워서 풀 수 있는 문제는 아닌지까지 검증해야 한다. 논문의 pipeline은 이 과정을 아래처럼 구성한다.
 

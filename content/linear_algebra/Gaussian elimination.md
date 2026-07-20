@@ -1,6 +1,8 @@
 ---
 title: "Gaussian elimination"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 * Elimination produces an upper triangular system.
@@ -41,4 +43,4 @@ $AB=I$ 에서 $A$ 를 gaussian elimination 을 통해 identity matrix $I_A$ 로 
 * solution 이 무한하지 않으면서 2 개 이상 존재하는 경우는 없다. 왜냐하면 두 solution 벡터 ($x$ 그리고 $y$) 들은 또 다른 벡터 (solution) 만들 수 있기 때문이다.
 	* $\boldsymbol{z}=\alpha\boldsymbol{x}+(1-\alpha)\boldsymbol{y}$
 * The original $A\boldsymbol{x}=\boldsymbol{b}$ has been converted into an upper triangular $U\boldsymbol{x}=\boldsymbol{c}$.
-	* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FI0Xdoc5iAB.png?alt=media&token=f29b4773-a4ab-47d0-923c-a42a904065c5)
+	* ![[img-47f9a1faa3.png]]

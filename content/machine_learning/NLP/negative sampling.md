@@ -1,6 +1,10 @@
 ---
 title: "negative sampling"
-tags: ["supervised_learning", "word2vec", "classification"]
+tags:
+  - supervised_learning
+  - word2vec
+  - classification
+aliases: []
 ---
 
 # A) Negative Sampling ?
@@ -14,7 +18,7 @@ Negative Sampling 은 [[skip-gram]] 모델의 [[softmax function|softmax]] 함�
 
 # B) 예시
 
-![https://i.loli.net/2020/11/04/NzPcOXGTJtmS7bU.png](https://i.loli.net/2020/11/04/NzPcOXGTJtmS7bU.png)
+![[img-3ef90d5c14.png|https://i.loli.net/2020/11/04/NzPcOXGTJtmS7bU.png]]
 
 그림과 같이 skip-gram 의 (orange, juice) pair 에 대한 학습 과정에서, $k$ 만큼 orange 의 window 내에 등장하지 않는 단어들을 뽑아서 binary classification 학습 데이터를 구성한다.  
 일반적으로 dataset 이 크면 $k$ 는 2~5, 작으면 $k$ 는 5~20 정도로 구한다고 한다.

@@ -1,7 +1,9 @@
 ---
 title: "Deep RNN"
-tags: ["NLP", "deep_learning"]
 aliases: ["DRNN"]
+tags:
+  - NLP
+  - deep_learning
 ---
 
 # A) DRNN ?
@@ -10,7 +12,7 @@ DRNN(Deep RNN) 은 [[Recurrent Neural Network|RNN]] 을 여러 층으로 쌓은 
 
 # B) The Figure of DRNN
 
-![image-20201101223235795](https://i.loli.net/2020/11/01/u2yzFhIK48btPmZ.png)
+![[img-a9259173f3.png|image-20201101223235795]]
 
 여기서 $a^{[l]<t>}$ 의 $l$ 은 layer 의 번호고, $t$ 는 시간을 의미한다.
 
@@ -22,6 +24,4 @@ $$
 a^{[2]\langle3\rangle}=g(W_{a}^{[2]}[a^{[2]<2>},a^{[1]<3>}]+b_{a}^{[2]})
 $$
 
-# D) Related
-
-# E) References
+# D) References

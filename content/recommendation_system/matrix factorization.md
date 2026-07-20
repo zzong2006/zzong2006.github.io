@@ -1,7 +1,8 @@
 ---
 title: "matrix factorization"
+aliases: []
+tags: 
 ---
-
 ㅔ
 ---
 tags: collaborative_filtering
@@ -26,14 +27,14 @@ aliases: [MF]
 	* explicit models are more effective for the **rating** prediction task while implicit models are well suited to the **ranking** task.
 * Low rank matrix factorization
 	* collaborative 을 수행할 때, vectorization 을 이용해서 rating prediction 을 빠르게 수행할 수 있다.
-	* ![image-20201102205057974](https://i.loli.net/2020/11/02/8uieT1VQROlbg4K.png)
+	* ![[img-942391a495.png|image-20201102205057974]]
 		* 위 rating table 을 $Y$ 라는 matrix 로 나타낼 수 있으며, $Y$ 는 user parameters matrix 와 item features matrix 의 곱으로 표현될 수 있다.
 	* 아래 그림과 같은 방법을 low rank matrix factorization 이라고 한다.
-		* ![image-20201102205239056](https://i.loli.net/2020/11/02/zOYEMHZxn15ug4q.png)
+		* ![[img-dedd35e74f.png|image-20201102205239056]]
 	* Finding related movies
 		* item 에 대한 feature 학습이 완료된 상태라면, 각 item 간 유사도를 측정할 수 있다.
 			* 아래 그림에서는 유사도 metrics 중 L2-norm 을 활용하였다.
-		* ![image-20201102205335601](https://i.loli.net/2020/11/02/SrwFtHgOf1WvPbA.png)
+		* ![[img-62de4784e9.png|image-20201102205335601]]
 	* Implementational Detail: [[Mean Normalization]]
 
 # C) Matrix Factorization 의 장점

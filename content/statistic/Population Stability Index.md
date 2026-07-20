@@ -1,7 +1,9 @@
 ---
 title: "Population Stability Index"
-tags: ["metrics", "machine_learning"]
-aliases: ["PSI"]
+tags:
+  - metrics
+  - machine_learning
+aliases: [PSI]
 ---
 
 # A) Population Stability Index (PSI)
@@ -48,7 +50,7 @@ In the above equation, `Expected %` corresponds to the first reference distribut
 ![](https://i.imgur.com/klHrdrl.png)
 
 **(예시 2)**
-[![Population stability Index Calculation](https://www.machinelearningplus.com/wp-content/uploads/2022/08/Population-Stability-Index-calculation-table.png)](https://www.machinelearningplus.com/wp-content/uploads/2022/08/Population-Stability-Index-calculation-table.png)
+[![[img-6ee4ac762b.png|Population stability Index Calculation]]](https://www.machinelearningplus.com/wp-content/uploads/2022/08/Population-Stability-Index-calculation-table.png)
 
 PSI 값이 클수록 두 분포 간의 차이가 더 뚜렷해집니다.
 

@@ -1,6 +1,9 @@
 ---
 title: "exponential family"
-tags: ["statistic", "probability_distribution"]
+aliases: []
+tags:
+  - statistic
+  - probability_distribution
 ---
 
 # A) Exponential Family ?
@@ -39,10 +42,10 @@ $$
 		* $\displaystyle A(\eta)=\log\int h(x)\exp\left\{\eta^{T}T(x)\right\}dx$
 	* $A(\eta)$ 를 $\eta$ 에 대해 한번 미분하면 $T(x)$ 에 대한 [[expectation]] 을 찾을 수 있다:
 $\displaystyle\frac{\partial A(\eta)}{\partial\eta}=E[T(x)]$
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FHWpoUkgb93.png?alt=media&token=8e1161a2-dac4-4b6a-be3d-7883f8deaff7)
+		* ![[img-6ac8e9c670.png]]
 	* $A(\eta)$ 를 $\eta$ 에 대해 두번 미분하면 $T(x)$ 에 대한 [[variance]] 을 찾을 수 있다:
 $\displaystyle\frac{\partialA(\eta)}{\partial\eta}=V[T(x)]$
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FlHhYIqtaLG.png?alt=media&token=9b714da8-208f-4f6f-a5c0-9686c353d7e2)
+		* ![[img-c7b4741705.png]]
 	* 예시: Dirichlet distribution
 		* 위 예시에서 Dirichlet 분포를 따르는 log 랜덤 변수의 expectation 은 다음과 같이 계산할 수 있다.
 			* $\begin{aligned}E\left[\log\theta_{k}\right]&=E\left[T_{k}(\theta)\right]=\frac{\partial}{\partial\eta_{k}}A(\eta)\\&=\Psi\left(\alpha_{k}\right)-\Psi\left(\sum_{j}\alpha_{j}\right)\end{aligned}$
@@ -57,8 +60,6 @@ $\displaystyle\frac{\partialA(\eta)}{\partial\eta}=V[T(x)]$
 			* 위 식에서 $-\frac{m\left(X^{\prime}\theta^{*}\right)}{g(\eta)}$ 는 $-A(\eta)$ 와 같다.
 				* 그래서 $\dot{m}\left(X^{\prime}\theta^{*}\right)=\mathbb{E}[Y\mid X]=\mu\left(X^{\prime}\theta^{*}\right)$ 그리고 $\ddot{m}\left(X^{\prime}\theta^{*}\right)=\mathbb{V}(Y\mid X)$ 를 만족한다고 한다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://zhiyzuo.github.io/Exponential-Family-Distributions/

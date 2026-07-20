@@ -1,7 +1,9 @@
 ---
 title: "MCMC approximation"
-tags: ["bayesian_inference", "sampling"]
 aliases: ["MCMC"]
+tags:
+  - bayesian_inference
+  - sampling
 ---
 
 # 1. MCMC Approximation ?
@@ -32,7 +34,7 @@ MCMC sampling 알고리즘은 여러가지가 있는데, 그중 하나가 Metrop
 
 이는 새로 제안된 샘플에서 target 분포의 높이가 proposal 분포의 높이보다 높은 경우만 수용하고, 그렇지 않으면 거절하는 식이다 (물론 거절의 경우 $u$ 의 확률로 진행).
 
-![](https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2020-09-17-MCMC/pic4.png)
+![[img-e29ccfc1da.png]]
 
 # 3. Related Algorithm: [[Metropolis-Hasting]] Algorithm
 

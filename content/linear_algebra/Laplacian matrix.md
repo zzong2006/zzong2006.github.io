@@ -1,6 +1,8 @@
 ---
 title: "Laplacian matrix"
-tags: ["graph", "matrix"]
+tags:
+  - graph
+  - matrix
 aliases: ["라플라시안 행렬"]
 ---
 
@@ -18,7 +20,7 @@ $$
 
 # Example
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FqAuGWReA0e.png?alt=media&token=24a4d9b2-2d03-421f-a05f-99cd95f5a68b)
+![[img-a8e5e87e42.png]]
 
 # Symmetrically Normalized Laplacian
 
@@ -31,8 +33,6 @@ $$
 1. Symmetric: 대각 성분을 중심으로 양 값이 대칭적
 2. Non-positive off-diagonals: 대각요소 성분을 제외하고 음의 값을 가지고 있음
 3. Diagonally dominant: 주 대각성분의 값이 행의 다른 값보다 크거나 같다. 즉, diagonally dominant 하다.
-
-# Related
 
 # References
 

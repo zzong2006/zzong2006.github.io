@@ -1,6 +1,8 @@
 ---
 title: "Kubernetes Node"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # A) Kubernetes Node ?
@@ -9,7 +11,7 @@ A Node is a worker machine in [[Kubernetes]] and may be either a virtual or a ph
 
 ## A.1) Node Overview
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FZGZdvjuYLt.png?alt=media&token=81a5af5e-1f2e-4dc5-a2cf-cdc9974b2466)
+![[img-4a628c7313.png]]
 
 * 각 노드는 master 에 의해 관리된다.
 	* 하나의 노드는 여러개의 [pods]([[pod(Kubernetes)]]) 을 가지고, the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster.
@@ -20,6 +22,4 @@ A Node is a worker machine in [[Kubernetes]] and may be either a virtual or a ph
 	* A container runtime (like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
 * Node 는 [[Kubernetes Master]] 가 제공하는 kubernetes API 를 통해 master 와 통신하며, 최종 사용자 역시 kubernetes API 를 직접 사용해서 cluster 와 상호작용 할 수 있음
 
-# B) Related
-
-# C) References
+# B) References

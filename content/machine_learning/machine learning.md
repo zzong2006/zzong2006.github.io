@@ -1,6 +1,7 @@
 ---
 title: "machine learning"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
 aliases: ["ML"]
 ---
 
@@ -10,7 +11,7 @@ aliases: ["ML"]
 
 # 2. Machine Learning Model Representation
 
-![img|400](https://i.loli.net/2020/09/21/o3gMeikuFGzJ1SP.png)
+![[img-aec921619e.png|img|400]]
 
 위 그림의 $h$ 는 가설 (hypothesis) 을 뜻함
 

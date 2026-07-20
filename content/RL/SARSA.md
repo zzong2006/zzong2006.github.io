@@ -1,6 +1,8 @@
 ---
 title: "SARSA"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) SARSA ?
@@ -9,9 +11,9 @@ SARSA 는 [[state-value function]] 값 말고, [[action-value function]] 값을 
 
 즉, state-action 쌍으로 부터 다른 state-action 쌍으로 넘어가는 transition 을 고려한다. TD(0) 에서 state 대신 action 값을 이용한것이라 생각하면 된다.
 
-![image-20201023172332416](https://i.loli.net/2020/10/23/WZvHVdpfSL3CAPI.png)
+![[img-d6cd510a5e.png|image-20201023172332416]]
 
-<img src="https://i.loli.net/2020/10/23/u2LqvWVTtze8Ujr.png" width=10%>
+<img src="/images/img-d5338c00bc.png" width=10%>
 
 여기서 $S_{t+1}$ 가 terminal 이면, $Q\left(S_{t+1},A_{t+1}\right)$ 은 0 으로 정한다.
 
@@ -19,8 +21,6 @@ SARSA 는 [[state-value function]] 값 말고, [[action-value function]] 값을 
 
 # B) Algorithm
 
-![image-20201023173337312|700](https://i.loli.net/2020/10/23/UbZQXC3GcDFylAs.png)
+![[img-f76cf77c72.png|image-20201023173337312|700]]
 
-# C) Related
-
-# D) References
+# C) References

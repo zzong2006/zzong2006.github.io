@@ -1,6 +1,6 @@
 ---
 title: "Long Short-Term Memory"
-tags: ["NLP"]
+tags: NLP 
 aliases: ["LSTM"]
 ---
 
@@ -13,10 +13,10 @@ LSTM 은 [[Gated Recurrent Unit|GRU]] 에 비해 gate 가 많아서 성능이 �
 # B) The Figure of LSTM
 
 **단일 cell 모양**  
-![image-20201101213612591](https://i.loli.net/2020/11/01/RVcyXODha8qtnWB.png)
+![[img-44d7d6c617.png|image-20201101213612591]]
 
 **multiple cells**  
-![image-20201101213643402](https://i.loli.net/2020/11/01/aWev4oj52UQOGZr.png)
+![[img-63ab7e153f.png|image-20201101213643402]]
 
 # C) GRU 와 차이점
 
@@ -42,6 +42,4 @@ $\Gamma_{u}$ is a vector of dimension equal to the number of hidden units $a^{<t
 
 [[peephole connection]] 이란, 각 gate 의 weight 에 곱해질 vector 에 이전 cell state 를 포함하는 방법을 말한다. 즉, $[a^{<t-1>},x^{<t>}]$ 를 $[a^{<t-1>},x^{<t>},c^{<t-1>}]$ 로 변경하는 방식이다.
 
-# G) Related
-
-# H) References
+# G) References

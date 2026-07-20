@@ -1,6 +1,9 @@
 ---
 title: "value iteration"
-tags: ["reinforcement_learning", "DP"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - DP
 ---
 
 # Value Iteration ?
@@ -17,8 +20,6 @@ policy iteration 과 마찬가지로 value iteration 도 정확히 $v_*$ 로 수
 
 ## Algorithm
 
-![image-20201022004354693](https://i.loli.net/2020/10/21/PXHEnV8h3mTviOR.png)
-
-# Related
+![[img-56c508a4c9.png|image-20201022004354693]]
 
 # References

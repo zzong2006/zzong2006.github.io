@@ -1,7 +1,11 @@
 ---
 title: "Probabilistic latent Semantic Indexing"
-tags: ["bayesian_inference", "nlp", "paper_review", "statistic"]
-aliases: ["plsi"]
+aliases: [plsi]
+tags:
+  - bayesian_inference
+  - nlp
+  - paper_review
+  - statistic
 ---
 
 # A) Probabilistic Latent Semantic Indexing ?
@@ -26,7 +30,7 @@ pLSI(Probabilistic Latent Semantic Indexing)는 LSA를 확률 모델로 발전�
 
 ## A.1) 예시 (및 그림)
 
-![| 400](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fy8WoUNmYVz.png?alt=media&token=78a85dc2-2a00-4cc3-9252-028e43c03dc0)
+![[img-e0e15543d6.png|400]]
 
 Notation
 
@@ -98,7 +102,7 @@ Probabilistic
 
 pLSA 는 [[Latent Semantic Analysis|LSA]] 와 다른 기법이다. 하지만 비슷한 점이 있다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F6FDPojl-dW.png?alt=media&token=85091d42-60c8-45a2-947f-0ec93be53bb8)
+![[img-0fba3b5949.png]]
 
 - 비슷한 점
 	- LSA 결과물인 행렬 $\mathbf{U}_{k}$ 의 열벡터는 각각 해당 토픽에 대한 문서들의 분포 정보를 나타냅니다. 이는 pLSA 의 $P(d\mid z)$ 에 대응합니다.

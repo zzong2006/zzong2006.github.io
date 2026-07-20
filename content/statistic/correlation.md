@@ -1,7 +1,9 @@
 ---
 title: "correlation"
-tags: ["metrics", "statistic"]
 aliases: ["상관"]
+tags:
+  - metrics
+  - statistic
 ---
 
 # Correlation?
@@ -25,7 +27,7 @@ $$
 
 # 특징
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FUZRMtnsHaW.png?alt=media&token=83a100df-4bf2-4e4a-b32e-f20c6c6480cc)
+![[img-710f203736.png]]
 
 Positive correlation $\operatorname{corr}[x,y]$ means that when $x$ grows, then $y$ is also expected to grow. Negative correlation means that as $x$ increases, then $y$ decreases.
 

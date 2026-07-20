@@ -1,5 +1,8 @@
 ---
-title: "Optimization algorithms"
+layout: default
+title:  "Optimization algorithms"
+category: Deep Learning
+order: 8
 ---
 
 # A) Exponentially Weighted (moving) Averages
@@ -10,7 +13,7 @@ SGD 보다 좋은 최적화 알고리즘은 Exponentially Weighted Averages (지
 
 해당 방법을 알아보기 위해 다음과 같은 예시를 살펴보자. 아래 그림은 날짜에 따른 온도 값을 파란색 점으로 나타낸 그래프이다.
 
-![image-20201028224524846](https://i.loli.net/2020/10/28/aVAtf9W7wD5Ks6P.png)
+![[img-204ef40088.png|image-20201028224524846]]
 
 만약, 이 온도들의 경향 값을 확인하고 싶다면, 지수이동평균을 적용할 수 있는데, 어떤 day $t$ 에 대한 지수 이동 평균 값 $v_t$ 는 다음과 같이 구할 수 있다.
 
@@ -27,7 +30,7 @@ $$
   * 즉, $\beta=0.9$ 일 경우, $10$ 일의 온도 변화 추정치를 계산한 것과 같다.
   * $\beta=0.98$ 일 때 ($t=20$) 는 아래 그림의 초록색 그래프, $\beta=0.5$ 일 때 ($t=2$) 는 아래 그림의 노란색 그래프로 지수이동평균을 표현할 수 있다.
 
-![image-20201028225556735](https://i.loli.net/2020/10/28/1yQzOuCE93xDVle.png)
+![[img-b26eeec68e.png|image-20201028225556735]]
 
 ## A.1) 지수이동평균을 사용하는 이유
 
@@ -63,7 +66,7 @@ Repeat {
 
 # C) Gradient Descent with Momentum
 
-![image-20201028235419492](https://i.loli.net/2020/10/28/zXnBDUVWPCodJqM.png)
+![[img-3867199247.png|image-20201028235419492]]
 
 * $\alpha$ 는 learning rate
 * $\beta$ 는 지수이동평균 계수, 일반적으로 0.9 값을 가짐
@@ -73,7 +76,7 @@ Repeat {
 
 ## C.1) 왜 Momentum 이 먹히는 걸까?
 
-![image-20201029000002902](https://i.loli.net/2020/10/28/6J4M78iSqLPWIVN.png)
+![[img-a3c046ae79.png|image-20201029000002902]]
 
 위와같은 cost function 의 contour 가 있다고 가정하자. red point 까지 가기 위해서는 세로는 짧게, 가로는 길게 움직이고 싶을 것이다.
 
@@ -98,7 +101,7 @@ $$
 
 momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가해주는 역할을 하여 oscillating 을 줄이는 반면, RMSprop 는 oscillating 자체를 줄이려고 한다.
 
-![image-20201029005419965](https://i.loli.net/2020/10/28/1vQmMJiX2OKPCUa.png)
+![[img-f0d536c5cc.png|image-20201029005419965]]
 
 * 위 그림은 가로는 $w$ 이고, 세로는 $b$ 일 때의 cost function 이라 가정하자.
 * red point 에 빠르게 접근하기 위해서는 $w$ 가 업데이트 되는 값을 늘리고, $b$ 의 업데이트 값을 줄여야한다.
@@ -107,7 +110,7 @@ momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가�
 
 간단히 생각하면, 브레이크를 계속 밟고 움직이고 있는거라고 생각하면 된다. 즉, 어떻게 학습하든 천천히 학습하게 만들어서, 큰 learning rate 를 이용해서 학습을 수행해도 조절해준다.
 
-<img src="https://i.loli.net/2020/10/29/1lSyaGKLZxrHdBV.gif" alt="image" style="zoom: 67%;" />
+<img src="/images/img-ccb6923cfa.gif" alt="image" style="zoom: 67%;" />
 
 # E) Adam
 
@@ -115,7 +118,7 @@ momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가�
 
 * 즉, Momentum + RMSprop + Bias correction 이 세개를 다 조합한 알고리즘이다.
 
-![Adam Optimization Algorithm An effective optimization algorithm Towards Data Science](https://i.loli.net/2020/10/29/Tpi5D9zd3XKFsnq.png)
+![[img-a5ddb95aae.png|Adam Optimization Algorithm An effective optimization algorithm Towards Data Science]]
 
 * 여기서 $m_t$ 는 momentum, $v_t$ 는 RMSprop 에 관련된 variable 이라는 것을 알 수 있다.
 * 일반적으로 $\beta_1$ 은 0.9, 그리고 $\beta_2$ 는 0.999, $\epsilon =10^{-8}$ 로 default 값을 가진다.
@@ -145,7 +148,7 @@ $$
 
 # G) Local Optima in Neural Networks
 
-![image-20201029014248130](https://i.loli.net/2020/10/29/bNZdum7yYAH1854.png)
+![[img-9981d3b099.png|image-20201029014248130]]
 
 일반적으로 local optima 라면 왼쪽 위 그림의 움푹 파인곳을 생각한다.
 
@@ -155,4 +158,4 @@ $$
 
 * plateaus 란, 고지대 느낌으로, gradient 값이 넓은 공간에서 0 인 범위를 의미한다. 이런 곳에 위치한 cost function 은 쉽게 빠져나올 수 없다.
 
-![Plateau Formation Types of Plateaus Major Plateaus of The World PMF IAS](https://i.loli.net/2020/10/29/9WNn1y2T8QuAKfO.jpg)
+![[img-d93f2fdf9a.jpg|Plateau Formation Types of Plateaus Major Plateaus of The World PMF IAS]]

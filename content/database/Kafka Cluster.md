@@ -1,11 +1,13 @@
 ---
 title: "Kafka Cluster"
-tags: ["kafka"]
+aliases: []
+tags:
+  - kafka
 ---
 
 Kafka Cluster 는 여러 대의 카프카 서버가 모여 구성된 클러스터입니다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FGlF1kApnd6.png?alt=media&token=5fbb58ca-dd8b-44a4-ad3f-151b06b5d2bd)
+![[img-d406da1fcf.png]]
 이 이미지는 카프카 전체 프로세스의 구조를 보여줍니다. [[Producer]]가 데이터를 [[Kafka Cluster]]에 적재하고, 저장된 데이터는 각각 [[consumer group]] A와 B가 자신이 처리해야 할 Topic Foo와 Bar에서 가져가는 과정을 나타냅니다.
 
 [[Kafka Cluster]]를 구성하는 주요 요소는 다음과 같습니다.

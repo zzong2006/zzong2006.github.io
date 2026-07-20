@@ -1,6 +1,7 @@
 ---
 title: "convex function"
-tags: ["optimization"]
+tags:
+  - optimization
 aliases: ["convex", "concave"]
 ---
 
@@ -16,7 +17,7 @@ aliases: ["convex", "concave"]
 
 convex 는 윤곽이 볼록하다는 뜻이다.
 
-![|400](https://i.loli.net/2020/09/22/ayop5RBENvDdMbI.png)
+![[img-197a9c02e3.png|400]]
 
 # C) Strictly Convex Function
 
@@ -24,7 +25,7 @@ Convex function 은 optimal 값이 unique 하지만, 그 값을 가지는 점이
 
 예시는 다음과 같다.
 
-![|400](http://sanghyukchun.github.io/images/post/63-2.png)
+![[img-a08605cc08.png|400]]
 
 따라서 unique 한 optimal point 를 찾기 위해서는 하나의 조건이 더 필요한데, 바로 strictly convex 라는 조건이다.
 

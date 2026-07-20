@@ -1,13 +1,16 @@
 ---
 title: "concave function"
-tags: ["math", "numerical_method"]
+tags:
+  - math
+  - numerical_method
+aliases: []
 ---
 
 # 1. Concave Function ?
 
 [[convex function]] 의 반대 함수
 
-![|400](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F4H917fR_Ik.png?alt=media&token=c6dd5578-43d9-4ef8-a8a1-78e2c6999ac6)
+![[img-603ef75fad.png|400]]
 
 # 2. 주어진 함수가 Concave 인지 확인하는 법
 

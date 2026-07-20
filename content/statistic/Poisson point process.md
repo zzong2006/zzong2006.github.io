@@ -1,7 +1,8 @@
 ---
 title: "Poisson point process"
+aliases: []
+tags: 
 ---
-
 * Related
 	* [[Poisson distribution]]
 	* [[exponential distribution]]
@@ -58,7 +59,7 @@ title: "Poisson point process"
 : $X_{i}\sim\operatorname{Exponential}(\lambda)$
 
 		* $X_i$ 는 $i$ 번째 arrival 과 $i-1$ 번째 arrival 이 발생한 시구간
-	* ![Poisson-interarrival](https://www.probabilitycourse.com/images/chapter11/Poisson-interarrival.png)
+	* ![[img-68e828f21c.png|Poisson-interarrival]]
 * arrival times
 	* $N(t)$ 이 $\lambda$ 인 Poisson process 를 따른다면, 각 arrival times $T_{1},T_{2},\cdotsT_{n}$ 은 [[Gamma distribution]] 을 따른다: $\operatorname{Gamma}(n,\lambda)$
 		* $\begin{aligned}&T_{1}=X_{1}\\&T_{2}=X_{1}+X_{2}\\&T_{3}=X_{1}+X_{2}+X_{3}

@@ -1,10 +1,13 @@
 ---
-title: "Database Term"
+layout: default
+title:  "Database Term"
+category: Database
+order: 0.0
 ---
 
 1. Relation (릴레이션) : 테이블
 2. Attribute (속성)
-   * <img src="https://i.loli.net/2020/11/28/jcvqmb6NWEVICuX.png" alt="Relation" style="zoom: 33%;" />
+   * <img src="/images/img-95ef1e98f5.png" alt="Relation" style="zoom: 33%;" />
 3. Degree (차수)
 
    * 한 테이블에 들어있는 attribute 의 수

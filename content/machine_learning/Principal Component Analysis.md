@@ -1,7 +1,10 @@
 ---
 title: "Principal Component Analysis"
-tags: ["machine_learning", "embedding"]
-aliases: ["PCA"]
+aliases:
+  - PCA
+tags:
+  - machine_learning
+  - embedding
 ---
 
 # A) PCA?
@@ -26,7 +29,7 @@ $\boldsymbol{B}$ 을 이루는 열벡터들은 [[orthonormal]] 하다고 가정�
 
 ## A.1) Figure
 
-![|400](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fzhwt2huAUt.png?alt=media&token=a502a069-aefb-44e0-8408-3760a0ab9e90)
+![[img-fa007b12ad.png|400]]
 
 # B) PCA Derivation
 

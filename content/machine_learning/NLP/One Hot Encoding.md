@@ -1,7 +1,12 @@
 ---
 title: "One Hot Encoding"
-tags: ["word2vec", "machine_learning", "NLP"]
-aliases: ["ohe", "OHE"]
+tags:
+  - word2vec
+  - machine_learning
+  - NLP
+aliases:
+  - ohe
+  - OHE
 ---
 
 # A) One Hot Encoding ?
@@ -12,7 +17,7 @@ Numerical 데이터로 바꿀 때, 0 또는 1 만을 사용하는 방법을 의�
 
 예 1) [‘apple’, ‘dog’, ‘cat’] = `[[0, 0, 1], [0, 1, 0], [1, 0, 0]]`  
 예 2, Word Representation)  
-![|500](https://i.loli.net/2020/11/02/JaAQSVvm3LEWFhP.png)
+![[img-5bac312b1e.png|500]]
 
 이렇게 하면 모든 데이터가 [[orthogonal]] vector space 에 존재하는 vector 들로 표현된다.
 
@@ -31,6 +36,4 @@ Numerical 데이터로 바꿀 때, 0 또는 1 만을 사용하는 방법을 의�
 
 일반적으로 One Hot Encoding 이후 [[machine_learning/Principal Component Analysis]] 를 적용하는 과정을 거치면 좋다.
 
-# D) Related
-
-# E) References
+# D) References

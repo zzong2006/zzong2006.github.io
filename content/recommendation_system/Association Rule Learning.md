@@ -1,6 +1,8 @@
 ---
 title: "Association Rule Learning"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # Association Rule Learning ?
@@ -17,7 +19,7 @@ $$
 
 # Notations with Example
 
-![image-20201128180606645](https://i.loli.net/2020/11/28/axr1LiHj569Ugcp.png)
+![[img-7801d84f72.png|image-20201128180606645]]
 
 * $I={i_{1},i_{2},\ldots,i_{n}}$ 는 items 이라 불리는 $n$ 개의 이진 속성들을 의미한다.
 	* 테이블 예시를 통해서 $I=\{milk,bread,butter,beer,diapers\}$ 로 표현된다.
@@ -47,7 +49,5 @@ $$
 	* [[Eclat]]
 	* [[FP-growth algorithm]]
 	* [[FP-Tree Mining]]
-
-# Related
 
 # References

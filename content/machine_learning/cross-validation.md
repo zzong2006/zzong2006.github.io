@@ -1,6 +1,7 @@
 ---
 title: "cross-validation"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
 aliases: ["교차타당성검사", "k-fold cross-validation", "CV"]
 ---
 
@@ -22,7 +23,7 @@ cross-validation 은 데이터를 나눠서 모델을 검증하는 방식을 의
 
 validation 데이터에 대해서 가장 낮은 error 를 보이는 모델을 선정하고, 최종 (best) 모델은 전체 데이터를 이용하여 학습한다.
 
-![img](https://i.loli.net/2020/11/27/ejkCBQMaD8vPZVm.png)
+![[img-11f12418d1.png|img]]
 
 ### C.1.1) 단점
 
@@ -55,11 +56,9 @@ $k$ 가 높을수록, 데이터를 나누고 학습 및 평가하는 횟수가 �
 
 전체 데이터 (서로 다른 데이터 샘플들) 중에서 $p$ 개의 샘플들을 선택하여 모델 검증에 사용하는 방법이다.
 
-![](https://i.loli.net/2020/11/27/dHNxQkWzKnYXR1b.png)  
+![[img-d1c5989036.png]]  
 Validation set 을 구성할 수 있는 경우의 수는 ${}_{n}C_{p}$ 이다 ($n$ 은 데이터 샘플의 총 개수).
 
 $k$-fold [[cross-validation]] 과 마찬가지로, 각 data fold set 에 대하여 나온 검증 결과들을 aggregate 하여 최종적인 검증 결과를 도출하는 것이 일반적이다.
 
-# D) Related
-
-# E) References
+# D) References

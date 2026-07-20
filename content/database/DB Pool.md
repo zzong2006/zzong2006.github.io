@@ -1,6 +1,8 @@
 ---
 title: "DB Pool"
-tags: ["database"]
+tags:
+  - database
+aliases: []
 ---
 
 클라이언트의 요청에 따라 각 어플리케이션의 thread 에서 데이터베이스에 접근하기 위해서는 연결 (Connection) 이 필요하다.
@@ -21,7 +23,7 @@ DB 로의 추가 요청이 필요할 때 연결을 재사용할 수 있도록 �
 * DB 연결 정보를 캐시 (연결 풀) 에 저장 및 관리하여 application 단에서 DB 연결 정보가 필요할 때마다 Connection pool 에서 연결 정보를 가지고 와 사용하도록 한다.
 * 쉽게 생각하면, 연결 풀이라는 캐시안에 여러개의 연결 자원이 있고, 사용자는 DB 에 연결하고 싶을 때마다 연결 자원을 풀에서 꺼내 사용하는 것으로 생각하면 된다.
 
-![img](https://i.loli.net/2020/11/25/lyLDwPV81pqhEfe.png)
+![[img-bb285fe887.png|img]]
 
 ## 2.1. 장점
 
@@ -44,13 +46,13 @@ Pool 에 연결을 DB 연결 요청보다 너무 많이 생성해 놓으면, 메
 
 3. 처리가 끝나면 다시 pool 에 반환한다.
 
-![img](https://i.loli.net/2020/11/25/wu6gG8FnHMms3z5.jpg)
+![[img-1827510f4b.jpg|img]]
 
 # 3. Thread Pool (스레드 풀)
 
 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고, 작업 큐 (Queue) 에 들어오는 작업들을 하나씩 스레드가 맡아 처리하는 것
 
-<img src="https://i.loli.net/2020/11/25/xiosvQ15F3XIZrp.jpg" alt="img" style="zoom:67%;" />
+<img src="/images/img-55f0bb47f3.jpg" alt="img" style="zoom:67%;" />
 
 ## 3.1. 장점
 

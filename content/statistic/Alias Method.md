@@ -1,6 +1,8 @@
 ---
 title: "Alias Method"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # A) Why We Need the Alias Method?
@@ -29,7 +31,7 @@ tags: ["statistic"]
 ## C.1) Build Phase
 
 * 아래와 그림 같이 네개의 모두 다른 확률들이 존재한다고 가정하자.
- ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FyyLo7Lns59.png?alt=media&token=c6e83bbb-e388-4330-a909-dd6e1a052bfe)
+ ![[img-bde2243d9f.png]]
 
 이 확률을 모두 더하면 1 이다.
 
@@ -70,12 +72,8 @@ tags: ["statistic"]
 * 자세한 내용은 [2] 를 참조한다. 여기에 alias method 에 대한 설명도 같이 들어있다.
 		- [2] https://arxiv.org/pdf/1903.11749.pdf
 
-# F) Related
-
-# G) References
+# F) References
 
 [1] A Linear Algorithm For Generating Random Numbers With a Given Distribution
 
-# H) Related
-
-# I) References
+# H) References

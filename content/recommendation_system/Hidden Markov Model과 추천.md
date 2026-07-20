@@ -1,7 +1,8 @@
 ---
 title: "Hidden Markov Model과 추천"
+aliases: []
+tags: []
 ---
-
 
 # A) Hidden Markov Model 과 추천
 
@@ -18,7 +19,7 @@ title: "Hidden Markov Model과 추천"
 
 ### A.1.2) 항아리 문제를 이용한 설명
 
- ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FBc0BresMWt.png?alt=media&token=5eecd656-0d59-4b54-bd5d-c59b333a58c0)
+ ![[img-ae7ee17148.png]]
 
 * 방 안에 요정과 항아리 $X_{1},X_{2},X_{3}$(states) 가 있습니다.
 * 각 항아리에는 이름 붙여진 공 (observations) 들이 섞여 들어가 있습니다.

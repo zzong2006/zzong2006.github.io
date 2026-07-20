@@ -1,6 +1,7 @@
 ---
 title: "neural network"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
 aliases: ["NN", "신경망"]
 ---
 
@@ -8,7 +9,7 @@ aliases: ["NN", "신경망"]
 
 hidden layer 가 한개 있는 neural network 를 살펴보자.
 
-![|500](https://i.loli.net/2020/10/27/856R3xQNei4AShV.png)
+![[img-10b81ec5d8.png|500]]
 
 입력 units 은 세개이고, activation function 이 사용된다.
 

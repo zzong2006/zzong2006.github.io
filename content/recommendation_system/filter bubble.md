@@ -1,6 +1,8 @@
 ---
 title: "filter bubble"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Filter Bubble ?
@@ -13,7 +15,7 @@ tags: ["recommendation_system"]
 
 # B) 필터 버블 (filter bubble) 의 위험성
 
-![Measuring the Filter Bubble: How Google is influencing what you click](https://spreadprivacy.com/content/images/2018/11/filter-bubble-header-3.png)
+![[img-7ee81d8d34.png|Measuring the Filter Bubble: How Google is influencing what you click]]
 
 정보를 필터링하는 알고리즘에 정치적 혹은 상업적 논리가 개입되면, 필터링을 거친 정보만을 받아보는 정보 이용자들은 모르는 사이에 정보 편식을 하게 되고 그로인해 자신도 모르는 사이 타의에 의해 가치관 왜곡이 일어날 수 있음을 우려
 
@@ -21,6 +23,4 @@ tags: ["recommendation_system"]
 
 알고리즘이 제대로 작동하는가의 문제는 차치 (set aside) 하더라도, 필터버블은 한정된 정보만을 제공하기 때문에 반대 성향을 가진 사람들의 글이나 새로운 정보, 평소에 보지 않던 분야의 뉴스 등을 접할 기회를 아예 박탈당하기 때문에, 이용자들의 지식과 가치관 확대를 방해할 수 있다.
 
-# C) Related
-
-# D) References
+# C) References

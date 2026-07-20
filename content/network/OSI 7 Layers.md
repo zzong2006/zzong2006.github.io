@@ -1,12 +1,14 @@
 ---
 title: "OSI 7 Layers"
-tags: ["network"]
-aliases: ["OSI"]
+tags:
+  - network
+aliases:
+  - OSI
 ---
 
 # A) OSI 7 Layers ?
 
-<img src="https://i.loli.net/2020/11/26/RJiAZ1qeOMCro2W.png" alt="OSI계층 TCP/IP 모델 쉽게 알아보기" style="zoom:67%;" />
+<img src="/images/img-5a37b84110.png" alt="OSI계층 TCP/IP 모델 쉽게 알아보기" style="zoom:67%;" />
 
 ## A.1) 계층을 나누는 이유
 
@@ -23,7 +25,7 @@ aliases: ["OSI"]
 
 ## A.3) 계층 종류 (하위층부터 상위층까지)
 
-![image-20201203102807960](https://i.loli.net/2020/12/03/WidMyRszHJFTwe5.png)
+![[img-190b5407c4.png|image-20201203102807960]]
 
 1. 물리 (Physical)
 
@@ -69,6 +71,4 @@ aliases: ["OSI"]
    * 최종 목적지로, 응용 프로세스와 직접 관계하여 일반적인 응용 서비스를 수행한다.
    * 사용자 인터페이스, 전자우편, 데이터베이스 관리 등의 서비스를 제공한다.
 
-# B) Related
-
-# C) References
+# B) References

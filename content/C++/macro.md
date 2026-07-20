@@ -1,6 +1,8 @@
 ---
 title: "macro"
-tags: ["Cpp"]
+aliases: []
+tags:
+  - Cpp
 ---
 
 # A) Macro ?
@@ -9,4 +11,4 @@ tags: ["Cpp"]
 
 # B) 예시
 
-![|400](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FnK1B0Ya6gs.png?alt=media&token=4d5570af-a4ab-44b8-a67f-f7fc3ba860e9)
+![[img-3af240ecd2.png|400]]

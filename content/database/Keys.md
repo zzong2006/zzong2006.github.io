@@ -1,10 +1,12 @@
 ---
-title: "Keys"
+layout: default
+title: Keys
+category: Database
 ---
 
 Key: tuple 을 찾거나 순서대로 정렬할 때, 다른 튜플들과 구별할 수 있는 유일한 기준이 되는 속성
 
-<img src="https://i.loli.net/2020/11/29/rXlCaQ1AnMgUq2o.png" alt="키(Key)의" style="zoom:80%;" />
+<img src="/images/img-34950f764a.png" alt="키(Key)의" style="zoom:80%;" />
 
 # A) Key 의 속성 두 가지
 
@@ -17,7 +19,7 @@ Key: tuple 을 찾거나 순서대로 정렬할 때, 다른 튜플들과 구별�
 * 꼭 필요한 최소의 속성으로 구성되어야 하는것
 * 키를 구성하는 속성 하나를 제거하면 유일하게 식별할 수 없어야 함
 
-![img](https://i.loli.net/2020/11/29/7jmWifFzZgCEYdv.png)
+![[img-63f3ce99c5.png|img]]
 
 # B) 키 종류
 

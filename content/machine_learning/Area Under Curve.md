@@ -1,14 +1,17 @@
 ---
 title: "Area Under Curve"
-tags: ["classification", "metrics", "machine_learning"]
 aliases: ["AUC"]
+tags:
+  - classification
+  - metrics
+  - machine_learning
 ---
 
 # A) AUC
 
 AUC 는 [[ROC Curve|ROC]] 곡선 아래의 영역을 의미한다. 즉, AUC 가 높다는 사실은 클래스를 구별하는 모델의 성능이 휼륭하다는 것을 의미한다.
 
-![](https://i.loli.net/2020/11/05/mJXUncZlaSg2wdt.gif)
+![[img-22d80b9cf0.gif]]
 
 위 그림에서 두 class 분포가 완전히 겹칠 경우, ROC 곡선이 선형이 되면서 AUC 값이 $0.5$ 가 되는데, 이 경우 해당 모델은 이진 분류기의 능력을 완전히 상실했다는 의미가 된다.
 

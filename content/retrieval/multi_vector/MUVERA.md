@@ -1,7 +1,11 @@
 ---
 title: "MUVERA"
-tags: ["retrieval", "IR", "ANN", "multi_vector"]
-aliases: ["무베라"]
+tags:
+  - retrieval
+  - IR
+  - ANN
+  - multi_vector
+aliases: [무베라]
 ---
 
 최신 정보 검색(IR) 분야에서는 embedding model이 핵심 기술로 자리 잡고 있습니다. 사용자가 예를 들어 “에베레스트 산의 높이는?”과 같은 질의를 입력하면, IR의 목표는 방대한 데이터(수십억 개의 문서, 이미지, 동영상 등) 중에서 해당 질의와 관련 있는 정보를 찾아내는 것입니다. 임베딩 모델은 각 데이터 포인트를 하나의 벡터(임베딩)로 변환하여 의미적으로 유사한 데이터들이 수학적으로도 비슷한 벡터가 되도록 만듭니다. 이 임베딩들은 주로 [[dot product|inner product]](내적 유사도)를 통해 비교되며, 이를 활용해 효율적인 [[maximum inner product search]] (MIPS) 알고리즘으로 빠른 검색이 가능합니다.
@@ -272,14 +276,14 @@ MUVERA 성능 평가는 [[BEIR]] 정보검색 표준 benchmark세트에서 이�
 
 예컨대 동일 recall 달성 시 필요한 candidate 수가 5~20배 적었습니다.
 
-![MUVERA3_Recall](https://storage.googleapis.com/gweb-research2023-media/images/MUVERA3_Recall.width-1250.png)
+![[img-bc77bc77c7.png|MUVERA3_Recall]]
 
 _Fixed dimensional encoding(FDE)의 차원별 recall vs 기존 single-vector heuristic(SV). 10240 차원 FDE조차 원본 MV 표현(SV heuristic 사용)의 크기와 거의 같으면서 훨씬 적은 비교만 필요._
 
 **낮아진 지연시간(latency):**
 최신 multi-vector retrieval 시스템인 PLAID 대비 MUVERA는 평균 10% 더 높은 recall 및 약 90% 더 짧아진 latency로 BEIR 데이터셋 전반에서 월등했습니다(Figure 참고).
 
-![MUVERA5_ResultsFinal](https://storage.googleapis.com/gweb-research2023-media/images/MUVERA5_ResultsFinal.width-1250.png)
+![[img-badd4b4305.png|MUVERA5_ResultsFinal]]
 
 _MUVERA vs PLAID on BEIR benchmarks._
 

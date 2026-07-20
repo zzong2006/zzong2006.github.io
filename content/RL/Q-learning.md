@@ -1,6 +1,8 @@
 ---
 title: "Q-learning"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) Q-learning ?
@@ -39,11 +41,11 @@ $$
 
 **algorithm**
 
-![image-20201023175619321](https://i.loli.net/2020/10/23/a6LDEiPeUukvNgX.png)
+![[img-fe468d670e.png|image-20201023175619321]]
 
 **Diagram (vs. [[SARSA]])**
 
-![image-20201023180629700](https://i.loli.net/2020/10/23/Bp152rmX3Rlsdi9.png)
+![[img-1fb388ed3e.png|image-20201023180629700]]
 
 # B) Double Q-learning
 

@@ -1,6 +1,6 @@
 ---
 title: "sigmoid function"
-tags: ["activation_function"]
+tags: activation_function
 aliases: ["sigmoid", "시그모이드", "logistic function"]
 ---
 
@@ -20,7 +20,7 @@ $$
 
 약 -4.5 이하로는 무조건 0 을, 4.5 이상으로는 무조건 1 의 값을 가진다.  
 
-![|500](https://curt-park.github.io/images/lstm_strong_on_gradient_vanishing/sigmoid.png)
+![[img-7237801acd.png|500]]
 
 # B) II. 특징
 

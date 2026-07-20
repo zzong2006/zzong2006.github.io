@@ -1,6 +1,7 @@
 ---
 title: "Policy Gradient"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
 aliases: ["정책 경사"]
 ---
 
@@ -76,7 +77,7 @@ Policy Gradient 는 value 를 통해 action 을 고르는 것이 아니라 actio
 * ## Policy Gradient for Continuing Problems  
 	* episode boundaries 가 없는 연속 문제에서는 매 time step 마다 보상의 평균 비율에 대한 performance 를 정의할 필요가 있다.
 	* $\begin{aligned}\displaystyleJ(\boldsymbol{\theta})\doteqr(\pi)&\doteq\lim_{h\rightarrow\infty}\frac{1}{h}\sum_{t=1}^{h}\mathbb{E}\left[R_{t}\midS_{0},A_{0:t-1}\sim\pi\right]\\&=\lim_{t\rightarrow\infty}\mathbb{E}\left[R_{t}\midS_{0},A_{0:t-1}\sim\pi\right]\\\displaystyle&=\sum_{s}\mu(s)\sum_{a}\pi(a\mids)\sum_{s^{\prime},r}p\left(s^{\prime},r\mids,a\right)r\end{aligned}$
-	* ![image-20201107020553440](https://i.loli.net/2020/11/07/sKFSgkCroa7qRcd.png)
+	* ![[img-0c9c72dcb3.png|image-20201107020553440]]
 * ## Policy Parameterization for Continuous Actions  
 * Continuous actions 에서는 많은 actions 에 대해 선택할 확률보다는 확률 분포에 대한 통계 모델을 학습한다.
 * Gaussian 분포의 경우 $\mu$ 와 $\sigma$ 를 찾아내는 parameter 를 두 개 활용한다.
@@ -85,6 +86,4 @@ Policy Gradient 는 value 를 통해 action 을 고르는 것이 아니라 actio
 * 표준 편차 $\sigma$ 의 경우 항상 양수여야 하므로, 선형 함수의 exponential 을 활용하는 것이 좋다.
 * $\mu(s,\boldsymbol{\theta})\doteq\boldsymbol{\theta}_{\mu}^{\top}\mathbf{x}_{\mu}(s)\quad\text{and}\quad\sigma(s,\boldsymbol{\theta})\doteq\exp\left(\boldsymbol{\theta}_{\sigma}^{\top}\mathbf{x}_{\sigma}(s)\right)$
 
-# F) Related
-
-# G) References
+# F) References

@@ -1,6 +1,12 @@
 ---
 title: "Deep Neural Networks for YouTube Recommendations"
-tags: ["RecSyS", "Youtube", "paper_review", "recommendation_system", "y2016"]
+aliases: []
+tags:
+  - RecSyS
+  - Youtube
+  - paper_review
+  - recommendation_system
+  - y2016
 ---
 
 [paper link](https://static.googleusercontent.com/media/research.google.com/ko//pubs/archive/45530.pdf)
@@ -38,7 +44,7 @@ tags: ["RecSyS", "Youtube", "paper_review", "recommendation_system", "y2016"]
 
 # D) RS Architecture
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FJas03vI3mQ.png?alt=media&token=3522e2f4-4259-44ac-966d-41d3d6198296)
+![[img-da18f059a1.png]]
 
 # E) Candidate Generation
 
@@ -69,7 +75,7 @@ $$
 	* expected watch time per impression 을 기준으로 A/B test 진행
 		* CTR 의 경우는 낚시성 비디오들을 promote 해주는 경향이 있기 때문에 시청 시간 (watch time) 이 사용자의 흥미를 잡아내는데 더 나음
 	* Deep ranking network architecture
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FMUX73N-B2P.png?alt=media&token=c213a18b-f278-4bc0-a787-333ac620a6a6)
+		* ![[img-4118b243de.png]]
 
 # F) References
 

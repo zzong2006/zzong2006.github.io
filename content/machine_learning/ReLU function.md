@@ -1,11 +1,12 @@
 ---
 title: "ReLU function"
-tags: ["activation_function"]
+tags: activation_function
+aliases: []
 ---
 
 # A) ReLU Function ?
 
-![](https://i.loli.net/2020/10/27/vyfGMXkse3i9YVS.png)
+![[img-e4677b4a55.png]]
 
 $$
 f(x)=\{\begin{array}{ll}0&\text{for}x\leq0\\x&\text{for}x>0\end{array}=\max\{0,x\}
@@ -31,6 +32,4 @@ scaling law 에서 얘기하는 바처럼 충분히 많은 데이터로 큰 모�
 	* 이 현상을 완화하기 위해 [[Leaky ReLU Function]] 을 사용한다.
 * 하지만 실제로는 대부분의 $x$ 값들은 $0$ 보다 충분히 커서 학습이 상당히 빠르게 이루어 질 수 있다.
 
-# D) Related
-
-# E) References
+# D) References

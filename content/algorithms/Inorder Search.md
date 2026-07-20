@@ -1,7 +1,8 @@
 ---
 title: "Inorder Search"
+aliases: []
+tags: []
 ---
-
 * Inorder Search 는 root 를 중간 단계에서 search 하는 방식이다.
 	1. Traverse the left subtree
 	2. Visit the root.
@@ -9,7 +10,7 @@ title: "Inorder Search"
 
 # A) 예시
 
-![Example Tree](https://media.geeksforgeeks.org/wp-content/cdn-uploads/2009/06/tree12.gif)
+![[img-7bc456ab0e.gif|Example Tree]]
 	- Inorder (Left, Root, Right)
 		- 4 2 5 1 3
 

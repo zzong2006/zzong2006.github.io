@@ -1,6 +1,7 @@
 ---
 title: "trapezoidal rule"
-tags: ["formula"]
+tags:
+  - formula
 aliases: ["사다리꼴 공식"]
 ---
 
@@ -10,7 +11,7 @@ aliases: ["사다리꼴 공식"]
 
 사다리꼴 공식은 적분이 나타내는 넓이를 일련의 사다리꼴들의 넓이의 합으로 근사한다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FBhw6tooX2H.png?alt=media&token=1128b253-f9be-4c5b-bffd-eca90a79b290)
+![[img-51fbdf3148.png]]
 
 # B) 정의
 

@@ -1,6 +1,10 @@
 ---
 title: "Word Embedding"
-tags: ["word2vec", "NLP", "machine_learning"]
+tags:
+  - word2vec
+  - NLP
+  - machine_learning
+aliases: []
 ---
 
 # A) Word Embedding ?
@@ -9,13 +13,13 @@ tags: ["word2vec", "NLP", "machine_learning"]
 
 ## A.1) 예시
 
-![image-20201102235642830](https://i.loli.net/2020/11/02/1Ob4gnQziUPW2hR.png)
+![[img-3dad2b83b7.png|image-20201102235642830]]
 
 [[machine_learning/NLP/One Hot Encoding]] 을 통해서도 Word Embedding 이 가능하긴 하다.
 
 Word Embedding 은 convolution Layer ([[Convolution Neural Network|CNN]] 참고) 의 동작 방식과 유사하다. 즉, Convolutional layer 를 이용하여 그림에 대한 feature vector 를 [[Encoding]] 하는 방법이 [[Embedding]] 과 유사하다.
 
-![image-20201103001401892](https://i.loli.net/2020/11/02/DlS5XGpwQdP72Lf.png)
+![[img-06a32f90d6.png|image-20201103001401892]]
 
 Encoding 과 Embedding 의 차이점은 차원 축소를 적용하는 목적이 다르다는 것이다. Embedding 은 도메인이 고정 (fixed) 된 단어에 대한 representation 을 찾는 반면, Encoding 은 도메인이 제한이 없는 그림 파일들에 대해 representation 을 찾는다는 것이다.
 
@@ -26,7 +30,7 @@ Tips of the word embedding: 문장 내의 단어들의 임베딩 벡터들의 �
 모델이 학습하다가 모르는 단어가 나와도, 만약 해당 단어가 특정 타입의 단어와 비슷하다고 계산되면, 모르는 단어도 어떤 타입의 vector 로 치환해야할지 쉽게 알 수 있을 것이다.
 
 **예시**  
-![https://i.loli.net/2020/11/02/raWOyJFN3swqfPi.png](https://i.loli.net/2020/11/02/raWOyJFN3swqfPi.png)
+![[img-0192f94aba.png|https://i.loli.net/2020/11/02/raWOyJFN3swqfPi.png]]
 
 durian 과 cultivator 라는 단어를 몰라도 durian 이 orange 와 비슷하다면, cultivator 역시 farmer 와 비슷하다고 생각할 것이다.
 
@@ -40,7 +44,7 @@ durian 과 cultivator 라는 단어를 몰라도 durian 이 orange 와 비슷하
 Word Embedding 은 어떠한 특성을 통해 학습되는지 예시를 통해 직관적으로 알아보자.
 
 각 word 는 embedding vector 로 표현되는데, 이 vector 들 간의 차이를 활용한다.  
-![https://i.loli.net/2020/11/03/3JVDFhO6CXjEKeQ.png](https://i.loli.net/2020/11/03/3JVDFhO6CXjEKeQ.png)
+![[img-fa5624e6f4.png|https://i.loli.net/2020/11/03/3JVDFhO6CXjEKeQ.png]]
 
 단어 Man 과 Woman 은 gender feature 에서 비슷하므로, 두 vector 를 서로 뺀 후의 값을 살펴보면, Gender 차원만 차이가 발생함을 확인할 수 있다.
 
@@ -62,7 +66,7 @@ $e_w$ 는 찾으려하는 word 의 embedding vector 다.
 * Embedding vector 간 유사도를 계산할 때, 일반적으로 [[cosine similarity]] 를 사용한다.
 
 이러한 방법으로 아래 그림과 같은 다양한 관계를 찾을 수 있다.  
-![https://i.loli.net/2020/11/03/vlBXAcR8t1Vpanj.png](https://i.loli.net/2020/11/03/vlBXAcR8t1Vpanj.png)
+![[img-99faed01ef.png|https://i.loli.net/2020/11/03/vlBXAcR8t1Vpanj.png]]
 
 # D) Related
 

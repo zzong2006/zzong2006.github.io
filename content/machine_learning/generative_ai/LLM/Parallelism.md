@@ -1,7 +1,6 @@
 ---
 title: "Parallelism"
 ---
-
 # A) Megatron-DeepSpeed 의 3D 병렬 처리
 
 Megatron-DeepSpeed 는 대규모 모델을 효율적으로 학습시키기 위해 3D 병렬 처리 방식을 구현합니다. 여기서는 이 3D 병렬 처리의 주요 구성 요소들을 간단히 설명하겠습니다.
@@ -30,7 +29,7 @@ ZeRO 는 TensorParallel 과 유사하게 텐서를 샤딩 (sharding) 하지만, 
 
 ## C.1) ZeRO Data Parallelism
 
-ZeRO-powered data parallelism (ZeRO-DP) is described on the following diagram from this [blog post](https://www.microsoft.com/en-us/research/blog/zero-deepspeed-new-system-optimizations-enable-training-models-with-over-100-billion-parameters/)[![DeepSpeed-Image-1](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero.png)
+ZeRO-powered data parallelism (ZeRO-DP) is described on the following diagram from this [blog post](https://www.microsoft.com/en-us/research/blog/zero-deepspeed-new-system-optimizations-enable-training-models-with-over-100-billion-parameters/)[![[img-526c3a01f3.png|DeepSpeed-Image-1]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero.png)
 
 병렬 처리는 처음에는 복잡하게 느껴질 수 있지만, 실제로는 간단한 개념입니다. 기본적으로 DDP(Distributed Data Parallel) 와 비슷하지만, 전체 모델의 파라미터나 그래디언트, 옵티마이저 상태를 모든 GPU 에 복제하는 대신, 각 GPU 가 그 중 일부만 저장합니다.
 
@@ -48,15 +47,15 @@ The main building block of any transformer is a fully connected `nn.Linear` fo
 
 Following the Megatron paper’s notation, we can write the dot-product part of it as `Y = GeLU(XA)`, where `X` and `Y` are the input and output vectors, and `A` is the weight matrix.
 
-If we look at the computation in matrix form, it’s easy to see how the matrix multiplication can be split between multiple GPUs:[![Parallel GEMM](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_gemm.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_gemm.png)
+If we look at the computation in matrix form, it’s easy to see how the matrix multiplication can be split between multiple GPUs:[![[img-7fca6a17be.png|Parallel GEMM]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_gemm.png)
 
-If we split the weight matrix `A` column-wise across `N` GPUs and perform matrix multiplications `XA_1` through `XA_n` in parallel, then we will end up with `N` output vectors `Y_1, Y_2, …, Y_n` which can be fed into `GeLU` independently:[![independent GeLU](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-independent-gelu.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-independent-gelu.png). Notice with the Y matrix split along the columns, we can split the second GEMM along its rows so that it takes the output of the GeLU directly without any extra communication.
+If we split the weight matrix `A` column-wise across `N` GPUs and perform matrix multiplications `XA_1` through `XA_n` in parallel, then we will end up with `N` output vectors `Y_1, Y_2, …, Y_n` which can be fed into `GeLU` independently:[![[img-02f7bab459.png|independent GeLU]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-independent-gelu.png). Notice with the Y matrix split along the columns, we can split the second GEMM along its rows so that it takes the output of the GeLU directly without any extra communication.
 
-Using this principle, we can update an MLP of arbitrary depth, while synchronizing the GPUs after each row-column sequence. The Megatron-LM paper authors provide a helpful illustration for that:[![parallel shard processing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_shard_processing.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_shard_processing.png)
+Using this principle, we can update an MLP of arbitrary depth, while synchronizing the GPUs after each row-column sequence. The Megatron-LM paper authors provide a helpful illustration for that:[![[img-fef936b2a6.png|parallel shard processing]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_shard_processing.png)
 
 Here `f` is an identity operator in the forward pass and all reduce in the backward pass while `g` is an all reduce in the forward pass and identity in the backward pass.
 
-Parallelizing the multi-headed attention layers is even simpler, since they are already inherently parallel, due to having multiple independent heads![![parallel self-attention](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_self_attention.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_self_attention.png)
+Parallelizing the multi-headed attention layers is even simpler, since they are already inherently parallel, due to having multiple independent heads![[img-7d5b2991c4.png|![parallel self-attention]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-tp-parallel_self_attention.png)
 
 Special considerations: Due to the two all reduces per layer in both the forward and backward passes, TP requires a very fast interconnect between devices. Therefore it’s not advisable to do TP across more than one node, unless you have a very fast network. In our case the inter-node was much slower than PCIe. Practically, if a node has 4 GPUs, the highest TP degree is therefore 4. If you need a TP degree of 8, you need to use nodes that have at least 8 GPUs.
 
@@ -90,7 +89,7 @@ Pipeline Parallelism (PP) is almost identical to a naive PP described above, but
 
 The following illustration from the [GPipe paper](https://ai.googleblog.com/2019/03/introducing-gpipe-open-source-library.html) shows the naive PP on the top, and PP on the bottom:
 
-[![mp-pp](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-gpipe-bubble.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-gpipe-bubble.png)
+[![[img-68064474db.png|mp-pp]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-gpipe-bubble.png)
 
 It’s easy to see from the bottom diagram how PP has fewer dead zones, where GPUs are idle. The idle parts are referred to as the “bubble”.
 
@@ -120,7 +119,7 @@ One other important issue here is the size of the word embedding matrix. While n
 
 The following diagram from the DeepSpeed [pipeline tutorial](https://www.deepspeed.ai/tutorials/pipeline/) demonstrates how one combines DP with PP.
 
-[![dp-pp-2d](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero-dp-pp.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero-dp-pp.png)
+[![[img-73c1499e28.png|dp-pp-2d]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero-dp-pp.png)
 
 Here it’s important to see how DP rank 0 doesn’t see GPU2 and DP rank 1 doesn’t see GPU3. To DP there are just GPUs 0 and 1 where it feeds data as if there were just 2 GPUs. GPU0 “secretly” offloads some of its load to GPU2 using PP. And GPU1 does the same by enlisting GPU3 to its aid.
 
@@ -130,7 +129,7 @@ Since each dimension requires at least 2 GPUs, here you’d need at least 4 GPUs
 
 To get an even more efficient training PP is combined with TP and DP which is called 3D parallelism. This can be seen in the following diagram.
 
-[![dp-pp-tp-3d](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-deepspeed-3d.png)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-deepspeed-3d.png)
+[![[img-04a3b5c0f9.png|dp-pp-tp-3d]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-deepspeed-3d.png)
 
 This diagram is from a blog post [3D parallelism: Scaling to trillion-parameter models](https://www.microsoft.com/en-us/research/blog/deepspeed-extreme-scale-model-training-for-everyone/), which is a good read as well.
 
@@ -154,7 +153,7 @@ Training huge LLM models in FP16 is a no-no.
 
 We have proved it to ourselves by spending several months [training a 104B model](https://github.com/bigscience-workshop/bigscience/tree/master/train/tr8-104B-wide) which as you can tell from the [tensorboard](https://huggingface.co/bigscience/tr8-104B-logs/tensorboard) was but a complete failure. We learned a lot of things while fighting the ever diverging lm-loss:
 
-[![104B-fail](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/104b-lm-loss.png)](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/104b-lm-loss.png)
+[![[img-321e8ba57f.png|104B-fail]]](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/104b-lm-loss.png)
 
 and we also got the same advice from the Megatron-LM and DeepSpeed teams after they trained the [530B model](https://arxiv.org/abs/2201.11990). The recent release of [OPT-175B](https://arxiv.org/abs/2205.01068) too reported that they had a very difficult time training in FP16.
 
@@ -174,7 +173,7 @@ One crucial issue is gradient accumulation, and it’s one of the main features 
 
 Besides other improvements we believe that using BF16 mixed precision training turned a potential nightmare into a relatively smooth process which can be observed from the following lm loss graph:
 
-[![176B-fail](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/176b-lm-loss.png)](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/176b-lm-loss.png)
+[![[img-4ffd37ffb1.png|176B-fail]]](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/176b-lm-loss.png)
 
 # J) [](https://huggingface.co/blog/bloom-megatron-deepspeed#fused-cuda-kernels)Fused CUDA Kernels
 

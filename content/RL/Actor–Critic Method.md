@@ -1,7 +1,8 @@
 ---
 title: "Actor–Critic Method"
-tags: ["reinforcement_learning"]
 aliases: ["actor-critic"]
+tags:
+  - reinforcement_learning
 ---
 
 # A) Actor–Critic Method ?
@@ -19,4 +20,4 @@ $$
 \begin{aligned}\boldsymbol{\theta}_{t+1}&\doteq\boldsymbol{\theta}_{t}+\alpha\left(G_{t:t+1}-\hat{v}\left(S_{t},\mathbf{w}\right)\right)\frac{\nabla\pi\left(A_{t}\midS_{t},\boldsymbol{\theta}_{t}\right)}{\pi\left(A_{t}\midS_{t},\boldsymbol{\theta}_{t}\right)}\\&=\boldsymbol{\theta}_{t}+\alpha\left(R_{t+1}+\gamma\hat{v}\left(S_{t+1},\mathbf{w}\right)-\hat{v}\left(S_{t},\mathbf{w}\right)\right)\frac{\nabla\pi\left(A_{t}\midS_{t},\boldsymbol{\theta}_{t}\right)}{\pi\left(A_{t}\mid S_{t},\boldsymbol{\theta}_{t}\right)}\\&=\boldsymbol{\theta}_{t}+\alpha\delta_{t}\frac{\nabla\pi\left(A_{t}\midS_{t},\boldsymbol{\theta}_{t}\right)}{\pi\left(A_{t}\mid S_{t},\boldsymbol{\theta}_{t}\right)}\end{aligned}
 $$
 
-![image-20201107010652280](https://i.loli.net/2020/11/07/46s8biEarjHPOTl.png)
+![[img-56394f8a32.png|image-20201107010652280]]

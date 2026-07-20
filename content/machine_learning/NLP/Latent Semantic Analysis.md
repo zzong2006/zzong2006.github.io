@@ -1,7 +1,10 @@
 ---
 title: "Latent Semantic Analysis"
-tags: ["topic_modeling", "embedding"]
-aliases: ["LSA"]
+aliases:
+  - LSA
+tags:
+  - topic_modeling
+  - embedding
 ---
 
 Latent Semantic Analysis 는 잠재 의미 분석 (Latent Semantic Indexing, LSI) 이라고 부르기도 함
@@ -10,7 +13,7 @@ LSA 는 기본적으로 DTM 이나 [[TF-IDF|TF-IDF]] 행렬에 절단된 [[linea
 
 # A) 예시
 
-![|500](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FkpszRnGSC3.png?alt=media&token=55827753-6df8-4027-aea9-c3a79a90682c)
+![[img-b9a8ed2930.png|500]]
 
 위 그림과 같이 tokenize 되어 $n$ 개의 단어로 표현된 각 $m$ 개의 문서들을 $m\times n$ matrix 로 표현하고, 이 matrix 를 truncated SVD 를 통해 $k\times m$ matrix ($U \Sigma\\V^{\mathrm{T}}$ 중 $V^{\mathrm{T}}$) 를 찾아낸다.
 

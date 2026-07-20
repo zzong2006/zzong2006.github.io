@@ -1,6 +1,9 @@
 ---
 title: "activation function"
-tags: ["machine_learning deep_learning"]
+tags:
+  - machine_learning
+  - deep_learning
+aliases: []
 ---
 
 # A) Non-Linear Activation(비 선형 함수) 의 사용 이유
@@ -9,7 +12,7 @@ tags: ["machine_learning deep_learning"]
 
 예시: 다음과 같이 비 선형 함수를 사용하지 않는 신경망이 있다고 가정하자.  
 
-![|500](https://i.loli.net/2020/10/27/PxZ15jGEuCLT37w.png)
+![[img-a9c53fe8c7.png|500]]
 
 ## A.1.1) $x$ 가 주어질 때
 
@@ -29,6 +32,4 @@ tags: ["machine_learning deep_learning"]
 		* 입력 데이터 $x$ 의 크기가 매우 크거나 작을 때, [[sigmoid function]] 과 [[tanh function]] 의 미분값이 $0$ 에 매우 가깝게 나오므로 학습이 느려지는 현상을 보인다.
 * [[ReLU function]] and [[Leaky ReLU Function]]
 
-# B) Related
-
-# C) References
+# B) References

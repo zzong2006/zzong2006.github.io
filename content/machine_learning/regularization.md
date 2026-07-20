@@ -1,6 +1,10 @@
 ---
 title: "regularization"
-tags: ["machine_learning", "deep_learning", "linear_regression"]
+aliases: []
+tags:
+  - machine_learning
+  - deep_learning
+  - linear_regression
 ---
 
 # A) Regularization ?
@@ -63,13 +67,11 @@ $$
 
 $\lambda$ 값이 높아지면, cost function 을 최소화하는 것이 학습의 목적이므로 weight 가 줄어든다. 결과적으로, 줄어든 weight 를 통해서 계산된 각 layer 의 output 은 0 에 가깝게 된다.
 
-![image-20201128143429310|400](https://i.loli.net/2020/11/28/D42n1ZHav6OLEi9.png)
+![[img-f2acf7250d.png|image-20201128143429310|400]]
 위 그림은 [[activation function]] 중 [[tanh function]] 에 대한 그림이다.
 
 weight 가 작다면, 0 의 값 중심으로 layer 의 output $z^{[l]}$ 이 몰릴것이고, 해당 레이어는 선형 (linear) 모델과 비슷하게 된다. 만약, 전체 레이어가 이와같은 선형 모델이라면, 결과적으로 모델 자체가 선형 모델에 가깝게 될 것이고, 이는 곧 모델 단순화의 원인이 되어 [[overfitting]] 을 예방한다.
 
-![image-20201128143724118](https://i.loli.net/2020/11/28/vlgfa87FApsuwkW.png)
+![[img-ca3475c326.png|image-20201128143724118]]
 
-# D) Related
-
-# E) References
+# D) References

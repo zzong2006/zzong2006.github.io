@@ -1,6 +1,7 @@
 ---
 title: "anomaly detection"
-tags: ["machine_learning"]
+tags: machine_learning 
+aliases: []
 ---
 
 # A) Problem Statement of the Anomaly Detection
@@ -59,11 +60,11 @@ $$
 
 	1. 만약 $p(x)\lt\varepsilon$ 이면 anomaly 이다.  
 
-![](https://i.loli.net/2020/10/31/5KMr7mgeyHPbDzN.png)
+![[img-a23fb2c6bd.png]]
 
 # F) Anomaly Detection System 을 구성하기 위한 단계
 
- ![image-20201031020648666](https://i.loli.net/2020/10/31/SW3cQqs9PAEvBNi.png)
+ ![[img-aafd2b4f7e.png|image-20201031020648666]]
 
 1. 우선 정상적인 (not anomalous) 학습 데이터들을 이용하여 $p(x)$ 를 찾는다.
 2. label 된 [[cross-validation]] set 으로 시스템을 평가하여 성적이 좋은 모델만 추려낸다.
@@ -77,7 +78,7 @@ $$
 
 [[machine_learning/metrics/accuracy|accuracy]] 와 같은 평가 방법은 좋지않다. 왜냐하면 [[cross-validation]] set 과 test set 의 anomalous 비율이 normal 에 비해 매우 작으므로 올바른 성능을 평가하기 힘들기 때문이다.  
 
-![image-20201031020403217](https://i.loli.net/2020/10/31/q6NIHOjPRTaus1F.png)
+![[img-e46a46eea0.png|image-20201031020403217]]
 
 * 추천하는 evaluation metrics: [[precision]], [[Recall]], [[F1 Score]]
 * 평가 이후, threshold $\varepsilon$ 을 계산할 수 있는데, 그 이유는 높은 성능을 내는 system 이 사용한 $\varepsilon$ 을 찾으면 되기 때문이다.
@@ -92,26 +93,26 @@ $$
 * [[Gaussian distribution]] 이 아닌 데이터를 [[Gaussian distribution]] 형태로 맞추는 방법
 	* log, sqrt 등 을 활용하면 된다.
 
-![image-20201102182312443](https://i.loli.net/2020/11/02/cCNxkbQy1OnhrIL.png)
+![[img-d57870baef.png|image-20201102182312443]]
 
 * Error analysis for [[anomaly detection]]
 	* normal examples 이 많고, anomalous example 수는 적을 때, anomaly 데이터인데도 불구하고 normal 로 처리해버리는 모델들이 있다.
 	* 그럴 때는 새로운 feature 들을 추가해서 detection 의 성능을 향상시킨다.
-	* ![image-20201102182440640](https://i.loli.net/2020/11/02/4Xgvlm8nZOKYCpx.png)
+	* ![[img-daf173692c.png|image-20201102182440640]]
 * Multivariate [[Gaussian distribution]]
 	* 각 차원에 대한 개별적인 gaussian distribution model 을 만드는 것은 좋지 않다.
 
-![image-20201102221326007](https://i.loli.net/2020/11/02/XSfL53n1RIhd2D7.png)
+![[img-cde42259a1.png|image-20201102221326007]]
 
 위 그림에서 왼쪽 위에 있는 x 표시의 example 은 2 차원에서는 anomaly 인데도 불구하고, 각 $x_1$ 과 $x_2$ 에서는 normal example 로 분류된다.  
 	- Multivariate Gaussian Normal distribution 은 모든 차원의 gaussian model 을 하나로 관리한다.  
-![image-20201102221555439](https://i.loli.net/2020/11/02/9jFdQYkGOuVXJy3.png)  
+![[img-a17b04f298.png|image-20201102221555439]]  
 
 얻어진 $\mu$ 와 $\Sigma$ 는 값에 따라 아래 그림과 같은 모양을 가진다.  
 
-![image-20201102221650885](https://i.loli.net/2020/11/02/8K3o7thTMc4DeOL.png)  
+![[img-91d99586a0.png|image-20201102221650885]]  
 
-![image-20201102221700839](https://i.loli.net/2020/11/02/OrV4tW8YKbNdZLx.png)
+![[img-0c3d31fdfe.png|image-20201102221700839]]
 
 * [[anomaly detection]] using the Multivariate [[Gaussian distribution]]
 
@@ -135,7 +136,7 @@ $$
 
 완전히 같은 경우는 공분산 행렬 $\Sigma$ 을 구했을 때, 대각선 성분 외에 나머지가 0 인 경우다. 이는 feature 간 linear independent 한 경우 관찰할 수 있다.
 
-![image-20201102225108211](https://i.loli.net/2020/11/02/gyuNdfj8c42nQOx.png)
+![[img-d1d734619a.png|image-20201102225108211]]
 
 Original Model  
 

@@ -1,7 +1,10 @@
 ---
 title: "support vector machine"
-tags: ["machine_learning", "linear_algebra", "classification"]
 aliases: ["SVM"]
+tags:
+  - machine_learning
+  - linear_algebra
+  - classification
 ---
 
 # A) Classiﬁcation with SVM
@@ -68,9 +71,9 @@ _Equation of a separating hyperplane_
         - 반대로, $y=0$의 경우 $h_\theta(x)$는 0에 가까워야 할 것이고, 이는 $\theta^Tx\ll0$을 만족해야 한다.
     - 이제, $y$의 두가지 경우에 대해서 $L$의 graph를 다음과 같이 바꿔보자.
         - $y=1$일 때 얻어지는 $L=-\log(h_\theta(x))$ 를 $cost_1(z)$로 바꾼다 ($z=\theta^Tx$).     
-            - ![image-20201017142449497](https://i.loli.net/2020/10/17/XLPFVAqBwrS9CQg.png)
+            - ![[img-b2194f087b.png|image-20201017142449497]]
         - $y=0$일 때 얻어지는 $L=-\log(1-h_\theta(x))$ 를 $cost_0(z)$로 바꾼다 ($z=\theta^Tx$).    
-            - ![image-20201017142458354](https://i.loli.net/2020/10/17/WZVaNSJ4fBFMwx2.png)
+            - ![[img-50367bce2f.png|image-20201017142458354]]
     - 결과적으로 regularization term까지 포함한 logistic regression의 cost function (decision boundary)은 다음과 같이 바뀔 수 있다.
 
 Logistic regression
@@ -87,20 +90,20 @@ $\displaystyle\min_{\theta}C\left[\sum_{i=1}^{m}y^{(i)}\operatorname{cost}_{1}\l
     - 각각의 경우를 고려하면, ($cost_1(z)$ 또는 $cost_0(z)$가 0이 되므로), SVM은 아래와 같이 심플하게 표현된다
 : $\displaystyle\min_{\theta}C*0+\frac{1}{2}\sum_{j=1}^{n}\theta_{j}^{2}=\min_{\theta}\sum_{j=1}^{n}\theta_{j}^{2}$
     - 즉, SVM Decision Boundary는 $\theta$라는 vector와 $x^{(i)}$라는 벡터의 [[dot product]]이라고 생각할 수 있다.
-        - ![image-20201017144249003](https://i.loli.net/2020/10/17/5Zaxcd8TP4qOAsS.png)
+        - ![[img-425ef6682e.png|image-20201017144249003]]
         - $\theta^Tx^{(i)}=p^{(i)}\cdot||\theta||=\theta_1x^{(i)}_1+\theta_2x^{(i)}_2$
-![image-20201017144421290](https://i.loli.net/2020/10/17/bZ6OBTlKNv1VE27.png)
+![[img-9f17de38ea.png|image-20201017144421290]]
 
 ## B.1) Large Margin Intuition
 - SVM은 분류된 점에 대해서 가장 가까운 학습 데이터와 가장 먼 거리를 가지는 boundary를 찾는다.
 - 만약, 그러지 못한(먼 거리를 가지지 못한) boundary를 가진다면, 어떻게 되는가?
-	- ![image-20201017144944717](https://i.loli.net/2020/10/17/Nre5SMko3LYEA7t.png)
+	- ![[img-529e6bcfd8.png|image-20201017144944717]]
 	- 위의 그림에서 O와 X는 boundary에 상당히 가깝다. 
 	- boundary와 수직인 $\theta$와 각 data들 $x^{(i)}$의 내적을 고려할 경우 $p^{(i)}$ 값은 상당히 작으므로, 올바른 분류를 위해서는 $\|\theta\|$가 커야한다.
 		- 올바른 분류란, O와 X를 위해 $p^{(i)}\cdot\|\theta\|\ge1$ 또는 $p^{(i)}\cdot\|\theta\|\le-1$를 만족해야 하는 것을 의미한다.
 	- 그런데, $\|\theta\|$가 커지면, cost function이 커지므로, 이를 최소화 하는 방향으로 boundary를 조정하게 된다.
 - 최적의 boundary는 아래와 같이 만들어 진다.
-	- ![image-20201017145328233](https://i.loli.net/2020/10/17/Nn9pmXZELHryhW8.png)
+	- ![[img-da1091912f.png|image-20201017145328233]]
 	- 위 그림에서 O와 X는 boundary에 충분히 멀다.
 	- boundary와 수직인 $\theta$와 각 data들 $x^{(i)}$의 내적을 고려할 경우 $p^{(i)}$ 값은 상당히 크므로, 올바른 분류를 위해서는 $\|\theta\|$가 작아야한다.
 	- $\|\theta\|$가 작아지면, cost function도 작아지므로, SVM이 올바르게 학습되는 것을 확인할 수 있다.

@@ -1,6 +1,11 @@
 ---
 title: "Negative Interactions for Improved Collaborative Filtering - Don't go Deeper, go Higher"
-tags: ["RecSyS", "paper_review", "recommendation_system", "y2021"]
+aliases: []
+tags:
+  - RecSyS
+  - paper_review
+  - recommendation_system
+  - y2021
 ---
 
 # A) Abstract
@@ -65,7 +70,7 @@ $$
 	* $\mathcal{S}_{r}$ 을 표현하기 위해, $M\in\{0,1\}^{m\times|I|}$ matrix 를 정의
 		* 해당 matrix 의 row $r$ 는 $\left|\mathcal{S}_{r}\right|$-hot encoding vector: $M_{r,i}=1$ if $i\in\mathcal{S_r}$ otherwise set to $0$
 	* matrix $M$ 을 사용하면 $X$ 가 주어졌을 때, higher-order 학습 데이터 $Z\in\mathbb{R}^{|\mathcal{U}|\timesm}$ 를 생성할 수 있음
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FJTEZrABGoa.png?alt=media&token=3a5c81ef-d1c6-450a-89c6-9ea535f864a7)
+		* ![[img-2941855e62.png]]
 		* $X\cdotM^{\top}$ 를 계산하고 nonlinear 함수를 적용
 			* 여기서 nonlinear 는 2 를 임계값으로 가지는 함수로, 2 이상이면 $Z_{u,r}$ 을 1 로 설정하고, 아니면 0 으로 설정한다.
 				* 그림에서는 $(i,k)$ 아이템을 둘 다 play 한 사용자는 2 이므로, $Z_{u,r}=1$ 이다.
@@ -75,7 +80,7 @@ $$
 : $S_{u,j}=X_{u,\cdot}\cdotB_{\cdot,j}+Z_{u,\cdot}\cdotC_{\cdot,j}$
 
 	* $X_u$ 는 row $u$ 그리고 $B_{\cdot,j}$ 는 column $j$ 를 나타냄
-	* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FXHyVibrNdi.png?alt=media&token=1c706346-e580-4598-9236-88ba6477cf10)
+	* ![[img-86245b44a7.png]]
 * 계산 효율을 위해 least-square 를 통한 $B$ 그리고 $C$ 를 학습한다
 : $\begin{aligned}&\|X-XB-ZC\|_{F}^{2}+\lambda_{B}\cdot\|B\|_{F}^{2}+\lambda_{C}\cdot\|C\|_{F}^{2}\\&\text{s.t.}\quad\operatorname{diag}(B)=0\\\&\\C\odotM=0\end{aligned}$
 

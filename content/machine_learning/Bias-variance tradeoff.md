@@ -1,13 +1,14 @@
 ---
 title: "Bias-variance tradeoff"
+aliases: []
+tags: 
 ---
-
 
 # A) Bias & Variance Trade-off
 
 [[bias]]와 [[variance]]는 모두 낮을수록 좋은 성능을 기대할 수 있지만, 일반적으로 [[bias]]를 낮추면 [[variance]]가 높아지고, 반대로 [[variance]]를 낮추면 [[bias]]가 높아지는 경향이 있습니다.
 
-- ![image-20201028202552847](https://i.loli.net/2020/10/28/Eldq6j7gMTG4rKs.png)
+- ![[img-7897583563.png|image-20201028202552847]]
 - 과거에는 Bias와 Variance가 반드시 trade-off 관계에 있다고 여겨졌습니다.
 - 하지만 최근에는 대규모 신경망과 방대한 데이터의 활용이 용이해지면서, 두 가지 모두를 동시에 줄일 수 있는 가능성도 높아졌습니다.
 - 모델의 Expected Validation Error(기대 검증 오차)는 다음과 같이 표현됩니다.
@@ -19,7 +20,7 @@ $$
 즉, validation error를 최소화하려면 [[variance]]와 [[bias]] 모두 낮게 학습하는 것이 중요합니다.
 
 - 아래 그림은 bias와 variance의 관계를 잘 보여줍니다.
-- ![img](https://t1.daumcdn.net/cfile/tistory/261FE83B562DFB681E)
+- ![[img-aed6f30c72.jpg|img]]
 - [[variance]]
 - [[bias]]
 

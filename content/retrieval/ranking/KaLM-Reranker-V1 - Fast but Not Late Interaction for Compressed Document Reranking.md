@@ -32,7 +32,7 @@ aliases:
 
 # B) 전체 구조
 
-![KaLM-Reranker-V1 framework](https://arxiv.org/html/2606.22807v1/figure/framework.jpg)
+![[img-64165db84a.jpg|KaLM-Reranker-V1 framework]]
 
 그림은 "문서 쪽 계산을 얼마나 미리 빼둘 수 있는가"를 중심으로 보면 읽기 쉽다. 전체 구조는 offline document encoding과 online query-aware scoring으로 나뉜다.
 
@@ -154,7 +154,7 @@ Decoder:
 
 ## E.3) Matryoshka Embedding Pooling
 
-![MEP compression](https://arxiv.org/html/2606.22807v1/figure/beir_mep.png)
+![[img-00ac389bfb.png|MEP compression]]
 
 문서 표현을 cache할 수 있다고 해도, token-level representation을 그대로 저장하면 cache가 너무 커질 수 있다. 그래서 논문은 MEP로 passage representation을 여러 compression ratio에서 동시에 잘 작동하도록 학습한다. 논문은 `1x`부터 `32x`까지의 compression ratio를 지원한다고 보고한다.
 
@@ -177,7 +177,7 @@ Soft label이 중요한 이유는 hard negative가 항상 진짜 negative가 아
 
 ## E.5) Progressive multi-stage training
 
-![Multi-stage training](https://arxiv.org/html/2606.22807v1/figure/multi_stage.jpg)
+![[img-0f4ac8d653.jpg|Multi-stage training]]
 
 학습은 한 번에 끝내지 않고 세 단계로 나눈다.
 
@@ -216,13 +216,13 @@ Large 모델은 1, 2단계까지만 학습하고, Nano와 Small은 3단계 disti
 
 # G) Serving 비용이 줄어드는 지점
 
-![Time complexity by passage length](https://arxiv.org/html/2606.22807v1/figure/time_complex_n.png)
+![[img-958b51fd37.png|Time complexity by passage length]]
 
 이 논문의 실용성은 serving 비용에서 나온다. 기존 encoder/decoder 기반 reranker는 candidate마다 `query + passage`를 online에서 함께 처리한다. 후보 수가 `k`라면 online 비용이 거의 `k`배로 늘어난다.
 
 KaLM-Reranker-V1은 passage encoder를 offline으로 빼고, online에서는 decoder만 실행한다. Decoder는 query context와 compressed passage tokens를 함께 attention한다. 그래서 passage length가 길수록, 그리고 같은 passage가 여러 query에서 반복적으로 등장할수록 이 구조의 이득이 커진다. 자주 등장하는 문서를 미리 계산해둘 수 있는 검색 서비스일수록 유리하다.
 
-![Time complexity by compression ratio](https://arxiv.org/html/2606.22807v1/figure/time_complex_r.png)
+![[img-4c260ba9e5.png|Time complexity by compression ratio]]
 
 MEP compression ratio `r`은 serving knob처럼 쓸 수 있다. 같은 모델을 두고도 서비스의 latency budget과 cache budget에 맞춰 압축률을 고를 수 있다는 뜻이다.
 

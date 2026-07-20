@@ -1,6 +1,8 @@
 ---
 title: "simplex"
-tags: ["math"]
+tags:
+  - math
+aliases: []
 ---
 
 # I. Simplex ?
@@ -14,4 +16,4 @@ tags: ["math"]
 	* 2-simplex 는 triangle
 	* 3-simplex 는 tetrahedron (4 면체)
 	* four simplexes
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fxm0gtanXkb.png?alt=media&token=aa2d86e8-2e22-4434-8cf6-f8886775c7eb)
+		* ![[img-9984299616.png]]

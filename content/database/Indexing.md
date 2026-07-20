@@ -1,7 +1,8 @@
 ---
 title: "Indexing"
+aliases: []
+tags: []
 ---
-
 
 # A) Indexing
 
@@ -10,7 +11,7 @@ title: "Indexing"
 - **Index file** 은 여러 개의 인덱스 엔트리들로 이루어진 파일이며, 각 엔트리는 **[[Search key]]** 와 해당 레코드를 가리키는 포인터로 구성된다.
   - **[[Search key]]**: 특정 레코드를 탐색하기 위해 사용하는 속성
   - 예시 이미지:
-	![](https://i.loli.net/2020/11/26/i1xMCgXNd8c7eTy.png)
+	![[img-767d9d1904.png]]
 
 ---
 

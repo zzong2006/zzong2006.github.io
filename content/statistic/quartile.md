@@ -1,7 +1,8 @@
 ---
 title: "quartile"
-tags: ["statistic"]
 aliases: ["사분위"]
+tags:
+  - statistic
 ---
 
 # A) Quartile
@@ -16,4 +17,4 @@ aliases: ["사분위"]
 
 이러한 값들은 데이터의 퍼짐 정도와 분포 형태를 이해하는 데 중요한 역할을 합니다.
 
-![Learn The Basics Of Statistics | Online Interactive Course | Vertabelo Academy](https://academy.vertabelo.com/static/statistics-101-04-quartiles-3.png)
+![[img-571023c5d0.png|Learn The Basics Of Statistics | Online Interactive Course | Vertabelo Academy]]

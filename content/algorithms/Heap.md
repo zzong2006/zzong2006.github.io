@@ -1,7 +1,9 @@
 ---
 title: "Heap"
+aliases: []
+tags: 
+Tags: [heap, data_structure, algorithm]
 ---
-
 
 # A) What is the Heap?
 
@@ -19,7 +21,7 @@ Heap 은 일종의 반정렬 상태 (느슨한 정렬 상태) 를 유지한다.
 
 # C) Heap 의 종류
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FnhKo9eco7n.png?alt=media&token=77cffc35-bacc-4d36-833b-ccf64e1f9d2f)
+![[img-897237451e.png]]
 
 # D) Heap Building (max Heap 기준)
 

@@ -1,6 +1,9 @@
 ---
 title: "Pessimistic Reward Models for Off-Policy Learning in Recommendation"
-tags: ["reinforcement_learning", "recommendation_system"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - recommendation_system
 ---
 
 # 1. Introduction
@@ -47,7 +50,7 @@ tags: ["reinforcement_learning", "recommendation_system"]
 		* Rewards for action $a_i$ are drawn as $r_{i}\sim$ Bernoulli($p_i$), with $p_i$ ∼ Beta($α_0+α_i$, $β_0+β_i$).
 		* $α_1=β_1=1$, $α_2=3,β_2=4$, $α_3=33,β_3=60$ 으로 설정하고, prior 는 25% 확률로 클릭을 받는다고 설정: $\alpha_{0}=1,\beta_{0}=3$
 		* 많이 exploration 된 action 의 경우 variance 가 줄어서들어서 credible interval 이 tight 해진것을 알 수 있지만, under-explored 경우에는 error 와 variance 가 크게 늘어서 [[heteroscedasticity]] 의 현상을 보임
-			* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FTq_ofv0jrY.png?alt=media&token=e46e46d8-a068-4f74-94b8-9e0480f92850)
+			* ![[img-d43e365bf2.png]]
 		* 즉, under-explored context-action pair 들은 post-decision disappointment 에 취약하다.
 * Pessimistic Decision-Making
 	* on-policy 의 [[Thompson sampling]] 이나 [[UCB]] 계열은 optimism 을 활용한 방식을 사용하지만, off-policy 설정에서는 불가능하다.

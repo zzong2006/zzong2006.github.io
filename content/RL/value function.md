@@ -1,6 +1,8 @@
 ---
 title: "value function"
-tags: ["reinforcement_learning"]
+aliases: []
+tags:
+  - reinforcement_learning
 ---
 
 # Value Function ?
@@ -29,7 +31,7 @@ $$
 
 [[expectation]] 을 구하는 것이기 때문에, 발생할 수 있는 모든 경우의 확률을 구하는 것이 필요하다.
 
-![](https://i.loli.net/2020/10/21/12Ro8XmtY7ibpQ9.png)
+![[img-2914f3cae4.png]]
 
 그래서 위의 그림 (backup diagrams) 처럼 $a$ 에 대해서, $s'$ 에 대해서, $r$ 에 대해서, 총 3 개에 대한 확률을 구할 필요가 있다 ($\pi(a\mid s)p\left(s^{\prime},r\mid s,a\right)$)
 
@@ -37,9 +39,9 @@ $$
 
 state-value function $v_\pi(s)$ 와 action-value function $q_\pi(s,a)$ 의 의존관계는 다음과 같이 표현될 수 있다.
 
-![image-20201021212620725](https://i.loli.net/2020/10/21/mVIjl64PhtcEwp7.png)
+![[img-d3d8855fcb.png|image-20201021212620725]]
 
-![](https://i.loli.net/2020/10/21/pJiMYoeW9FVrCbB.png)
+![[img-3bffb1d4e5.png]]
 
 # Optimal Value Function
 
@@ -60,7 +62,5 @@ optimal action-value function
 $$
 \displaystyle q_{*}(s,a)\doteq\max_{\pi}q_{\pi}(s,a)
 $$
-
-# Related
 
 # References

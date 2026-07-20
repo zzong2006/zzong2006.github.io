@@ -1,6 +1,10 @@
 ---
 title: "Temporal Graph Network"
-tags: ["GNN", "graph", "deep_learning"]
+aliases: []
+tags:
+  - GNN
+  - graph
+  - deep_learning
 ---
 
 # A) Temporal Graph Network ?
@@ -10,11 +14,11 @@ tags: ["GNN", "graph", "deep_learning"]
 	* dynamic graphs represented as sequences of timed events 를 학습하기 위한 general **encoder** 구조
 * 소개
 	* real-world 그래프들은 dynamic 하고 시간에 따라 진화한다. 이 dynamic graph 는 ordered list 또는 비동기적인 이벤트의 stream 로 표현될 수 있다 (e.g. 노드 또는 edge 의 삭제나 추가)
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FXKAT7gYrHD.png?alt=media&token=325c7a8c-a1d0-4c44-87a8-2165506c64d4)
+		* ![[img-ceb7bca638.png]]
 	* 이러한 event 의 stream 은 신경망으로 구성된 encoder 에 입력되어 그래프의 각 노드를 표현하기 위한 embedding (time-dependent) 을 출력하고, embedding 은 다시 decoder 로 입력되어 특정 task 를 수행하기 위한 예측을 한다.
-		* 그 [[RS]] 와 관련된 task 란 다음과 같다: 시간 $t$ 에서 노드 $i$ 와 $j$ 의 edge 를 가질 확률은 얼마인가?
+		* 그 [[recommendation_system/Recommendation System|RS]] 와 관련된 task 란 다음과 같다: 시간 $t$ 에서 노드 $i$ 와 $j$ 의 edge 를 가질 확률은 얼마인가?
 		* 예시
-			* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fjj3zr3bO83.png?alt=media&token=f73b4e4e-20c9-4bf8-8704-5dddcebbad62)
+			* ![[img-30029d3735.png]]
 			* $t_1\sim t_7$ 까지의 edge 를 TGN 에 입력하고, $t_8$ 에서 노드 2 와 4 의 edge 를 가질 확률을 계산한다.
 			* TGN 은 $t_8$ 에서 노드 2 와 4 의 embedding 을 계산하고, 이 둘을 concat 한 다음 decoder 에 입력하여 edge 를 가질 확률을 구한다.
 * TGN main components
@@ -37,7 +41,7 @@ tags: ["GNN", "graph", "deep_learning"]
 			* [[staleness problem]] 란, 특정 대상을 업데이트하기 위해 해당 대상의 embedding 을 직접적으로 사용하는 방법으로부터 발생하는 문제점을 의미한다. 만약, 그 대상이 오랫동안 상호작용하지 않으면, 대상의 embedding 은 업데이트가 영원히 멈춰있을 것이고, 이후에 시간이 많이 흘러 다시 상호작용이 발생하면 그 사이의 gap 으로 부터 문제가 발생한다 ([[cold-start]] 사용자와 비슷)
 * Computations performed by TGN on a batch of training data
 	* 중간에 읽다가 졸려서 못읽겠음
-	* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FYnBPoxNleI.png?alt=media&token=31247c9e-9716-46fa-8109-dfb3e0ae434f)
+	* ![[img-fea1923eea.png]]
 
 # B) Related
 

@@ -1,6 +1,8 @@
 ---
 title: "Sparse Index"
-tags: ["database"]
+aliases: []
+tags:
+  - database
 ---
 
 # A) Sparse Index
@@ -14,4 +16,4 @@ Sparse Index는 인덱스 레코드가 모든 검색 키를 포함하지 않고,
 이 방식은 [[Dense index]]와 비교했을 때 저장 공간이 적게 필요하고, 삽입 시 발생하는 오버헤드도 줄어든다는 장점이 있다.
 반면, 검색 속도는 [[Dense index]]보다 더 오래 걸린다는 단점이 있다.
 
-![](https://i.loli.net/2020/12/02/XkDApngUIr3KLcQ.png)
+![[img-725a2d028b.png]]

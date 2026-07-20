@@ -1,6 +1,8 @@
 ---
 title: "attention function"
-tags: ["NLP", "deep_learning"]
+tags:
+  - NLP
+  - deep_learning
 aliases: ["attention", "어텐션"]
 ---
 
@@ -67,7 +69,7 @@ $d_k$ 가 커질수록 dot products 의 값이 커지기 때문에 softmax 에�
 
 #### B.1.1.2) Example Figure
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fm2vqSZWwYL.png?alt=media&token=4b06e95e-c7f3-4353-8c40-855fb8cee7d6)  
+![[img-55c8a87607.png]]  
 input vector 에서 embedding matrix 의 곱을 통해 key, value, query vector 를 얻은 모습
 
 # C) Related

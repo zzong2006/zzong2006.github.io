@@ -1,7 +1,8 @@
 ---
 title: "deployment(Kubernetes)"
-tags: ["Kubernetes"]
 aliases: ["디플로이먼트"]
+tags:
+  - Kubernetes
 ---
 
 * Once you have a running Kubernetes cluster, you can deploy your containerized applications on top of it.
@@ -10,7 +11,7 @@ aliases: ["디플로이먼트"]
 	* 즉, 어떻게 생성하고 업데이트 하는지 지시한다.
 * Deployment 가 만들어지면, [[Kubernetes Master]] 는 해당 deployment 에 포함된 application instance 가 cluster 의 개별 [노드]([[Kubernetes Node]]) 에서 실행되도록 스케줄링함
 
-![|500](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FEuyKvPQz87.png?alt=media&token=7f8d0397-84f6-4879-b963-25bf0aea7ceb)
+![[img-8c3552a066.png|500]]
 
 # A) 자동 복구 (self-healing) 메커니즘: 머신의 장애나 정비 상황에 대응
 

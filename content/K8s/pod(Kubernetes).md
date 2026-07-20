@@ -1,7 +1,8 @@
 ---
 title: "pod(Kubernetes)"
-tags: ["Kubernetes"]
 aliases: ["pod"]
+tags:
+  - Kubernetes
 ---
 
 # A) Kubernetes Pod ?
@@ -12,7 +13,7 @@ Pods that are running inside Kubernetes are running on a private, isolated netwo
 
 Pod 은 [[Kubernetes]] 의 추상화된 개념으로, 한 개 이상의 (Docker 와 같은)application containers 들의 집합으로 볼 수 있다. 그리고, 해당 집합의 container 들은 resource 를 공유한다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FY0qr6ybvrt.png?alt=media&token=79913a1d-64b0-4c87-bff4-42c7a3ce7b36)
+![[img-ac2f9b03ef.png]]
 
 # B) Pod 자원 요소들
 
@@ -59,6 +60,4 @@ By default they are visible from other pods and services within the same kuberne
 		* Pods 은 생명 주기를 가지는데, worker node 가 죽으면 node 상에서 동작하는 pod 또한 종료된다.
 		* ReplicaSet 은 application 이 지속적으로 동작할 수 있도록 새로운 pod 를 생성하여 클러스터를 동적으로 미리 지정해 둔 상태로 되돌린다.
 
-# E) Related
-
-# F) References
+# E) References

@@ -1,6 +1,9 @@
 ---
 title: "gradient descent"
-tags: ["optimization", "machine_learning", "deep_learning"]
+tags:
+  - optimization
+  - machine_learning
+  - deep_learning
 aliases: ["GD"]
 ---
 
@@ -12,7 +15,7 @@ ML 모델 $h$ 에 대한 적합한 ($\theta_i$ 와 같은) [[parameter]] 를 찾
 
 아래는 parameter $\theta_0$ 와 $\theta_1$ 에 대한 [[cost function|loss function]] $J$ 의 등고선 그래프이다. 이 그래프의 사용 목적은 비용 함수 $J(\theta_0,\theta_1)$ 가 등고면 바닥에 닿을 수 있는 parameter 를 찾기 위함이다. 즉, 두 parameter 의 적절한 값을 찾기 위해 비용 함수를 미분하여 어느 방향으로 parameter 값을 조정해야 하는지 확인 해야한다.
 
-![img](https://i.loli.net/2020/10/28/MuamBTrb8lK5ypz.png)
+![[img-66d87320fe.png|img]]
 
 * 위의 십자가 모양의 표시는 parameters $(\theta_0,\theta_1)$ 가 변화한 순간들을 포착한 것이다.
 * 변화한 순간의 간격이 일정한 듯 보이는데, 이러한 간격 (size of each step) 을 결정하는 것은 $\alpha$ 라는 학습률 ([[Learning rate]]) 이 결정한다.
@@ -30,7 +33,7 @@ $$
 
 아래 그림은 올바른 또는 올바르지 않은 update 방식을 나타낸다.
 
-	![img](https://i.loli.net/2020/09/22/ohWbuw3XFTpN7KY.png)
+	![[img-ed29cf33b4.png|img]]
 
 * $:=$ 는 assign 의 의미가 있으며, $=$ 는 assert 의 의미가 있다. 즉, $a:=b$ 는 $b$ 의 값을 $a$ 에 부여하고, $a=b$ 는 $a$ 와 $b$ 의 값이 일치하는지 확인하는 것이다.
 
@@ -45,13 +48,13 @@ $$
 위의 식은 $\theta_1$ 의 값은 점점 $\displaystyle\frac{\partial}{\partial\theta_1}$ 이 $0$ 에 수렴하는 방향으로 update 될 것이다.
 
 그 이유는 아래 그림을 참조하자.  
-![|600](https://i.loli.net/2020/09/22/cDfrRklsVeGqoMz.png)
+![[img-5b1a18a65b.png|600]]
 
 여기서 의문이 생길 수 있다: learning rate $\alpha$ 값이 크다면 step size 가 커져서 $\theta_1$ 가 수렴하지 못할 텐데, $\theta_1$ 이 수렴하는 과정에서 $\alpha$ 값도 점점 줄여줘야 하는 것인가?
 
 답: 적절한 $\alpha$ 값만 설정한다면, 그럴 필요 없다. 왜냐하면 $\theta_1$ 값이 수렴할수록, $\displaystyle\frac{\partial}{\partial\theta_1}$ 값도 0 에 가까워지므로 step size 가 감소한다.
 
-![img](https://i.loli.net/2020/09/22/LQ4SZOi5uYFDl78.png)
+![[img-85aeb131f5.png|img]]
 
 # E) 예시
 
@@ -84,7 +87,7 @@ $$
 
 Use $b$ examples in each iteration where $b<m$ is the mini-batch size (e.g. $b=10$ and $m=100$).
 
-![|500](https://i.loli.net/2020/10/18/6TQ7IVo4YRJBcuv.png)
+![[img-84bf335039.png|500]]
 
 ## Choosing Your Mini-batch Size
 - 학습 데이터 개수가 작을 경우 (약 2000 이하), batch gradient descent를 사용

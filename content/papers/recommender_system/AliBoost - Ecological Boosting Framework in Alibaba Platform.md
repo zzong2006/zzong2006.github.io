@@ -1,7 +1,13 @@
 ---
 title: "AliBoost - Ecological Boosting Framework in Alibaba Platform"
-tags: ["cold-start", "recommendation", "alibaba", "bidding", "CTR-prediction"]
-aliases: ["AliBoost"]
+tags:
+  - cold-start
+  - recommendation
+  - alibaba
+  - bidding
+  - CTR-prediction
+aliases:
+  - AliBoost
 ---
 
 # A) 한줄 요약
@@ -94,7 +100,7 @@ AliBoost 배포 전, **cold item의 41.1%가 30일이 지나도 일 노출 10회
 
 비유하면: 기존 방식은 "신입 사원에게 이력서 쓰는 법만 알려주고 면접 기회는 안 줌". AliBoost는 "면접 기회를 단계적으로 제공하되, 성과 기반으로 승진/퇴출을 관리"하는 것.
 
-![Cold item 분포 비교](https://ar5iv.labs.arxiv.org/html/2506.00954/assets/x1.png)
+![[img-d06b83e561.png|Cold item 분포 비교]]
 *Figure 1: 자연 추천 vs AliBoost 적용 후 cold item의 일일 PV/Click 분포 변화*
 
 # E) 제안 방법
@@ -117,7 +123,7 @@ $$\Delta E_i = E^{\text{boost}}_i + \alpha(\text{CTR}^{\text{boost}}_i) \cdot E^
 
 Non-Disturbance Principle이 중요한 이유: 부스팅이 기존 유저 경험을 해치면 안 된다. 부스팅된 아이템의 CTR이 자연 추천 CTR보다 최소 20% 높아야 한다는 안전 장치.
 
-![추천 상황 예시](https://ar5iv.labs.arxiv.org/html/2506.00954/assets/x2.png)
+![[img-009e7c70d8.png|추천 상황 예시]]
 *Figure 2: 세 가지 추천 상황 — (a) 자연 추천만, (b) 무분별한 부스팅, (c) AliBoost 방식*
 
 ## E.2) Tiered Boosting Structure
@@ -304,7 +310,7 @@ $$U_u = \ln(U_{\text{tired}}) \cdot (U_{\text{active}})^{-1/2}$$
 
 **핵심**: 활성 유저 & 피로하지 않은 유저에게 집중 노출하여 CTR 극대화. "클릭 안 하는 사람에게 계속 보여주는 건 예산 낭비."
 
-![전체 아키텍처](https://ar5iv.labs.arxiv.org/html/2506.00954/assets/x3.png)
+![[img-1733076685.png|전체 아키텍처]]
 *Figure 3: AliBoost 전체 아키텍처*
 
 # F) 벤치마크/데이터셋
@@ -419,7 +425,7 @@ AUC +2.24%는 cold item에 대한 랭킹 품질이 의미있게 향상됨을 보
 
 일부 niche 카테고리에서는 200%+ 개선. 이런 카테고리는 원래 cold item 비율이 높아서 부스팅 효과가 극대화된 것.
 
-![배포 아키텍처](https://ar5iv.labs.arxiv.org/html/2506.00954/assets/x5.png)
+![[img-ea093483e4.png|배포 아키텍처]]
 *Figure 5: AliBoost 배포 아키텍처*
 
 # H) 실무적 시사점 종합

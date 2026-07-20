@@ -1,6 +1,7 @@
 ---
 title: "eigenvector"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # A) Eigenvector ?
@@ -15,7 +16,7 @@ matrix $\boldsymbol{A}$ 의 eigenvector 는 $\boldsymbol{A}\boldsymbol{v}=\lambd
 
 # C) An Example of the Eﬀect of Eigenvectors and Eigenvalues
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FZjo8u3PiE7.png?alt=media&token=68d86d7f-957e-4020-89b3-a0b151aac73f)
+![[img-0b2d3702f4.png]]
 
 * $A$ 에 대한 두개의 [[orthonormal]] [[eigenvector]] $v^{(1)},v^{(2)}$ 가 존재한다고 가정
 * 위 왼쪽의 그림은 모든 unit vector 를 표현한 것임

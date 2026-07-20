@@ -1,6 +1,11 @@
 ---
 title: "Improving Pairwise Learning for Item Recommendation from Implicit Feedback"
-tags: ["WSDM", "paper_review", "recommendation_system", "y2014"]
+tags:
+  - WSDM
+  - paper_review
+  - recommendation_system
+  - y2014
+aliases: []
 ---
 
 # A) Abstract
@@ -46,7 +51,7 @@ tags: ["WSDM", "paper_review", "recommendation_system", "y2014"]
 			* $\left|D_{S}\right|$ 의 값이 크기 때문에, $(c,i,j)\inD_{S}$ pair 를 sampling 해서 SGD step 을 수행한다.
 				* $(c,i)\inS$ 의 sampling 을 먼저 수행하고, a negative item $j\inI\backslashI^{+}(c)$ 을 sampling 함
 		* BPR Algorithm Figure
-			* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fjdt-1jeX8O.png?alt=media&token=1a6b5774-4c25-4e7d-821f-b8768c516828)
+			* ![[img-f5873d798d.png]]
 	* Issues in Tailed Item Distributions
 		* Gradient Magnitude: $\Delta_{c,i,j}$
 			* $\Delta_{c,i,j}$ 는 모델 parameter $\Theta$ 학습에 큰 영향을 미친다
@@ -71,8 +76,6 @@ tags: ["WSDM", "paper_review", "recommendation_system", "y2014"]
 : $p(j\midc)\propto\exp(-\hat{r}(j\midc)/\lambda),\quad\lambda\in\mathbb{R}^{+}$
 			* score $\hat{y}(j\midc)$ 대신 rank 를 사용하는 이유는 rank 는 절대값이고, score 는 상대적 값이기 때문이다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * http://webia.lip6.fr/~gallinar/gallinari/uploads/Teaching/WSDM2014-rendle.pdf

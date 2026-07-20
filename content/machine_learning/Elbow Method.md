@@ -1,12 +1,12 @@
 ---
 title: "Elbow Method"
-tags: ["clustering"]
+tags:
+  - clustering
+aliases: []
 ---
 
 # A) Elbow Method ?
 
-![image-20201017211129012](https://i.loli.net/2020/10/17/csmb7X1knSRgMYe.png)
+![[img-af2736e3e1.png|image-20201017211129012]]
 
-# B) Related
-
-# C) References
+# B) References

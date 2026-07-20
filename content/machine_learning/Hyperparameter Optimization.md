@@ -1,7 +1,8 @@
 ---
 title: "Hyperparameter Optimization"
+tags: 
+aliases: []
 ---
-
 
 # A) 하이퍼파라미터 최적화
 
@@ -36,18 +37,16 @@ Grid search 와 [[Random search]] 는 이전 결과를 기반으로 다음 하�
 
 첫 번째 이미지는 두 번의 평가 후 surrogate 모델의 초기 추정치를 보여줍니다 — 검은색 선과 회색 불확실성 영역 — 실제 목적 함수 (빨간색) 와 비교했을 때 명확히 부정확한 추정치입니다.
 
-  ![](https://miro.medium.com/max/700/1*RQ-pAwQ88yC904QppChGPQ.png)
+  ![[img-cee32178b9.png]]
 
 다음 이미지는 여덟 번의 평가 후 surrogate 함수입니다. 이제 surrogate 모델은 실제 함수와 거의 정확히 일치합니다.
 
-  ![](https://miro.medium.com/max/700/1*bSLAe1LCj3mMKfaZsQWCrw.png)
+  ![[img-cc936415fa.png]]
 
 ## A.4) 순차 모델 기반 최적화 (SMBO)
 
 SMBO 방법은 베이지안 최적화를 공식화한 것입니다.
 
-# B) Related
-
-# C) References
+# B) References
 
 [towardsdatascience](https://towardsdatascience.com/a-conceptual-explanation-of-bayesian-model-based-hyperparameter-optimization-for-machine-learning-b8172278050f)

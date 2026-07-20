@@ -1,6 +1,7 @@
 ---
 title: "policy evaluation"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # Policy Evaluation ?
@@ -25,7 +26,7 @@ $$
 
 ## Algorithm
 
-![image-20201021230717161](https://i.loli.net/2020/10/21/a2IZTniG8OmtyWv.png)
+![[img-5c5dc32da6.png|image-20201021230717161]]
 
 위 알고리즘에 대한 구현에는 $v_k(s)$ 그리고 $v_{k+1}(s)$ 를 위한 두 가지 array 를 사용한다. 하나의 array 를 사용해서 즉석으로 바꾸는 방법도 있는데, 이런 경우 가끔 더 빠르게 수렴한다.
 
@@ -38,7 +39,5 @@ v_{\pi^{\prime}}(s) \geq v_{\pi}(s) \quad \forall s \in S
 $$
 
 $\pi$ 보다 $\pi'$ 가 좋다는 걸 알았다면, 과연 어떻게 $\pi$ 에서 $\pi'$ 로 갈 수 있는가? 이에 대한 해답은 [[policy improvement]] 를 참고할 것.
-
-# Related
 
 # References

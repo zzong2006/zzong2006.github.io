@@ -1,7 +1,12 @@
 ---
 title: "MOON - Generative MLLM-based Multimodal Representation Learning for E-commerce Product Understanding"
-tags: ["y2025", "e-commerce", "MLLM", "multimodal", "representation-learning"]
-aliases: ["MOON"]
+tags:
+  - y2025
+  - e-commerce
+  - MLLM
+  - multimodal
+  - representation-learning
+aliases: [MOON]
 ---
 
 # A) 한줄 요약
@@ -207,7 +212,7 @@ flowchart LR
 
 # D) 기존 방법의 한계
 
-![Dual Encoder vs MLLM](https://arxiv.org/html/2508.11999v1/components/figures/data1.png)
+![[img-c5f4ca12fd.png|Dual Encoder vs MLLM]]
 *Figure 2: (a) 이중 인코더는 1:1 매칭만 가능 (b) MLLM은 여러 이미지를 한번에 처리*
 
 ## D.1) 문제 1: 다대일 관계
@@ -223,7 +228,7 @@ flowchart LR
 
 ## D.2) 문제 2: 배경 잡음
 
-![배경 잡음](https://arxiv.org/html/2508.11999v1/components/figures/data2.png)
+![[img-2b67fea2f4.png|배경 잡음]]
 *Figure 3: (a) 배경/광고 포함 (b) 핵심 영역만 추출*
 
 상품 이미지에 배경, 모델, 광고 문구, 워터마크 등이 섞여 있으면 임베딩 품질이 떨어짐.
@@ -234,7 +239,7 @@ flowchart LR
 
 # E) 제안 방법
 
-![MOON 아키텍처](https://arxiv.org/html/2508.11999v1/components/figures/model.jpg)
+![[img-98eaed0795.jpg|MOON 아키텍처]]
 *Figure 4: MOON 전체 구조*
 
 ### E.1.1) Figure 4 상세 설명
@@ -305,7 +310,7 @@ flowchart LR
 
 ## E.3) Guided MoE
 
-![Guided MoE](https://arxiv.org/html/2508.11999v1/x2.png)
+![[img-fdb36a2075.png|Guided MoE]]
 *Figure 5: 카테고리/속성 토큰을 전담 Expert에게 라우팅*
 
 일반 MoE는 Router가 알아서 라우팅하지만, **Guided MoE는 명시적으로 지정:**
@@ -320,7 +325,7 @@ flowchart LR
 
 ## E.4) Spatio-Temporal Negative Sampling
 
-![네거티브 샘플링](https://arxiv.org/html/2508.11999v1/x3.png)
+![[img-b459be2363.png|네거티브 샘플링]]
 *Figure 6: (a) in-batch (b) + hard negative (c) + 시공간 확장*
 
 ### E.4.1) 기존 방식의 문제

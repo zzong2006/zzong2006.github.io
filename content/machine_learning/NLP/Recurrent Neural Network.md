@@ -1,7 +1,9 @@
 ---
 title: "Recurrent Neural Network"
-tags: ["NLP", "deep_learning"]
 aliases: ["RNN"]
+tags:
+  - NLP
+  - deep_learning
 ---
 
 # A) Recurrent Neural Networks (RNN) ?
@@ -20,7 +22,7 @@ aliases: ["RNN"]
 
 아래는 RNN diagram 을 단순화 한 것이다.
 
-![image-20201101184424057](https://i.loli.net/2020/11/01/R9Fm4TVS2jqBhQ6.png)
+![[img-03abb7a367.png|image-20201101184424057]]
 
 ## A.2) RNN forward Propagation
 
@@ -33,7 +35,7 @@ $$
 
 문장의 $t$ 번째를 나타내는 $x^{<t>}$ 는 [[machine_learning/NLP/One Hot Encoding]] 또는 [[Word Embedding]] 의 결과 vector 인데 ,예를 들면 아래와 같다.
 
-![image-20201101184124570](https://i.loli.net/2020/11/01/5VQigYq7CrxPZKd.png)
+![[img-ef5b50181b.png|image-20201101184124570]]
 
 $a^{<t>}$ 에서 사용하는 activation function 은 [[tanh function]] 또는 [[ReLU function]]
 
@@ -49,9 +51,9 @@ $$
 
 왜 이렇게 축소될까? 각 weights $W_{aa}$ 와 $W_{ax}$ 를 행렬 내부에서 이어붙였기 때문이다 ($W_a$ 로 통일).
 
- ![|500](https://i.loli.net/2020/11/01/PZu1IAzk6M9HwED.png)
+ ![[img-c9f91a6f05.png|500]]
 
-![|600](https://i.loli.net/2020/11/01/Tlb1W4nFEBwrOMZ.png)
+![[img-7e3f3acaf3.png|600]]
 
 # B) RNN 의 단점
 
@@ -61,19 +63,19 @@ $$
 
 # C) Examples of RNN
 
-![image-20201101190357285](https://i.loli.net/2020/11/01/OLuiItYZ7GSMfwV.png)
+![[img-8e73d32ad9.png|image-20201101190357285]]
 
-![Example of Many-to-One LSTM - PyTorch Forums](https://i.loli.net/2020/11/01/2MKXvaq5WYgxrZN.jpg)
+![[img-f1bb168e14.jpg|Example of Many-to-One LSTM - PyTorch Forums]]
 
 ## C.1) One-to-many Example (Music Generation)
 
-![image-20201101190819413](https://i.loli.net/2020/11/01/eHW6P9ZQ8hg3aMB.png)
+![[img-64f9fa8fc7.png|image-20201101190819413]]
 
 * $x=\empty$ (무에서 유를 창조하는 느낌)
 
 ## C.2) Many-to-many Example (Machine Translation)
 
-![image-20201101190716390](https://i.loli.net/2020/11/01/jFbTtaRpVZ3fhHL.png)
+![[img-c749dc7307.png|image-20201101190716390]]
 
 # D) Language Modeling with an RNN
 
@@ -81,12 +83,12 @@ training 및 sampling of language model
 
 1. Training set 으로 주어진 문장들을 tokenize 한다.
 * Example: large [[corpus]] of English text
-![image-20201101191514692](https://i.loli.net/2020/11/01/69zb28WnjLH1JvE.png)
+![[img-ab768c231b.png|image-20201101191514692]]
 	* 각각의 단어들을 one-hot vector 로 변환시키고, 마지막에 `<EOS>` 구문을 넣음위 문장은 `<EOS>` 를 포함하여 총 9 개의 token 으로 구성됨 (마침표 제외)
-* ![image-20201101191729148](https://i.loli.net/2020/11/01/IKMoZhCOa5NH2Tb.png)
+* ![[img-62db826c90.png|image-20201101191729148]]
 	* token 화 하기 어려운 단어 (위 그림의 `Mau`) 들은 `<UNK>` 라는 unknown word 표시로 tokenize
 1. Tokenize 된 token 들을 RNN 에 넣고 학습
-![image-20201101192332760](https://i.loli.net/2020/11/01/HUTQxA38RVZbnMJ.png)
+![[img-a56f4ae89b.png|image-20201101192332760]]
 * 학습 문장: `Cats average 15 hours of sleep a day. <EOS>`
 * token $x^{<1>}$ 를 입력으로 넣을 때, 바로 다음 단어가 Cats 일 확률은 $P(Cats)$
 * token $x^{<2>}$ 를 입력으로 넣을 때, 바로 다음 단어가 $average$ 일 확률은 $P(average \|\ Cats)$
@@ -100,7 +102,7 @@ $$
 
 1. 학습한 RNN 을 이용한 sampling a sequence
 * training 과 sampling 은 prediction 값 $\hat{y}^{<t>}$ 를 $t+1$ 의 input 으로 쓰느냐 마느냐의 차이가 있다.
-* ![image-20201101200043936](https://i.loli.net/2020/11/01/ITb9GgMUcXahy2q.png)
+* ![[img-dd27349704.png|image-20201101200043936]]
 * 그림과 같이 초기 token $x^{<1>}$ 은 zero vector 로 입력 후, 출력 vector $\hat{y}^{<1>}$ 를 이용하여 출력 값을 정한다.
 	* $\hat{y}^{<1>}$ 는 [SoftMax]([[softmax function]]) 를 이용하여 확률 벡터로 치환된 후, 그 확률 중에서 임의로 word 또는 character 를 선택한다.
 * 그리고 출력 vector $\hat{y}^{<1>}$ 는 그 다음 출력 vector $\hat{y}^{<2>}$ 를 위한 입력 vector 로 들어가게 된다.

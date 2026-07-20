@@ -1,7 +1,9 @@
 ---
 title: "AB Test"
-tags: ["hypothesis_test", "statistic"]
-aliases: ["A/B 테스트"]
+tags:
+  - hypothesis_test
+  - statistic
+aliases: [A/B 테스트]
 ---
 
 # A) AB Test ?
@@ -61,7 +63,7 @@ Offline A/B 테스트란, 과거 A 알고리즘이 실제 서비스에 적용되
 - 사용자의 경험 비용 최소화
 - 새로운 아이디어를 빠르게 확인하여, 사전에 성능이 떨어지는 알고리즘은 미리 제외하고 성능이 보장된 알고리즘만 online 에 적용 가능함
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FmIyzRfNHVQ.png?alt=media&token=3980e10a-fdaa-4289-af67-ce7609f87038)
+![[img-ade4fe2076.png]]
 
 - 하지만, 많은 가정이 필요하고 **offline 테스트 결과와 다를 수 있다는 리스크**가 있음
 - 과거 데이터는 A 알고리즘과 그로부터 생성된 사용자의 반응에 bias 가 존재함
@@ -85,7 +87,7 @@ counterfactual thinking 접근
 - importance weight
 - weight 계산 방법: (B 알고리즘 내 k 번째 추천될 확률) / (A 알고리즘 내 k 번째 추천될 확률 + $\varepsilon$)
 	- $\varepsilon$ 은 확률이 0 이 되는 것을 방지해주기 위한 작은 수
-	- ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FdDPbgFCtji.png?alt=media&token=fbb297cb-0f57-482e-8b69-dbb3f484c3ac)
+	- ![[img-2444a75e58.png]]
 - weight 는 monte carlo simulation 을 통해 계산: n 번 추천리스트를 생성한 다음 각 아이템이 k 번째 추천될 확률 계산
 - IS 에 의한 추정 반응률: A 알고리즘에 비해서 B 알고리즘의 성능이 얼마나 향상될지 혹은 감소할지 추정, $\displaystyle\frac{1}{n}\sum{w\cdot r}$
 	- $w$: weight, $r$: response, $n$: number of data
@@ -96,7 +98,7 @@ counterfactual thinking 접근
 		- $c$ 는 capping value
 	- 다른 방법으로는 NCIS (Normalized CIS) 가 존재함
 - 예시)
-	- ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FyrXpugxa50.png?alt=media&token=fea26e5b-bc60-4a5b-aec7-b7f2181580cf)
+	- ![[img-9545d0b8d7.png]]
 		- IS 에 의한 B 알고리즘의 추정 반응률:
 
 $(0+0.33+1.3)/3=1.63/3=54.3\%$
@@ -111,6 +113,4 @@ $(0+0.33+1.3)/3=1.63/3=54.3\%$
 	- Ranking score 기반의 weighted sampling 을 통해 추천 확률을 생성할 수 있음
 	- Doubly Robust 방법론을 적용해 볼 수 있음
 
-# E) Related
-
-# F) References
+# E) References

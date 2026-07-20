@@ -1,14 +1,15 @@
 ---
 title: "Memory"
-tags: ["operating_system"]
 aliases: ["메모리"]
+tags:
+  - operating_system
 ---
 
 # A) Memory ?
 
 # B) 메모리의 구성 요소 4 개
 
-![https://i.loli.net/2020/10/19/jGfJd8MyWkE2Awu.png](https://i.loli.net/2020/10/19/jGfJd8MyWkE2Awu.png)
+![[img-ba181f2302.png|https://i.loli.net/2020/10/19/jGfJd8MyWkE2Awu.png]]
 
 ## B.1) Code
 

@@ -1,7 +1,13 @@
 ---
 title: "Latent Dirichlet Allocation"
-tags: ["nlp", "paper_review", "topic_modeling"]
-aliases: ["LDA"]
+aliases:
+  - LDA
+tags:
+  - -
+  - nlp
+  - paper_review
+  - topic_modeling
+  - topic_modeling
 ---
 
 paper link: https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf
@@ -76,7 +82,7 @@ LDA는 pLSI의 확률 모델에 **베이즈 통계학** 개념을 더한 것�
 
 ## B.2) LDA 모델 Architecture
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FVuVhXn5UWS.png?alt=media&token=700bcc67-8a4b-43b8-a8e4-71d8f058e1ef)
+![[img-d3d31c088a.png]]
 
 - $d$ 번째 문서에 등장한 $n$ 번째 단어 $w_{d,n}$
 - $\alpha$ 는 topic $k$ 에 대한 [[Dirichlet distribution]] 의 prior

@@ -1,136 +1,131 @@
 ---
 title: "Singular Value Decomposition"
-tags: ["linear_algebra", "matrix_factorization", "machine_learning"]
+tags:
+  - linear_algebra
+  - matrix_factorization
+  - machine_learning
 aliases: ["SVD"]
 ---
 
-# A) Singular Value Decomposition
+# A) SVD ?
 
-특이값 분해, SVD 는 임의의 $m \times n$ 행렬 $A$ 를 세 행렬의 곱으로 분해하는 방법이다.
-
-$$
-A = U \Sigma V^{\top}
-$$
-
-각 행렬은 다음 역할을 한다.
-
-| 기호 | 크기 | 의미 |
-| --- | --- | --- |
-| $U$ | $m \times m$ | left singular vectors 를 열벡터로 갖는 [[orthogonal]] matrix |
-| $\Sigma$ | $m \times n$ | singular value 를 대각 성분으로 갖는 diagonal matrix |
-| $V$ | $n \times n$ | right singular vectors 를 열벡터로 갖는 [[orthogonal]] matrix |
-
-singular value 는 보통 다음처럼 큰 값부터 정렬한다.
+특이값 분해 (Singular Value Decomposition, SVD) 는 $m\times n$ 행렬 $A$ 를 다음과 같이 3 개의 행렬 곱으로 분해하는 방법을 의미한다.
 
 $$
-\sigma_1 \ge \sigma_2 \ge \cdots \ge 0
+A=U\ \Sigma \ V^{\mathrm{T}}
 $$
 
-$\sigma_i$ 는 $A^{\top}A$ 또는 $AA^{\top}$ 의 [[eigenvalue]] 에 square root 를 씌운 값으로 볼 수 있다.
+* $U$: $m\times m$ [[orthogonal]] matrix 로, $A A^{\top}$ 을 [[eigen-decomposition]] 하여 얻은 직교 행렬을 의미한다.
+* $\Sigma$: $m\times n$ diagonal matrix 로, 각 행렬의 원소는 $A A^{\top}$ 의 [[eigenvalue]] 에 square root 를 적용한 값으로 구성된다.
+* $V$: $n\times n$ orthogonal matrix 로, $A^{\top}A$ 을 eigen-decomposition 하여 얻은 직교 행렬을 의미한다.
 
-# B) Compact SVD
+# B) Truncated SVD
 
-실제로는 0 이 아닌 singular value 만 남긴 compact form 을 자주 사용한다. $A$ 의 rank 를 $r$ 이라고 하면 다음처럼 쓸 수 있다.
+Truncating 과정에서 몇개의 k 를 남길것인지는 [[topic modeling]] 에서 얼마나 많은 k 를 남길것인지와 유사한 관점이다.
 
-$$
-A = U_r \Sigma_r V_r^{\top}
-$$
+![|400](https://wikidocs.net/images/page/24949/svd%EC%99%80truncatedsvd.PNG)
 
-| 기호 | 크기 |
-| --- | --- |
-| $U_r$ | $m \times r$ |
-| $\Sigma_r$ | $r \times r$ |
-| $V_r$ | $n \times r$ |
+## B.1) 장점
 
-이때 $U_r$ 와 $V_r$ 는 square matrix 가 아니므로 full orthogonal matrix 라기보다는 orthonormal columns 를 가진 행렬로 이해하는 편이 정확하다.
+* 계산 비용이 낮아짐
+* 상대적으로 중요하지 않은 정보를 삭제하는 효과
+* Applications
+	* 영상 처리 분야: noise 를 제거
+	* 자연어 처리 분야: 설명력이 낮은 정보를 삭제하고 설명력이 높은 정보를 남김
 
-$$
-U_r^{\top}U_r = I_r,\quad V_r^{\top}V_r = I_r
-$$
+# C) SVD 의 의미
 
-# C) 직관
+Singular Value Decomposition 은 임의의 $m \times n$ 차원의 행렬 $A$ 을 분해하는 방법 중 하나이다.
 
-SVD 는 행렬 $A$ 가 만드는 선형변환을 다음 세 단계로 나눠서 보는 방법이다.
+다음과 같은 의미를 가진다.
 
-1. $V^{\top}$: input coordinate 를 right singular vector 기준으로 회전한다.
-2. $\Sigma$: 각 축을 singular value 만큼 늘리거나 줄인다.
-3. $U$: output coordinate 로 다시 회전한다.
-
-핵심 관계는 다음과 같다.
+> $V$ 에 있는 열벡터 ($\vec{x}$ 혹은 $\vec{y}$) 를 행렬 $A$ 를 통해 선형변환 할 때, 그 크기는 $\Sigma$ (eigen values) 만큼 변하지만, 여전히 직교하는 벡터들 ($AV=U$ 의 열 벡터) 를 찾을 수 있겠는가?
 
 $$
-A v_i = \sigma_i u_i
+A=U \Sigma V^{T}
 $$
 
-즉 $A$ 는 right singular vector $v_i$ 방향의 입력을 left singular vector $u_i$ 방향의 출력으로 보낸다. 이때 크기는 $\sigma_i$ 만큼 조정된다.
-
-그래서 큰 singular value 는 $A$ 가 강하게 보존하거나 증폭하는 주요 방향을 의미하고, 작은 singular value 는 상대적으로 덜 중요한 방향을 의미한다.
-
-# D) Rank-1 행렬들의 합
-
-SVD 는 행렬 $A$ 를 rank-1 행렬들의 가중합으로도 볼 수 있다.
-
 $$
-A = \sum_{i=1}^{r} \sigma_i u_i v_i^{\top}
+\begin{array}{c}
+A: m \times n  \\
+U: m \times r \\
+\Sigma: r \times r \\
+V: n \times r \\
+\end{array}
 $$
 
-여기서 $u_i v_i^{\top}$ 는 $A$ 와 같은 크기의 rank-1 matrix 이고, $\sigma_i$ 는 그 rank-1 component 의 중요도를 나타낸다.
+여기서 $U$ 와 $V$ 는 orthogonal matrix 이고, $\Sigma$ 는 diagonal matrix 이다.
 
-이 관점이 중요한 이유는 singular value 가 큰 항부터 남기면 원래 행렬의 중요한 구조를 먼저 보존할 수 있기 때문이다.
+> orthogonal matrix 는
+>
+> $$
+> U U^{T}=U^{T} U=I
+> 
+> 
+> 
+> $$을 만족하는 matrix이다.
 
-# E) Truncated SVD
+> diagonal matrix 는 대각 선분을 제외한 나머지 원소의 값이 0 인 matrix 이다.
 
-Truncated SVD 는 singular value 가 큰 상위 $k$ 개 component 만 남기는 근사 방법이다.
+* $m \times n$ 행렬의 diagonal matrix 의 경우 $m > n$ 이라면, 아래 matrix 와 같다.
 
 $$
-A_k = \sum_{i=1}^{k} \sigma_i u_i v_i^{\top}
+\left(\begin{array}{cccc}
+\sigma_{1} & 0 & \cdots & 0 \\
+0 & \sigma_{2} & \cdots & 0 \\
+0 & 0 & \cdots & \sigma_{n} \\
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots \\
+0 & 0 & \cdots & 0
+\end{array}\right)
 $$
 
-또는 행렬 곱 형태로 다음처럼 쓴다.
+* 위의 eigen value $\sigma$ 값은 모두 양수이므로, 크기에 따라서 sorting 이 가능하다.
+
+![[img-dfa2792289.png|img]]
+
+## C.1) SVD 의 목적
+
+특이값 분해의 공식을 다시 풀어 써보자면 다음과 같다.
 
 $$
-A_k = U_k \Sigma_k V_k^{\top}
+A = U\Sigma V^T \\
+= \begin{pmatrix} |  & | & {} & | \\\\
+ \vec u_1 & \vec u_2 &\cdots &\vec u_m \\\\
+ |  & | & {} &| \end{pmatrix} 
+ 
+\begin{pmatrix} 
+\sigma_1 &  &  &  & 0\\\\
+ & \sigma_2 &  &  & 0\\\\
+ & & \ddots &     & 0\\\\
+ & & & \sigma_m   & 0
+\end{pmatrix}
+
+\begin{pmatrix}  - & \vec v^T_1 & - \\\\
+- & \vec v^T_2 & - \\\\
+  &\vdots& \\\\
+- & \vec v^T_n & -
+\end{pmatrix} \\
+
+= \sigma_1 \vec u_1 \vec v_1^T + \sigma_2 \vec u_2 \vec v_2^T +\cdots+ \sigma_m \vec u_m \vec v_m^T
 $$
 
-$k < r$ 이므로 $A_k$ 는 원래 $A$ 보다 낮은 rank 를 가진다. 이때 $k$ 는 얼마나 많은 정보를 남길지 정하는 hyperparameter 에 가깝다. 상위 singular value 를 남기는 이유는, 이 방식이 원래 행렬을 rank-$k$ 행렬로 근사할 때 가장 작은 reconstruction error 를 주기 때문이다.
+여기서 $\vec{u}_{1} \vec{v}_{1}^{T}$ 등 은 $m \times n$ 행렬이된다. 또, $\vec{u}$ 와 $\vec{v}$ 는 정규화된 벡터이기 때문에 $\vec{u}_{1} \vec{v}_{1}^{T}$ 내의 성분의 값은 -1 에서 1 사이의 값을 가진다.
 
-Truncated SVD 의 효과는 다음과 같다.
+따라서, $\sigma_{1} \vec{u}_{1} \vec{v}_{1}^{T}$ 라는 부분만을 놓고 보면, 이 행렬의 크기는 $\sigma_{1}$ 의 값에 의해 정해지게 된다.
 
-* 계산 비용과 저장 공간을 줄인다.
-* 작은 singular value 에 해당하는 약한 신호나 noise 를 줄인다.
-* 원래 행렬을 낮은 차원의 latent representation 으로 바꾼다.
+즉, 우리는 SVD 라는 방법을 이용해 $A$ 라는 임의의 행렬을 여러개의 $A$ 행렬과 동일한 크기를 갖는 여러개의 행렬로 분해해서 생각할 수 있는데, 분해된 각 행렬의 원소의 값의 크기는 $σ$ 의 값의 크기에 의해 결정된다.
 
-# F) Applications
+## C.2) SVD - Example: Users to Movies
 
-## F.1) Latent Semantic Analysis
+![[img-e5e7d362d5.png|image-20201202162805645]]
 
-문서-단어 행렬에 SVD 를 적용하면, 단어와 문서를 낮은 차원의 latent semantic space 로 보낼 수 있다. 이 방식이 [[Latent Semantic Analysis]] 의 핵심이다.
+왼쪽 $A$ 는 사용자 row 에 따른 영화 column 의 평가가 저장된 matrix 다. 이를 SVD 하게 되면, 오른쪽과 같은 matrices 들이 나오는데, 보다시피 $U$ 는 사용자에 대한 latent vector 를 의미하고, $V$ 는 영화에 대한 latent vector, 그리고 $\Sigma$ 는 latent vector 에 대한 정보량을 나타낸다고 볼 수 있다.
 
-## F.2) Recommender System
+# D) Asymmetric SVD
 
-사용자-아이템 rating matrix 에 SVD 를 적용하면 사용자와 아이템을 같은 latent factor space 에 놓을 수 있다.
+# E) Related
 
-예를 들어 $A$ 가 사용자 $\times$ 영화 평점 행렬이라면,
+[[Latent Semantic Analysis]]
 
-* $U_k$: 사용자 latent vector
-* $V_k$: 영화 latent vector
-* $\Sigma_k$: 각 latent dimension 의 중요도
-
-처럼 해석할 수 있다.
-
-## F.3) Dimensionality Reduction
-
-Truncated SVD 는 sparse matrix 에도 자주 쓰이는 차원 축소 방법이다. [[Principal Component Analysis|PCA]] 와도 연결되는데, centered data matrix 에 SVD 를 적용하면 principal components 를 얻을 수 있다.
-
-# G) Related
-
-* [[machine_learning/NLP/Latent Semantic Analysis|Latent Semantic Analysis]]
-* [[Principal Component Analysis]]
-* [[recommendation_system/matrix factorization|matrix factorization]]
-* [[linear_algebra/eigen-decomposition|eigen-decomposition]]
-* [[linear_algebra/orthogonal|orthogonal]]
-
-# H) References
-
-* [Singular value decomposition - Wikipedia](https://en.wikipedia.org/wiki/Singular_value_decomposition)
-* [Eckart-Young theorem - Wikipedia](https://en.wikipedia.org/wiki/Low-rank_approximation#Proof_of_Eckart%E2%80%93Young%E2%80%93Mirsky_theorem)
+# F) References

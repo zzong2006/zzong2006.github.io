@@ -1,6 +1,8 @@
 ---
 title: "Bellman optimality equation"
-tags: ["reinforcement_learning"]
+aliases: []
+tags:
+  - reinforcement_learning
 ---
 
 # A) Bellman Optimality Equation ?
@@ -49,7 +51,7 @@ $$
 \\&=\sum_{s^{\prime},r}p\left(s^{\prime},r\mid s,a\right)\left[r+\gamma\max_{a^{\prime}}q_{*}\left(s^{\prime},a^{\prime}\right)\right]\end{aligned}
 $$
 
-![|500](https://i.loli.net/2020/10/21/ixHBJoLt21Pn9jF.png)
+![[img-d2e2214471.png|500]]
 
 Bellman Optimality Equation 을 푸는 것은 optimal policy 를 찾는데 사용할 수 있다. 하지만 실제로는 그렇게 유용하지 못한데, 왜냐하면 다음과 같은 세가지 조건이 만족되어야 하기 때문이다.
 
@@ -59,6 +61,4 @@ Bellman Optimality Equation 을 푸는 것은 optimal policy 를 찾는데 사�
 
 예를 들어 벡가몬 게임의 경우 (1), (3) 은 만족하지만 (2) 의 경우 $10^{20}$ 에 대한 경우의 수를 처리해야 한다.
 
-# B) Related
-
-# C) References
+# B) References

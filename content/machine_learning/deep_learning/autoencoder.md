@@ -1,6 +1,8 @@
 ---
 title: "autoencoder"
 aliases: ["AE", "오토인코더"]
+tags: 
+tag: [deep_learning, machine_learning, supervised_learning]
 ---
 
 # A) Autoencoder?
@@ -11,11 +13,11 @@ aliases: ["AE", "오토인코더"]
 
 * Data denoising
 
-![Applied Deep Lear](https://i.loli.net/2020/11/02/QtPuUBkdKWgCevm.png)
+![[img-d751b4e151.png|Applied Deep Lear]]
 
 * Data Restoration
 
-![Automatic Object Removal and Realistic Image Completion NVIDIA Developer](https://i.loli.net/2020/11/04/WovYjCIVfXr3ayx.png)
+![[img-a03463415f.png|Automatic Object Removal and Realistic Image Completion NVIDIA Developer]]
 
 # C) AE 의 장점
 
@@ -43,7 +45,7 @@ aliases: ["AE", "오토인코더"]
 
 여러 layer 의 autoencoder 를 한꺼번에 학습시키기 전에 다음과 같은 예비 학습 과정을 거치게된다.
 
-![image-20201104142045274](https://i.loli.net/2020/11/04/m9WuD8MVRXPO1Aq.png)
+![[img-9675fe9ceb.png|image-20201104142045274]]
 
 1. 우선 첫번째 layer 를 학습시킨다. 이때 입력은 $x$ , 출력은 $x$ 로 일반적인 autoencoder 의 학습을 시킨다.
 2. 이후 첫번째 layer 의 weight $w_1$ 는 고정시키고, 두번째 layer 를 학습시킨다. 이전 학습 시, $x$ 를 입력했을 때 첫번째 hidden layer 에서 얻어지는 출력 $h_1 (=XW^{\top})$ 을 입력으로 하고, 출력도 $h_1$ 로 하게 만든다.
@@ -59,13 +61,13 @@ aliases: ["AE", "오토인코더"]
 
 * VAE 를 통해 생성된 latent vectors 는 AE 보다 차원상에서 compact 하게 뭉쳐져 있다.
 
-![image-20201020181647374](https://i.loli.net/2020/10/20/ECfRQAz6xBvbqNG.png)
+![[img-ace9c3c5a1.png|image-20201020181647374]]
 
 VAE 는 분포에 대한 예측과 이 분포에 대한 sampling 을 수행하므로, generative model 이라고 할 수 있다.
 
 ## F.1) VAE 의 학습 과정
 
-![img](https://i.loli.net/2020/11/04/aOByNF7XdZeWgRD.png)
+![[img-8a5cfa1099.png|img]]
 
 1. VAE 의 encoder 네트워크는 입력 샘플 `x` 를 잠재공간 (latent space) 에서 두 개의 매개 변수 $\mu$ 와 $\sigma$ 로 변환시킨다.
 2. Reparameterization Trick: $z=\mu+e^{\log{\sigma}} \cdot \varepsilon$ 를 잠재정규분포로 정하고, $z$ 과 유사한 데이터를 무작위로 sampling 한다.

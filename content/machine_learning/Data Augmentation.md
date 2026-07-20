@@ -1,6 +1,9 @@
 ---
 title: "Data Augmentation"
-tags: ["machine_learning", "deep_learning"]
+aliases: []
+tags:
+  - machine_learning
+  - deep_learning
 ---
 
 # A) Data Augmentation ?
@@ -9,13 +12,11 @@ tags: ["machine_learning", "deep_learning"]
 
 # B) Example
 
-![image-20201128173127818](https://i.loli.net/2020/11/28/miTgKXsaI2lJhOx.png)
+![[img-c03bed78dc.png|image-20201128173127818]]
 
 # C) For Sequential Data
 
 1. shuffling
 2. last word(item) prediction
 
-# D) Related
-
-# E) References
+# D) References

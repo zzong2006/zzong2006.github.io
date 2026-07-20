@@ -1,6 +1,9 @@
 ---
 title: "seq2seq"
-tags: ["RNN", "deep_learning"]
+aliases: []
+tags:
+  - RNN
+  - deep_learning
 ---
 
 # A) seq2seq ?
@@ -9,10 +12,10 @@ tags: ["RNN", "deep_learning"]
 
 Translation
 
-![|600](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FLPOrJnmb2D.png?alt=media&token=5c789292-26ad-49a3-995e-9466c4cc9265)
+![[img-54500423ef.png|600]]
 
 Image captioning: Example of the Alexnet
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FeYYxE7ATC-.png?alt=media&token=f4cc4293-6de6-48eb-a618-b9103b6dbf30)
+![[img-69bcf9e567.png]]
 
 # C) 일반적인 Language 모델과의 비교
 

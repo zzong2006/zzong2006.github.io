@@ -1,7 +1,8 @@
 ---
 title: "columnar storage"
-tags: ["database"]
 aliases: ["column oriented DB"]
+tags:
+  - database
 ---
 
 # A) Columnar Storage ?
@@ -9,7 +10,7 @@ aliases: ["column oriented DB"]
 columnar storage [[row based storage]] 의 단점을 극복하기 위한 방법으로 많이 사용된다.
 
 **columnar storage 와 row based storage 의 비교**
-![](https://d2.naver.com/content/images/2021/01/9bdf5f80-5008-11eb-9745-840b1d04820e.png)
+![[img-ca67a8d829.png]]
 
 # B) 장점 및 단점
 
@@ -21,12 +22,10 @@ columnar storage [[row based storage]] 의 단점을 극복하기 위한 방법�
 
 columnar storage 에서는 Row group 이라는 개념을 통해 데이터를 분리해두는 기법을 사용한다.
 
-![](https://d2.naver.com/content/images/2021/01/36d93900-500b-11eb-9432-7fb4013d011a.png)
+![[img-5f4ab3fd78.png]]
 
 ## B.2) 단점 ?
 
 IO 비용을 최소화 하기 위해서는 block size 내 에서 최대 크기가 되도록 partition 을 나누는 것이 필요하다.
 
-# C) Related
-
-# D) References
+# C) References

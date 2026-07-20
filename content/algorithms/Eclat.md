@@ -1,6 +1,8 @@
 ---
 title: "Eclat"
-tags: ["algorithm"]
+tags:
+  - algorithm
+aliases: []
 ---
 
 # A) Eclat ?
@@ -19,7 +21,7 @@ Eclat 알고리즘은 vertical layout 을 이용한다.
 
 즉, 한 transaction 이 어떤 itemset 을 보유하는지 나타내는 테이블을 이용하는 것이 아니라, 한 itemset 이 어떤 transaction 에 속해있는지 (TID) 나타내는 테이블을 이용한다.
 
-![Image for post](https://i.loli.net/2020/12/02/aNiRQdl5ProKeO1.png)
+![[img-9ca109b6b7.png|Image for post]]
 
 # C) 동작 과정
 
@@ -27,8 +29,6 @@ Eclat 알고리즘은 vertical layout 을 이용한다.
 2. 테이블에서 minimum [[support]] 값을 만족하는 itemset 만을 남겨두고, 같은 테이블 내의 다른 itemset 에 대한 TID 간 교집합을 계산한다.
 3. 이후, 다시 minimum [[support]] 값 이상인 itemset 을 남겨두고, 같은 과정을 반복한다.
 
-![Image for post](https://i.loli.net/2020/12/02/opHqRwGASgZ3yzr.png)
+![[img-3347cbeb15.png|Image for post]]
 
-# D) Related
-
-# E) References
+# D) References

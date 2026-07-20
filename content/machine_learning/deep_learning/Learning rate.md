@@ -1,7 +1,11 @@
 ---
 title: "Learning rate"
-tags: ["machine_learning", "deep_learning"]
-aliases: ["학습률", "LR"]
+tags:
+  - machine_learning
+  - deep_learning
+aliases:
+  - 학습률
+  - LR
 ---
 
 # A) Learning Rate ?
@@ -16,8 +20,6 @@ $$
 
 위 식에서 $\alpha$ 는 [[Learning rate]] 로, [[Learning rate]] 값에 따른 [[gradient descent]] 의 변화를 그림으로 표현하면 다음과 같다.
 
-![img](https://i.loli.net/2020/09/22/vLOZ3pcfUHTwnB1.png)
+![[img-1f0020912d.png|img]]
 
-# C) Related
-
-# D) References
+# C) References

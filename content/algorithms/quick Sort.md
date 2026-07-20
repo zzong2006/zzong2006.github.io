@@ -1,6 +1,9 @@
 ---
 title: "quick Sort"
-tags: ["algorithm", "sorting"]
+aliases: []
+tags:
+  - algorithm
+  - sorting
 ---
 
 # A) Quick Sort ?
@@ -14,14 +17,14 @@ tags: ["algorithm", "sorting"]
 속도가 빠르다.
 
 시간 복잡도가 `O(nlog₂n)` 를 가지는 다른 정렬 알고리즘과 비교했을 때도 가장 빠르다.
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FFw3ZKZmefI.png?alt=media&token=b6445468-42b7-45d3-93fa-63ba5137162b)
+		* ![[img-1a9b5967c5.png]]
 	* 추가 메모리 공간을 필요로 하지 않는다.
 
 # C) 단점
 
 정렬된 리스트에 대해서는 퀵 정렬의 불균형 분할에 의해 오히려 수행시간이 더 많이 걸린다. 최악의 경우 시간 복잡도는 `O(n^2)` 가 된다.
 
-![|450](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FfaQb22a2ss.png?alt=media&token=be38fa12-d532-4b94-8b2d-dcc7f1ab331e)
+![[img-881a44854c.png|450]]
 
 퀵 정렬의 불균형 분할을 방지하기 위하여, pivot 을 선택할 때 더욱 리스트를 균등하게 분할할 수 있는 데이터를 선택한다. 일반적으로 리스트 내의 중간 값 ([[median]]) 을 pivot 으로 선택한다.
 

@@ -1,6 +1,12 @@
 ---
 title: "Solving Continual Combinatorial Selection via Deep Reinforcement Learning"
-tags: ["IJCAI", "deep_learning", "paper_review", "reinforcement_learning", "y2019"]
+aliases: []
+tags:
+  - IJCAI
+  - deep_learning
+  - paper_review
+  - reinforcement_learning
+  - y2019
 ---
 
 # A) Abstract
@@ -44,7 +50,7 @@ action 과 state space 가 large 하면, S-MDP 문제는 풀기 어려움 (inter
 
 IS-MDP
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FxC45lWh02h.png?alt=media&token=39307943-6fbe-4b14-90c4-f5d30bba6129)
+![[img-6518c5945d.png]]
 
 	- [[Deep Q-Network]]
 
@@ -54,8 +60,6 @@ IS-MDP
 
 		- 
 
-# D) Related
-
-# E) References
+# D) References
 
 * [paper link](https://arxiv.org/abs/1909.03638)

@@ -1,6 +1,8 @@
 ---
 title: "factor of PGM"
-tags: ["PGM", "paper_review"]
+tags:
+  - PGM
+  - paper_review
 aliases: ["factor"]
 ---
 
@@ -34,7 +36,7 @@ Scope: $\left\{X_{1},\ldots,X_{k}\right\}$
 * 예시: condition on $g^1$ 에서 Unnormalized measure 도 factor 다: $P\left(I,D,g^{1}\right)$.
 	* 다만, $g^1$ 의 경우 factor 출력에 관계가 없는 constant 이기 때문에 scope 는 $\{I,D\}$ 이다.
 * Conditional Probability Distribution(CPD) 도 factor 다. $P(G\mid I,D)$ 의 경우 테이블로 표현될 수 있다.
-	* ![|230](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Fh0Q9ic8DpL.png?alt=media&token=5fef71bb-2f98-436f-a16c-b276b383228c)
+	* ![[img-6cf167ce37.png|230]]
 		* 조건 $I,D$ 에 의한 $G$ 의 확률이므로, 테이블 행의 합이 $1$ 이다.
 		* 이 조건 $I,D$ 를 context 라고 한다.
 
@@ -46,19 +48,19 @@ Scope: $\left\{X_{1},\ldots,X_{k}\right\}$
 	* 예시
 
 		1. the scope of the factor product $\phi(A,B,C)\times\phi(C,D)$ is $\{A,B,C,D\}$
-		2. ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F09dQL8UhFf.png?alt=media&token=ad8c8c60-7ac8-42b9-9bfa-ea322cc9d6a5)
+		2. ![[img-ad5fabbd29.png]]
 
 * Factor Marginalization
 	* Factor 의 scope 에서 특정 variable 을 하나로 합치는 작업
 		* 하나로 합칠 때 해당되는 확률 값을 전부 더해준다.
 	* [[Joint distribution of PGM]] 의 Marginalization 과 비슷한 동작
 	* 예시: Scope $\{A,B,C\}$ -> $\{A,C\}$
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FAMj1JcQj1z.png?alt=media&token=bd63f4de-db76-44d2-9846-3b65f682495a)
+		* ![[img-e39a899319.png]]
 * Factor Reduction
 	* Marginalization 과 다르게, 특정 조건을 만족하는 확률만 찾아서 줄이는 방법
 	* [[Joint distribution of PGM]] 의 conditioning 와 비슷한 개념이다.
 	* 예시
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FqrjfDLaHYE.png?alt=media&token=07d01db9-1264-4e8b-95b3-350b3b0ef2d2)
+		* ![[img-d804ef7645.png]]
 
 # 4. Related
 

@@ -1,6 +1,7 @@
 ---
 title: "Gated Recurrent Unit"
 aliases: ["GRU"]
+tag: RNN
 ---
 
 # A) 정의
@@ -29,7 +30,7 @@ GRU 는 [[Recurrent Neural Network]] unit 을 하나의 (memory) cell 로 인식
 
 # D) IV. The Figure of GRU
 
-![RNN, T|500](https://i.loli.net/2020/11/01/9yfMxWUQ4Pj7TcY.png)
+![[img-d92082cd94.png|RNN, T|500]]
 
 위 그림에서 $z_t$ 는 update gate $\Gamma_u$ 를 의미하고, $r_t$ 는 relevance 또는 reset gate $\Gamma_r$ 을 의미한다.
 

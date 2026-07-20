@@ -1,6 +1,9 @@
 ---
 title: "epsilon-greedy algorithm"
-tags: ["reinforcement_learning", "algorithm", "MAB"]
+tags:
+  - reinforcement_learning
+  - algorithm
+  - MAB
 aliases: ["epsilon-greedy"]
 ---
 
@@ -16,7 +19,7 @@ $\varepsilon$-Greedy 알고리즘은 $\varepsilon$ 확률로 가능한 모든 ac
 
 # A) Algorithm Figure
 
-![image-20201126164644237](https://i.loli.net/2020/11/26/HAvsq6Yy9hzUNBt.png)
+![[img-70525ccd56.png|image-20201126164644237]]
 
 * 위의 의사코드에서 $Q(A)$ 는 $Q_{t}(a)$ 와 같다.
 
@@ -50,7 +53,7 @@ A1. 그 이유는 [[Incremental Implementation]] 을 사용했기 때문이다.
 					왼쪽의 식은 step size 가 충분히 커야됨을 의미하며,
 오른쪽 식은 시간 간격이 감소하여 수렴할 만큼 충분히 작아짐을 의미한다.
 * [[Exploration and Exploitation trade-off]]
-* [[Multi-Armed Bandit]] 는 현실에 적용하기에는 풀어야 할 문제가 많아서 이를 [[RS]] 에 바로 사용할 수는 없다.
+* [[Multi-Armed Bandit]] 는 현실에 적용하기에는 풀어야 할 문제가 많아서 이를 [[recommendation_system/Recommendation System|RS]] 에 바로 사용할 수는 없다.
 	* 일반적인 [[Multi-Armed Bandit]] 는 한 번에 하나의 슬롯머신만 시도할 수 있지만, 현실에서는 한 번에 여러 콘텐츠를 추천할 수 있으므로, 여러 슬롯머신을 시도하는 상황으로 문제를 바꾸어야 한다.
 	* [[non-stationary]]: 콘텐츠 수명이나 트렌드 때문에 시간에 따라 반응률이 계속 변한다.
 		* 심지어 같은 시간이라도 추천하는 위치에 따라 편향이 발생해 위치에 따라 반응률이 다르다.

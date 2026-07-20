@@ -1,6 +1,6 @@
 ---
 title: "Stacked autoencoder"
-tags: ["machine_learning"]
+tags: machine_learning 
 aliases: ["SAE"]
 ---
 
@@ -14,7 +14,7 @@ aliases: ["SAE"]
 
 여러 layer 의 autoencoder 를 한꺼번에 학습시키기 전에 다음과 같은 예비 학습 과정을 거치게된다.
 
-![image-20201104142045274](https://i.loli.net/2020/11/04/m9WuD8MVRXPO1Aq.png)
+![[img-9675fe9ceb.png|image-20201104142045274]]
 
 1. 우선 첫번째 layer 를 학습시킨다.
 	* 입력은 $x$ , 출력은 $x$ 로 일반적인 autoencoder 의 학습을 시킨다.
@@ -26,7 +26,5 @@ aliases: ["SAE"]
 이러한 학습 방법은 gradient vanishing 문제를 완화시킬 수 있었기에 혁신적인 연구였다.
 
 하지만 지금은 GPU 성능 향상 및 대용량 데이터 확보와 같은 외부적인 영향으로 예비 학습 과정을 거치지 않아도 충분한 성능을 얻을 수 있게 되었다.
-
-# Related
 
 # References

@@ -1,7 +1,8 @@
 ---
 title: "Markov Decision Process"
-tags: ["reinforcement_learning"]
 aliases: ["MDP"]
+tags:
+  - reinforcement_learning
 ---
 
 # A) Markov Decision Process ?
@@ -16,7 +17,7 @@ $$
 \langle S, A, P, R, \gamma\rangle
 $$
 
-![image-20201021193635194](https://i.loli.net/2020/10/21/8yVZe96DBAClqJE.png)
+![[img-b003ffa3b7.png|image-20201021193635194]]
 
 * States : $S_{t}\in\mathcal{S}$ (states 는 다양한 형태로 존재할 수 있음)
 * Action: $A_{t}\in\mathcal{A}(s)$
@@ -83,6 +84,4 @@ $$
 * Reward Function $\mathcal{R}$: user’s feedback $r(s, a)$
 * $\gamma$: Discount Factor
 
-# E) Related
-
-# F) References
+# E) References

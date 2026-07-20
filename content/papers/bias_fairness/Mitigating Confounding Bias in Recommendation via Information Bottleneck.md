@@ -1,6 +1,11 @@
 ---
 title: "Mitigating Confounding Bias in Recommendation via Information Bottleneck"
-tags: ["RecSyS", "bias", "fairness", "paper_review"]
+tags:
+  - RecSyS
+  - bias
+  - fairness
+  - paper_review
+aliases: []
 ---
 
 # I. Mitigating Confounding Bias in Recommendation via Information Bottleneck ?
@@ -38,7 +43,7 @@ $y^{i}\iny$ 는 binary response: $y=\{0,1\}$
 
 		* 추천 시스템에서의 feedback 생성 과정
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FeoUVEnbegf.png?alt=media&token=414d4e2e-edfa-4500-a65f-8a21e441f27f)
+![[img-2295bad3ca.png]]
 
 * $x$ 는 feature vector 고, 3 가지 파트로 나눠질 수 있음
 	* confounder variables $C$, adjustment variables $A$, instrumental variables $I$

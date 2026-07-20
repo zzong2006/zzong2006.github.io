@@ -1,6 +1,8 @@
 ---
 title: "computational graph"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # A) Computational Graph ?
@@ -27,4 +29,4 @@ $$
 \hat{y}=\sigma\left(\boldsymbol{x}^{\top}\boldsymbol{w}+b\right)
 $$
 
-![|300](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FIOAhfR525k.png?alt=media&token=492c09f8-01ab-4919-9519-9996904bb4ef)
+![[img-5d9019a6aa.png|300]]

@@ -1,7 +1,8 @@
 ---
 title: "thread"
-tags: ["operating_system"]
 aliases: ["스레드", "쓰레드"]
+tags:
+  - operating_system
 ---
 
 # A) Thread란?
@@ -12,7 +13,7 @@ aliases: ["스레드", "쓰레드"]
 
 스레드는 프로세스의 stack과 레지스터만 개별적으로 할당받으며, 나머지 영역인 Code, data, heap은 다른 스레드들과 공유합니다.
 
-![|450](https://i.loli.net/2020/10/19/tS9gkCPRbYpJnEU.png)
+![[img-ddb1738923.png|450]]
 
 위 그림은 스레드와 프로세스가 각각 어떤 자원을 할당받는지를 보여줍니다. 실제로 thread 그림에는 stack만 표시되어 있지만, register 역시 포함되어야 합니다.
 
@@ -46,4 +47,4 @@ aliases: ["스레드", "쓰레드"]
 * **혼합형 쓰레드 (다대다 매핑)**
 	* 사용자 수준과 커널 수준을 혼합하여 구현한 구조입니다.
 
-![https://i.loli.net/2020/12/02/4RYPOtl8qk9mDwn.png](https://i.loli.net/2020/12/02/4RYPOtl8qk9mDwn.png)
+![[img-e77c28ead1.png|https://i.loli.net/2020/12/02/4RYPOtl8qk9mDwn.png]]

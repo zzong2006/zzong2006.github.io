@@ -1,6 +1,8 @@
 ---
 title: "mean average precision"
-tags: ["metrics", "recommendation_system"]
+tags:
+  - metrics
+  - recommendation_system
 aliases: ["MAP"]
 ---
 
@@ -14,7 +16,7 @@ Mean Average [[precision]](MAP) 는 AP 의 평균을 계산하는 방법이다.
 
 # B) MAP 예시
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FVUbz2e-MCS.png?alt=media&token=afddd2c8-d715-448d-8313-e20ed5ce7b83)
+![[img-c3c572ddbf.png]]
 
 MAP 계산 예시: AP 를 먼저 계산하고, 계산된 AP 의 평균을 계산하면 MAP 를 구할 수 있다.
 

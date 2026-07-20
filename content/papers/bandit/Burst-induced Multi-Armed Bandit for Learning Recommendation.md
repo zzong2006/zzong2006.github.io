@@ -1,6 +1,11 @@
 ---
 title: "Burst-induced Multi-Armed Bandit for Learning Recommendation"
-tags: ["MAB", "RecSyS", "bandit", "paper_review"]
+aliases: []
+tags:
+  - MAB
+  - RecSyS
+  - bandit
+  - paper_review
 ---
 
 # A) Burst-induced Multi-Armed Bandit for Learning Recommendation ?
@@ -44,7 +49,7 @@ tags: ["MAB", "RecSyS", "bandit", "paper_review"]
 	* BMAB (Burst-induced Multi-Armed Bandit) algorithm
 		* $K$ 개의 arm 에 대하여 두 states(loyal & curious) 에 대한 beta 분포 (prior & posterior) 를 따로 둠
 			* $\alpha_{0}\in\mathbb{R}^{K}\text{and}\beta_{0}\in\mathbb{R}^{K}$, $\alpha_{1}\in\mathbb{R}^{K}\text{and}\beta_{1}\in\mathbb{R}^{K}$
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Ft-bHD9wtZ3.png?alt=media&token=35cbf3fe-5508-42cf-8dd1-802a023df87c)
+		* ![[img-86a22a014b.png]]
 	* A realistic state detector
 		* Notation
 			* timestamps 집합의 윈도우 크기 $\Delta_{i}=t_{i}-t_{i-\Delta+1}$ (만약, $i<\Delta$ 이라면, $\Delta_{i}=t_{i}$)
@@ -64,7 +69,7 @@ tags: ["MAB", "RecSyS", "bandit", "paper_review"]
 
 	* 
 
-* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FW37TcdGuSH.png?alt=media&token=6816c9dd-390a-4346-819d-0e4d52bc993d)
+* ![[img-c3138c599c.png]]
 
 		* 
 
@@ -121,7 +126,7 @@ tags: ["MAB", "RecSyS", "bandit", "paper_review"]
 
 * 각 arm($K$ 개) 에 대해 두 개의 상태 (loyal & curious) 에 각각 beta 분포 (prior & posterior) 를 따로 유지합니다.
 	* $\alpha_0,\ \beta_0 \in \mathbb{R}^K$, $\alpha_1,\ \beta_1 \in \mathbb{R}^K$
-* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2Ft-bHD9wtZ3.png?alt=media&token=35cbf3fe-5508-42cf-8dd1-802a023df87c)
+* ![[img-86a22a014b.png]]
 
 #### C.4.3.3) 현실적인 상태 판별 (state detector)
 
@@ -152,6 +157,6 @@ $\mathcal{T}_{\Delta,i} = \left\{t_{i-\Delta+1}, t_{i-\Delta+2}, ..., t_i\right\
 즉,
 $\Delta_i = t_i-t_{i-\Delta+1}$ 값이 shape $(\Delta-1)$ 및 scale $(\lambda_L)$인 [[Gamma distribution]]을 따른다는 것을 검증하게 됩니다.
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FW37TcdGuSH.png?alt=media&token=6816c9dd-390a-4346-819d-0e4d52bc993d)
+![[img-c3138c599c.png]]
 
 위와 같이 본 논문에서는 추천 시스템 환경 내 다양한 사용자 행동 패턴(loyal/curious)에 기반하여 발생하는 burst 현상을 수학적으로 모델링하고 이를 활용해 더욱 적응적인 Multi-Armed Bandit 전략(BMAB)을 제안하였습니다. 또한 현실적인 상황에서도 적용 가능한 상태 판별 기법으로 실용성을 높였습니다.n(0,1)$을 사용하는 [[Gamma distribution]]의 [[quant서 해당 상태는 binary로 구ationary M

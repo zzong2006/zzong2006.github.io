@@ -1,6 +1,11 @@
 ---
 title: "Attention Is All You Need"
-tags: ["language_model", "NLP", "nlp", "paper_review"]
+tags:
+  - language_model
+  - NLP
+  - nlp
+  - paper_review
+aliases: []
 ---
 
 # A) Abstract
@@ -53,7 +58,7 @@ $$
 
 **Comparison of two attentions**
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F_BBQAF4WtC.png?alt=media&token=e8e0afd9-6025-4495-8cb9-4f40802efc63)
+![[img-066c31bb66.png]]
 
 * Applications of Attention: Transformer 는 multi-head attention 을 세가지 방법으로 사용한다.
 

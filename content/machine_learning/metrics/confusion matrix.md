@@ -1,10 +1,9 @@
 ---
 title: "confusion matrix"
 ---
-
 # A) Confusion Matrix
 
-![Confusion Matrix](https://i.loli.net/2020/11/05/mRcQTGMuyaCpKJV.jpg)
+![[img-49639380f2.jpg|Confusion Matrix]]
 
 ## A.1) Terminology
 
@@ -34,7 +33,7 @@ A test result which wrongly indicates that a particular condition or attribute i
 
 # B) 예시
 
-![](https://i.loli.net/2020/11/05/8PkKpsnwEoxB4C6.png)
+![[img-820044d262.png]]
 
 * [[precision]]: 분류된 결과 중 predicted positive 의 negative 와 positive 만 신경 씀
 * [[Recall]] : predicted positive 에서 positive 만 신경 씀

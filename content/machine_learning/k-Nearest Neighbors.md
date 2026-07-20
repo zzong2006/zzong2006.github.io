@@ -1,6 +1,9 @@
 ---
 title: "k-Nearest Neighbors"
-tags: ["machine_learning", "clustering", "classification"]
+tags:
+  - machine_learning
+  - clustering
+  - classification
 aliases: ["KNN"]
 ---
 
@@ -13,7 +16,7 @@ aliases: ["KNN"]
 
 ## A.1) 예시
 
-![머신러닝 - 6. K-최근접 이웃(KNN)|400](https://blog.kakaocdn.net/dn/cvzGSE/btqw569xJ8n/DfckialHS6fgKmDZpy4L01/img.png)
+![[img-f88db27aa5.png|머신러닝 - 6. K-최근접 이웃(KNN)|400]]
 
 위 그림처럼 빨간색 데이터를 기준으로 $k=3$ 의 KNN 을 수행했을 경우, 보라색 데이터 (class B) 가 많으므로, 빨간색 데이터는 class B 로 판별된다.
 

@@ -1,6 +1,7 @@
 ---
 title: "mean function"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) Mean Function ?
@@ -27,12 +28,10 @@ $$
 
 mean function 을 그림으로 표현하자면 아래의 빨간 선과 같다.
 
-![|500](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2FXmwBfQPX-k.png?alt=media&token=1022049b-7b19-487c-ab3a-58a17108a2c4)
+![[img-cf0abcdcff.png|500]]
 
 여러 파란선이 보이는 이유는 $A$ 가 binomial 분포를 따르기 때문이다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://dlsun.github.io/probability/mean-function.html

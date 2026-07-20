@@ -1,6 +1,8 @@
 ---
 title: "Gibbs Sampling"
-tags: ["bayesian_inference", "statistic"]
+tags:
+  - bayesian_inference
+  - statistic
 aliases: ["깁스 샘플링"]
 ---
 
@@ -45,7 +47,7 @@ It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$)
 	* Gibbs sampling 은 일반적으로 statistical inference 를 위해 사용되는데, 메인 아이디어는 관측된 데이터를 sampling 과정에 포함시키는 것이다.
 		* 관측된 데이터 각각에 대해서 분리된 변수를 생성하고, 관측된 값에 대해 sampling 할 때 해당 변수들을 고정시키는 것
 	* algorithm detail: a generic Gibbs sampler
-		* ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fwoosung_graph%2F03ioJtn5Dg.png?alt=media&token=99a3a886-fe5d-4f2a-867d-62ac4f8aebdd)
+		* ![[img-22487957ea.png]]
 * 변형 또는 확장
 	* 기존의 Gibbs sampler 에 대한 여러가지 변형이 존재한다. 이러한 변형의 이유는 샘플 간 autocorrelation 을 충분히 줄여서, 추가적인 계산 비용을 극복하기 위함에 있다.
 	* 종류
@@ -56,6 +58,4 @@ It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$)
 * [[Thompson sampling]] tutorial: https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf
 * [wiki](https://en.wikipedia.org/wiki/Gibbs_sampling)
 
-# E) Related
-
-# F) References
+# E) References
