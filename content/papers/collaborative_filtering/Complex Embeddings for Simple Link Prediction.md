@@ -1,5 +1,4 @@
 ---
-title: "Complex Embeddings for Simple Link Prediction"
 tags: ["collaborative_filtering", "paper_review"]
 ---
 

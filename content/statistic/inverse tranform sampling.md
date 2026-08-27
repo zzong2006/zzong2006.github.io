@@ -1,5 +1,4 @@
 ---
-title: "inverse tranform sampling"
 tags: ["statistic"]
 ---
 
@@ -23,8 +22,6 @@ Inverse transform sampling 는 어떤 확률 분포에서 해당 분포의 inver
 
 ## B.2) 이산 분포
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://stephens999.github.io/fiveMinuteStats/inverse_transform_sampling.html

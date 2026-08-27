@@ -1,10 +1,5 @@
 ---
-title: "cosine similarity"
-tags:
-  - math
-  - metrics
-  - machine_learning
-aliases: []
+tags: ["math", "metrics", "machine_learning"]
 ---
 
 # A) Cosine Similarity ?
@@ -28,6 +23,6 @@ $$
 -1\le\text{sim}(u,v)\le1
 $$
 
-![[img-aa38387822.png|300]]
+![[img-aa38387822.png||300]]
 
 # D) References

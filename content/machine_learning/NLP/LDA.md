@@ -1,5 +1,4 @@
 ---
-title: "LDA"
 tags: ["machine_learning", "NLP", "topic_modeling"]
 aliases: ["Latent Dirichlet Allocation"]
 ---

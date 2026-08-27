@@ -1,5 +1,4 @@
 ---
-title: "A Survey on AI Search with LargeLanguage Models"
 tags: ["retrieval", "IR", "survey", "LLM"]
 ---
 

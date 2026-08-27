@@ -1,5 +1,4 @@
 ---
-title: "data mining"
 tags: ["machine_learning", "word"]
 ---
 
@@ -7,6 +6,4 @@ tags: ["machine_learning", "word"]
 
 Applying [[machine learning|ML]] techniques to dig into large amounts of data can help discover patterns that were not immediately apparent.
 
-# B) Related
-
-# C) References
+# B) References

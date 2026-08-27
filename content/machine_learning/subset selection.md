@@ -1,7 +1,3 @@
----
-title: "subset selection"
----
-
 
 # A) Subset Selection ?
 
@@ -23,8 +19,6 @@ Forward stepwise selection is a computationally eﬃcient alternative to best su
 
 가장 좋은 모델을 선택할 때는 가장 낮은 test error 를 가진 모델을 선택해야 한다 ([[cross-validation]] 이나 validation-set 을 만들어서 테스트).
 
-# C) Related
-
-# D) References
+# C) References
 
 [[Introduction to Statistical Learning|ISL]] - 6.1.

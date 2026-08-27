@@ -1,5 +1,4 @@
 ---
-title: "Deep Exploration via Bootstrapped DQN"
 tags: ["Google", "ensemble", "paper_review", "reinforcement_learning"]
 ---
 

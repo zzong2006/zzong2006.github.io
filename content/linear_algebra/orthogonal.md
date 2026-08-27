@@ -1,26 +1,32 @@
 ---
-title: "orthogonal"
 tags: ["linear_algebra"]
+aliases: ["orthogonal matrix", "Orthogonal Matrix"]
 ---
 
-# A) Orthogonal ?
+# A) Orthogonal
 
-## A.1) Orthogonal (직교) Vector
+Orthogonal은 두 vector의 dot product가 0인 관계를 뜻한다.
 
-두 vector 간 내적 (dot product) 값이 $0$ ($\boldsymbol{x}^{\top}\boldsymbol{y}=0$) 일 때, 두 벡터가 직교한다 고 말한다.
+$$
+x^\top y = 0
+$$
 
-만약 두 벡터가 서로 non-zero [[norm]] 값을 가진다면, 이는 두 벡터 사이의 값이 90 도를 가짐을 의미한다.
+두 non-zero vector가 orthogonal이면 기하적으로 서로 90도 방향을 이룬다고 볼 수 있다.
 
-## A.2) Orthogonal Matrix (직교 행렬)
+# B) Orthogonal Matrix
 
-$n\times n$ 크기 행렬 $A$ 가 존재할 경우, $A^\top{A}=AA^{\top}=I$ 를 만족하는 행렬을 orthogonal matrix 라고 한다. 즉, $A$ 의 각 벡터가 [[orthonormal]] 한 column (또는 row) vector 로 구성되었다고 볼 수 있다.
+Orthogonal matrix는 column vector들이 서로 orthonormal이고, transpose가 inverse와 같은 real-valued matrix다.
 
-역행렬의 정의를 생각해봤을 때, orthogonal matrix 의 [[transpose|transpose matrix]] 는 [[Inverse matrix]] 를 의미한다. 즉, $A^{-1}=A^{T}$ 를 만족한다.
+$$
+Q^\top Q = QQ^\top = I
+$$
 
-# B) Related
+즉, $Q^{-1}=Q^\top$가 성립한다. Real-valued space에서는 orthogonal matrix를 쓰고, complex-valued space에서는 [[linear_algebra/unitary matrix|unitary matrix]]가 같은 역할을 한다.
 
-[[orthonormal]]
+# C) 왜 중요한가
 
-# C) Related
+Orthogonal transformation은 vector의 길이와 각도를 보존한다. 그래서 rotation, reflection, [[linear_algebra/QR decomposition|QR decomposition]], PCA의 basis 변환을 이해할 때 자주 등장한다.
 
-# D) References
+[[linear_algebra/orthonormal|Orthonormal]] basis로 좌표계를 잡으면 projection과 decomposition 계산이 단순해지는 이유도 이 성질 때문이다.
+
+# References

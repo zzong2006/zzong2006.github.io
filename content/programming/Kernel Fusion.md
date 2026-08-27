@@ -1,5 +1,4 @@
 ---
-title: "Kernel Fusion"
 tags: ["server", "inference"]
 ---
 
@@ -17,8 +16,6 @@ Kernel Fusion 은 주어진 연산 그래프가 있을 때 잘 알려진 패턴�
 
 Kernel Fusion 을 수행하는 방법으로는 직접 Kernel 을 CUDA C++ 로 작성하는 방법이 있고, [[TensorRT]] 와 같이 자동으로 Kernel Fusion 을 지원하는 툴들을 이용하여 학습된 모델을 최적화 하는 방법도 있습니다.
 
-# C) Related
-
-# D) References
+# C) References
 
 [새로운 루다를 지탱하는 모델 서빙 아키텍처 — 3편: 안정적인 LLM 서비스를 위한 서빙 최적화 기법 – 스캐터랩 기술 블로그](https://tech.scatterlab.co.kr/serving-architecture-3/)

@@ -1,10 +1,6 @@
 ---
-title: "support vector machine"
+tags: ["machine_learning", "linear_algebra", "classification"]
 aliases: ["SVM"]
-tags:
-  - machine_learning
-  - linear_algebra
-  - classification
 ---
 
 # A) Classiﬁcation with SVM

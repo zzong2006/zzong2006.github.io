@@ -1,5 +1,4 @@
 ---
-title: "logit"
 tags: ["machine_learning", "statistic"]
 aliases: ["로짓"]
 ---
@@ -36,6 +35,4 @@ $$
 
 * 주로 logit 은 [[machine_learning/Normalization]] 을 위해 [[softmax function]] 의 입력값으로 사용된다.
 
-# D) Related
-
-# E) References
+# D) References

@@ -1,12 +1,6 @@
 ---
-title: "Reciprocal Rank Fusion"
-tags:
-  - retrieval
-  - ranking
-  - ensemble
-  - fusion
-  - learning_to_rank
-aliases: [RRF]
+tags: ["retrieval", "ranking", "ensemble", "fusion", "learning_to_rank"]
+aliases: ["RRF"]
 ---
 
 # A) Reciprocal Rank Fusion

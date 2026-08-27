@@ -1,10 +1,5 @@
 ---
-title: "Temporal Graph Network"
-aliases: []
-tags:
-  - GNN
-  - graph
-  - deep_learning
+tags: ["GNN", "graph", "deep_learning"]
 ---
 
 # A) Temporal Graph Network ?

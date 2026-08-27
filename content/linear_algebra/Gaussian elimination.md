@@ -1,8 +1,5 @@
 ---
-title: "Gaussian elimination"
-aliases: []
-tags:
-  - linear_algebra
+tags: ["linear_algebra"]
 ---
 
 * Elimination produces an upper triangular system.

@@ -1,5 +1,4 @@
 ---
-title: "proxy"
 tags: ["network"]
 aliases: ["프록시"]
 ---
@@ -30,9 +29,7 @@ aliases: ["프록시"]
 
 [[reverse proxy]] 참조
 
-# D) Related
-
-# E) References
+# D) References
 
 # F) Tips
 

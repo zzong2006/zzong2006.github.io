@@ -1,5 +1,4 @@
 ---
-title: "Revisiting Reinforcement Learning for LLM Reasoning from A Cross-Domain Perspective"
 tags: ["LLM", "paper_review"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "random walk"
 tags: ["graph", "probability", "markov_chain"]
 aliases: ["Random Walk"]
 ---

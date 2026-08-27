@@ -1,5 +1,4 @@
 ---
-title: "Compact Language Models via Pruning andKnowledge Distillation"
 tags: ["language_model", "distillation", "pruning", "LLM", "nlp", "paper_review", "sLLM"]
 ---
 

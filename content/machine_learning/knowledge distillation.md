@@ -1,5 +1,4 @@
 ---
-title: "knowledge distillation"
 tags: ["machine_learning"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "UniERF - A Uniform Embedding-based Retrieval Framework for E-Commerce Search"
 tags: ["paper", "advertisement", "search_ads", "retrieval", "embedding", "jd_dot_com", "KDD", "y2025"]
 aliases: ["UniERF"]
 ---

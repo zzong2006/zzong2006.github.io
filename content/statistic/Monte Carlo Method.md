@@ -1,5 +1,4 @@
 ---
-title: "Monte Carlo Method"
 tags: ["sampling"]
 aliases: ["Monte Carlo", "MC"]
 ---
@@ -21,6 +20,6 @@ $$
 # B) Related
 
 * [[variational inference]]
-* [[RL/Monte Carlo Method]]
+* [[RL/Monte Carlo Method(RL)]]
 
 # C) References

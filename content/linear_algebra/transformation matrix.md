@@ -1,5 +1,4 @@
 ---
-title: "transformation matrix"
 tags: ["linear_algebra"]
 aliases: ["변환 행렬"]
 ---
@@ -39,6 +38,4 @@ $$
 
 여기서 $\boldsymbol{\alpha}_{j}, j=1,2,3$ 는 $C$ 에 대한 $\Phi\left(\boldsymbol{b}_{j}\right)$ 의 [[coordinates]] vector 다.
 
-# C) Related
-
-# D) References
+# C) References

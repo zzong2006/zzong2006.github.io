@@ -1,8 +1,5 @@
 ---
-title: "value function"
-aliases: []
-tags:
-  - reinforcement_learning
+tags: ["reinforcement_learning"]
 ---
 
 # Value Function ?

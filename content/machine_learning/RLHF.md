@@ -1,7 +1,5 @@
 ---
-title: "RLHF"
-tags: ["LLM", "reinforcement_learning"]
-aliases: ["Reinforcement Learning from Human Feedback"]
+aliases: ["Reinforcement Learning from Human Feedback", "LLM", "reinforcement_learning"]
 ---
 
 # A) RLHF ?
@@ -24,7 +22,7 @@ RLHF 는 크게 3 개의 단계로 나눠진다.
 
 RLHF 시작 지점으로, [[masked language modeling|MLM]] 과 같이 전통적인 사전 학습 objective 를 이용해서 학습된 언어 모델을 사용한다.
 
-이 단계에서 종종 추가적인 데이터로 학습을 한다. 예를 들어 [[work/keys]] 의 경우, 사람이 작성한 텍스트를 기반으로 파인 튜닝을 수행한다. 하지만 이것이 필수적인 단계는 아니다.
+이 단계에서 종종 추가적인 데이터로 학습을 한다. 예를 들어 [[private/work/keys]] 의 경우, 사람이 작성한 텍스트를 기반으로 파인 튜닝을 수행한다. 하지만 이것이 필수적인 단계는 아니다.
 
 이렇게 완성된 모델을 a SFT(supervised fine-tuned) 모델이라고 부른다.
 
@@ -57,8 +55,6 @@ Today, there are already a few active repositories for RLHF in PyTorch that grew
 
 TRL is designed to fine-tune pretrained LMs in the Hugging Face ecosystem with PPO. TRLX is an expanded fork of TRL built by [CarperAI](https://carper.ai/) to handle larger models for online and offline training.
 
-# D) Related
-
-# E) References
+# D) References
 
 * [Illustrating Reinforcement Learning from Human Feedback (RLHF)](https://huggingface.co/blog/rlhf)

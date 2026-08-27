@@ -1,13 +1,10 @@
 ---
-layout: default
-title:  "Integrity"
-category: Database
-order: 5
+title: "Integrity"
 ---
 
 무결성이란, 데이터베이스에 저장된 데이터 값과 그것이 표현하는 현실 세계의 실제값이 얼만큼 일치 하는 지에 대한 정도를 의미한다.
 
-<img src="/images/img-b0c2e6fc5e.png" alt="image-20201128215300010" style="zoom: 80%;" />
+<img src="https://i.loli.net/2020/11/28/XDzlbpWo7JMZmTP.png" alt="image-20201128215300010" style="zoom: 80%;" />
 
 무결성의 종류에는 여섯가지가 존재한다.
 

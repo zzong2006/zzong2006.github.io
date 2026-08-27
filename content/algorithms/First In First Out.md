@@ -1,5 +1,4 @@
 ---
-title: "First In First Out"
 tags: ["algorithm"]
 aliases: ["FIFO"]
 ---

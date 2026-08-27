@@ -1,5 +1,4 @@
 ---
-title: "consumer group"
 tags: ["kafka"]
 aliases: ["컨슈머 그룹"]
 ---
@@ -13,6 +12,4 @@ aliases: ["컨슈머 그룹"]
 	* 만약, 최신 데이터부터 읽게 하고 싶다면 `largest` 를, 가장 초기 데이터부터 읽게 하고 싶다면 `earliest` 를 설정하면 된다.
 * Q) 파티션 당 컨슈머가 1:1 로 배치되는 것인지?
 
-# B) Related
-
-# C) References
+# B) References

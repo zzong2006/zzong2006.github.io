@@ -1,5 +1,4 @@
 ---
-title: "Thompson sampling"
 aliases: ["TS", "Posterior Sampling", "톰슨 샘플링"]
 ---
 
@@ -23,7 +22,7 @@ $c_i$ 는 클릭이 되었느냐 ($0$) 되지 않았느냐 ($1$) 라는 binary �
 - $\displaystyle{\sigma_{i,t}=\left(\alpha_{i,t}/\beta_{i,t}\right)\left(1-\alpha_{i,t}/\beta_{i,t}\right)/\left(\beta_{i,t}+1\right)}$
 
 # B) [[Recommendation System|RS]]의 Thompson Sampling
-- [[RS]]에 대한 Multi-Armed Bandit에는 다음과 같은 가정이 존재한다.
+- [[recommendation_system/Recommendation System|RS]]에 대한 Multi-Armed Bandit에는 다음과 같은 가정이 존재한다.
 - 컨텐츠를 통해 사용자들이 클릭을 시도할수록, 보상이 주어지고, 결과적으로 분포에 대한 parameter가 수렴함
 - 하지만 서비스에 따라서 수렴하는 속도가 다름: 일반적으로 노출 횟수가 많고 콘텐츠 갯수가 작을수록 수렴 속도가 매우 빠름 (e.g. 카카오톡 카페 글 추천)
 - 만약 수렴이 빠른 경우, 언제 수렴이 완료되는지 자동적으로 파악하고, 그것을 조정할 수 있도록 유도하는 것이 핵심

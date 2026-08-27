@@ -1,5 +1,4 @@
 ---
-title: "Inverted Index"
 tags: ["retrieval", "IR", "sparse_retrieval", "search_engine", "data_structure"]
 aliases: ["역색인", "inverted index"]
 ---

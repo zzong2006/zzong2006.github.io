@@ -1,5 +1,4 @@
 ---
-title: "dependency injection"
 tags: ["software_design"]
 aliases: ["의존성 주입", "DI"]
 ---
@@ -17,7 +16,5 @@ B 클래스에서 A 클래스를 내부 변수로 사용하게되면 B 클래스
 ## (2) 주입
 
 내부가 아니라 외부에서 객체를 생성해서 넣어주는 것을 주입한다고 한다.
-
-# Related
 
 # References

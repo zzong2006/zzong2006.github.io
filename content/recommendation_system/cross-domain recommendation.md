@@ -1,5 +1,4 @@
 ---
-title: "cross-domain recommendation"
 tags: ["recommendation_system"]
 ---
 
@@ -50,6 +49,4 @@ Paper lists
 
 A deep function was used to map the benchmark factors with the ones computed in each domain. Example) Leveraged unstructured text for collaborative recommendations.
 
-# G) Related
-
-# H) References
+# G) References

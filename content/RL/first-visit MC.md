@@ -1,7 +1,5 @@
 ---
-title: "first-visit MC"
-tags: reinforcement_learning 
-aliases: []
+tags: ["reinforcement_learning"]
 ---
 
 # A) First-visit MC ?

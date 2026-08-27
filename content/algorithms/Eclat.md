@@ -1,8 +1,5 @@
 ---
-title: "Eclat"
-tags:
-  - algorithm
-aliases: []
+tags: ["algorithm"]
 ---
 
 # A) Eclat ?

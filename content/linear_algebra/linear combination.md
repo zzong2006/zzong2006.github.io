@@ -1,5 +1,4 @@
 ---
-title: "linear combination"
 tags: ["linear_algebra"]
 aliases: ["선형 결합"]
 ---
@@ -43,6 +42,4 @@ $$
 x\left[\begin{array}{r}2 \\ -1\end{array}\right]+y\left[\begin{array}{c}-1 \\ 2\end{array}\right]=\left[\begin{array}{l}0 \\ 3\end{array}\right]
 $$
 
-# C) Related
-
-# D) References
+# C) References

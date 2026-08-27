@@ -1,5 +1,4 @@
 ---
-title: "global minimum"
 tags: ["optimization", "machine_learning"]
 aliases: ["global optimum", "global minima"]
 ---

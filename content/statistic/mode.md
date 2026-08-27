@@ -1,5 +1,4 @@
 ---
-title: "mode"
 tags: ["statistic"]
 ---
 
@@ -18,6 +17,4 @@ For a discrete random variable, the mode is defined as the value of $x$ having t
 
 The estimate by [[maximum a posteriori probability|MAP]] is the mode of the posterior distribution.
 
-# B) Related
-
-# C) References
+# B) References

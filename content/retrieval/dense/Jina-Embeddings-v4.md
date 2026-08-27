@@ -1,5 +1,4 @@
 ---
-title: "Jina-Embeddings-v4"
 tags: ["embedding", "dense_retrieval", "multi_vector", "ColBERT"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "cache locality"
 tags: ["operating_system"]
 ---
 
@@ -28,6 +27,4 @@ ffff 0100    data[4]        | ffff 8dc0    l_data->next->next
 
 만약 `ffff 0000` 에 접근하고, 그 이후 다음 원소에 접근할 때, cache 는 `ffff 2000` 정도까지의 메모리를 저장한다. 그렇다면, Array 가 Linked list 보다 훨씬 빠른 접근이 가능하게 될 것이고, 이는 캐시 지역성이 우수하다는 것을 의미하게 된다.
 
-# B) Related
-
-# C) References
+# B) References

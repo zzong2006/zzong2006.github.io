@@ -1,5 +1,4 @@
 ---
-title: "inscrutable"
 tags: ["word"]
 ---
 

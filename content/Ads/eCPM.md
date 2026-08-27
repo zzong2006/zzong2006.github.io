@@ -1,5 +1,4 @@
 ---
-title: "eCPM"
 tags: ["advertisement"]
 aliases: ["CPM", "cost per mile"]
 ---
@@ -16,6 +15,4 @@ eCPM 은 유효 광고 1,000 회 노출당 비용 (정상받을 수 있는 수�
 
 1,000 회 광고 노출당 게시자가 얻는 수익의 추정치이며, `총 수익 / 노출 수 * 1,000` 로 계산한다.
 
-# C) Related
-
-# D) References
+# C) References

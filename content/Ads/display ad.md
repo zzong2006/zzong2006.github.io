@@ -1,5 +1,4 @@
 ---
-title: "display ad"
 tags: ["advertisement"]
 aliases: ["DA"]
 ---
@@ -11,7 +10,5 @@ aliases: ["DA"]
 장점
 
 단점
-
-# Related
 
 # References

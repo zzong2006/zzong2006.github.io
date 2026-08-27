@@ -1,5 +1,4 @@
 ---
-title: "Stateful Pod와 Headless Service"
 tags: ["Kubernetes"]
 ---
 데이터베이스처럼 **안정적인 네트워크 이름과 저장 공간이 필요한 상태 저장(Stateful) 애플리케이션**을 쿠버네티스에서 운영하기 위한 패턴입니다.

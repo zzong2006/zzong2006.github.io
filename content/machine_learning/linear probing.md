@@ -1,5 +1,4 @@
 ---
-title: "linear probing"
 tags: ["deep_learning"]
 ---
 
@@ -9,8 +8,6 @@ tags: ["deep_learning"]
 
 이 학습 방식과 다른 방식은 [[fine tuning]] 이 존재한다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * [FINE-TUNING CAN DISTORT PRETRAINED FEATURES AND UNDERPERFORM OUT-OF-DISTRIBUTION](https://openreview.net/pdf?id=UYneFzXSJWh)

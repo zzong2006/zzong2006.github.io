@@ -1,5 +1,4 @@
 ---
-title: "ordinary least squares"
 tags: ["linear_algebra", "linear_regression", "machine_learning"]
 aliases: ["OLS", "Normal Equation"]
 ---
@@ -14,7 +13,7 @@ $$
 \displaystyle\operatorname{RSS}(\boldsymbol{w})=\frac{1}{2}\sum_{n=1}^{N}\left(y_{n}-\boldsymbol{w}^{\top}\boldsymbol{x}_{n}\right)^{2}=\frac{1}{2}\|\mathbf{X}\boldsymbol{w}-\boldsymbol{y}\|_{2}^{2}=\frac{1}{2}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})^{\top}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})
 $$
 
-이를 미분해서 [[machine_learning/optimization/gradient]] 를 구하면 다음과 같다.
+이를 미분해서 [[machine_learning/gradient]] 를 구하면 다음과 같다.
 
 $$
 \nabla_{\boldsymbol{w}}\operatorname{RSS}(\boldsymbol{w})=\mathbf{X}^{\top}\mathbf{X}\boldsymbol{w}-\mathbf{X}^{\top}\boldsymbol{y}
@@ -97,6 +96,4 @@ $\mathbf{X}^{\top} \mathbf{X}$ 가 invertible 하지 않는 경우, 즉 [[singul
 
 이런 경우는 대부분 $m<n$ ($\mathbf{X}$ 는 $m \times n$ matrix) 이거나 일부 feature 가 불필요하는 경우다.
 
-# F) Related
-
-# G) References
+# F) References

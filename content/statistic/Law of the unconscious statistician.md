@@ -1,5 +1,4 @@
 ---
-title: "Law of the unconscious statistician"
 aliases: ["LOTUS"]
 ---
 
@@ -9,6 +8,4 @@ $$
 \mathrm{E}[g(X)]=\sum_{x} g(x) f_{X}(x)
 $$
 
-# B) Related
-
-# C) References
+# B) References

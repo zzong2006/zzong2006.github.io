@@ -1,5 +1,4 @@
 ---
-title: "vllm"
 tags: ["LLM"]
 ---
 
@@ -120,6 +119,4 @@ P99 E2EL (ms):                           66713.44
 - 하나의 응답이 완전히 완료될 때까지, 즉 전체 토큰이 모두 생성되는 데 걸리는 시간을 나타냅니다.
 - 벤치마크 코드에서는 이 값을 `latency` 로 표현합니다.
 
-# C) Related
-
-# D) References
+# C) References

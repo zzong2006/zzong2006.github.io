@@ -1,5 +1,4 @@
 ---
-title: "resilient distributed datasets"
 tags: ["Spark"]
 aliases: ["RDD"]
 ---
@@ -32,9 +31,7 @@ pythonLines = lines.filter(lambda line: "Python" in line) pythonLines.count()
 
 언제 실제 README.md 파일이 읽혀질까? 실제로 읽혀지는 시기는 README.md 파일을 `sc.textFile` 로 오픈할 때가 아니라 .count() 라는 액션이 수행될 때 이다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * [https://bcho.tistory.com/1027](https://bcho.tistory.com/1027)
 * [RDD Programming Guide - Spark 3.5.2 Documentation](https://spark.apache.org/docs/latest/rdd-programming-guide.html#overview)

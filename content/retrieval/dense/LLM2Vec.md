@@ -1,5 +1,4 @@
 ---
-title: "LLM2Vec"
 tags: ["embedding", "dense_retrieval", "LLM"]
 ---
 

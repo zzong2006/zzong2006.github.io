@@ -1,8 +1,5 @@
 ---
-title: "Elbow Method"
-tags:
-  - clustering
-aliases: []
+tags: ["clustering"]
 ---
 
 # A) Elbow Method ?

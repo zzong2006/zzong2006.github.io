@@ -1,5 +1,4 @@
 ---
-title: "AUROC"
 tags: ["metrics", "machine_learning"]
 ---
 
@@ -25,9 +24,7 @@ See the documentation of [`BinaryAUROC`](https://lightning.ai/docs/torchmetrics
 
 `[1, 0, 1]` 같이 positive label 이 여러개 있는 것.
 
-# B) Related
-
-# C) References
+# B) References
 
 * [AUROC — PyTorch-Metrics 1.4.2 documentation](https://lightning.ai/docs/torchmetrics/stable/classification/auroc.html)
 * [분류: ROC 및 AUC  |  Machine Learning  |  Google for Developers](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)

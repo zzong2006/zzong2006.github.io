@@ -1,5 +1,4 @@
 ---
-title: "mean reciprocal rank"
 tags: ["learning_to_rank", "metrics", "recommendation_system"]
 aliases: ["MRR"]
 ---
@@ -33,6 +32,4 @@ $$
 
 * 하나의 관련있는 아이템만 활용하고 나머지 관련있는 아이템들은 무시함
 
-# D) Related
-
-# E) References
+# D) References

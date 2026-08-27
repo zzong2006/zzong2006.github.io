@@ -1,6 +1,5 @@
 ---
-title: "Deep Reinforcement Learning with Double Q-Learning"
-tags: ["reinforcement_learning Google y2016 AAAI"]
+tags: ["reinforcement_learning", "Google", "y2016", "AAAI"]
 aliases: ["DDQN"]
 ---
 
@@ -57,7 +56,5 @@ Y_{t}^{\text {DoubleQ }} \equiv R_{t+1}+\gamma Q\left(S_{t+1}, \underset{a}{\ope
 $$
 
 실제 구현시에는 분리된 두 value function 이 상호 대칭적인 방식으로 학습하며, 서로 다른 데이터를 이용한다.
-
-# Related
 
 # References

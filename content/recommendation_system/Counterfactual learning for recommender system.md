@@ -1,13 +1,10 @@
 ---
-title: "Counterfactual learning for recommender system"
 tags: ["recommendation_system", "tutorial"]
 ---
 
 # Abstract
 
 counterfactual learning technologies for tackling the bias problem in recommendation.
-
-# Related
 
 # References
 

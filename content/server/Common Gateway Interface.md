@@ -1,5 +1,4 @@
 ---
-title: "Common Gateway Interface"
 tags: ["network"]
 aliases: ["CGI"]
 ---
@@ -10,6 +9,4 @@ CGI 는 웹 서버와 외부 프로그램을 연결해주는 표준화된 protoc
 
 ![](https://i.imgur.com/QAgnpka.png)
 
-# B) Related
-
-# C) References
+# B) References

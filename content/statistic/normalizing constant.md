@@ -1,5 +1,4 @@
 ---
-title: "normalizing constant"
 tags: ["math", "statistic"]
 aliases: ["normalization coefficient", "정규화 상수"]
 ---
@@ -21,8 +20,6 @@ $$
 $$
 
 여기서 $\displaystyle\frac{1}{\sqrt{2\pi}}$ 를 함수 $p(x)$ 의 normalizing constant 라고 한다.
-
-# Related
 
 # References
 

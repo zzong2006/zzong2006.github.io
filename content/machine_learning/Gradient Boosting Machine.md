@@ -1,5 +1,4 @@
 ---
-title: "Gradient Boosting Machine"
 tags: ["ensemble", "machine_learning"]
 aliases: ["GBM", "gradient boosting"]
 ---
@@ -113,9 +112,7 @@ non-linear kernel 을 사용하는 SVM 은 높은 차원에서 복잡한 decisio
 
 의사 결정 나무 자체는 데이터에 쉽게 overfitting 될 수 있다. 단일 tree 로는 깊이를 제한하면서 이런 문제를 어느정도 해소할 수 있지만, 복잡한 deicison boundary 를 학습할 수 없다.
 
-# G) Related
-
-# H) References
+# G) References
 
 * https://en.wikipedia.org/wiki/Gradient_boosting
  * https://3months.tistory.com/368

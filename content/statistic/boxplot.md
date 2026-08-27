@@ -1,5 +1,4 @@
 ---
-title: "boxplot"
 tags: ["statistic", "visualization"]
 aliases: ["상자 수염 그림", "Box-and-Whisker Plot"]
 ---
@@ -26,8 +25,6 @@ aliases: ["상자 수염 그림", "Box-and-Whisker Plot"]
 
 [[standardization|z-score]] 의 3$\sigma$ 보다 약간 낮은 값을 outlier 로 정한다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [tistory](https://leebaro.tistory.com/entry/%EB%B0%95%EC%8A%A4-%ED%94%8C%EB%A1%AFbox-plot-%EC%84%A4%EB%AA%85)

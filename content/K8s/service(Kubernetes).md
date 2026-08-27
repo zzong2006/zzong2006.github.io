@@ -1,6 +1,5 @@
 ---
-title: "service(Kubernetes)"
-tags: Kubernetes 
+tags: ["Kubernetes"]
 aliases: ["service", "서비스"]
 ---
 

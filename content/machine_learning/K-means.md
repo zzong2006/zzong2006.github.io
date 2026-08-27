@@ -1,5 +1,4 @@
 ---
-title: "K-means"
 tags: ["machine_learning", "clustering"]
 aliases: ["k-means clustering"]
 ---
@@ -51,7 +50,7 @@ center 초기값 선택 알고리즘이다.
 
 # C) EM Algorithm 과의 관계
 
-K-means 알고리즘은 [[machine_learning/optimization/EM algorithm|EM]] 알고리즘의 간단한 버전이라고 볼 수 있다.
+K-means 알고리즘은 [[machine_learning/EM algorithm|EM]] 알고리즘의 간단한 버전이라고 볼 수 있다.
 
 * Expectation: The first step is to assign a cluster to every point, which is the **E** step of EM algorithm.
 	* Expectation of the log-likelihood given the parameters.
@@ -80,6 +79,4 @@ $$
 
 최종적으로 $\displaystyle\mu_{k}=\frac{\sum_{n=1}^{N}r_{nk}x_{n}}{\sum_{n=1}^{N}r_{nk}}$ 가 되는데, 이 식을 자세히보면 centroid 는 $k$ 번째 cluster 에 속하는 모든 data point 들의 평균을 의미한다.
 
-# D) Related
-
-# E) References
+# D) References

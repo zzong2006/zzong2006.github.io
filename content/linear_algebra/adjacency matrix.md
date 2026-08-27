@@ -1,6 +1,5 @@
 ---
-title: "adjacency matrix"
-tags: ["linear_algebra graph"]
+tags: ["linear_algebra", "graph"]
 ---
 
 # I. Adjacency Matrix ?

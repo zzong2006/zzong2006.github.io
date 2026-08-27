@@ -1,10 +1,7 @@
 ---
-title: "Prompt Engineering"
-tags: ["LLM NLP"]
+tags: ["LLM", "NLP"]
 ---
 
 # Prompt Engineering ?
-
-# Related
 
 # References

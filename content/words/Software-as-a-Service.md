@@ -1,5 +1,4 @@
 ---
-title: "Software-as-a-Service"
 tags: ["cloud"]
 aliases: ["SaaS"]
 ---
@@ -12,6 +11,4 @@ SaaS 는 클라우드 IaaS 상에 개발 환경을 구축하고, 그 위에 소�
 
 # B) SaaS vs. 설치형 SW
 
-# C) Related
-
-# D) References
+# C) References

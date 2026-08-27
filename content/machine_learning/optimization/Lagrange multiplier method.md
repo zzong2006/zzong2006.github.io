@@ -1,5 +1,4 @@
 ---
-title: "Lagrange multiplier method"
 tags: ["optimization"]
 ---
 
@@ -15,9 +14,7 @@ tags: ["optimization"]
 	* MLE for the categorical distribution
 		* Refer: [[Probabilistic Machine Learning - An Introduction]], 4.2.4
 
-# B) Related
-
-# C) References
+# B) References
 
 * [Khan Academy](https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/lagrange-multipliers-and-constrained-optimization/v/constrained-optimization-introduction)
 * [[constrained optimization problem]]

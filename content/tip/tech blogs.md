@@ -1,5 +1,4 @@
 ---
-title: "tech blogs"
 tags: ["tech_blog"]
 ---
 
@@ -30,8 +29,6 @@ tags: ["tech_blog"]
 * https://thegradient.pub/
 * [the morning paper](https://blog.acolyer.org/): Computer Science research, by Adrian Colyer
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://github.com/BAILOOL/DoYouEvenLearn

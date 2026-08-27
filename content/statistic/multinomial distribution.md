@@ -1,5 +1,4 @@
 ---
-title: "multinomial distribution"
 tags: ["probability_distribution", "statistic"]
 ---
 
@@ -72,8 +71,6 @@ $$
 
 결과적으로 $\displaystyle p_{k}=-\frac{m_{k}}{\lambda}=\frac{m_{k}}{N}$ 가 된다.
 
-# F) Related
-
-# G) References
+# F) References
 
 * [wiki](https://en.wikipedia.org/wiki/Multinomial_distribution)

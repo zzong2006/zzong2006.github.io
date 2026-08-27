@@ -1,5 +1,4 @@
 ---
-title: "Frequentist"
 tags: ["statistic"]
 ---
 
@@ -33,6 +32,4 @@ The frequentist interpretation considers the relative frequencies ([[상대도�
 
 그렇다면 빅데이터 시대에서는 frequentist 가 항상 유리할까? 그렇지만도 않다. 어떤 문제에 대해서 데이터의 수가 충분해지면, 그 문제를 더 깊게 파고들기 위해서 더 많은 데이터가 필요해진다. 예를 들어 투표 설문조사에서, 구 단위가 아니라 동 단위의 의견이 궁금할 때가 있을 것이다. 이런 경우 데이터 부족으로 베이지안 방식이 다시 유리해진다.
 
-# E) Related
-
-# F) References
+# E) References

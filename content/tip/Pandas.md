@@ -1,7 +1,6 @@
 ---
-title: "Pandas"
 tags: ["pandas", "tip", "python", "library"]
-aliases: ["판다스"]
+aliases: ["pandas", "Pandas", "판다스"]
 ---
 
 # 1. Convert
@@ -63,31 +62,61 @@ df = df.query('Year < 1980 and Time > 10')
 df = df.query('Year < @min_year and Time > @min_time') 
 ```
 
-# 7. Large Dataset 다루기
+# 7. Groupby
+
+`groupby`는 특정 key 단위로 `DataFrame`을 묶은 뒤 aggregation을 수행할 때 쓴다.
+
+## 7.1. `nunique`
+
+그룹별 고유값 개수를 보고 싶을 때는 `nunique`를 쓴다.
+
+```python
+df.groupby("Countries")["code"].nunique()
+```
+
+## 7.2. `unique`
+
+고유값의 개수가 아니라 값 자체를 보고 싶다면 `unique`를 쓴다.
+
+```python
+df.groupby("Countries")["code"].unique()
+```
+
+## 7.3. `map`
+
+`Series.map`은 값 변환에 자주 쓴다. dictionary를 넘기면 key와 같은 값을 value로 바꾼다.
+
+```python
+s.map({"cat": "kitten", "dog": "puppy"})
+```
+
+mapping에 없는 값은 `NaN`이 될 수 있으므로, 원래 값을 보존해야 한다면 `fillna`나 `replace`와 함께 쓰는 편이 안전하다.
+
+# 8. Large Dataset 다루기
 
 References: [link](https://pandas.pydata.org/docs/user_guide/scale.html)  
 
 가장 쉬운 방법은 pandas 를 쓰지 않는 것이다. 일반적으로 PostgreSQL 과 같은 대용량 데이터 도구를 사용하는 것이 훨씬 효율적이다.
 
-## 7.1. CSV 읽기
+## 8.1. CSV 읽기
 
 `pandas.read_csv()` 에서 `usecols` 옵션을 통해 원하는 column 만 읽어와서 메모리를 절약할 수 있다.
 
-### 7.1.1. Parquet 을 사용한 로딩 속도 감축
+### 8.1.1. Parquet 을 사용한 로딩 속도 감축
 
-csv 파일을 [[parquet]] 포맷으로 저장하고 다시 불러오면 훨씬 속도가 빠르다. 다만 용량은 어떤지 잘 모르겠음. 직접 확인해봐야 한다.
+csv 파일을 [[hadoop/Apache Parquet]] 포맷으로 저장하고 다시 불러오면 훨씬 속도가 빠르다. 다만 용량은 어떤지 직접 확인해야 한다.
 
 **How?**  
 `pd.read_csv` 로 불러온 뒤에 `to_parquet` 으로 저장, 그리고 `read_parquet` 수행
 
-## 7.2. 데이터 타입 바꾸기
+## 8.2. 데이터 타입 바꾸기
 
 `DataFrame.memory_usage(deep=True)` 를 통해 각 column 의 메모리 사용량을 bytes 로 확인할 수 있다. 만약 특정 column 이 너무 많은 메모리를 사용한다면, `dtype` 을 바꾸는게 좋은 전략이다.
 
 1. `object` 타입 데이터를 `Categorical` 타입으로 바꿀 수 있다면 메모리가 매우 절약된다.
 2. `pandas.to_numeric()` 함수에 `downcast` 인자를 적절히 넣어주면, 필요한 수준의 `dtype` 을 사용할 수 있다 (e.g. `int64` -> `uint16`).
 
-## 7.3. Chunking 사용하기
+## 8.3. Chunking 사용하기
 
 csv 파일들이 저장되어있는 전체 폴더를 parquet 으로 바꿀 수 있지만, 이를 좀 더 단순화 시켜서 개별 csv 파일들을 각각 parquet 으로 바꿀 수 있다. 변환된 각 chunk(i.e. parquet) 들이 메모리에 들어가는 한, 전체 시스템 메모리보다 더 많은 용량에 대한 작업을 수행할 수 있다.
 
@@ -98,6 +127,6 @@ csv 파일들이 저장되어있는 전체 폴더를 parquet 으로 바꿀 수 �
 
 `groupby` 와 같은 메소드는 chunkwise 방식과는 어울리지 않는다. 이런 경우, 그냥 [[pySpark]] 를 쓰는게 빠를 것 같다.
 
-## 7.4. 다른 Library 사용하기
+## 8.4. 다른 Library 사용하기
 
 Dask 가 괜찮다.

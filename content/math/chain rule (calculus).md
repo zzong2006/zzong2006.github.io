@@ -1,5 +1,4 @@
 ---
-title: "chain rule (calculus)"
 tags: ["calculus"]
 aliases: ["chain rule"]
 ---
@@ -41,7 +40,5 @@ vector [[dot product|내적]] $y=\mathbf{f}(\mathbf{w}) \cdot \mathbf{g}(\mathbf
 * $\displaystyle \frac{d \mathbf{u}}{d \mathbf{x}}=\frac{d}{d \mathbf{x}}(\mathbf{w} \otimes \mathbf{x})=\operatorname{diag}(\mathbf{w})$
 * $\displaystyle \frac{d y}{d \mathbf{u}}=\frac{d}{d \mathbf{u}} \operatorname{sum}(\mathbf{u})=\overrightarrow{1}^{T}$
 * $\displaystyle \frac{d y}{d \mathbf{x}}=\frac{d y}{d \mathbf{u}} \times \frac{d \mathbf{u}}{d \mathbf{x}}=\overrightarrow{1}^{T} \times \operatorname{diag}(\mathbf{w})=\mathbf{w}^{T}$
-
-# Related
 
 # References

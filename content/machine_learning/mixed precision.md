@@ -1,7 +1,3 @@
----
-title: "mixed precision"
----
-
 
 # A) Mixed Precision ?
 
@@ -14,6 +10,4 @@ mixed precision 은 모델 학습시 FP16, FP32 `부동 소수점` 유형을 상
 * 기존 FP32 로 학습한 것 대비, 정확도의 손실이 없거나 오히려 향상됨
 * 메모리가 절반으로 줄어들어, 배치 사이즈를 늘리거나, 더 큰 모델을 학습할 수 있음
 
-# C) Related
-
-# D) References
+# C) References

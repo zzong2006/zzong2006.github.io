@@ -1,5 +1,4 @@
 ---
-title: "explanatory variable"
 tags: ["statistic"]
 aliases: ["independent variable", "predictor variable", "독립 변수", "predictor", "regressor", "예측 변수"]
 ---
@@ -14,8 +13,6 @@ this variable explains the variation in the [[response variable]]
 
 * [[collinearity]] : 상호 연관된 예측 변수들을 사용하면 [[regression]] 계수의 부호와 값의 의미를 해석하기가 어려울 수 있다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://www.statology.org/explanatory-response-variables/

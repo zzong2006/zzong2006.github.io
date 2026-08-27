@@ -1,5 +1,4 @@
 ---
-title: "doc2query"
 tags: ["retrieval", "IR", "sparse_retrieval", "nlp", "paper_review", "y2019"]
 ---
 

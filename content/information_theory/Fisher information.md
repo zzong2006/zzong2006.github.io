@@ -1,5 +1,4 @@
 ---
-title: "Fisher information"
 tags: ["statistic"]
 ---
 
@@ -17,8 +16,6 @@ $$
 
 # B) 피셔 정보에서 Variance 의 의미
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://towardsdatascience.com/an-intuitive-look-at-fisher-information-2720c40867d8

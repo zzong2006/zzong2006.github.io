@@ -1,5 +1,4 @@
 ---
-title: "orthonormal"
 tags: ["linear_algebra"]
 aliases: ["정규 직교"]
 ---

@@ -1,5 +1,4 @@
 ---
-title: "position bias"
 tags: ["bias", "position_bias"]
 ---
 
@@ -25,6 +24,4 @@ Alter the order of ranked recommendations or search results in some manner
 
 * Unbiased Learning-to-Rank with Biased Feedback
 
-# C) Related
-
-# D) References
+# C) References

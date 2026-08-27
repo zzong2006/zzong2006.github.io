@@ -1,5 +1,4 @@
 ---
-title: "jupyter tips"
 tags: ["tip", "python", "jupyter"]
 ---
 
@@ -10,6 +9,4 @@ tags: ["tip", "python", "jupyter"]
 %autoreload 2
 ```
 
-# B) Related
-
-# C) References
+# B) References

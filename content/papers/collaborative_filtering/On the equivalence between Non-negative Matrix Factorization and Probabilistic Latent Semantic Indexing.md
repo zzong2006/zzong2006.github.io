@@ -1,5 +1,4 @@
 ---
-title: "On the equivalence between Non-negative Matrix Factorization and Probabilistic Latent Semantic Indexing"
 tags: ["collaborative_filtering", "paper_review", "recommendation_system"]
 ---
 
@@ -40,6 +39,4 @@ tags: ["collaborative_filtering", "paper_review", "recommendation_system"]
 			* $\left(CH^{\mathrm{T}}\right)_{ij}=P\left(w_{i},d_{j}\right)$
 		* 각 Proposition 에 대한 증명은 생략함
 
-# B) Related
-
-# C) References
+# B) References

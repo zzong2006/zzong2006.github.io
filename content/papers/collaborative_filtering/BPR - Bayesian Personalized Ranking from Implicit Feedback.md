@@ -1,14 +1,5 @@
 ---
-title: "BPR - Bayesian Personalized Ranking from Implicit Feedback"
-aliases: []
-tags:
-  - BPR
-  - MF
-  - implicit_feedback
-  - collaborative_filtering
-  - paper_review
-  - recommendation_system
-Alias: [BPR]
+tags: ["BPR", "MF", "implicit_feedback", "collaborative_filtering", "paper_review", "recommendation_system"]
 ---
 
 # A) Abstract
@@ -49,7 +40,7 @@ $$
 
 ## D.1) $S$ -> $D_{S}$ Figure
 
-![[img-946376ea41.png|400]]
+![[img-946376ea41.png||400]]
 이렇게 하면, 단순히 특정 유저가 implicit feedback (click) 이 없다고 해서 전체가 모두 negative feedback 로 처리되는 것을 막을 수 있음
 
 # E) Bayesian Personalized Ranking (BPR) Loss

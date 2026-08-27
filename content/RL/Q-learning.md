@@ -1,8 +1,5 @@
 ---
-title: "Q-learning"
-tags:
-  - reinforcement_learning
-aliases: []
+tags: ["reinforcement_learning"]
 ---
 
 # A) Q-learning ?

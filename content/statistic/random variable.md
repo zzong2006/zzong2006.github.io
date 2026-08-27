@@ -1,7 +1,3 @@
----
-title: "random variable"
----
-
 
 # A) Random Variable ?
 
@@ -17,6 +13,4 @@ function $X:\Omega\rightarrow\mathcal{T}$ 에 대한 mapping 또는 association 
 * 기타
 	* Quantifying uncertainty requires the idea of a random variable.
 
-# C) Related
-
-# D) References
+# C) References

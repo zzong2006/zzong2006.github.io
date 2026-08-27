@@ -1,8 +1,5 @@
 ---
-title: "Gibbs Sampling"
-tags:
-  - bayesian_inference
-  - statistic
+tags: ["bayesian_inference", "statistic"]
 aliases: ["깁스 샘플링"]
 ---
 
@@ -20,7 +17,7 @@ It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$)
 
 # B) 특징
 
-깁스 샘플링은 주로 [[Bayesian inference]] 을 위해 사용되고, randomized 알고리즘이라, [[machine_learning/optimization/EM algorithm]] 과 같은 통계적 추론을 위한 deterministic 알고리즘의 대체제로 사용한다.
+깁스 샘플링은 주로 [[Bayesian inference]] 을 위해 사용되고, randomized 알고리즘이라, [[machine_learning/EM algorithm]] 과 같은 통계적 추론을 위한 deterministic 알고리즘의 대체제로 사용한다.
 
 * Gibbs sampling 은 다음번 생성될 표본은 현재 샘플에 영향을 받는다는 점에서는 MCMC 와 같지만, 나머지 변수는 그대로 두고 한 변수에만 변화를 준다는 점이 다르다.
 
@@ -37,7 +34,7 @@ It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$)
 
 * 이렇게 전체 원소에 대해서 sampling 을 진행하고 나면 $\mathbf{X}^{(i+1)}$ 를 얻게되는데, 이 과정을 $k$ 번 반복한다.
 * notes
-* 변수들의 초기값은 임의로 설정하거나 [[machine_learning/optimization/EM algorithm]] 에 의해 결정할 수 있다.
+* 변수들의 초기값은 임의로 설정하거나 [[machine_learning/EM algorithm]] 에 의해 결정할 수 있다.
 * 초기에 생성된 일부 샘플들은 무시하는게 일반적이다 (이 구간을 burn-in period 라고 부른다). 그리고 [[expectation]] 을 계산할 때는 $n$ 번째 샘플만 가져다가 평균을 계산한다.
 * 예를 들어, 처음 1,000 개의 샘플은 무시하고, 이후 매 100 번째 샘플만 평균을 계산한다. 나머지는 버린다.
 * 이렇게 하는 이유

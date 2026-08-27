@@ -1,5 +1,4 @@
 ---
-title: "Variational Autoencoders for Collaborative Filtering"
 tags: ["WWW", "bayesian_inference", "deep_learning", "collaborative_filtering", "paper_review", "y2018"]
 aliases: ["Mult-VAE"]
 ---
@@ -22,8 +21,6 @@ Most works that develop further developments of VAE for collaborative filtering 
 
 * the choice of the used cutofs (20 and 50 for Recall, and 100 for NDCG) is not very consistent in the paper.
 
-# E) Related
-
-# F) References
+# E) References
 
 * [Autoencoders for Collaborative Filtering - WSDM 2020 paper "RecVAE: A New Variational Autoencoder for Top-N Recommendations with Implicit Feedback"](https://cs.hse.ru/mirror/pubs/share/541866760.pdf)

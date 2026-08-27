@@ -1,5 +1,4 @@
 ---
-title: "tokenization"
 tags: ["NLP"]
 ---
 
@@ -38,6 +37,4 @@ Transformers 모델은 단어 수준과 문자 수준 토큰화의 혼합인 서
 6. cls_token: 입력 (input) 의 클래스를 나타내는 토큰
 7. mask_token: [[Bidirectional Encoder Representations from Transformers|BERT]] 와 같은 [[masked language modeling]] 에서 사용하는 masked token
 
-# C) Related
-
-# D) References
+# C) References

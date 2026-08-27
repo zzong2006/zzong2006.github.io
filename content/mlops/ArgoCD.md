@@ -1,5 +1,4 @@
 ---
-title: "ArgoCD"
 tags: ["machine_learning", "pipeline", "CI/CD"]
 ---
 
@@ -13,8 +12,6 @@ Argo CD 는 CD 과정을 진행하는데 Kubernetes 로 배포한다.
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes).
 
-# B) Related
-
-# C) References
+# B) References
 
 * [Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/stable/)

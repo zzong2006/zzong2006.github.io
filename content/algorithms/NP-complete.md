@@ -1,5 +1,4 @@
 ---
-title: "NP-complete"
 tags: ["algorithm"]
 ---
 
@@ -11,6 +10,4 @@ NP 는 다항 시간에 비결정론적 (nondeterministically) 으로 해결 가
 
 NP 는 P 보다 큰 집합이고 NP 는 P 보다 **해결**하기 어려운 문제
 
-# B) Related
-
-# C) References
+# B) References

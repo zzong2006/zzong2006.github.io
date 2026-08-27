@@ -1,5 +1,4 @@
 ---
-title: "law of conditional probability"
 tags: ["statistic"]
 ---
 
@@ -13,7 +12,5 @@ tags: ["statistic"]
 $$
 \displaystyle p(A\mid B)=\frac{p(A,B)}{p(B)}
 $$
-
-# Related
 
 # References

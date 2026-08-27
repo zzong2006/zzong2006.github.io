@@ -1,8 +1,6 @@
 ---
-title: "quartile"
+tags: ["statistic"]
 aliases: ["사분위"]
-tags:
-  - statistic
 ---
 
 # A) Quartile

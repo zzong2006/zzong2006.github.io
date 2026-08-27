@@ -1,5 +1,4 @@
 ---
-title: "posterior predictive distribution"
 tags: ["probability_distribution", "statistic"]
 aliases: ["PPD"]
 ---

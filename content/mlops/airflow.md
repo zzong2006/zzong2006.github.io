@@ -1,5 +1,4 @@
 ---
-title: "airflow"
 tags: ["MLOps"]
 ---
 

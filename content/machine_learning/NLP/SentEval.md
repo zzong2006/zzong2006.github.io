@@ -1,6 +1,5 @@
 ---
-title: "SentEval"
-tags: ["machine_learning classification"]
+tags: ["machine_learning", "classification"]
 ---
 
 # A) SentEval ?
@@ -64,6 +63,4 @@ model = nn.Sequential(
 
 그리고 임베딩을 조합하거나 레이블을 수정하는 방식이 왜 적합한지에 대한 자세한 설명이 없다. 그 부분이 많이 아쉽다.
 
-# C) Related
-
-# D) References
+# C) References

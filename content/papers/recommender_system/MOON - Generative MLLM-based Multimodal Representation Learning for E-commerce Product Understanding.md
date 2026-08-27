@@ -1,12 +1,6 @@
 ---
-title: "MOON - Generative MLLM-based Multimodal Representation Learning for E-commerce Product Understanding"
-tags:
-  - y2025
-  - e-commerce
-  - MLLM
-  - multimodal
-  - representation-learning
-aliases: [MOON]
+tags: ["y2025", "e-commerce", "MLLM", "multimodal", "representation-learning"]
+aliases: ["MOON"]
 ---
 
 # A) 한줄 요약

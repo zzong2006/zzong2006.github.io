@@ -1,5 +1,4 @@
 ---
-title: "Multivariable calculus"
 tags: ["calculus"]
 ---
 

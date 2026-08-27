@@ -1,5 +1,4 @@
 ---
-title: "voting"
 tags: ["ensemble"]
 ---
 
@@ -16,8 +15,6 @@ tags: ["ensemble"]
 Hard Voting 은 Majority Voting 이라고도 하며, 각각의 모델들이 결과를 예측하면 단순하게 가장 많은 표를 얻은 결과를 선택하는 것입니다.
 
 ![|400](https://i.imgur.com/Y6zjGvF.png)
-
-# Related
 
 # References
 

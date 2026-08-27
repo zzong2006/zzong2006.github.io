@@ -1,5 +1,4 @@
 ---
-title: "Gunicorn"
 tags: ["network", "server", "python"]
 ---
 
@@ -33,6 +32,4 @@ app.run(..., access_log=False)
 
 `gunicorn.app.base.BaseApplication` 를 상속해서 WSGI application 을 만들어 볼 수 있다.
 
-# D) Related
-
-# E) References
+# D) References

@@ -1,5 +1,4 @@
 ---
-title: "Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations"
 tags: ["Google", "NLP", "WWW", "implicit_feedback", "paper_review", "recommendation_system"]
 ---
 
@@ -14,8 +13,6 @@ NLP 에서 dual encoder 로 불리는 two-tower 신경망 framework 를 어떻�
 
 # B) Modeling Framework
 
-# C) Related
-
-# D) References
+# C) References
 
 * paper link: https://research.google/pubs/pub50257/

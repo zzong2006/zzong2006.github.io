@@ -1,5 +1,4 @@
 ---
-title: "String"
 tags: ["rust"]
 aliases: ["string"]
 ---
@@ -18,8 +17,6 @@ struct Borrowed<'a> {
 }
 ```
 
-# B) Related
-
-# C) References
+# B) References
 
 * [Understanding String and &str in Rust - LogRocket Blog](https://blog.logrocket.com/understanding-rust-string-str/)

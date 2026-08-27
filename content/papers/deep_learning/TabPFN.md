@@ -1,5 +1,4 @@
 ---
-title: "TabPFN"
 tags: ["deep_learning", "kaggle", "paper_review", "tabular"]
 ---
 
@@ -24,8 +23,6 @@ missing values 나 categorical feature 는 성능이 떨어질 가능성이 있�
 
 통계 개념이 들어가 있어서 상당히 복잡해 보인다. 난 통쌤이 아니라서..
 
-# D) Related
-
-# E) References
+# D) References
 
 [TabPFN: A Transformer That Solves Small Tabular Classification Problems in a Second](https://arxiv.org/abs/2207.01848)

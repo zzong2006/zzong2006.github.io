@@ -1,5 +1,4 @@
 ---
-title: "Probability Density Function"
 tags: ["probability_distribution"]
 aliases: ["pdf", "PDF", "확률 밀도 함수"]
 ---
@@ -17,8 +16,6 @@ $$
 
 $a,b\in\mathbb{R}$ and $x\in\mathbb{R}$.
 
-# A) Related
-
-# B) References
+# A) References
 
 * [[Cumulative Distribution Function]]

@@ -1,5 +1,4 @@
 ---
-title: "argparse"
 tags: ["python"]
 ---
 

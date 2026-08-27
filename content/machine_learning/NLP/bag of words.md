@@ -1,5 +1,4 @@
 ---
-title: "bag of words"
 tags: ["NLP", "word2vec"]
 aliases: ["BoW"]
 ---
@@ -33,8 +32,6 @@ vocabulary : {'정부': 0, '가': 1, '발표': 2, '하는': 3, '물가상승률'
 bag of words vector : [1, 2, 1, 1, 2, 1, 1, 1, 1, 1]
 ``` 
 
-# D) Related
-
-# E) References
+# D) References
 
 * https://wikidocs.net/22650 (딥 러닝을 이용한 자연어 처리 입문)

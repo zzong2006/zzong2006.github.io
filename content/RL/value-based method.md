@@ -1,5 +1,4 @@
 ---
-title: "value-based method"
 tags: ["reinforcement_learning"]
 ---
 
@@ -26,8 +25,6 @@ Comparison with [[inverse propensity score]] and [[value-based method]]
 
 [[value-based method]] 의 경우 logging policy 모델에 의존하지 않고, context 가 주어진 action 의 reward 에 의존함
 
-# B) Related
-
-# C) References
+# B) References
 
 http://math.uchicago.edu/~may/REU2019/REUPapers/Kim,SangHoon.pdf

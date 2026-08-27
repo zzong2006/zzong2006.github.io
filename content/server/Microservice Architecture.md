@@ -1,5 +1,4 @@
 ---
-title: "Microservice Architecture"
 aliases: ["MSA"]
 ---
 
@@ -24,6 +23,4 @@ Monolithic Architecture 란, 소프트웨어의 모든 구성요소가 한 프�
 
 ![](https://i.imgur.com/Ybtq5b0.png)
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,8 +1,5 @@
 ---
-title: "macro"
-aliases: []
-tags:
-  - Cpp
+tags: ["Cpp"]
 ---
 
 # A) Macro ?
@@ -11,4 +8,4 @@ tags:
 
 # B) 예시
 
-![[img-3af240ecd2.png|400]]
+![[img-3af240ecd2.png||400]]

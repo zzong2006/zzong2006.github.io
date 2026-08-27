@@ -1,11 +1,6 @@
 ---
-title: "Probabilistic latent Semantic Indexing"
-aliases: [plsi]
-tags:
-  - bayesian_inference
-  - nlp
-  - paper_review
-  - statistic
+tags: ["bayesian_inference", "nlp", "paper_review", "statistic"]
+aliases: ["plsi"]
 ---
 
 # A) Probabilistic Latent Semantic Indexing ?
@@ -30,7 +25,7 @@ pLSI(Probabilistic Latent Semantic Indexing)는 LSA를 확률 모델로 발전�
 
 ## A.1) 예시 (및 그림)
 
-![[img-e0e15543d6.png|400]]
+![[img-e0e15543d6.png|| 400]]
 
 Notation
 
@@ -62,7 +57,7 @@ $$
 
 # C) 방식
 
-[[machine_learning/optimization/EM algorithm|EM]] 알고리즘으로 학습한다.
+[[machine_learning/EM algorithm|EM]] 알고리즘으로 학습한다.
 
 - E-step: Posterior probability of latent variables (concepts)
 	- $\displaystyle p(z\mid d,w)=\frac{P(z)P(d\mid z)P(w\mid z)}{\sum_{z^{\prime}\in Z}P\left(z^{\prime}\right)P\left(d\mid z^{\prime}\right)P\left(w\mid z^{\prime}\right)}$

@@ -1,5 +1,4 @@
 ---
-title: "label smoothing"
 tags: ["machine_learning"]
 aliases: ["라벨 스무딩"]
 ---
@@ -10,8 +9,6 @@ aliases: ["라벨 스무딩"]
 
 $K$ 개의 클래스에 대해서, 스무딩 파라미터 (Smoothing parameter) 를 $α$ 라고 할 때, $k$ 번째 클래스에 대해서 다음과 같이 스무딩을 합니다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * [라벨 스무딩(Label smoothing), When Does Label Smoothing Help?](https://blog.si-analytics.ai/21)

@@ -1,5 +1,4 @@
 ---
-title: "R-squared"
 tags: ["statistic", "linear_regression"]
 aliases: ["R2", "coefficient of determination"]
 ---
@@ -49,6 +48,4 @@ $$
 
 RSS 값과 다르게 $\frac{\mathrm{RSS}}{n-d-1}$ 값은 모델의 변수가 많아질수록 높아지거나 낮아질 수 있다.
 
-# F) Related
-
-# G) References
+# F) References

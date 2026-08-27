@@ -1,5 +1,4 @@
 ---
-title: "popularity bias"
 tags: ["bias", "recommendation_system"]
 ---
 * Tags

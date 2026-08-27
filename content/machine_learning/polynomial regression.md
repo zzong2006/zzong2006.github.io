@@ -1,5 +1,4 @@
 ---
-title: "polynomial regression"
 tags: ["linear_regression"]
 ---
 
@@ -27,6 +26,4 @@ $$
 
 * [[#interaction effect]] 와 달리 모델의 degree 가 $1$ 이 아니다.
 
-# D) Related
-
-# E) References
+# D) References

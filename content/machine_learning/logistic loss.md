@@ -1,5 +1,4 @@
 ---
-title: "logistic loss"
 tags: ["machine_learning"]
 ---
 
@@ -15,6 +14,4 @@ $$
 \log \left(1+\exp \left(-y_{i} f\left(\mathbf{x}_{i}, \beta\right)\right)\right)
 $$
 
-# B) Related
-
-# C) References
+# B) References

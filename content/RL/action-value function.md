@@ -1,5 +1,4 @@
 ---
-title: "action-value function"
 tags: ["reinforcement_learning"]
 aliases: ["q-value function", "q-value"]
 ---
@@ -25,6 +24,4 @@ $$
 # B) Vs. State-value Function
 
 $q_{\pi}(s, a)$ 는 사실상 선택할 수 있는 $a$가 하나밖에 없고, $\sum_{a} \pi(a \mid s)=1$ 을 만족하는 경우의 $v_\pi(s)$ 값으로 생각할 수 있다.
-# C) Related
-
-# D) References
+# C) References

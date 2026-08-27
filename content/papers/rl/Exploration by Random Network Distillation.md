@@ -1,5 +1,4 @@
 ---
-title: "Exploration by Random Network Distillation"
 tags: ["paper_review", "reinforcement_learning"]
 ---
 
@@ -46,8 +45,6 @@ $$
 \hat{f}:\mathcal{O}\rightarrow\mathbb{R}^{k}
 $$
 
-# D) Related
-
-# E) References
+# D) References
 
 * [paper link](https://arxiv.org/pdf/1810.12894.pdf)

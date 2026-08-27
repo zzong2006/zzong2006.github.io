@@ -1,8 +1,5 @@
 ---
-title: "Kafka"
-tags:
-  - kafka
-  - streaming
+tags: ["kafka", "streaming"]
 aliases: ["카프카"]
 ---
 
@@ -62,8 +59,6 @@ Kafka 는 Producer 와 Consumer 가 데이터를 주고 받기 위한 중간 다
 카프카에 관련된 다양한 용어들을 설명하기 위한 곳  
 [[Kafka Cluster]]
 
-* [[work/TOROS]] 에서 Kafka
-* TOROS 도 카프카를 사용한다.
 	* 그래서 추천시스템으로부터 카프카에 전송되는 데이터를 알 수 있는데, 그럴려면 일단 원하는 데이터가 들어있는 토픽을 알아야 한다.
 * 메시지가 binary 데이터 형식을 띄므로, 추천시스템에서 전송되는 데이터 형식은 직접적인 데이터보다는 meta data 형식의 값을 넣는다. (그렇다면 실제 데이터는 어디에 ? → HBase 에 적재)
 

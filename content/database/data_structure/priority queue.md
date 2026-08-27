@@ -1,5 +1,4 @@
 ---
-title: "priority queue"
 tags: ["data_structure"]
 aliases: ["우선순위 큐"]
 ---
@@ -19,7 +18,5 @@ aliases: ["우선순위 큐"]
 ## 구현
 
 일반적으로 [[Heap]] 을 통해 구현할 수 있다.
-
-# Related
 
 # References

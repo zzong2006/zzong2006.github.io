@@ -1,5 +1,4 @@
 ---
-title: "Unimodal distribution"
 tags: ["statistic"]
 ---
 

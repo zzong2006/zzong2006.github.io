@@ -1,5 +1,4 @@
 ---
-title: "metric learning"
 tags: ["recommendation_system", "machine_learning"]
 ---
 

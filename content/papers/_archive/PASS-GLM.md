@@ -1,5 +1,4 @@
 ---
-title: "PASS-GLM"
 tags: ["NIPS", "paper_review"]
 ---
 
@@ -17,6 +16,4 @@ tags: ["NIPS", "paper_review"]
 
 ## B.1) Generalized Linear Models
 
-# C) Related
-
-# D) References
+# C) References

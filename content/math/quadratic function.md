@@ -1,5 +1,4 @@
 ---
-title: "quadratic function"
 tags: ["math"]
 aliases: ["quadratic"]
 ---

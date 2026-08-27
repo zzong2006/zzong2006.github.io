@@ -1,10 +1,5 @@
 ---
-title: "negative sampling"
-tags:
-  - supervised_learning
-  - word2vec
-  - classification
-aliases: []
+tags: ["supervised_learning", "word2vec", "classification"]
 ---
 
 # A) Negative Sampling ?

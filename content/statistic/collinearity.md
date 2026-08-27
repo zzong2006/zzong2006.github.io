@@ -1,5 +1,4 @@
 ---
-title: "collinearity"
 tags: ["machine_learning", "statistic", "linear_regression"]
 aliases: ["공선성", "다중공선성"]
 ---
@@ -22,6 +21,4 @@ aliases: ["공선성", "다중공선성"]
 
 완전 다중공선성은 한 예측 변수가 다른 변수들의 선형결합으로 표현된다는 것을 의미한다.
 
-# C) Related
-
-# D) References
+# C) References

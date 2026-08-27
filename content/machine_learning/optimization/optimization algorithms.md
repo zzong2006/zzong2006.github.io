@@ -1,8 +1,5 @@
 ---
-layout: default
-title:  "Optimization algorithms"
-category: Deep Learning
-order: 8
+title: "Optimization algorithms"
 ---
 
 # A) Exponentially Weighted (moving) Averages
@@ -110,7 +107,7 @@ momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가�
 
 간단히 생각하면, 브레이크를 계속 밟고 움직이고 있는거라고 생각하면 된다. 즉, 어떻게 학습하든 천천히 학습하게 만들어서, 큰 learning rate 를 이용해서 학습을 수행해도 조절해준다.
 
-<img src="/images/img-ccb6923cfa.gif" alt="image" style="zoom: 67%;" />
+<img src="https://i.loli.net/2020/10/29/1lSyaGKLZxrHdBV.gif" alt="image" style="zoom: 67%;" />
 
 # E) Adam
 

@@ -1,5 +1,4 @@
 ---
-title: "muvera-py"
 tags: ["retrieval", "embedding", "multi_vector", "python"]
 ---
 

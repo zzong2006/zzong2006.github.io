@@ -1,5 +1,4 @@
 ---
-title: "inverse propensity score"
 aliases: ["IPS", "propensity score"]
 ---
 

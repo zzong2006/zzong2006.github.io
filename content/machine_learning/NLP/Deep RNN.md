@@ -1,9 +1,6 @@
 ---
-title: "Deep RNN"
+tags: ["NLP", "deep_learning"]
 aliases: ["DRNN"]
-tags:
-  - NLP
-  - deep_learning
 ---
 
 # A) DRNN ?

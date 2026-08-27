@@ -1,5 +1,4 @@
 ---
-title: "Specificity"
 tags: ["metrics"]
 ---
 
@@ -11,6 +10,4 @@ $$
 \displaystyle\frac{\text{TrueNegative}}{\text{TrueNegative+FalsePositive}}
 $$
 
-# B) Related
-
-# C) References
+# B) References

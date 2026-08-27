@@ -1,5 +1,4 @@
 ---
-title: "median"
 tags: ["statistic"]
 ---
 

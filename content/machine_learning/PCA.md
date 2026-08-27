@@ -1,6 +1,5 @@
 ---
-title: "PCA"
-tags: ["machine_learning topic_modeling"]
+tags: ["machine_learning", "topic_modeling"]
 ---
 
 # A) PCA ?
@@ -25,7 +24,7 @@ $\boldsymbol{B}$ 을 이루는 열벡터들은 [[orthonormal]] 하다고 가정�
 
 # B) PCA Derivation
 
-$N$ 개의 [[i.i.d.]] 를 만족하는 데이터 포인트들 $\mathbf{X}=\left[\mathbf{x}_{1},\ldots,\mathbf{x}_{N}\right]^{T}$ 이 존재하고, 각 $\mathbf{x}$ 는 $D$ 차원 벡터라고 하자. 이때 PCA 는 [[projection matrix]] $\mathbf{P}=\left[\mathbf{p}_{1},\ldots,\mathbf{p}_{D^{\prime}}\right]^{T}$ 를 찾는 방법이다 ($D^{\prime}\leq D$).
+$N$ 개의 [[i.i.d.]] 를 만족하는 데이터 포인트들 $\mathbf{X}=\left[\mathbf{x}_{1},\ldots,\mathbf{x}_{N}\right]^{T}$ 이 존재하고, 각 $\mathbf{x}$ 는 $D$ 차원 벡터라고 하자. 이때 PCA 는 [[linear_algebra/projection|projection matrix]] $\mathbf{P}=\left[\mathbf{p}_{1},\ldots,\mathbf{p}_{D^{\prime}}\right]^{T}$ 를 찾는 방법이다 ($D^{\prime}\leq D$).
 
 $\mathbf{p}$ 는 $\mathbf{X}$ 의 variance 를 최대화 하는 방향으로 각 데이터를 저차원으로 mapping 시키는데, 여기서는 예시로 $\mathbf{p_1}$ 을 어떻게 유도하는지 살펴보자.
 
@@ -76,7 +75,7 @@ $$
 \frac{1}{n-1}\mathbf{XX}^{\top}=\frac{1}{n-1}\mathbf{WDW}^{\top}
 $$
 
-데이터 $\mathbf{X}$ 에 대해 [[linear_algebra/Singular Value Decomposition]] 를 적용한다면, 다음과 같다
+데이터 $\mathbf{X}$ 에 대해 [[machine_learning/Singular Value Decomposition]] 를 적용한다면, 다음과 같다
 
 $$
 \displaystyle\frac{1}{n-1}\mathbf{XX}^{\top}=\frac{1}{n-1}\left(\mathbf{U}\mathbf{\Sigma}\mathbf{V}^{\top}\right)\left(\mathbf{U}\mathbf{\Sigma}\mathbf{V}^{\top}\right)^{\top}=\frac{1}{n-1}\mathbf{U}\mathbf{\Sigma}^{2}\mathbf{U}^{\top}

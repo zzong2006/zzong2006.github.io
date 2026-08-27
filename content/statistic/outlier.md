@@ -1,8 +1,5 @@
 ---
-title: "outlier"
-tags:
-  - statistic
-  - machine_learning
+tags: ["statistic", "machine_learning"]
 aliases: ["아웃라이어"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "joint entropy"
 tags: ["statistic", "information_theory"]
 aliases: ["Joint Entropy"]
 ---

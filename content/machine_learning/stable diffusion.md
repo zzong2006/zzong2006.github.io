@@ -1,5 +1,4 @@
 ---
-title: "stable diffusion"
 tags: ["generative_model", "diffusion"]
 ---
 
@@ -9,6 +8,4 @@ tags: ["generative_model", "diffusion"]
 
 MUMU: BOOTSTRAPPING MULTIMODAL IMAGE GENERATION FROM TEXT-TO-IMAGE DATA
 
-# B) Related
-
-# C) References
+# B) References

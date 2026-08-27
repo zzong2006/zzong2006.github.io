@@ -1,5 +1,4 @@
 ---
-title: "Taylor Approximation"
 aliases: ["Taylor series"]
 ---
 

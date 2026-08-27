@@ -1,5 +1,4 @@
 ---
-title: "Standard Template Library"
 tags: ["Cpp"]
 aliases: ["STL"]
 ---
@@ -54,6 +53,4 @@ int main() {
 }
 ```
 
-# D) Related
-
-# E) References
+# D) References

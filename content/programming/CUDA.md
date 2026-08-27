@@ -1,5 +1,4 @@
 ---
-title: "CUDA"
 tags: ["Cpp"]
 ---
 
@@ -204,7 +203,7 @@ GPU는 **Block** 단위로 작업을 나누고 각 Block은 여러 개의 **Thre
 int index = threadIdx.x + blockIdx.x * M;
 ```
 
-### B.2.3) [[define]] N 512
+### B.2.3) `#define` N 512
 
 ---
 

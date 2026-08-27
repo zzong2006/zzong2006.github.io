@@ -1,8 +1,5 @@
 ---
-title: "Alias Method"
-tags:
-  - statistic
-aliases: []
+tags: ["statistic"]
 ---
 
 # A) Why We Need the Alias Method?

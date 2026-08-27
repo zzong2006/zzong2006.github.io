@@ -1,5 +1,4 @@
 ---
-title: "Correcting for Selection Bias in Learning-to-rank Systems"
 tags: ["bias", "fairness", "learning_to_rank", "paper_review", "recommendation_system"]
 ---
 

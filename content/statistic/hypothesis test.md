@@ -1,6 +1,5 @@
 ---
-title: "hypothesis test"
-tags: ["hypothesis_test statistic"]
+tags: ["hypothesis_test", "statistic"]
 aliases: ["significance test", "검정"]
 ---
 
@@ -16,6 +15,4 @@ aliases: ["significance test", "검정"]
 
 두 방안중 어느쪽이 더 높을지 낮을지 모르지만, 일단 차이는 있을 것으로 가정하는 검정 방법.
 
-# D) Related
-
-# E) References
+# D) References

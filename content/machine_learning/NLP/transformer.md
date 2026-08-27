@@ -1,7 +1,5 @@
 ---
-title: "transformer"
-tags:
-  - NLP
+tags: ["NLP"]
 aliases: ["트랜스포머"]
 ---
 
@@ -66,7 +64,7 @@ $$
 
 Transformer 는 여러 개의 인코더와 디코더가 $N$ 개의 단위로 구성된 구조를 가지고 있습니다.
 
-![[img-f0b1f3f773.png|350]]
+![[img-f0b1f3f773.png||350]]
 
 ## D.1) 주요 Parameter
 

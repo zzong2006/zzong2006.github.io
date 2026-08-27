@@ -1,5 +1,4 @@
 ---
-title: "click(python library)"
 tags: ["python"]
 ---
 

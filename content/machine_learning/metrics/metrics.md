@@ -1,5 +1,4 @@
 ---
-title: "metrics"
 tags: ["machine_learning", "metrics"]
 aliases: ["classification metrics"]
 ---
@@ -16,9 +15,9 @@ Classification metric 을 볼 때는 먼저 “무엇을 positive 로 정의했�
 
 | 지표 | 기준 집단 | 의미 |
 | --- | --- | --- |
-| [[machine_learning/metrics/Recall|Sensitivity]] | 실제 positive | positive 를 놓치지 않는 능력 |
+| [[machine_learning/metrics/Recall]] (Sensitivity) | 실제 positive | positive 를 놓치지 않는 능력 |
 | [[Specificity]] | 실제 negative | negative 를 잘 걸러내는 능력 |
-| [[False Positive Rate|FPR]] | 실제 negative | negative 를 positive 로 잘못 잡는 비율 |
+| [[statistic/False Positive Rate]] (FPR) | 실제 negative | negative 를 positive 로 잘못 잡는 비율 |
 
 Sensitivity 와 Specificity 는 항상 수학적으로 반비례하는 것은 아니지만, threshold 를 움직이면 한쪽을 높이는 대신 다른 쪽이 낮아지는 trade-off 가 자주 생긴다.
 
@@ -34,4 +33,3 @@ Sensitivity 와 Specificity 는 항상 수학적으로 반비례하는 것은 �
 | [[Recall]] | actual positive | 실제 positive 를 얼마나 찾았나 |
 
 두 지표를 함께 보고 싶을 때는 [[F1 Score]] 를 사용한다.
-

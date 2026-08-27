@@ -1,5 +1,4 @@
 ---
-title: "policy"
 tags: ["reinforcement_learning"]
 ---
 
@@ -12,7 +11,5 @@ $$
 $$
 
 [[Markov Decision Process|MDP]] 에서 RL 의 목표는 expected cumulative reward([[expected return]]) 값을 최대화 하는 policy 를 찾는 것이다.
-
-# Related
 
 # References

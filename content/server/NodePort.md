@@ -1,5 +1,4 @@
 ---
-title: "NodePort"
 tags: ["Kubernetes"]
 ---
 
@@ -24,7 +23,5 @@ spec:
 
 * `port` 는 application pod 의 service port 를 의미함
 * `nodePort` 는 실제 호스트 (e.g. worker node, master node) 포트를 의미하며, application pod 의 port 가 mapping 될 port 를 의미함
-
-# Related
 
 # References

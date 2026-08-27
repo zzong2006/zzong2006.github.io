@@ -1,5 +1,4 @@
 ---
-title: "matrix multiplication"
 tags: ["linear_algebra"]
 ---
 
@@ -47,7 +46,5 @@ $$
 	* $A$ 가 invertible.
 	* columns are independent.
 	* the determinant isn’t zero.
-
-# Related
 
 # References

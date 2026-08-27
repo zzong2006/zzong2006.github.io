@@ -1,9 +1,5 @@
 ---
-title: "SQL Join"
-tags:
-  - database
-  - SQL
-aliases: []
+tags: ["database", "SQL"]
 ---
 
 # A) SQL Join ?
@@ -44,7 +40,7 @@ TABLE_B
 
 ## B.1) INNER JOIN
 
-<img src="/images/img-982f09c35f.png" alt="JOIN" style="zoom:50%;" />
+<img src="https://i.loli.net/2020/11/29/vMJZOCwPYQjLIn9.png" alt="JOIN" style="zoom:50%;" />
 
 ```sql
 -- INNER JOIN
@@ -67,7 +63,7 @@ A_PK A_Value    B_Value    B_PK
 
 ## B.2) LEFT OUTER JOIN
 
-<img src="/images/img-a47bd43574.png" alt="JOIN" style="zoom:50%;" />
+<img src="https://i.loli.net/2020/11/29/aCQuRtdYzFpHrlI.png" alt="JOIN" style="zoom:50%;" />
 
 왼쪽 테이블을 기준으로 중복되는 튜플을 찾는다.
 
@@ -97,7 +93,7 @@ A_PK A_Value    B_Value    B_PK
 
 LEFT OUTER 와 비슷하다.
 
-<img src="/images/img-89078eedb2.png" alt="JOIN" style="zoom:50%;" />
+<img src="https://i.loli.net/2020/11/29/jhPEICzkyUbNGgu.png" alt="JOIN" style="zoom:50%;" />
 
 ```sql
 -- RIGHT JOIN
@@ -123,7 +119,7 @@ NULL NULL       SCOTCH       11
 
 ### B.2.2) FULL OUTER JOIN
 
-<img src="/images/img-7bc9238fac.png" alt="JOIN" style="zoom:50%;" />
+<img src="https://i.loli.net/2020/11/29/KDYxWwb4pUGXhRu.png" alt="JOIN" style="zoom:50%;" />
 
 ```sql
 -- OUTER JOIN
@@ -154,7 +150,7 @@ NULL NULL       SCOTCH       11
 
 LEFT OUTER JOIN 에 왼쪽 릴레이션에 존재하지 않는 속성을 지닌 오른쪽 릴레이션의 튜플들만 찾는 JOIN
 
-<img src="/images/img-06a5d45c2f.png" alt="Visual_SQL_Joins/LEFT_EXCLUDING_JOIN.png" style="zoom:80%;" />
+<img src="https://i.loli.net/2020/11/29/k9yEnJUXOj32PWt.png" alt="Visual_SQL_Joins/LEFT_EXCLUDING_JOIN.png" style="zoom:80%;" />
 
 ```sql
 -- LEFT EXCLUDING JOIN
@@ -199,7 +195,7 @@ NULL NULL       SCOTCH       11
 
 LEFT 와 RIGHT EXCLUDING JOIN 을 합친 결과
 
-<img src="/images/img-d835ef9559.png" alt="Visual_SQL_Joins/OUTER_EXCLUDING_JOIN.png" style="zoom:80%;" />
+<img src="https://i.loli.net/2020/11/29/s6ou74W3YM2DLvF.png" alt="Visual_SQL_Joins/OUTER_EXCLUDING_JOIN.png" style="zoom:80%;" />
 
 ```sql
 -- OUTER EXCLUDING JOIN

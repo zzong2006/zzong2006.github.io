@@ -1,5 +1,4 @@
 ---
-title: "Alternating Least Squares"
 tags: ["machine_learning", "matrix_factorization", "recommendation_system"]
 aliases: ["ALS", "WRMF", "WMF"]
 ---

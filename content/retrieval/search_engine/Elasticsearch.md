@@ -1,5 +1,4 @@
 ---
-title: "Elasticsearch"
 tags: ["retrieval", "IR", "search_engine", "data_engineering", "elasticsearch"]
 aliases: ["ES"]
 ---

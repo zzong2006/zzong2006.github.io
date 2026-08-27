@@ -1,5 +1,4 @@
 ---
-title: "studentized residuals"
 tags: ["statistic"]
 ---
 
@@ -7,7 +6,5 @@ tags: ["statistic"]
 
 residual $e_i$ 를 추정된 [[standard error]] 으로 나눈 값  
 	-
-
-# Related
 
 # References

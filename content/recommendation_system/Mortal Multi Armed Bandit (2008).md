@@ -1,11 +1,10 @@
 ---
-title: "Mortal Multi Armed Bandit (2008)"
-tags: ["recoteam", "MAB"]
+tags: ["MAB"]
 ---
 
 # A) Mortal Multi Armed Bandit (2008) ?
 
-[[Mortal MAB]]
+[[papers/bandit/Mortal Multi-Armed Bandits|Mortal MAB]]
 
 Related Reference: [[Mortal Multi-Armed Bandits]]
 
@@ -30,8 +29,6 @@ Related Reference: [[Mortal Multi-Armed Bandits]]
 		* $\mu^*$ 를 찾고, 죽을때까지 당기는 것
 		* 적절한 $\mu^*$ 를 어떻게 찾을까
 
-# B) Related
-
-# C) References
+# B) References
 
   * Link: https://www.youtube.com/watch?v=KuAmR8aA1oc&ab_channel=Recotechkakao

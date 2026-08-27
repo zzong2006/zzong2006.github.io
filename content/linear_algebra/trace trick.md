@@ -1,5 +1,4 @@
 ---
-title: "trace trick"
 tags: ["math"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "tangent plane"
 tags: ["differentitation", "calculus"]
 aliases: ["접평면"]
 ---
@@ -25,8 +24,6 @@ $$
 $$
 
 * $\partial L / \partial y=b$ 를 의미하며, $c$ 는 상수 (이 상수는 성질 (1) 을 활용해서 찾을 수 있다).
-
-# Related
 
 # References
 

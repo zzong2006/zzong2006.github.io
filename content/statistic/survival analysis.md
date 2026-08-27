@@ -1,5 +1,4 @@
 ---
-title: "survival analysis"
 tags: ["statistic"]
 aliases: ["생존분석"]
 ---
@@ -19,7 +18,5 @@ $$
 $$
 S(t)=e^{-\int_{0}^{t} \lambda(x) d x}
 $$
-
-# Related
 
 # References

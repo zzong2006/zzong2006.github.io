@@ -1,5 +1,4 @@
 ---
-title: "Cauchy–Schwarz inequality"
 tags: ["linear_algebra"]
 aliases: ["코시-슈바르츠 부등식"]
 ---
@@ -13,7 +12,5 @@ $$
 $$
 
 만약, 두 벡터가 서로 [[Linear Independence|선형 독립]] 하지 않다면, 위 식의 양쪽은 서로 같다.
-
-# Related
 
 # References

@@ -1,9 +1,6 @@
 ---
-title: "Population Stability Index"
-tags:
-  - metrics
-  - machine_learning
-aliases: [PSI]
+tags: ["metrics", "machine_learning"]
+aliases: ["PSI"]
 ---
 
 # A) Population Stability Index (PSI)

@@ -1,5 +1,4 @@
 ---
-title: "vector space"
 tags: ["linear_algebra"]
 aliases: ["벡터 공간"]
 ---

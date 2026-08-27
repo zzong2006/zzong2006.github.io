@@ -1,6 +1,3 @@
----
-title: "Parallelism"
----
 # A) Megatron-DeepSpeed 의 3D 병렬 처리
 
 Megatron-DeepSpeed 는 대규모 모델을 효율적으로 학습시키기 위해 3D 병렬 처리 방식을 구현합니다. 여기서는 이 3D 병렬 처리의 주요 구성 요소들을 간단히 설명하겠습니다.

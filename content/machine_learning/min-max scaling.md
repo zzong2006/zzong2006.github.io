@@ -1,5 +1,4 @@
 ---
-title: "min-max scaling"
 tags: ["feature_scaling"]
 ---
 
@@ -16,7 +15,5 @@ $$
 # 단점
 
 [[outlier]] 에 취약한 편이다. 반대로, [[standardization]] is much less affected by outliers.
-
-# Related
 
 # References

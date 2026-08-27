@@ -1,8 +1,5 @@
 ---
-title: "DB Pool"
-tags:
-  - database
-aliases: []
+tags: ["database"]
 ---
 
 클라이언트의 요청에 따라 각 어플리케이션의 thread 에서 데이터베이스에 접근하기 위해서는 연결 (Connection) 이 필요하다.
@@ -52,7 +49,7 @@ Pool 에 연결을 DB 연결 요청보다 너무 많이 생성해 놓으면, 메
 
 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고, 작업 큐 (Queue) 에 들어오는 작업들을 하나씩 스레드가 맡아 처리하는 것
 
-<img src="/images/img-55f0bb47f3.jpg" alt="img" style="zoom:67%;" />
+<img src="https://i.loli.net/2020/11/25/xiosvQ15F3XIZrp.jpg" alt="img" style="zoom:67%;" />
 
 ## 3.1. 장점
 

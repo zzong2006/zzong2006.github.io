@@ -1,5 +1,4 @@
 ---
-title: "Technical Writing"
 tags: ["work"]
 ---
 
@@ -60,8 +59,6 @@ tags: ["work"]
 	1. 남발 시 독자의 이해를 저하할 수 있음
 	2. 독자 수준에 따라 허용 범위가 다르다
 
-# E) Related
-
-# F) References
+# E) References
 
 MECE: https://igotanoffer.com/blogs/mckinsey-case-interview-blog/mece

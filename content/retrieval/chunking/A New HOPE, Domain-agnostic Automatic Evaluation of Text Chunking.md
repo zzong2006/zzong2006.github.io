@@ -1,5 +1,4 @@
 ---
-title: "A New HOPE, Domain-agnostic Automatic Evaluation of Text Chunking"
 tags: ["retrieval", "IR", "chunking", "evaluation", "paper_review", "y2025"]
 ---
 

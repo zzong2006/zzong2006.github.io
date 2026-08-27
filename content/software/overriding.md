@@ -1,5 +1,4 @@
 ---
-title: "overriding"
 tags: ["programming"]
 ---
 

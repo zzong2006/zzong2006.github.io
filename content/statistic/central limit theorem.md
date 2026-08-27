@@ -1,5 +1,4 @@
 ---
-title: "central limit theorem"
 tags: ["statistic", "hypothesis_test"]
 aliases: ["중심 극한 정리"]
 ---

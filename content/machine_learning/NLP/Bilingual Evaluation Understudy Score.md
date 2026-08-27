@@ -1,5 +1,4 @@
 ---
-title: "Bilingual Evaluation Understudy Score"
 aliases: ["BLEU Score"]
 ---
 
@@ -12,8 +11,6 @@ BLEU 는 번역에 대한 성능을 측정하는 방법이다. 기계 번역 결
 * 언어에 구애받지 않고 사용할 수 있으며, 계산 속도가 빠릅니다.
 * BLEU 는 PPL 과는 달리 높을 수록 성능이 더 좋음을 의미합니다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [14-03 BLEU Score(Bilingual Evaluation Understudy Score) - 딥 러닝을 이용한 자연어 처리 입문](https://wikidocs.net/31695)

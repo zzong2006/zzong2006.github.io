@@ -1,5 +1,4 @@
 ---
-title: "explicit feedback"
 tags: ["recommendation_system"]
 ---
 
@@ -7,6 +6,4 @@ tags: ["recommendation_system"]
 
 사용자의 명시적 피드백을 의미: 좋아요, 싫어요, 공유하기 등
 
-# B) Related
-
-# C) References
+# B) References

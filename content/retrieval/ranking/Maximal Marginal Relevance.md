@@ -1,5 +1,4 @@
 ---
-title: "Maximal Marginal Relevance"
 tags: ["retrieval", "ranking", "diversity", "metrics"]
 aliases: ["maximum marginal relevance", "MMR"]
 ---

@@ -1,6 +1,5 @@
 ---
-title: "event"
-tags: ["statistic probability"]
+tags: ["statistic", "probability"]
 ---
 
 # Event ?
@@ -14,7 +13,5 @@ e.g. 주사위를 던졌을 때 3 으로 나눠떨어지는 수: $A= \{3,6\}$
 # The Complement of Event
 
 여집합을 의미한다.
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "contrastive learning"
 tags: ["machine_learning", "representation_learning", "self_supervised"]
 aliases: ["contrastive learning"]
 ---

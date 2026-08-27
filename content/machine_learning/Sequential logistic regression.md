@@ -1,5 +1,4 @@
 ---
-title: "Sequential logistic regression"
 tags: ["linear_regression"]
 ---
 
@@ -99,8 +98,6 @@ $$
 $$
 \check{p}=\check{p}\left(Z=1\mid x_{\mathrm{pa}\left(v\right)}\right)=e^{\prime}/\left(1+e^{\prime}\right)
 $$
-
-# Related
 
 # References
 

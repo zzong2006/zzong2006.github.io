@@ -1,7 +1,5 @@
 ---
-title: "mean function"
-tags: statistic 
-aliases: []
+tags: ["statistic"]
 ---
 
 # A) Mean Function ?
@@ -28,7 +26,7 @@ $$
 
 mean function 을 그림으로 표현하자면 아래의 빨간 선과 같다.
 
-![[img-cf0abcdcff.png|500]]
+![[img-cf0abcdcff.png||500]]
 
 여러 파란선이 보이는 이유는 $A$ 가 binomial 분포를 따르기 때문이다.
 

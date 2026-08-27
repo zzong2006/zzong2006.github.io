@@ -1,7 +1,5 @@
 ---
-title: "Leaky ReLU Function"
-tags: activation_function
-aliases: []
+tags: ["activation_function"]
 ---
 
 # A) Leaky ReLU Function ?

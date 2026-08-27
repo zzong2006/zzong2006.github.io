@@ -1,5 +1,4 @@
 ---
-title: "agnostic"
 tags: ["word"]
 ---
 

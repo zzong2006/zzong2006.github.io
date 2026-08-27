@@ -1,14 +1,11 @@
 ---
-title: "OSI 7 Layers"
-tags:
-  - network
-aliases:
-  - OSI
+tags: ["network"]
+aliases: ["OSI"]
 ---
 
 # A) OSI 7 Layers ?
 
-<img src="/images/img-5a37b84110.png" alt="OSI계층 TCP/IP 모델 쉽게 알아보기" style="zoom:67%;" />
+<img src="https://i.loli.net/2020/11/26/RJiAZ1qeOMCro2W.png" alt="OSI계층 TCP/IP 모델 쉽게 알아보기" style="zoom:67%;" />
 
 ## A.1) 계층을 나누는 이유
 

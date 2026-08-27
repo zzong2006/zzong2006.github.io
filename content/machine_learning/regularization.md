@@ -1,10 +1,5 @@
 ---
-title: "regularization"
-aliases: []
-tags:
-  - machine_learning
-  - deep_learning
-  - linear_regression
+tags: ["machine_learning", "deep_learning", "linear_regression"]
 ---
 
 # A) Regularization ?

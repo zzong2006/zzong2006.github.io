@@ -1,7 +1,5 @@
 ---
-title: "Kronecker product"
-tags: linear_algebra 
-aliases: []
+tags: ["linear_algebra"]
 ---
 
 # A) Kronecker Product ?

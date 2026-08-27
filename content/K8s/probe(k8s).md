@@ -1,5 +1,4 @@
 ---
-title: "probe(k8s)"
 tags: ["Kubernetes"]
 ---
 
@@ -46,7 +45,5 @@ livenessProbe:
     path: /healthz
     port: liveness-port
 ```
-
-# Related
 
 # References

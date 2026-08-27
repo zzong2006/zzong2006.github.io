@@ -1,5 +1,4 @@
 ---
-title: "trace"
 tags: ["linear_algebra"]
 ---
 
@@ -29,7 +28,5 @@ $$
 \operatorname{tr}\left(\boldsymbol{x}\boldsymbol{y}^{\top}\right)=\operatorname{tr}\left(\boldsymbol{y}^{\top}\boldsymbol{x}\right)=\boldsymbol{y}^{\top}\boldsymbol{x}\in\mathbb{R}
 $$, for $\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{n}$
 
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "likelihood"
 tags: ["statistic"]
 ---
 
@@ -17,6 +16,4 @@ likelihood 는 [[Probability]] 와 반대되는 개념으로, 랜덤 변수 $X$ 
 
 [[likelihood]] 는 [[Probability Density Function|pdf]] 의 그래프에서 $y=f(O\mid\theta)$ 값을 나타낸다. 즉, $\mathcal{L}(\theta\mid O)=f(O\mid\theta)$ 를 만족하는 $\theta$ 를 추정하는 것으로 생각할 수 있다.
 
-# C) Related
-
-# D) References
+# C) References

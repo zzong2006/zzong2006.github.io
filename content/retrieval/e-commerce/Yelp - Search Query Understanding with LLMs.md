@@ -1,5 +1,4 @@
 ---
-title: "Yelp - Search Query Understanding with LLMs"
 tags: ["retrieval", "e-commerce", "query_understanding", "LLM"]
 aliases: ["Yelp Search Query Understanding"]
 ---

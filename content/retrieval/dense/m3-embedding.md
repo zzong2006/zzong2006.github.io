@@ -1,5 +1,4 @@
 ---
-title: "m3-embedding"
 tags: ["embedding", "dense_retrieval", "multi_vector"]
 ---
 

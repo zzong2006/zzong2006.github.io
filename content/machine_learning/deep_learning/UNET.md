@@ -1,5 +1,4 @@
 ---
-title: "UNET"
 tags: ["deep_learning"]
 ---
 

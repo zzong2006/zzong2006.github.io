@@ -1,5 +1,4 @@
 ---
-title: "sorting"
 tags: ["algorithm"]
 ---
 
@@ -11,7 +10,5 @@ tags: ["algorithm"]
 * [[Bubble Sort]]
 * [[quick Sort]]
 * [[Heap Sort]]
-
-# Related
 
 # References

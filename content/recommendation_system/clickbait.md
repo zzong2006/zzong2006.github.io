@@ -1,5 +1,4 @@
 ---
-title: "clickbait"
 tags: ["recommendation_system"]
 ---
 
@@ -29,11 +28,9 @@ post-click feedback 은 일반적으로 spare 하기 때문에, like 가 존재�
 
 기존 뷰탭은 click 을 통해 콘텐츠를 확인하지 않더라도 바로 좋아요, 공유, 구독 등을 누를 수 있다. 그래서 그 정도가 다를 수 있는 이슈가 존재한다.
 
-# E) Related
+# E) VI. References
 
-# F) VI. References
-
-## F.1) VI.A. Papers
+## E.1) VI.A. Papers
 
 * [[The good, the bad and the bait - Detecting and characterizing clickbait on YouTube]]
 * [[Clicks can be Cheating - Counterfactual Recommendation for Mitigating Clickbait Issue]]

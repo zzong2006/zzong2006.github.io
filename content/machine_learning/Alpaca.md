@@ -1,7 +1,3 @@
----
-title: "Alpaca"
----
-
 
 # 1. Alpaca ?
 

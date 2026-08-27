@@ -1,5 +1,4 @@
 ---
-title: "Graph Neural Networks for Recommender System"
 tags: ["GNN", "WSDM", "deep_learning", "paper_review", "recommendation_system", "tutorial", "y2022"]
 ---
 
@@ -14,8 +13,6 @@ tags: ["GNN", "WSDM", "deep_learning", "paper_review", "recommendation_system", 
 	* optimization
 	* computation efficiency
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://dl.acm.org/doi/10.1145/3488560.3501396

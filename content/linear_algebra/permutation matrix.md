@@ -1,5 +1,4 @@
 ---
-title: "permutation matrix"
 tags: ["linear_algebra"]
 ---
 
@@ -36,6 +35,4 @@ $$
 * For the augmented matrix $\left[\begin{array}{ll}A&b\end{array}\right]$, that elimination step gives $\left[E_{21}A\quad E_{21}b\right]$.
 * $\left[\begin{array}{rll}1&0&0\\-2&1&0\\0&0&1\end{array}\right]\left[\begin{array}{rrrr}2&4&-2&2\\4&9&-3&8\\-2&-3&7&10\end{array}\right]=\left[\begin{array}{rrrr}2&4&-2&\mathbf{2}\\0&1&1&4\\-2&-3&7&\mathbf{10}\end{array}\right]$
 
-# D) Related
-
-# E) References
+# D) References

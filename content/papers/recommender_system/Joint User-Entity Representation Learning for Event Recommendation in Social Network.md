@@ -1,5 +1,4 @@
 ---
-title: "Joint User-Entity Representation Learning for Event Recommendation in Social Network"
 tags: ["cold-start", "deep_learning", "paper_review", "recommendation_system"]
 ---
 
@@ -11,6 +10,4 @@ tags: ["cold-start", "deep_learning", "paper_review", "recommendation_system"]
 		* 제안한 모델은 parallel [[CNN]] 기반이고, event text 의 semantic meaning 을 파악하며 social network 에 존재하는 [[heterogeneous]] 한 user knowledge 를 활용함
 	* 제안한 모델의 output 을 user 및 event 의 representation 으로 하여 prediction model 에 대입했을 때, prediction accuracy 의 상승이 있었음
 
-# B) Related
-
-# C) References
+# B) References

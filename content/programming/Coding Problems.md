@@ -1,5 +1,4 @@
 ---
-title: "Coding Problems"
 tags: ["programming"]
 ---
 

@@ -1,7 +1,3 @@
----
-title: "Generate Image from AI"
----
-
 
 # A) Generate Image from AI ?
 
@@ -13,6 +9,4 @@ Stable Diffusion fine-tuning
 
 키워드 광고
 
-# B) Related
-
-# C) References
+# B) References

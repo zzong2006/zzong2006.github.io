@@ -1,5 +1,4 @@
 ---
-title: "Normalization"
 tags: ["machine_learning", "feature_scaling"]
 aliases: ["normalization", "scaling"]
 ---
@@ -27,7 +26,7 @@ $$
 | 구분 | 중심 아이디어 | 결과 |
 | --- | --- | --- |
 | [[standardization]] | 평균과 표준편차 기준으로 재표현 | 평균 0, 표준편차 1 |
-| [[machine_learning/min-max scaling|min-max scaling]] | 최솟값과 최댓값 기준으로 재표현 | 보통 0~1 |
+| [[machine_learning/min-max scaling]] | 최솟값과 최댓값 기준으로 재표현 | 보통 0~1 |
 | unit norm normalization | vector 길이를 1로 맞춤 | cosine 비교에 유리 |
 
 # C) 언제 중요한가
@@ -35,4 +34,3 @@ $$
 [[gradient descent]], [[support vector machine]], [[k-Nearest Neighbors]], [[Principal Component Analysis|PCA]] 처럼 feature scale 에 민감한 방법에서는 normalization 또는 standardization 이 모델 품질과 학습 안정성에 직접 영향을 준다.
 
 반대로 [[Decision Tree]] 계열은 feature 내부의 순서와 threshold split 에 더 의존하므로 scaling 영향이 상대적으로 작다.
-

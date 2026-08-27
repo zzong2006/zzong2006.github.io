@@ -1,5 +1,4 @@
 ---
-title: "glue code"
 tags: ["word", "programming"]
 ---
 
@@ -9,6 +8,4 @@ tags: ["word", "programming"]
 
 예를 들어 C 와 [[Python]] 으로 쓰여진 두개의 프로그램이 있는데 두개를 같이 쓰려면 C 를 파이썬으로 바꾸거나 파이썬을 C 로 바꿔야 해요. 그런데 C 는 파이썬보다 속도가 엄청 빠르고 파이썬은 간편하거든요. 각각의 장점을 살리기 위해서 두개를 그냥 붙여쓸 수 있으면 좋은데, 이렇게 두 언어를 붙여주는걸 글루코드라고 합니다. 
 
-# B) Related
-
-# C) References
+# B) References

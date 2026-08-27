@@ -1,5 +1,4 @@
 ---
-title: "Bayesian"
 tags: ["statistic"]
 ---
 

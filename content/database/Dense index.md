@@ -1,8 +1,5 @@
 ---
-title: "Dense index"
-aliases: []
-tags:
-  - database
+tags: ["database"]
 ---
 
 # A) Dense Index ?

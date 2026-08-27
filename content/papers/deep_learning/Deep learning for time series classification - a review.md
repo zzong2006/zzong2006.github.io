@@ -1,5 +1,4 @@
 ---
-title: "Deep learning for time series classification - a review"
 tags: ["deep_learning", "paper_review"]
 ---
 

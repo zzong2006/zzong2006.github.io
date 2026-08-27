@@ -1,6 +1,5 @@
 ---
-title: "Bernoulli distribution"
-tags: ["probability_distribution statistic"]
+tags: ["probability_distribution", "statistic"]
 aliases: ["베르누이 분포"]
 ---
 
@@ -67,6 +66,4 @@ $$
 \displaystyle\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
 $$
 
-# E) Related
-
-# F) References
+# E) References

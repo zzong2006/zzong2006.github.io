@@ -1,5 +1,4 @@
 ---
-title: "Self-Rewarding Language Models"
 tags: ["language_model", "Meta", "nlp", "paper_review", "y2024"]
 ---
 
@@ -60,8 +59,6 @@ Self-rewarding 방식을 거듭할수록 보다 seed model 대비해서 명령�
 * We note that in our experiments, we found that adding only positive examples in a related manner did not help, whereas adding preference pairs did help.
 * Further, we observed an increase in length in model generations, and there is a known correlation between length and estimated quality.
 
-# G) Related
-
-# H) References
+# G) References
 
 * [2401.10020.pdf](https://arxiv.org/pdf/2401.10020.pdf)

@@ -1,5 +1,4 @@
 ---
-title: "TF-IDF"
 tags: ["retrieval", "IR", "sparse_retrieval", "metrics", "NLP"]
 aliases: ["tfidf"]
 ---

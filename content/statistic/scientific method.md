@@ -1,5 +1,4 @@
 ---
-title: "scientific method"
 tags: ["hypothesis_test"]
 ---
 
@@ -28,8 +27,6 @@ We form hypotheses, gather empirical data, including from experiments, that prov
 9. 반복된 실험으로 검증된 가설은 이론으로 인정된다.  
 위 순서에서 3 번부터 6 번까지는 만족할 만한 결과가 나올 때까지 반복된다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://ko.wikipedia.org/wiki/%EA%B3%BC%ED%95%99%EC%A0%81_%EB%B0%A9%EB%B2%95

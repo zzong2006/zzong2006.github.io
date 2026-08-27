@@ -1,5 +1,4 @@
 ---
-title: "standard error"
 tags: ["metrics", "machine_learning", "statistic"]
 aliases: ["SE", "표준 오차"]
 ---
@@ -72,6 +71,4 @@ $\displaystyle\mathrm{SE}\left(\hat{\beta}_{0}\right)^{2}=\sigma^{2}\left[\frac{
 
 위에서 $\sigma$ 는 노이즈의 분산 $\sigma^{2}=\operatorname{Var}(\epsilon)$ 을 의미하며, 실질적으로 계산할수는 없다. 그래서 [[residual standard error|RSE]] 를 통해 $\sigma$ 를 추정한다: $\sigma\approx\operatorname{RSE}=\sqrt{\operatorname{RSS}/(n-2)}$
 
-# C) Related
-
-# D) References
+# C) References

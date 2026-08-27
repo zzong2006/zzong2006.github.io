@@ -1,5 +1,4 @@
 ---
-title: "clustering"
 tags: ["machine_learning", "clustering"]
 aliases: ["군집화"]
 ---
@@ -15,6 +14,4 @@ aliases: ["군집화"]
 * [[K-means]] Clustering
 * [[Hierarchical Clustering]]
 
-# D) Related
-
-# E) References
+# D) References

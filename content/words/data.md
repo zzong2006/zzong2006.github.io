@@ -1,5 +1,4 @@
 ---
-title: "data"
 tags: ["statistic"]
 ---
 

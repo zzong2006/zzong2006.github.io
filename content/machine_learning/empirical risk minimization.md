@@ -1,5 +1,4 @@
 ---
-title: "empirical risk minimization"
 aliases: ["ERM"]
 ---
 
@@ -12,7 +11,5 @@ $$
 $$
 
 empirical 분포를 이용해 expected loss 를 계산했으므로 empirical risk minimization 이라고 부른다.
-
-# Related
 
 # References

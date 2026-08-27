@@ -1,5 +1,4 @@
 ---
-title: "SPLADE"
 tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding"]
 ---
 

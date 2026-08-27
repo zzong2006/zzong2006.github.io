@@ -1,7 +1,7 @@
 ---
 title: "OneSearch - End-to-End Generative E-commerce Search"
-tags: [retrieval, e-commerce, generative_retrieval, product_search, paper_review, y2026, Kuaishou, ICML]
-aliases: [OneSearch, OneSearch E-commerce Search]
+tags: ["retrieval", "e-commerce", "generative_retrieval", "product_search", "paper_review", "y2026", "Kuaishou", "ICML"]
+aliases: ["OneSearch", "OneSearch E-commerce Search"]
 ---
 
 # A) 한줄 요약

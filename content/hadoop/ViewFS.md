@@ -1,5 +1,4 @@
 ---
-title: "ViewFS"
 tags: ["hadoop"]
 ---
 

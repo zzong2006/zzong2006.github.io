@@ -1,10 +1,6 @@
 ---
-title: "HNSW"
-tags:
-  - ANN
-  - vector_search
-  - graph_based
-aliases: [Hierarchical Navigable Small World, HSNW]
+tags: ["ANN", "vector_search", "graph_based"]
+aliases: ["Hierarchical Navigable Small World", "HSNW"]
 ---
 
 # A) HNSW ?
@@ -37,7 +33,7 @@ Skip list는 여러 층의 링크드 리스트를 쌓아서 구성됩니다. 최
 
 검색 과정에서는, 가장 위 레이어에서 시작하여 오른쪽(아래 그림 참고)으로 이동하며 원하는 키 값을 탐색합니다. 만약 현재 노드의 키 값이 우리가 찾고자 하는 키보다 크면($key_{current} > key_{target}$), 목표값을 초과한 것이므로 한 단계 아래 레벨로 이동하여 이전 노드에서 다시 탐색을 이어갑니다.
 
-<img src="/images/img-458d824de3.png" width=50%>
+<img src="https://www.pinecone.io/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fvr8gru94%2Fproduction%2F9065d31e1b2e33ca697a56082f0ece7eff1c2d9b-1920x500.png&w=3840&q=75" width=50%>
 
 # C) N2: `mmap` 기능
 

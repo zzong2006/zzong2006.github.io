@@ -1,5 +1,4 @@
 ---
-title: "Selection Sort"
 tags: ["algorithm", "sorting"]
 ---
 
@@ -57,6 +56,4 @@ def selectionSort(data, start):
 selectionSort(data, start=0)
 ```
 
-# C) Related
-
-# D) References
+# C) References

@@ -1,5 +1,4 @@
 ---
-title: "llm_as_classifier"
 tags: ["LLM"]
 ---
 
@@ -20,6 +19,4 @@ The flexibility of the LLM method makes it very attractive for cases where you n
 * The classes might change
 * You want the output to be more elaborate than just the class name
 
-# C) Related
-
-# D) References
+# C) References

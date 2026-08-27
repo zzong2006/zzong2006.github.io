@@ -1,5 +1,4 @@
 ---
-title: "Kendall rank correlation"
 tags: ["statistic"]
 ---
 
@@ -24,8 +23,6 @@ n \\
 ![|400](https://i.imgur.com/V2A7n3u.png)
 
 두 데이터를 뽑는 경우의 수가 $\left(\begin{array}{c}30 \\ 2\end{array}\right)=435$ 개가 존재할 때, concordant 데이터는 총 395개가 존재한다 (discordant = 40개). 결과적으로  두 변수 $X$ 와 $Y$의 Kendall rank correlation은 $0.816$으로 계산된다
-
-# Related
 
 # References
 * https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient

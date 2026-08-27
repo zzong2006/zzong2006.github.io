@@ -1,5 +1,4 @@
 ---
-title: "Hierarchical Clustering"
 tags: ["machine_learning", "clustering"]
 aliases: ["계층 군집화"]
 ---
@@ -33,6 +32,4 @@ quadratic 계산 복잡도 ($O(N^2)$) 로 인해 작은 데이터셋에만 한�
 * Maximum or complete-linkage clustering$\max{d(a,b):a\in A,b\in B}$
 * Minimum or single-linkage clustering$\min{d(a,b):a\in A,b\in B}$
 
-# E) Related
-
-# F) References
+# E) References

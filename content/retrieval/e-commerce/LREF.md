@@ -1,5 +1,4 @@
 ---
-title: "LREF"
 tags: ["retrieval", "IR", "paper_review", "LLM", "e-commerce", "relevance", "y2025"]
 aliases: ["LLM-based Relevance Framework"]
 ---

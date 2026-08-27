@@ -1,5 +1,4 @@
 ---
-title: "Offline AB testing for Recommender Systems"
 tags: ["evaluation", "hypothesis_test", "paper_review", "recommendation_system"]
 ---
 
@@ -23,8 +22,6 @@ $$
 
 logging policy 로 얻은 reward 를 이용해서 target policy 의 expected reward 를 추정하는 방법이 [[importance sampling]] 또는 [[inverse propensity score]] 라고 불리는 방법이다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://arxiv.org/pdf/1801.07030.pdf

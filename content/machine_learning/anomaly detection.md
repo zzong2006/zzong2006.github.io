@@ -1,7 +1,5 @@
 ---
-title: "anomaly detection"
-tags: machine_learning 
-aliases: []
+tags: ["machine_learning"]
 ---
 
 # A) Problem Statement of the Anomaly Detection

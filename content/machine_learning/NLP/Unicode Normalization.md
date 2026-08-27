@@ -1,5 +1,4 @@
 ---
-title: "Unicode Normalization"
 tags: ["NLP"]
 aliases: ["유니코드 정규화"]
 ---
@@ -29,8 +28,6 @@ unicodedata.normalize("NFKC", "Ⓣⓗⓐⓝⓚⓢ ⓕⓞⓡ ⓡⓔⓐⓓⓘⓝ�
 
 `NFKC` 는 정규화 옵션인데, `KC` 를 이용한 `Normalized Form` 이라는 뜻이다. compatibility equivalence 를 먼저 처리하고, 이때 나누어진 문자를 합쳐서 canonical equivalence 를 해결한다.  
 예시) `ℌ ̧` → `H ̧` → `Ḩ`
-
-# Related
 
 # References
 

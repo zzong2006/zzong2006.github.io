@@ -1,6 +1,5 @@
 ---
-title: "probit model"
-tags: ["linear_regression statistic"]
+tags: ["linear_regression", "statistic"]
 ---
 
 # A) Probit Model ?
@@ -106,9 +105,7 @@ $$
 
 여기서 probit 은 probability + unit 의 합성어이다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * https://en.wikipedia.org/wiki/Probit_model
 * https://www.statlect.com/fundamentals-of-statistics/probit-model-maximum-likelihood (증명이 매우 잘 되어 있음)

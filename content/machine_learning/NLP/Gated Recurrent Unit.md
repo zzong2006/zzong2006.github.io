@@ -1,7 +1,5 @@
 ---
-title: "Gated Recurrent Unit"
 aliases: ["GRU"]
-tag: RNN
 ---
 
 # A) 정의

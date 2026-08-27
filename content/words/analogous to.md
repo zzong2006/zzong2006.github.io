@@ -1,5 +1,4 @@
 ---
-title: "analogous to"
 tags: ["word"]
 ---
 
@@ -7,6 +6,4 @@ tags: ["word"]
 
 * ~와 비슷한 이라는 뜻
 
-# B) Related
-
-# C) References
+# B) References

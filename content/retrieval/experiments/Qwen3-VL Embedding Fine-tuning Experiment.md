@@ -1,5 +1,4 @@
 ---
-title: "Qwen3-VL Embedding Fine-tuning Experiment"
 tags: ["retrieval", "embedding", "dense_retrieval", "experiment", "Qwen3"]
 ---
 

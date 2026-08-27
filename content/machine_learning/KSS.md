@@ -1,5 +1,4 @@
 ---
-title: "KSS"
 tags: ["self_dev"]
 ---
 
@@ -11,6 +10,4 @@ KSS 피드백
 * Start: 개선했으면 하는 점
 * Stop: 그만해줬으면 하는 점
 
-# B) Related
-
-# C) References
+# B) References

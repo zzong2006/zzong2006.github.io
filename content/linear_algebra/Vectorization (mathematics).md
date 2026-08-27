@@ -1,5 +1,4 @@
 ---
-title: "Vectorization (mathematics)"
 tags: ["linear_algebra"]
 ---
 
@@ -26,8 +25,6 @@ for the $2\times2$ matrix $A=\left[\begin{array}{ll}a&b\\c&d\end{array}\right]$,
 * $\operatorname{tr}\left(A^{\top}B\right)=\operatorname{vec}(A)^{\top}\operatorname{vec}(B)=\operatorname{vec}(B)^{\top}\operatorname{vec}(A)$
 	* 쉽게 말해서 $\operatorname{tr}\left(A^{\top}B\right)$ 의 경우, 같은 위치에 해당하는 두 matrix 의 원소를 각기 서로 곱한다음 다 더한 값이 된다: $\sum a_{i,j}\cdot b_{i,j}$
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://en.wikipedia.org/wiki/Vectorization_(mathematics)

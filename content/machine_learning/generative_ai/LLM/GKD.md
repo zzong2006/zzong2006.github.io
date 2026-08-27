@@ -1,12 +1,7 @@
 ---
-title: Generalized Knowledge Distillation
-tags:
-  - LLM
-  - distillation
-aliases:
-  - GKD
-  - Generalized Knowledge Distillation
-  - on-policy distillation
+title: "Generalized Knowledge Distillation"
+tags: ["LLM", "distillation"]
+aliases: ["GKD", "Generalized Knowledge Distillation", "on-policy distillation"]
 ---
 
 # A) 한줄 요약

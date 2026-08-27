@@ -1,7 +1,3 @@
----
-title: "unsupervised learning"
----
-
 * [[clustering]]
 	* [[K-means]]
 	* [[DBSCAN]]

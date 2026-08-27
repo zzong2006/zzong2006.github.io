@@ -1,5 +1,4 @@
 ---
-title: "The YouTube Video Recommendation System"
 tags: ["paper_review", "recommender_system", "YouTube"]
 aliases: ["The YouTube Video Recommendation System"]
 ---

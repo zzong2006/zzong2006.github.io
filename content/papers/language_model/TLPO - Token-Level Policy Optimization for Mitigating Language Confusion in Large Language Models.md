@@ -1,13 +1,7 @@
 ---
 title: "TLPO - Token-Level Policy Optimization"
-tags:
-  - language_model
-  - llm
-  - post_training
-  - rl
-  - paper_review
-  - y2026
-aliases: [TLPO, Token-Level Policy Optimization]
+tags: ["language_model", "llm", "post_training", "rl", "paper_review", "y2026"]
+aliases: ["TLPO", "Token-Level Policy Optimization"]
 ---
 
 # A) 한줄 요약

@@ -1,12 +1,9 @@
 ---
-title: "linear program"
 tags: ["optimization"]
 aliases: ["linear programming"]
 ---
 
 # Linear Program ?
-
-# Related
 
 # References
 

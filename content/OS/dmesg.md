@@ -1,5 +1,4 @@
 ---
-title: "dmesg"
 tags: ["linux"]
 ---
 
@@ -17,6 +16,4 @@ dmesg 명령어는 시스템 부팅 메시지를 확인하는 명령어다. 또�
 
   `dmesg | grep sda`
 
-# C) Related
-
-# D) References
+# C) References

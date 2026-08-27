@@ -1,5 +1,4 @@
 ---
-title: "Hyperparameter tuning(GBM)"
 tags: ["GBM"]
 ---
 
@@ -56,8 +55,6 @@ Optuna 에서 수행한 벤치마크에 따르면, 가장 중요한 parameter �
 
 중요한 정도는 parameter 의 값이 변하면 그에 따른 validation score 역시 심하게 변할수록 중요하다고 판단하는 것 같다.
 
-# E) Related
-
-# F) References
+# E) References
 
 * [LightGBM Tuner: New Optuna Integration for Hyperparameter Optimization | by Kohei Ozaki | Optuna | Medium](https://medium.com/optuna/lightgbm-tuner-new-optuna-integration-for-hyperparameter-optimization-8b7095e99258)

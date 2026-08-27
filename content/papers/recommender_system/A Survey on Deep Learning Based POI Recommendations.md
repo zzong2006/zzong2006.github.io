@@ -1,5 +1,4 @@
 ---
-title: "A Survey on Deep Learning Based POI Recommendations"
 tags: ["deep_learning", "paper_review", "recommendation_system"]
 ---
 
@@ -46,6 +45,4 @@ Deep learning methods like [[Convolution Neural Network]] or [[Recurrent Neural 
 	* Dataset
 		* 대부분의 모델들이 POIs 에 포함된 텍스트 정보를 활용하지 않는데, 그 이유는 대부분의 데이터셋에는 텍스트 정보가 포함되어 있지 않기 때문이다.
 
-# C) Related
-
-# D) References
+# C) References

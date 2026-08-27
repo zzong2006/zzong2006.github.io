@@ -1,5 +1,4 @@
 ---
-title: "histogram"
 tags: ["statistic"]
 ---
 
@@ -35,7 +34,5 @@ $$
 
 * mean: $\left(5.5^{\star} 2+15.5^{\star} 7+25.5^{\star} 10+35.5^{\star} 3+45.5^{\star} 1\right) / 23=22.89$
 * median: $21+((25 / 2-9) / 10)^{*} 9=24.15$
-
-# Related
 
 # References

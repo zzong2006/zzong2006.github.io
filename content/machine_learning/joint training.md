@@ -1,5 +1,4 @@
 ---
-title: "joint training"
 tags: ["machine_learning", "recommendation_system"]
 ---
 
@@ -9,6 +8,4 @@ Joint-training consists of training together multiple networks with different le
 
 Joint-training has been widely used for online advertisement recommendation: [[Wide & Deep Learning for Recommender Systems|Wide & Deep]]
 
-# B) Related
-
-# C) References
+# B) References

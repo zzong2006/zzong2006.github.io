@@ -1,6 +1,5 @@
 ---
-title: "Z-test"
-tags: ["hypothesis_test statistic"]
+tags: ["hypothesis_test", "statistic"]
 ---
 
 # Z-test ?

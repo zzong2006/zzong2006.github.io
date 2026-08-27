@@ -1,5 +1,4 @@
 ---
-title: "Generative Adversarial Network"
 tags: ["deep_learning", "generative_model"]
 aliases: ["GAN"]
 ---
@@ -38,6 +37,4 @@ Discriminator $D$ 는 [[RL/value function]] 을 최대화 시켜야 한다.
 		* 만약 $G$ 가 아주 잘 생성한다면, $D(x)=0,D(G(z))=1$ 을 만족할 것이고, [[RL/value function]] 은 $-\infty$ 가 될 것이다.  
 		* $D$ 의 입장과 반대로 $G$ 는 가능한 최솟값을 이루는 것이다.
 
-# C) Related
-
-# D) References
+# C) References

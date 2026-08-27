@@ -1,5 +1,4 @@
 ---
-title: "diagonal matrix"
 tags: ["linear_algebra"]
 aliases: ["대각 행렬"]
 ---
@@ -27,8 +26,6 @@ $$
 $$
 
 그리고 대각 행렬은 square 일 필요는 없지만, ㅇ
-
-# Related
 
 # References
 

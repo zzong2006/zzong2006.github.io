@@ -1,5 +1,4 @@
 ---
-title: "When Inverse Propensity Scoring does not Work - Affine Corrections for Unbiased Learning to Rank"
 tags: ["CIKM", "bias", "fairness", "learning_to_rank", "paper_review", "position_bias", "y2020"]
 ---
 
@@ -13,8 +12,6 @@ tags: ["CIKM", "bias", "fairness", "learning_to_rank", "paper_review", "position
 
 우리는 실질적인 환경에서 어떠한 IPS 추정기라도 신뢰(trust) 편향을 교정할 수 없음을 증명하였습니다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * paper link: https://arxiv.org/pdf/2008.10242.pdf

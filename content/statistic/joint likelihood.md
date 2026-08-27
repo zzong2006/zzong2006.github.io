@@ -1,5 +1,4 @@
 ---
-title: "joint likelihood"
 tags: ["statistic"]
 ---
 

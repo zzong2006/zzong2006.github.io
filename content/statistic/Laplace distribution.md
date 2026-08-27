@@ -1,5 +1,4 @@
 ---
-title: "Laplace distribution"
 tags: ["probability_distribution"]
 ---
 
@@ -9,6 +8,4 @@ $$
 \displaystyle\operatorname{Laplace}(x;\mu,\gamma)=\frac{1}{2\gamma}\exp\left(-\frac{|x-\mu|}{\gamma}\right)
 $$
 
-# B) Related
-
-# C) References
+# B) References

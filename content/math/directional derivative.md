@@ -1,5 +1,4 @@
 ---
-title: "directional derivative"
 tags: ["calculus", "differentitation"]
 aliases: ["방향도함수"]
 ---
@@ -24,13 +23,11 @@ $$
 
 # Gradient 와의 관계
 
-directional derivative 는 vector $\mathbf{v}$ 와 [[machine_learning/optimization/gradient]] $\nabla f(\mathbf{x})$ 의 [[dot product|내적]] 을 의미한다: $\mathbf{v} \cdot \nabla f(\mathbf{x})$
+directional derivative 는 vector $\mathbf{v}$ 와 [[machine_learning/gradient]] $\nabla f(\mathbf{x})$ 의 [[dot product|내적]] 을 의미한다: $\mathbf{v} \cdot \nabla f(\mathbf{x})$
 
 여기서 gradient 가 왜 가장 가파르게 올라가는 방향임을 알 수 있는데, 방향도함수가 최대가 되기 위해서는 gradient 와 vector 간 방향이 동일해야 하기 때문이다 (내적이므로).
 
 그리고 gradient 의 크기 $|| \nabla f ||$ 는 gradient 방향으로 이동했을 때, 함수 $f$ 의 변화율을 나타낸다. 왜냐하면 방향도함수가 최대가 되는 경우, $\mathbf{v} \cdot \nabla f(\mathbf{x})=|| \nabla f ||$ 이기 때문이다 (vector 는 unit vector 를 가정함).
-
-# Related
 
 # References
 

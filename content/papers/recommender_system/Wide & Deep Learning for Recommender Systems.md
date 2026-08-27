@@ -1,12 +1,6 @@
 ---
-title: "Wide & Deep Learning for Recommender Systems"
+tags: ["e-commerce", "deep_learning", "linear_regression", "paper_review", "recommendation_system"]
 aliases: ["Wide & Deep"]
-tags:
-  - e-commerce
-  - deep_learning
-  - linear_regression
-  - paper_review
-  - recommendation_system
 ---
 
 # A) Abstract

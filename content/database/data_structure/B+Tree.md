@@ -1,9 +1,5 @@
 ---
-title: "B+Tree"
-tags:
-  - index
-  - database
-aliases: []
+tags: ["index", "database"]
 ---
 
 # 1. B+Tree ?

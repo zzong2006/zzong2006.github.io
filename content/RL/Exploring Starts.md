@@ -1,5 +1,4 @@
 ---
-title: "Exploring Starts"
 tags: ["reinforcement_learning"]
 ---
 
@@ -11,6 +10,4 @@ Exploring starts 는 GPI 방식을 진행할 때, $(s)$ 에서 시작하는 것�
 
 결과적으로, exploring starts 를 이용한 방법에는 반드시 모든 $(s,a)$ 가 무한히 visit 할 수 있다는 보장이 필요하다.
 
-# B) Related
-
-# C) References
+# B) References

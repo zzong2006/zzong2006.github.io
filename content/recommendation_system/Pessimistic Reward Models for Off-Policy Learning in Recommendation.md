@@ -1,9 +1,5 @@
 ---
-title: "Pessimistic Reward Models for Off-Policy Learning in Recommendation"
-aliases: []
-tags:
-  - reinforcement_learning
-  - recommendation_system
+tags: ["reinforcement_learning", "recommendation_system"]
 ---
 
 # 1. Introduction
@@ -81,4 +77,4 @@ $$
 
 * Related paper
 	* [[Offline Reinforcement Learning - Tutorial, Review, and Perspectives on Open Problems]]
-	* [[The Optimizer’s Curse: Skepticism andPostdecision Surprise in Decision Analysis]]
+	* [[The Optimizer’s Curse - Skepticism and Postdecision Surprise in Decision Analysis]]

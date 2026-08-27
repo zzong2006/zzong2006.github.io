@@ -1,5 +1,4 @@
 ---
-title: "Calibrated Recommendations"
 tags: ["bias", "fairness", "paper_review", "recommendation_system"]
 ---
 

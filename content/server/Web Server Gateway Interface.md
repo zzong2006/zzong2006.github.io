@@ -1,5 +1,4 @@
 ---
-title: "Web Server Gateway Interface"
 tags: ["server"]
 aliases: ["WSGI"]
 ---
@@ -12,9 +11,7 @@ WSGI is the Web Server Gateway Interface. It is a specification that describes h
 
 ![](https://i.imgur.com/w9HLZ6K.png)
 
-# B) Related
-
-# C) References
+# B) References
 
 * [🤔WSGI는 무엇일까?](https://velog.io/@han0707/WSGI%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C)
 * [Introduction — WSGI Tutorial](https://wsgi.tutorial.codepoint.net/intro)

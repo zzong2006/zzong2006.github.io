@@ -1,5 +1,4 @@
 ---
-title: "Deep Bayesian Bandits Showdown - An Empirical Comparison of Bayesian Deep Networks for Thompson Sampling"
 tags: ["Google", "ICLR", "MAB", "bandit", "deep_learning", "paper_review", "y2018"]
 ---
 
@@ -27,8 +26,6 @@ In terms of the diagonal linear approximations, we found that diagonalizing the 
 
 the impact on performance of approximate model posteriors for decision making via Thompson Sampling in contextual bandits.
 
-# E) Related
-
-# F) References
+# E) References
 
 * [paper link](https://arxiv.org/pdf/1802.09127.pdf)

@@ -1,5 +1,4 @@
 ---
-title: "Markov property"
 tags: ["reinforcement_learning"]
 ---
 
@@ -10,7 +9,5 @@ $n+1$ 회의 상태 (state) 는 오직 $n$ 회에서의 상태, 혹은 그 이�
 $$
 P\left(q_{i}\mid q_{1},\ldots,q_{i-1}\right)=P\left(q_{i}\mid q_{i-1}\right)
 $$
-
-# Related
 
 # References

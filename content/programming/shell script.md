@@ -1,5 +1,4 @@
 ---
-title: "shell script"
 tags: ["language"]
 ---
 
@@ -33,8 +32,6 @@ script 의 가장 첫번째 라인 `#!` 는 그 스크립트가 `#!` 이후의 �
 # String
 
 * `${varname:-word}`: `varname` 이 존재하면 (not null) 그 값을 반환하고 그렇지 않으면 `word` 를 반환한다.
-
-# Related
 
 # References
 

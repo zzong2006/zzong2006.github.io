@@ -1,5 +1,4 @@
 ---
-title: "K-prototype"
 tags: ["clustering", "machine_learning"]
 ---
 

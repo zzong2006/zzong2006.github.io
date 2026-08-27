@@ -1,5 +1,4 @@
 ---
-title: "hyperplane"
 tags: ["linear_algebra"]
 ---
 
@@ -18,7 +17,5 @@ $p$- 차원에서의 hyperplane
 $$
 \beta_{0}+\beta_{1} X_{1}+\beta_{2} X_{2}+\cdots+\beta_{p} X_{p}=0
 $$
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "reference(C++)"
 tags: ["Cpp"]
 aliases: ["참조자", "reference"]
 ---

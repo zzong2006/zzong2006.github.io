@@ -1,5 +1,4 @@
 ---
-title: "Factorization Meets the Item Embedding - Regularizing Matrix Factorization with Item Co-occurrence"
 tags: ["RecSyS", "collaborative_filtering", "paper_review", "recommendation_system", "word2vec", "y2016"]
 aliases: ["CFR", "CoFactor"]
 ---
@@ -23,7 +22,7 @@ CoFactor 는 [[Alternating Least Squares|ALS]] 에서 사용한 coordinate updat
 
 ## SPPMI
 
-[[negative sampling]] 을 통해 학습한 [[skip-gram]] 은 $\log{k}$ 만큼 shift 된 [[pointwise mutual information|PMI]] matrix SPPMI 를 implicit factorization(e.g. [[linear_algebra/Singular Value Decomposition]]) 한것과 동일하다고 한다. 이 방식은 최적화 과정이 없기때문에 유용하다.
+[[negative sampling]] 을 통해 학습한 [[skip-gram]] 은 $\log{k}$ 만큼 shift 된 [[pointwise mutual information|PMI]] matrix SPPMI 를 implicit factorization(e.g. [[machine_learning/Singular Value Decomposition]]) 한것과 동일하다고 한다. 이 방식은 최적화 과정이 없기때문에 유용하다.
 
 PMI matrix 의 원소는 다음과 같이 계산된다.
 
@@ -56,7 +55,7 @@ $\beta_{i}$ 는 item embedding 이고 $\gamma_{j}$ 는 context embedding, 그리
 
 # Related Works
 
-[[matrix factorization|MF]] 에서 item 의 side information 을 활용하려는 시도가 있었다 (e.g. [[recommendation_system/VBPR - Visual Bayesian Personalized Ranking from Implicit Feedback|VBPR]]). 일반적으로 이러한 side 정보는 factor 를 regularize 하는데 사용된다.
+[[matrix factorization|MF]] 에서 item 의 side information 을 활용하려는 시도가 있었다 (e.g. [[papers/recommender_system/VBPR - Visual Bayesian Personalized Ranking from Implicit Feedback|VBPR]]). 일반적으로 이러한 side 정보는 factor 를 regularize 하는데 사용된다.
 
 CoFactor 와 이런 접근 방식의 주요 차이점은 regularization 이 추가적인 정보를 활용한다기 보다는 원래의 user-item 선호 데이터의 deterministic 하며, non-linear 한 transformation 에서 온다는 것이다.
 
@@ -74,4 +73,3 @@ A. 그렇지 않다. 어떤 문제를 푸는가, 어떤 데이터를 사용하�
 # References
 
 * paper link: https://dawenl.github.io/publications/LiangACB16-cofactor.pdf
-* aurochs code: https://github.daumkakao.com/toros/aurochs/tree/dev/aurochs/buffalo/cfr

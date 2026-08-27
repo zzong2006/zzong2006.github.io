@@ -1,5 +1,4 @@
 ---
-title: "SentencePiece"
 tags: ["tokenization", "NLP"]
 ---
 
@@ -22,8 +21,6 @@ tags: ["tokenization", "NLP"]
 
 SentencePiece 는 [[Byte-Pair Encoding Tokenization|BPE]] 와 [[unigram lanugage model]] 을 지원한다. 어떤 방식이 더 좋은것인지?
 
-# E) Related
-
-# F) References
+# E) References
 
 * [GitHub - google/sentencepiece: Unsupervised text tokenizer for Neural Network-based text generation.](https://github.com/google/sentencepiece)

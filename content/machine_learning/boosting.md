@@ -1,5 +1,4 @@
 ---
-title: "boosting"
 tags: ["ensemble"]
 ---
 

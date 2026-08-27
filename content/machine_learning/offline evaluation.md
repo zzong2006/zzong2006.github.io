@@ -1,5 +1,4 @@
 ---
-title: "offline evaluation"
 tags: ["machine_learning"]
 ---
 

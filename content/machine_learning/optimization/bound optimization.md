@@ -1,5 +1,4 @@
 ---
-title: "bound optimization"
 tags: ["optimization"]
 ---
 
@@ -17,6 +16,4 @@ $$
 * The difference is that optimizing Q is guaranteed to lead to an improvement in the objective, even if it is not convex, whereas
 [[Newton-Raphson method]] may overshoot or lead to a decrease in the objective
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,9 +1,3 @@
----
-title: "Heap"
-aliases: []
-tags: 
-Tags: [heap, data_structure, algorithm]
----
 
 # A) What is the Heap?
 

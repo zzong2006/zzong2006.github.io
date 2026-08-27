@@ -1,5 +1,4 @@
 ---
-title: "overfitting"
 tags: ["machine_learning"]
 aliases: ["오버피팅"]
 ---
@@ -16,6 +15,4 @@ aliases: ["오버피팅"]
 4. [[dropout]]
 5. [[Early Stopping]]
 
-# C) Related
-
-# D) References
+# C) References

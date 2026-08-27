@@ -1,5 +1,4 @@
 ---
-title: "Shrinkage Method"
 tags: ["linear_regression", "machine_learning"]
 ---
 

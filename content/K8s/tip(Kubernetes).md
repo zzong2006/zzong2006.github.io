@@ -1,5 +1,4 @@
 ---
-title: "tip(Kubernetes)"
 tags: ["tip"]
 ---
 
@@ -23,6 +22,4 @@ tags: ["tip"]
 
 일반적으로 [[deployment(Kubernetes)]] 가 범인일 수 있는데, [[StatefulSet]] 이라는 것도 확인해봐야 한다.
 
-# B) Related
-
-# C) References
+# B) References

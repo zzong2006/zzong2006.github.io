@@ -1,5 +1,4 @@
 ---
-title: "False Positive Rate"
 tags: ["metrics", "machine_learning"]
 aliases: ["FPR", "false positive rate"]
 ---

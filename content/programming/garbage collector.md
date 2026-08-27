@@ -1,7 +1,3 @@
----
-title: "garbage collector"
----
-
 
 # A) Garbage Collector ?
 

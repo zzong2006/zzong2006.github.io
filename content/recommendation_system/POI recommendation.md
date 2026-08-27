@@ -1,5 +1,4 @@
 ---
-title: "POI recommendation"
 tags: ["recommendation_system"]
 aliases: ["POI 추천"]
 ---

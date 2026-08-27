@@ -1,7 +1,3 @@
----
-title: "Memorylessness"
----
-
 
 # A) Memorylessness ?
 

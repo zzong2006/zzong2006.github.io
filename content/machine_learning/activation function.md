@@ -1,9 +1,5 @@
 ---
-title: "activation function"
-tags:
-  - machine_learning
-  - deep_learning
-aliases: []
+tags: ["machine_learning", "deep_learning"]
 ---
 
 # A) Non-Linear Activation(비 선형 함수) 의 사용 이유
@@ -12,7 +8,7 @@ aliases: []
 
 예시: 다음과 같이 비 선형 함수를 사용하지 않는 신경망이 있다고 가정하자.  
 
-![[img-a9c53fe8c7.png|500]]
+![[img-a9c53fe8c7.png||500]]
 
 ## A.1.1) $x$ 가 주어질 때
 

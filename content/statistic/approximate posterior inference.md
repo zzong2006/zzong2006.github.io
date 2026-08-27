@@ -1,5 +1,4 @@
 ---
-title: "approximate posterior inference"
 tags: ["bayesian_inference"]
 ---
 
@@ -32,9 +31,7 @@ $$
 
 # C) References
 
-# D) Related
-
-# E) References
+# D) References
 
 * [[Computing Bayes - Bayesian Computation from 1763 to the 21st Century]]
 * [link](https://arxiv.org/abs/2004.06425): a review of various approximate inference methods

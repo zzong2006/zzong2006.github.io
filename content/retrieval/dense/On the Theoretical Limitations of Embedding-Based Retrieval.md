@@ -1,5 +1,4 @@
 ---
-title: "On the Theoretical Limitations of Embedding-Based Retrieval"
 tags: ["retrieval", "IR", "embedding", "dense_retrieval", "theory", "Google", "DeepMind"]
 ---
 

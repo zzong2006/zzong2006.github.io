@@ -1,5 +1,4 @@
 ---
-title: "variational inference"
 tags: ["bayesian_inference"]
 aliases: ["varitional approximation", "VI", "변분 추론"]
 ---
@@ -87,7 +86,7 @@ posterior $p$ 에 대한 정보가 없어서 $q(z)$ 를 [[Gaussian distribution
 
 # H) Variational EM Algorithm
 
-실제 문제에서는 prior 와 likelihood 의 parameter 를 알 수 없는 경우가 많다. 그래서 [[machine_learning/optimization/EM algorithm]] 을 통해 posterior $p(z|x)$ 에 근사한 $q(z)$ 의 parameter 를 찾는 것과 동시에, 우도함수 $p(x|z)$ 의 parameter 또한 추정해야 한다.
+실제 문제에서는 prior 와 likelihood 의 parameter 를 알 수 없는 경우가 많다. 그래서 [[machine_learning/EM algorithm]] 을 통해 posterior $p(z|x)$ 에 근사한 $q(z)$ 의 parameter 를 찾는 것과 동시에, 우도함수 $p(x|z)$ 의 parameter 또한 추정해야 한다.
 
 * $q(z)$ 의 parameter 를 $θ_q$, likelihood function 의 parameter 를 $\theta_l$ 라고 둘 때 EM algorithm 은 다음과 같은 과정을 수렴할 때까지 반복한다.
 	* Expectation: $D_{KL}(q(z)\|p(z\mid x))$ 를 줄이는 $θ_q$ 를 찾는다.

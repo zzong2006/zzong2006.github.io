@@ -1,5 +1,4 @@
 ---
-title: "slab"
 tags: ["linux"]
 ---
 
@@ -21,9 +20,7 @@ Linux 커널에서 커널과 디바이스 드라이버, 파일시스템 등은 �
 
 파일을 빈번하게 생성/삭제 하거나 다량의 파일을 다루는 시스템의 경우 해당 파일을 자주 재활용하지 않는다면 (즉, 생성/기록 후에 데이터를 지속해서 접근하여 읽지 않는 경우) 캐시에 메모리를 사용하기 보다는 I/O 를 위한 버퍼 또는 프로세스에 할당되어 활용되는 편이 좋다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [slabtop | Ssup2 Blog](https://ssup2.github.io/command_tool/slabtop/)
 * [faq-linux-메모리-효율을 위한 vsf_cache_pressure](https://lunatine.tumblr.com/post/28546340998/faq-linux-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%9A%A8%EC%9C%A8%EC%9D%84-%EC%9C%84%ED%95%9C-vfscachepressure)

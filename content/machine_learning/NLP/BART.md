@@ -1,5 +1,4 @@
 ---
-title: "BART"
 tags: ["summarization", "NLP"]
 aliases: ["Bidirectional and Auto-Regressive Transformers"]
 ---

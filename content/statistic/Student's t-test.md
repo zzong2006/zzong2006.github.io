@@ -1,6 +1,5 @@
 ---
-title: "Student's t-test"
-tags: ["hypothesis_test frequentist"]
+tags: ["hypothesis_test", "frequentist"]
 aliases: ["t-test"]
 ---
 

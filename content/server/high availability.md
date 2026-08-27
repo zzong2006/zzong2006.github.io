@@ -1,5 +1,4 @@
 ---
-title: "high availability"
 tags: ["server"]
 aliases: ["HA", "고가용성"]
 ---
@@ -10,6 +9,4 @@ aliases: ["HA", "고가용성"]
 
 간단히 HA 솔루션을 설명하면, 서버 2 대를 통해 한쪽 서버가 애 시 다른 한쪽 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이라고 생각 하면 되겠다.
 
-# B) Related
-
-# C) References
+# B) References

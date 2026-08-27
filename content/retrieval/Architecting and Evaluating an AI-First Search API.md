@@ -1,5 +1,4 @@
 ---
-title: "Architecting and Evaluating an AI-First Search API"
 tags: ["retrieval", "IR", "search_engine", "API", "evaluation", "Perplexity", "y2025"]
 aliases: ["AI-First Search API", "Perplexity Search API"]
 ---

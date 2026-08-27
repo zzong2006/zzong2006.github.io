@@ -1,5 +1,4 @@
 ---
-title: "DropoutNet - Addressing Cold Start in Recommender Systems"
 tags: ["NIPS", "cold-start", "deep_learning", "paper_review", "recommendation_system", "y2017"]
 aliases: ["DropoutNet"]
 ---
@@ -22,8 +21,6 @@ content 와 preference 정보를 모두 input 으로 사용한다. 이 경우, p
 
 학습 과정에서는 jointly 하게 back-propagation 으로 최적화를 진행하며, inference 과정에서는 모두 고정시킨다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * paper link: https://papers.nips.cc/paper/2017/file/dbd22ba3bd0df8f385bdac3e9f8be207-Paper.pdf

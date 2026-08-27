@@ -1,12 +1,10 @@
 ---
-layout: default
-title: Keys
-category: Database
+title: "Keys"
 ---
 
 Key: tuple 을 찾거나 순서대로 정렬할 때, 다른 튜플들과 구별할 수 있는 유일한 기준이 되는 속성
 
-<img src="/images/img-34950f764a.png" alt="키(Key)의" style="zoom:80%;" />
+<img src="https://i.loli.net/2020/11/29/rXlCaQ1AnMgUq2o.png" alt="키(Key)의" style="zoom:80%;" />
 
 # A) Key 의 속성 두 가지
 

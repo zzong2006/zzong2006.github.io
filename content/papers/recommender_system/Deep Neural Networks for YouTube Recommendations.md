@@ -1,12 +1,5 @@
 ---
-title: "Deep Neural Networks for YouTube Recommendations"
-aliases: []
-tags:
-  - RecSyS
-  - Youtube
-  - paper_review
-  - recommendation_system
-  - y2016
+tags: ["RecSyS", "Youtube", "paper_review", "recommendation_system", "y2016"]
 ---
 
 [paper link](https://static.googleusercontent.com/media/research.google.com/ko//pubs/archive/45530.pdf)

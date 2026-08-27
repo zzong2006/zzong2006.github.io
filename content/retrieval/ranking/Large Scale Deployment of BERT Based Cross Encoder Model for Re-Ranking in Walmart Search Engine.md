@@ -1,5 +1,4 @@
 ---
-title: "Large Scale Deployment of BERT Based Cross Encoder Model for Re-Ranking in Walmart Search Engine"
 tags: ["e-commerce", "SIGIR", "paper_review", "retrieval", "ranking", "y2025"]
 aliases: ["Walmart Cross Encoder", "Walmart BERT Re-ranker"]
 ---
@@ -406,7 +405,7 @@ Human evaluator가 직접 랭킹 품질 평가:
 
 | 시스템 | 모델 타입 | 용도 |
 |--------|----------|------|
-| [[papers/advertisement/UniERF - A Uniform Embedding-based Retrieval Framework for E-Commerce Search|UniERF]] | Dual Encoder | Retrieval (대규모) |
+| [[papers/advertisement/UniERF - A Uniform Embedding-based Retrieval Framework for E-Commerce Search]] (UniERF) | Dual Encoder | Retrieval (대규모) |
 | 본 논문 (Walmart) | Cross Encoder | Re-ranking (소규모) |
 | ColBERT | Late Interaction | 중간 (Retrieval + 정확도) |
 

@@ -1,5 +1,4 @@
 ---
-title: "Scalable Recommendation with Poisson Factorization"
 tags: ["collaborative_filtering", "paper_review", "probability_distribution", "recommendation_system"]
 ---
 
@@ -92,8 +91,6 @@ $\begin{aligned}\log p(y\mid\theta,\beta)=&\left(\sum_{\left\{y_{ui}>0\right\}}y
 	* 수렴 여부는 validation set에 대한 예측 precision으로 확인
 
 		* 구체적으로는 validation ratings에 대한 predictive log likelihood의 평균을 계산하고, 이전 iteration의 log likelihood와 비교했을 때 변화가 0.0001% 미만이면 종료
-
-# Related
 
 # References
 

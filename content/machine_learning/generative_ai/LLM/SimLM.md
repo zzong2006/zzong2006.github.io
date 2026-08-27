@@ -1,5 +1,4 @@
 ---
-title: "SimLM"
 tags: ["embedding"]
 ---
 

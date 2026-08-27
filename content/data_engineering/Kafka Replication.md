@@ -1,11 +1,8 @@
 ---
-title: "Kafka Replication"
 tags: ["kafka"]
 ---
 
 # Kafka Replication ?
-
-# Related
 
 # References
 

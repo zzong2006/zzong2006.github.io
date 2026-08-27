@@ -1,8 +1,5 @@
 ---
-title: "The Optimizer’s Curse - Skepticism and Postdecision Surprise in Decision Analysis"
-tags:
-  - paper_review
-aliases: []
+tags: ["paper_review"]
 ---
 
 * Some Prototypical Examples

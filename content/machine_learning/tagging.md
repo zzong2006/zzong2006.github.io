@@ -1,5 +1,4 @@
 ---
-title: "tagging"
 tags: ["github"]
 ---
 
@@ -18,8 +17,6 @@ git tag v0.1.0   # tag 생성
 git push --tags  # tag push
 ```
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://py-pkgs.org/07-releasing-versioning#releasing-and-versioning

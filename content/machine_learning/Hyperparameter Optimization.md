@@ -1,8 +1,3 @@
----
-title: "Hyperparameter Optimization"
-tags: 
-aliases: []
----
 
 # A) 하이퍼파라미터 최적화
 

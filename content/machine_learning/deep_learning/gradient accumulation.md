@@ -1,5 +1,4 @@
 ---
-title: "gradient accumulation"
 tags: ["deep_learning", "generative_model"]
 ---
 
@@ -25,6 +24,4 @@ for index, batch in enumerate(training_dataloader):
         optimizer.zero_grad()
 ```
 
-# C) Related
-
-# D) References
+# C) References

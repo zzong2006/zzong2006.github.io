@@ -1,7 +1,3 @@
----
-title: "Interview Questions"
----
-
 # A) Toss
 
 모니터링 지표
@@ -13,7 +9,7 @@ title: "Interview Questions"
 * [[Linear independence]]
 * [[determinant]][]()
 * [[eigenvalue]] and Eigenvectors
-* [[linear_algebra/Singular Value Decomposition|SVD]]
+* [[machine_learning/Singular Value Decomposition|SVD]]
 * The [[norm]] of a vector
 * Independent random variables
 * Expectation and variance

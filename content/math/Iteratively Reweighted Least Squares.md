@@ -1,7 +1,3 @@
----
-title: "Iteratively Reweighted Least Squares"
----
-
 
 # Iteratively Reweighted Least Squares ?
 
@@ -12,8 +8,6 @@ Definition
 		- $\displaystyle\underset{\boldsymbol{\beta}}{\arg\min}\sum_{i=1}^{n}\left|y_{i}-f_{i}(\boldsymbol{\beta})\right|^{p}$
 
 * IRLS is used to find the maximum likelihood estimates of a generalized linear model
-
-# Related
 
 # References
 

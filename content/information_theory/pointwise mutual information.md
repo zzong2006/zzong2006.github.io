@@ -1,12 +1,11 @@
 ---
-title: "pointwise mutual information"
 tags: ["information_theory"]
 aliases: ["PMI", "NPMI"]
 ---
 
 # A) Pointwise Mutual Information ?
 
-두 이산 랜덤 변수 $X,Y$ 에 대하여 outcome $x,y$ 쌍의 PMI 는 동시에 나타나는 확률을 수량화한다. 이때 두 분포는 서로 독립적임을 가정한다.
+두 이산 랜덤 변수 $X,Y$에 대하여 outcome pair $(x,y)$의 PMI는 두 값이 **독립일 때 기대되는 빈도보다 얼마나 더 자주 또는 덜 자주 함께 나타나는지** 를 측정한다.
 
 ## A.1) 수식
 
@@ -16,13 +15,13 @@ $$
 
 ### A.1.1) 해석
 
-$p(x,y)$ 는 $x,y$ 가 동시에 일어날 확률이므로, 각각 일어날 확률 $p(x),p(y)$ 의 곱과 동일하다면 $\operatorname{pmi}(x;y)=1$ 로 독립일 것이다.
+$p(x,y)$는 $x,y$가 동시에 일어날 확률이다. 이 값이 각각 일어날 확률의 곱 $p(x)p(y)$와 같다면 두 값은 독립이고, 이때 $\operatorname{pmi}(x;y)=0$이다.
 
-동시에 일어날 확률이 따로 일어날 확률보다 크다면 +, 작다면 - 값을 가지게 된다.
+동시에 일어날 확률이 독립일 때의 기대값보다 크면 PMI는 양수, 작으면 음수가 된다.
 
 # B) Normalized PMI (NPMI)
 
-PMI 를 normalized 한 값으로, [-1, +1] 사이의 값을 가진다.
+PMI를 normalized 한 값으로, `[-1, +1]` 사이의 값을 가진다.
 
 ## B.1) 수식
 
@@ -32,9 +31,9 @@ $$
 
 ## B.2) 값에 따른 해석
 
-* $-1$: 함께 발생한적이 전혀 없음
+* $-1$: 함께 발생한 적이 전혀 없음
 * $0$: 독립적임
-* $1$: 완전히 같이 발생함 (co-occurrence)
+* $1$: 항상 같이 발생함
 
 # C) Application
 

@@ -1,5 +1,4 @@
 ---
-title: "transfer learning"
 tags: ["deep_learning", "machine_learning", "recommendation_system"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "fflush"
 tags: ["function", "Cpp"]
 ---
 
@@ -18,7 +17,5 @@ fflush(stdout)
 ```
 
 `stdout`(표준 출력 버퍼) 에 있는 데이터를 꺼내어 출력 스트림에 입력
-
-# Related
 
 # References

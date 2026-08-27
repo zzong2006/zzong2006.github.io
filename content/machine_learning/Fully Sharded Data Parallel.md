@@ -1,5 +1,4 @@
 ---
-title: "Fully Sharded Data Parallel"
 tags: ["huggingface", "accelerate"]
 aliases: ["FSDP"]
 ---
@@ -22,9 +21,7 @@ FSDP 기반 멀티 노드로 학습을 진행하는 경우 단일 노드 학습�
 
 [move fsdp handling to accelerate by pacman100 · Pull Request #23158 · huggingface/transformers · GitHub](https://github.com/huggingface/transformers/pull/23158) 에서 보면 accelerate 만 하이브리드 옵션이 가능하도록 만들어 놓았다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [Fully Sharded Data Parallel](https://huggingface.co/docs/accelerate/usage_guides/fsdp)
 * [Train models with billions of parameters using FSDP — PyTorch Lightning 2.1.0.rc0 documentation](https://lightning.ai/docs/pytorch/latest/advanced/model_parallel/fsdp.html)

@@ -1,5 +1,4 @@
 ---
-title: "entropy"
 tags: ["statistic", "information_theory"]
 ---
 
@@ -32,7 +31,5 @@ $$
 $$
 H(q)=-(0.99*log(0.99)+0.01log(0.01))=0.02
 $$
-
-# Related
 
 # References

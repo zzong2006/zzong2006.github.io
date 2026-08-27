@@ -1,7 +1,3 @@
----
-title: "stationary distribution"
----
-
 
 # 1. Stationary Distribution ?
 

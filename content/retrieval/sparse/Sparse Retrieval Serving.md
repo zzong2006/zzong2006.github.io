@@ -1,5 +1,4 @@
 ---
-title: "Sparse Retrieval Serving"
 tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "search_engine"]
 ---
 

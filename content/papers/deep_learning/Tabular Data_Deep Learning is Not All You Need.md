@@ -1,5 +1,4 @@
 ---
-title: "Tabular Data_Deep Learning is Not All You Need"
 tags: ["deep_learning", "paper_review"]
 ---
 

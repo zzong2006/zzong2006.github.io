@@ -1,8 +1,3 @@
----
-title: "Inorder Search"
-aliases: []
-tags: []
----
 * Inorder Search 는 root 를 중간 단계에서 search 하는 방식이다.
 	1. Traverse the left subtree
 	2. Visit the root.

@@ -1,7 +1,5 @@
 ---
-title: "Monte Carlo Method(RL)"
-tags: reinforcement_learning 
-aliases: []
+tags: ["reinforcement_learning"]
 ---
 
 # A) Monte Carlo Method
@@ -35,7 +33,7 @@ MC 도 transition 확률을 알 필요는 있다. 그렇지만 이것도 DP 처�
 
 one-step transitions 을 통해 value 를 update 하는 DP diagram 과 달리, 몬테카를로 방법은 terminal state 까지의 trajectory 를 확인하고 value 를 estimate 한다.  
 이를 도식화 하면 아래와 같다.  
-![[img-b8edc653e0.png|300]]
+![[img-b8edc653e0.png||300]]
 
 또한 MC 의 state 에 대한 value 추정값은 독립적이다. DP 는 반대로 다른 state 를 활용하여 특정 state 의 value 추정을 시도한다 (bootstrap).
 
@@ -43,7 +41,7 @@ one-step transitions 을 통해 value 를 update 하는 DP diagram 과 달리, �
 
 모델을 활용하는 것이 불가능하다면, state 값 대신, action 값 (state 와 action 의 쌍으로 이루어진 값) 을 추정하는 것이 유용하다.
 
-[[DP]] 처럼 모델이 존재한다면, state value 와 transition probability 를 알기 때문에, $q$ 값을 이용해 policy 를 결정하는것이 충분했다.
+[[DP (Reinforcement Learning)|DP]] 처럼 모델이 존재한다면, state value 와 transition probability 를 알기 때문에, $q$ 값을 이용해 policy 를 결정하는것이 충분했다.
 
 MC 의 궁극적인 목적은 $q_*$ 값을 추정하는 것이다 (policy evaluation for action values).
 
@@ -57,7 +55,7 @@ Monte Carlo Control
 
 DP 와 비슷한 [[GPI]](Generalized policy iteration) 방식으로 MC 도 optimal policies 를 approximate 할 수 있다.
 
-![[img-a1d183165d.png|240]]
+![[img-a1d183165d.png||240]]
 
 $$
 \pi_{0}\stackrel{\mathrm{E}}{\longrightarrow}q_{\pi_{0}}\stackrel{\mathrm{I}}{\longrightarrow}\pi_{1}\stackrel{\mathrm{E}}{\longrightarrow}q_{\pi_{1}}\stackrel{\mathrm{I}}{\longrightarrow}\pi_{2}\stackrel{\mathrm{E}}{\longrightarrow}\cdots\stackrel{\mathrm{I}}{\longrightarrow}\pi_{*}\stackrel{\mathrm{E}}{\longrightarrow}q_{*}

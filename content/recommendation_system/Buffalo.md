@@ -1,6 +1,5 @@
 ---
-title: "Buffalo"
-tags: ["open_source", "recoteam", "kakao", "work", "recommendation_system"]
+tags: ["open_source", "kakao", "work", "recommendation_system"]
 ---
 
 # A) Buffalo ?
@@ -16,6 +15,4 @@ tags: ["open_source", "recoteam", "kakao", "work", "recommendation_system"]
 * [[CoFactors]]
 	* Liang, Dawen, et al. “Factorization meets the item embedding: Regularizing matrix factorization with item co-occurrence.” Proceedings of the 10th ACM conference on recommender systems. ACM, 2016.
 
-# C) Related
-
-# D) References
+# C) References

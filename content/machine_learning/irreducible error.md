@@ -1,6 +1,5 @@
 ---
-title: "irreducible error"
-tags: ["machine_learning linear_regression"]
+tags: ["machine_learning", "linear_regression"]
 ---
 
 # A) Irreducible Error ?

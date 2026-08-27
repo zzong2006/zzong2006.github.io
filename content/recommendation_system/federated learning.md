@@ -1,5 +1,4 @@
 ---
-title: "federated learning"
 tags: ["machine_learning", "recommendation_system"]
 ---
 
@@ -30,6 +29,4 @@ tags: ["machine_learning", "recommendation_system"]
 
 사용자도 거의 겹치지 않고, 추천 아이템 풀도 거의 겹치지 않는 추천 시나리오.
 
-# C) Related
-
-# D) References
+# C) References

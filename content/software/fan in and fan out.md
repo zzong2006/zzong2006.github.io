@@ -1,5 +1,4 @@
 ---
-title: "fan in and fan out"
 tags: ["software_design"]
 ---
 
@@ -21,6 +20,4 @@ tags: ["software_design"]
 
 ![|600](https://i.imgur.com/QW2dXye.png)
 
-# C) Related
-
-# D) References
+# C) References

@@ -1,5 +1,4 @@
 ---
-title: "anagram"
 tags: ["algorithm", "string", "word"]
 ---
 

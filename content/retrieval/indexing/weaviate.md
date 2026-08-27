@@ -1,5 +1,4 @@
 ---
-title: "weaviate"
 tags: ["vector_database", "ANN", "vector_search", "framework"]
 ---
 

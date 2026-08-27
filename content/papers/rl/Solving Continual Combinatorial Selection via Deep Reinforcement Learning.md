@@ -1,12 +1,5 @@
 ---
-title: "Solving Continual Combinatorial Selection via Deep Reinforcement Learning"
-aliases: []
-tags:
-  - IJCAI
-  - deep_learning
-  - paper_review
-  - reinforcement_learning
-  - y2019
+tags: ["IJCAI", "deep_learning", "paper_review", "reinforcement_learning", "y2019"]
 ---
 
 # A) Abstract

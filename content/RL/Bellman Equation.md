@@ -1,5 +1,4 @@
 ---
-title: "Bellman Equation"
 tags: ["reinforcement_learning", "linear_algebra"]
 ---
 
@@ -101,6 +100,4 @@ v=(I-\gamma P)^{-1} P R
 
 즉, [[Markov Chain]] 에서 수렴된 전이 확률 행렬을 얻기 위해 step 을 열심히 반복하지 않아도, 위 계산식을 통해 얻을 수 있다는 의미가 된다. 하지만 $\gamma=1$ 인 경우 $I-\gamma P$ 가 [[singular]] matrix 가 되므로 역행렬이 존재하지 않아 solution 을 얻을 수 없다.
 
-# C) Related
-
-# D) References
+# C) References

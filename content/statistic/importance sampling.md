@@ -1,5 +1,4 @@
 ---
-title: "importance sampling"
 tags: ["sampling"]
 aliases: ["inverse propensity score"]
 ---
@@ -28,8 +27,6 @@ $p$ 를 nominal distribution, $q$ 를 importance distribution 이라고 한다.
 # Importance Sampling 과정
 
 ![|600](https://i.imgur.com/qa65j3i.png)
-
-# Related
 
 # References
 

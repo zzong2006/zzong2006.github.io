@@ -1,6 +1,3 @@
----
-title: "confusion matrix"
----
 # A) Confusion Matrix
 
 ![[img-49639380f2.jpg|Confusion Matrix]]

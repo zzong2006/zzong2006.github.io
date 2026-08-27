@@ -1,5 +1,4 @@
 ---
-title: "Chernoff bounds"
 tags: ["MAB"]
 ---
 
@@ -16,6 +15,4 @@ tags: ["MAB"]
 * [[Chebyshev’s inequality]]
 * [[Markov's Inequality]]
 
-# C) Related
-
-# D) References
+# C) References

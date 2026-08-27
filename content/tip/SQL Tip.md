@@ -1,5 +1,4 @@
 ---
-title: "SQL Tip"
 tags: ["tip", "SQL", "database"]
 ---
 

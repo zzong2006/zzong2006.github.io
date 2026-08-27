@@ -1,5 +1,4 @@
 ---
-title: "swap in"
 tags: ["operating_system"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "reinterpret_cast"
 tags: ["Cpp"]
 ---
 
@@ -12,6 +11,4 @@ tags: ["Cpp"]
 * 예시
 	* `reinterpret_cast<char*>(&alpha_)`
 
-# B) Related
-
-# C) References
+# B) References

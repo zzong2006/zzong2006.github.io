@@ -1,5 +1,4 @@
 ---
-title: "augmented matrix"
 tags: ["linear_algebra"]
 ---
 

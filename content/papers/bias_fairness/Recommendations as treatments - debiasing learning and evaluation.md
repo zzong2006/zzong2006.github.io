@@ -1,5 +1,4 @@
 ---
-title: "Recommendations as treatments - debiasing learning and evaluation"
 tags: ["ICML", "bias", "fairness", "paper_review", "recommendation_system", "y2016"]
 ---
 
@@ -10,8 +9,6 @@ tags: ["ICML", "bias", "fairness", "paper_review", "recommendation_system", "y20
 이러한 bias 는 RS 의 action 이나 유저들의 self-selection 을 통해 생성된다.
 
 [[selection bias]] 를 처리하기 위해 a principled approach 제안 by adapting models and estimation techniques from causal inference
-
-# Related
 
 # References
 

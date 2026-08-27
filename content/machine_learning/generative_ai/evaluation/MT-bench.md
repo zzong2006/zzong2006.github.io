@@ -1,5 +1,4 @@
 ---
-title: "MT-bench"
 tags: ["LMSYS", "LLM", "evaluation"]
 ---
 
@@ -20,9 +19,7 @@ To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as j
 	1. 여러 옵션이 존재한다: (1) pairwise winrate, (2) single-answer grading (default)
 3. MT-bench 점수를 계산한다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * [github: llm\_judge](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge)
 * paper: [[2306.05685] Judging LLM-as-a-judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685)

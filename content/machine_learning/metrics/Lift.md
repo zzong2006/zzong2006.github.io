@@ -1,9 +1,5 @@
 ---
-title: "Lift"
-tags:
-  - metrics
-  - recommendation_system
-aliases: []
+tags: ["metrics", "recommendation_system"]
 ---
 
 # A) Lift ?

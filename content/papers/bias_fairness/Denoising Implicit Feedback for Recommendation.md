@@ -1,5 +1,4 @@
 ---
-title: "Denoising Implicit Feedback for Recommendation"
 tags: ["WSDM", "bias", "fairness", "implicit_feedback", "paper_review", "y2021"]
 ---
 
@@ -40,7 +39,5 @@ Study on false-positive feedback
 # Approach
 
 Implicit feedback 중 false-positive 에 집중하고 이를 denoising 하고자 함
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "GBM comparison"
 tags: ["machine_learning", "tabular"]
 ---
 

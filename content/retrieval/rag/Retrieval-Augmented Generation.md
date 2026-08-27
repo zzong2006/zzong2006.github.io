@@ -1,5 +1,4 @@
 ---
-title: "Retrieval-Augmented Generation"
 tags: ["retrieval", "RAG"]
 aliases: ["RAG"]
 ---

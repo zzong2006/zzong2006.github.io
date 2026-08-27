@@ -1,5 +1,4 @@
 ---
-title: "outer product"
 tags: ["linear_algebra"]
 aliases: ["외적"]
 ---
@@ -29,8 +28,6 @@ $$
 # 다른 벡터 연산과 비교
 
 외적은 두 벡터 간 연산의 결과가 행렬이다. 이는 두 벡터 간 [[dot product|내적]] 이 scalar 인 것과 다른 개념을 보인다. 그리고 [[vector product]] 는 두 벡터에 수직이 되는 벡터를 결과로 얻는다.
-
-# Related
 
 # References
 

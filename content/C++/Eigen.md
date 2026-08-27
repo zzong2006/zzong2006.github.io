@@ -1,5 +1,4 @@
 ---
-title: "Eigen"
 tags: ["library", "Cpp"]
 ---
 
@@ -94,7 +93,7 @@ Eigen에서는 연산 결과를 즉시 계산하지 않고 필요할 때까지 �
 
 ---
 
-## A.5) Aurochs 라이브러리 내에서의 Eigen 경로
+## A.5) Eigen 설치 경로와 심볼릭 링크
 
 Eigen은 `/usr/local/include/eigen3/` 위치에 설치되어 있으며,
 컴파일 시 아래 명령어로 심볼릭 링크를 생성해야 사용할 수 있습니다.

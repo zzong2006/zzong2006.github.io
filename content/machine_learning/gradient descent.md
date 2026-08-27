@@ -1,9 +1,5 @@
 ---
-title: "gradient descent"
-tags:
-  - optimization
-  - machine_learning
-  - deep_learning
+tags: ["optimization", "machine_learning", "deep_learning"]
 aliases: ["GD"]
 ---
 
@@ -48,7 +44,7 @@ $$
 위의 식은 $\theta_1$ 의 값은 점점 $\displaystyle\frac{\partial}{\partial\theta_1}$ 이 $0$ 에 수렴하는 방향으로 update 될 것이다.
 
 그 이유는 아래 그림을 참조하자.  
-![[img-5b1a18a65b.png|600]]
+![[img-5b1a18a65b.png||600]]
 
 여기서 의문이 생길 수 있다: learning rate $\alpha$ 값이 크다면 step size 가 커져서 $\theta_1$ 가 수렴하지 못할 텐데, $\theta_1$ 이 수렴하는 과정에서 $\alpha$ 값도 점점 줄여줘야 하는 것인가?
 
@@ -87,7 +83,7 @@ $$
 
 Use $b$ examples in each iteration where $b<m$ is the mini-batch size (e.g. $b=10$ and $m=100$).
 
-![[img-84bf335039.png|500]]
+![[img-84bf335039.png||500]]
 
 ## Choosing Your Mini-batch Size
 - 학습 데이터 개수가 작을 경우 (약 2000 이하), batch gradient descent를 사용

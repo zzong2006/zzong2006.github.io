@@ -1,10 +1,7 @@
 ---
-title: "MongoDB Compass"
 tags: ["database"]
 ---
 
 # A) MongoDB Compass ?
 
-# B) Related
-
-# C) References
+# B) References

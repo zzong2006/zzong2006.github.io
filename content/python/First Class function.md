@@ -1,5 +1,4 @@
 ---
-title: "First Class function"
 tags: ["python"]
 ---
 
@@ -137,7 +136,5 @@ Log: Hi
 
 
 
-
-# Related
 
 # References

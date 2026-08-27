@@ -1,5 +1,4 @@
 ---
-title: "Batch Decoding"
 tags: ["LLM"]
 ---
 
@@ -27,6 +26,4 @@ PROMPT = """\
 각 응답 사이는 \#\#\# 으로 내용을 분리해주세요.
 ```
 
-# B) Related
-
-# C) References
+# B) References

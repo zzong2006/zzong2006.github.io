@@ -1,5 +1,4 @@
 ---
-title: "gradient"
 tags: ["calculus", "differentitation"]
 aliases: ["그래디언트"]
 ---
@@ -46,9 +45,7 @@ $f:\mathbb{R}^{n}\rightarrow\mathbb{R}$ 인 경우에 대한 gradients
 
 $\displaystyle\frac{\partial\boldsymbol{a}^{\top}\boldsymbol{X}^{-1}\boldsymbol{b}}{\partial\boldsymbol{X}}=-\left(\boldsymbol{X}^{-1}\right)^{\top}\boldsymbol{a}\boldsymbol{b}^{\top}\left(\boldsymbol{X}^{-1}\right)^{\top}$
 
-# E) Related
-
-# F) References
+# E) References
 
 * [[mathematics machine learning]]
 * [[Probabilistic Machine Learning - An Introduction]] - 7.8.7

@@ -1,5 +1,4 @@
 ---
-title: "Popularity Bias in Dynamic Recommendation"
 tags: ["KDD", "bias", "fairness", "paper_review", "popularity_bias", "recommendation_system", "y2021"]
 ---
 
@@ -51,7 +50,7 @@ $$
 
 ### C.2.1) My Opinion
 
-[[Stargate]] 의 seen decay 옵션과 비슷한 느낌인데, 기존 seen decay 를 대체할 정도인지는 확신이 안선다. 그리고 초기 추천 시 인기정도를 조절할 필요가 있어보인다.
+기존 seen decay 옵션과 비슷한 느낌인데, 기존 seen decay 를 대체할 정도인지는 확신이 안선다. 그리고 초기 추천 시 인기정도를 조절할 필요가 있어보인다.
 
 # D) Debiasing Experiments
 

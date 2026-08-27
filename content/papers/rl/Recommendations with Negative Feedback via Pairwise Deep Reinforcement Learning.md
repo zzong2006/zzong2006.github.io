@@ -1,5 +1,4 @@
 ---
-title: "Recommendations with Negative Feedback via Pairwise Deep Reinforcement Learning"
 tags: ["KDD", "deep_learning", "paper_review", "recommendation_system", "reinforcement_learning", "y2018"]
 ---
 
@@ -17,8 +16,6 @@ tags: ["KDD", "deep_learning", "paper_review", "recommendation_system", "reinfor
 	* the items skipped by users may not be caused by users disliking them, but just not preferring as more as the items clicked/ordered or not viewing them in details at all.
 	* The week/wrong negative feedback may not improve or even reduce the performance when we consider the negative feedback.
 	* To capture stronger negative feedback, more information like dwell time can be recorded in users’ behavior log and used in our framework.
-
-# Related
 
 # References
 

@@ -1,5 +1,4 @@
 ---
-title: "Bayes theorem"
 tags: ["statistic", "bayesian"]
 ---
 
@@ -41,6 +40,4 @@ $$
 
 $P(B\mid A)P(A)=P(A,B)=P(A\mid B)P(B)$ 인 이유: [[product rule]]
 
-# D) Related
-
-# E) References
+# D) References

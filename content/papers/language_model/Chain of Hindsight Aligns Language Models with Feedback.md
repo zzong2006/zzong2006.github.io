@@ -1,12 +1,11 @@
 ---
-title: "Chain of Hindsight Aligns Language Models with Feedback"
 tags: ["language_model", "LLM", "nlp", "paper_review", "y2023"]
 aliases: ["CoH"]
 ---
 
 # A) Chain of Hindsight Aligns Language Models with Feedback?
 
-# B) [[supervised finetuning|SFT]]
+# B) [[machine_learning/supervised fine-tuning|SFT]]
 
 * 사전 학습된 언어 모델을 미세 조정하는 데 사용됩니다.
 * 인간이 주석을 달아준 데이터와 긍정적으로 평가된 모델 생성에 의존합니다.
@@ -30,6 +29,4 @@ SFT 와 RLHF 의 강점을 결합하여 강화 학습 없이 모든 피드백을
 
 우리의 접근 방식은 causual & decoder-only 인 기존 Transformer 모델 아키텍처를 사용합니다. 토큰으로 표현된 텍스트 $\mathbf{x}=\left[x_1, \cdots, x_n\right]$ 가 주어졌을 때, $\mathbf{x}$ 의 log [[likelihood]] 를 자동 회귀적으로 최대화하는 것입니다. CoH 에서는 여러 모델 출력과 피드백을 결합하여 $\mathbf{x}$ 를 구성합니다.
 
-# E) Related
-
-# F) References
+# E) References

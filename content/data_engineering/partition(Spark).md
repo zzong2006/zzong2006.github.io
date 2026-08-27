@@ -1,5 +1,4 @@
 ---
-title: "partition(Spark)"
 tags: ["Spark"]
 aliases: ["partition"]
 ---
@@ -18,8 +17,6 @@ partition 의 수는 core 수를 결정할 뿐만 아니라 각 partition 의 �
 
 일반적으로 파티션 크기는 128MB 를 default 로 설정한다. 파일을 읽을 때 이보다 크면 파티션 크기만큼 쪼개면서 파일을 읽고, 이보다 작다면 그대로 읽어서 파일 하나당 partition 하나를 구성한다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://tech.kakao.com/2021/10/08/spark-shuffle-partition/

@@ -1,5 +1,4 @@
 ---
-title: "Probability"
 tags: ["statistic"]
 ---
 

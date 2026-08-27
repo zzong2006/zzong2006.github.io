@@ -1,5 +1,4 @@
 ---
-title: "heteroscedasticity"
 tags: ["statistic", "regression"]
 aliases: ["heteroskedasticity", "non-constant variance"]
 ---

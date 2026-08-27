@@ -1,5 +1,4 @@
 ---
-title: "ANN"
 tags: ["retrieval", "ANN", "vector_search"]
 ---
 

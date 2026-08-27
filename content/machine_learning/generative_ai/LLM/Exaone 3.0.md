@@ -1,5 +1,4 @@
 ---
-title: "Exaone 3.0"
 tags: ["LG"]
 ---
 
@@ -24,8 +23,6 @@ It results in a similar compression ratio in English but a lower compression rat
 
 Exaone 3.0 은 기존의 토크나이저에 비해 영어에서는 유사한 압축률을 보이지만, 한국어에서는 더 낮은 압축률을 나타냅니다. 낮은 압축률은 단어당 생성되는 토큰 수가 적다는 것을 의미하며, 이는 과도한 토크나이징의 가능성을 줄여줍니다. 특히 한국어는 여러 형태소가 결합하여 단어를 형성하는 교착어적 특성을 가지고 있기 때문에, 이러한 점에서 모델 성능과 생성 능력이 향상될 수 있습니다.NE 3.0 은 Llama 3.0 과 동일한 구조를 가지고 있습니다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * Huggingface: [LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct · Hugging Face](https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct)

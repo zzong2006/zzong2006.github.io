@@ -1,5 +1,4 @@
 ---
-title: "module"
 tags: ["python"]
 ---
 
@@ -12,7 +11,5 @@ tags: ["python"]
 # 모듈의 목적
 
 모듈은 파이썬 코드를 논리적으로 묶어서 관리하고 사용할 수 있도록 돕는 것
-
-# Related
 
 # References

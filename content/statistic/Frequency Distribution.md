@@ -1,5 +1,4 @@
 ---
-title: "Frequency Distribution"
 tags: ["statistic", "descriptive_statistics"]
 aliases: ["frequency distribution"]
 ---

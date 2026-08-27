@@ -1,5 +1,4 @@
 ---
-title: "DP (Reinforcement Learning)"
 tags: ["reinforcement_learning"]
 aliases: ["dynamic programming", "DP"]
 ---
@@ -23,6 +22,4 @@ DP 방식이 optimal solution 을 제공하긴 하지만 굉장히 제한적이�
 * [[policy improvement]]
 * [[bootstrapping]]
 
-# C) Related
-
-# D) References
+# C) References

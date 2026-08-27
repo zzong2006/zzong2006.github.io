@@ -1,5 +1,4 @@
 ---
-title: "subspace"
 tags: ["linear_algebra"]
 ---
 

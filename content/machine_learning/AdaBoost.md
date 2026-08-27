@@ -1,5 +1,4 @@
 ---
-title: "AdaBoost"
 tags: ["ensemble"]
 aliases: ["Adaptive Boosting"]
 ---
@@ -32,8 +31,6 @@ AdaBoost 는 잘 동작하지만 왜 잘 동작하는지 설명하기는 어렵�
 
 특히 데이터의 [[outlier]] 가 많은 경우에 overfitting 문제에 더 취약하다. 이런 약점에 대응하기 위해 AdaBoost 대신 GBM 을 사용할 수 있다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * https://mlcourse.ai/book/topic10/topic10_gradient_boosting.html#topic10

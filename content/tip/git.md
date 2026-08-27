@@ -1,5 +1,4 @@
 ---
-title: "git"
 tags: ["tip", "github"]
 ---
 
@@ -25,7 +24,7 @@ git push -f <remotename> refs/tags/<tagname>
 # C) Remote Branch 로 Checkout
 
 ```bash
-git remote add update git@github.daumkakao.com:~.git
+git remote add update git@<git-host>:<org>/<repo>.git
 git fetch update
 git checkout -t update/master
 ```
@@ -65,6 +64,4 @@ git checkout -t update/master
 * 로컬에 수정된 사항 확인하기: `git diff`
 * 스테이지된 파일의 수정된 사항 확인하기: `git diff --staged`
 
-# J) Related
-
-# K) References
+# J) References

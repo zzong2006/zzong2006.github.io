@@ -1,5 +1,4 @@
 ---
-title: "conjugate gradients"
 tags: ["optimization", "numerical_method"]
 ---
 
@@ -14,8 +13,6 @@ $$
 ![|600](https://i.imgur.com/donecPI.png)
 
 # Nonlinear Conjugate Gradients
-
-# Related
 
 # References
 

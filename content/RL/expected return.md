@@ -1,5 +1,4 @@
 ---
-title: "expected return"
 tags: ["reinforcement_learning"]
 aliases: ["discounted return"]
 ---
@@ -42,6 +41,4 @@ $$
 \displaystyle G_{t}=\sum_{k=0}^{\infty}\gamma^{k}=\frac{1}{1-\gamma}
 $$
 
-# C) Related
-
-# D) References
+# C) References

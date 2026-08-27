@@ -1,5 +1,4 @@
 ---
-title: "CalibRAG"
 tags: ["retrieval", "RAG", "calibration", "uncertainty", "reranking", "NeurIPS", "KAIST", "paper_review", "y2024"]
 aliases: ["Calibrated RAG", "CalibRAG"]
 ---
@@ -384,7 +383,7 @@ $q$는 task $x$에서 파생, $d$는 retriever가 $q$에 대해 선택, guidance
 
 같은 KAIST Juho Lee 그룹의 연구. CalibRAG (2024 Oct) → CSFT (2025 Jun) 순서.
 
-| | CalibRAG | [[papers/language_model/Verbalized Confidence Triggers Self-Verification|CSFT]] |
+| | CalibRAG | [[papers/language_model/Verbalized Confidence Triggers Self-Verification]] (CSFT) |
 |--|----------|------|
 | **목표** | RAG 파이프라인의 decision calibration | CoT reasoning의 verbalized confidence |
 | **방법** | 별도 forecasting function 학습 | Confidence 토큰에만 masked CE loss |

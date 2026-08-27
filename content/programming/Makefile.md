@@ -1,5 +1,4 @@
 ---
-title: "Makefile"
 tags: ["C++"]
 ---
 
@@ -21,7 +20,5 @@ Makefile 은 대상 (Target), 의존 관계 (Dependency), 명령 (Recipe) 의 �
 <target> : <dependency>
 (tab)<Recipe>
 ```
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "Transductive"
 tags: ["machine_learning"]
 ---
 
@@ -9,6 +8,4 @@ tags: ["machine_learning"]
 
 예) [[t-Stochastic Nearest Embedding|t-SNE]] 는 고차원 데이터에 대한 최적의 저차원 데이터를 추정한다.
 
-# B) Related
-
-# C) References
+# B) References

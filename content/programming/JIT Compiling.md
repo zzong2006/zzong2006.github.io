@@ -1,7 +1,3 @@
----
-title: "JIT Compiling"
----
-
 
 # A) JIT 컴파일 (JIT Compiling)
 
@@ -47,6 +43,4 @@ JIT 컴파일은 인터프리터 (interpreter) 에 비해 성능이 훨씬 뛰�
 4. **캐시 활용 효율성 향상**
    * 특히 가비지 컬렉션 (Garbage Collection) 을 사용하는 언어에서는 실행된 코드를 더 쉽게 재배열하여 캐시 활용도를 높일 수 있습니다.
 
-# B) Related
-
-# C) References
+# B) References

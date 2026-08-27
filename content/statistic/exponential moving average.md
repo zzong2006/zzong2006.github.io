@@ -1,11 +1,8 @@
 ---
-title: "exponential moving average"
 aliases: ["EMA"]
 ---
 
 # Exponential Moving Average ?
-
-# Related
 
 # References
 

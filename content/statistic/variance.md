@@ -1,5 +1,4 @@
 ---
-title: "variance"
 tags: ["statistic", "machine_learning"]
 aliases: ["분산"]
 ---
@@ -71,6 +70,4 @@ High Variance 는 주로 복잡한 모델에서 나타나는데, 모델이 복�
 * [[regularization]] / [[dropout]] / Data Augment / Early Stopping
 * NN architecture search
 
-# G) Related
-
-# H) References
+# G) References

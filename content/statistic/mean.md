@@ -1,5 +1,4 @@
 ---
-title: "mean"
 tags: ["statistic"]
 ---
 

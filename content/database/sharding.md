@@ -1,5 +1,4 @@
 ---
-title: "sharding"
 tags: ["database"]
 aliases: ["샤딩", "shard"]
 ---
@@ -31,8 +30,6 @@ aliases: ["샤딩", "shard"]
 
 샤딩 전략을 구현할 때 고려해야 할 가장 중요한 것이 바로 _**샤딩 키 (sharding key) 를 어떻게 정하느냐**_ 하는 것이다. 샤딩 키는 _**파티션 키**_(partition key) 라고도 부르는데, 데이터가 어떻게 분산될지 정하는 하나 이상의 칼럼으로 구성된다. 위 그림의 경우, 샤딩 키는 user_id 이다. 샤딩 키를 통해 올바른 데이터베이스에 질의를 보내어 데이터 조회나 변경을 처리하므로 효율을 높일 수 있다. 이 샤딩 키를 정할 때는 데이터를 고르게 분할 할 수 있도록 하는 게 가장 중요하다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * [DB분산처리를 위한 sharding | 우아한형제들 기술블로그](https://techblog.woowahan.com/2687/)

@@ -1,5 +1,4 @@
 ---
-title: "DialogLM"
 tags: ["language_model", "LLM", "Microsoft", "NLP", "nlp", "paper_review", "summarization", "y2022"]
 ---
 
@@ -109,8 +108,6 @@ Hybrid attention 방식을 사용한 모델 (DialogLM-sparse) 과 그렇지 않�
 - DialogLM can output more coherent sentences than UniLM, and it is comparable to BART
 - However, the performance of all neural models is still far from the human-annotated answers or summaries.
 
-# F) Related
-
-# G) References
+# F) References
 
 - GitHub: [microsoft/DialogLM: Official Implementation of "DialogLM: Pre-trained Model for Long Dialogue Understanding and Summarization."](https://github.com/microsoft/DialogLM)

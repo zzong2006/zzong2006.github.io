@@ -1,5 +1,4 @@
 ---
-title: "visit"
 tags: ["reinforcement_learning", "word"]
 ---
 

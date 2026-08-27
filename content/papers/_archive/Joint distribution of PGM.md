@@ -1,11 +1,5 @@
 ---
-title: "Joint distribution of PGM"
-tags:
-  - PGM
-  - paper_review
-  - probability_distribution
-  - statistic
-aliases: []
+tags: ["PGM", "paper_review", "probability_distribution", "statistic"]
 ---
 
 # A) Joint Distribution of PGM ?
@@ -16,7 +10,7 @@ aliases: []
 
 Intelligence ($I$: $i^0,i^1$), Difficulty ($D$: $d^0,d^1$), Grade ($G$: $g^1,g^2,g^3$)
 
-![[img-fa3e2163a1.png|340]]
+![[img-fa3e2163a1.png||340]]
 
 위 분포의 모든 값을 합치면 1 이 된다.
 

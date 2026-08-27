@@ -1,5 +1,4 @@
 ---
-title: "Reinforcement Learning"
 tags: ["reinforcement_learning", "MAB"]
 aliases: ["RL", "강화 학습"]
 ---

@@ -1,5 +1,4 @@
 ---
-title: "conditional probability"
 tags: ["statistic", "chain_rule"]
 ---
 

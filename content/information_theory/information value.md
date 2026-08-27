@@ -1,11 +1,8 @@
 ---
-title: "information value"
 tags: ["feature_engineering"]
 ---
 
 # Information Value ?
-
-# Related
 
 # References
 

@@ -1,21 +1,18 @@
 ---
-title: "Jensen's inequality"
-tags:
-  - optimization
-aliases: []
+tags: ["optimization"]
 ---
 
 # A) Jensen’s Inequality ?
 
 For a random variable $x$, if $f(x)$ is convec (refer. [[convex function]]), then $E[f(x)]>=f(E[x])$.
 
-![[img-776fe70b8c.png|500]]
+![[img-776fe70b8c.png||500]]
 
 For a random variable $x$, if $f(x)$ is concave, then $f(E[x])>=E[f(x)]$
 
 (위와 반대).
 
-![[img-618ec35325.png|500]]
+![[img-618ec35325.png||500]]
 
 ## A.1) Note
 
@@ -23,6 +20,6 @@ For a random variable $x$, if $f(x)$ is concave, then $f(E[x])>=E[f(x)]$
 
 # B) Related
 
-* [[convex function]], [[machine_learning/optimization/EM algorithm]], [[KL-Divergence]]
+* [[convex function]], [[machine_learning/EM algorithm]], [[KL-Divergence]]
 
 # C) References

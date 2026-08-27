@@ -1,5 +1,4 @@
 ---
-title: "global interpreter lock"
 tags: ["python"]
 aliases: ["GIL"]
 ---

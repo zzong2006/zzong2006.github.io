@@ -1,5 +1,4 @@
 ---
-title: "fabs"
 tags: ["function", "Cpp"]
 ---
 

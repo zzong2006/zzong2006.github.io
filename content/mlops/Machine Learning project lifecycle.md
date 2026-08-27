@@ -1,5 +1,4 @@
 ---
-title: "Machine Learning project lifecycle"
 tags: ["MLOps", "machine_learning"]
 ---
 
@@ -20,6 +19,4 @@ tags: ["MLOps", "machine_learning"]
 * Deployment: 온라인 배포
 	* Concept drift / Data drift
 
-# B) Related
-
-# C) References
+# B) References

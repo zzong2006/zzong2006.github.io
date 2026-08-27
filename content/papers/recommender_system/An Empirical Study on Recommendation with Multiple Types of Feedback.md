@@ -1,5 +1,4 @@
 ---
-title: "An Empirical Study on Recommendation with Multiple Types of Feedback"
 tags: ["KDD", "LinkedIn", "multiple_feedback", "paper_review", "recommendation_system", "y2016"]
 ---
 
@@ -51,8 +50,6 @@ prior combine 방식은 real-world dataset 에서 잘 동작하지 않았다. Wh
 
 만약 유저 피드백 데이터가 충분하다면, model combine 방식이나 constrained regression 방식은 매우 비슷한 성능을 보였다. 그런데 어떤 한 피드백이 흔치 않고, 다른 피드백이 매우 많으면서 correlation 을 보인다면 constrained regression 방식이 model combine 보다 더 좋았다.
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://www.kdd.org/kdd2016/papers/files/adf0677-tangA.pdf

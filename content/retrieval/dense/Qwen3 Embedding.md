@@ -1,5 +1,4 @@
 ---
-title: "Qwen3 Embedding"
 tags: ["embedding", "IR", "dense_retrieval"]
 aliases: ["Qwen3-Embedding", "Qwen3 Embedding"]
 ---

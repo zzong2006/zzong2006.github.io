@@ -1,5 +1,4 @@
 ---
-title: "Kolmogorov-Smirnov"
 tags: ["metrics", "activation_function"]
 aliases: ["KS"]
 ---
@@ -40,8 +39,6 @@ KS 통계량 같은 경우 신용 평가 모형에 대한 성능 측정 지표�
 
  정규 분포를 가정해서 한 것이기 때문에, 실제 현실 분포랑은 많은 괴리가 있는 판단 기준일 수 있다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * [KS(Kolmogorov-Smirnov Statistics) 통계량 알아보기](https://data-newbie.tistory.com/874)

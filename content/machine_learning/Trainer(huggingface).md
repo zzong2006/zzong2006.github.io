@@ -1,6 +1,5 @@
 ---
-title: "Trainer(huggingface)"
-tags: ["huggingface LLM"]
+tags: ["huggingface", "LLM"]
 ---
 
 # 1. Trainer(huggingface) ?

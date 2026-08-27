@@ -1,5 +1,4 @@
 ---
-title: "Hnswlib"
 tags: ["ANN", "vector_search"]
 ---
 

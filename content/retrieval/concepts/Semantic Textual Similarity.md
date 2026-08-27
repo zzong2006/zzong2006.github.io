@@ -1,5 +1,4 @@
 ---
-title: "Semantic Textual Similarity"
 tags: ["NLP"]
 aliases: ["STS"]
 ---

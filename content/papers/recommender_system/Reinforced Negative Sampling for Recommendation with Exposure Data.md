@@ -1,5 +1,4 @@
 ---
-title: "Reinforced Negative Sampling for Recommendation with Exposure Data"
 tags: ["IJCAI", "paper_review", "recommendation_system", "y2019"]
 ---
 
@@ -12,8 +11,6 @@ tags: ["IJCAI", "paper_review", "recommendation_system", "y2019"]
 	* 노출된 아이템만을 가지고 학습을 진행하면 selection bias 가 존재하여 suboptimal 한 performance 를 만들어낼 수 있다.
 * negative sampler 최적화의 어려움
 	* item ID 에 대해서 discrete sampling 을 진행하기 때문에 objective function 이 미분 불가능하다. 결과적으로 gradient-based 방식의 학습이 불가능해짐
-
-# Related
 
 # References
 

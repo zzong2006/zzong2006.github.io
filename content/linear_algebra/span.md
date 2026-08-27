@@ -1,5 +1,4 @@
 ---
-title: "span"
 tags: ["linear_algebra"]
 ---
 
@@ -14,8 +13,6 @@ $$
 # Application
 $Ax=b$ 가 solution 이 존재하는지 여부는 $A$ 의 column vector들의 span([[column space]])에 $b$가 포함되는지 여부를 조사하는 것과 같다.
 
-
-# Related
 
 # References
 * [[deep learning book]] - Linear Algebra

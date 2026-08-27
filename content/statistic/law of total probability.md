@@ -1,5 +1,4 @@
 ---
-title: "law of total probability"
 tags: ["statistic"]
 ---
 
@@ -51,6 +50,4 @@ $$
 
 * $P(A|C)=∑_n P(A|C∩B_n) P(B_n|C)$
 
-# F) Related
-
-# G) References
+# F) References

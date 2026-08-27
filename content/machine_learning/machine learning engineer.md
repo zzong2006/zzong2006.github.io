@@ -1,5 +1,4 @@
 ---
-title: "machine learning engineer"
 tags: ["machine_learning", "work"]
 ---
 
@@ -31,6 +30,4 @@ tags: ["machine_learning", "work"]
 * 다양한 분야의 데이터 분석 및 모델링 기본서
 * 미디엄이나 캐글에서 잘 작성된 문서와 코드들을 자주 살펴보곤 합니다.
 
-# D) Related
-
-# E) References
+# D) References

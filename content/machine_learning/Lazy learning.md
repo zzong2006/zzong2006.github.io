@@ -1,5 +1,4 @@
 ---
-title: "Lazy learning"
 tags: ["machine_learning"]
 ---
 

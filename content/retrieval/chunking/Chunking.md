@@ -1,5 +1,4 @@
 ---
-title: "Chunking"
 tags: ["retrieval", "IR", "chunking"]
 ---
 

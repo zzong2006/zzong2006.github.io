@@ -1,5 +1,4 @@
 ---
-title: "Permutation Test"
 tags: ["hypothesis_test"]
 aliases: ["순열 검정"]
 ---
@@ -45,8 +44,6 @@ aliases: ["순열 검정"]
 4. 추출된 재표본에 대해서 metrics 들을 재계산하고 기록한다 (여기까지가 순열 반복의 한 싸이클)
 5. (1 ~ 5) 의 과정을 $R$ 번 반복하여 검정 통계량의 순열 분포를 얻는다.
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://angeloyeo.github.io/2021/10/28/permutation_test.html

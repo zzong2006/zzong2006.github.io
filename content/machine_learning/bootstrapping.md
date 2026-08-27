@@ -1,5 +1,4 @@
 ---
-title: "bootstrapping"
 tags: ["ensemble", "statistic", "sampling", "reinforcement_learning"]
 aliases: ["bootstrapped", "bootstrap", "부트스트랩", "부트스트래핑"]
 ---

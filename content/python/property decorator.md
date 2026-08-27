@@ -1,13 +1,10 @@
 ---
-title: "property decorator"
 tags: ["python"]
 ---
 
 # Property Decorator ?
 
 python built-in [[decorator]]
-
-# Related
 
 # References
 

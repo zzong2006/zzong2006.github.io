@@ -1,5 +1,4 @@
 ---
-title: "heterogeneous"
 tags: ["word"]
 ---
 
@@ -25,6 +24,4 @@ homogeneous
 
 the heterogeneous population of the United States: 다인종으로 이뤄진 미국 인구
 
-# D) Related
-
-# E) References
+# D) References

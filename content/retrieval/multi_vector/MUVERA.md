@@ -1,11 +1,6 @@
 ---
-title: "MUVERA"
-tags:
-  - retrieval
-  - IR
-  - ANN
-  - multi_vector
-aliases: [무베라]
+tags: ["retrieval", "IR", "ANN", "multi_vector"]
+aliases: ["무베라"]
 ---
 
 최신 정보 검색(IR) 분야에서는 embedding model이 핵심 기술로 자리 잡고 있습니다. 사용자가 예를 들어 “에베레스트 산의 높이는?”과 같은 질의를 입력하면, IR의 목표는 방대한 데이터(수십억 개의 문서, 이미지, 동영상 등) 중에서 해당 질의와 관련 있는 정보를 찾아내는 것입니다. 임베딩 모델은 각 데이터 포인트를 하나의 벡터(임베딩)로 변환하여 의미적으로 유사한 데이터들이 수학적으로도 비슷한 벡터가 되도록 만듭니다. 이 임베딩들은 주로 [[dot product|inner product]](내적 유사도)를 통해 비교되며, 이를 활용해 효율적인 [[maximum inner product search]] (MIPS) 알고리즘으로 빠른 검색이 가능합니다.

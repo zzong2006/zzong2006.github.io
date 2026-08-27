@@ -1,5 +1,4 @@
 ---
-title: "Proximal Policy Optimization"
 tags: ["reinforcement_learning", "LLM"]
 aliases: ["PPO"]
 ---

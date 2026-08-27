@@ -1,15 +1,7 @@
 ---
-title: KL-Divergence
-tags:
-  - statistic
-  - probability_distribution
-  - metrics
-  - machine_learning
-  - information_theory
-aliases:
-  - Kullback-Leibler Divergence
-  - KLD
-  - relative entropy
+title: "KL-Divergence"
+tags: ["statistic", "probability_distribution", "metrics", "machine_learning", "information_theory"]
+aliases: ["Kullback-Leibler Divergence", "KLD", "relative entropy"]
 ---
 
 # A) 한줄 요약

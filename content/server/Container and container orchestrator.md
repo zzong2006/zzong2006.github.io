@@ -1,5 +1,4 @@
 ---
-title: "Container and container orchestrator"
 tags: ["Kubernetes"]
 ---
 
@@ -21,7 +20,5 @@ tags: ["Kubernetes"]
 	* 각 container 의 상태를 어떻게 모니터링 해야하는지
 * DKOS2 는 MESOS 를 사용했지만, DKOS3 는 [[Kubernetes]] 로 전환되었음
 * 
-
-# Related
 
 # References

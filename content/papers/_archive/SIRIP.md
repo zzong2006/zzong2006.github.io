@@ -1,5 +1,4 @@
 ---
-title: "SIRIP"
 tags: ["paper_review"]
 ---
 

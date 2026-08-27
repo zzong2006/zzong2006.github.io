@@ -1,5 +1,4 @@
 ---
-title: "interval estimation"
 tags: ["statistic"]
 aliases: ["구간 추정"]
 ---
@@ -22,6 +21,4 @@ aliases: ["구간 추정"]
 
 $-1.96\le(x-\mu)/\sigma\le1.96$ 를 계산하면 된다.
 
-# D) Related
-
-# E) References
+# D) References

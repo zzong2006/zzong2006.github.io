@@ -1,5 +1,4 @@
 ---
-title: "mixture gaussian problem"
 tags: ["statistic", "bayesian_inference"]
 ---
 
@@ -15,8 +14,6 @@ tags: ["statistic", "bayesian_inference"]
 
 이 문제에 [[Maximum Likelihood Estimation]] 은 적용할 수 없다. 대신, $x_{i}\in\text{Gaussian}_{j}$ 의 경우라면 $z_{ij}=1$ 이고 아니라면 $z_{ij}=0$ 인 latent variable $Z$ 를 활용할 수 있다.
 
-그리고 이 latent variable 은 [[machine_learning/optimization/EM algorithm]] 을 통해 찾을 수 있다 ([[Gaussian Mixture Model#Training GMM EM algorithm|GMM]] 참조)
-
-# Related
+그리고 이 latent variable 은 [[machine_learning/EM algorithm]] 을 통해 찾을 수 있다 ([[Gaussian Mixture Model#Training GMM EM algorithm|GMM]] 참조)
 
 # References

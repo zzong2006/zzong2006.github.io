@@ -1,5 +1,4 @@
 ---
-title: "Beam search"
 tags: ["NLP"]
 ---
 
@@ -142,6 +141,4 @@ $$
 - step 2 에서는 step 1 에서 선택한 단어를 입력으로 하고, 가장 높은 확률을 가지는 출력을 선택
 : $P\left(y^{<1>},y^{<2>}\mid x\right)=P\left(y^{<1>}\mid x\right)P\left(y^{<2>}\mid x,y^{<1>}\right)$
 
-# D) Related
-
-# E) References
+# D) References

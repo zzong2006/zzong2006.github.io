@@ -1,8 +1,5 @@
 ---
-title: "policy iteration"
-tags:
-  - reinforcement_learning
-  - DP
+tags: ["reinforcement_learning", "DP"]
 aliases: ["정책 반복 알고리즘", "generalized policy iteration", "GPI"]
 ---
 

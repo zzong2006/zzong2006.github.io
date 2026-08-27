@@ -1,5 +1,4 @@
 ---
-title: "PLAID"
 tags: ["retrieval", "IR", "multi_vector", "ColBERT", "paper_review", "y2022"]
 aliases: ["Performance-optimized Late Interaction Driver"]
 ---

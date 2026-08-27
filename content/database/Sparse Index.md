@@ -1,8 +1,5 @@
 ---
-title: "Sparse Index"
-aliases: []
-tags:
-  - database
+tags: ["database"]
 ---
 
 # A) Sparse Index

@@ -1,5 +1,4 @@
 ---
-title: "namespace(C++)"
 tags: ["Cpp"]
 aliases: ["이름 공간", "namespace"]
 ---
@@ -28,8 +27,6 @@ int OnlyInThisFile() {}
 }
 ```
 
-# C) Related
-
-# D) References
+# C) References
 
 * [씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>](https://modoocode.com/136)

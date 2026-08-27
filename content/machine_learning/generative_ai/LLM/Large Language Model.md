@@ -1,8 +1,6 @@
 ---
-tags:
-  - NLP
-  - LLM
-aliases: [LLM]
+tags: ["NLP", "LLM"]
+aliases: ["LLM"]
 ---
 
 # A) Prompt 종류

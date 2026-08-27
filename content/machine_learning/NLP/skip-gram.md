@@ -1,5 +1,4 @@
 ---
-title: "skip-gram"
 tags: ["word2vec", "NLP", "classification"]
 aliases: ["SG"]
 ---
@@ -38,8 +37,6 @@ $t$ 는 target 단어, 그리고 $c$ 는 context 단어다. $\theta_j$ 는 $j$ �
 
 softmax 의 계산량 이슈를 해소하기 위해 [[hierarchical softmax]] 그리고 [[negative sampling]] 가 제시되었다 (주로 negative sampling 이 많이 이용된다).
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://ratsgo.github.io/from%20frequency%20to%20semantics/2017/03/30/word2vec/

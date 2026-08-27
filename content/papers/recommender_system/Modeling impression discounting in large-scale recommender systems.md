@@ -1,0 +1,7 @@
+- Tags
+    - [[KDD]]
+- paper link
+    - https://dl.acm.org/doi/pdf/10.1145/2623330.2623356
+- Abstract
+- Discussion
+    - 기존 추천 시스템의 `seen_decay` 옵션과 비슷한 것 같음

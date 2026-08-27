@@ -1,5 +1,4 @@
 ---
-title: "Llama"
 tags: ["LLM"]
 aliases: ["라마", "라마2", "Llama2"]
 ---
@@ -35,8 +34,6 @@ The model is not learning to predict the `EOS` token.
 
 [LLaMA FastTokenizer does not add \`eos\_token\_id\` at the end. · Issue #22794 · huggingface/transformers · GitHub](https://github.com/huggingface/transformers/issues/22794#issuecomment-1598977285)
 
-# D) Related
-
-# E) References
+# D) References
 
 * [Llama 2: an incredible open LLM - by Nathan Lambert](https://www.interconnects.ai/p/llama-2-from-meta?sd=pf)

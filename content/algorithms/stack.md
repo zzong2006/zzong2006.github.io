@@ -1,5 +1,4 @@
 ---
-title: "stack"
 tags: ["algorithm", "data_structure"]
 ---
 
@@ -11,6 +10,4 @@ tags: ["algorithm", "data_structure"]
 
 ![|500](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Data_stack.svg/300px-Data_stack.svg.png)
 
-# B) Related
-
-# C) References
+# B) References

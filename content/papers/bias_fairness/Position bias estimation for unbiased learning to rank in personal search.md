@@ -1,5 +1,4 @@
 ---
-title: "Position bias estimation for unbiased learning to rank in personal search"
 tags: ["WSDM", "bias", "fairness", "paper_review", "position_bias", "y2018"]
 ---
 
@@ -10,8 +9,6 @@ tags: ["WSDM", "bias", "fairness", "paper_review", "position_bias", "y2018"]
 기존의 방식들은 randomization 을 투입하여 position bias 를 추정했다. 이런 방식은 적절하지 않음.
 
 regression 기반의 EM 알고리즘을 통해서 randomization 없이 positional bias 를 측정할 수 있는 방법을 제시
-
-# Related
 
 # References
 

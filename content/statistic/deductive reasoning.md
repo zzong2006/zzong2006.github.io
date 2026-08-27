@@ -1,5 +1,4 @@
 ---
-title: "deductive reasoning"
 tags: ["word", "statistic"]
 ---
 

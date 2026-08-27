@@ -1,5 +1,4 @@
 ---
-title: "distortion"
 tags: ["machine_learning", "clustering"]
 aliases: ["distortion cost", "k-means distortion"]
 ---

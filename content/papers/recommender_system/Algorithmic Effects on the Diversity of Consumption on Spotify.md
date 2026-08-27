@@ -1,5 +1,4 @@
 ---
-title: "Algorithmic Effects on the Diversity of Consumption on Spotify"
 tags: ["WWW", "diversity", "paper_review", "recommendation_system"]
 ---
 
@@ -29,6 +28,4 @@ $\vec{\mu}_{i}$ 는 $u_i$ 의 중심 (해당 유저의 노래 벡터의 centroid
 	* 예를 들어, 서로 다른 두 비틀즈 곡을 들은 어떤 한 사용자와, 조용필과 이문세 노래를 들은 어떤 한 사용자는 동일한 다양성을 가지도록 분류될 것임. 하지만, 후자가 좀 더 서로 다른곡을 다양하게 들었음.
 * 또한, diversity metric 에서 아이템 간 유사도 뿐만 아니라, 어떤 아이템을 몇번이나 소비했는지도 고려한지 중요한데, GS-score 는 그것을 고려함
 
-# C) Related
-
-# D) References
+# C) References

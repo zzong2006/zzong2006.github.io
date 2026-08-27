@@ -1,5 +1,4 @@
 ---
-title: "Pearson correlation"
 tags: ["statistic"]
 aliases: ["Pearson correlation coefficient", "PCC", "피어슨 상관 계수"]
 ---

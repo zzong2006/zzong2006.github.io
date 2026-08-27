@@ -1,5 +1,4 @@
 ---
-title: "Pythagorean Theorem"
 tags: ["theorem", "linear_algebra"]
 aliases: ["피타고라스 정리"]
 ---

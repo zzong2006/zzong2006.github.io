@@ -1,9 +1,6 @@
 ---
-title: Train Large Model
-tags:
-  - LLM
-  - deepspeed
-aliases: []
+title: "Train Large Model"
+tags: ["LLM", "deepspeed"]
 ---
 
 # A) 배경

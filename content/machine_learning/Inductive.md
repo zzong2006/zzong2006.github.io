@@ -1,5 +1,4 @@
 ---
-title: "Inductive"
 tags: ["machine_learning"]
 ---
 
@@ -11,7 +10,5 @@ tags: ["machine_learning"]
 	* 예) [[machine_learning/Principal Component Analysis]] 는 주성분 벡터, [[autoencoder]] 는 신경망의 weights 를 추정하여 데이터를 차원 변환시킨다.
 * Related Word
 	* [[inductive reasoning]]
-
-# Related
 
 # References

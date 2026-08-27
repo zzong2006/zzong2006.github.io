@@ -1,5 +1,4 @@
 ---
-title: "scale up and scale out"
 tags: ["server"]
 aliases: ["scale up", "scale out"]
 ---
@@ -41,8 +40,6 @@ aliases: ["scale up", "scale out"]
 1. 관리의 어려움: 여러 노드를 연결해 병렬 컴퓨팅 환경을 구성하고 유지하려면 아키텍처에 대한 높은 이해도가 요구된다.
 2. 여러 노드에 부하를 균등하게 분산시키기 위해 로드 밸런싱 (load balancing) 이 필요하고, 노드를 확장할수록 문제 발생의 잠재 원인 또한 추가한 만큼 늘어나게 된다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://tecoble.techcourse.co.kr/post/2021-10-12-scale-up-scale-out/

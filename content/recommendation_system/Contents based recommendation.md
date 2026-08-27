@@ -1,5 +1,4 @@
 ---
-title: "Contents based recommendation"
 tags: ["recommendation_system", "work"]
 aliases: ["content_based"]
 ---

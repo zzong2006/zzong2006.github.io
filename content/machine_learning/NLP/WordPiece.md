@@ -1,6 +1,5 @@
 ---
-title: "WordPiece"
-tags: ["tokenization NLP"]
+tags: ["tokenization", "NLP"]
 ---
 
 # A) WordPiece ?
@@ -15,9 +14,7 @@ tags: ["tokenization NLP"]
 
 > Maximizing the likelihood of the training data is equivalent to finding the symbol pair, whose probability divided by the probabilities of its first symbol followed by its second symbol is the greatest among all symbol pairs. E.g. “u”, followed by “g” would have only been merged if the probability of “ug” divided by “u”, “g” would have been greater than for any other symbol pair.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [Summary of the tokenizers](https://huggingface.co/docs/transformers/tokenizer_summary#wordpiece)
 * 이 논문에서 소개되었다: [Japanese and Korean Voice Search (Schuster et al., 2012)](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/37842.pdf)

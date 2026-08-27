@@ -1,5 +1,4 @@
 ---
-title: "Beta distribution"
 tags: ["probability_distribution", "statistic"]
 ---
 

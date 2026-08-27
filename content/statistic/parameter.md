@@ -1,5 +1,4 @@
 ---
-title: "parameter"
 tags: ["machine_learning", "statistic"]
 aliases: ["parameters"]
 ---
@@ -16,6 +15,4 @@ aliases: ["parameters"]
 
 모집단의 평균 $\mu$ 는 parameter, 표본집단의 평균 $\bar{x}$ 는 statistic
 
-# C) Related
-
-# D) References
+# C) References

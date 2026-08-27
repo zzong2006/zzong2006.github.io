@@ -1,5 +1,4 @@
 ---
-title: "LightGBM"
 tags: ["GBM"]
 ---
 
@@ -49,7 +48,7 @@ LightGBM uses a histogram-based method for selecting the best split.
 
 # H) Related
 
-[[Gradient Boosting Machine]], [[XGBoost]]
+[[Gradient Boosting Machine]], [[machine_learning/Extreme Gradient Boosting|XGBoost]]
 
 # I) 단점: ID 간의 관계 학습 부재
 

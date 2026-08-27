@@ -1,6 +1,5 @@
 ---
-title: "bloom filter"
-tags: ["data_structure database"]
+tags: ["data_structure", "database"]
 aliases: ["블룸 필터"]
 ---
 
@@ -30,8 +29,6 @@ aliases: ["블룸 필터"]
 
 `w` 는 집합에 존재하지 않는다. 왜냐하면 해당 값에 해싱 처리를 했을 때 비트 중 한 값이 `0` 값을 가지기 때문이다.
 
-# D) Related
-
-# E) References
+# D) References
 
 * https://en.wikipedia.org/wiki/Bloom_filter

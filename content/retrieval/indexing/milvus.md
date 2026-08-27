@@ -1,5 +1,4 @@
 ---
-title: "milvus"
 tags: ["vector_database", "ANN", "vector_search"]
 aliases: ["Milvus"]
 ---

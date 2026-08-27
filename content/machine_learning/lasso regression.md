@@ -1,5 +1,4 @@
 ---
-title: "lasso regression"
 tags: ["linear_regression", "machine_learning"]
 ---
 

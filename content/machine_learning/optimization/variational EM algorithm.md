@@ -1,6 +1,5 @@
 ---
-title: "variational EM algorithm"
-tags: ["optimization bayesian_inference"]
+tags: ["optimization", "bayesian_inference"]
 ---
 
 # A) Variational EM Algorithm ?
@@ -23,7 +22,7 @@ $q(z)=\prod_{i}q\left(z_{i}\right)$ 임을 가정하자. 그러면, [[Evidence L
 
 # B) Related
 
-[[machine_learning/optimization/EM algorithm]], [[variational inference]]
+[[machine_learning/EM algorithm]], [[variational inference]]
 
 # C) References
 

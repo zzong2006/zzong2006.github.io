@@ -1,5 +1,4 @@
 ---
-title: "Scoping"
 tags: ["MLOps", "machine_learning"]
 ---
 

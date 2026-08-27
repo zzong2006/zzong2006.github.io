@@ -1,6 +1,5 @@
 ---
-title: "posterior"
-tags: ["statistic bayesian_inference"]
+tags: ["statistic", "bayesian_inference"]
 ---
 
 # A) Posterior ?
@@ -22,8 +21,6 @@ posterior [[mode]] 의 alternative 한 측정 방식이 posterior mean
 posterior probability lies than in case where the posterior is highly  
 skewed, the mode is a better choice than the mean.
 
-# C) Related
-
-# D) References
+# C) References
 
 * http://fisher.utstat.toronto.edu/~hadas/STA312/Lecture%20notes/week4.pdf

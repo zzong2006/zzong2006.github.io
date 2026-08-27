@@ -1,8 +1,5 @@
 ---
-title: "Association Rule Learning"
-aliases: []
-tags:
-  - recommendation_system
+tags: ["recommendation_system"]
 ---
 
 # Association Rule Learning ?

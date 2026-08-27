@@ -1,5 +1,4 @@
 ---
-title: "Top-K Contextual Bandits with Equity of Exposure"
 tags: ["RecSyS", "bandit", "contextual_bandit", "paper_review", "y2021"]
 ---
 
@@ -18,8 +17,6 @@ Probability Ranking Principle 에 의하면 top-K items 을 greedy 하게 rank �
 * Related paper
 	* [[Evaluating Stochastic Rankings with Expected Exposure]]: equity of exposure principle 제안, exploiting the stochasticity of rankings to lead to fairness in expectation.
 	* Investigating Listeners’ Responses to Divergent Recommendations: how different users respond to diverging recommendations, and observed that the openness of a user to randomised recommendations can vary wildly
-
-# Related
 
 # References
 

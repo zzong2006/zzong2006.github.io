@@ -1,5 +1,4 @@
 ---
-title: "probit function"
 tags: ["statistic"]
 ---
 
@@ -12,7 +11,5 @@ $$
 $$
 
 ![](https://i.imgur.com/FRIBESy.png)
-
-# Related
 
 # References

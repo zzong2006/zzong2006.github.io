@@ -1,6 +1,5 @@
 ---
-title: "feature selection"
-tags: ["machine_learning feature_engineering"]
+tags: ["machine_learning", "feature_engineering"]
 ---
 
 # 1. Feature Selection ?

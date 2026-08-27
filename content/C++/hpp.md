@@ -1,5 +1,4 @@
 ---
-title: "hpp"
 tags: ["Cpp"]
 ---
 
@@ -11,6 +10,4 @@ tags: ["Cpp"]
 
 `.h` 는 C/C++ 모두 호환가능한 파일이다. 하지만 일반적으로 순전히 C 위주의 header 로 사용된다.
 
-# C) Related
-
-# D) References
+# C) References

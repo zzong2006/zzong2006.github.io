@@ -1,5 +1,4 @@
 ---
-title: "Euclidean space"
 tags: ["linear_algebra"]
 ---
 
@@ -11,6 +10,4 @@ $$
 \mathbf{x}=\left(x_{1}, x_{2}, \ldots, x_{n}\right)
 $$
 
-# B) Related
-
-# C) References
+# B) References

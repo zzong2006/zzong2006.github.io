@@ -1,5 +1,4 @@
 ---
-title: "Unbiased Learning-to-Rank with Biased Feedback"
 tags: ["evaluation", "paper_review", "position_bias"]
 ---
 
@@ -9,8 +8,6 @@ implicit feedback 을 [[Learning-to-Rank]] 방식에 학습할 때 발생하는 
 
 In contrast to most conventional approaches to de-bias the data using click models, 이 방식은 allows training of ranking functions even in settings where queries do not repeat.
 
-# B) Related
-
-# C) References
+# B) References
 
 * paper link: https://arxiv.org/pdf/1608.04468.pdf

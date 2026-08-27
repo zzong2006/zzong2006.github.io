@@ -1,5 +1,4 @@
 ---
-title: "Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations"
 tags: ["Google", "RecSyS", "bias", "deep_learning", "fairness", "paper_review", "recommendation_system", "y2019"]
 aliases: ["two-tower model"]
 ---

@@ -1,0 +1,4 @@
+- Tags
+    - [[NIPS]], [[paper review]], [[Latent Dirichlet Allocation]]
+- paper link: https://papers.nips.cc/paper/2010/file/db85e2590b6109813dafa101ceb2faeb-Paper.pdf
+- 

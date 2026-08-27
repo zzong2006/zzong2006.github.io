@@ -1,5 +1,4 @@
 ---
-title: "Matrix Factorization for Collaborative Filtering Is Just Solving an Adjoint Latent Dirichlet Allocation Model After All"
 tags: ["collaborative_filtering", "paper_review", "recommendation_system"]
 aliases: ["LDA4Rec"]
 ---

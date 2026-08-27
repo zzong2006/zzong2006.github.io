@@ -1,5 +1,4 @@
 ---
-title: "FastText"
 tags: ["NLP", "Meta"]
 ---
 
@@ -52,9 +51,7 @@ fasttext 과 같은 Word Representation 모델의 성능을 확인하기 위한 
 
 이 평가방식의 경우 학습에 사용된 단어만 처리할 수 있어서 [[Word2Vec]] 과 같은 모델은 OOV 에 대한 예측을 수행할 수 없다.
 
-# G) Related
-
-# H) References
+# G) References
 
 * [09-06 패스트텍스트(FastText) - 딥 러닝을 이용한 자연어 처리 입문](https://wikidocs.net/22883)
 * [What is the main difference between word2vec and fastText? - Quora](https://www.quora.com/What-is-the-main-difference-between-word2vec-and-fastText)

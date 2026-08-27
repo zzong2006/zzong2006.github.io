@@ -1,5 +1,4 @@
 ---
-title: "Combating Selection Biases in Recommender Systems with a Few Unbiased Ratings"
 tags: ["WSDM", "bias", "fairness", "paper_review", "y2021"]
 ---
 
@@ -21,7 +20,5 @@ tags: ["WSDM", "bias", "fairness", "paper_review", "y2021"]
 
 * [[Recommendations as treatments - debiasing learning and evaluation]]
 * [[Doubly robust joint learning for recommendation on data missing not at random]]
-
-# Related
 
 # References

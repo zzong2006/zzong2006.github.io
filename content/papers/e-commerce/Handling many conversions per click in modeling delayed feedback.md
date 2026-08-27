@@ -1,5 +1,4 @@
 ---
-title: "Handling many conversions per click in modeling delayed feedback"
 tags: ["e-commerce", "advertisement", "paper_review", "recommendation_system", "delayed_feedback"]
 ---
 

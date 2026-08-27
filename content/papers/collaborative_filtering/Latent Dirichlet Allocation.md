@@ -1,13 +1,6 @@
 ---
-title: "Latent Dirichlet Allocation"
-aliases:
-  - LDA
-tags:
-  - -
-  - nlp
-  - paper_review
-  - topic_modeling
-  - topic_modeling
+tags: ["nlp", "paper_review", "topic_modeling"]
+aliases: ["LDA"]
 ---
 
 paper link: https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf
@@ -106,7 +99,7 @@ $\displaystyle p\left(\phi_{1:K},\theta_{1:D},z_{1:D},w_{1:D}\right)=\prod_{i=1}
 
 # C) Related
 
-[[LDA]], [[, [[topic modeling]], [[Aurochs LDA]], [[JMLR]] 03, #[[TF-IDF]]
+[[LDA]], [[topic modeling]], [[JMLR]] 03, #[[TF-IDF]]
 
 - [[Probabilistic latent Semantic Indexing]]
 

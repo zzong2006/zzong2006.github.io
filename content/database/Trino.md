@@ -1,5 +1,4 @@
 ---
-title: "Trino"
 tags: ["SQL"]
 ---
 
@@ -13,8 +12,6 @@ Trino 는 일반적인 목적의 relational DB 가 아니기 때문에 MySQL, Po
 
 # C) Presto 와의 관계
 
-원래 [[database/Presto]]SQL 라는 이름이였는데, 이게 Trino 라는 이름으로 변경된 것 (Presto 는 PrestoDB 로 이름 변경)
+원래 [[data_engineering/Presto]]SQL 라는 이름이였는데, 이게 Trino 라는 이름으로 변경된 것 (Presto 는 PrestoDB 로 이름 변경)
 
-# D) Related
-
-# E) References
+# D) References

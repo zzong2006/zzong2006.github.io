@@ -1,5 +1,4 @@
 ---
-title: "psql"
 tags: ["database"]
 ---
 
@@ -10,8 +9,6 @@ psql 는 컨멘드 라인 기반으로 [[postgreSQL]] 에 작성된 데이터베
 ```bash
 psql -h {호스트명} -p {포트 번호} -U {사용자명} -d {데이터베이스명}
 ```
-
-# Related
 
 # References
 

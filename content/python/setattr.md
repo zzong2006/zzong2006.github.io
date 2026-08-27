@@ -1,5 +1,4 @@
 ---
-title: "setattr"
 tags: ["python", "function"]
 ---
 

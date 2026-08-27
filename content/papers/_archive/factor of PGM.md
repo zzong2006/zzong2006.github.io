@@ -1,8 +1,5 @@
 ---
-title: "factor of PGM"
-tags:
-  - PGM
-  - paper_review
+tags: ["PGM", "paper_review"]
 aliases: ["factor"]
 ---
 
@@ -36,7 +33,7 @@ Scope: $\left\{X_{1},\ldots,X_{k}\right\}$
 * 예시: condition on $g^1$ 에서 Unnormalized measure 도 factor 다: $P\left(I,D,g^{1}\right)$.
 	* 다만, $g^1$ 의 경우 factor 출력에 관계가 없는 constant 이기 때문에 scope 는 $\{I,D\}$ 이다.
 * Conditional Probability Distribution(CPD) 도 factor 다. $P(G\mid I,D)$ 의 경우 테이블로 표현될 수 있다.
-	* ![[img-6cf167ce37.png|230]]
+	* ![[img-6cf167ce37.png||230]]
 		* 조건 $I,D$ 에 의한 $G$ 의 확률이므로, 테이블 행의 합이 $1$ 이다.
 		* 이 조건 $I,D$ 를 context 라고 한다.
 

@@ -1,5 +1,4 @@
 ---
-title: "Gram matrix"
 tags: ["linear_algebra"]
 aliases: ["그람 행렬"]
 ---
@@ -10,8 +9,6 @@ aliases: ["그람 행렬"]
 
 즉, $v_{1}, \ldots, v_{n}$ 가 행렬 $X$ 의 column 이라면, Gram matrix 는 $X^{\top} X$ 로 표현될 수 있다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * wiki: https://en.wikipedia.org/wiki/Gram_matrix

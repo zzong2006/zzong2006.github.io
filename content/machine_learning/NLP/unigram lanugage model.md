@@ -1,5 +1,4 @@
 ---
-title: "unigram lanugage model"
 tags: ["tokenization"]
 aliases: ["unigram"]
 ---
@@ -20,6 +19,4 @@ merge 를 기반으로 수행하는 [[Byte-Pair Encoding Tokenization|BPE]] 또�
 
 일반적으로 [[SentencePiece]] 라이브러리에서 사용된다.
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,11 +1,5 @@
 ---
-title: "Mitigating Confounding Bias in Recommendation via Information Bottleneck"
-tags:
-  - RecSyS
-  - bias
-  - fairness
-  - paper_review
-aliases: []
+tags: ["RecSyS", "bias", "fairness", "paper_review"]
 ---
 
 # I. Mitigating Confounding Bias in Recommendation via Information Bottleneck ?

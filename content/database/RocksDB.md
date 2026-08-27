@@ -1,5 +1,4 @@
 ---
-title: "RocksDB"
 tags: ["key_value_storage", "Meta"]
 ---
 
@@ -9,7 +8,7 @@ tags: ["key_value_storage", "Meta"]
 
 # B) RocksDB 재설치
 
-aurochs 용 RocksDB 컴파일
+RocksDB 컴파일
 
 ```bash
 rm -rf /usr/lib/librocksdb.so*

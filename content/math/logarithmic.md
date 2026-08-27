@@ -1,4 +1,3 @@
 ---
-title: "logarithmic"
 tags: ["math"]
 ---

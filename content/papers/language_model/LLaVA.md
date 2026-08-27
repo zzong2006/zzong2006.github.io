@@ -1,5 +1,4 @@
 ---
-title: "LLaVA"
 tags: ["language_model", "vision_language", "multimodal", "paper_review"]
 ---
 

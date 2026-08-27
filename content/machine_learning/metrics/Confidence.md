@@ -1,20 +1,22 @@
 ---
-title: "Confidence"
+tags: ["metrics", "recommendation_system", "association_rule"]
+aliases: ["confidence"]
 ---
 
+# A) Confidence
 
-# A) Confidence ?
+Confidence는 association rule이 얼마나 자주 참이 되는지 보는 지표다. 규칙 $X \Rightarrow Y$가 있을 때, $X$를 포함한 transaction 중에서 $Y$도 함께 포함하는 비율을 뜻한다.
 
-Confidence 는 그 규칙이 참 (true) 로 여겨지는 빈도를 나타내는 지표다.
+$$
+\operatorname{conf}(X \Rightarrow Y)=\frac{\operatorname{supp}(X\cup Y)}{\operatorname{supp}(X)}
+$$
 
-* $X\Rightarrow Y$ 에 대한 Confidence 값은 itemset $X$ 를 포함하면서, 동시에 itemset $Y$ 를 포함하는 transactions 의 비율에 비례한다.
-* $\displaystyle\operatorname{conf}(X\Rightarrow Y)=\frac{\operatorname{supp}(X\cup Y)}{\operatorname{supp}(X)}$
-	* $X\cup Y$ 는 itemset 간 합집합을 의미한다.
-* 예시
-	* ![image-20201128180606645](https://i.loli.net/2020/11/28/axr1LiHj569Ugcp.png)
-	* 예를 들어, $\{butter,bread\}\Rightarrow\{\mathrm{milk}\}$ 에 대한 confidence 값은 1.0 (=0.2/0.2) 이다.
-	* 즉, butter 와 bread 를 사는 고객은 반드시 100% 확률로 milk 를 같이 산다는 의미다.
+여기서 $\operatorname{supp}(X)$는 itemset $X$가 전체 transaction에서 등장하는 비율이다.
 
-# B) Related
+# B) 예시
 
-# C) References
+$\{butter, bread\} \Rightarrow \{milk\}$의 confidence가 `1.0`이라면, butter와 bread를 함께 산 transaction은 모두 milk도 함께 샀다는 뜻이다.
+
+Confidence가 높다고 항상 좋은 추천 규칙이라는 뜻은 아니다. $Y$ 자체가 너무 흔한 item이면 confidence가 높게 나올 수 있으므로, [[machine_learning/metrics/Lift|Lift]]나 support와 함께 보는 편이 안전하다.
+
+# References

@@ -1,5 +1,4 @@
 ---
-title: "joint probability"
 tags: ["law_of_total_probability", "statistic"]
 ---
 * Tags: [[law of total probability]]

@@ -1,5 +1,4 @@
 ---
-title: "iostat"
 tags: ["operating_system"]
 ---
 

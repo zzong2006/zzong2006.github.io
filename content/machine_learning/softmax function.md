@@ -1,5 +1,4 @@
 ---
-title: "softmax function"
 tags: ["activation_function", "classification", "machine_learning"]
 aliases: ["softmax"]
 ---
@@ -24,6 +23,4 @@ $$
 
 일반적으로 $m=\max_{c}a_{c}$
 
-# C) Related
-
-# D) References
+# C) References

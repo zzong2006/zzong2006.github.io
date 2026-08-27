@@ -1,6 +1,5 @@
 ---
-title: "CBOW"
-tags: ["word2vec NLP"]
+tags: ["word2vec", "NLP"]
 aliases: ["continuous bag of words"]
 ---
 
@@ -40,6 +39,4 @@ Optimization 을 위해 [[stochastic gradient descent|SGD]] 를 사용한다.
 
 [[skip-gram]]
 
-# B) Related
-
-# C) References
+# B) References

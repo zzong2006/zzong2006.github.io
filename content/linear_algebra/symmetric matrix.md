@@ -1,5 +1,4 @@
 ---
-title: "symmetric matrix"
 tags: ["linear_algebra"]
 aliases: ["정방 행렬"]
 ---
@@ -24,7 +23,5 @@ $$
 
 1. 어떤 matrix $R$ 에 대하여 $R^T R$ 은 항상 symmetric 이다.  
    why? $(R^T R)^T = (R^T R)$ 이므로.
-
-# Related
 
 # References

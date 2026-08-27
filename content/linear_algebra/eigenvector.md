@@ -1,7 +1,5 @@
 ---
-title: "eigenvector"
-tags: linear_algebra 
-aliases: []
+tags: ["linear_algebra"]
 ---
 
 # A) Eigenvector ?

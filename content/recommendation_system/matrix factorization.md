@@ -1,8 +1,3 @@
----
-title: "matrix factorization"
-aliases: []
-tags: 
----
 ㅔ
 ---
 tags: collaborative_filtering
@@ -16,7 +11,7 @@ aliases: [MF]
 
 * 행렬로 표현된 데이터를 더 작은 차원의 행렬로 분해하는 방법
 * 가장 널리 쓰이는 [[collaborative filtering]] 기술
-	* [[work/TOROS]] 에서는 [[Alternating Least Squares]], [[BPR - Bayesian Personalized Ranking from Implicit Feedback|BPR]] MF (BPR-MF), 그리고 [Logistic MF]([[Logistic Matrix Factorization for Implicit Feedback Data]]) 등의 다양한 MF 기술을 사용하고 있다.
+	* 일부 추천 플랫폼에서는 [[Alternating Least Squares]], [[BPR - Bayesian Personalized Ranking from Implicit Feedback|BPR]] MF (BPR-MF), 그리고 [Logistic MF]([[Logistic Matrix Factorization for Implicit Feedback Data]]) 등의 다양한 MF 기술을 사용하고 있다.
 	* 또한 YouTube 에서는 딥러닝을 이용한 Deep MF 기법이 연구되고 있다고 한다.
 
 # B) 멜론에서 Matrix Factorization 의 예시

@@ -1,5 +1,4 @@
 ---
-title: "Graph Learning based Recommender Systems"
 tags: ["deep_learning", "graph", "paper_review", "recommendation_system"]
 aliases: ["GLRS"]
 ---
@@ -11,8 +10,6 @@ real world 에서 객체들은 서로 explicit 또는 implicit 하게 연결되�
 2. 그래프 학습은 복잡한 관계를 학습할 수 있다.
 [[random walk]] 나 [[graph/Graph Neural Network|GNN]] 과 같은 GL 방식이 그래프에서 모델링된 특정 타입의 관계를 학습하는데 효율적임을 보였다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * [Graph Learning based Recommender Systems: A Review](https://arxiv.org/pdf/2105.06339.pdf) (2021)

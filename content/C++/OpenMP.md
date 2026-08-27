@@ -1,5 +1,4 @@
 ---
-title: "OpenMP"
 tags: ["Cpp"]
 ---
 
@@ -72,6 +71,4 @@ thread 4 : 4 (in parallel)
 	* 예시) `#pragma omp parallel for schedule(static, 10)`
 		* `10` 은 task 의 크기
 
-# D) Related
-
-# E) References
+# D) References

@@ -1,5 +1,4 @@
 ---
-title: "perplexity"
 tags: ["metrics", "NLP"]
 aliases: ["PPL"]
 ---

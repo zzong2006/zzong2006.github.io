@@ -1,14 +1,5 @@
 ---
-title: "Bias and Debias in Recommender System - A Survey and Future Directions"
-aliases: []
-tags:
-  - ACM
-  - bias
-  - fairness
-  - paper_review
-  - recommendation_system
-  - survey
-  - y2020
+tags: ["ACM", "bias", "fairness", "paper_review", "recommendation_system", "survey", "y2020"]
 ---
 
 [paper link](https://arxiv.org/pdf/2010.03240.pdf)

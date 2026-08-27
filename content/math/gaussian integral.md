@@ -1,5 +1,4 @@
 ---
-title: "gaussian integral"
 tags: ["math"]
 ---
 
@@ -29,8 +28,6 @@ $$
 
 즉, $\left(\int_{-\infty}^{\infty}e^{-x^{2}}dx\right)^{2}=\pi$ 이므로, $\int_{-\infty}^{\infty}e^{-x^{2}}dx=\sqrt{\pi}$ 이다.
 
-# B) Related
-
-# C) References
+# B) References
 
 https://en.wikipedia.org/wiki/Gaussian_integral

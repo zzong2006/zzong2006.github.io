@@ -1,5 +1,4 @@
 ---
-title: "object-oriented programming"
 tags: ["python", "Cpp"]
 aliases: ["OOP"]
 ---
@@ -42,7 +41,7 @@ object-oriented programming 의 반대는 절차 지향 프로그래밍
 4. 다형성
 
 	* 하나의 변수명, 함수명 등이 상황에 따라 다른 의미로 해석될 수 있는 것
-	* 즉, 오버라이딩 ([[programming/overriding]]), 오버로딩 ([[overloading]]) 이 가능하다는 얘기
+	* 즉, 오버라이딩 ([[software/overriding]]), 오버로딩 ([[overloading]]) 이 가능하다는 얘기
 
 5. 상속
 
@@ -50,6 +49,4 @@ object-oriented programming 의 반대는 절차 지향 프로그래밍
 	* 상위 클래스를 하위 클래스에서 상속 받게 되면 상위 클래스의 멤버변수나 메소드를 그대로 물려 받을 수 있다.
 	* 상속이 있기 때문에 코드를 재활용할 수 있고 그렇기 때문에 생산성이 높고 유지보수 하기가 좋다.
 
-# E) Related
-
-# F) References
+# E) References

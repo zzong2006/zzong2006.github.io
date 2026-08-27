@@ -1,9 +1,5 @@
 ---
-title: "ROC Curve"
-tags:
-  - machine_learning
-  - metrics
-  - classification
+tags: ["machine_learning", "metrics", "classification"]
 aliases: ["ROC"]
 ---
 
@@ -17,7 +13,7 @@ ROC(Receiver Operating Characteristic) curve 는 [[classification]] 의 모델�
 
 좌상단에 붙어있는 커브가 더 좋은 분류기를 의미한다고 생각할 수 있다. 즉, 좌상단에 가까운 커브에 해당하는 분류기는 positive 와 negative 클래스를 더 잘 구별할 수 있다는 의미가 된다.
 
-![[img-f28872df87.png|400]]  
+![[img-f28872df87.png||400]]  
 위 그림에서 [[Recall|TPR]] 은 True Positive Rate, 그리고 [[False Positive Rate]] 은 False Positive Rate 를 의미한다.
 
 # C) ROC Curve 에서 TPR 과 FPR 의 의미

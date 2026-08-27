@@ -1,7 +1,5 @@
 ---
-title: "policy evaluation"
-tags: reinforcement_learning 
-aliases: []
+tags: ["reinforcement_learning"]
 ---
 
 # Policy Evaluation ?

@@ -1,5 +1,4 @@
 ---
-title: "Modeling personalized item frequency information for next-basket recommendation"
 tags: ["SBRS", "SIGIR", "paper_review", "recommendation_system", "y2020"]
 ---
 
@@ -11,8 +10,6 @@ tags: ["SBRS", "SIGIR", "paper_review", "recommendation_system", "y2020"]
 
 개인화된 아이템 빈도 (personalized item frequency, PIF) 가 부족하다고 주장함.
 
-# B) Related
-
-# C) References
+# B) References
 
 * paper link: https://arxiv.org/pdf/2006.00556.pdf

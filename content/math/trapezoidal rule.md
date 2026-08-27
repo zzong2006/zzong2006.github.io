@@ -1,7 +1,5 @@
 ---
-title: "trapezoidal rule"
-tags:
-  - formula
+tags: ["formula"]
 aliases: ["사다리꼴 공식"]
 ---
 

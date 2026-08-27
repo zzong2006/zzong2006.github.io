@@ -1,7 +1,3 @@
----
-title: "unimodality"
----
-
 # A) Unimodality ?
 
 하나의 [[mode]] 만을 가지는 것을 의미한다.

@@ -1,5 +1,4 @@
 ---
-title: "Jensen–Shannon divergence"
 tags: ["statistic"]
 ---
 
@@ -12,8 +11,6 @@ tags: ["statistic"]
 	* $D(P\|Q)$ 는 두 분포 $P,Q$ 의 KL-Divergence
 * $0\leq\mathrm{JSD}(P\|Q)\leq1$
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence

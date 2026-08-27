@@ -1,5 +1,4 @@
 ---
-title: "ConfigMap"
 tags: ["Kubernetes"]
 ---
 
@@ -22,8 +21,6 @@ Kubectl create configmap <configmap name> --from-literal=<key>=<value>
 ## File
 
 출처: [https://bcho.tistory.com/1267](https://bcho.tistory.com/1267) 
-
-# Related
 
 # References
 

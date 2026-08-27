@@ -1,5 +1,4 @@
 ---
-title: "Initializing Weights"
 tags: ["machine_learning"]
 ---
 

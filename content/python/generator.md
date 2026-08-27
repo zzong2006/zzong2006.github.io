@@ -1,5 +1,4 @@
 ---
-title: "generator"
 tags: ["python"]
 aliases: ["생성자"]
 ---
@@ -45,7 +44,5 @@ Generator 표현식은 필요할 때 요소를 만들어내므로 메모리를 �
 >>> (i for i in range(50) if i % 2 == 0)
 <generator object <genexpr> at 0x024F02A0>
 ```
-
-# Related
 
 # References

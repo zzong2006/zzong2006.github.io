@@ -1,5 +1,4 @@
 ---
-title: "cold-start"
 tags: ["cold-start", "recommendation_system"]
 ---
 

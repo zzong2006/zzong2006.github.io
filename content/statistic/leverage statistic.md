@@ -1,7 +1,5 @@
 ---
-title: "leverage statistic"
-tags: statistic 
-aliases: []
+tags: ["statistic"]
 ---
 
 # A) Leverage Statistic ?
@@ -20,6 +18,6 @@ $$
 * 그러므로, $(p+1)/n$ 이상인 $h_i$ 를 지닌 데이터는 높은 leverage 인 확률이 높다.
 * 일반적으로 [[studentized residuals]] 과 함께 표시해서 [[outlier]] 를 조사함과 동시에 leverage 의 정도도 조사한다.
 
-![[img-98439a9b9a.png|400]]
+![[img-98439a9b9a.png||400]]
 
 # C) References

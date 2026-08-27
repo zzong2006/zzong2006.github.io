@@ -1,5 +1,4 @@
 ---
-title: "Semaphore"
 tags: ["operating_system"]
 ---
 
@@ -13,6 +12,4 @@ tags: ["operating_system"]
 	* 이미 다른 process 에 의해 사용 중이라는 사실을 알게 되면 재시도하기 전에 일정 시간을 기다려야 한다.
 	* Semaphore 을 사용하는 process 는 그 값을 확인하고, 자원을 사용하는 동안 그 값을 변경함으로써 다른 semaphore 이용자들이 기다리도록 해야한다.
 
-# B) Related
-
-# C) References
+# B) References

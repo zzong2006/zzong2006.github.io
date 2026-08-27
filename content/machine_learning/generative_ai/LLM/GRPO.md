@@ -1,11 +1,7 @@
 ---
-title: Group Relative Policy Optimization
-tags:
-  - reinforcement_learning
-  - LLM
-aliases:
-  - GRPO
-  - Group Relative Policy Optimization
+title: "Group Relative Policy Optimization"
+tags: ["reinforcement_learning", "LLM"]
+aliases: ["GRPO", "Group Relative Policy Optimization"]
 ---
 
 # A) 한줄 요약

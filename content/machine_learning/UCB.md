@@ -1,5 +1,4 @@
 ---
-title: "UCB"
 tags: ["MAB", "reinforcement_learning"]
 ---
 

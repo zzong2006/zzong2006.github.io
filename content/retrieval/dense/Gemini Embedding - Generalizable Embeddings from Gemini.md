@@ -1,5 +1,4 @@
 ---
-title: "Gemini Embedding - Generalizable Embeddings from Gemini"
 tags: ["embedding", "dense_retrieval", "Google", "Gemini"]
 ---
 

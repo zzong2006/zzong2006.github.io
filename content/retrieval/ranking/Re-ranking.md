@@ -1,5 +1,4 @@
 ---
-title: "Re-ranking"
 tags: ["retrieval", "IR", "ranking", "rerank", "listwise", "RAG"]
 aliases: ["Rerank", "Reranking", "Re-rank", "Re-ranking"]
 ---
@@ -14,7 +13,7 @@ Re-ranking은 [[Cascade Ranking System]]의 후반 단계에서 이미 줄어든
 |---|---:|---|---|
 | Retrieval / Matching | 매우 큼 → 수천~수만 | Recall | [[Inverted Index]], [[HNSW]], multi-channel retrieval |
 | Ranking | 수천 → 수백 | Relevance / CTR / CVR | feature-rich ranker, cross features |
-| Re-ranking | 수백 → 최종 노출 | 리스트 품질 | cross-encoder, late interaction, LLM reranker, [[Maximal Marginal Relevance|MMR]] |
+| Re-ranking | 수백 → 최종 노출 | 리스트 품질 | cross-encoder, late interaction, LLM reranker, [[Maximal Marginal Relevance]] (MMR) |
 
 # B) 평가 단위
 

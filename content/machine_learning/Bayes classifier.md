@@ -1,5 +1,4 @@
 ---
-title: "Bayes classifier"
 tags: ["machine_learning", "statistic"]
 ---
 

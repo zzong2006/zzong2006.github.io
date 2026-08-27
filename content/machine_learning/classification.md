@@ -1,5 +1,4 @@
 ---
-title: "classification"
 tags: ["classification"]
 aliases: ["분류"]
 ---
@@ -49,8 +48,6 @@ $$
 4. [[Decision Tree]] 와 ensemble 기반의 tree ([[random forest]], [[Gradient Boosting Machine|GBM]])
 5. [[k-Nearest Neighbors|KNN]] 또는 [[Naïve Bayes]] 와 같은 Naive 한 기술들
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://towardsdatascience.com/cross-entropy-for-classification-d98e7f974451

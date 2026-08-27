@@ -1,5 +1,4 @@
 ---
-title: "ancestral sampling"
 tags: ["sampling", "PGM"]
 ---
 
@@ -14,8 +13,6 @@ tags: ["sampling", "PGM"]
 초기에 $p\left(x_{1}\right)$ 분포에서 $\widehat{x}_1$ 를 샘플링 했다면, 그 다음은 [[conditional probability]] $p(x_2 \mid x_1)$ 로 $\widehat{x}_{2}$ 를 샘플링할 수 있다. 이를 $N$ 번 반복하면, joint probability $p(x_2, x_1)$ 에 대한 확률을 구할 수 있다.
 
 더 깊은 노드를 포함한 확률 계산을 원한다면, $p(x_3 \mid x_2)$ 를 통해 $\widehat{x}_{3}$ 을 샘플링 하는 것을 고려해보자. 이 경우 $p(x_3, x_2, x_1)$ 을 계산할 수 있다.
-
-# Related
 
 # References
 

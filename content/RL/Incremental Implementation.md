@@ -1,5 +1,4 @@
 ---
-title: "Incremental Implementation"
 tags: ["reinforcement_learning", "algorithm"]
 ---
 
@@ -30,6 +29,4 @@ $$
 
 편의를 위해 $Q_{0} \triangleq 0$ 로 정의한다.
 
-# B) Related
-
-# C) References
+# B) References

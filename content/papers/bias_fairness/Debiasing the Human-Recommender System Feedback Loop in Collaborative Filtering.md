@@ -1,5 +1,4 @@
 ---
-title: "Debiasing the Human-Recommender System Feedback Loop in Collaborative Filtering"
 tags: ["bias", "fairness", "paper_review"]
 ---
 Tags: #paper_review, #matrix_factorization , #WWW 19

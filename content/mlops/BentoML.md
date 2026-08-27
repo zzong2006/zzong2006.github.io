@@ -1,5 +1,4 @@
 ---
-title: "BentoML"
 tags: ["MLOps"]
 ---
 

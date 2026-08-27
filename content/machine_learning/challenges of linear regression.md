@@ -1,7 +1,5 @@
 ---
-title: "challenges of linear regression"
-tags: linear_regression 
-aliases: []
+tags: ["linear_regression"]
 ---
 
 # A) Challenges of Linear Regression ?
@@ -22,9 +20,9 @@ aliases: []
 * Another important assumption of the linear regression model is that the error terms have a constant variance, $\operatorname{Var}\left(\epsilon_{i}\right)=\sigma^{2}$
 * error term 에 대한 variance 들이 non-constant 한 현상을 [[heteroscedasticity]] 라고 부른다.
 	* 이 현상에서는 주로 [[residual plot]] 에서 꼬깔콘 (funnel) 모양이 나오는 것으로 확인할 수 있다.
-		* ![[img-d39369fa2b.png|400]]
+		* ![[img-d39369fa2b.png||400]]
 		* response $Y$ 값이 점점 커질수록 잔차가 커진다는 의미인데, 이럴 경우 $\log Y$ 또는 $\sqrt{Y}$ 를 적용해서 이러한 현상을 완화할 수 있다.
-		* ![[img-90eacc4bc4.png|460]]
+		* ![[img-90eacc4bc4.png||460]]
 
 ## A.4) Outlier
 
@@ -34,7 +32,7 @@ aliases: []
 * [[residual plot]]s can be used to identify outliers.
 	* 그러나 이 방법보다는 [[studentized residuals]] 을 그려봄으로써 outlier 를 찾을 수 있다.
 	* Observations whose studentized residuals are greater than 3 in absolute value are possible [[outlier]]s.
-		* ![[img-78e5baa0a6.png|460]]
+		* ![[img-78e5baa0a6.png||460]]
 * High-leverage points
 	* [[outlier]] 와 비슷한 개념이지만, model 형성에 큰 영향을 준다는 점이 다르다.
 		* [[outlier]] 의 경우 model 학습에 큰 영향을 주진 않지만, 해석 (interpretation) 에 영향을 줄 수 있다.

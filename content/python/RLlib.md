@@ -1,5 +1,4 @@
 ---
-title: "RLlib"
 tags: ["reinforcement_learning", "python"]
 ---
 
@@ -7,6 +6,4 @@ tags: ["reinforcement_learning", "python"]
 
 RLlib 은 python library 로 Ray 기반으로 동작하는 RL 알고리즘을 제공한다.
 
-# B) Related
-
-# C) References
+# B) References

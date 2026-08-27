@@ -1,9 +1,5 @@
 ---
-title: "FP-growth algorithm"
-aliases: []
-tags:
-  - algorithm
-  - recommendation_system
+tags: ["algorithm", "recommendation_system"]
 ---
 
 # A) FP-growth Algorithm ?

@@ -1,9 +1,6 @@
 ---
-title: "Recurrent Neural Network"
+tags: ["NLP", "deep_learning"]
 aliases: ["RNN"]
-tags:
-  - NLP
-  - deep_learning
 ---
 
 # A) Recurrent Neural Networks (RNN) ?
@@ -51,9 +48,9 @@ $$
 
 왜 이렇게 축소될까? 각 weights $W_{aa}$ 와 $W_{ax}$ 를 행렬 내부에서 이어붙였기 때문이다 ($W_a$ 로 통일).
 
- ![[img-c9f91a6f05.png|500]]
+ ![[img-c9f91a6f05.png||500]]
 
-![[img-7e3f3acaf3.png|600]]
+![[img-7e3f3acaf3.png||600]]
 
 # B) RNN 의 단점
 

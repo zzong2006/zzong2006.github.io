@@ -1,9 +1,5 @@
 ---
-title: "Decision boundary"
-tags:
-  - machine_learning
-  - classification
-aliases: []
+tags: ["machine_learning", "classification"]
 ---
 
 # Decision Boundary ?

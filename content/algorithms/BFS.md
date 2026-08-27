@@ -1,5 +1,4 @@
 ---
-title: "BFS"
 tags: ["algorithm", "graph"]
 aliases: ["Breadth First Search", "breadth-first search"]
 ---

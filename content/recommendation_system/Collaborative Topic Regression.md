@@ -1,5 +1,4 @@
 ---
-title: "Collaborative Topic Regression"
 tags: ["recommendation_system", "topic_modeling"]
 aliases: ["CTR"]
 ---

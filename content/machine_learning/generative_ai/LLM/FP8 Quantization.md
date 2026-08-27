@@ -1,14 +1,7 @@
 ---
-title: FP8 Quantization
-tags:
-  - LLM
-  - quantization
-  - inference
-  - serving
-  - Qwen
-aliases:
-  - FP8
-  - FP8 Quantization
+title: "FP8 Quantization"
+tags: ["LLM", "quantization", "inference", "serving", "Qwen"]
+aliases: ["FP8", "FP8 Quantization"]
 ---
 
 # A) 한줄 요약

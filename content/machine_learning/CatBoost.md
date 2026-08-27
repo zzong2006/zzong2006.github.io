@@ -1,5 +1,4 @@
 ---
-title: "CatBoost"
 tags: ["GBM", "ensemble"]
 ---
 

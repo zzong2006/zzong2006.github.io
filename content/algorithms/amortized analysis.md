@@ -1,5 +1,4 @@
 ---
-title: "amortized analysis"
 tags: ["algorithm"]
 ---
 
@@ -21,6 +20,4 @@ dynamic array 는 가끔 비싼 연산을 수행하지만 일반적으로 저렴
 
 [[machine_learning/deep_learning/Variational Autoencoder|Variational Autoencoder]] 는 학습이 완료된 모델의 경우 재활용할 수 있다. 예를 들어 [[collaborative filtering]] 방식에서 활용할 수 있는데, 학습된 데이터를 기반으로 비슷한 패턴을 활용하여 입력으로 주어진 새로운 유저의 선호도를 분석할 수 있다. 즉, 학습에는 많은 시간이 걸리지만, 재사용이 가능하므로 전반적 비용으로 보았을 때 저렴한 모델이라고 주장할 수 있는 것이다.
 
-# C) Related
-
-# D) References
+# C) References

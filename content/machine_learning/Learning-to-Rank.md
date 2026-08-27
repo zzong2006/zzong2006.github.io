@@ -1,5 +1,4 @@
 ---
-title: "Learning-to-Rank"
 tags: ["learning_to_rank", "machine_learning"]
 aliases: ["LTR"]
 ---
@@ -19,7 +18,7 @@ LTR 에는 두가지 방법이 있다.
 
 총 세가지 metrics 을 활용해서 Learning-to-Rank 방식의 성능을 측정한다
 
-* [[machine_learning/metrics/mean reciprocal rank|MRR]]: Mean Reciprocal Rank
+* [[recommendation_system/mean reciprocal rank|MRR]]: Mean Reciprocal Rank
 * [[mean average precision|MAP]]: Mean Average Precision
 * [[Normalized Discounted Cumulative Gain|NDCG]]: Normalized Discounted Cumulative Gain
 
@@ -69,8 +68,6 @@ documents 의 전체 리스트에 대해서 loss 를 바로 계산한다.
 
 ![|800](https://i.imgur.com/QqrBPOp.png)
 
-# E) Related
-
-# F) References
+# E) References
 
 * https://towardsdatascience.com/learning-to-rank-a-complete-guide-to-ranking-using-machine-learning-4c9688d370d4

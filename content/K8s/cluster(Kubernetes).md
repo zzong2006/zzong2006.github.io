@@ -1,5 +1,4 @@
 ---
-title: "cluster(Kubernetes)"
 tags: ["Kubernetes"]
 aliases: ["cluster"]
 ---
@@ -30,6 +29,4 @@ aliases: ["cluster"]
 * 클라우드 플랫폼의 VM 을 이용하여 구축하는 방법
 * 라즈베이파이 보드를 구매하여 클러스터를 구축
 
-# D) Related
-
-# E) References
+# D) References

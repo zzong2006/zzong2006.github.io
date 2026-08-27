@@ -1,5 +1,4 @@
 ---
-title: "C++"
 tags: ["programming", "Cpp"]
 ---
 
@@ -21,6 +20,4 @@ tags: ["programming", "Cpp"]
 	* [[reinterpret_cast]]
 * [[Standard Template Library]]
 
-# C) Related
-
-# D) References
+# C) References

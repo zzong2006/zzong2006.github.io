@@ -1,5 +1,4 @@
 ---
-title: "CPU Scheduling"
 tags: ["operating_system"]
 aliases: ["scheduler", "process scheduling"]
 ---

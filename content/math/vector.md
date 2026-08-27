@@ -1,5 +1,4 @@
 ---
-title: "vector"
 tags: ["linear_algebra"]
 ---
 
@@ -24,6 +23,4 @@ velocity (속도) -> vector
 
 ![|600](https://i.imgur.com/3ySjdsw.png)
 
-# D) Related
-
-# E) References
+# D) References

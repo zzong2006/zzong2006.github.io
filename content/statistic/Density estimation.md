@@ -1,5 +1,4 @@
 ---
-title: "Density estimation"
 tags: ["probability_distribution", "statistic"]
 ---
 

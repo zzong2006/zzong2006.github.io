@@ -1,5 +1,4 @@
 ---
-title: "mean field approximation"
 tags: ["bayesian_inference", "optimization"]
 ---
 
@@ -19,6 +18,4 @@ $$
 \phi^{*}=\arg \min _{\phi} K L(g(\theta \mid \phi) \| p(\theta \mid x))
 $$
 
-# B) Related
-
-# C) References
+# B) References

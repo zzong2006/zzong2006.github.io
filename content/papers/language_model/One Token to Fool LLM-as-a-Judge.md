@@ -1,5 +1,4 @@
 ---
-title: "One Token to Fool LLM-as-a-Judge"
 tags: ["language_model", "RLVR", "nlp", "paper_review"]
 ---
 

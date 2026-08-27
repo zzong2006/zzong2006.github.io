@@ -1,8 +1,5 @@
 ---
-title: "REINFORCE"
-aliases: []
-tags:
-  - reinforcement_learning
+tags: ["reinforcement_learning"]
 ---
 
 # REINFORCE ?

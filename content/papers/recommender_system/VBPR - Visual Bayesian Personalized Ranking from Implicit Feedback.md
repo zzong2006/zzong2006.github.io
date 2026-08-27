@@ -1,5 +1,4 @@
 ---
-title: "VBPR - Visual Bayesian Personalized Ranking from Implicit Feedback"
 tags: ["BPR", "paper_review", "recommendation_system"]
 aliases: ["VBPR"]
 ---
@@ -11,8 +10,6 @@ aliases: ["VBPR"]
 visual signal 을 개인화 추천 모델에 도입한 scalable factorization model 을 제안함
 
 이 방법은 cold-start issue 를 해결하는데 많은 도움이 되었다고 한다. 특히 cold-start item 추천에 도움이 되었다고 하는데, positive feedback 이 5 개 미만인 경우를 cold-start 로 정의하고 있다.
-
-# Related
 
 # References
 

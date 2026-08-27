@@ -1,5 +1,4 @@
 ---
-title: "faiss"
 tags: ["ANN", "vector_search", "Facebook"]
 ---
 

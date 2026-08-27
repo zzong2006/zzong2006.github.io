@@ -1,5 +1,4 @@
 ---
-title: "Factorization Machines"
 tags: ["collaborative_filtering", "paper_review", "machine_learning"]
 aliases: ["FM"]
 ---
@@ -8,6 +7,4 @@ aliases: ["FM"]
 
 combines the advantages of Support Vector Machines (SVM) with factorization models
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,5 +1,4 @@
 ---
-title: "real-time bidding"
 tags: ["advertisement"]
 aliases: ["RTB"]
 ---
@@ -20,6 +19,4 @@ aliases: ["RTB"]
 2. 지면을 제공하는 매체, 유저 데이터를 이용해 해당 지면에 적절한 광고 매체를 선정
 3. 해당 매체를 RTB (Real-Time Bidding) 방식을 통해 입찰가를 선정하여 입찰: BidResponse
 
-# B) Related
-
-# C) References
+# B) References

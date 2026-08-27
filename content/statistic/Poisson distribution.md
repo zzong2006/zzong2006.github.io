@@ -1,5 +1,4 @@
 ---
-title: "Poisson distribution"
 tags: ["probability_distribution", "statistic"]
 aliases: ["푸아송 분포"]
 ---

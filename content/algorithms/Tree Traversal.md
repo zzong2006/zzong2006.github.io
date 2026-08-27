@@ -1,14 +1,11 @@
 ---
-title: "Tree Traversal"
 tags: ["algorithm"]
 ---
 
 # A) Tree Traversal ?
 
 * [[Inorder Search]]
-* [[preorder Search]]
-* [[postorder Search]]
+* [[algorithms/pre-order|preorder Search]]
+* [[algorithms/post-order|postorder Search]]
 
-# B) Related
-
-# C) References
+# B) References

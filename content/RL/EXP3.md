@@ -1,5 +1,4 @@
 ---
-title: "EXP3"
 tags: ["reinforcement_learning", "MAB"]
 ---
 

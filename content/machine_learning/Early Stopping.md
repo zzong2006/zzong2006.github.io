@@ -1,7 +1,5 @@
 ---
-title: "Early Stopping"
-tags: machine_learning 
-aliases: []
+tags: ["machine_learning"]
 ---
 
 # 1. Early Stopping ?

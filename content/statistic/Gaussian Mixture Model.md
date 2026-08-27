@@ -1,7 +1,5 @@
 ---
-title: "Gaussian Mixture Model"
 aliases: ["GMM"]
-tag: bayesian_inference, statistic, machine_learning, 
 ---
 
 # A) GMM?
@@ -49,7 +47,7 @@ $$
 
 * 분수 형태로 바뀐 이유는 [[Bayes theorem]] 을 적용했기 때문
 
-# C) Training GMM: [[machine_learning/optimization/EM algorithm]]
+# C) Training GMM: [[machine_learning/EM algorithm]]
 
 ## C.1) Expectation Step: the Assignment Probability
 
@@ -93,6 +91,6 @@ mixing coefficient $\pi_k$ 는 constraint 이 존재하므로 [[Lagrange multipl
 
 # D) Expression of GMM by [[Bayesian network]]
 
-![[img-42f8fed99a.png|200]]
+![[img-42f8fed99a.png||200]]
 
 * 파란색 원은 parameters, 갈색 원은 observations, $N$ 은 데이터셋 개수를 의미

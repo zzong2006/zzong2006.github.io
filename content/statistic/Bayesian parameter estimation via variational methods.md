@@ -1,7 +1,3 @@
----
-title: "Bayesian parameter estimation via variational methods"
----
-
 
 # 1. Bayesian Parameter Estimation via Variational Methods ?
 

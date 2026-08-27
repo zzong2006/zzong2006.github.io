@@ -1,5 +1,4 @@
 ---
-title: "morphemes"
 tags: ["NLP"]
 aliases: ["형태소"]
 ---
@@ -18,8 +17,6 @@ aliases: ["형태소"]
 
 예) Run, runs, ran 등 모두 run 이라는 어휘소에서 가져온다.
 
-# C) Related
-
-# D) References
+# C) References
 
 [R, Python 분석과 프로그래밍의 친구 (by R Friend) :: [NLP] 언어 구조의 구성 요소 (Building Blocks of Language Structure)](https://rfriend.tistory.com/739)

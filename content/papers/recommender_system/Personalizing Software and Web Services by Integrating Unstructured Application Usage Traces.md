@@ -1,5 +1,4 @@
 ---
-title: "Personalizing Software and Web Services by Integrating Unstructured Application Usage Traces"
 tags: ["WWW", "implicit_feedback", "paper_review", "recommendation_system", "y2017"]
 ---
 

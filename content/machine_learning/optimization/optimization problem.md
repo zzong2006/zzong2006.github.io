@@ -1,5 +1,4 @@
 ---
-title: "optimization problem"
 tags: ["optimization"]
 ---
 
@@ -15,8 +14,6 @@ $$
 \begin{array}{ll}\min_{x \in D} & f(x) \\ \text { subject to } & g_{i}(x) \leq 0, i=1, \ldots m \\ & h_{j}(x)=0, j=1, \ldots r\end{array}
 $$
 
-# C) Related
-
-# D) References
+# C) References
 
 * [모두를 위한 컨벡스 최적화](https://convex-optimization-for-all.github.io/contents/chapter01/2021/01/07/01_01_optimization_problems/)

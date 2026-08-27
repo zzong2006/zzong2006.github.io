@@ -1,5 +1,4 @@
 ---
-title: "reparametrization trick"
 tags: ["optimization"]
 ---
 
@@ -42,7 +41,5 @@ $$
 $$
 
 이 경우, reparametrization trick 을 활용하면 $\mathbf{z}_{u}=\mu_{\phi}\left(\mathbf{x}_{u}\right)+\boldsymbol{\epsilon} \odot \sigma_{\phi}\left(\mathbf{x}_{u}\right)$ 의 형태로 표현할 수 있다 ($\boldsymbol{\epsilon} \sim \mathcal{N}\left(0, \mathbf{I}_{K}\right)$ 는 sampling).
-
-# Related
 
 # References

@@ -1,5 +1,4 @@
 ---
-title: "Active Task Disambiguation with LLMs"
 tags: ["language_model", "llm", "bayesian", "active_learning", "paper_review"]
 aliases: ["Active Task Disambiguation"]
 ---

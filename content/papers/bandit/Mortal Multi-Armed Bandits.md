@@ -1,11 +1,11 @@
 ---
-title: "Mortal Multi-Armed Bandits"
 tags: ["bandit", "contextual_bandit", "paper_review"]
+aliases: ["Mortal MAB"]
 ---
 
 # Mortal Multi-Armed Bandits ?
 
-[[Mortal MAB]], [[Multi-Armed Bandit]]
+Mortal MAB, [[Multi-Armed Bandit]]
 
 # Related
 

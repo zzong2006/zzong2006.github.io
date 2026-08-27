@@ -1,5 +1,4 @@
 ---
-title: "summarization"
 tags: ["summarization"]
 ---
 

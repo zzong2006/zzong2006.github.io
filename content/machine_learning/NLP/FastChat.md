@@ -1,5 +1,4 @@
 ---
-title: "FastChat"
 tags: ["LLM"]
 ---
 
@@ -11,6 +10,4 @@ LLM [[fine tuning|파인 튜닝]] 용 라이브러리
 
 * `tf32`
 
-# C) Related
-
-# D) References
+# C) References

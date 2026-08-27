@@ -1,5 +1,4 @@
 ---
-title: "DistributedDataParallel"
 tags: ["deep_learning", "LLM"]
 aliases: ["DDP"]
 ---
@@ -21,8 +20,6 @@ torch.cuda.set_device(args.local_rank)
 * `rank` 는 컴퓨터의 process id 라고 생각하면 된다.
 	* 기본적으로 여러개 컴퓨터를 사용하는 구조가 포함되어있는 패키지이기 때문에 한개의 컴퓨터에서 쓴다면 그냥 0 이라고 쓰면 된다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * [[PYTORCH] DistributedDataParallel이란? - Nvidia APEX로 구현하기 :: PAINTYCODE](https://paintycode.tistory.com/29)

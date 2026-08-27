@@ -1,8 +1,5 @@
 ---
-title: "SARSA"
-tags:
-  - reinforcement_learning
-aliases: []
+tags: ["reinforcement_learning"]
 ---
 
 # A) SARSA ?
@@ -13,7 +10,7 @@ SARSA 는 [[state-value function]] 값 말고, [[action-value function]] 값을 
 
 ![[img-d6cd510a5e.png|image-20201023172332416]]
 
-<img src="/images/img-d5338c00bc.png" width=10%>
+<img src="https://i.loli.net/2020/10/23/u2LqvWVTtze8Ujr.png" width=10%>
 
 여기서 $S_{t+1}$ 가 terminal 이면, $Q\left(S_{t+1},A_{t+1}\right)$ 은 0 으로 정한다.
 

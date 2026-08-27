@@ -1,5 +1,4 @@
 ---
-title: "Tutorial on Probablistic Latent Semantic Analysis"
 tags: ["nlp", "paper_review"]
 ---
 
@@ -38,7 +37,7 @@ Choose a term $w$ ∼ Multinomial($φ_z$)
 	* the second and the third part of the equation is [Lagrange Multipliers]([[Lagrange multiplier method]]) to guarantee Multinomial parameters in range `[0, 1]`.
 	* It is difficult to directly optimize the above equation due to the log sign is out of a summation.
 	* $\displaystyle\mathcal{L}=\logp(\mathcal{W}\mid\mathbf{R},\Phi,\Theta)=\sum_{d}^{D}\sum_{di}^{N_{d}}\sum_{z}^{T}R_{\left(w_{di},z\right)}\left(\log\phi_{\left(z,w_{di}\right)}+\log\theta_{(d,z)}\right)$
-* [[machine_learning/optimization/EM algorithm]] of PLSA
+* [[machine_learning/EM algorithm]] of PLSA
 	* E-step: 데이터와 현재 parameters 의 값이 주어진 상태에서 the posterior distribution of hidden variables 를 계산
 		* $\displaystyle\begin{aligned}\left\langleR_{\left(w_{di},k\right)}\right\rangle&=p\left(R_{\left(w_{di,},k\right)}=1\mid\mathcal{W},\Theta,\Phi\right)=\frac{p\left(\mathcal{W},R_{\left(w_{di},k\right)}=1\mid\Theta,\Phi\right)}{\sum_{k}^{T}p\left(\mathcal{W},R_{\left(w_{di},k\right)}=1\mid\Theta,\Phi\right)}\\&=\frac{p\left(w_{di},R_{\left(w_{di},k\right)}=1\mid\theta_{d},\Phi\right)}{\sum_{k}^{T}p\left(w_{di},R_{\left(w_{di},k\right)}=1\mid\theta_{d},\Phi\right)}=\frac{p\left(w_{di}\mid\phi_{\left(k,w_{di}\right)}\right)p\left(k\mid\theta_{d}\right)}{\sum_{k}^{T}p\left(w_{di}\mid\phi_{\left(k,w_{di}\right)}\right)p\left(k\mid\theta_{d}\right)}\\&=\frac{\phi_{\left(k,w_{di})\right.}\theta_{(d,k)}}{\sum_{k}^{T}\phi_{\left(k,w_{di}\right)}\theta_{(d,k)}}\end{aligned}$
 	* M-step: hidden variables 의 현재 설정을 기반으로 parameter 들의 새로운 optimal 값들을 획득

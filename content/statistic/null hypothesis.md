@@ -1,6 +1,5 @@
 ---
-title: "null hypothesis"
-tags: ["statistic hypothesis_test"]
+tags: ["statistic", "hypothesis_test"]
 aliases: ["귀무가설 영가설"]
 ---
 

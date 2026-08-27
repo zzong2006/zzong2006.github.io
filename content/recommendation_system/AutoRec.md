@@ -1,5 +1,4 @@
 ---
-title: "AutoRec"
 tags: ["recommendation_system", "deep_learning"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "Rules of ML"
 tags: ["tech_blog", "machine_learning", "Google", "lessons"]
 ---
 
@@ -89,8 +88,6 @@ ML objective 는 쉽게 측정이 가능하고 “true” objective 에 대한 [
 
 1. sophisticated algorithm $≤$ simple learning algorithm + good training data
 
-# F) Related
-
-# G) References
+# F) References
 
 * https://developers.google.com/machine-learning/guides/rules-of-ml?hl=ko

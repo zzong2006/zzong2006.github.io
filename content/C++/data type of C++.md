@@ -1,5 +1,4 @@
 ---
-title: "data type of C++"
 tags: ["Cpp"]
 ---
 
@@ -12,6 +11,4 @@ tags: ["Cpp"]
 * `int64_t`: a signed integer type with 64 bits
 * `vector`
 
-# B) Related
-
-# C) References
+# B) References

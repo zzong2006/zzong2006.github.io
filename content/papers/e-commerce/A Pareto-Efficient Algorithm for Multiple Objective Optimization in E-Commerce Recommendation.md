@@ -1,5 +1,4 @@
 ---
-title: "A Pareto-Efficient Algorithm for Multiple Objective Optimization in E-Commerce Recommendation"
 tags: ["e-commerce", "multi_objective", "multiple_feedback", "paper_review", "recommendation_system"]
 ---
 

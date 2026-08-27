@@ -1,5 +1,4 @@
 ---
-title: "CTR prediction"
 tags: ["deep_learning", "machine_learning"]
 ---
 

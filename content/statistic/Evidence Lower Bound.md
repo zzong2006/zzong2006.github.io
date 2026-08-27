@@ -1,5 +1,4 @@
 ---
-title: "Evidence Lower Bound"
 tags: ["bayesian_inference"]
 aliases: ["ELBO"]
 ---
@@ -48,6 +47,4 @@ $$
 
 그리고 두번째 term 을 통해 varitional distribution 이 얼마나 prior $p(z)$ 에 가깝게 둘 것인지? 의 개념으로 볼 수 있다는 것이다.
 
-# C) Related
-
-# D) References
+# C) References

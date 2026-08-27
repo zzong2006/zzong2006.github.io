@@ -1,9 +1,5 @@
 ---
-title: "quick Sort"
-aliases: []
-tags:
-  - algorithm
-  - sorting
+tags: ["algorithm", "sorting"]
 ---
 
 # A) Quick Sort ?
@@ -24,7 +20,7 @@ tags:
 
 정렬된 리스트에 대해서는 퀵 정렬의 불균형 분할에 의해 오히려 수행시간이 더 많이 걸린다. 최악의 경우 시간 복잡도는 `O(n^2)` 가 된다.
 
-![[img-881a44854c.png|450]]
+![[img-881a44854c.png||450]]
 
 퀵 정렬의 불균형 분할을 방지하기 위하여, pivot 을 선택할 때 더욱 리스트를 균등하게 분할할 수 있는 데이터를 선택한다. 일반적으로 리스트 내의 중간 값 ([[median]]) 을 pivot 으로 선택한다.
 

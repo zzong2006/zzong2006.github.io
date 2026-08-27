@@ -1,5 +1,4 @@
 ---
-title: "teacher forcing"
 tags: ["deep_learning"]
 ---
 
@@ -21,6 +20,4 @@ tags: ["deep_learning"]
 
 배포 과정에서는 ground truth 를 알 수 없으므로 성능이 불안정하다.
 
-# C) Related
-
-# D) References
+# C) References

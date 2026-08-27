@@ -1,5 +1,4 @@
 ---
-title: "iterator"
 tags: ["python"]
 aliases: ["반복자"]
 ---

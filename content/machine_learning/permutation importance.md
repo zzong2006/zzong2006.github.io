@@ -1,5 +1,4 @@
 ---
-title: "permutation importance"
 tags: ["feature_engineering"]
 ---
 
@@ -11,8 +10,6 @@ Permutation Importance 는 feature importance 를 측정하기 위한 방법으�
 
 Permutation Feature Importance 의 중요한 특징이자 장점으로는 재학습시킬 필요가 없다는 것이다. 특정 Feature 를 제거하고 모델을 재학습하지 않고, feature 의 값들을 무작위로 섞어서 (permutation) 그 feature 를 노이즈로 만든다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://explained.ai/rf-importance/index.html

@@ -1,5 +1,4 @@
 ---
-title: "EM algorithm"
 tags: ["statistic", "bayesian_inference", "bayesian"]
 aliases: ["EM"]
 ---

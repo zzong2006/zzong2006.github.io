@@ -1,6 +1,5 @@
 ---
-title: "Rotary Positional Embedding"
-tags: ["NLP LLM"]
+tags: ["NLP", "LLM"]
 aliases: ["RoPE"]
 ---
 

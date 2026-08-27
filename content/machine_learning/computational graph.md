@@ -1,8 +1,5 @@
 ---
-title: "computational graph"
-tags:
-  - machine_learning
-aliases: []
+tags: ["machine_learning"]
 ---
 
 # A) Computational Graph ?
@@ -29,4 +26,4 @@ $$
 \hat{y}=\sigma\left(\boldsymbol{x}^{\top}\boldsymbol{w}+b\right)
 $$
 
-![[img-5d9019a6aa.png|300]]
+![[img-5d9019a6aa.png||300]]

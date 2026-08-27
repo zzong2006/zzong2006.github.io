@@ -1,5 +1,4 @@
 ---
-title: "regression"
 tags: ["linear_regression"]
 ---
 
@@ -12,6 +11,4 @@ tags: ["linear_regression"]
 * Numerical: [[linear regression]]
 * Categorical: [[logistic regression]]
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,9 +1,5 @@
 ---
-title: "seq2seq"
-aliases: []
-tags:
-  - RNN
-  - deep_learning
+tags: ["RNN", "deep_learning"]
 ---
 
 # A) seq2seq ?
@@ -12,7 +8,7 @@ tags:
 
 Translation
 
-![[img-54500423ef.png|600]]
+![[img-54500423ef.png||600]]
 
 Image captioning: Example of the Alexnet
 ![[img-69bcf9e567.png]]

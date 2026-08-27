@@ -1,5 +1,4 @@
 ---
-title: "Erlang distribution"
 tags: ["probability_distribution"]
 ---
 

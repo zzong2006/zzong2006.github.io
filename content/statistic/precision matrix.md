@@ -1,5 +1,4 @@
 ---
-title: "precision matrix"
 tags: ["statistic", "probability_distribution"]
 ---
 
@@ -13,8 +12,6 @@ $$
 \boldsymbol{Q}=\boldsymbol{\Sigma}^{-1}
 $$
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://en.wikipedia.org/wiki/Multivariate_normal_distribution

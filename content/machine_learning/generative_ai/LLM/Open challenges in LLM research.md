@@ -1,6 +1,5 @@
 ---
-title: "Open challenges in LLM research"
-tags: ["LLM research"]
+tags: ["LLM", "research"]
 ---
 
 # A) Open Challenges in LLM Research ?
@@ -70,8 +69,6 @@ tags: ["LLM research"]
 * Interpretable
 * multi-modality
 
-# C) Related
-
-# D) References
+# C) References
 
 * [Open challenges in LLM research](https://huyenchip.com/2023/08/16/llm-research-open-challenges.html?utm_source=tldrai)

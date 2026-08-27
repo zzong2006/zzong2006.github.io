@@ -1,5 +1,4 @@
 ---
-title: "Retrieval"
 tags: ["retrieval", "IR", "MOC"]
 aliases: ["Information Retrieval", "Search"]
 ---

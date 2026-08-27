@@ -1,5 +1,4 @@
 ---
-title: "SPLADE on Elasticsearch"
 tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "search_engine", "elasticsearch"]
 aliases: ["ELSER", "Elastic Learned Sparse Encoder"]
 ---

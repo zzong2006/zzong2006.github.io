@@ -1,5 +1,4 @@
 ---
-title: "graphical model"
 tags: ["graph", "probability", "machine_learning"]
 aliases: ["PGM", "Probabilistic Graphical Model"]
 ---

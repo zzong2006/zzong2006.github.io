@@ -1,5 +1,4 @@
 ---
-title: "SPLATE"
 tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "multi_vector", "ColBERT", "paper_review", "y2024", "SIGIR"]
 aliases: ["SPLATE ColBERTv2"]
 ---

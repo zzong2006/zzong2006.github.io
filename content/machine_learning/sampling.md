@@ -1,5 +1,4 @@
 ---
-title: "sampling"
 tags: ["machine_learning"]
 ---
 
@@ -33,8 +32,6 @@ positive 데이터가 negative 데이터보다 훨씬 부족한 데이터로 예
 
 ![](https://i.imgur.com/oQNa31s.png)
 
-# B) Related
-
-# C) References
+# B) References
 
 * [Resampling strategies for imbalanced datasets | Kaggle](https://www.kaggle.com/rafjaa/resampling-strategies-for-imbalanced-datasets)

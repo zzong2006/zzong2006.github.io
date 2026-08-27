@@ -1,5 +1,4 @@
 ---
-title: "Momentum"
 tags: ["optimization"]
 ---
 

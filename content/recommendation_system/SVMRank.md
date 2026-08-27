@@ -1,5 +1,4 @@
 ---
-title: "SVMRank"
 tags: ["learning_to_rank"]
 ---
 

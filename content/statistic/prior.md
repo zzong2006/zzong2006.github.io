@@ -1,5 +1,4 @@
 ---
-title: "prior"
 tags: ["statistic"]
 ---
 

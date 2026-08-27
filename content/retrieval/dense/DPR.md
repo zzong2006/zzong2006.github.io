@@ -1,5 +1,4 @@
 ---
-title: "DPR"
 tags: ["IR", "embedding", "dense_retrieval", "QA"]
 aliases: ["Dense Passage Retrieval", "Dense Retrieval"]
 ---

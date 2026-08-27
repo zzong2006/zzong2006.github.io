@@ -1,12 +1,5 @@
 ---
-title: "User Fatigue in Online News Recommendation"
-aliases: []
-tags:
-  - WWW
-  - implicit_feedback
-  - paper_review
-  - recommendation_system
-  - y2016
+tags: ["WWW", "implicit_feedback", "paper_review", "recommendation_system", "y2016"]
 ---
 
 # A) User Fatigue in Online News Recommendation ?

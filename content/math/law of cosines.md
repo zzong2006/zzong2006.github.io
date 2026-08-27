@@ -1,5 +1,4 @@
 ---
-title: "law of cosines"
 tags: ["math"]
 aliases: ["코사인 법칙"]
 ---
@@ -16,8 +15,6 @@ $$
 \begin{aligned} c \cdot c &=(\mathbf{a}-\mathbf{b}) \cdot(\mathbf{a}-\mathbf{b}) \\ &=\mathbf{a} \cdot \mathbf{a}-\mathbf{a} \cdot \mathbf{b}-\mathbf{b} \cdot \mathbf{a}+\mathbf{b} \cdot \mathbf{b} \\ &=\mathbf{a}^{2}-\mathbf{a} \cdot \mathbf{b}-\mathbf{a} \cdot \mathbf{b}+\mathbf{b}^{2} \\ &=\mathbf{a}^{2}-2 \mathbf{a} \cdot \mathbf{b}+\mathbf{b}^{2} \\ c^{2} &=\mathbf{a}^{2}+\mathbf{b}^{2}-2 \mathbf{a} \mathbf{b} \cos \theta \end{aligned}
 $$
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://en.wikipedia.org/wiki/Law_of_cosines

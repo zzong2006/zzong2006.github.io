@@ -1,5 +1,4 @@
 ---
-title: "restricted boltzmann machine"
 tags: ["machine_learning"]
 aliases: ["RBM"]
 ---

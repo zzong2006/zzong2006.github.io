@@ -1,8 +1,5 @@
 ---
-title: "Ingress"
-tags:
-  - Kubernetes
-aliases: []
+tags: ["Kubernetes"]
 ---
 
 # A) Ingress ?

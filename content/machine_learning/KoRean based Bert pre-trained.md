@@ -1,6 +1,5 @@
 ---
-title: "KoRean based Bert pre-trained"
-tags: ["NLP y2020"]
+tags: ["NLP", "y2020"]
 aliases: ["KR-BERT"]
 ---
 
@@ -24,8 +23,6 @@ aliases: ["KR-BERT"]
 실험 결과를 보면 양방향 방식이 항상 모든 task 에 대해서 가장 좋은 성능을 보이는 것은 아니고, 점수 차이가 그렇게 큰편은 아니다.
 
 그리고 오히려 토크나이징 시간이 늘어나서 인퍼런스 시간에서 감점이 있을 것으로 예상된다.
-
-# Related
 
 # References
 

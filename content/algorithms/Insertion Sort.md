@@ -1,5 +1,4 @@
 ---
-title: "Insertion Sort"
 tags: ["algorithm"]
 ---
 
@@ -30,6 +29,4 @@ def insertionSort(arr):
 
  ```
 
-# B) Related
-
-# C) References
+# B) References

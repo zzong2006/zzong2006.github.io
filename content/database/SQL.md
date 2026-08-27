@@ -1,5 +1,4 @@
 ---
-title: "SQL"
 tags: ["SQL"]
 ---
 ```table-of-contents

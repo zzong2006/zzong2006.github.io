@@ -1,6 +1,5 @@
 ---
-title: "Pareto efficiency"
-tags: ["recommendation_system optimization multi_objective"]
+tags: ["recommendation_system", "optimization", "multi_objective"]
 aliases: ["Pareto Frontier", "Pareto Efficient"]
 ---
 
@@ -14,6 +13,4 @@ aliases: ["Pareto Frontier", "Pareto Efficient"]
 
 Pareto efficient soltuon 들은 고유하지 않다 (not unique). 그리고 이러한 solution 들의 모음을 Pareto Frontier 라고 부른다.
 
-# B) Related
-
-# C) References
+# B) References

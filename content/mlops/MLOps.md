@@ -1,5 +1,4 @@
 ---
-title: "MLOps"
 tags: ["machine_learning", "pipeline"]
 ---
 
@@ -21,8 +20,6 @@ MLOps (Machine Learning Operations) is an emerging discipline, and comprises a s
 
 [Fetching Title#qxm1](https://www.youtube.com/watch?v=1jvxxa7tdjw&t=141s&ab_channel=Databricks)
 
-# D) Related
-
-# E) 도움이 될만한 [[tech blogs]]
+# D) 도움이 될만한 [[tech blogs]]
 
 * [새로운 루다를 지탱하는 모델 서빙 아키텍처 — 2편: ArgoCD와 모델 서빙 – 스캐터랩 기술 블로그](https://tech.scatterlab.co.kr/serving-architecture-2/)

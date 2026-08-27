@@ -1,7 +1,5 @@
 ---
-tags:
-  - LLM
-aliases: []
+tags: ["LLM"]
 ---
 
 # A) DPO를 한 문장으로 잡기

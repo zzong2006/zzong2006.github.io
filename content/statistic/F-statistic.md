@@ -1,5 +1,4 @@
 ---
-title: "F-statistic"
 tags: ["statistic"]
 ---
 

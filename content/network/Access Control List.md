@@ -1,6 +1,5 @@
 ---
-title: "Access Control List"
-tags: ["server network"]
+tags: ["server", "network"]
 aliases: ["ACL", "접근 제어 목록"]
 ---
 
@@ -15,6 +14,4 @@ aliases: ["ACL", "접근 제어 목록"]
 
 주로 ACL 은 네트워킹 개념으로 많이 사용되며, 라우터나 스위치에서 ACL 은 IP 주소와 포트 번호를 이용한 규칙을 가리킨다.
 
-# B) Related
-
-# C) References
+# B) References

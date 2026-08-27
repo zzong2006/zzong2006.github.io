@@ -1,8 +1,5 @@
 ---
-title: "attention function"
-tags:
-  - NLP
-  - deep_learning
+tags: ["NLP", "deep_learning"]
 aliases: ["attention", "어텐션"]
 ---
 
@@ -65,7 +62,7 @@ $$
 
 #### B.1.1.1) Why Scaled?
 
-$d_k$ 가 커질수록 dot products 의 값이 커지기 때문에 softmax 에서 [[machine_learning/optimization/gradient]] 값이 매우 작아지게 된다. 이러한 현상을 막기 위해서 scale 값을 적용했다고 한다.
+$d_k$ 가 커질수록 dot products 의 값이 커지기 때문에 softmax 에서 [[machine_learning/gradient]] 값이 매우 작아지게 된다. 이러한 현상을 막기 위해서 scale 값을 적용했다고 한다.
 
 #### B.1.1.2) Example Figure
 

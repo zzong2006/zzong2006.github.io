@@ -1,5 +1,4 @@
 ---
-title: "Gauss-Jordan Elimination"
 tags: ["linear_algebra"]
 ---
 

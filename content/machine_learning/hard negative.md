@@ -1,5 +1,4 @@
 ---
-title: "hard negative"
 tags: ["machine_learning"]
 ---
 

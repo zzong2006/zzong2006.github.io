@@ -1,5 +1,4 @@
 ---
-title: "setuptools"
 tags: ["python"]
 ---
 

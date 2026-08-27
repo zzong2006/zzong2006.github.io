@@ -1,6 +1,5 @@
 ---
-title: "Label Encoding"
-tags: ["word2vec encoding"]
+tags: ["word2vec", "encoding"]
 ---
 
 # A) Label Encoding ?

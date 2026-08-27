@@ -1,5 +1,4 @@
 ---
-title: "Critical Section"
 tags: ["operating_system", "concurrency"]
 aliases: ["critical section"]
 ---

@@ -1,7 +1,3 @@
----
-title: "billion"
----
-
 
 # A) Billion ?
 
@@ -11,6 +7,4 @@ title: "billion"
 
 1 billion 은 1,000 million 이다.
 
-# C) Related
-
-# D) References
+# C) References

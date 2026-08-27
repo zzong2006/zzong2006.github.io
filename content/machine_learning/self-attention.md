@@ -1,5 +1,4 @@
 ---
-title: "self-attention"
 tags: ["NLP"]
 aliases: ["self attention", "셀프 어텐션"]
 ---
@@ -19,8 +18,6 @@ Q, K, V 은 입력 문장에 대한 모든 단어의 벡터들로 구성되는�
 예시 문장을 번역하면 ‘ 그 동물은 길을 건너지 않았다. 왜냐하면 그것은 너무 피곤하였기 때문이다.’ 라는 의미가 됩니다. 그런데 여기서 그것 (it) 에 해당하는 것은 과연 길 (street) 일까요? 동물 (animal) 일까?
 셀프 어텐션은 입력 문장 내의 단어들끼리 유사도를 구하므로서 그것 (it) 이 동물 (animal) 과 연관되었을 확률이 높다는 것을 찾아낸다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://wikidocs.net/31379

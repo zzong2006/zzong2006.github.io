@@ -1,5 +1,4 @@
 ---
-title: "Extreme Gradient Boosting"
 tags: ["ensemble"]
 aliases: ["XGBoost"]
 ---
@@ -30,6 +29,4 @@ missing value 들을 스스로 처리함
 xgb.XGBClassifier(max_depth = 2, n_estimators = 95, random_state = 73, scale_pos_weight = 4.71)
 ```
 
-# D) Related
-
-# E) References
+# D) References

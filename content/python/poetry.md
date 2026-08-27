@@ -1,5 +1,4 @@
 ---
-title: "poetry"
 tags: ["python"]
 ---
 
@@ -25,8 +24,6 @@ poetry install && poetry update
 poetry env info
 ```
 
-# B) Related
-
-# C) References
+# B) References
 
 참고: [https://github.com/microsoft/vscode-python/issues/1871](https://github.com/microsoft/vscode-python/issues/1871)

@@ -1,5 +1,4 @@
 ---
-title: "LSM Tree"
 tags: ["data_structure"]
 ---
 
@@ -20,8 +19,6 @@ LSM tree 도 다른 search tree 처럼 key-value 쌍을 유지한다. LSM tree �
 	* Average: O(n)
 	* Worst case: O(n)
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://en.wikipedia.org/wiki/Log-structured_merge-tree

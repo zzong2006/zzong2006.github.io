@@ -1,5 +1,4 @@
 ---
-title: "crontab"
 tags: ["linux"]
 ---
 
@@ -15,8 +14,6 @@ tags: ["linux"]
 
 그럼 일 (month) 와 일 (week) 의 차이는 무엇일까? 전자는 매달 특정 일을 의미하며, 후자는 매주 특정 요일을 의미한다. 예를 들어 `45 02 4 * *` 는 매달 4 일째 되는날 2 시 45 분에 작업을 수행하라는 뜻이고, `45 02 * * 4` 는 매주 목요일 (4 번째) 2 시 45 분에 작업을 수행하라는 의미가 된다.
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://crontab.guru/#

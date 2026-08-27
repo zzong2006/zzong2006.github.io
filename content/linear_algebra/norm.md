@@ -1,5 +1,4 @@
 ---
-title: "norm"
 tags: ["math", "linear_algebra", "machine_learning"]
 ---
 

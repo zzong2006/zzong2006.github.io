@@ -1,5 +1,4 @@
 ---
-title: "pytest"
 tags: ["test", "python"]
 ---
 
@@ -15,8 +14,6 @@ tags: ["test", "python"]
 
 **Act** is the singular, state-changing action that kicks off the **behavior** we want to test. This behavior is what carries out the changing of the state of the system under test (SUT), and it’s the resulting changed state that we can look at to make a judgement about the behavior. This typically takes the form of a function/method call.
 
-# B) Related
-
-# C) References
+# B) References
 
 [pytest fixtures: explicit, modular, scalable — pytest documentation](https://docs.pytest.org/en/6.2.x/fixture.html)

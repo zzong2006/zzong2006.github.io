@@ -1,5 +1,4 @@
 ---
-title: "box-cox transformation"
 tags: ["feature_engineering"]
 aliases: ["Power Transformation"]
 ---
@@ -18,8 +17,6 @@ $$
 
 $\displaystyle \lim _{\lambda \rightarrow 0} \frac{x^{\lambda}-1}{\lambda}=\log x$ 를 만족하므로, $g_{0}(x)=\log (x)$ 는 변환이 필요하다고 생각할 수 있다.
 
-# B) Related
-
-# C) References
+# B) References
 
 * https://freshrimpsushi.github.io/posts/box-cox-transformation/

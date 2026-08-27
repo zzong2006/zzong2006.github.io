@@ -1,5 +1,4 @@
 ---
-title: "Ad click prediction - a view from the trenches"
 tags: ["e-commerce", "advertisement", "paper_review"]
 ---
 

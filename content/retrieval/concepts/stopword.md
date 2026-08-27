@@ -1,5 +1,4 @@
 ---
-title: "stopword"
 tags: ["NLP"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "Python"
 tags: ["programming", "language"]
 ---
 
@@ -36,7 +35,7 @@ print(id(c))  # 140734913395072
 
 ## C.1) Interpreted Language
 
-Python은 [[programming/Interpreted language]]이다.
+Python은 [[software/Interpreted language]]이다.
 
 - 소스 코드(.py)는 bytecode(.pyc)로 컴파일된 후 [[virtual machine]]에서 실행된다
 - Bytecode는 인터프리터가 실행하는 low-level 명령어 집합이다

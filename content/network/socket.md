@@ -1,7 +1,5 @@
 ---
-title: "socket"
-tags: network 
-aliases: []
+tags: ["network"]
 ---
 
 # Socket ?
@@ -31,7 +29,7 @@ aliases: []
 
 대부분의 프로그래밍 언어와 개발 플랫폼에서 소켓 (Socket) 관련 API 가 제공된다. 이러한 API 를 사용하였을 때, 구체적으로 각 Socket 이 처리되는 흐름을 알아보자.
 
-<img src="/images/img-8ff53dcf7d.png" alt="소켓 API 실행 흐름" style="zoom:80%;" />
+<img src="https://i.loli.net/2020/11/26/1a2sQxr9pih6wVJ.png" alt="소켓 API 실행 흐름" style="zoom:80%;" />
 
 ## Client Socket
 

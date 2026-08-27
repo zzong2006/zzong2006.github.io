@@ -1,5 +1,4 @@
 ---
-title: "joint distribution"
 tags: ["probability_distribution", "statistic"]
 ---
 
@@ -11,6 +10,4 @@ tags: ["probability_distribution", "statistic"]
 
 $P(\mathrm{x}=x,\mathrm{y}=y)$ denotes the probability that $\mathbf{x}=x$ and $\mathbf{y}=y$ simultaneously.
 
-# C) Related
-
-# D) References
+# C) References

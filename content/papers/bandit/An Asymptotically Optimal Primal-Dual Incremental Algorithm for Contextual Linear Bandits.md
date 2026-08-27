@@ -1,5 +1,4 @@
 ---
-title: "An Asymptotically Optimal Primal-Dual Incremental Algorithm for Contextual Linear Bandits"
 tags: ["MAB", "NIPS", "bandit", "contextual_bandit", "linear_regression", "paper_review", "y2020"]
 ---
 
@@ -14,7 +13,5 @@ tags: ["MAB", "NIPS", "bandit", "contextual_bandit", "linear_regression", "paper
 * 그리고, incremental primal-dual 접근 방식을 사용하여 lower bound 의 Lagrangian relaxation 을 해결함 (solve)
 * 최종적으로 강제적인 exploration 을 제거하고, 최소한의 exploration 을 encourage 하는 confidence intervals 을 build (for better adapting to the problem structure)
 	* 이를 asymptotic optimality 라고 부르고 있음
-
-# Related
 
 # References

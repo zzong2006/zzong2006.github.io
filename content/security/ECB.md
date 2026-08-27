@@ -1,5 +1,4 @@
 ---
-title: "ECB"
 tags: ["security"]
 aliases: ["Electronic codebook"]
 ---
@@ -14,6 +13,4 @@ ECB(Electronic codebook) 는 암호화하려는 메시지를 여러 불록으로
 
 [ECB 설명 및 취약점](https://lactea.kr/entry/ECB-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EC%B7%A8%EC%95%BD%EC%A0%90)
 
-# C) Related
-
-# D) References
+# C) References

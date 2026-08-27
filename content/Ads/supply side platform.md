@@ -1,5 +1,4 @@
 ---
-title: "supply side platform"
 tags: ["advertisement"]
 aliases: ["SSP"]
 ---
@@ -24,7 +23,5 @@ aliases: ["SSP"]
 SSP 는 대외적으로는 Adfit, 내부적으로는 XMAS(eXtensible Mediation Ad Server) 로 많이 부른다. 그 이유는 ADFit 은 어드민 전용 관리 도구이고, XMAS 는 SSP 와 AD Exchange(ADX) 를 담당하고 있기 때문이다.
 
 위 그림에서 SDK 는 로그를 수집해서 DMP 에 저장하는 역할을 한다.
-
-# Related
 
 # References

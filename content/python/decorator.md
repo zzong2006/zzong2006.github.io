@@ -1,5 +1,4 @@
 ---
-title: "decorator"
 tags: ["python", "programming"]
 aliases: ["데코레이터"]
 ---
@@ -220,8 +219,6 @@ James -> 30
 만약 함수가 아니라 클래스에 `final` 데코레이터를 씌웠다면, 해당 클래스는 상속받지 못하는 클래스가 된다 (subclass 생성 불가).
 
 참고: [stackoverflow](https://stackoverflow.com/questions/57596086/final-annotation-and-decorator-in-python3-8)
-
-# Related
 
 # References
 

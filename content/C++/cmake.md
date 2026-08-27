@@ -1,5 +1,4 @@
 ---
-title: "cmake"
 tags: ["compile", "Cpp"]
 ---
 
@@ -9,6 +8,4 @@ tags: ["compile", "Cpp"]
 
 [software installation - How do I install the latest version of cmake from the command line? - Ask Ubuntu](https://askubuntu.com/a/865294)
 
-# B) Related
-
-# C) References
+# B) References

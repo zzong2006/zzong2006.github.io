@@ -1,6 +1,5 @@
 ---
-title: "least squares estimation"
-tags: ["machine_learning", "linear_regression", "optimization"]
+aliases: ["machine_learning", "linear_regression", "optimization"]
 ---
 
 # A) Least Squares Estimation ?

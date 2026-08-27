@@ -1,5 +1,4 @@
 ---
-title: "Bidirectional Encoder Representations from Transformers"
 tags: ["language_model", "NLP", "nlp", "paper_review", "Google", "encoder", "bidirectional"]
 aliases: ["BERT"]
 ---
@@ -45,9 +44,7 @@ transformer 인코더를 쌓아놓은 형태다.
 
 ![](https://i.imgur.com/5x1Q43z.png)
 
-# D) Related
-
-# E) References
+# D) References
 
 * [bert github](https://github.com/google-research/bert)
 * [paper link](https://arxiv.org/abs/1810.04805)

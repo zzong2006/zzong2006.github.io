@@ -1,6 +1,5 @@
 ---
-title: "Metropolis-Hasting"
-tags: ["sampling statistic"]
+tags: ["sampling", "statistic"]
 ---
 
 # Metropolis-Hasting ?
@@ -22,7 +21,5 @@ The samples are correlated.
 어떤 nearby samples 들은 서로 상관관계에 있기 때문에 제대로 분포를 반영할 수 없다.
 
 만약 시작 지점의 지역이 매우 낮은 density 에 해당한다면, 초기 샘플들은 매우 다른 분포에서 생성될 수 있다. 결과적으로 burn-in 구간이 일반적으로 필요하며, 초기 일부 샘플들 (약 천개 정도) 가 버려진다.
-
-# Related
 
 # References

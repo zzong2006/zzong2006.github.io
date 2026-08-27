@@ -1,5 +1,4 @@
 ---
-title: "korean nlp model"
 tags: ["NLP"]
 ---
 
@@ -18,7 +17,5 @@ KcELECTRA 는 위와 같은 특성의 데이터셋에 적용하기 위해, 온�
 KcELECTRA 는 Huggingface 의 Transformers 라이브러리를 통해 간편히 불러와 사용할 수 있습니다. (별도의 파일 다운로드가 필요하지 않습니다.)
 
 [GitHub - Beomi/KcELECTRA: 🤗 Korean Comments ELECTRA: 한국어 댓글로 학습한 ELECTRA 모델](https://github.com/Beomi/KcELECTRA)
-
-# Related
 
 # References

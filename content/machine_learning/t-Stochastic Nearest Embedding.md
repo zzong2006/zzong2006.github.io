@@ -1,15 +1,12 @@
 ---
-title: "t-Stochastic Nearest Embedding"
+tags: ["word2vec", "clustering"]
 aliases: ["t-SNE"]
-tags:
-  - word2vec
-  - clustering
 ---
 
 # A) t-SNE ?
 
 t-Stochastic Nearest Embedding 는 vector visualization 을 위하여 자주 이용되는 차원 축소 알고리즘이다.
-![[img-9302b7dc43.png|500]]
+![[img-9302b7dc43.png||500]]
 
 차원 축소에 관련된 알고리즘은 [[autoencoder]], [[machine_learning/Principal Component Analysis]] 등 다양하게 존재한다.
 
@@ -48,7 +45,7 @@ $$
 
 [[Word Embedding]] 을 쉽게 시각화 하기 위하여 사용한다.
 
-![[img-8f7de95bcc.png|400]]
+![[img-8f7de95bcc.png||400]]
 
 # D) t-SNE 장점
 

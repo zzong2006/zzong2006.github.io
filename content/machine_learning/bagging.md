@@ -1,9 +1,5 @@
 ---
-title: "bagging"
-tags:
-  - machine_learning
-  - ensemble
-aliases: []
+tags: ["machine_learning", "ensemble"]
 ---
 
 # A) Bagging ?

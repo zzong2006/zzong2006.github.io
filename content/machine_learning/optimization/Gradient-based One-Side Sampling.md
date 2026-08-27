@@ -1,5 +1,4 @@
 ---
-title: "Gradient-based One-Side Sampling"
 tags: ["optimization"]
 aliases: ["GOSS"]
 ---
@@ -18,6 +17,4 @@ converge faster
 
 overfitting when dataset is small
 
-# C) Related
-
-# D) References
+# C) References

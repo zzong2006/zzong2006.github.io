@@ -1,5 +1,4 @@
 ---
-title: "F1 Score"
 tags: ["machine_learning", "metrics"]
 aliases: ["F1-Score"]
 ---
@@ -77,8 +76,6 @@ $$
 * F1-Measure (beta=1.0): precision = recall (F1-score)
 * F2-Measure (beta=2.0): precision < recall
 
-# F) Related
-
-# G) References
+# F) References
 
 * https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f

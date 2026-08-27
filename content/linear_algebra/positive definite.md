@@ -1,5 +1,4 @@
 ---
-title: "positive definite"
 tags: ["linear_algebra"]
 aliases: ["positive semi-definite"]
 ---
@@ -21,6 +20,6 @@ aliases: ["positive semi-definite"]
 
 # 3. Related
 
-* [[linear_algebra/Singular Value Decomposition]]
+* [[machine_learning/Singular Value Decomposition]]
 
 # 4. References

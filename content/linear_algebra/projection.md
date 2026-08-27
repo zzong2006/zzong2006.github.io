@@ -1,5 +1,4 @@
 ---
-title: "projection"
 tags: ["machine_learning", "linear_algebra"]
 aliases: ["projection matrix"]
 ---

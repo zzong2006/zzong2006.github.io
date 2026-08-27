@@ -1,5 +1,4 @@
 ---
-title: "General Language Understanding Evaluation"
 tags: ["NLP"]
 aliases: ["GLUE"]
 ---
@@ -23,8 +22,6 @@ NLP 모델에 대한 일반적인 언어의 “이해”를 측정하기 위한 
 그런데 사람들이 [[transfer learning]] 을 nlp 분야에서 성공시키고 새로운 평가 방식이 필요해졌다.
 
 > How do researchers evaluate the quality of these transfer learning models against one another?
-
-# Related
 
 # References
 

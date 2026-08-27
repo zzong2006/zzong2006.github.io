@@ -1,7 +1,3 @@
----
-title: "youtube 영상 올리기"
----
-
 # A) History
 
 * comfyUI workflow 셋팅이 필요하다

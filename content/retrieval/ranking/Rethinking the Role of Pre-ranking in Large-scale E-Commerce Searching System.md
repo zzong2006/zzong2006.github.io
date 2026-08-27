@@ -1,5 +1,4 @@
 ---
-title: "Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System"
 tags: ["retrieval", "paper", "search", "pre-ranking", "e-commerce", "alibaba", "y2023"]
 ---
 

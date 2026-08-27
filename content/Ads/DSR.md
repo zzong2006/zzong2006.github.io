@@ -1,5 +1,4 @@
 ---
-title: "DSR"
 tags: ["finance"]
 aliases: ["Debt Service Ratio"]
 ---

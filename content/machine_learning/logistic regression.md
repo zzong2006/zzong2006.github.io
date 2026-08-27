@@ -1,8 +1,5 @@
 ---
-title: "logistic regression"
-tags:
-  - classification
-  - machine_learning
+tags: ["classification", "machine_learning"]
 aliases: ["로지스틱 회귀"]
 ---
 

@@ -1,5 +1,4 @@
 ---
-title: "Deep Bayesian Bandits - Exploring in Online Personalized Recommendations"
 tags: ["bandit", "paper_review", "recommendation_system", "exploration", "y2020"]
 aliases: ["Deep Bayesian Bandits", "DBB"]
 ---
@@ -292,7 +291,7 @@ Hybrid는 dropout을 사용하되 **마지막 layer에만** 적용하여 효율�
 - [[Thompson sampling]]
 - [[UCB]]
 - [[Contextual Bandit]]
-- [[Exploration-Exploitation Tradeoff]]
+- [[RL/Exploration and Exploitation trade-off|Exploration-Exploitation Tradeoff]]
 
 # J) References
 

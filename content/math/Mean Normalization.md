@@ -1,7 +1,5 @@
 ---
-title: "Mean Normalization"
-tags: feature_engineering
-aliases: []
+tags: ["feature_engineering"]
 ---
 
 # Mean Normalization ?

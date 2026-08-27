@@ -1,7 +1,3 @@
----
-title: "personalized ranking model"
----
-
 
 # A) Personalized Ranking Model ?
 
@@ -17,6 +13,4 @@ title: "personalized ranking model"
 		* Listwise approaches approximate the ordering of the entire list of items, for example, direct optimizing the ranking measures such as Normalized Discounted Cumulative Gain ([[Normalized Discounted Cumulative Gain]]).
 		* pointwise 나 pairwise 방식보다 복잡하며 계산 비용이 높다.
 
-# B) Related
-
-# C) References
+# B) References

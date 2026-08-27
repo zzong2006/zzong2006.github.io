@@ -1,5 +1,4 @@
 ---
-title: "t-distribution"
 tags: ["statistic"]
 aliases: ["t-분포"]
 ---
@@ -26,7 +25,5 @@ z- 분포나 정규 분포는 모집단에 대한 표준 편차를 알고 있는
 * t- 분포는 자유도에 의해 정의된다. 이는 표본 크기와 관련이 있다.
 * t- 분포는 샘플 사이즈가 적거나 모집단의 표준 편차를 알기 어려울 때 유용하다.
 * 샘플 사이즈가 커지면 t- 분포는 normal distribution 에 가까워진다.
-
-# Related
 
 # References

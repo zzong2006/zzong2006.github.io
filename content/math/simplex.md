@@ -1,8 +1,5 @@
 ---
-title: "simplex"
-tags:
-  - math
-aliases: []
+tags: ["math"]
 ---
 
 # I. Simplex ?

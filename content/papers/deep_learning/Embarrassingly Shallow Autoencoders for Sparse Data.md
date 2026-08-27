@@ -1,5 +1,4 @@
 ---
-title: "Embarrassingly Shallow Autoencoders for Sparse Data"
 tags: ["WWW", "deep_learning", "linear_regression", "paper_review", "y2019"]
 aliases: ["EASE"]
 ---
@@ -97,8 +96,6 @@ $\hat{P}$ 나 $B$ 를 구하려는 수식을 보면 item-item 행렬인 [[Gram m
 ## (4) 계산 비용
 
 Gram matrix 의 역행렬 계산으로 $\mathcal{O}\left(|\mathcal{I}|^{3}\right)$ 의 계산 비용이 발생한다. 여기서 Coppersmith-Winograd 알고리즘을 사용하면 $O\left(|\mathcal{I}|^{2.376}\right)$ 의 계산비용이 발생한다.
-
-# Related
 
 # References
 

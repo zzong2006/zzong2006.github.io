@@ -1,5 +1,4 @@
 ---
-title: "packaging"
 tags: ["python"]
 ---
 

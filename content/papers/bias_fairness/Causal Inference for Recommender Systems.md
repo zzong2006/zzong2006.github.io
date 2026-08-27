@@ -1,5 +1,4 @@
 ---
-title: "Causal Inference for Recommender Systems"
 tags: ["RecSyS", "bias", "fairness", "paper_review", "recommendation_system", "y2020"]
 ---
 
@@ -18,6 +17,4 @@ tags: ["RecSyS", "bias", "fairness", "paper_review", "recommendation_system", "y
 	* Evaluation 에서 strong generalization 을 썼다고 하는데, training set 에 존재하지 않는 new user 에 대한 prefernece prediction 이라고 함. 어떻게 한거지?
 		* paper [[Modeling user rating profiles for collaborative filtering]] 를 참고했다고 한다.
 
-# C) Related
-
-# D) References
+# C) References

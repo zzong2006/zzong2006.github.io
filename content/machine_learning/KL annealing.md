@@ -1,5 +1,4 @@
 ---
-title: "KL annealing"
 tags: ["optimization"]
 ---
 
@@ -16,7 +15,5 @@ tags: ["optimization"]
 초록색 선은 parameter $\beta$ 를 1 에서 부터 조금씩 줄여나가는데, 0.2 쯤에서 성능이 떨어지는 것을 확인할 수 있다. 이때 $\beta=0.2$ 로 고정하고 학습하면 빨간 선과 같은 성능을 확인할 수 있고, anneal 이 없이 단순 학습을 했을 경우 파란색 선의 성능을 보인다.
 
 ![|500](https://i.imgur.com/5qtxIgb.png)
-
-# Related
 
 # References

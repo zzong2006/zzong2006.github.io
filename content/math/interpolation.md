@@ -1,5 +1,4 @@
 ---
-title: "interpolation"
 tags: ["math"]
 aliases: ["보간법"]
 ---
@@ -26,8 +25,6 @@ $$
 
 ![|300](https://i.imgur.com/bkT1TjD.png)
 
-# C) Related
-
-# D) References
+# C) References
 
 * https://darkpgmr.tistory.com/117 (선형 보간법)

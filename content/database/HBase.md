@@ -1,11 +1,10 @@
 ---
-title: "HBase"
 tags: ["NoSQL"]
 ---
 
 # A) HBase ?
 
-Distributed [[database/columnar storage|column oriented DB]] 이며, HDFS 를 기반으로 구축한다.
+Distributed [[data_engineering/columnar storage|column oriented DB]] 이며, HDFS 를 기반으로 구축한다.
 
 # B) 특징
 
@@ -44,6 +43,4 @@ row 를 다시 생각해보면 CF 가 아닌 여러개의 column(=family:qualifi
 
 테이블의 CF 가 총 n 개 존재한다고 하더라도 각 row 에 해당하는 CF 는 꼭 n 개일 필요는 없다. 최소 한개 이상만 존재하면 된다.
 
-# E) Related
-
-# F) References
+# E) References

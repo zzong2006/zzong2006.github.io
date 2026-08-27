@@ -1,5 +1,4 @@
 ---
-title: "IPC"
 tags: ["network"]
 ---
 
@@ -8,6 +7,4 @@ tags: ["network"]
 * 프로세스 간 통신 (Inter Process Communication) 의 줄임말
 * [[Process]] 가 데이터를 주고받을 때 사용한다.
 
-# B) Related
-
-# C) References
+# B) References

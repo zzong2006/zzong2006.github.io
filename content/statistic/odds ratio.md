@@ -1,5 +1,4 @@
 ---
-title: "odds ratio"
 tags: ["statistic"]
 aliases: ["odds"]
 ---
@@ -25,6 +24,4 @@ $$
 \log(1-P) = -LOG(1 + E^{LOG(ODDS)})
 $$
 
-# B) Related
-
-# C) References
+# B) References

@@ -1,5 +1,4 @@
 ---
-title: "rule of probabilities"
 tags: ["statistic", "probability"]
 ---
 
@@ -20,6 +19,4 @@ $$
 p(X)=\sum_{Y}p(X\mid Y)p(Y)
 $$
 
-# B) Related
-
-# C) References
+# B) References

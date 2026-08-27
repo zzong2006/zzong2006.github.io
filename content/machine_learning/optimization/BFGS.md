@@ -1,7 +1,5 @@
 ---
-title: "BFGS"
-tags: ["optimization", "machine_learning", "deep_learning"]
-aliases: ["BFGS algorithm"]
+aliases: ["BFGS algorithm", "optimization", "machine_learning", "deep_learning"]
 ---
 
 # A) BFGS ?
@@ -16,7 +14,7 @@ $$
 
 여기서 $\boldsymbol{H}^{-1}$ 를 구하는 것이 계산 비용 상승의 주된 원인인데, 이를 근사하는 방향으로 계산 비용을 줄인다. 즉, [[quasi-Newton method]] 방식을 적용하여 low-rank update 를 통해 matrix $\boldsymbol{M}_{t}$ 에 대한 inverse 를 approximate 한다.
 
-inverse [[Hessian matrix]] 근사 $\boldsymbol{M}_{t}$ 를 업데이트하면, descent 방향 $\boldsymbol{\rho}_{t}$ 는 $\boldsymbol{\rho}_{t}=\boldsymbol{M}_{t} \boldsymbol{g}_{t}$ 로 계산되고 ($\boldsymbol{g}_{t}$ 는 [[machine_learning/optimization/gradient]]), 해당 방향으로 parameter update 가 진행된다.  
+inverse [[Hessian matrix]] 근사 $\boldsymbol{M}_{t}$ 를 업데이트하면, descent 방향 $\boldsymbol{\rho}_{t}$ 는 $\boldsymbol{\rho}_{t}=\boldsymbol{M}_{t} \boldsymbol{g}_{t}$ 로 계산되고 ($\boldsymbol{g}_{t}$ 는 [[machine_learning/gradient]]), 해당 방향으로 parameter update 가 진행된다.  
 
 $$
 \boldsymbol{\theta}_{t+1}=\boldsymbol{\theta}_{t}+\epsilon^{*} \boldsymbol{\rho}_{t}
@@ -36,6 +34,4 @@ conjugate gradients 와 비슷하게 BFGS 방식도 second-order 정보에 기�
 
 L-BFGS 는 BFGS 의 Limited Memory 버전으로 inverse Hessian 근사값의 저장을 피하여 메모리 사용량을 줄인 방식이다. L-BFGS 는 BFGS 와 동일하게 $\boldsymbol{M}$ 의 근사를 계산하지만, update 과정에서 이전 matrix $\boldsymbol{M}^{(t-1)}$ 를 저장하지 않고 단순히 identity matrix 로 가정한다. Exact line search 를 원한다면 L-BFGS 의 방향은 올바르지 않겠지만, 근사를 계산한다는 관점에서는 잘 동작한다.
 
-# C) Related
-
-# D) References
+# C) References

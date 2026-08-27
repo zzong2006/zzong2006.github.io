@@ -1,5 +1,4 @@
 ---
-title: "KorQuAD"
 tags: ["NLP", "dataset"]
 ---
 
@@ -19,6 +18,4 @@ KorQuAD 1.0 과는 다르게 1~2 문단이 아닌 Wikipedia article 전체에서
 
 이 데이터셋을 통해서 다양한 형태와 길이의 문서들에서도 기계독해가 가능해질 것 입니다.
 
-# C) Related
-
-# D) References
+# C) References

@@ -1,5 +1,4 @@
 ---
-title: "Triton"
 tags: ["server", "deep_learning", "MLOps"]
 aliases: ["트리톤"]
 ---
@@ -55,6 +54,4 @@ platform: "tensorrt_plan"
 
 # D) Vs. [[BentoML]]
 
-# E) Related
-
-# F) References
+# E) References

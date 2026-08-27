@@ -1,5 +1,4 @@
 ---
-title: "Count Sketch"
 tags: ["embedding"]
 ---
 

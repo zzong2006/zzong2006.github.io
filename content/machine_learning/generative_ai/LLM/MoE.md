@@ -1,5 +1,4 @@
 ---
-title: "MoE"
 aliases: ["Mixture-of-Experts"]
 ---
 
@@ -18,6 +17,4 @@ aliases: ["Mixture-of-Experts"]
 * [On PHATGOOSE: The Challenge of Recycling PEFT Modules for Zero-Shot Generalization](https://colinraffel.com/blog/phatgoose.html)
 	* LoRA based MoE
 
-# D) Related
-
-# E) References
+# D) References

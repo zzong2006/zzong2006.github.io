@@ -1,5 +1,4 @@
 ---
-title: "Evaluating Chunking Strategies for Retrieval"
 tags: ["retrieval", "IR", "chunking", "evaluation", "Chroma"]
 ---
 

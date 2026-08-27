@@ -1,8 +1,5 @@
 ---
-title: "support"
-tags:
-  - recommendation_system
-aliases: []
+tags: ["recommendation_system"]
 ---
 
 # A) Support ?

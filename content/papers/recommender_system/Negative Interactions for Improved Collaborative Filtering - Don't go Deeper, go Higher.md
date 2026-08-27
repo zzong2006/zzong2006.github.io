@@ -1,11 +1,5 @@
 ---
-title: "Negative Interactions for Improved Collaborative Filtering - Don't go Deeper, go Higher"
-aliases: []
-tags:
-  - RecSyS
-  - paper_review
-  - recommendation_system
-  - y2021
+tags: ["RecSyS", "paper_review", "recommendation_system", "y2021"]
 ---
 
 # A) Abstract

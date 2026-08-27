@@ -1,5 +1,4 @@
 ---
-title: "sampling distribution"
 tags: ["statistic"]
 aliases: ["표본 분포"]
 ---
@@ -53,6 +52,4 @@ $$
 
 어느정도 표본 개수가 보장되는 경우, 표본 평균으로 구성된 분포의 평균과 모집단의 평균과 동일하며, 모집단의 [[standard deviation|표준 편차]] 에서 $\sqrt{n}$ 값을 나누면 표본 평균 분포에 대한 표준 편차를 얻을 수 있다 ($n$ 은 샘플 개수).
 
-# F) Related
-
-# G) References
+# F) References

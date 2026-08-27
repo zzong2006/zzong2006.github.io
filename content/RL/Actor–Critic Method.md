@@ -1,8 +1,6 @@
 ---
-title: "Actor–Critic Method"
+tags: ["reinforcement_learning"]
 aliases: ["actor-critic"]
-tags:
-  - reinforcement_learning
 ---
 
 # A) Actor–Critic Method ?
