@@ -79,3 +79,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # 사이트가 커져(아티팩트 46MB, 1600+ 페이지) 기본 10분 타임아웃 안에
+          # Pages 측 updating_pages 가 끝나지 않아 배포가 취소되는 일이 있었다.
+          timeout: 1800000
+          error_count: 20
