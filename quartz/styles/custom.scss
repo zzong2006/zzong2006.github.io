@@ -108,14 +108,11 @@
     margin-inline: auto;
   }
 
-  // 표 / 코드 / 도해는 측정폭을 넘어서도 되게 둔다. 넘칠 때는 가로 스크롤.
-  .page > #quartz-body .center > article :is(table, pre, .mermaid) {
-    max-width: none;
-  }
-
-  .page > #quartz-body .center > article :is(table, pre) {
-    overflow-x: auto;
-  }
+  // 넓은 콘텐츠는 손대지 않는다. Quartz 가 이미 처리한다 -
+  // base.scss 의 pre 에 overflow-x: auto 가 있고, 표는 .table-container 로 감싸진다.
+  // 그래서 측정폭보다 넓은 표/코드는 측정폭 안에서 가로 스크롤된다.
+  // 진짜 breakout(측정폭 밖으로 넘기기)이 필요하면 음수 마진이 필요한데,
+  // max-width: none 만으로는 부모 폭에 갇혀서 아무 효과가 없다.
 }
 
 .page > #quartz-body .sidebar.left .explorer {
