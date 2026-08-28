@@ -121,8 +121,24 @@ function isMathHeavyLine(value) {
   )
 }
 
+// 인라인 코드 스팬은 LaTeX 가 아니다. 그런데 stripMath 는 펜스 코드블록만 지우고
+// 인라인 스팬은 남기므로, simplifyLatex 의 `_` -> 첨자 변환이 식별자를 망친다.
+// (`batch_size` -> batchsize, `gradient_accumulation_steps` -> gradientaccumulationsteps,
+//  각각 i / o / n 이 유니코드 첨자로 치환된 형태) 백틱 제거는 그 뒤라 이미 늦다.
+// 그래서 먼저 자리표시자로 빼두고 체인이 끝난 뒤 되돌린다.
+//
+// 센티널은 영숫자만 쓴다. 이 함수가 지우는 문자(백틱 * _ ~ > # { } 연속 하이픈, 공백)를
+// 하나도 포함하지 않으므로 치환 체인을 그대로 통과한다.
+const codeSpanPattern = /QZCODE(\d+)QZ/g
+
 function cleanText(value) {
-  return simplifyLatex(stripMath(value))
+  const codeSpans = []
+  const guarded = String(value ?? "").replace(
+    /`+([^`\n]+)`+/g,
+    (_, code) => `QZCODE${codeSpans.push(code) - 1}QZ`,
+  )
+
+  return simplifyLatex(stripMath(guarded))
     .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias ?? target)
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
@@ -132,6 +148,7 @@ function cleanText(value) {
     .replace(/\s+([,.;:)])/g, "$1")
     .replace(/([(])\s+/g, "$1")
     .replace(/\s+/g, " ")
+    .replace(codeSpanPattern, (_, index) => codeSpans[Number(index)] ?? "")
     .trim()
 }
 
