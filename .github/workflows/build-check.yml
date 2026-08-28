@@ -136,57 +136,47 @@ jobs:
           exit $missing
 
       # 로컬 플러그인은 스크립트를 템플릿 리터럴 문자열로 조립해 페이지에 심는다.
-      # 문자열이라 빌드는 그 안의 문법 오류를 잡지 못하고 브라우저에서만 터진다.
-      # 산출물에서 마커가 붙은 스크립트를 꺼내 node --check 로 검사한다.
-      - name: Syntax-check marked inline scripts
+      # 문자열이므로 빌드는 그 안의 문법 오류를 잡지 못하고 브라우저에서만 터진다.
+      # node 가 없는 개발 머신에서는 이 검사가 유일한 안전망이다.
+      #
+      # 마커 주석으로 대상을 좁히는 방식은 쓸 수 없었다. Quartz 가 플러그인 스크립트를
+      # 외부 파일로 추출할 때 minify 하면서 주석을 지운다(componentResources.ts).
+      # 그래서 산출물의 JS 전체를 검사한다. Quartz 자체 번들은 esbuild 산출물이라
+      # 이미 유효하므로 잡음이 되지 않는다.
+      - name: Syntax-check emitted JavaScript
         run: |
           python3 - <<'PY'
-          import glob, os, re, subprocess, sys
+          import glob, os, shutil, subprocess, sys
 
-          MARKER = "@inline-script"
-          pattern = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S)
+          paths = sorted(glob.glob("public/**/*.js", recursive=True))
+          if not paths:
+              print("public/ 에 JS 가 없다")
+              sys.exit(1)
 
-          def record(seen, body):
-              if MARKER not in body:
-                  return
-              name = body.split(MARKER, 1)[1].split("*/", 1)[0].strip() or "unnamed"
-              seen.setdefault(name, body)
+          work = "/tmp/jscheck"
+          shutil.rmtree(work, ignore_errors=True)
+          os.makedirs(work)
 
-          seen = {}
-
-          # Quartz 는 플러그인의 인라인 JS 를 외부 파일로 추출한다
-          # (quartz/plugins/emitters/componentResources.ts). 그래서 .js 를 먼저 본다.
-          for path in glob.glob("public/**/*.js", recursive=True):
-              with open(path, encoding="utf-8", errors="replace") as handle:
-                  record(seen, handle.read())
-
-          # 추출되지 않고 인라인으로 남는 경우도 있으므로 HTML 도 훑는다.
-          for path in glob.glob("public/**/*.html", recursive=True):
-              if len(seen) >= 8:
-                  break
-              with open(path, encoding="utf-8", errors="replace") as handle:
-                  html = handle.read()
-              for body in pattern.findall(html):
-                  record(seen, body)
-
-          if not seen:
-              print("마커가 붙은 인라인 스크립트를 찾지 못했다 - 검사 건너뜀")
-              sys.exit(0)
-
-          os.makedirs("/tmp/inline", exist_ok=True)
-          failed = 0
-          for name, body in sorted(seen.items()):
-              target = "/tmp/inline/%s.mjs" % re.sub(r"[^A-Za-z0-9_.-]", "_", name)
-              with open(target, "w", encoding="utf-8") as handle:
-                  handle.write(body)
+          failed = []
+          for path in paths:
+              # ESM 문법(top-level await, import.meta)까지 통과시키려면 .mjs 로 본다.
+              target = os.path.join(work, os.path.basename(path) + ".mjs")
+              shutil.copyfile(path, target)
               result = subprocess.run(["node", "--check", target], capture_output=True, text=True)
-              if result.returncode == 0:
-                  print("ok       %-28s %d bytes" % (name, len(body)))
-              else:
-                  print("SYNTAX   %s" % name)
-                  print(result.stderr.strip()[:2000])
-                  failed = 1
-          sys.exit(failed)
+              if result.returncode != 0:
+                  failed.append((path, result.stderr.strip()[:1500]))
+
+          print("검사한 JS: %d개" % len(paths))
+          for path, error in failed:
+              print()
+              print("SYNTAX  %s" % path)
+              print(error)
+
+          if failed:
+              print()
+              print("문법 오류 %d건" % len(failed))
+              sys.exit(1)
+          print("모두 통과")
           PY
 
       - name: Summary

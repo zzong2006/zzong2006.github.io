@@ -8,7 +8,6 @@ function buildScript(options) {
   })
 
   return `
-/* @inline-script explorer-follow-active */
 (() => {
   const config = ${config};
   const state = {
