@@ -15,12 +15,10 @@ aliases: ["Home"]
 
 # B) Main Paths
 
-| Area | Notes |
-| --- | --- |
-| Retrieval | [[retrieval/retrieval]], [[retrieval/sparse/BM25]], [[retrieval/dense/DPR]] |
-| Machine Learning | [[machine_learning/machine learning]], [[machine_learning/deep Learning]], [[machine_learning/generative_ai/LLM/Large Language Model]] |
-| Recommendation | [[recommendation_system/Recommendation System]], [[recommendation_system/collaborative filtering]], [[recommendation_system/sequential recommendation]] |
-| Papers | [[papers/language_model]], [[papers/recommender_system]], [[papers/e-commerce]] |
-| Statistics | [[statistic/Probability]], [[statistic/Bayesian]], [[statistic/hypothesis test]] |
-| Systems | [[data_engineering/Kafka]], [[server/Docker]], [[K8s/Kubernetes]] |
-| Resume | [[resume]] |
+- **Retrieval** — [[retrieval/retrieval|retrieval]], [[retrieval/sparse/BM25|BM25]], [[retrieval/dense/DPR|DPR]]
+- **Machine Learning** — [[machine_learning/machine learning|machine learning]], [[machine_learning/deep Learning|deep learning]], [[machine_learning/generative_ai/LLM/Large Language Model|large language model]]
+- **Recommendation** — [[recommendation_system/Recommendation System|recommendation system]], [[recommendation_system/collaborative filtering|collaborative filtering]], [[recommendation_system/sequential recommendation|sequential recommendation]]
+- **Papers** — [[papers/language_model|language model]], [[papers/recommender_system|recommender system]], [[papers/e-commerce|e-commerce]]
+- **Statistics** — [[statistic/Probability|probability]], [[statistic/Bayesian|bayesian]], [[statistic/hypothesis test|hypothesis test]]
+- **Systems** — [[data_engineering/Kafka|Kafka]], [[server/Docker|Docker]], [[K8s/Kubernetes|Kubernetes]]
+- **Resume** — [[resume|resume]]

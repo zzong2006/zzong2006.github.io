@@ -12,7 +12,7 @@ KL-Divergence(Kullback-Leibler Divergence)는 두 확률분포가 얼마나 다�
 
 - 두 분포가 같으면 0, 다르면 항상 양수다
 - **비대칭이다** — $D_{KL}(P\|Q) \neq D_{KL}(Q\|P)$. 그래서 거리(distance)가 아니라 divergence라 부른다
-- 이 비대칭이 장식이 아니라 실전에서 중요하다. 어느 방향을 최소화하느냐에 따라 학습되는 모델의 성격이 완전히 달라진다 ([[#C) Forward KL vs. Reverse KL|C섹션]])
+- 이 비대칭이 장식이 아니라 실전에서 중요하다. 어느 방향을 최소화하느냐에 따라 학습되는 모델의 성격이 완전히 달라진다 ([[#Forward KL vs. Reverse KL|C섹션]])
 
 머신러닝에서 KL이 어디에나 나오는 이유는 하나다 — **모델 학습이 곧 "모델 분포를 데이터 분포에 가깝게 만드는 일"**이고, 그 "가깝게"를 재는 기본 자가 KL이기 때문이다. MLE, cross-entropy loss, 지식 증류, RLHF의 KL penalty가 전부 이 한 줄의 변주다.
 
@@ -67,7 +67,7 @@ $$
 
 이 벌점을 피하려면 $Q$는 $P$가 나타나는 모든 영역(mode)에 조금씩이라도 확률을 깔아 둬야 한다 → **mode-covering** (zero-avoiding). 대신 용량이 부족하면 여러 mode를 한 분포로 억지로 덮느라 mode 사이의 빈 공간까지 확률이 새고, 그림처럼 분포가 넓게 뭉개진다(mean-seeking).
 
-MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문. 유도는 [[#D) KL과 MLE의 관계|D섹션]] 참고.
+MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문. 유도는 [[#KL과 MLE의 관계|D섹션]] 참고.
 
 ## C.2) Reverse KL — $D_{KL}(Q\|P)$: mode-seeking
 
