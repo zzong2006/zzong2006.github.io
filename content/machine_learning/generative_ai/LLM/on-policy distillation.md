@@ -94,7 +94,7 @@ $$
 절차는 세 단계다.
 
 1. 학생이 프롬프트에 대해 응답을 직접 샘플링한다 (rollout)
-2. 그 문장을 교사에 통째로 한 번 넣어 각 위치의 교사 분포를 얻는다 (teacher forcing)
+2. 그 문장을 교사에 통째로 한 번 넣어 각 위치의 교사 분포를 얻는다 (생성이 아니라 이미 있는 문장을 읽히는 것이라 forward 한 번이면 된다)
 3. 두 분포의 토큰별 KL을 줄이도록 학생을 업데이트한다
 
 ```mermaid
@@ -132,7 +132,9 @@ $$
 
 토큰별 log-ratio $\log \pi_T(y_t \mid y_{<t}) - \log \pi_\theta(y_t \mid y_{<t})$ 를 reward로 보면, on-policy distillation은 **교사를 reward model로 쓰는 KL-constrained RL의 특수 케이스** 로 정확히 떨어진다. [[GRPO]]가 응답 하나에 스칼라 하나를 받는 것과 대비하면 신호 밀도가 응답 길이만큼 차이 난다.
 
-실무적으로 중요한 건 credit assignment다. 3천 토큰짜리 추론에서 GRPO는 "이 답은 틀렸다" 한 마디만 주므로 어느 스텝이 문제였는지 모델이 스스로 알아내야 한다. On-policy distillation은 어긋난 그 토큰에 바로 벌점이 꽂힌다. RL보다 훨씬 적은 스텝으로 수렴하는 이유가 대부분 여기서 나온다.
+차이는 credit assignment에서 벌어진다. 응답 하나에 보상 하나를 받았을 때 그 공과 책임을 수천 개 토큰 중 어디에 돌릴지 정하는 문제다.
+
+3천 토큰짜리 추론에서 GRPO가 주는 건 "이 답은 틀렸다" 한 마디뿐이라, 어느 토큰이 범인이었는지는 모델이 스스로 찾아야 한다. 같은 실수를 여러 번 반복해서 뽑아봐야 통계적으로 범인이 드러난다. on-policy distillation은 어긋난 그 토큰에 바로 벌점이 꽂히니 찾을 일이 없다. RL보다 훨씬 적은 스텝으로 수렴하는 이유가 대부분 여기서 나온다.
 
 비용 구조도 다르다. 교사는 학생 rollout을 **읽기만** 하므로 생성 없이 forward 한 번이면 끝난다. 느린 디코딩으로 교사 데이터를 미리 뽑아야 하는 off-policy 쪽보다 스텝당 교사 비용이 싸다.
 
@@ -196,7 +198,9 @@ RL이 70 스텝 걸린 지점을 on-policy distillation은 10 스텝 안에 통�
 
 ## F.1) 도메인 학습 후 망가진 행동 복구
 
-덜 알려졌지만 실무에서 더 자주 쓸 만한 용도다. 사내 문서로 mid-training을 하면 지식은 늘지만 instruction following이 깎이는 [[catastrophic forgetting]]이 생긴다.
+덜 알려졌지만 실무에서 더 자주 쓸 만한 용도다. mid-training은 사전학습이 끝난 모델에 특정 도메인 데이터를 더 먹여 지식을 넣는 단계를 말한다. 사내 문서로 이걸 하면 지식은 늘지만 instruction following이 깎이는 [[catastrophic forgetting]]이 생긴다.
+
+IF-eval은 "세 문장으로 답하라", "JSON으로만 출력하라" 같은 지시를 모델이 실제로 지키는지 재는 벤치마크다.
 
 ![mid-training 중 데이터 배합별 IF-eval 점수 하락 곡선](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-midtrain-if-eval.svg)
 
@@ -240,7 +244,7 @@ cold start SFT의 목적이 바로 이 루프의 출발점, 즉 **초기 overlap
 실전 레시피로는 이렇게 정리된다.
 
 1. **Off-policy cold start를 먼저 깐다.** 교사 rollout으로 SFT를 조금 돌려 사고 패턴 간극을 좁히면 초기 overlap이 올라가고 최종 천장도 높아진다
-2. **프롬프트를 교사 post-training 분포에만 맞추지 않는다.** 정렬은 빨라지지만 entropy collapse 위험이 있어 OOD 프롬프트를 섞는다
+2. **프롬프트를 교사 post-training 분포에만 맞추지 않는다.** 정렬은 빨라지지만 entropy collapse 위험이 있어 교사가 학습하지 않은 분포의 프롬프트를 섞는다
 3. **응답 길이 3–7K 토큰이 안정 구간.** 더 길어지면 뒷부분부터 토큰 reward 품질이 무너진다
 4. **Top-1 대신 sampled token으로 KL을 계산한다.** Top-1은 mode 집중 때문에 불안정하다
 
@@ -248,7 +252,7 @@ cold start SFT의 목적이 바로 이 루프의 출발점, 즉 **초기 overlap
 
 on-policy 학습에서 이게 특히 문제인 이유는 학습 데이터를 학생 자신이 만들기 때문이다. 분포가 좁아지면 rollout이 매번 비슷한 문장으로 나오고, 새로 방문하는 상태가 없으니 배울 것도 같이 마른다. 스스로 탐색을 끊는 셈이다.
 
-reverse KL이 원래 mode-seeking이라 분포를 좁히는 쪽으로 압력을 준다. 여기에 교사가 학습했던 프롬프트만 먹이면 학생이 이미 잘하는 좁은 영역만 반복하게 되어 압력이 과해진다. OOD 프롬프트를 섞는 건 그 압력을 상쇄하려는 것이다.
+reverse KL이 원래 mode-seeking이라 분포를 좁히는 쪽으로 압력을 준다. 여기에 교사가 학습했던 프롬프트만 먹이면 학생이 이미 잘하는 좁은 영역만 반복하게 되어 압력이 과해진다. 교사 학습 분포 밖의 프롬프트를 섞는 건 그 압력을 상쇄하려는 것이다.
 
 # H) LLM 밖에서도 되나
 
