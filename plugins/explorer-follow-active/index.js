@@ -116,101 +116,116 @@ function buildScript(options) {
     return Boolean(item.querySelector(":scope > .folder-container"));
   }
 
-  // 폴더 라벨의 실제 요소. 폴더 페이지가 있으면 a, 없으면 접기 button 이다.
-  function labelElementOf(container) {
-    return container.querySelector(":scope > div > a, :scope > div > button");
+  function folderLabelOf(li) {
+    const container = li.querySelector(":scope > .folder-container");
+    return container ? (container.textContent || "").trim() : "";
   }
 
-  // machine_learning > generative_ai > LLM 처럼 자식이 하나뿐인 폴더 사슬을 한 줄로 합친다.
-  // 부모의 li / .folder-container / .folder-outer 는 그대로 남긴다. 정렬이 쓰는
-  // data-folderpath 와 labelOf 의 첫 .folder-title 이 부모 쪽에 있기 때문이다.
-  function compactChainAt(li) {
-    if (li.dataset.chainCompacted === "1") return;
+  // ── 현재 섹션만 보여주기 ─────────────────────────────────────────
+  // 이 vault 는 폴더 65개 중 자식이 하나뿐인 폴더가 0개다. machine_learning 의
+  // 직계 자식은 204개(폴더 5 + 파일 199)이고 root 는 34개다. 전체 트리를 펼쳐
+  // 보여주는 방식은 이 규모에서 조망 수단이 못 된다. 활성 노트가 속한 폴더의
+  // 형제만 남기고, 조상은 위에 경로 한 줄로 접는다.
+  //
+  // 조상 체인 "밖의" 가지만 숨긴다. 활성 폴더 안쪽은 건드리지 않으므로
+  // inference 같은 하위 폴더를 펼쳐도 정상으로 보인다.
 
-    const container = li.querySelector(":scope > .folder-container");
-    const outer = li.querySelector(":scope > .folder-outer");
-    if (!container || !outer) return;
+  function clearSectionView(explorer) {
+    for (const node of explorer.querySelectorAll("[data-sv]")) {
+      node.removeAttribute("data-sv");
+    }
+    explorer.removeAttribute("data-section-view");
+    const previous = explorer.querySelector(".explorer-crumb");
+    if (previous) previous.remove();
+  }
 
-    const holder = container.querySelector(":scope > div");
-    if (!holder) return;
-
-    const segments = [];
-    let list = outer.querySelector(":scope > ul");
-
+  function ancestorChainOf(activeLi) {
+    const chain = [];
+    let list = activeLi.parentElement;
     while (list) {
-      const kids = Array.from(list.children).filter(
-        (node) => !node.classList.contains("overflow-end"),
-      );
-      if (kids.length !== 1) break;
-
-      const childLi = kids[0];
-      const childContainer = childLi.querySelector(":scope > .folder-container");
-      const childOuter = childLi.querySelector(":scope > .folder-outer");
-      if (!childContainer || !childOuter) break; // 파일 하나뿐이면 합치지 않는다
-
-      const childList = childOuter.querySelector(":scope > ul");
-      if (!childList) break;
-
-      segments.push({
-        element: labelElementOf(childContainer),
-        text: (childContainer.textContent || "").trim(),
-      });
-
-      // 손자들을 부모 목록으로 끌어올린다. 목록 전체를 replaceChildren 하면
-      // Quartz 의 .overflow-end 마커("더 보기" 장치)까지 지워지므로 해당 li 만 바꾼다.
-      childLi.replaceWith.apply(childLi, Array.from(childList.children));
+      const outer = list.closest(".folder-outer");
+      if (!outer) break;
+      const li = outer.parentElement;
+      if (!li || li.tagName !== "LI") break;
+      chain.unshift(li);
+      list = li.parentElement;
     }
+    return chain;
+  }
 
-    if (segments.length === 0) return;
+  function buildCrumb(explorer, chain) {
+    const crumb = document.createElement("nav");
+    crumb.className = "explorer-crumb";
+    crumb.setAttribute("aria-label", "현재 위치");
 
-    for (const segment of segments) {
-      const separator = document.createElement("span");
-      separator.className = "folder-chain-sep";
-      separator.textContent = "/";
-      holder.appendChild(separator);
-
-      // 링크는 살려서 옮긴다. 접기 button 이었다면 그 button 이 토글하던 폴더는
-      // 방금 사라졌으므로 평문으로 바꾼다.
-      if (segment.element && segment.element.tagName === "A") {
-        holder.appendChild(segment.element);
-      } else {
-        const plain = document.createElement("span");
-        plain.className = "folder-chain-text";
-        plain.textContent = segment.text;
-        holder.appendChild(plain);
+    for (let index = 0; index < chain.length; index += 1) {
+      if (index > 0) {
+        const separator = document.createElement("span");
+        separator.className = "explorer-crumb-sep";
+        separator.textContent = "/";
+        crumb.appendChild(separator);
       }
+
+      const li = chain[index];
+      const isLast = index === chain.length - 1;
+      const container = li.querySelector(":scope > .folder-container");
+      const source = container
+        ? container.querySelector(":scope > div > a")
+        : null;
+
+      let node;
+      if (source && !isLast) {
+        // 폴더 페이지가 있으면 링크를 살린다. href 를 새로 만들지 않고 복제한다.
+        node = source.cloneNode(true);
+        node.className = "explorer-crumb-link";
+      } else {
+        node = document.createElement("span");
+        node.className = isLast ? "explorer-crumb-current" : "explorer-crumb-text";
+        node.textContent = folderLabelOf(li);
+      }
+      crumb.appendChild(node);
     }
 
-    // 마지막 세그먼트가 실제로 열리는 폴더다. 앞쪽은 경로 표시이므로 약하게 둔다.
-    const parts = Array.from(holder.children).filter(
-      (node) => !node.classList.contains("folder-chain-sep"),
-    );
-    for (let index = 0; index < parts.length; index += 1) {
-      parts[index].classList.toggle("folder-chain-lead", index < parts.length - 1);
+    const content = explorer.querySelector(".explorer-content");
+    if (content) content.insertBefore(crumb, content.firstChild);
+  }
+
+  function applySectionView(explorer, activeLink) {
+    clearSectionView(explorer);
+
+    const root = explorer.querySelector("ul.explorer-ul");
+    if (!root || !activeLink) return; // 폴더 페이지 / 인덱스에서는 트리를 그대로 둔다
+
+    const activeLi = activeLink.closest("li");
+    if (!activeLi) return;
+
+    const chain = ancestorChainOf(activeLi);
+    if (chain.length === 0) return; // 루트 직속 노트면 접을 조상이 없다
+
+    let list = root;
+    for (const ancestor of chain) {
+      for (const li of Array.from(list.children)) {
+        if (li.classList.contains("overflow-end")) continue;
+        if (li !== ancestor) li.setAttribute("data-sv", "hidden");
+      }
+      ancestor.setAttribute("data-sv", "ancestor");
+
+      const outer = ancestor.querySelector(":scope > .folder-outer");
+      list = outer ? outer.querySelector(":scope > ul") : null;
+      if (!list) break;
     }
 
-    container.setAttribute("data-chain", String(segments.length + 1));
-    li.dataset.chainCompacted = "1";
+    explorer.setAttribute("data-section-view", "1");
+    buildCrumb(explorer, chain);
   }
 
   // 밑줄은 저자에게는 경로지만 독자에게는 잡음이다. 공백으로만 바꾼다.
   // 대문자화는 LLM, DPO 같은 약어를 망치므로 하지 않는다.
   function tidyFolderLabels(explorer) {
-    for (const label of explorer.querySelectorAll(".folder-title, .folder-chain-text")) {
+    for (const label of explorer.querySelectorAll(".folder-title")) {
       const text = label.textContent || "";
       if (text.indexOf("_") === -1) continue; // 이미 처리됨 - 멱등
       label.textContent = text.replace(/_+/g, " ");
-    }
-  }
-
-  function compactFolderChains(list) {
-    if (!list) return;
-    for (const li of Array.from(list.children)) {
-      if (li.classList.contains("overflow-end")) continue;
-      compactChainAt(li);
-      const outer = li.querySelector(":scope > .folder-outer");
-      const nested = outer && outer.querySelector(":scope > ul");
-      if (nested) compactFolderChains(nested);
     }
   }
 
@@ -290,15 +305,19 @@ function buildScript(options) {
     neutralizeDesktopToggle();
 
     for (const explorer of explorers) {
-      // 압축이 목록 구조를 바꾸므로 정렬보다 먼저 돌린다.
-      compactFolderChains(explorer.querySelector("ul.explorer-ul"));
       tidyFolderLabels(explorer);
       sortExplorer(explorer, dates);
+      // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
+      // 남지 않도록 continue 하기 전에 먼저 지운다.
+      clearSectionView(explorer);
       const active = findActiveLink(explorer);
       if (!active) continue;
 
       foundActive = true;
       openActiveAncestors(active);
+      // 조상이 열린 뒤에 접어야 한다. 매 실행마다 이전 표시를 지우고 다시 계산하므로
+      // SPA 로 다른 노트로 이동해도 섹션이 따라온다.
+      applySectionView(explorer, active);
       requestAnimationFrame(() => {
         active.scrollIntoView({ block: "nearest", inline: "nearest" });
       });
