@@ -1,7 +1,7 @@
 ---
 title: "Generalized Knowledge Distillation"
 tags: ["LLM", "distillation"]
-aliases: ["GKD", "Generalized Knowledge Distillation", "on-policy distillation"]
+aliases: ["GKD", "Generalized Knowledge Distillation"]
 ---
 
 # A) 한줄 요약
@@ -15,6 +15,8 @@ GKD(Generalized Knowledge Distillation, Google DeepMind 2023)는 autoregressive 
 문제는 학습 내내 학생이 남이 쓴 완벽한 문장 위에서만 다음 토큰을 연습한다는 것. 실전(추론)에서는 자기가 생성한 문장 위에서 이어가야 하는데, 앞에서 이상한 토큰을 하나 뱉으면 그 이후는 학습 때 본 적 없는 분포가 되고 실수가 복리로 쌓인다(exposure bias). 운전 교본만 읽고 도로에 나온 상황.
 
 # C) GKD의 on-policy 피드백
+
+이 절이 설명하는 학습 구도 자체를 요즘은 [[on-policy distillation]]이라 부르고, Qwen3·GLM 같은 실제 post-training 파이프라인에 들어가 있다. 비용 수치와 실패 모드는 그 노트에 정리해뒀다.
 
 여기서 "피드백"은 사람이나 judge의 평가가 아니라 교사의 토큰별 확률분포를 뜻한다.
 
