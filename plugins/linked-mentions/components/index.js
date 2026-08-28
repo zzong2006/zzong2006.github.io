@@ -91,8 +91,19 @@ function simplifyLatex(value) {
     .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1/$2")
     .replace(/\\(?:left|right|displaystyle|limits|top)\b/g, " ")
     .replace(/\\([A-Za-z]+)(?=[^A-Za-z]|$)/g, (_, name) => latexSymbols.get(name) ?? " ")
-    .replace(/_\{?([A-Za-z0-9]+)\}?/g, (_, value) => scriptText(value, subscriptMap))
-    .replace(/\^\{?([A-Za-z0-9+=-]+)\}?/g, (_, value) => scriptText(value, superscriptMap))
+    // 밑변이 한 글자일 때만 첨자로 바꾼다. 실제 LaTeX 는 q_i, k_1, D_{KL} 처럼 쓰기
+    // 때문이다. 이 조건이 없으면 batch_size 가 batchsᵢze 로,
+    // gradient_accumulation_steps 가 gradientaccumulatᵢoₙsteps 로 바뀐다.
+    // stripMath 는 펜스 코드블록만 지우고, 이 단계에서는 백틱이 이미 사라진 뒤라서
+    // 코드였는지 알 방법이 없다. 그래서 모양으로 가른다.
+    .replace(
+      /(^|[^A-Za-z0-9])([A-Za-z0-9])_\{?([A-Za-z0-9]+)\}?/g,
+      (_, before, base, value) => before + base + scriptText(value, subscriptMap),
+    )
+    .replace(
+      /(^|[^A-Za-z0-9])([A-Za-z0-9])\^\{?([A-Za-z0-9+=-]+)\}?/g,
+      (_, before, base, value) => before + base + scriptText(value, superscriptMap),
+    )
     .replace(/\\\\/g, " ")
     .replace(/[{}]/g, "")
 }
@@ -121,34 +132,21 @@ function isMathHeavyLine(value) {
   )
 }
 
-// 인라인 코드 스팬은 LaTeX 가 아니다. 그런데 stripMath 는 펜스 코드블록만 지우고
-// 인라인 스팬은 남기므로, simplifyLatex 의 `_` -> 첨자 변환이 식별자를 망친다.
-// (`batch_size` -> batchsize, `gradient_accumulation_steps` -> gradientaccumulationsteps,
-//  각각 i / o / n 이 유니코드 첨자로 치환된 형태) 백틱 제거는 그 뒤라 이미 늦다.
-// 그래서 먼저 자리표시자로 빼두고 체인이 끝난 뒤 되돌린다.
-//
-// 센티널은 영숫자만 쓴다. 이 함수가 지우는 문자(백틱 * _ ~ > # { } 연속 하이픈, 공백)를
-// 하나도 포함하지 않으므로 치환 체인을 그대로 통과한다.
-const codeSpanPattern = /QZCODE(\d+)QZ/g
-
 function cleanText(value) {
-  const codeSpans = []
-  const guarded = String(value ?? "").replace(
-    /`+([^`\n]+)`+/g,
-    (_, code) => `QZCODE${codeSpans.push(code) - 1}QZ`,
-  )
-
-  return simplifyLatex(stripMath(guarded))
+  return simplifyLatex(stripMath(value))
     .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias ?? target)
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)*\|?\s*$/gm, " ")
-    .replace(/[`*_~>#]+/g, " ")
+    .replace(/[`*~>#]+/g, " ")
+    // 밑줄은 단어 경계에서만 지운다. 마크다운 강조는 _word_ 형태이므로 경계만
+    // 다듬으면 충분하고, batch_size 같은 snake_case 식별자는 그대로 살아남는다.
+    .replace(/(^|\s)_+/g, "$1")
+    .replace(/_+(?=\s|$)/g, "")
     .replace(/-{2,}/g, " ")
     .replace(/\s+([,.;:)])/g, "$1")
     .replace(/([(])\s+/g, "$1")
     .replace(/\s+/g, " ")
-    .replace(codeSpanPattern, (_, index) => codeSpans[Number(index)] ?? "")
     .trim()
 }
 
