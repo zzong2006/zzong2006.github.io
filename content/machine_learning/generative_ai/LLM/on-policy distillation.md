@@ -19,7 +19,11 @@ On-policy distillation은 **학생이 직접 생성한 문장 위에서, 교사�
 
 여기서 감독 신호(supervision signal)는 [[supervised learning]]의 label만 가리키는 게 아니다. 파라미터를 업데이트할 때 모델이 받는 정답·평가 정보를 통틀어 부르는 말이라, RL의 reward 스칼라도 감독 신호다. 어원만 겹칠 뿐 "supervised learning이냐"와는 다른 질문이다.
 
-밀도 차이는 한 스텝에 실리는 정보량으로 보면 분명하다. RL의 outcome reward는 응답 하나에 실수 하나이고, SFT는 토큰마다 vocabulary에서 정답 하나를 지목하며, 증류의 교사 분포는 토큰마다 vocabulary 전체에 대한 확률을 통째로 준다. "정답은 빠르게"와 "빠르게 40% / 신속히 35% / 즉시 20%"의 차이다. 뒤쪽이 선택지 간 우열까지 담고 있어 같은 한 스텝에서 훨씬 많이 배운다.
+밀도 차이는 한 스텝에 실리는 정보량으로 보면 분명하다. RL의 outcome reward는 응답 하나에 실수 하나이고, SFT는 토큰마다 vocabulary에서 정답 하나를 지목하며, 증류의 교사 분포는 토큰마다 vocabulary 전체에 대한 확률을 통째로 준다.
+
+여기서 교사 분포란 **그 위치에서 다음 토큰이 무엇일지에 대한 교사의 확률분포**, 즉 [[softmax function|softmax]] 출력 전체를 말한다. 어떤 자리에서 SFT가 주는 신호는 "정답은 `빠르게`" 하나뿐인 one-hot이라, 나머지 vocabulary는 전부 똑같은 무게의 오답이다. 반면 교사는 `빠르게` 0.40 / `신속히` 0.35 / `즉시` 0.20처럼 매기므로 "`신속히` 도 거의 맞다"와 "`사과` 는 말이 안 된다"가 구분된다.
+
+오답들 사이의 이 우열이 Hinton이 dark knowledge라 부른 부분이고, 같은 한 스텝에서 더 많이 배우는 이유다.
 
 첫 번째 축의 on/off-policy는 RL에서 그대로 가져온 말이다. 데이터를 만든 policy(behavior policy)와 지금 파라미터를 업데이트하는 policy(target policy)가 같으면 on-policy, 다르면 off-policy다.
 
