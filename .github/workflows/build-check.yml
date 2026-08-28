@@ -1,0 +1,150 @@
+name: Build check
+
+# main 이 아닌 브랜치와 PR 에서 Quartz 빌드만 돌린다. 배포는 하지 않는다.
+#
+# deploy.yml 은 push:main / workflow_dispatch 로만 돌고 곧바로 Pages 에 배포하므로
+# 검증용으로 쓸 수 없다. 이 워크플로는 deploy.yml 의 build job 을 그대로 복제하되
+# pages 권한과 upload-pages-artifact / deploy-pages 단계를 뺐다.
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# 배포에 필요한 pages: write / id-token: write 를 주지 않는다.
+permissions:
+  contents: read
+
+concurrency:
+  # deploy.yml 의 'pages' 그룹과 겹치지 않게 분리한다.
+  group: build-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Cache Quartz plugins
+        uses: actions/cache@v5
+        with:
+          path: .quartz/plugins
+          key: ${{ runner.os }}-plugins-${{ hashFiles('quartz.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-plugins-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Quartz plugins
+        run: node quartz/bootstrap-cli.mjs plugin install --from-config
+
+      - name: Patch search tokenizer
+        run: npm run patch-search
+
+      - name: Normalize Obsidian frontmatter
+        run: npm run normalize-frontmatter
+
+      # GEMINI_API_KEY 없이도 heuristic scoring 으로 degrade 한다(scripts/build-related-notes.mjs).
+      # 검증 목적이므로 secret 을 주지 않는다.
+      - name: Build related notes
+        run: npm run build-related-notes
+
+      - name: Build Quartz
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: node quartz/bootstrap-cli.mjs build --concurrency=2
+
+      # 빌드가 통과했다는 것만으로는 CSS 가 의도대로 나왔는지 알 수 없다.
+      # custom.scss 가 참조하는 로컬 에셋이 실제로 public/ 에 있는지 확인한다.
+      # 폰트 경로 오타는 빌드를 깨지 않고 조용히 폴백되기 때문이다.
+      - name: Verify local assets referenced by custom.scss
+        run: |
+          missing=0
+          refs=$(grep -oE '/static/[A-Za-z0-9._/-]+\.(woff2|woff|ttf|otf)' quartz/styles/custom.scss | sort -u)
+          if [ -z "$refs" ]; then
+            echo "custom.scss 에서 참조하는 로컬 폰트 없음 — 건너뜀"
+            exit 0
+          fi
+          for ref in $refs; do
+            if [ -f "public$ref" ]; then
+              printf 'ok       public%s (%s bytes)\n' "$ref" "$(stat -c%s "public$ref")"
+            else
+              printf 'MISSING  public%s\n' "$ref"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - name: Verify custom.scss compiled into the emitted stylesheet
+        run: |
+          # Quartz 는 스타일시트를 여러 개 뱉는다(index.css + component-*.css).
+          # 하나만 골라 검사하면 엉뚱한 파일을 볼 수 있으므로 전부를 대상으로 한다.
+          mapfile -t cssfiles < <(find public -maxdepth 1 -name '*.css' | sort)
+          if [ "${#cssfiles[@]}" -eq 0 ]; then
+            echo "public/ 에 스타일시트가 없다"
+            exit 1
+          fi
+          echo "검사 대상 ${#cssfiles[@]}개:"
+          for c in "${cssfiles[@]}"; do
+            printf '  %-40s %s bytes\n' "$c" "$(stat -c%s "$c")"
+          done
+          echo
+
+          missing=0
+          check() {
+            # $1 = 찾을 문자열, $2 = 사람이 읽을 설명
+            hit=$(grep -lF "$1" "${cssfiles[@]}" | head -1)
+            if [ -n "$hit" ]; then
+              printf 'ok       %-28s <- %s\n' "$1" "$hit"
+            else
+              printf 'MISSING  %-28s (%s)\n' "$1" "$2"
+              missing=1
+            fi
+          }
+
+          # custom.scss 의 @font-face family 이름이 컴파일 결과에 살아있는지.
+          while read -r fam; do
+            [ -n "$fam" ] && check "$fam" "@font-face 가 컴파일되지 않았다"
+          done < <(grep -oE 'font-family:[[:space:]]*"[^"]+"' quartz/styles/custom.scss \
+                     | grep -oE '"[^"]+"' | tr -d '"' | sort -u)
+
+          # 이번 변경의 핵심 값들이 실제로 나왔는지.
+          check "/static/fonts/Pretendard-Regular.subset.woff2" "@font-face src 경로가 없다"
+          check "44rem" "본문 측정폭 규칙이 없다"
+
+          exit $missing
+
+      - name: Summary
+        run: |
+          {
+            echo "### Build check 통과"
+            echo
+            echo "| 항목 | 값 |"
+            echo "| --- | --- |"
+            echo "| 페이지 | $(find public -name '*.html' | wc -l) |"
+            echo "| public/ 크기 | $(du -sh public | cut -f1) |"
+            echo "| 폰트 | $(find public/static/fonts -type f 2>/dev/null | wc -l) 개 |"
+            echo
+            echo "배포는 하지 않았다. main 에 머지하면 \`deploy.yml\` 이 배포한다."
+          } >> "$GITHUB_STEP_SUMMARY"
