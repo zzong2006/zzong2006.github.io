@@ -1,7 +1,8 @@
 ---
 title: "basis"
-tags: ["linear_algebra"]
 aliases: ["기저"]
+tags:
+  - linear_algebra
 ---
 
 # A) Basis ?
@@ -81,6 +82,8 @@ $$
 이를 $B$ 에 대한 basis로 정의한다면, 다음과 같은 새로운 대각 변환 행렬을 얻을 수 있다.
 
 $$
-\tilde{A}=\left[\begin{array}{ll}3 & 0 \\ 0 & 1\end{array}\right]$$
+\tilde{A}=\left[\begin{array}{ll}3 & 0 \\ 0 & 1\end{array}\right]
+$$
+
 이는 $A$ 보다 훨씬 작업하기가 쉬운 형태다.
 # D) References

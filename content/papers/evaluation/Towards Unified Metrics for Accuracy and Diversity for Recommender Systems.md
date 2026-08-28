@@ -1,6 +1,11 @@
 ---
 title: "Towards Unified Metrics for Accuracy and Diversity for Recommender Systems"
-tags: ["RecSyS", "evaluation", "paper_review", "y2021"]
+aliases: []
+tags:
+  - RecSyS
+  - evaluation
+  - paper_review
+  - y2021
 ---
 
 # Abstract
@@ -214,7 +219,8 @@ $$
 
 직관적으로 유저들은 맘에 들지 않는다고 표현한 아이템보다는 선호하는 aspect 이지만 아직 확인하지 않은 (non-rated) 아이템을 상위 추천 결과에 올리는게 더 나은 추천 품질을 보인다.
 
-$$r_{u, j}=0, \nexists r_{u, j^{\prime}}, \exists a_{\phi} \in j^{\prime} \mid s\left(u, a_{\phi}\right)<1 \Longrightarrow Q\left(\vec{i}_{j \leftrightarrow j^{\prime}}\right)>Q(\vec{i})
+$$
+r_{u, j}=0, \nexists r_{u, j^{\prime}}, \exists a_{\phi} \in j^{\prime} \mid s\left(u, a_{\phi}\right)<1 \Longrightarrow Q\left(\vec{i}_{j \leftrightarrow j^{\prime}}\right)>Q(\vec{i})
 $$
 
 # Evaluation Metric

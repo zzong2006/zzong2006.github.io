@@ -1,7 +1,8 @@
 ---
 title: "Batch Normalization"
-tags: ["deep_learning"]
 aliases: ["BN"]
+tags:
+  - deep_learning
 ---
 
 # A) Batch Normalization ?
@@ -24,7 +25,9 @@ $$
 \begin{gathered}
 \mu=\frac{1}{n} \sum x_{i} \\
 \sigma^{2}=\frac{1}{n} \sum\left(x_{i}-\mu\right)^{2}
-\end{gathered}$$
+\end{gathered}
+$$
+
 학습 과정에서 $\gamma$ 와 $\beta$는 [[gradient descent]]를 통해 신경망의 다른 파라매터와 함께 천천히 학습된다. Test 과정에서는 이미지를 배치로 받지 않기 때문에 mean과 variance 를 위와 같이 계산할 수 없다. 대신, [[exponential moving average]]를 활용하여 $\hat{\mu}$ 와 $\hat{\sigma}^{2}$ 로 근사시킨다.
 
 # C) References

@@ -1,6 +1,10 @@
 ---
 title: "Dijkstra algorithm"
-tags: ["algorithm", "graph"]
+aliases: []
+tags:
+  - algorithm
+  - graph
+draft: true
 ---
 
 # A) Dijkstra Algorithm ?

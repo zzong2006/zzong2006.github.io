@@ -1,7 +1,8 @@
 ---
 title: "MapReduce"
-tags: ["hadoop"]
+tags: hadoop
 aliases: ["맵리듀스"]
+draft: true
 ---
 
 # A) MapReduce ?

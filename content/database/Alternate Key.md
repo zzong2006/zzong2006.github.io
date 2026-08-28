@@ -1,7 +1,9 @@
 ---
 title: "Alternate Key"
-tags: ["database"]
 aliases: ["대체키"]
+tags:
+  - database
+draft: true
 ---
 
 # A) Alternate Key ?

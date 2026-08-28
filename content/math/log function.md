@@ -1,7 +1,8 @@
 ---
 title: "log function"
-tags: ["math"]
-aliases: ["log"]
+tags: math
+aliases: log
+draft: true
 ---
 # 1. log function ?
 

@@ -1,6 +1,8 @@
 ---
 title: "n-gram"
-tags: ["NLP"]
+tags: NLP
+aliases: []
+draft: true
 ---
 
 # A) N-gram ?

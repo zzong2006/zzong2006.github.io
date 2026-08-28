@@ -1,7 +1,11 @@
 ---
 title: "missing not at random"
-tags: ["recommendation_system", "machine_learning", "bias"]
 aliases: ["MNAR"]
+tags:
+  - recommendation_system
+  - machine_learning
+  - bias
+draft: true
 ---
 
 # A) MNAR ?

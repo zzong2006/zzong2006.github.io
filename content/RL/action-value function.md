@@ -1,6 +1,7 @@
 ---
 title: "action-value function"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
 aliases: ["q-value function", "q-value"]
 ---
 
@@ -18,7 +19,8 @@ $$
 &= E_{\pi}\left[\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1} \mid S_{t}=s, A_{t}=a\right] \\
 &= E\left[R_{t+1}+\gamma v_{\pi}\left(s^{\prime}\right) \mid S_{t}=s, A_{t}=a\right] \\
 &= \sum_{s^{\prime}, r} p\left(s^{\prime}, r \mid s, a\right)\left[r+\gamma v_{\pi}\left(s^{\prime}\right)\right]
-\end{aligned}$$
+\end{aligned}
+$$
 
 마지막 [[Bellman Equation]]에서 $v_\pi(s')$ 는 state $s'$ 에 대한 [[state-value function]]을 의미한다.
 

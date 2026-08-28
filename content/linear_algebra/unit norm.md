@@ -1,4 +1,0 @@
----
-title: "unit norm"
----
-* 

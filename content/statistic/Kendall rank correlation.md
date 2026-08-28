@@ -1,6 +1,8 @@
 ---
 title: "Kendall rank correlation"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # Kendall Rank Correlation ?
@@ -15,7 +17,9 @@ $$
 \tau=\frac{(\text { number of concordant pairs })-(\text { number of discordant pairs })}{\left(\begin{array}{l}
 n \\
 2
-\end{array}\right)}$$
+\end{array}\right)}
+$$
+
 여기서 분모 $\left(\begin{array}{l}n \\ 2\end{array}\right)=\frac{n(n-1)}{2}$ 는 binomial 계수로, $n$ 개의 아이템에서 2개를 선택하는 방법의 수를 계산한 것이다.
 
 ## 예시

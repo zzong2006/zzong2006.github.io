@@ -1,6 +1,9 @@
 ---
 title: "tractable"
-tags: ["word"]
+tags:
+  - word
+aliases: []
+draft: true
 ---
 
 # A) Tractable ?

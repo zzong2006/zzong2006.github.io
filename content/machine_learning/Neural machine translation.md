@@ -1,7 +1,8 @@
 ---
 title: "Neural machine translation"
-tags: ["NLP"]
+tags: NLP
 aliases: ["NMT"]
+draft: true
 ---
 
 # Neural Machine Translation ?

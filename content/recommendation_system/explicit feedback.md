@@ -1,6 +1,9 @@
 ---
 title: "explicit feedback"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
+draft: true
 ---
 
 # A) Explicit Feedback ?

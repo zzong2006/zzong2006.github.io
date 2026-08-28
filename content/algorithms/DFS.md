@@ -1,6 +1,10 @@
 ---
 title: "DFS"
-tags: ["algorithm", "graph"]
+aliases: []
+tags:
+  - algorithm
+  - graph
+draft: true
 ---
 
 # DFS ?

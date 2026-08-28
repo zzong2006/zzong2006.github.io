@@ -1,6 +1,11 @@
 ---
 title: "AlexNet"
-tags: ["CNN", "image", "deep_learning"]
+tags:
+  - CNN
+  - image
+  - deep_learning
+aliases:
+draft: true
 ---
 # A) AlexNet ?
 

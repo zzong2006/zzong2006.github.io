@@ -1,6 +1,10 @@
 ---
 title: "latent variable"
-tags: ["machine_learning", "variable"]
+tags:
+  - machine_learning
+  - variable
+aliases: []
+draft: true
 ---
 
 # A) Latent Variable ?

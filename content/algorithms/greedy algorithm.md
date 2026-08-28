@@ -1,7 +1,9 @@
 ---
 title: "greedy algorithm"
-tags: ["algorithm"]
 aliases: ["greedy"]
+tags:
+  - algorithm
+draft: true
 ---
 
 # A) Greedy Algorithm ?

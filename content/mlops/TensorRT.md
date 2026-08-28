@@ -1,6 +1,9 @@
 ---
 title: "TensorRT"
-tags: ["nvidia"]
+tags:
+  - nvidia
+aliases: []
+draft: true
 ---
 
 # A) TensorRT ?

@@ -1,6 +1,7 @@
 ---
 title: "linear mapping"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["linear map"]
 ---
 
@@ -12,7 +13,9 @@ $$
 \begin{aligned}
 \Phi(\boldsymbol{x}+\boldsymbol{y}) &=\Phi(\boldsymbol{x})+\Phi(\boldsymbol{y}) \\
 \Phi(\lambda \boldsymbol{x}) &=\lambda \Phi(\boldsymbol{x})
-\end{aligned}$$
+\end{aligned}
+$$
+
 즉, mapping이 $\forall \boldsymbol{x}, \boldsymbol{y} \in V \forall \lambda, \psi \in \mathbb{R}: \Phi(\lambda \boldsymbol{x}+\psi \boldsymbol{y})=\lambda \Phi(\boldsymbol{x})+\psi \Phi(\boldsymbol{y})$ 를 만족한다면 linear mapping 이라 부른다.
 
 일반적으로 linear map 표기를 $\Phi(x)$ 가 아니라 ambiguity를 줄이기 위해 $\Phi x$로 설정한다고 한다.

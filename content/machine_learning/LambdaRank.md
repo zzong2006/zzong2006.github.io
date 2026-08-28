@@ -1,6 +1,8 @@
 ---
 title: "LambdaRank"
-tags: ["learning_to_rank"]
+tags: learning_to_rank 
+aliases: []
+draft: true
 ---
 
 # LambdaRank ?

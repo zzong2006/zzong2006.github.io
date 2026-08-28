@@ -1,6 +1,14 @@
 ---
 title: "Bias and Debias in Recommender System - A Survey and Future Directions"
-tags: ["ACM", "bias", "fairness", "paper_review", "recommendation_system", "survey", "y2020"]
+aliases: []
+tags:
+  - ACM
+  - bias
+  - fairness
+  - paper_review
+  - recommendation_system
+  - survey
+  - y2020
 ---
 
 [paper link](https://arxiv.org/pdf/2010.03240.pdf)
@@ -217,7 +225,9 @@ $$
 &P(C=1 \mid u, i, p) \\
 &=\underbrace{P(C=1 \mid u, i, E=1)}_{r_{u i}} \cdot \underbrace{P(E=1 \mid q)}_{h_{q}}
 \end{aligned}
-\end{equation}$$
+\end{equation}
+$$
+
 여기서 숨겨진 랜덤 변수 $E$ 는 유저가 아이템을 확인했는지 여부를 나타낸다.
 
 이 모델은 position으로 노출 확률을 모델링하는 것만 제외하면, exposure bias를 위한 exposure-based 모델과 유사하다.

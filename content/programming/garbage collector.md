@@ -1,5 +1,8 @@
 ---
 title: "garbage collector"
+aliases: []
+tags: []
+draft: true
 ---
 
 # A) Garbage Collector ?

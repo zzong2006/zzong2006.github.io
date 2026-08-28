@@ -1,6 +1,7 @@
 ---
 title: "Thompson sampling"
 aliases: ["TS", "Posterior Sampling", "톰슨 샘플링"]
+tag: [MAB, posterior, thompson_sampling, machine_learning, reinforcement_learning, ]
 ---
 
 # A) 톰슨 샘플링이란
@@ -14,7 +15,8 @@ prior 가 [[statistic/Beta distribution]] 이라고 가정할 때, 시간 $t$, a
 
 $$
 c\theta_{i,t}=\left(\alpha_{i,t}+c_{i},\beta_{i,t}+1\right)
-\left(p_{i}\mid c_{i}\right)\sim\operatorname{Beta}\left(\alpha_{i,t}+c_{i},\beta_{i,t}+1\right)$$
+\left(p_{i}\mid c_{i}\right)\sim\operatorname{Beta}\left(\alpha_{i,t}+c_{i},\beta_{i,t}+1\right)
+$$
 
 $c_i$ 는 클릭이 되었느냐 ($0$) 되지 않았느냐 ($1$) 라는 binary 형태를 띔
 [Beta Distribution: notion link](https://www.notion.so/Beta-Distribution-52f42fdada5141f691e2e179999e562d)

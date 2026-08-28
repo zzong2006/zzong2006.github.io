@@ -1,6 +1,10 @@
 ---
 title: "Temporal Graph Network"
-tags: ["GNN", "graph", "deep_learning"]
+aliases: []
+tags:
+  - GNN
+  - graph
+  - deep_learning
 ---
 
 # A) Temporal Graph Network ?
@@ -88,10 +92,12 @@ Temporal Graph Network(TGN)은 **시간에 따라 변화하는 동적 그래프(
 * 시각 $t$에 두 노드 $i$, $j$가 상호작용할 때, 메시지 함수는 두 노드 각각에 대한 메시지를 생성하여 메모리를 업데이트할 준비를 한다.
 * 입력: 상호작용 직전 시점($t^-$)의 상태 벡터와 해당 시점 엣지 특성(feature).
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \mathbf{m}*{i}(t) &= \operatorname{msg}\big(\mathbf{s}*{i}(t^-), \mathbf{s}*{j}(t^-), t, \mathbf{e}*{ij}(t)\big) \\
 \mathbf{m}*{j}(t) &= \operatorname{msg}\big(\mathbf{s}*{j}(t^-), \mathbf{s}*{i}(t^-), t, \mathbf{e}*{ij}(t)\big)
-\end{aligned}$$
+\end{aligned}
+$$
 
 
 이는 [[graph/Graph Neural Network]]에서 사용되는 message-passing 개념과 유사하다.

@@ -1,6 +1,9 @@
 ---
 title: "affine"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
+draft: true
 ---
 
 # A) Affine ?

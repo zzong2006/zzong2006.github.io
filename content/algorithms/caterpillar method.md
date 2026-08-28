@@ -1,6 +1,9 @@
 ---
 title: "caterpillar method"
-tags: ["algorithm"]
+aliases: []
+tags:
+  - algorithm
+draft: true
 ---
 
 # Caterpillar Method ?

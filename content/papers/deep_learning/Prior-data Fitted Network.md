@@ -1,6 +1,8 @@
 ---
 title: "Prior-data Fitted Network"
-aliases: ["PFN"]
+tags: 
+aliases: PFN
+draft: true
 ---
 # 1. Prior-data Fitted Network ?
 

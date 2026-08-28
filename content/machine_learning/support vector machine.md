@@ -1,7 +1,10 @@
 ---
 title: "support vector machine"
-tags: ["machine_learning", "linear_algebra", "classification"]
 aliases: ["SVM"]
+tags:
+  - machine_learning
+  - linear_algebra
+  - classification
 ---
 
 # A) Classiﬁcation with SVM
@@ -46,7 +49,8 @@ hyperplane 을 구했다면, test example $\boldsymbol{X}_{\text {test }}$ 에 �
 이러한 두 조건을 하나의 식으로 표현하면 다음과 같다.
 
 $$
-y_{n}\left(\left\langle\boldsymbol{w}, \boldsymbol{x}_{n}\right\rangle+b\right) \geqslant 0$$
+y_{n}\left(\left\langle\boldsymbol{w}, \boldsymbol{x}_{n}\right\rangle+b\right) \geqslant 0
+$$
 
 ![|600](https://tva1.sinaimg.cn/large/e6c9d24egy1h06h6u3wfhj211u0fot9t.jpg)
 _Equation of a separating hyperplane_

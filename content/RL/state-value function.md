@@ -1,6 +1,8 @@
 ---
 title: "state-value function"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) State-value Function ?
@@ -41,6 +43,8 @@ $$
 
 $$
 q_{*}(s, a)=E\left[R_{t+1}+\gamma v_{*}\left(S_{t+1}\right) \mid S_{t}=s, A_{t}=a\right]
-$$ ^8111ef
+$$
+
+^8111ef
 
 # References

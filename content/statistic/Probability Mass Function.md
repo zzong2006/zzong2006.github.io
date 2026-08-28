@@ -1,7 +1,9 @@
 ---
 title: "Probability Mass Function"
-tags: ["statistic"]
+tags:
+  - statistic
 aliases: ["PMF"]
+draft: true
 ---
 
 # A) Probability Mass Function ?

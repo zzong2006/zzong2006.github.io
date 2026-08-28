@@ -1,7 +1,9 @@
 ---
 title: "masked language modeling"
-tags: ["NLP"]
 aliases: ["MLM"]
+tags:
+  - NLP
+draft: true
 ---
 
 # A) Masked Language Modeling ?

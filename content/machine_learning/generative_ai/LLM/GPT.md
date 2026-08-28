@@ -1,6 +1,10 @@
 ---
 title: "GPT"
-tags: ["NLP", "LLM"]
+tags:
+  - NLP
+  - LLM
+aliases: []
+draft: true
 ---
 
 # A) GPT ?

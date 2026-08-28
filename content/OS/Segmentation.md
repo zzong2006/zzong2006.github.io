@@ -1,4 +1,0 @@
----
-title: "Segmentation"
----
-* 프로세스의 크기에 맞게 [[Memory]] 를 자르는 것

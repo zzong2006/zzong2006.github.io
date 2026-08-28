@@ -1,6 +1,8 @@
 ---
 title: "docker"
-tags: ["server"]
+tags: server 
+aliases: []
+draft: true
 ---
 
 # A) Docker ?

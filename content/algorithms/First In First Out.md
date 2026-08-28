@@ -1,7 +1,9 @@
 ---
 title: "First In First Out"
-tags: ["algorithm"]
 aliases: ["FIFO"]
+tags:
+  - algorithm
+draft: true
 ---
 
 # 1. FIFO ?

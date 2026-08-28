@@ -1,4 +1,0 @@
----
-title: "logarithmic"
-tags: ["math"]
----

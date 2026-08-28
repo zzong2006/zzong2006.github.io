@@ -1,6 +1,9 @@
 ---
 title: "prior"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
+draft: true
 ---
 
 # 1. Prior ?

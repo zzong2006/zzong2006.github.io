@@ -1,6 +1,9 @@
 ---
 title: "Decision boundary"
-tags: ["machine_learning", "classification"]
+tags:
+  - machine_learning
+  - classification
+aliases: []
 ---
 
 # Decision Boundary ?
@@ -39,7 +42,9 @@ $$
 &h_{\theta}(x)=g\left(\theta^{T} x\right) \geq 0.5 \\
 &\theta^{T} x \geq 0 \Rightarrow y=1 \\
 &\theta^{T} x<0 \Rightarrow y=0
-\end{aligned}$$
+\end{aligned}
+$$
+
 $h_\theta(x)\ge0.5$의 의미를 활용하면, 다음과 같은 Decision boundary를 생각해볼 수 있다.
 1. Predict $h_\theta(x)$ if
 - $h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2)\ge0.5\Rightarrow-3+x_1+x_2\ge0$

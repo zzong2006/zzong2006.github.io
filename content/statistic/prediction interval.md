@@ -1,6 +1,9 @@
 ---
 title: "prediction interval"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
+draft: true
 ---
 
 # A) Prediction Interval ?

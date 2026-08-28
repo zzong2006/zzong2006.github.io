@@ -1,7 +1,9 @@
 ---
 title: "self-supervised"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
 aliases: ["self supervised"]
+draft: true
 ---
 
 # Self-supervised ?

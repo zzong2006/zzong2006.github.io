@@ -1,6 +1,10 @@
 ---
 title: "Prim algorithm"
-tags: ["algorithm", "graph"]
+aliases: []
+tags:
+  - algorithm
+  - graph
+draft: true
 ---
 
 # A) Prim Algorithm ?

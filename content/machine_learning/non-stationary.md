@@ -1,6 +1,9 @@
 ---
 title: "non-stationary"
-tags: ["recommendation_system"]
+tags:
+  - recommendation_system
+aliases: []
+draft: true
 ---
 
 # A) Non-stationary ?

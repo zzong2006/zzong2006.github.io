@@ -1,6 +1,8 @@
 ---
 title: "RankNet"
-tags: ["learning_to_rank"]
+tags: learning_to_rank 
+aliases: []
+draft: true
 ---
 
 # A) RankNet ?

@@ -1,7 +1,9 @@
 ---
 title: "Collaborative Topic Regression"
-tags: ["recommendation_system", "topic_modeling"]
 aliases: ["CTR"]
+tags:
+  - recommendation_system
+  - topic_modeling
 ---
 
 [[collaborative filtering]] 과 [[topic modeling]] 을 합친 모델을 의미
@@ -24,7 +26,9 @@ aliases: ["CTR"]
 
 $$
 c_{ij}=\begin{cases}a&\text{if}r_{ij}=1\\b&\text{if}r_{ij}=0\end{cases}
-$$ where $a>b>0$
+$$
+
+where $a>b>0$
 	- $u_i$는 사용자의 latent vector를 의미
 # The Graphical Representation
 ![|500](https://i.imgur.com/4pAt0LB.png)

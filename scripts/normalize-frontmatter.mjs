@@ -66,6 +66,7 @@ function normalizeFrontmatter(text, fallbackTitle) {
   const tags = []
   const aliases = []
   let title = null
+  let draft = false
 
   for (let index = 0; index < fm.length; index += 1) {
     const line = fm[index]
@@ -98,6 +99,11 @@ function normalizeFrontmatter(text, fallbackTitle) {
     if (normalizedKey === "title" && raw.trim() && !raw.includes("[") && !raw.includes("{")) {
       title = cleanValue(raw)
     }
+
+    // remove-draft 플러그인이 읽는 키다. 여기서 떨어뜨리면 draft 노트가 그대로 발행된다.
+    if (normalizedKey === "draft" && cleanValue(raw).toLowerCase() === "true") {
+      draft = true
+    }
   }
 
   const next = []
@@ -114,6 +120,10 @@ function normalizeFrontmatter(text, fallbackTitle) {
   const nextAliases = unique(aliases)
   if (nextAliases.length > 0) {
     next.push(`aliases: [${nextAliases.map(yamlString).join(", ")}]`)
+  }
+
+  if (draft) {
+    next.push("draft: true")
   }
 
   if (next.length === 0) {

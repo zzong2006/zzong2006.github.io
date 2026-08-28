@@ -1,5 +1,7 @@
 ---
 title: "dynamic programming"
-tags: ["reinforcement_learning"]
 aliases: ["DP"]
+tags:
+  - reinforcement_learning
+draft: true
 ---

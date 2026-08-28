@@ -1,6 +1,8 @@
 ---
 title: "NUR"
-tags: ["operating_system"]
+tags: operating_system 
+aliases: []
+draft: true
 ---
 
 # A) NUR ?

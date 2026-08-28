@@ -1,6 +1,7 @@
 ---
 title: "transpose"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["transpose matrix"]
 ---
 
@@ -13,7 +14,9 @@ For $\boldsymbol{A} \in \mathbb{R}^{m \times n}$ the matrix $\boldsymbol{B} \in 
 $$
 \begin{aligned}\left(\boldsymbol{A}^{\top}\right)^{\top} &=\boldsymbol{A} \\(\boldsymbol{A}+\boldsymbol{B})^{\top} &=\boldsymbol{A}^{\top}+\boldsymbol{B}^{\top} \\
 (\alpha \mathbf{A})^{\top} &=\alpha \mathbf{A}^{\top}\\
-(\boldsymbol{A} \boldsymbol{B})^{\top} &=\boldsymbol{B}^{\top} \boldsymbol{A}^{\top} \end{aligned}$$
+(\boldsymbol{A} \boldsymbol{B})^{\top} &=\boldsymbol{B}^{\top} \boldsymbol{A}^{\top} \end{aligned}
+$$
+
 ## With Scalar
 $(\lambda \boldsymbol{C})^{\top}=\boldsymbol{C}^{\top} \lambda^{\top}=\boldsymbol{C}^{\top} \lambda=\lambda \boldsymbol{C}^{\top}$ since $\lambda=\lambda^{\top}$ for all $\lambda \in \mathbb{R}$
 

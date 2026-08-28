@@ -1,6 +1,8 @@
 ---
 title: "postgreSQL"
-tags: ["database"]
+tags: database 
+aliases: []
+draft: true
 ---
 
 # A) postgreSQL ?

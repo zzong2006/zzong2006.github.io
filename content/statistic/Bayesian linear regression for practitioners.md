@@ -1,6 +1,10 @@
 ---
 title: "Bayesian linear regression for practitioners"
-tags: ["linear_regression", "tech_blog", "bayesian_inference"]
+aliases: []
+tags:
+  - linear_regression
+  - tech_blog
+  - bayesian_inference
 ---
 
 # A) 실무자를 위한 Bayesian 선형 회귀
@@ -46,14 +50,18 @@ tags: ["linear_regression", "tech_blog", "bayesian_inference"]
 
 베이즈 정리를 통해 표현하면 다음과 같습니다:
 
-$$p(\theta_{i+1} \mid \theta_{i}, x_{i}, y_{i})
-= \frac{p(y_{i} \mid x_{i}, \theta_{i}) \, p(\theta_{i})}{p(x_{i}, y_{i})}$$
+$$
+p(\theta_{i+1} \mid \theta_{i}, x_{i}, y_{i})
+= \frac{p(y_{i} \mid x_{i}, \theta_{i}) \, p(\theta_{i})}{p(x_{i}, y_{i})}
+$$
 
 
 여기서 $p(x_i, y_i)$는 데이터의 생성 과정을 의미하는데, 실제로는 알 수 없는 값입니다(만약 알았다면 애초에 학습이 필요하지 않겠지요). 따라서 보통은 비례식으로 단순화하여 다음과 같이 씁니다:
 
-$$p(\theta_{i+1} \mid \theta_{i}, x_{i}, y_{i})
-\propto p(y_{i} \mid x_{i}, \theta_{i}) \, p(\theta_{i})$$
+$$
+p(\theta_{i+1} \mid \theta_{i}, x_{i}, y_{i})
+\propto p(y_{i} \mid x_{i}, \theta_{i}) \, p(\theta_{i})
+$$
 
 
 ---

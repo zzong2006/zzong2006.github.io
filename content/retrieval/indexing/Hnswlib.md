@@ -1,6 +1,10 @@
 ---
 title: "Hnswlib"
-tags: ["ANN", "vector_search"]
+tags:
+  - ANN
+  - vector_search
+aliases: []
+draft: true
 ---
 
 # A) Hnswlib ?
