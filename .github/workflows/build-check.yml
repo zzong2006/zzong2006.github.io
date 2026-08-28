@@ -135,6 +135,50 @@ jobs:
 
           exit $missing
 
+      # 로컬 플러그인은 스크립트를 템플릿 리터럴 문자열로 조립해 페이지에 심는다.
+      # 문자열이므로 빌드는 그 안의 문법 오류를 잡지 못하고 브라우저에서만 터진다.
+      # node 가 없는 개발 머신에서는 이 검사가 유일한 안전망이다.
+      #
+      # 마커 주석으로 대상을 좁히는 방식은 쓸 수 없었다. Quartz 가 플러그인 스크립트를
+      # 외부 파일로 추출할 때 minify 하면서 주석을 지운다(componentResources.ts).
+      # 그래서 산출물의 JS 전체를 검사한다. Quartz 자체 번들은 esbuild 산출물이라
+      # 이미 유효하므로 잡음이 되지 않는다.
+      - name: Syntax-check emitted JavaScript
+        run: |
+          python3 - <<'PY'
+          import glob, os, shutil, subprocess, sys
+
+          paths = sorted(glob.glob("public/**/*.js", recursive=True))
+          if not paths:
+              print("public/ 에 JS 가 없다")
+              sys.exit(1)
+
+          work = "/tmp/jscheck"
+          shutil.rmtree(work, ignore_errors=True)
+          os.makedirs(work)
+
+          failed = []
+          for path in paths:
+              # ESM 문법(top-level await, import.meta)까지 통과시키려면 .mjs 로 본다.
+              target = os.path.join(work, os.path.basename(path) + ".mjs")
+              shutil.copyfile(path, target)
+              result = subprocess.run(["node", "--check", target], capture_output=True, text=True)
+              if result.returncode != 0:
+                  failed.append((path, result.stderr.strip()[:1500]))
+
+          print("검사한 JS: %d개" % len(paths))
+          for path, error in failed:
+              print()
+              print("SYNTAX  %s" % path)
+              print(error)
+
+          if failed:
+              print()
+              print("문법 오류 %d건" % len(failed))
+              sys.exit(1)
+          print("모두 통과")
+          PY
+
       - name: Summary
         run: |
           {

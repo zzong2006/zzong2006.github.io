@@ -116,6 +116,121 @@ function buildScript(options) {
     return Boolean(item.querySelector(":scope > .folder-container"));
   }
 
+  // 폴더 라벨의 실제 요소. 폴더 페이지가 있으면 a, 없으면 접기 button 이다.
+  function labelElementOf(container) {
+    return container.querySelector(":scope > div > a, :scope > div > button");
+  }
+
+  // machine_learning > generative_ai > LLM 처럼 자식이 하나뿐인 폴더 사슬을 한 줄로 합친다.
+  // 부모의 li / .folder-container / .folder-outer 는 그대로 남긴다. 정렬이 쓰는
+  // data-folderpath 와 labelOf 의 첫 .folder-title 이 부모 쪽에 있기 때문이다.
+  function compactChainAt(li) {
+    if (li.dataset.chainCompacted === "1") return;
+
+    const container = li.querySelector(":scope > .folder-container");
+    const outer = li.querySelector(":scope > .folder-outer");
+    if (!container || !outer) return;
+
+    const holder = container.querySelector(":scope > div");
+    if (!holder) return;
+
+    const segments = [];
+    let list = outer.querySelector(":scope > ul");
+
+    while (list) {
+      const kids = Array.from(list.children).filter(
+        (node) => !node.classList.contains("overflow-end"),
+      );
+      if (kids.length !== 1) break;
+
+      const childLi = kids[0];
+      const childContainer = childLi.querySelector(":scope > .folder-container");
+      const childOuter = childLi.querySelector(":scope > .folder-outer");
+      if (!childContainer || !childOuter) break; // 파일 하나뿐이면 합치지 않는다
+
+      const childList = childOuter.querySelector(":scope > ul");
+      if (!childList) break;
+
+      segments.push({
+        element: labelElementOf(childContainer),
+        text: (childContainer.textContent || "").trim(),
+      });
+
+      // 손자들을 부모 목록으로 끌어올린다. 목록 전체를 replaceChildren 하면
+      // Quartz 의 .overflow-end 마커("더 보기" 장치)까지 지워지므로 해당 li 만 바꾼다.
+      childLi.replaceWith.apply(childLi, Array.from(childList.children));
+    }
+
+    if (segments.length === 0) return;
+
+    for (const segment of segments) {
+      const separator = document.createElement("span");
+      separator.className = "folder-chain-sep";
+      separator.textContent = "/";
+      holder.appendChild(separator);
+
+      // 링크는 살려서 옮긴다. 접기 button 이었다면 그 button 이 토글하던 폴더는
+      // 방금 사라졌으므로 평문으로 바꾼다.
+      if (segment.element && segment.element.tagName === "A") {
+        holder.appendChild(segment.element);
+      } else {
+        const plain = document.createElement("span");
+        plain.className = "folder-chain-text";
+        plain.textContent = segment.text;
+        holder.appendChild(plain);
+      }
+    }
+
+    // 마지막 세그먼트가 실제로 열리는 폴더다. 앞쪽은 경로 표시이므로 약하게 둔다.
+    const parts = Array.from(holder.children).filter(
+      (node) => !node.classList.contains("folder-chain-sep"),
+    );
+    for (let index = 0; index < parts.length; index += 1) {
+      parts[index].classList.toggle("folder-chain-lead", index < parts.length - 1);
+    }
+
+    container.setAttribute("data-chain", String(segments.length + 1));
+    li.dataset.chainCompacted = "1";
+  }
+
+  // 밑줄은 저자에게는 경로지만 독자에게는 잡음이다. 공백으로만 바꾼다.
+  // 대문자화는 LLM, DPO 같은 약어를 망치므로 하지 않는다.
+  function tidyFolderLabels(explorer) {
+    for (const label of explorer.querySelectorAll(".folder-title, .folder-chain-text")) {
+      const text = label.textContent || "";
+      if (text.indexOf("_") === -1) continue; // 이미 처리됨 - 멱등
+      label.textContent = text.replace(/_+/g, " ");
+    }
+  }
+
+  function compactFolderChains(list) {
+    if (!list) return;
+    for (const li of Array.from(list.children)) {
+      if (li.classList.contains("overflow-end")) continue;
+      compactChainAt(li);
+      const outer = li.querySelector(":scope > .folder-outer");
+      const nested = outer && outer.querySelector(":scope > ul");
+      if (nested) compactFolderChains(nested);
+    }
+  }
+
+  // 데스크톱에서는 접기가 공간을 회수하지 못한다(사이드바 칸이 320px 고정).
+  // CSS 로 마우스는 막았지만 키보드와 aria 는 여기서 정리한다.
+  function neutralizeDesktopToggle() {
+    const wide = window.matchMedia("(min-width: 800px)").matches;
+    for (const button of document.querySelectorAll(
+      ".page > #quartz-body .sidebar.left .explorer button.desktop-explorer",
+    )) {
+      if (wide) {
+        button.tabIndex = -1;
+        button.setAttribute("aria-disabled", "true");
+      } else {
+        button.removeAttribute("tabindex");
+        button.removeAttribute("aria-disabled");
+      }
+    }
+  }
+
   function sortList(list, dates) {
     const items = Array.from(list.children).filter((item) => !item.classList.contains("overflow-end"));
     items.sort((left, right) => {
@@ -172,7 +287,12 @@ function buildScript(options) {
     const explorers = document.querySelectorAll(".page > #quartz-body .sidebar.left .explorer");
     let foundActive = false;
 
+    neutralizeDesktopToggle();
+
     for (const explorer of explorers) {
+      // 압축이 목록 구조를 바꾸므로 정렬보다 먼저 돌린다.
+      compactFolderChains(explorer.querySelector("ul.explorer-ul"));
+      tidyFolderLabels(explorer);
       sortExplorer(explorer, dates);
       const active = findActiveLink(explorer);
       if (!active) continue;
