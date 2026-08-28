@@ -132,7 +132,7 @@ CLIP 기반이니까 아마 **512 또는 768차원**일 것으로 추정되는�
 
 - Query당 **60~80개**의 exclusive matches
 - Ground-truth 대비 **10~20% recall** 차지
-- Precision도 높음: **~50% Exact match, ~30% Substitute match**
+- Precision도 높음: **약 50% Exact match, 약 30% Substitute match**
 
 ---
 

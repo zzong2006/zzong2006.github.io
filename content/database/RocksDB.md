@@ -105,7 +105,7 @@ make shared_lib && make install-shared INSTALL_PATH=/usr
 	
 * **RocksDB 인스턴스 생성:** 아이템별로 RocksDB 인스턴스를 생성하면, **100 만 개의 RocksDB 디렉터리**가 생깁니다.
 	
-* **파일 개수 폭증:** 각 RocksDB 인스턴스가 최소 5~10 개의 파일 (WAL, MANIFEST, 여러 SSTable 등) 을 가진다고 가정하면, 시스템에는 순식간에 **500 만 ~ 1,000 만 개의 파일**이 생성됩니다.
+* **파일 개수 폭증:** 각 RocksDB 인스턴스가 최소 5–10 개의 파일 (WAL, MANIFEST, 여러 SSTable 등) 을 가진다고 가정하면, 시스템에는 순식간에 **500만–1,000만 개의 파일**이 생성됩니다.
 	
 * **inode 고갈 및 파일 시스템 과부하:**
 	* **inode 소모:** 파일 개수가 수백만, 수천만 개로 늘어나면서 파일 시스템의 inode 를 급격히 소진시킵니다.

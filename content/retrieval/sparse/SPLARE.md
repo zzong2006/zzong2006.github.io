@@ -247,8 +247,8 @@ SPLARE의 장점: layer 26에서 hidden state를 추출하므로 (32 layer 중),
 
 | Backbone | Best Layer | Total Layers | Rule of Thumb |
 |----------|-----------|------|-----------|
-| Llama-3.1-8B (Llama Scope, 131k) | ~20 | 32 | ~2/3 depth |
-| Gemma-2-2B (Gemma Scope, 65k) | ~16 | 26 | ~2/3 depth |
+| Llama-3.1-8B (Llama Scope, 131k) | 약 20 | 32 | 약 2/3 depth |
+| Gemma-2-2B (Gemma Scope, 65k) | 약 16 | 26 | 약 2/3 depth |
 
 **최적 layer는 약 2/3 depth** 에 위치한다. 이는 중간 layer가 retrieval에 더 풍부한 representation을 제공한다는 선행 연구와 일치한다. 최종 SPLARE-7B는 **layer 26** (32 layer 중)을 사용한다.
 
@@ -269,7 +269,7 @@ SPLARE는 document pruning에 SPLADE보다 훨씬 강건하다:
 | Top-K (doc) | SPLARE 성능 하락 | SPLADE 성능 하락 |
 |-------------|---------------|---------------|
 | 400 (default) | 0% | 0% |
-| 100 | **~2%** | **~6%** |
+| 100 | **약 2%** | **약 6%** |
 
 이유:
 1. SPLARE의 latent feature space가 더 **compact하고 structured**

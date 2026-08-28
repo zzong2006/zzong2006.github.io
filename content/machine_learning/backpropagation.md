@@ -13,7 +13,7 @@ aliases: ["back-propagation"]
 3. 신경망 output 에 대한 Error vector $\delta^L$ 를 계산 $\delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right)$
 4. Backpropagate the error: 신경망 layer $h=L-1, L-2, \ldots, 2$ 에 대하여 $\delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right)$ 를 계산
 5. Output: 주어진 cost function 에 대한 gradient 는 $\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}$ 그리고 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$ 로 계산할 수 있다.  
-위 과정에서 3 ~ 5 의 단계가 backward 과정이다. 해당 과정은 (3) 의 마지막 $L$ 번째 layer 의 error vector 를 구한 후, (4 ~ 5) 를 반복한다.
+위 과정에서 3–5 의 단계가 backward 과정이다. 해당 과정은 (3) 의 마지막 $L$ 번째 layer 의 error vector 를 구한 후, (4–5) 를 반복한다.
 
 그리고 위 방식은 example 을 하나씩 처리하는 경우를 설명한 것인데, 실제로는 mini-batch 형식으로 진행되므로 matrix 계산이 필수적이다.
 

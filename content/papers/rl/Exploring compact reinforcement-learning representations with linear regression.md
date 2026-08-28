@@ -29,7 +29,7 @@ paper Link: https://arxiv.org/pdf/1205.2606.pdf
 			1. If $D_t$ is rank-deficient the least-squares solution may not be unique.
 			2. Even if we have a solution, we have no information on its confidence.
 		* We can avoid the first problem by regularization, i.e.
-by augmenting the system with Iθ = ~v, where ~v is
+by augmenting the system with Iθ = $\tilde{v}$, where $\tilde{v}$ is
 some arbitrary vector. Regularization certainly distorts the solution, but this gives us a measure of confidence: if the distortion is large, the predictor should
 have low confidence and output ⊥. On the other hand,
 if the distortion is low, it has two important consequences. First, the choice of ~v has little effect, and

@@ -301,10 +301,10 @@ Requirement가 누적되면 LLM이 모든 조건을 동시에 만족하는 solut
 
 | 모델          | 벤치마크      | base (B) | EIG (B) | base (O) | EIG (O) |
 | ----------- | --------- | -------- | ------- | -------- | ------- |
-| Llama-3-8B  | HumanEval | ~45%     | ~50%    | ~55%     | ~60%    |
-| GPT-3.5     | HumanEval | ~60%     | ~65%    | ~68%     | ~72%    |
-| Llama-3-70B | HumanEval | ~65%     | ~68%    | ~72%     | ~75%    |
-| GPT-4o-mini | HumanEval | ~72%     | ~75%    | ~78%     | ~80%    |
+| Llama-3-8B  | HumanEval | 약 45%     | 약 50%    | 약 55%     | 약 60%    |
+| GPT-3.5     | HumanEval | 약 60%     | 약 65%    | 약 68%     | 약 72%    |
+| Llama-3-70B | HumanEval | 약 65%     | 약 68%    | 약 72%     | 약 75%    |
+| GPT-4o-mini | HumanEval | 약 72%     | 약 75%    | 약 78%     | 약 80%    |
 
 (수치는 Figure 7에서 근사적으로 읽은 값)
 
@@ -312,7 +312,7 @@ Requirement가 누적되면 LLM이 모든 조건을 동시에 만족하는 solut
 1. **EIG 전략이 모든 모델/벤치마크에서 base를 능가** — 일관된 개선
 2. **Open (O) > Binary (B)** — 이론과 일치 (더 많은 답변 수 → 더 세밀한 분할 → 더 높은 EIG)
 3. **더 capable한 모델일수록 base-EIG 갭 축소** — implicit strategy 자체가 나아지기 때문
-4. **APPS에서도 동일 패턴** — GPT-4o-mini zero-shot ~35% (vs HumanEval ~70%)인 어려운 문제에서도 유효
+4. **APPS에서도 동일 패턴** — GPT-4o-mini zero-shot 약 35% (vs HumanEval 약 70%)인 어려운 문제에서도 유효
 5. **비모호한 문제에서도 개선** — 추가 test case가 LLM을 올바른 방향으로 가이드
 
 ## G.3) 실무적 시사점

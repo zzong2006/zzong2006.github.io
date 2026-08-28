@@ -22,7 +22,7 @@ tags: ["language_model", "RLVR", "nlp", "paper_review"]
 ![](https://i.imgur.com/spdZwwA.png)
 
 **문제의 심각성:**
-Figure 1 그래프를 보면 Qwen, LLaMA3, GPT-4o 등 최신 모델조차 이런 마스터 키 공격에 **최대 80~90%까지 속아 넘어갑니다**. 즉 오답의 80~90%를 정답으로 잘못 평가한 것입니다.
+Figure 1 그래프를 보면 Qwen, LLaMA3, GPT-4o 등 최신 모델조차 이런 마스터 키 공격에 **최대 80–90%까지 속아 넘어갑니다**. 즉 오답의 80–90%를 정답으로 잘못 평가한 것입니다.
 
 ## A.2) 실험 결과 및 증거
 

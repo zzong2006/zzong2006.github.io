@@ -75,7 +75,7 @@ Heap을 늘렸는데 실제로 쓸 수 있는 양은 줄어드는 것이다. 31 
 
 **인덱스 크기 > 파일시스템 캐시 여유**:
 - 캐시 miss 발생 → 디스크에서 읽어야 함 → **latency 급증**
-- 특히 [[SPLADE on Elasticsearch|SPLADE]] 같은 sparse retrieval은 쿼리당 조회하는 posting list 수가 BM25보다 많아서 (D_q ~30-80개 vs BM25 ~3-5개) 캐시 miss 확률이 더 높다
+- 특히 [[SPLADE on Elasticsearch|SPLADE]] 같은 sparse retrieval은 쿼리당 조회하는 posting list 수가 BM25보다 많아서 (D_q 약 30-80개 vs BM25 약 3-5개) 캐시 miss 확률이 더 높다
 
 ### B.3.1) 예시: 64 GB RAM 노드
 
@@ -88,7 +88,7 @@ SPLADE 인덱스:    ~325 GB → 캐시의 ~10% 커버 가능
 
 대응 방법:
 - **노드 수 증가**: shard를 더 많은 노드에 분산 → 노드당 인덱스 크기 축소 → 캐시 적중률 향상
-- **SSD 필수**: 캐시 miss 시에도 SSD라면 ~0.1ms, HDD라면 ~10ms로 100배 차이
+- **SSD 필수**: 캐시 miss 시에도 SSD라면 약 0.1ms, HDD라면 약 10ms로 100배 차이
 - **RAM 증설**: 파일시스템 캐시 여유분이 늘어나면 자연스럽게 적중률 향상
 
 ## B.4) Latency 보장과 메모리 사이징

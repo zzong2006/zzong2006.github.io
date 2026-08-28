@@ -167,7 +167,7 @@ flowchart LR
 
 핵심: query에서 추출한 코드 + 클릭된 product에서 추출한 코드를 **모두** query의 코드로 사용하고, 반대도 마찬가지. 이렇게 하면 query와 product 간 단어 분포 차이를 자연스럽게 브릿지한다.
 
-- 최종 규모: **~6.2M query, ~8.4M product, ~7.4M unique codes**
+- 최종 규모: **약 6.2M query, 약 8.4M product, 약 7.4M unique codes**
 
 ## E.2) Supervised Fine-tuning (SFT)
 

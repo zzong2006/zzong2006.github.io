@@ -17,7 +17,7 @@ Negative Sampling 은 [[skip-gram]] 모델의 [[softmax function|softmax]] 함�
 ![[img-3ef90d5c14.png|https://i.loli.net/2020/11/04/NzPcOXGTJtmS7bU.png]]
 
 그림과 같이 skip-gram 의 (orange, juice) pair 에 대한 학습 과정에서, $k$ 만큼 orange 의 window 내에 등장하지 않는 단어들을 뽑아서 binary classification 학습 데이터를 구성한다.  
-일반적으로 dataset 이 크면 $k$ 는 2~5, 작으면 $k$ 는 5~20 정도로 구한다고 한다.
+일반적으로 dataset 이 크면 $k$ 는 2–5, 작으면 $k$ 는 5–20 정도로 구한다고 한다.
 
 정확히는 매 target 단어마다, positive example 하나, $k$ 개의 negative example 에 대해서 이진 분류 학습을 진행한다.
 

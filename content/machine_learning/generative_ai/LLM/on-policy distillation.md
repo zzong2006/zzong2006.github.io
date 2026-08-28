@@ -29,7 +29,7 @@ On-policy distillation은 **학생이 직접 생성한 문장 위에서, 교사�
 
 기준은 "출처가 남이냐"가 아니라 **"지금 이 파라미터가 방금 만든 것이냐"** 다. 그래서 off-policy 쪽에는 사람이 쓴 정답 텍스트(SFT), 교사가 미리 생성해둔 응답(sequence-level KD)뿐 아니라 **며칠 전 체크포인트가 만들어 버퍼에 쌓아둔 자기 출력** 도 들어간다. 한 스텝만 업데이트해도 policy는 이미 달라지므로, 방금 뽑은 rollout이 아니면 엄밀히는 전부 off-policy다.
 
-on-policy가 비싼 이유도 여기서 나온다. 데이터를 재활용할 수 없어서 매 스텝 새로 생성해야 한다. 반대로 off-policy는 한 번 만든 데이터셋을 몇 epoch씩 돌려 쓸 수 있다.
+on-policy의 스텝당 비용이 큰 이유도 여기서 나온다. 데이터를 재활용할 수 없어서 매 스텝 새로 생성해야 한다. 반대로 off-policy는 한 번 만든 데이터셋을 몇 epoch씩 돌려 쓸 수 있다.
 
 이 두 축으로 배치하면 익숙한 기법들이 한 표에 들어온다.
 
@@ -69,7 +69,7 @@ $$
 \log \pi_\theta(y \mid x) = \sum_{t=1}^{\lvert y \rvert} \log \pi_\theta(y_t \mid x, y_{<t})
 $$
 
-결국 "교사가 뽑아준 응답을 학생이 그대로 뱉을 log 확률을 최대화하라"이고, 구현은 교사 텍스트에 대한 토큰별 cross-entropy다. sequence-level KD가 코드상으로는 그냥 SFT인 이유다. 데이터를 교사가 만들었다는 것만 다르다.
+결국 "교사가 뽑아준 응답을 학생이 그대로 뱉을 log 확률을 최대화하라"이고, 구현은 교사 텍스트에 대한 토큰별 [[cross-entropy]]다. sequence-level KD가 코드상으로는 그냥 SFT인 이유다. 데이터를 교사가 만들었다는 것만 다르다.
 
 **Token-level logit KD (soft distillation)**: 미리 준비해둔 문장 위에서 각 위치의 교사 분포 전체를 학생이 맞추게 한다. Hinton식 KD를 autoregressive에 그대로 확장한 것으로, 보통 forward KL을 쓴다.
 
@@ -85,7 +85,7 @@ $$
 
 ## C.1) 문제는 학생이 가보지 않은 길
 
-학습 내내 학생은 **교사가 자주 방문하는 상태** 에서만 다음 토큰을 연습한다. 추론 때는 자기가 뱉은 토큰 위에서 이어가야 하는데, 앞에서 한 번 어긋나면 그 뒤는 학습 중 본 적 없는 분포가 된다. 오차가 뒤로 갈수록 복리로 쌓이는 exposure bias다.
+학습 내내 학생은 **교사가 자주 방문하는 상태** 에서만 다음 토큰을 연습한다. 추론 때는 자기가 뱉은 토큰 위에서 이어가야 하는데, 앞에서 한 번 어긋나면 그 뒤는 학습 중 본 적 없는 분포가 된다. 오차가 뒤로 갈수록 복리로 쌓이는 exposure bias다. 추천 시스템에서 같은 이름으로 부르는 [[exposure bias]]는 노출된 아이템에만 피드백이 쌓이는 별개의 현상이니 헷갈리지 않게 구분해서 읽어야 한다.
 
 운전 교본을 아무리 정독해도 실제로 차선을 밟았을 때 어떻게 복구하는지는 배우지 못하는 것과 같다. 교본에는 차선을 밟은 상황 자체가 안 나오기 때문이다.
 
@@ -126,7 +126,7 @@ $$
 
 증류에서 reverse KL을 쓰는 이유는 용량이 작은 학생에게 "모르는 건 말하지 마라"가 더 안전하기 때문이다. 다양성을 조금 잃더라도 뽑는 토큰마다 교사가 인정하는 쪽이, autoregressive 생성에서 실수가 뒤로 번지는 것보다 낫다. MiniLLM(Gu et al., 2023)이 이 관점을 처음 정식화했다.
 
-부가 효과로 **reward hacking이 구조적으로 어렵다.** KL이 0에 가깝다는 건 학생이 교사 행동을 그대로 재현한다는 뜻이라, 낮은 loss가 곧 원하는 행동이다. judge 모델을 reward로 쓰는 RL에서 길이 뻥튀기나 아부 문체로 점수만 올리는 문제가 여기선 잘 생기지 않는다.
+부가 효과로 **reward hacking이 구조적으로 어렵다.** KL이 0에 가깝다는 건 학생이 교사 행동을 그대로 재현한다는 뜻이라, 낮은 loss가 곧 원하는 행동이다. judge 모델을 reward로 쓰는 [[RLHF]] 계열에서 길이 뻥튀기나 아부 문체로 점수만 올리는 문제가 여기선 잘 생기지 않는다.
 
 ## D.2) 사실상 Dense Reward RL이다
 
@@ -145,10 +145,14 @@ $$
 | exposure bias | 있음 | 없음 | 없음 |
 | credit assignment | 불필요 | 어려움 (sparse) | 쉬움 (dense) |
 | 성능 상한 | 교사 | 채점 가능하면 교사 초과 가능 | 대체로 교사 |
-| 주 비용 | 교사 샘플링 (1회) | 학생 rollout + judge | 학생 rollout + 교사 forward |
+| 스텝당 비용 | 낮음 (생성 없음) | 높음 (rollout + judge 호출) | 중간 (rollout + 교사 forward 1회) |
+| 데이터 재사용 | 몇 epoch 가능 | 불가 | 불가 |
+| 목표 성능까지 총비용 | 높음 (많은 데이터 필요) | 높음 (스텝이 많이 듦) | 낮음 |
 | reward hacking | 해당 없음 | 있음 | 거의 없음 |
 
 # F) 실제로 얼마나 싼가
+
+비용은 두 축으로 나눠 봐야 한다. **스텝당 비용** 은 SFT가 가장 싸고(생성이 없다), on-policy distillation이 중간, RL이 가장 비싸다. RL도 학생 rollout을 똑같이 생성하는 데다 judge 호출까지 얹기 때문이다. 반면 **목표 성능에 도달하기까지의 총비용** 은 순서가 뒤집혀서 on-policy distillation이 가장 싸다. 스텝이 훨씬 적게 들어서다.
 
 Thinking Machines Lab이 2025년 10월 공개한 실험이 이 기법이 회자되는 직접적 계기다. Qwen3-8B-Base를 400K 프롬프트로 SFT해 AIME 2024에서 60%까지 올린 체크포인트가 출발점이다.
 
@@ -164,7 +168,7 @@ Thinking Machines Lab이 2025년 10월 공개한 실험이 이 기법이 회자�
 
 ![on-policy distillation과 SFT의 AIME 2024 학습 곡선 비교](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-on-policy-distillation-loras.svg)
 
-가로축이 추가로 투입한 training FLOPs, 세로축이 AIME 2024 점수다. 같은 연산을 넣었을 때 on-policy distillation 곡선이 SFT보다 확연히 위에 있고, 격차는 LoRA처럼 용량이 제한된 설정에서 더 벌어진다. rank 32 LoRA는 SFT만 하면 full finetuning에 13% 뒤지지만 on-policy distillation 뒤에는 6% 차이로 좁혀진다.
+가로축이 추가로 투입한 training FLOPs, 세로축이 AIME 2024 점수다. 같은 연산을 넣었을 때 on-policy distillation 곡선이 SFT보다 확연히 위에 있고, 격차는 [[LoRA]]처럼 용량이 제한된 설정에서 더 벌어진다. rank 32 LoRA는 SFT만 하면 full finetuning에 13% 뒤지지만 on-policy distillation 뒤에는 6% 차이로 좁혀진다.
 
 Qwen3 technical report의 8B 파이프라인 숫자도 같은 방향이다.
 
@@ -239,6 +243,12 @@ cold start SFT의 목적이 바로 이 루프의 출발점, 즉 **초기 overlap
 2. **프롬프트를 교사 post-training 분포에만 맞추지 않는다.** 정렬은 빨라지지만 entropy collapse 위험이 있어 OOD 프롬프트를 섞는다
 3. **응답 길이 3–7K 토큰이 안정 구간.** 더 길어지면 뒷부분부터 토큰 reward 품질이 무너진다
 4. **Top-1 대신 sampled token으로 KL을 계산한다.** Top-1은 mode 집중 때문에 불안정하다
+
+두 번째 항목의 entropy collapse는 학습이 진행되면서 학생의 다음 토큰 분포가 지나치게 뾰족해지는 현상이다. 각 위치에서 한 토큰에 확률이 거의 다 몰려 [[entropy]] 가 0에 가까워진다.
+
+on-policy 학습에서 이게 특히 문제인 이유는 학습 데이터를 학생 자신이 만들기 때문이다. 분포가 좁아지면 rollout이 매번 비슷한 문장으로 나오고, 새로 방문하는 상태가 없으니 배울 것도 같이 마른다. 스스로 탐색을 끊는 셈이다.
+
+reverse KL이 원래 mode-seeking이라 분포를 좁히는 쪽으로 압력을 준다. 여기에 교사가 학습했던 프롬프트만 먹이면 학생이 이미 잘하는 좁은 영역만 반복하게 되어 압력이 과해진다. OOD 프롬프트를 섞는 건 그 압력을 상쇄하려는 것이다.
 
 # H) LLM 밖에서도 되나
 

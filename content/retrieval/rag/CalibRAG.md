@@ -289,8 +289,8 @@ $$\mathcal{L} = -\frac{1}{|\mathcal{S}|}\sum_{(t,q,d,b) \in \mathcal{S}} \big[b 
 
 | 설정 | ECE (t=1.0) | ECE (t=1.5) |
 |------|------------|------------|
-| $f(q,d)$ (temp 없음) | ~0.07 | ~0.28 |
-| $f(t,q,d)$ (temp 있음) | ~0.05 | ~0.05 |
+| $f(q,d)$ (temp 없음) | 약 0.07 | 약 0.28 |
+| $f(t,q,d)$ (temp 있음) | 약 0.05 | 약 0.05 |
 
 → Temperature 없으면 high-temperature 사용자에서 overconfidence → ECE 급증. Temperature conditioning이 다양한 사용자 행동에 대한 robust calibration의 핵심.
 
