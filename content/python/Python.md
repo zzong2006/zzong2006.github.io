@@ -1,6 +1,9 @@
 ---
 title: "Python"
-tags: ["programming", "language"]
+aliases: []
+tags:
+  - programming
+  - language
 ---
 
 # A) Python 이란?
@@ -14,7 +17,7 @@ Python은 [[object-oriented programming]] 언어로, 모든 데이터는 객체�
 - **Type**: 객체의 자료형
 - **Value**: 객체가 담고 있는 값
 
-객체는 명시적으로 삭제할 수 없으며, unreachable 상태가 되면 [[garbage collector]]에 의해 수집된다.
+객체는 명시적으로 삭제할 수 없으며, unreachable 상태가 되면 [[programming/garbage collection|garbage collector]]에 의해 수집된다.
 
 # B) 메모리 관리
 

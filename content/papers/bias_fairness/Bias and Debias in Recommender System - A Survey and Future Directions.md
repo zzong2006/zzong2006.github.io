@@ -210,7 +210,7 @@ leverage causal graph to tackle popularity bias
 
 * side information 을 추가해서 popular bias 를 감소시킴 [[#^74fae7]]
 * popularity 에 기반한 re-ranking 방식: [[#^73df85]]
-* exposure bias 와 동일하게 [[propensity score]] 도 적용 가능
+* exposure bias 와 동일하게 [[recommendation_system/inverse propensity score|propensity score]] 도 적용 가능
 	* [[Unbiased Offline Recommender Evaluation for Missing-Not-At-Random Implicit Feedback]]
 
 ## E.4) Methods for Position Bias

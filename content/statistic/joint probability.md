@@ -1,12 +1,14 @@
 ---
 title: "joint probability"
-tags: ["law_of_total_probability", "statistic"]
+tags:
+  - law_of_total_probability
+  - statistic
 ---
 * Tags: [[law of total probability]]
 * 응용
 	* [[Bayes theorem]]
 		* $P(X\mid Y)=P(X,Y)/P(Y)$
-	* [[marginalization]]
+	* [[statistic/marginal distribution|marginalization]]
 		* $\displaystyle\operatorname{Pr}(W,L)=\mathrm{E}(\operatorname{Pr}(W,L\mid p))=\int\operatorname{Pr}(W,L\mid p)\operatorname{Pr}(p)dp$
 			* $\mathrm{E}$ 는 [[expectation]]
 

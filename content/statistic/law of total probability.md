@@ -1,11 +1,13 @@
 ---
 title: "law of total probability"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # A) Law of Total Probability ?
 
-# B) 정리 (다른 이름으로는 [[marginalization]])
+# B) 정리 (다른 이름으로는 [[statistic/marginal distribution|marginalization]])
 
 ## B.1) 이산형 경우
 

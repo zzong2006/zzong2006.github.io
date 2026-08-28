@@ -1,6 +1,7 @@
 ---
 title: "Monte Carlo Method(RL)"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # A) Monte Carlo Method
@@ -28,7 +29,7 @@ MC 는 평균 sample returns 값을 이용하여 강화 학습 문제를 해결�
 
 ## C.1) 차이점
 
-MC 는 환경에 대한 [[dynamics]] 을 알 필요가 없다. 반대로 [[dynamic programming|DP]] 는 다음 events 에 대한 모든 확률 분포를 알아야된다.
+MC 는 환경에 대한 [[dynamics]] 을 알 필요가 없다. 반대로 [[RL/DP (Reinforcement Learning)|DP]] 는 다음 events 에 대한 모든 확률 분포를 알아야된다.
 
 MC 도 transition 확률을 알 필요는 있다. 그렇지만 이것도 DP 처럼 가능한 모든 transitions 에 대한 확률 분포가 아닌 sample transitions 에 의해 생성되기만 하면 된다.
 

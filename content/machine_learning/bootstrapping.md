@@ -1,7 +1,11 @@
 ---
 title: "bootstrapping"
-tags: ["ensemble", "statistic", "sampling", "reinforcement_learning"]
 aliases: ["bootstrapped", "bootstrap", "부트스트랩", "부트스트래핑"]
+tags:
+  - ensemble
+  - statistic
+  - sampling
+  - reinforcement_learning
 ---
 
 > The bootstrap is a method to derive the distribution of an estimator by data resampling.
@@ -51,7 +55,7 @@ Bootstrap methods are alternative approaches to traditional hypothesis testing a
 
 다만, 이렇게 수행하는 방식은 states 가 너무 많은 경우 실행이 불가능하다.
 
-많은 [[Reinforcement Learning]] 방법은 [[dynamic programming|DP]] 에서 요구되는 완전하고 정확한 환경 모델 ([[Markov Decision Process|MDP]]) 없이도 bootstrapping 을 수행한다.
+많은 [[Reinforcement Learning]] 방법은 [[RL/DP (Reinforcement Learning)|DP]] 에서 요구되는 완전하고 정확한 환경 모델 ([[Markov Decision Process|MDP]]) 없이도 bootstrapping 을 수행한다.
 
 # D) Related
 

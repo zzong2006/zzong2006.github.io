@@ -1,6 +1,6 @@
 ---
 title: "global interpreter lock"
-tags: ["python"]
+tags: python 
 aliases: ["GIL"]
 ---
 
@@ -21,7 +21,7 @@ b = a
 sys.getrefcount(a) # 3
 ```
 
-어떤 객체의 reference count 가 0 에 도달하게 되면, [[garbage collector]] 는 해당 객체를 메모리에서 해제시킨다. 만약 thread 가 여러개고, lock 존재하지 않다면, 쓰레드에 의해 reference count 가 동시에 여러번 깎일 수 있다 (또는 여러번 증가할 수 있다.)
+어떤 객체의 reference count 가 0 에 도달하게 되면, [[programming/garbage collection|garbage collector]] 는 해당 객체를 메모리에서 해제시킨다. 만약 thread 가 여러개고, lock 존재하지 않다면, 쓰레드에 의해 reference count 가 동시에 여러번 깎일 수 있다 (또는 여러번 증가할 수 있다.)
 
 전자의 경우 reference count 가 -1 에 도달할 수 있고, 영원히 메모리에서 객체가 해제되지 않는 ‘ 메모리 누수 ’ 현상이 발생할 것이다.
 
