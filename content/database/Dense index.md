@@ -1,4 +1,5 @@
 ---
+title: "Dense index"
 tags: ["database"]
 ---
 

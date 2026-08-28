@@ -1,3 +1,6 @@
+---
+title: "JIT Compiling"
+---
 
 # A) JIT 컴파일 (JIT Compiling)
 

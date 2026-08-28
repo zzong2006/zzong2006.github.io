@@ -1,4 +1,5 @@
 ---
+title: "probit function"
 tags: ["statistic"]
 ---
 

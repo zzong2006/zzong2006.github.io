@@ -1,4 +1,5 @@
 ---
+title: "Retrieval Paper List"
 tags: ["retrieval", "IR", "paper_list", "SIGIR", "y2025"]
 ---
 

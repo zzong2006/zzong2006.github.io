@@ -1,4 +1,5 @@
 ---
+title: "vector"
 tags: ["linear_algebra"]
 ---
 

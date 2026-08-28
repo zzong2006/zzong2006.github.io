@@ -1,4 +1,5 @@
 ---
+title: "matrix calculus"
 tags: ["differentitation"]
 ---
 

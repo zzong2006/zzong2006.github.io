@@ -1,4 +1,5 @@
 ---
+title: "SAGE - Steerable Agentic Data Generation for Deep Search with Execution Feedback"
 tags: ["language_model", "llm", "deep_search", "data_generation", "rl", "paper_review"]
 aliases: ["SAGE"]
 ---

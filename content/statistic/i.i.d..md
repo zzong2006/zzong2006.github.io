@@ -1,4 +1,5 @@
 ---
+title: "i.i.d."
 aliases: ["independent identically distributed"]
 ---
 

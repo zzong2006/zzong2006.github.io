@@ -1,4 +1,5 @@
 ---
+title: "Sequential logistic regression"
 tags: ["linear_regression"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Candidate Key"
 tags: ["database", "relation"]
 aliases: ["candidate Key"]
 ---

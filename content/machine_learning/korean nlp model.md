@@ -1,4 +1,5 @@
 ---
+title: "korean nlp model"
 tags: ["NLP"]
 ---
 

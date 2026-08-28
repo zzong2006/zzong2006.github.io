@@ -1,4 +1,5 @@
 ---
+title: "law of cosines"
 tags: ["math"]
 aliases: ["코사인 법칙"]
 ---

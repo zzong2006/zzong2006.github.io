@@ -1,4 +1,5 @@
 ---
+title: "helm"
 tags: ["Kubernetes", "server"]
 aliases: ["헬름"]
 ---

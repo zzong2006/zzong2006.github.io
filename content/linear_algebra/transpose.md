@@ -1,4 +1,5 @@
 ---
+title: "transpose"
 tags: ["linear_algebra"]
 aliases: ["transpose matrix"]
 ---

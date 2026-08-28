@@ -1,4 +1,5 @@
 ---
+title: "latent variable"
 tags: ["machine_learning", "variable"]
 ---
 

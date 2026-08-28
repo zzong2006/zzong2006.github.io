@@ -1,4 +1,5 @@
 ---
+title: "concave function"
 tags: ["math", "numerical_method"]
 ---
 

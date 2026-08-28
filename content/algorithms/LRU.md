@@ -1,4 +1,5 @@
 ---
+title: "LRU"
 tags: ["algorithm", "OS", "cache"]
 aliases: ["Least Recently Used"]
 ---

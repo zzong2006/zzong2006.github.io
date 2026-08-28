@@ -1,4 +1,5 @@
 ---
+title: "Bayesian linear regression for practitioners"
 tags: ["linear_regression", "tech_blog", "bayesian_inference"]
 ---
 

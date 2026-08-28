@@ -1,4 +1,5 @@
 ---
+title: "Pandas"
 tags: ["pandas", "tip", "python", "library"]
 aliases: ["pandas", "Pandas", "판다스"]
 ---

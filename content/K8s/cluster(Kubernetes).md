@@ -1,4 +1,5 @@
 ---
+title: "cluster(Kubernetes)"
 tags: ["Kubernetes"]
 aliases: ["cluster"]
 ---

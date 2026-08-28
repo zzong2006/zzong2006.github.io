@@ -1,4 +1,5 @@
 ---
+title: "FP-Tree Mining"
 tags: ["association_rules"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "information gain"
 tags: ["statistic"]
 ---
 

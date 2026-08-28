@@ -1,4 +1,5 @@
 ---
+title: "ColBERT"
 tags: ["retrieval", "DEVIEW", "IR", "SIGIR", "nlp", "paper_review", "y2020"]
 ---
 

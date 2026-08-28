@@ -1,4 +1,5 @@
 ---
+title: "session-based recommendations"
 tags: ["SBRS", "paper_review", "recommendation_system"]
 aliases: ["세션 기반 추천", "SBRS"]
 ---

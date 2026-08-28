@@ -1,4 +1,5 @@
 ---
+title: "teacher forcing"
 tags: ["deep_learning"]
 ---
 

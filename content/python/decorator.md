@@ -1,4 +1,5 @@
 ---
+title: "decorator"
 tags: ["python", "programming"]
 aliases: ["데코레이터"]
 ---

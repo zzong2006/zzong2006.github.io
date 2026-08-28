@@ -1,4 +1,5 @@
 ---
+title: "anomaly detection"
 tags: ["machine_learning"]
 ---
 

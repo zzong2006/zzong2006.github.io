@@ -1,4 +1,5 @@
 ---
+title: "Laplace approximation"
 tags: ["statistic", "bayesian_inference"]
 ---
 

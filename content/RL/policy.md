@@ -1,4 +1,5 @@
 ---
+title: "policy"
 tags: ["reinforcement_learning"]
 ---
 

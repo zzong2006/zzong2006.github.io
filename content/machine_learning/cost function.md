@@ -1,4 +1,5 @@
 ---
+title: "cost function"
 tags: ["machine_learning", "deep_learning", "calculus", "differentitation"]
 aliases: ["objective function", "loss function", "비용 함수"]
 ---

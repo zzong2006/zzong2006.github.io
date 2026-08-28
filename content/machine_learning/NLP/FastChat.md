@@ -1,4 +1,5 @@
 ---
+title: "FastChat"
 tags: ["LLM"]
 ---
 

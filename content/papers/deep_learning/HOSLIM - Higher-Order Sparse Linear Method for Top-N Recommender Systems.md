@@ -1,4 +1,5 @@
 ---
+title: "HOSLIM - Higher-Order Sparse Linear Method for Top-N Recommender Systems"
 tags: ["deep_learning", "linear_algebra", "paper_review", "recommendation_system"]
 aliases: ["HOSLIM"]
 ---

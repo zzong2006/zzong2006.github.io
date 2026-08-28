@@ -1,4 +1,5 @@
 ---
+title: "Word2Vec"
 tags: ["word2vec", "NLP"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "combination"
 tags: ["probability"]
 ---
 

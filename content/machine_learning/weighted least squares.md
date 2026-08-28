@@ -1,4 +1,5 @@
 ---
+title: "weighted least squares"
 tags: ["machine_learning", "linear_regression"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Hash"
 tags: ["programming", "data_structure"]
 aliases: ["hash", "hash function"]
 ---

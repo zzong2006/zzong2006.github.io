@@ -1,4 +1,5 @@
 ---
+title: "linear regression"
 tags: ["machine_learning"]
 aliases: ["선형 회귀"]
 ---

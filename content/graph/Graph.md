@@ -1,4 +1,5 @@
 ---
+title: "Graph"
 tags: ["graph"]
 ---
 

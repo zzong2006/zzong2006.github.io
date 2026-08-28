@@ -1,4 +1,5 @@
 ---
+title: "Sherman–Morrison formula"
 tags: ["linear_algebra"]
 ---
 

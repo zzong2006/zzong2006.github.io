@@ -1,4 +1,5 @@
 ---
+title: "Population Stability Index"
 tags: ["metrics", "machine_learning"]
 aliases: ["PSI"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "ConstBERT"
 tags: ["retrieval", "IR", "embedding", "multi_vector", "ColBERT"]
 ---
 

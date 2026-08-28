@@ -1,3 +1,6 @@
+---
+title: "Parametric method"
+---
 * 모수적 방법 ([[Parametric method]]) 은 관측 값이 어느 특정한 확률분포 (e.g. 정규분포, 이항분  
 포 등) 를 따른다고 전제한 후, 그 분포의 모수 (parameter) 에 대한 검정을 실시하는 방법이다.
 

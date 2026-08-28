@@ -1,4 +1,5 @@
 ---
+title: "Principal Component Analysis"
 tags: ["machine_learning", "embedding"]
 aliases: ["PCA"]
 ---

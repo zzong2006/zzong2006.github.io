@@ -1,4 +1,5 @@
 ---
+title: "amortized analysis"
 tags: ["algorithm"]
 ---
 

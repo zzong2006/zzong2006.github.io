@@ -1,4 +1,5 @@
 ---
+title: "Law of the unconscious statistician"
 aliases: ["LOTUS"]
 ---
 

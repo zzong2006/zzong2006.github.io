@@ -1,4 +1,5 @@
 ---
+title: "Process"
 tags: ["operating_system"]
 aliases: ["프로세스"]
 ---

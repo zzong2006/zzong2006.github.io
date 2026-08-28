@@ -1,4 +1,5 @@
 ---
+title: "Stacked autoencoder"
 tags: ["machine_learning"]
 aliases: ["SAE"]
 ---

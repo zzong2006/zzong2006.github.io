@@ -1,4 +1,5 @@
 ---
+title: "columnar storage"
 tags: ["database"]
 aliases: ["column oriented DB"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "voting"
 tags: ["ensemble"]
 ---
 

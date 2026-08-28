@@ -1,4 +1,5 @@
 ---
+title: "Joint distribution of PGM"
 tags: ["PGM", "paper_review", "probability_distribution", "statistic"]
 ---
 

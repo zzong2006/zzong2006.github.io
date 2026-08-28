@@ -1,4 +1,5 @@
 ---
+title: "challenges of linear regression"
 tags: ["linear_regression"]
 ---
 

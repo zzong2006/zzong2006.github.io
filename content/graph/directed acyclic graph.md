@@ -1,4 +1,5 @@
 ---
+title: "directed acyclic graph"
 tags: ["graph"]
 aliases: ["DAG"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Graph Neural Networks for Recommender System"
 tags: ["GNN", "WSDM", "deep_learning", "paper_review", "recommendation_system", "tutorial", "y2022"]
 ---
 

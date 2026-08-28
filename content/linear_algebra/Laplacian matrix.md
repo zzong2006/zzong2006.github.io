@@ -1,4 +1,5 @@
 ---
+title: "Laplacian matrix"
 tags: ["graph", "matrix"]
 aliases: ["라플라시안 행렬"]
 ---

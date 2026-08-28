@@ -1,4 +1,5 @@
 ---
+title: "histogram"
 tags: ["statistic"]
 ---
 

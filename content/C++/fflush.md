@@ -1,4 +1,5 @@
 ---
+title: "fflush"
 tags: ["function", "Cpp"]
 ---
 

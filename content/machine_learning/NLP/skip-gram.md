@@ -1,4 +1,5 @@
 ---
+title: "skip-gram"
 tags: ["word2vec", "NLP", "classification"]
 aliases: ["SG"]
 ---

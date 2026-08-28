@@ -1,4 +1,5 @@
 ---
+title: "UMAP"
 tags: ["feature_engineering"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "machine learning"
 tags: ["machine_learning"]
 aliases: ["ML"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "double descent"
 tags: ["deep_learning"]
 ---
 

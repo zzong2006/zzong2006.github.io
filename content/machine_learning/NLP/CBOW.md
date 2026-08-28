@@ -1,4 +1,5 @@
 ---
+title: "CBOW"
 tags: ["word2vec", "NLP"]
 aliases: ["continuous bag of words"]
 ---

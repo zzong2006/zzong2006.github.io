@@ -1,4 +1,5 @@
 ---
+title: "RAGAS"
 tags: ["retrieval", "RAG", "evaluation", "metrics"]
 aliases: ["라가스"]
 ---

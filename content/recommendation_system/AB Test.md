@@ -1,4 +1,5 @@
 ---
+title: "AB Test"
 tags: ["hypothesis_test", "statistic"]
 aliases: ["A/B 테스트"]
 ---

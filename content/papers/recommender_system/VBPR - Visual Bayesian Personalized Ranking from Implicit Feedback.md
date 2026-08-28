@@ -1,4 +1,5 @@
 ---
+title: "VBPR - Visual Bayesian Personalized Ranking from Implicit Feedback"
 tags: ["BPR", "paper_review", "recommendation_system"]
 aliases: ["VBPR"]
 ---

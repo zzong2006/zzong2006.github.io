@@ -1,4 +1,5 @@
 ---
+title: "gaussian integral"
 tags: ["math"]
 ---
 

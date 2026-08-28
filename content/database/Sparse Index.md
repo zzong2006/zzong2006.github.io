@@ -1,4 +1,5 @@
 ---
+title: "Sparse Index"
 tags: ["database"]
 ---
 

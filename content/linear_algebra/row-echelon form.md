@@ -1,4 +1,5 @@
 ---
+title: "row-echelon form"
 tags: ["linear_algebra"]
 aliases: ["REF"]
 ---

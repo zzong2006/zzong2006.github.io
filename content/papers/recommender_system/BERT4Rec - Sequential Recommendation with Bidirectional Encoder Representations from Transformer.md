@@ -1,4 +1,5 @@
 ---
+title: "BERT4Rec - Sequential Recommendation with Bidirectional Encoder Representations from Transformer"
 tags: ["NLP, recommendation_system, paper_review, deep_learning,"]
 aliases: ["BERT4Rec"]
 ---

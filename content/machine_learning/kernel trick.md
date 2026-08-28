@@ -1,4 +1,5 @@
 ---
+title: "kernel trick"
 tags: ["machine_learning", "kernel_method"]
 aliases: ["Kernel Trick"]
 ---

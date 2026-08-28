@@ -1,4 +1,5 @@
 ---
+title: "property decorator"
 tags: ["python"]
 ---
 

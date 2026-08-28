@@ -1,4 +1,5 @@
 ---
+title: "GPU Programming"
 tags: ["gpu", "CUDA"]
 ---
 

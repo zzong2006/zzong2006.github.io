@@ -1,4 +1,5 @@
 ---
+title: "String"
 tags: ["rust"]
 aliases: ["string"]
 ---

@@ -1,3 +1,6 @@
+---
+title: "Statistical Analysis of Results in Music Information Retrieval_Why and How"
+---
 # Statistical Analysis of Results in Music Information Retrieval_Why and How ?
 
 

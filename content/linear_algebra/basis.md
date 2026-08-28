@@ -1,4 +1,5 @@
 ---
+title: "basis"
 tags: ["linear_algebra"]
 aliases: ["기저"]
 ---
@@ -49,7 +50,7 @@ $\quad$ 중요한 점은 [[row-echelon form]] 을 통해 구해진 vector 를 �
 
 아래 그림은 정규직교 기저 벡터 $\boldsymbol{k}$, $\boldsymbol{i}$, $\boldsymbol{j}$ 를 나타낸다.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/3D_Vector.svg" alt="Standard basis - Wikipedia" style="zoom:20%;" />
+<img src="/images/img-85ec55dcc1.svg" alt="Standard basis - Wikipedia" style="zoom:20%;" />
 
 # C) Basis Change
 

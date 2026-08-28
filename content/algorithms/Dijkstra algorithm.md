@@ -1,4 +1,5 @@
 ---
+title: "Dijkstra algorithm"
 tags: ["algorithm", "graph"]
 ---
 

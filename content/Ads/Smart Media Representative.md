@@ -1,4 +1,5 @@
 ---
+title: "Smart Media Representative"
 tags: ["word"]
 aliases: ["SMR"]
 ---

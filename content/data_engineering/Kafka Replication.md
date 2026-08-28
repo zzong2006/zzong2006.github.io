@@ -1,4 +1,5 @@
 ---
+title: "Kafka Replication"
 tags: ["kafka"]
 ---
 

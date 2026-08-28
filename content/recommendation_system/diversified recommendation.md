@@ -1,3 +1,6 @@
+---
+title: "diversified recommendation"
+---
 * 내용
 	* re-rank a pre-ranked item list through post-processing actions
 		* Post processing recommender systems for diversity, KDD 2017.

@@ -1,4 +1,5 @@
 ---
+title: "PyTorch"
 tags: ["PyTorch", "python", "library", "deep_learning", "machine_learning"]
 aliases: ["파이토치"]
 ---

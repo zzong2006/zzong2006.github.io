@@ -1,4 +1,5 @@
 ---
+title: "pooling"
 tags: ["deep_learning", "computer_vision", "NLP"]
 aliases: ["pooling layer", "max pooling", "average pooling"]
 ---

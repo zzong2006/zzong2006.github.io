@@ -1,3 +1,6 @@
+---
+title: "Particle Filtering"
+---
 * References
 	* http://www.lirmm.fr/ModuleImage/sidibe_module_image_2011.pdf
 * Particle Filters 또는 Particle Filtering 은 Sequential Monte Carlo (SMC) 방식으로도 불리며, 베이지안 통계 추론 (Bayesian statistical inference) 을 수행하기 위한 몬테카를로 알고리즘의 일종이다.

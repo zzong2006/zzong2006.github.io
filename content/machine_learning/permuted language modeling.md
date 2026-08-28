@@ -1,4 +1,5 @@
 ---
+title: "permuted language modeling"
 aliases: ["PLM"]
 ---
 

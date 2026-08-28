@@ -1,4 +1,5 @@
 ---
+title: "closure"
 tags: ["python", "programming"]
 aliases: ["클로저", "클로져"]
 ---

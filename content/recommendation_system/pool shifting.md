@@ -1,3 +1,6 @@
+---
+title: "pool shifting"
+---
 
 # A) What is the Pool Shifting?
 

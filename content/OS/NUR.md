@@ -1,4 +1,5 @@
 ---
+title: "NUR"
 tags: ["operating_system"]
 ---
 

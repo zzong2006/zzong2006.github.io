@@ -1,4 +1,5 @@
 ---
+title: "shell script"
 tags: ["language"]
 ---
 

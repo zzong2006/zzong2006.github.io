@@ -1,4 +1,5 @@
 ---
+title: "data mining"
 tags: ["machine_learning", "word"]
 ---
 

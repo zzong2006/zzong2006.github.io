@@ -1,4 +1,5 @@
 ---
+title: "Producer"
 tags: ["kafka", "streaming", "data_engineering"]
 aliases: ["Kafka Producer"]
 ---

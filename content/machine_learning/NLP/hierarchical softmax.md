@@ -1,4 +1,5 @@
 ---
+title: "hierarchical softmax"
 tags: ["word2vec"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "explanatory variable"
 tags: ["statistic"]
 aliases: ["independent variable", "predictor variable", "독립 변수", "predictor", "regressor", "예측 변수"]
 ---

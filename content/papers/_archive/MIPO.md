@@ -1,4 +1,5 @@
 ---
+title: "MIPO"
 tags: ["paper_review"]
 aliases: ["Modulated Intervention Preference Optimization"]
 ---

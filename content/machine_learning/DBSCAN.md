@@ -1,4 +1,5 @@
 ---
+title: "DBSCAN"
 tags: ["machine_learning", "clustering"]
 aliases: ["Density-Based Spatial Clustering of Applications with Noise"]
 ---

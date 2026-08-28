@@ -1,4 +1,5 @@
 ---
+title: "Deep RNN"
 tags: ["NLP", "deep_learning"]
 aliases: ["DRNN"]
 ---

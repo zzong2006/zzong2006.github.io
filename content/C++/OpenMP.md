@@ -1,4 +1,5 @@
 ---
+title: "OpenMP"
 tags: ["Cpp"]
 ---
 

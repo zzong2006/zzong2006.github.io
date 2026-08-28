@@ -1,3 +1,6 @@
+---
+title: "generative model"
+---
 * Refer link
 	* https://statproofbook.github.io/D/gm
 * [[generative model]] 이란 training data 가 주어졌을 때, 이 training data 에 대한 분포와 같은 분포에서 sampling 하는 [[Machine Learning Model]] 을 의미한다.

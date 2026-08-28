@@ -1,4 +1,5 @@
 ---
+title: "activation function"
 tags: ["machine_learning", "deep_learning"]
 ---
 

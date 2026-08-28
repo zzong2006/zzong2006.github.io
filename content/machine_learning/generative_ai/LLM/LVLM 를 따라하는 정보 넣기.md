@@ -1,4 +1,5 @@
 ---
+title: "LVLM 를 따라하는 정보 넣기"
 tags: ["LLM", "LVLM"]
 ---
 

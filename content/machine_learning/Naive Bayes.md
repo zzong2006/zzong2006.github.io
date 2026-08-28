@@ -1,4 +1,5 @@
 ---
+title: "Naive Bayes"
 tags: ["machine_learning", "classification", "probabilistic_model"]
 aliases: ["Naive Bayes Classifier"]
 ---

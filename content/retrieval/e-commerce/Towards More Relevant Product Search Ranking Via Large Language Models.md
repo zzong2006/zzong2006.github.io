@@ -1,4 +1,5 @@
 ---
+title: "Towards More Relevant Product Search Ranking Via Large Language Models"
 tags: ["retrieval", "e-commerce", "ranking", "LLM", "learning_to_rank", "paper_review"]
 ---
 

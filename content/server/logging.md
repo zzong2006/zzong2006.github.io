@@ -1,4 +1,5 @@
 ---
+title: "logging"
 tags: ["python"]
 ---
 

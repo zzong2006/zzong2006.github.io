@@ -1,4 +1,5 @@
 ---
+title: "Topic(kafka)"
 tags: ["kafka", "streaming", "data_engineering"]
 aliases: ["Kafka Topic", "topic"]
 ---

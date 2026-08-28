@@ -1,4 +1,5 @@
 ---
+title: "t-Stochastic Nearest Embedding"
 tags: ["word2vec", "clustering"]
 aliases: ["t-SNE"]
 ---

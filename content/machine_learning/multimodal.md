@@ -1,4 +1,5 @@
 ---
+title: "multimodal"
 tags: ["machine_learning", "multimodal"]
 aliases: ["Multimodal Learning"]
 ---

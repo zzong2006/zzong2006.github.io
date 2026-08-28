@@ -1,4 +1,5 @@
 ---
+title: "AlexNet"
 tags: ["CNN", "image", "deep_learning"]
 ---
 # A) AlexNet ?

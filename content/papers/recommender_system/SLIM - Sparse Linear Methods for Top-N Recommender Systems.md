@@ -1,4 +1,5 @@
 ---
+title: "SLIM - Sparse Linear Methods for Top-N Recommender Systems"
 tags: ["paper_review", "recommender_system", "collaborative_filtering"]
 aliases: ["SLIM", "Sparse Linear Methods for Top-N Recommender Systems"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "dmesg"
 tags: ["linux"]
 ---
 

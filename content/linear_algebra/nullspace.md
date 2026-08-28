@@ -1,4 +1,5 @@
 ---
+title: "nullspace"
 tags: ["linear_algebra"]
 aliases: ["영공간"]
 ---

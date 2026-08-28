@@ -1,4 +1,5 @@
 ---
+title: "batch inference"
 tags: ["machine_learning"]
 ---
 

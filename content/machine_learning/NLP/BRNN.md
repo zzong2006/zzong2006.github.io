@@ -1,3 +1,7 @@
+---
+title: "BRNN"
+---
+
 * motivation of BRNN
 	* [[Recurrent Neural Network]] 의 단점은 이전에 나온 정보만을 활용해 이후의 출력값을 결정한다는 점이다.
 		* ![[img-97ef8239e6.png|image-20201101220414462]]

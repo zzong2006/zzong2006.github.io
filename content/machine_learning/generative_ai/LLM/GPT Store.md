@@ -1,3 +1,6 @@
+---
+title: "GPT Store"
+---
 # A) GPT Store ?
 
 

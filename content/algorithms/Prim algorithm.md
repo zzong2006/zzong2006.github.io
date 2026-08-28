@@ -1,4 +1,5 @@
 ---
+title: "Prim algorithm"
 tags: ["algorithm", "graph"]
 ---
 

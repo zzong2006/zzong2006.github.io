@@ -1,4 +1,5 @@
 ---
+title: "over-smoothing"
 tags: ["graph"]
 ---
 

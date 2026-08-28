@@ -1,4 +1,5 @@
 ---
+title: "Apache Iceberg"
 tags: ["data_engineering", "lakehouse", "iceberg", "open_source"]
 aliases: ["Iceberg", "Apache Iceberg"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "PPR"
 tags: ["graph", "recommendation_system", "ranking", "random_walk"]
 aliases: ["Personalized PageRank", "Personalised PageRank", "Random Walk with Restart", "RWR"]
 ---

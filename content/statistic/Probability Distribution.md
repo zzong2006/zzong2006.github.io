@@ -1,4 +1,5 @@
 ---
+title: "Probability Distribution"
 tags: ["statistic", "probability_distribution"]
 ---
 

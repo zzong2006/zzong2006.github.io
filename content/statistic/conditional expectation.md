@@ -1,4 +1,5 @@
 ---
+title: "conditional expectation"
 tags: ["statistics", "probability"]
 aliases: ["Conditional Expectation"]
 ---

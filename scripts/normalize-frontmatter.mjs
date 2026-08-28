@@ -43,12 +43,17 @@ function yamlString(value) {
   return JSON.stringify(value)
 }
 
-function normalizeFrontmatter(text) {
+function normalizeFrontmatter(text, fallbackTitle) {
   const newline = text.includes("\r\n") ? "\r\n" : "\n"
   const lines = text.split(/\r?\n/)
 
   if (lines[0] !== frontmatterFence) {
-    return text
+    // frontmatter 가 없으면 Quartz 가 첫 헤딩을 제목으로 쓴다. 이 vault 는
+    // "# A) 핵심 요약" 같은 섹션 헤딩으로 시작하는 노트가 많아 제목이 깨진다.
+    if (!fallbackTitle) {
+      return text
+    }
+    return [frontmatterFence, `title: ${yamlString(fallbackTitle)}`, frontmatterFence, ...lines].join(newline)
   }
 
   const end = lines.findIndex((line, index) => index > 0 && line === frontmatterFence)
@@ -96,8 +101,9 @@ function normalizeFrontmatter(text) {
   }
 
   const next = []
-  if (title) {
-    next.push(`title: ${yamlString(title)}`)
+  const resolvedTitle = title || fallbackTitle
+  if (resolvedTitle) {
+    next.push(`title: ${yamlString(resolvedTitle)}`)
   }
 
   const nextTags = unique(tags)
@@ -139,7 +145,7 @@ let changed = 0
 
 for (const file of files) {
   const text = await fs.readFile(file, "utf8")
-  const next = normalizeFrontmatter(text)
+  const next = normalizeFrontmatter(text, path.basename(file, ".md"))
 
   if (next !== text) {
     await fs.writeFile(file, next, "utf8")

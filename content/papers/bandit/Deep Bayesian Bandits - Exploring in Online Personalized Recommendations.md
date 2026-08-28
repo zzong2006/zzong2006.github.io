@@ -1,4 +1,5 @@
 ---
+title: "Deep Bayesian Bandits - Exploring in Online Personalized Recommendations"
 tags: ["bandit", "paper_review", "recommendation_system", "exploration", "y2020"]
 aliases: ["Deep Bayesian Bandits", "DBB"]
 ---

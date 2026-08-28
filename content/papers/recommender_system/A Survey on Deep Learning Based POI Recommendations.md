@@ -1,4 +1,5 @@
 ---
+title: "A Survey on Deep Learning Based POI Recommendations"
 tags: ["deep_learning", "paper_review", "recommendation_system"]
 ---
 

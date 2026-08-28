@@ -1,4 +1,5 @@
 ---
+title: "Trino"
 tags: ["SQL"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "probit model"
 tags: ["linear_regression", "statistic"]
 ---
 

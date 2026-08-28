@@ -1,4 +1,5 @@
 ---
+title: "Alternate Key"
 tags: ["database"]
 aliases: ["대체키"]
 ---

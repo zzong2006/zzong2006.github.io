@@ -1,4 +1,5 @@
 ---
+title: "GoLang"
 tags: ["programming", "language", "server"]
 ---
 

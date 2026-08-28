@@ -1,4 +1,5 @@
 ---
+title: "vanishing gradients"
 tags: ["deep_learning"]
 ---
 

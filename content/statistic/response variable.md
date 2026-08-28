@@ -1,4 +1,5 @@
 ---
+title: "response variable"
 tags: ["statistic"]
 aliases: ["dependent variable", "outcome variable", "종속 변수"]
 ---

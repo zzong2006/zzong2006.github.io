@@ -1,4 +1,5 @@
 ---
+title: "Transductive"
 tags: ["machine_learning"]
 ---
 

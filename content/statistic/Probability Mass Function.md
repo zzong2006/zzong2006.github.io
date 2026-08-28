@@ -1,4 +1,5 @@
 ---
+title: "Probability Mass Function"
 tags: ["statistic"]
 aliases: ["PMF"]
 ---

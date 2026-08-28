@@ -1,4 +1,5 @@
 ---
+title: "least squares estimation"
 aliases: ["machine_learning", "linear_regression", "optimization"]
 ---
 

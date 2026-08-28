@@ -1,4 +1,5 @@
 ---
+title: "tip(Kubernetes)"
 tags: ["tip"]
 ---
 

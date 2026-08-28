@@ -1,4 +1,5 @@
 ---
+title: "ArgoCD"
 tags: ["machine_learning", "pipeline", "CI/CD"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "expected return"
 tags: ["reinforcement_learning"]
 aliases: ["discounted return"]
 ---

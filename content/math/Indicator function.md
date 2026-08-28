@@ -1,4 +1,5 @@
 ---
+title: "Indicator function"
 tags: ["math"]
 ---
 

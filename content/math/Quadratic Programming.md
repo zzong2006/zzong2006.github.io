@@ -1,3 +1,6 @@
+---
+title: "Quadratic Programming"
+---
 # Quadratic Programming ?
 
 

@@ -1,4 +1,5 @@
 ---
+title: "Gamma distribution"
 tags: ["probability_distribution"]
 ---
 

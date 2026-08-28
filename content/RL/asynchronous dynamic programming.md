@@ -1,4 +1,5 @@
 ---
+title: "asynchronous dynamic programming"
 tags: ["reinforcement_learning", "DP"]
 aliases: ["ADP"]
 ---

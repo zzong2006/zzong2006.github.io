@@ -1,3 +1,6 @@
+---
+title: "top-k Sampling"
+---
 
 # A) 빔 서치(Beam Search)
 

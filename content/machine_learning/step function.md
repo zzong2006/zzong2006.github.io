@@ -1,4 +1,5 @@
 ---
+title: "step function"
 tags: ["activation_function", "deep_learning"]
 aliases: ["계단 함수"]
 ---

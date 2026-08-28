@@ -1,4 +1,5 @@
 ---
+title: "reparametrization trick"
 tags: ["optimization"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Hellinger distance"
 tags: ["statistic", "machine_learning"]
 ---
 

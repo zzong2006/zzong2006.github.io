@@ -1,4 +1,5 @@
 ---
+title: "collinearity"
 tags: ["machine_learning", "statistic", "linear_regression"]
 aliases: ["공선성", "다중공선성"]
 ---

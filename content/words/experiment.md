@@ -1,4 +1,5 @@
 ---
+title: "experiment"
 tags: ["word", "statistic"]
 ---
 

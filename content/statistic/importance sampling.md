@@ -1,4 +1,5 @@
 ---
+title: "importance sampling"
 tags: ["sampling"]
 aliases: ["inverse propensity score"]
 ---

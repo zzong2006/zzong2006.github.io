@@ -1,4 +1,5 @@
 ---
+title: "Normalization"
 tags: ["machine_learning", "feature_scaling"]
 aliases: ["normalization", "scaling"]
 ---

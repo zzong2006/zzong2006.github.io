@@ -1,4 +1,5 @@
 ---
+title: "Positional Encoding"
 tags: ["NLP"]
 aliases: ["PE"]
 ---

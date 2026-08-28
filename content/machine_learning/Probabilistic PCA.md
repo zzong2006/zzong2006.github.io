@@ -1,4 +1,5 @@
 ---
+title: "Probabilistic PCA"
 tags: ["machine_learning"]
 ---
 

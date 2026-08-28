@@ -1,4 +1,5 @@
 ---
+title: "string"
 tags: ["programming", "python", "algorithm", "string"]
 ---
 

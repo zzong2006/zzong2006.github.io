@@ -1,4 +1,5 @@
 ---
+title: "Confidence"
 tags: ["metrics", "recommendation_system", "association_rule"]
 aliases: ["confidence"]
 ---

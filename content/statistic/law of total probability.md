@@ -1,4 +1,5 @@
 ---
+title: "law of total probability"
 tags: ["statistic"]
 ---
 

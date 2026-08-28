@@ -1,4 +1,5 @@
 ---
+title: "Collaborative filtering via high-dimensional regression"
 tags: ["Netflix", "bias", "collaborative_filtering", "paper_review", "popularity_bias", "recommendation_system"]
 ---
 

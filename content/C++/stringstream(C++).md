@@ -1,3 +1,6 @@
+---
+title: "stringstream(C++)"
+---
 
 # stringstream(C++) ?
 

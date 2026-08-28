@@ -1,4 +1,5 @@
 ---
+title: "Active Dimensions"
 tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding"]
 aliases: ["활성 차원"]
 ---

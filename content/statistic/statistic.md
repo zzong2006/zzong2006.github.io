@@ -1,3 +1,6 @@
+---
+title: "statistic"
+---
 [[maximum a posteriori probability]]
 
 [[Gamma distribution]]

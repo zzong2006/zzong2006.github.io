@@ -1,4 +1,5 @@
 ---
+title: "adjacency matrix"
 tags: ["linear_algebra", "graph"]
 ---
 

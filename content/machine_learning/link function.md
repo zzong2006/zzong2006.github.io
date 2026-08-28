@@ -1,4 +1,5 @@
 ---
+title: "link function"
 tags: ["activation_function"]
 ---
 

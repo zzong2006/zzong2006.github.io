@@ -1,4 +1,5 @@
 ---
+title: "sigmoid function"
 tags: ["activation_function"]
 aliases: ["sigmoid", "시그모이드", "logistic function"]
 ---

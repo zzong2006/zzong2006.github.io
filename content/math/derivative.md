@@ -1,4 +1,5 @@
 ---
+title: "derivative"
 tags: ["math", "linear_algebra"]
 ---
 

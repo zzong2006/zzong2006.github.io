@@ -1,4 +1,5 @@
 ---
+title: "interquartile"
 tags: ["statistic"]
 aliases: ["IQR"]
 ---

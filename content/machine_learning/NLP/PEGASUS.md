@@ -1,4 +1,5 @@
 ---
+title: "PEGASUS"
 tags: ["summarization", "Google", "ICML", "y2020"]
 ---
 
@@ -19,7 +20,7 @@ In PEGASUS pre-training, several whole sentences are removed from documents and 
 The advantage of this self-supervision is that you can create as many examples as there are documents, without any human annotation, which is often the bottleneck in purely supervised systems.
 
 **A self-supervised example for PEGASUS during pre-training**: The model is trained to output all the masked sentences.  
-<img src="https://1.bp.blogspot.com/-TSor4o51jGI/Xt50lkj6blI/AAAAAAAAGDs/TrDe9jv13WEwk9NQNebQL63jtY8n6JFGwCLcBGAsYHQ/s1600/image1.gif">
+<img src="/images/img-4248f1ebd1.gif">
 
 We found that choosing “important” sentences to mask worked best, making the output of self-supervised examples even more similar to a summary. We automatically identified these sentences by finding those that were most similar to the rest of the document according to a metric called ROUGE.
 

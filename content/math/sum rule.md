@@ -1,4 +1,5 @@
 ---
+title: "sum rule"
 tags: ["statistic"]
 aliases: ["marginalization property"]
 ---

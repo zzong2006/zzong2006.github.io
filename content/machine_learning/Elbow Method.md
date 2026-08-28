@@ -1,4 +1,5 @@
 ---
+title: "Elbow Method"
 tags: ["clustering"]
 ---
 

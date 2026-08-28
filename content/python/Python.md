@@ -1,4 +1,5 @@
 ---
+title: "Python"
 tags: ["programming", "language"]
 ---
 

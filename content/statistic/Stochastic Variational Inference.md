@@ -1,4 +1,5 @@
 ---
+title: "Stochastic Variational Inference"
 tags: ["bayesian_inference"]
 aliases: ["SVI"]
 ---

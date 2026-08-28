@@ -1,4 +1,5 @@
 ---
+title: "Hidden Markov Model"
 tags: ["statistics", "machine_learning", "graphical_model"]
 aliases: ["HMM"]
 ---

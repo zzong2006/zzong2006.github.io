@@ -1,4 +1,5 @@
 ---
+title: "credible interval"
 tags: ["bayesian_inference"]
 ---
 

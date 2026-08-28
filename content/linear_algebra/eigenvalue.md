@@ -1,4 +1,5 @@
 ---
+title: "eigenvalue"
 tags: ["linear_algebra"]
 aliases: ["고유값"]
 ---

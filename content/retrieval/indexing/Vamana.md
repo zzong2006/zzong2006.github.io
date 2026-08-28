@@ -1,4 +1,5 @@
 ---
+title: "Vamana"
 tags: ["retrieval", "ANN", "vector_search", "graph_based"]
 aliases: ["DiskANN"]
 ---

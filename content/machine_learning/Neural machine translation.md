@@ -1,4 +1,5 @@
 ---
+title: "Neural machine translation"
 tags: ["NLP"]
 aliases: ["NMT"]
 ---

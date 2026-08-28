@@ -1,4 +1,5 @@
 ---
+title: "SPLARE"
 tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding", "paper_review", "SAE", "multilingual"]
 aliases: ["SParse LAtent REtrieval"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "t-statistic"
 tags: ["statistic"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Extreme Gradient Boosting"
 tags: ["ensemble"]
 aliases: ["XGBoost"]
 ---

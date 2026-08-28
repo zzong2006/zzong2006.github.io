@@ -1,4 +1,5 @@
 ---
+title: "gradient descent"
 tags: ["optimization", "machine_learning", "deep_learning"]
 aliases: ["GD"]
 ---

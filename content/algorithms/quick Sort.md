@@ -1,4 +1,5 @@
 ---
+title: "quick Sort"
 tags: ["algorithm", "sorting"]
 ---
 

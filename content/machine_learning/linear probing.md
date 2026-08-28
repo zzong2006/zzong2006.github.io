@@ -1,4 +1,5 @@
 ---
+title: "linear probing"
 tags: ["deep_learning"]
 ---
 

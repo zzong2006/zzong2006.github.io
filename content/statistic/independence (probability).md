@@ -1,4 +1,5 @@
 ---
+title: "independence (probability)"
 tags: ["statistic"]
 ---
 

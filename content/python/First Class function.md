@@ -1,4 +1,5 @@
 ---
+title: "First Class function"
 tags: ["python"]
 ---
 

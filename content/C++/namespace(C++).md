@@ -1,4 +1,5 @@
 ---
+title: "namespace(C++)"
 tags: ["Cpp"]
 aliases: ["이름 공간", "namespace"]
 ---

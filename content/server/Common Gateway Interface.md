@@ -1,4 +1,5 @@
 ---
+title: "Common Gateway Interface"
 tags: ["network"]
 aliases: ["CGI"]
 ---

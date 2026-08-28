@@ -1,4 +1,5 @@
 ---
+title: "gamma function"
 tags: ["statistic", "math"]
 aliases: ["Gamma function"]
 ---

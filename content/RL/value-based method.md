@@ -1,4 +1,5 @@
 ---
+title: "value-based method"
 tags: ["reinforcement_learning"]
 ---
 

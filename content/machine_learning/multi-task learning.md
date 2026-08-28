@@ -1,4 +1,5 @@
 ---
+title: "multi-task learning"
 tags: ["machine_learning"]
 aliases: ["MTL"]
 ---

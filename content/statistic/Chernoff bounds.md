@@ -1,4 +1,5 @@
 ---
+title: "Chernoff bounds"
 tags: ["MAB"]
 ---
 

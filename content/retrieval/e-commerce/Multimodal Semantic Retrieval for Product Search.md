@@ -1,4 +1,5 @@
 ---
+title: "Multimodal Semantic Retrieval for Product Search"
 tags: ["retrieval", "e-commerce", "multimodal", "dense_retrieval", "Amazon", "paper_review"]
 ---
 

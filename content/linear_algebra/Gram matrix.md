@@ -1,4 +1,5 @@
 ---
+title: "Gram matrix"
 tags: ["linear_algebra"]
 aliases: ["그람 행렬"]
 ---

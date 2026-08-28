@@ -1,4 +1,5 @@
 ---
+title: "linear operator"
 tags: ["linear_algebra"]
 ---
 

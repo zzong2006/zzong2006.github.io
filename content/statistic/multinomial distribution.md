@@ -1,4 +1,5 @@
 ---
+title: "multinomial distribution"
 tags: ["probability_distribution", "statistic"]
 ---
 

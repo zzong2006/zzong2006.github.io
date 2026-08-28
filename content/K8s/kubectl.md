@@ -1,4 +1,5 @@
 ---
+title: "kubectl"
 tags: ["Kubernetes"]
 ---
 

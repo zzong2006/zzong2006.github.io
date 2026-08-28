@@ -1,4 +1,5 @@
 ---
+title: "irreducible error"
 tags: ["machine_learning", "linear_regression"]
 ---
 

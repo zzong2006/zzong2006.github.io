@@ -1,4 +1,5 @@
 ---
+title: "stack"
 tags: ["algorithm", "data_structure"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Gaussian distribution"
 tags: ["probability_distribution", "statistic"]
 aliases: ["normal distribution", "정규 분포", "gaussian"]
 ---

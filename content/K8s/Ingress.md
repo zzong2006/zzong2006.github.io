@@ -1,4 +1,5 @@
 ---
+title: "Ingress"
 tags: ["Kubernetes"]
 ---
 

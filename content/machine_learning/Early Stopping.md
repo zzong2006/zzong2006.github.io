@@ -1,4 +1,5 @@
 ---
+title: "Early Stopping"
 tags: ["machine_learning"]
 ---
 

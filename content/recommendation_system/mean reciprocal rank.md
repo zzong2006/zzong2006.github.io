@@ -1,4 +1,5 @@
 ---
+title: "mean reciprocal rank"
 tags: ["learning_to_rank", "metrics", "recommendation_system"]
 aliases: ["MRR"]
 ---

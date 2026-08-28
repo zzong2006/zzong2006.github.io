@@ -1,3 +1,6 @@
+---
+title: "General Problems"
+---
 
 # A) 문자열 압축
 

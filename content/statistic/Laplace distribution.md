@@ -1,4 +1,5 @@
 ---
+title: "Laplace distribution"
 tags: ["probability_distribution"]
 ---
 

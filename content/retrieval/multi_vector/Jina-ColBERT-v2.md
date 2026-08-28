@@ -1,4 +1,5 @@
 ---
+title: "Jina-ColBERT-v2"
 tags: ["retrieval", "IR", "embedding", "multi_vector", "ColBERT", "y2024"]
 ---
 

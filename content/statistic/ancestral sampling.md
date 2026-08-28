@@ -1,4 +1,5 @@
 ---
+title: "ancestral sampling"
 tags: ["sampling", "PGM"]
 ---
 

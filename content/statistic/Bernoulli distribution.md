@@ -1,4 +1,5 @@
 ---
+title: "Bernoulli distribution"
 tags: ["probability_distribution", "statistic"]
 aliases: ["베르누이 분포"]
 ---

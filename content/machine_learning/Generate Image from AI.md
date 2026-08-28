@@ -1,3 +1,6 @@
+---
+title: "Generate Image from AI"
+---
 
 # A) Generate Image from AI ?
 

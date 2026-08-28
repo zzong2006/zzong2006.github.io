@@ -1,4 +1,5 @@
 ---
+title: "Infrastructure-as-a-Service"
 tags: ["word", "server"]
 aliases: ["IaaS"]
 ---

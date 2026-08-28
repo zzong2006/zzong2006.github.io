@@ -1,4 +1,5 @@
 ---
+title: "post-order"
 tags: ["algorithm", "tree"]
 aliases: ["postorder Search", "Postorder Search"]
 ---

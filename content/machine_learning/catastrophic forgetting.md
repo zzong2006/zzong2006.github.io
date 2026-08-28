@@ -1,4 +1,5 @@
 ---
+title: "catastrophic forgetting"
 aliases: ["재앙적 망각"]
 ---
 모델이 새로운 지식을 학습하면서 기존에 가지고 있던 일반적인 지식이나 능력을 잃어버리는 현상을 '재앙적 망각(Catastrophic Forgetting)'이라고 합니다.

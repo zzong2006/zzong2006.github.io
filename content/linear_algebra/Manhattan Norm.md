@@ -1,4 +1,5 @@
 ---
+title: "Manhattan Norm"
 tags: ["linear_algebra"]
 aliases: ["L1 Norm", "Taxicab Norm"]
 ---

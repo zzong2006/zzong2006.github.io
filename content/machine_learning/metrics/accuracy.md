@@ -1,3 +1,6 @@
+---
+title: "accuracy"
+---
 
 # A) Accuracy 란?
 

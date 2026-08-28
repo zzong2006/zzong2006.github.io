@@ -1,4 +1,5 @@
 ---
+title: "self-supervised"
 tags: ["deep_learning"]
 aliases: ["self supervised"]
 ---

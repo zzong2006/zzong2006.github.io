@@ -1,4 +1,5 @@
 ---
+title: "Euclidean distance"
 tags: ["metrics"]
 aliases: ["Euclidean norm", "유클리디안 거리"]
 ---

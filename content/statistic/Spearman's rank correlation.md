@@ -1,4 +1,5 @@
 ---
+title: "Spearman's rank correlation"
 tags: ["statistic", "metrics", "correlation"]
 aliases: ["SRC", "Spearman Correlation", "스피어만 상관계수"]
 ---

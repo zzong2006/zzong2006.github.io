@@ -1,4 +1,5 @@
 ---
+title: "Probabilistic Matrix Factorization"
 tags: ["NIPS", "collaborative_filtering", "paper_review", "y2007"]
 aliases: ["PMF"]
 ---

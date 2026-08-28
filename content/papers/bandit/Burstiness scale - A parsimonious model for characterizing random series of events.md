@@ -1,4 +1,5 @@
 ---
+title: "Burstiness scale - A parsimonious model for characterizing random series of events"
 tags: ["KDD", "bandit", "paper_review"]
 ---
 

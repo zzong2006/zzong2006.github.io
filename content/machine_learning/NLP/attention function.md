@@ -1,4 +1,5 @@
 ---
+title: "attention function"
 tags: ["NLP", "deep_learning"]
 aliases: ["attention", "어텐션"]
 ---

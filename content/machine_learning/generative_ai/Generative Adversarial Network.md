@@ -1,4 +1,5 @@
 ---
+title: "Generative Adversarial Network"
 tags: ["deep_learning", "generative_model"]
 aliases: ["GAN"]
 ---

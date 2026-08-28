@@ -1,4 +1,5 @@
 ---
+title: "conjugate prior"
 tags: ["bayesian_inference", "statistic"]
 ---
 

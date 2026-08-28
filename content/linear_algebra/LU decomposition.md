@@ -1,4 +1,5 @@
 ---
+title: "LU decomposition"
 tags: ["linear_algebra"]
 ---
 

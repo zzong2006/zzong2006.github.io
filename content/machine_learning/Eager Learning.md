@@ -1,4 +1,5 @@
 ---
+title: "Eager Learning"
 tags: ["machine_learning"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "manifold"
 tags: ["machine_learning", "feature_engineering", "statistic"]
 ---
 

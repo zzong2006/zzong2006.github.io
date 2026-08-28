@@ -1,4 +1,5 @@
 ---
+title: "cache locality"
 tags: ["operating_system"]
 ---
 

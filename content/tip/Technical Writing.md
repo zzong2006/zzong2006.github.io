@@ -1,4 +1,5 @@
 ---
+title: "Technical Writing"
 tags: ["work"]
 ---
 

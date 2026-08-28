@@ -1,4 +1,5 @@
 ---
+title: "law of conditional probability"
 tags: ["statistic"]
 ---
 

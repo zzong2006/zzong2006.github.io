@@ -1,4 +1,5 @@
 ---
+title: "StatefulSet"
 tags: ["Kubernetes"]
 ---
 

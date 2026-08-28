@@ -1,4 +1,5 @@
 ---
+title: "Variational Autoencoder"
 tags: ["deep_learning", "generative_model", "representation_learning"]
 aliases: ["VAE", "Variational Autoencoder", "varitional autoencoder"]
 ---

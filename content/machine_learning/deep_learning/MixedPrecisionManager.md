@@ -1,4 +1,5 @@
 ---
+title: "MixedPrecisionManager"
 tags: ["deep_learning"]
 ---
 

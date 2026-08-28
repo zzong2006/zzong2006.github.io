@@ -1,4 +1,5 @@
 ---
+title: "regression"
 tags: ["linear_regression"]
 ---
 

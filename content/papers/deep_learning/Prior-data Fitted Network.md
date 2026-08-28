@@ -1,4 +1,5 @@
 ---
+title: "Prior-data Fitted Network"
 aliases: ["PFN"]
 ---
 # 1. Prior-data Fitted Network ?

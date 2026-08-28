@@ -1,4 +1,5 @@
 ---
+title: "Hadmard product"
 tags: ["math"]
 ---
 

@@ -1,3 +1,6 @@
+---
+title: "Bias-variance tradeoff"
+---
 
 # A) Bias & Variance Trade-off
 

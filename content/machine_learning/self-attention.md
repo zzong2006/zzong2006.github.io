@@ -1,4 +1,5 @@
 ---
+title: "self-attention"
 tags: ["NLP"]
 aliases: ["self attention", "셀프 어텐션"]
 ---

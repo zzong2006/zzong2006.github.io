@@ -1,4 +1,5 @@
 ---
+title: "temporal difference"
 tags: ["reinforcement_learning"]
 aliases: ["TD", "temporal-difference learning"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Thompson sampling"
 aliases: ["TS", "Posterior Sampling", "톰슨 샘플링"]
 ---
 

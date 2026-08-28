@@ -1,4 +1,5 @@
 ---
+title: "boxplot"
 tags: ["statistic", "visualization"]
 aliases: ["상자 수염 그림", "Box-and-Whisker Plot"]
 ---

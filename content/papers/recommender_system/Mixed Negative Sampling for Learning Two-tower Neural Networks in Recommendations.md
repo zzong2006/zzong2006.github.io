@@ -1,4 +1,5 @@
 ---
+title: "Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations"
 tags: ["Google", "NLP", "WWW", "implicit_feedback", "paper_review", "recommendation_system"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "dynamics"
 tags: ["reinforcement_learning"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "advantage function"
 tags: ["reinforcement_learning"]
 ---
 

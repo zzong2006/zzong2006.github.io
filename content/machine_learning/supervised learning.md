@@ -1,3 +1,6 @@
+---
+title: "supervised learning"
+---
 * Tags
 	* [[unsupervised learning]]
 * [[k-Nearest Neighbors]]

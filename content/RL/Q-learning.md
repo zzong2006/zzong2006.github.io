@@ -1,4 +1,5 @@
 ---
+title: "Q-learning"
 tags: ["reinforcement_learning"]
 ---
 

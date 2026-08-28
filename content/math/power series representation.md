@@ -1,4 +1,5 @@
 ---
+title: "power series representation"
 tags: ["math"]
 ---
 

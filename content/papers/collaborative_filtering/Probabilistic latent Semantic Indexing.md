@@ -1,4 +1,5 @@
 ---
+title: "Probabilistic latent Semantic Indexing"
 tags: ["bayesian_inference", "nlp", "paper_review", "statistic"]
 aliases: ["plsi"]
 ---

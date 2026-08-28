@@ -1,4 +1,5 @@
 ---
+title: "polyglot"
 tags: ["LLM", "korean", "NLP"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "bagging"
 tags: ["machine_learning", "ensemble"]
 ---
 

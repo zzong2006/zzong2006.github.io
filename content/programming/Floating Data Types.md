@@ -1,3 +1,6 @@
+---
+title: "Floating Data Types"
+---
 
 # 1. Floating Data Types ?
 

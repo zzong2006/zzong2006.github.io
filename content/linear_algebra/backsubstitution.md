@@ -1,4 +1,5 @@
 ---
+title: "backsubstitution"
 tags: ["linear_algebra"]
 aliases: ["Back Substitution"]
 ---

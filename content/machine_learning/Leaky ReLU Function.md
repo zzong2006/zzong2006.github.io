@@ -1,4 +1,5 @@
 ---
+title: "Leaky ReLU Function"
 tags: ["activation_function"]
 ---
 

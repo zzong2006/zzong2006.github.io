@@ -1,4 +1,5 @@
 ---
+title: "KL annealing"
 tags: ["optimization"]
 ---
 

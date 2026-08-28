@@ -1,4 +1,5 @@
 ---
+title: "Listing Embeddings in Search Ranking"
 tags: ["retrieval", "e-commerce", "embedding", "ranking", "tech_blog", "word2vec"]
 ---
 

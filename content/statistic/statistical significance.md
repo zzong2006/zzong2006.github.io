@@ -1,4 +1,5 @@
 ---
+title: "statistical significance"
 tags: ["statistic", "hypothesis_test"]
 aliases: ["statistically significant"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "The Unfairness of Popularity Bias in Recommendation"
 tags: ["bias", "fairness", "paper_review"]
 ---
 

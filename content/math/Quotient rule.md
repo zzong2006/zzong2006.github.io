@@ -1,4 +1,5 @@
 ---
+title: "Quotient rule"
 tags: ["differentitation", "calculus"]
 ---
 

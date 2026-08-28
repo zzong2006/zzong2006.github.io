@@ -1,4 +1,5 @@
 ---
+title: "Semantic Retrieval for Product Search in E-Commerce"
 tags: ["retrieval", "e-commerce", "dense_retrieval", "product_search", "paper_review", "y2026", "Flipkart"]
 aliases: ["Semantic Retrieval for Product Search in E-Commerce", "Flipkart Semantic Retrieval", "ROAR"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Bayesian inference"
 tags: ["bayesian_inference", "statistic"]
 ---
 

@@ -1,3 +1,6 @@
+---
+title: "subprocess"
+---
 * [[Python]] subprocess - [link](https://docs.python.org/3/library/subprocess.html)
 	* `subprocess.run` 함수
 		* `shell`: true 라면, 새로운 shell 을 띄워서 해당 프로세스를 호출하게 된다.

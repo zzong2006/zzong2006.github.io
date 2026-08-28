@@ -1,4 +1,5 @@
 ---
+title: "Finite State Transducer"
 tags: ["algorithm", "data_structure", "search_engine"]
 aliases: ["FST", "finite state transducer"]
 ---

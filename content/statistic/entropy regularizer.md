@@ -1,3 +1,6 @@
+---
+title: "entropy regularizer"
+---
 
 # Entropy Regularizer ?
 

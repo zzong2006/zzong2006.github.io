@@ -1,4 +1,5 @@
 ---
+title: "p-value"
 tags: ["statistic", "hypothesis_test"]
 ---
 

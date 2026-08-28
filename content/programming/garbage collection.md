@@ -1,4 +1,5 @@
 ---
+title: "garbage collection"
 tags: ["language", "python"]
 aliases: ["garbage collector"]
 ---

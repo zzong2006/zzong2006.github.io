@@ -1,4 +1,5 @@
 ---
+title: "Gaussian Mixture Model"
 aliases: ["GMM"]
 ---
 

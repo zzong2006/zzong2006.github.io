@@ -1,4 +1,5 @@
 ---
+title: "standard deviation"
 tags: ["statistic"]
 aliases: ["표준 편차"]
 ---

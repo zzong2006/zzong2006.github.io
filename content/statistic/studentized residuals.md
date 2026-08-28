@@ -1,4 +1,5 @@
 ---
+title: "studentized residuals"
 tags: ["statistic"]
 ---
 

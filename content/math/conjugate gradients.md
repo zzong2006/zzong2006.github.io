@@ -1,4 +1,5 @@
 ---
+title: "conjugate gradients"
 tags: ["optimization", "numerical_method"]
 ---
 

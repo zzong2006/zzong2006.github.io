@@ -1,4 +1,5 @@
 ---
+title: "thread"
 tags: ["operating_system"]
 aliases: ["스레드", "쓰레드"]
 ---

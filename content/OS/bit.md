@@ -1,4 +1,5 @@
 ---
+title: "bit"
 tags: ["operating_system"]
 ---
 

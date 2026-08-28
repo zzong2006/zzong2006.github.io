@@ -1,4 +1,5 @@
 ---
+title: "swap 영역"
 tags: ["operating_system"]
 ---
 

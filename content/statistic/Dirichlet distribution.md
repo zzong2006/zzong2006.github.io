@@ -1,4 +1,5 @@
 ---
+title: "Dirichlet distribution"
 tags: ["statistic"]
 ---
 

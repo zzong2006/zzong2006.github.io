@@ -1,4 +1,5 @@
 ---
+title: "Paging"
 tags: ["operating_system"]
 ---
 
@@ -12,4 +13,4 @@ tags: ["operating_system"]
 
 페이징은 external fragmentation 대신에 internal fragmentation 이 발생한다. 왜냐하면 일반적으로 프로세스가 요구하는 논리적 메모리 공간이 고정된 크기로 정확히 나눠떨어지지 않기 때문이다.
 
-<img src="https://os.phil-opp.com/paging-introduction/paging-page-tables.svg" style="zoom:67%;" />
+<img src="/images/img-205c8127dd.svg" style="zoom:67%;" />

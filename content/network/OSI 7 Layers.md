@@ -1,4 +1,5 @@
 ---
+title: "OSI 7 Layers"
 tags: ["network"]
 aliases: ["OSI"]
 ---

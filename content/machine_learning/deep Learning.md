@@ -1,4 +1,5 @@
 ---
+title: "deep Learning"
 aliases: ["딥러닝"]
 ---
 

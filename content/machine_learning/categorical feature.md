@@ -1,4 +1,5 @@
 ---
+title: "categorical feature"
 tags: ["classification", "feature_engineering"]
 ---
 

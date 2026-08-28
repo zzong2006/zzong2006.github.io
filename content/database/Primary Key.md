@@ -1,4 +1,5 @@
 ---
+title: "Primary Key"
 tags: ["database", "relation"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "exponential family"
 tags: ["statistic", "probability_distribution"]
 ---
 

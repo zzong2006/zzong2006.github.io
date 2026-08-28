@@ -1,4 +1,5 @@
 ---
+title: "Named Entity Recognition"
 tags: ["NLP", "machine_learning"]
 aliases: ["NER"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Two-tower Model"
 tags: ["retrieval", "dense_retrieval", "recommendation_system"]
 aliases: ["Two-tower", "Dual Encoder"]
 ---

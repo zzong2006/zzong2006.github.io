@@ -1,4 +1,5 @@
 ---
+title: "Association Rule Learning"
 tags: ["recommendation_system"]
 ---
 

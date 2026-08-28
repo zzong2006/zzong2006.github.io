@@ -1,4 +1,5 @@
 ---
+title: "value iteration"
 tags: ["reinforcement_learning", "DP"]
 ---
 

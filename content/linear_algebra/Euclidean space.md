@@ -1,4 +1,5 @@
 ---
+title: "Euclidean space"
 tags: ["linear_algebra"]
 ---
 

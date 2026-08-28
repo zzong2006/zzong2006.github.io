@@ -1,4 +1,5 @@
 ---
+title: "Sparse embedding models"
 tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding", "nlp", "paper_review"]
 ---
 

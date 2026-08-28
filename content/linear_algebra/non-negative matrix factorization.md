@@ -1,4 +1,5 @@
 ---
+title: "non-negative matrix factorization"
 tags: ["linear_algebra"]
 ---
 

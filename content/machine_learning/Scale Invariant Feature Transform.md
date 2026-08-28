@@ -1,4 +1,5 @@
 ---
+title: "Scale Invariant Feature Transform"
 aliases: ["SIFT"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "Rethinking the Role of Token Retrieval in Multi-Vector Retrieval"
 tags: ["retrieval", "IR", "multi_vector", "ColBERT", "paper_review"]
 aliases: ["XTR"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Joint User-Entity Representation Learning for Event Recommendation in Social Network"
 tags: ["cold-start", "deep_learning", "paper_review", "recommendation_system"]
 ---
 

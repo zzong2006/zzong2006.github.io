@@ -1,4 +1,5 @@
 ---
+title: "square root law"
 tags: ["math", "statistic"]
 aliases: ["제곱근법칙"]
 ---

@@ -1,3 +1,6 @@
+---
+title: "Subsampling Frequent words"
+---
 # A) Word2Vec 학습에서 자주 등장하는 단어 처리
 
 Word2Vec 모델을 학습할 때, 관사 “the”와 같은 단어들은 문장에서 중요하지 않지만 빈도수가 많아 embedding layer 에서 자주 업데이트됩니다. 이로 인해 embedding 의 학습 시간은 증가하지만, embedding vector 의 정확도에는 큰 영향을 미치지 않습니다.

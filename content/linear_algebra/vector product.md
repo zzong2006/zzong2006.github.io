@@ -1,4 +1,5 @@
 ---
+title: "vector product"
 tags: ["linear_algebra"]
 aliases: ["Cross Product"]
 ---

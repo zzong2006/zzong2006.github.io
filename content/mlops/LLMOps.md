@@ -1,4 +1,5 @@
 ---
+title: "LLMOps"
 tags: ["MLOps", "LLM", "generative_model", "server", "inference", "pipeline"]
 aliases: ["FMOps"]
 ---

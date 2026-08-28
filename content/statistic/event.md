@@ -1,4 +1,5 @@
 ---
+title: "event"
 tags: ["statistic", "probability"]
 ---
 

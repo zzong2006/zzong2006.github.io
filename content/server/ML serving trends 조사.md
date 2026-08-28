@@ -1,4 +1,5 @@
 ---
+title: "ML serving trends 조사"
 tags: ["MLOps", "server", "machine_learning"]
 aliases: ["ML Serving", "Model Serving"]
 ---

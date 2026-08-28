@@ -1,4 +1,5 @@
 ---
+title: "Super Key"
 tags: ["database", "relation"]
 ---
 

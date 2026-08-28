@@ -1,4 +1,5 @@
 ---
+title: "LinUCB"
 tags: ["contextual_bandit"]
 ---
 

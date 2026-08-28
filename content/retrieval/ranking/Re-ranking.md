@@ -1,4 +1,5 @@
 ---
+title: "Re-ranking"
 tags: ["retrieval", "IR", "ranking", "rerank", "listwise", "RAG"]
 aliases: ["Rerank", "Reranking", "Re-rank", "Re-ranking"]
 ---

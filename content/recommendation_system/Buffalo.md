@@ -1,4 +1,5 @@
 ---
+title: "Buffalo"
 tags: ["open_source", "kakao", "work", "recommendation_system"]
 ---
 

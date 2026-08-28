@@ -1,4 +1,5 @@
 ---
+title: "Xavier initialization"
 tags: ["deep_learning"]
 ---
 

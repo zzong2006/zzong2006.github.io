@@ -1,4 +1,5 @@
 ---
+title: "Embedding-based Retrieval"
 tags: ["retrieval", "dense_retrieval", "embedding"]
 aliases: ["EBR"]
 ---

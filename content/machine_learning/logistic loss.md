@@ -1,4 +1,5 @@
 ---
+title: "logistic loss"
 tags: ["machine_learning"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "F1 Score"
 tags: ["machine_learning", "metrics"]
 aliases: ["F1-Score"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Algorithmic Effects on the Diversity of Consumption on Spotify"
 tags: ["WWW", "diversity", "paper_review", "recommendation_system"]
 ---
 

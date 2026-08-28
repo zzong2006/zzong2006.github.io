@@ -1,4 +1,5 @@
 ---
+title: "Bayesian BM25"
 tags: ["retrieval", "IR", "sparse_retrieval", "hybrid_search", "bayesian"]
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: "mean squared error"
 tags: ["machine_learning", "linear_regression"]
 aliases: ["MSE", "RMSE"]
 ---

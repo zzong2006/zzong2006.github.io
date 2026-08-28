@@ -1,4 +1,5 @@
 ---
+title: "pod(Kubernetes)"
 tags: ["Kubernetes"]
 aliases: ["pod"]
 ---

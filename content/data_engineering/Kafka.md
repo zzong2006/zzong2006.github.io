@@ -1,4 +1,5 @@
 ---
+title: "Kafka"
 tags: ["kafka", "streaming"]
 aliases: ["카프카"]
 ---

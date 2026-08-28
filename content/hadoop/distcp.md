@@ -1,4 +1,5 @@
 ---
+title: "distcp"
 tags: ["hadoop"]
 ---
 

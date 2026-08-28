@@ -1,4 +1,5 @@
 ---
+title: "Foreign Key"
 tags: ["database", "relation"]
 ---
 

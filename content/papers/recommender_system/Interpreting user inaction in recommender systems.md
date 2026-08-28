@@ -1,2 +1,6 @@
+---
+title: "Interpreting user inaction in recommender systems"
+---
+
 - abstract
 	- 심리학적 관점에서 어떤 이유로 사용자들이 클릭을 안하고 넘어가는지 분석한 논문

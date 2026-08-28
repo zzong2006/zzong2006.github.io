@@ -1,4 +1,5 @@
 ---
+title: "Interpreted language"
 tags: ["python", "programming"]
 ---
 

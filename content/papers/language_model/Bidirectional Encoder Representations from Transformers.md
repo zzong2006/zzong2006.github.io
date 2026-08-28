@@ -1,4 +1,5 @@
 ---
+title: "Bidirectional Encoder Representations from Transformers"
 tags: ["language_model", "NLP", "nlp", "paper_review", "Google", "encoder", "bidirectional"]
 aliases: ["BERT"]
 ---

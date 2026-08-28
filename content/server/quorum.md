@@ -1,4 +1,5 @@
 ---
+title: "quorum"
 tags: ["kafka"]
 aliases: ["쿼럼"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Unicode Normalization"
 tags: ["NLP"]
 aliases: ["유니코드 정규화"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "Memory"
 tags: ["operating_system"]
 aliases: ["메모리"]
 ---

@@ -1,4 +1,5 @@
 ---
+title: "FastText"
 tags: ["NLP", "Meta"]
 ---
 

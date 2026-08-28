@@ -1,4 +1,5 @@
 ---
+title: "Label Encoding"
 tags: ["word2vec", "encoding"]
 ---
 

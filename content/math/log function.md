@@ -1,4 +1,5 @@
 ---
+title: "log function"
 tags: ["math"]
 aliases: ["log"]
 ---
