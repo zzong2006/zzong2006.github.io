@@ -146,17 +146,28 @@ jobs:
           MARKER = "@inline-script"
           pattern = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S)
 
+          def record(seen, body):
+              if MARKER not in body:
+                  return
+              name = body.split(MARKER, 1)[1].split("*/", 1)[0].strip() or "unnamed"
+              seen.setdefault(name, body)
+
           seen = {}
+
+          # Quartz 는 플러그인의 인라인 JS 를 외부 파일로 추출한다
+          # (quartz/plugins/emitters/componentResources.ts). 그래서 .js 를 먼저 본다.
+          for path in glob.glob("public/**/*.js", recursive=True):
+              with open(path, encoding="utf-8", errors="replace") as handle:
+                  record(seen, handle.read())
+
+          # 추출되지 않고 인라인으로 남는 경우도 있으므로 HTML 도 훑는다.
           for path in glob.glob("public/**/*.html", recursive=True):
-              with open(path, encoding="utf-8") as handle:
-                  html = handle.read()
-              for body in pattern.findall(html):
-                  if MARKER not in body:
-                      continue
-                  name = body.split(MARKER, 1)[1].split("*/", 1)[0].strip() or "unnamed"
-                  seen.setdefault(name, body)
               if len(seen) >= 8:
                   break
+              with open(path, encoding="utf-8", errors="replace") as handle:
+                  html = handle.read()
+              for body in pattern.findall(html):
+                  record(seen, body)
 
           if not seen:
               print("마커가 붙은 인라인 스크립트를 찾지 못했다 - 검사 건너뜀")
