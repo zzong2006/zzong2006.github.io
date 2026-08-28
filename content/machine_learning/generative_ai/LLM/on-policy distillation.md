@@ -236,7 +236,26 @@ RL이 70 스텝 걸린 지점을 on-policy distillation은 10 스텝 안에 통�
 3. **응답 길이 3–7K 토큰이 안정 구간.** 더 길어지면 뒷부분부터 토큰 reward 품질이 무너진다
 4. **Top-1 대신 sampled token으로 KL을 계산한다.** Top-1은 mode 집중 때문에 불안정하다
 
-# H) 어디에 끼워 넣나
+# H) LLM 밖에서도 되나
+
+경계선은 "언어모델이냐"가 아니라 **모델의 출력이 자기 다음 입력을 바꾸느냐** 다.
+
+**단순 분류 모델에는 해당이 없다.** 이미지 한 장을 받아 라벨 하나를 내놓는 모델은 자기 예측이 다음에 볼 입력을 바꾸지 않는다. 입력 분포는 데이터셋이 정하고, 학습 때 보는 상태와 추론 때 보는 상태가 같다. 고칠 분포 불일치가 애초에 없으니 on/off-policy 구분 자체가 무너지고, 교사 soft label을 고정 데이터셋 위에서 배우는 평범한 [[knowledge distillation]] 이 이미 할 수 있는 최선이다. 여기서 "학생이 틀리는 지점"을 파고들고 싶다면 그건 증류 방식의 문제가 아니라 [[hard negative]] mining이나 active learning 쪽 문제다.
+
+**출력이 다음 입력이 되는 구조라면 어디든 유효하다.** 언어모델의 autoregressive 생성은 그중 한 사례일 뿐이다.
+
+| 도메인 | 학생의 출력이 바꾸는 것 |
+| --- | --- |
+| 로봇 제어·자율주행 | 지금의 행동이 다음에 마주칠 상태 |
+| autoregressive decoder (ASR, TTS) | 앞서 뽑은 토큰이 이후 생성의 조건 |
+| 에이전트·도구 사용 | 액션이 다음 관측을 결정 |
+| 추천·랭킹 | 노출시킨 아이템이 다음에 쌓일 로그 |
+
+사실 이 아이디어의 원조는 언어모델이 아니라 imitation learning의 DAgger(Ross et al., 2011)다. 학생 policy를 굴려 학생이 **실제로 방문한 상태** 를 모으고, 그 상태마다 전문가에게 정답 행동을 물어 데이터셋에 누적한다. on-policy distillation은 여기서 전문가의 정답 행동 하나를 교사의 토큰별 분포로 바꾼 것에 가깝다. DAgger가 sparse한 정답 하나를 준다면 이쪽은 dense한 분포를 준다.
+
+추천 시스템에서 같은 분포 불일치가 어떻게 나타나는지는 [[Pessimistic Reward Models for Off-Policy Learning in Recommendation]] 에 정리돼 있다.
+
+# I) 어디에 끼워 넣나
 
 정리하면 요즘 표준 분업은 이렇다. 단계마다 **주어가 어느 모델인지** 를 놓치면 안 된다.
 
@@ -260,12 +279,13 @@ RL은 그룹 안에 좋은 응답이 샘플링돼야 신호가 생기는데 작�
 
 이 노트가 일반 개념이라면, forward/reverse KL과 데이터 비율 λ를 손잡이로 놓고 두 극단을 하나의 목적함수로 묶은 구체 알고리즘은 [[GKD]] 노트에 정리해뒀다. 지금 실무에서 on-policy distillation이라 부르는 설정은 대체로 GKD에서 λ=1, reverse KL을 고른 경우다.
 
-# I) References
+# J) References
 
 본문 그래프 세 개는 모두 Thinking Machines Lab 블로그 원문에서 가져왔다.
 
 - Thinking Machines Lab, 2025-10, ["On-Policy Distillation"](https://thinkingmachines.ai/blog/on-policy-distillation/)
 - Agarwal et al., 2023, ["On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes"](https://arxiv.org/abs/2306.13649) (GKD)
+- Ross et al., 2011, ["A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"](https://arxiv.org/abs/1011.0686) (DAgger)
 - Gu et al., 2023, ["MiniLLM: On-Policy Distillation of Large Language Models"](https://arxiv.org/abs/2306.08543) — reverse KL + policy gradient
 - Li et al., 2026, ["Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe"](https://arxiv.org/abs/2604.13016)
 - Qwen Team, 2025, ["Qwen3 Technical Report"](https://arxiv.org/abs/2505.09388)
