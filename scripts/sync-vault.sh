@@ -4,14 +4,14 @@
 #
 # 동작 방식
 #   - content/ 에 "이미 존재하는" 하위 폴더만 동기화 대상으로 삼는다(화이트리스트).
-#     vault 의 diary/, work/, finance/ 같은 비공개 폴더는 content/ 에 없으므로
+#     vault 의 비공개 노트는 private/ 하위에 모여 있고 content/ 에 대응 폴더가 없으므로
 #     자동으로 제외된다. 새 폴더를 공개하려면 먼저 content/ 에 그 폴더를 만든다.
 #   - .obsidian, .trash, .DS_Store, templates 등 런타임/비공개 산출물은 제외한다.
 #   - 기본은 추가/갱신만 한다. vault 에서 지운 파일을 content/ 에서도 지우려면
 #     --delete 를 준다.
 #
 # 사용법
-#   VAULT_DIR=~/Documents/valut6807 bash scripts/sync-vault.sh            # 복사
+#   VAULT_DIR=~/Documents/obsidian/valut6807 bash scripts/sync-vault.sh            # 복사
 #   bash scripts/sync-vault.sh --dry-run                                  # 미리보기
 #   bash scripts/sync-vault.sh --delete                                   # vault 기준 미러링
 #   bash scripts/sync-vault.sh --normalize                                # 복사 후 frontmatter 정규화
@@ -20,9 +20,12 @@
 #   npm run normalize-frontmatter   # Obsidian frontmatter → Quartz 형식 정리
 #   git add content && git commit && git push   # push 시 Actions 가 자동 배포
 
+# rsync 가 없는 환경(Windows + Git Bash 등)에서는 같은 규칙의 Python 버전을 쓴다.
+#   python scripts/sync_vault.py --vault ~/Documents/obsidian/valut6807 --delete
+
 set -euo pipefail
 
-VAULT_DIR="${VAULT_DIR:-$HOME/Documents/valut6807}"
+VAULT_DIR="${VAULT_DIR:-$HOME/Documents/obsidian/valut6807}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CONTENT_DIR="$REPO_DIR/content"
 
