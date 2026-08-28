@@ -98,8 +98,12 @@
 // base.scss 의 .center 에는 min-width: 100% 가 걸려 있어서 max-width 를 주면 무시된다
 // (CSS 에서 min-width 가 max-width 를 이긴다). 그래서 .center 가 아니라 그 자식을 잡는다.
 @media all and (min-width: 800px) {
+  // DefaultFrame.tsx 의 .center 자식은 page-header / article / hr / page-footer 네 개다.
+  // 넷 다 같이 묶어야 한다. article 만 좁히면 구분선과 백링크가 전체 폭으로 튀어나온다.
+  .page > #quartz-body .center > .page-header,
   .page > #quartz-body .center > article,
-  .page > #quartz-body .center > .page-header {
+  .page > #quartz-body .center > hr,
+  .page > #quartz-body .center > .page-footer {
     max-width: var(--measure);
     margin-inline: auto;
   }
