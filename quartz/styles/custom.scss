@@ -108,6 +108,28 @@
     margin-inline: auto;
   }
 
+  // 측정폭을 걸면 그 안의 그리드가 blowout 될 수 있다.
+  // .linked-mentions-list 는 grid-template-columns 가 없는 단일 칼럼 그리드이고
+  // .linked-mention-math 에 white-space: nowrap 이 걸려 있다. auto 트랙은 min-content
+  // 아래로 줄지 않으므로 스니펫에 긴 코드 토큰이 하나 들어오면 카드가 컨테이너를 넘친다.
+  // minmax(0, 1fr) 과 min-width: 0 으로 최소폭 바닥을 없앤다.
+  .page > #quartz-body .center > .page-footer {
+    min-width: 0;
+  }
+
+  .linked-mentions-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .linked-mention-card {
+    min-width: 0;
+  }
+
+  // batch_size_per_gpu 같은 긴 식별자가 카드를 밀지 않게 한다.
+  .linked-mention-snippet {
+    overflow-wrap: anywhere;
+  }
+
   // 넓은 콘텐츠는 손대지 않는다. Quartz 가 이미 처리한다 -
   // base.scss 의 pre 에 overflow-x: auto 가 있고, 표는 .table-container 로 감싸진다.
   // 그래서 측정폭보다 넓은 표/코드는 측정폭 안에서 가로 스크롤된다.
