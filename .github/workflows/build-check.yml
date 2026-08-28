@@ -98,23 +98,41 @@ jobs:
 
       - name: Verify custom.scss compiled into the emitted stylesheet
         run: |
-          css=$(find public -maxdepth 1 -name '*.css' | head -1)
-          if [ -z "$css" ]; then
+          # Quartz 는 스타일시트를 여러 개 뱉는다(index.css + component-*.css).
+          # 하나만 골라 검사하면 엉뚱한 파일을 볼 수 있으므로 전부를 대상으로 한다.
+          mapfile -t cssfiles < <(find public -maxdepth 1 -name '*.css' | sort)
+          if [ "${#cssfiles[@]}" -eq 0 ]; then
             echo "public/ 에 스타일시트가 없다"
             exit 1
           fi
-          echo "검사 대상: $css ($(stat -c%s "$css") bytes)"
-          # custom.scss 의 @font-face family 이름들이 컴파일 결과에 살아있는지 본다.
-          fams=$(grep -oE 'font-family:\s*"[^"]+"' quartz/styles/custom.scss | grep -oE '"[^"]+"' | tr -d '"' | sort -u)
+          echo "검사 대상 ${#cssfiles[@]}개:"
+          for c in "${cssfiles[@]}"; do
+            printf '  %-40s %s bytes\n' "$c" "$(stat -c%s "$c")"
+          done
+          echo
+
           missing=0
-          for f in $fams; do
-            if grep -qF "$f" "$css"; then
-              printf 'ok       %s\n' "$f"
+          check() {
+            # $1 = 찾을 문자열, $2 = 사람이 읽을 설명
+            hit=$(grep -lF "$1" "${cssfiles[@]}" | head -1)
+            if [ -n "$hit" ]; then
+              printf 'ok       %-28s <- %s\n' "$1" "$hit"
             else
-              printf 'MISSING  %s (custom.scss 에는 있지만 컴파일 결과에 없다)\n' "$f"
+              printf 'MISSING  %-28s (%s)\n' "$1" "$2"
               missing=1
             fi
-          done
+          }
+
+          # custom.scss 의 @font-face family 이름이 컴파일 결과에 살아있는지.
+          while read -r fam; do
+            [ -n "$fam" ] && check "$fam" "@font-face 가 컴파일되지 않았다"
+          done < <(grep -oE 'font-family:[[:space:]]*"[^"]+"' quartz/styles/custom.scss \
+                     | grep -oE '"[^"]+"' | tr -d '"' | sort -u)
+
+          # 이번 변경의 핵심 값들이 실제로 나왔는지.
+          check "/static/fonts/Pretendard-Regular.subset.woff2" "@font-face src 경로가 없다"
+          check "44rem" "본문 측정폭 규칙이 없다"
+
           exit $missing
 
       - name: Summary
