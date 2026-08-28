@@ -152,6 +152,10 @@ Thinking Machines Lab이 2025년 10월 공개한 실험이 이 기법이 회자�
 
 같은 70%에 도달하는 비용이 SFT 데이터가 이미 있는 경우 **9배**, GPU 시간 기준으로는 18배, 교사 샘플링 비용까지 포함하면 **약 30배** 저렴하게 나왔다.
 
+![on-policy distillation과 SFT의 AIME 2024 학습 곡선 비교](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-on-policy-distillation-loras.svg)
+
+가로축이 추가로 투입한 training FLOPs, 세로축이 AIME 2024 점수다. 같은 연산을 넣었을 때 on-policy distillation 곡선이 SFT보다 확연히 위에 있고, 격차는 LoRA처럼 용량이 제한된 설정에서 더 벌어진다. rank 32 LoRA는 SFT만 하면 full finetuning에 13% 뒤지지만 on-policy distillation 뒤에는 6% 차이로 좁혀진다.
+
 Qwen3 technical report의 8B 파이프라인 숫자도 같은 방향이다.
 
 | 단계 | AIME 2024 | GPQA-Diamond | GPU hours |
@@ -160,11 +164,23 @@ Qwen3 technical report의 8B 파이프라인 숫자도 같은 방향이다.
 | + RL | 67.6 | 61.3 | 17,920 |
 | + On-policy distillation | 74.4 | 63.3 | 1,800 |
 
-RL 대비 GPU 시간 10분의 1로 더 높은 점수가 나왔다. 다만 "RL을 대체한다"기보다 **RL을 이미 돌린 큰 모델이 있으면, 그 능력을 작은 모델에 옮기려고 RL을 또 돌리지는 마라** 로 읽는 게 맞다.
+RL 대비 GPU 시간 10분의 1로 더 높은 점수가 나왔다.
+
+같은 초기화에서 출발해 RL과 직접 붙인 통제 실험이 차이를 가장 선명하게 보여준다. 교사를 RL로 학습시킨 자기 자신으로 두고(self-distillation) 학생이 그 policy를 되찾는 데 걸리는 스텝을 잰 것이다.
+
+![on-policy distillation과 RL의 gradient step 대비 AIME 점수](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-self-distillation.svg)
+
+RL이 70 스텝 걸린 지점을 on-policy distillation은 10 스텝 안에 통과한다. reverse KL이 0 근처로 떨어지면서 AIME 점수가 같이 회복되고, gradient step 기준 7~10배, 연산 기준으로는 50~100배 차이가 난다.
+
+다만 "RL을 대체한다"기보다 **RL을 이미 돌린 큰 모델이 있으면, 그 능력을 작은 모델에 옮기려고 RL을 또 돌리지는 마라** 로 읽는 게 맞다.
 
 ## F.1) 도메인 학습 후 망가진 행동 복구
 
 덜 알려졌지만 실무에서 더 자주 쓸 만한 용도다. 사내 문서로 mid-training을 하면 지식은 늘지만 instruction following이 깎이는 [[catastrophic forgetting]]이 생긴다.
+
+![mid-training 중 데이터 배합별 IF-eval 점수 하락 곡선](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-midtrain-if-eval.svg)
+
+문서와 chat 데이터를 어떤 비율로 섞든 IF-eval은 떨어진다. learning rate가 감쇠하면서 하락이 완만해지고 조금 회복되기는 하지만 원래 수준으로는 끝내 돌아오지 않는다. 배합비 조정만으로는 못 막는다는 뜻이다.
 
 | 상태 | 사내 QA | IF-eval |
 | --- | --- | --- |
@@ -178,7 +194,22 @@ RL 대비 GPU 시간 10분의 1로 더 높은 점수가 나왔다. 다만 "RL을
 
 만능은 아니다. Li et al.(2026)이 실패 사례를 정리했는데, 두 조건이 갈림길이었다.
 
-**사고 패턴이 호환돼야 한다.** 교사와 학생의 추론 전개 방식이 크게 다르면 벤치마크 점수 차이가 아무리 커도 신호가 잘 전달되지 않는다. 성공한 학습에서는 두 모델의 high-probability 토큰 overlap 비율이 72%에서 91% 이상으로 올라가는데, 실패하는 경우 이 값이 처음부터 정체한다. 흥미롭게도 overlap 토큰에만 loss를 걸어도 전체 성능이 나온다 — 실제로 학습되는 건 겹치는 영역의 점진적 정렬이다.
+**사고 패턴이 호환돼야 한다.** 교사와 학생의 추론 전개 방식이 크게 다르면 벤치마크 점수 차이가 아무리 커도 신호가 잘 전달되지 않는다.
+
+이유는 overlap이라는 지표로 설명된다. 학생 rollout의 각 위치에서 교사와 학생은 각자 vocabulary 위에 분포를 갖는데, 양쪽 모두가 높은 확률을 주는 토큰들이 overlap이다.
+
+```text
+어떤 위치에서
+  교사:  따라서 0.50 / 그러므로 0.30 / 즉 0.15
+  학생:  그러므로 0.40 / 따라서 0.25 / 하지만 0.20
+  overlap = {따라서, 그러므로}
+```
+
+이때 학생이 배우는 건 "따라서"의 비중을 올리고 "하지만"을 버리는 **배분 조정** 이다. 교사만 아는 낯선 토큰이 주입되는 게 아니라, 이미 양쪽 다 후보로 들고 있던 토큰들 사이의 순위가 교사 쪽으로 맞춰진다.
+
+측정 결과가 이걸 뒷받침한다. 성공한 학습에서는 overlap 비율이 72%에서 91% 이상으로 올라가지만, 실패하는 경우 처음부터 정체한다. overlap 토큰이 확률질량의 97~99%를 차지하고, **loss를 overlap 토큰에만 걸어도 최종 성능이 같게 나온다.** 나머지 토큰은 학습에 사실상 기여하지 않는다는 뜻이다.
+
+함의가 중요하다. 처음부터 overlap이 작으면 신호를 걸 자리 자체가 없다. 반대로 정렬이 진행되면 overlap이 넓어지고, 넓어진 만큼 신호가 늘어 다시 정렬이 빨라지는 자기강화 루프가 돈다. cold start SFT가 효과를 내는 것도 이 루프의 출발점을 올려주기 때문이다.
 
 **교사가 진짜 새 능력을 갖고 있어야 한다.** 같은 학습 파이프라인에서 크기만 다른 모델을 교사로 쓰면 점수가 높아도 이득이 거의 없다. RL로 얻은 능력이 있는 post-trained 교사여야 전이가 크다. 반대로 1.5B 모델을 자기 pre-RL 체크포인트 쪽으로 증류하면 성능이 그대로 되돌아간다.
 
@@ -215,8 +246,10 @@ RL은 그룹 안에 좋은 응답이 샘플링돼야 신호가 생기는데 작�
 
 # I) References
 
+본문 그래프 세 개는 모두 Thinking Machines Lab 블로그 원문에서 가져왔다.
+
 - Thinking Machines Lab, 2025-10, ["On-Policy Distillation"](https://thinkingmachines.ai/blog/on-policy-distillation/)
-- Agarwal et al., 2023, "On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes" (GKD)
-- Gu et al., 2023, "MiniLLM: Knowledge Distillation of Large Language Models" — reverse KL + policy gradient
+- Agarwal et al., 2023, ["On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes"](https://arxiv.org/abs/2306.13649) (GKD)
+- Gu et al., 2023, ["MiniLLM: On-Policy Distillation of Large Language Models"](https://arxiv.org/abs/2306.08543) — reverse KL + policy gradient
 - Li et al., 2026, ["Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe"](https://arxiv.org/abs/2604.13016)
-- Qwen Team, 2025, "Qwen3 Technical Report"
+- Qwen Team, 2025, ["Qwen3 Technical Report"](https://arxiv.org/abs/2505.09388)
