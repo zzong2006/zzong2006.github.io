@@ -137,6 +137,26 @@
   // max-width: none 만으로는 부모 폭에 갇혀서 아무 효과가 없다.
 }
 
+// mermaid 다이어그램의 라벨은 코드가 아니라 문장이다.
+// 그런데 다이어그램이 <pre> 안에 렌더되므로 base.scss 의
+// pre { font-family: var(--codeFont) } 를 상속받는다. --appleMono 에는 한글 글리프가
+// 없어서 시스템 모노스페이스 한글로 떨어지고, 자간이 벌어져 읽기 나빠진다.
+// 컨테이너에서 본문 폰트로 되돌리면 foreignObject 안의 라벨까지 상속된다.
+pre:has(> code.mermaid) {
+  font-family: var(--bodyFont);
+}
+
+// mermaid 는 SVG 안에 <style> 을 주입한다. 거기서 font-family 를 직접 지정하는 버전이면
+// 위 상속을 덮으므로 라벨 요소에는 못박아 둔다. 외부 스타일시트의 !important 는
+// SVG 내부의 일반 선언을 이긴다.
+code.mermaid svg :is(text, tspan, .nodeLabel, .edgeLabel, .label, .titleText) {
+  font-family: var(--bodyFont) !important;
+}
+
+code.mermaid svg foreignObject :is(div, span, p) {
+  font-family: var(--bodyFont) !important;
+}
+
 .page > #quartz-body .sidebar.left .explorer {
   gap: 0.45rem;
 }
