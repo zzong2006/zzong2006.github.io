@@ -135,6 +135,49 @@ jobs:
 
           exit $missing
 
+      # 로컬 플러그인은 스크립트를 템플릿 리터럴 문자열로 조립해 페이지에 심는다.
+      # 문자열이라 빌드는 그 안의 문법 오류를 잡지 못하고 브라우저에서만 터진다.
+      # 산출물에서 마커가 붙은 스크립트를 꺼내 node --check 로 검사한다.
+      - name: Syntax-check marked inline scripts
+        run: |
+          python3 - <<'PY'
+          import glob, os, re, subprocess, sys
+
+          MARKER = "@inline-script"
+          pattern = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S)
+
+          seen = {}
+          for path in glob.glob("public/**/*.html", recursive=True):
+              with open(path, encoding="utf-8") as handle:
+                  html = handle.read()
+              for body in pattern.findall(html):
+                  if MARKER not in body:
+                      continue
+                  name = body.split(MARKER, 1)[1].split("*/", 1)[0].strip() or "unnamed"
+                  seen.setdefault(name, body)
+              if len(seen) >= 8:
+                  break
+
+          if not seen:
+              print("마커가 붙은 인라인 스크립트를 찾지 못했다 - 검사 건너뜀")
+              sys.exit(0)
+
+          os.makedirs("/tmp/inline", exist_ok=True)
+          failed = 0
+          for name, body in sorted(seen.items()):
+              target = "/tmp/inline/%s.mjs" % re.sub(r"[^A-Za-z0-9_.-]", "_", name)
+              with open(target, "w", encoding="utf-8") as handle:
+                  handle.write(body)
+              result = subprocess.run(["node", "--check", target], capture_output=True, text=True)
+              if result.returncode == 0:
+                  print("ok       %-28s %d bytes" % (name, len(body)))
+              else:
+                  print("SYNTAX   %s" % name)
+                  print(result.stderr.strip()[:2000])
+                  failed = 1
+          sys.exit(failed)
+          PY
+
       - name: Summary
         run: |
           {
