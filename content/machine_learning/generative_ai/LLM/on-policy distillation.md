@@ -12,19 +12,29 @@ On-policy distillation은 **학생이 직접 생성한 문장 위에서, 교사�
 
 # B) Distillation을 RL 렌즈로 보면 축이 두 개다
 
-[[knowledge distillation|지식 증류]]를 오래 쓰던 방식대로만 보면 "교사 분포를 학생이 흉내 낸다"는 한 줄로 끝난다. 그런데 언어모델은 한 토큰씩 자기 출력을 다시 입력으로 먹는 [[Reinforcement Learning|순차 결정 문제]]라서, 학습 신호를 두 축으로 쪼개 보는 게 훨씬 유용하다.
+[[knowledge distillation|지식 증류]]를 오래 쓰던 방식대로만 보면 "교사 분포를 학생이 흉내 낸다"는 한 줄로 끝난다. 그런데 언어모델의 생성은 지금까지 뱉은 토큰이 곧 다음 상태가 되는 순차 결정 문제다. [[Markov Decision Process|MDP]]로 옮기면 state는 프롬프트와 지금까지 생성한 토큰, action은 다음 토큰, policy는 모델 자신이다. 이렇게 놓고 보면 학습 신호를 두 축으로 쪼개 보는 게 훨씬 유용하다.
 
-- **데이터를 누가 만들었나** — 교사(또는 사람)가 쓴 문장인가, 학생이 지금 policy로 뽑은 문장인가
+- **데이터를 누가 만들었나** — 지금 학습 중인 모델이 방금 뽑은 문장인가, 다른 데서 온 문장인가
 - **감독 신호가 얼마나 촘촘한가** — 응답 전체에 스칼라 하나인가, 토큰마다 분포 하나인가
+
+여기서 감독 신호(supervision signal)는 [[supervised learning]]의 label만 가리키는 게 아니다. 파라미터를 업데이트할 때 모델이 받는 정답·평가 정보를 통틀어 부르는 말이라, RL의 reward 스칼라도 감독 신호다. 어원만 겹칠 뿐 "supervised learning이냐"와는 다른 질문이다.
+
+밀도 차이는 한 스텝에 실리는 정보량으로 보면 분명하다. RL의 outcome reward는 응답 하나에 실수 하나이고, SFT는 토큰마다 vocabulary에서 정답 하나를 지목하며, 증류의 교사 분포는 토큰마다 vocabulary 전체에 대한 확률을 통째로 준다. "정답은 빠르게"와 "빠르게 40% / 신속히 35% / 즉시 20%"의 차이다. 뒤쪽이 선택지 간 우열까지 담고 있어 같은 한 스텝에서 훨씬 많이 배운다.
+
+첫 번째 축의 on/off-policy는 RL에서 그대로 가져온 말이다. 데이터를 만든 policy(behavior policy)와 지금 파라미터를 업데이트하는 policy(target policy)가 같으면 on-policy, 다르면 off-policy다.
+
+여기서 자주 오해하는 게, 기준이 "출처가 남이냐"가 아니라 **"지금 이 파라미터가 방금 만든 것이냐"** 라는 점이다. 그래서 off-policy 쪽에는 사람이 쓴 정답 텍스트(SFT), 교사가 미리 생성해둔 응답(sequence-level KD)뿐 아니라 **며칠 전 체크포인트가 만들어 버퍼에 쌓아둔 자기 출력** 도 들어간다. 한 스텝만 업데이트해도 policy는 이미 달라지므로, 방금 뽑은 rollout이 아니면 엄밀히는 전부 off-policy다.
+
+on-policy가 비싼 이유도 여기서 나온다. 데이터를 재활용할 수 없어서 매 스텝 새로 생성해야 한다. 반대로 off-policy는 한 번 만든 데이터셋을 몇 epoch씩 돌려 쓸 수 있다.
 
 이 두 축으로 배치하면 익숙한 기법들이 한 표에 들어온다.
 
 | 데이터 출처 | 감독 = sparse (응답당 스칼라) | 감독 = dense (토큰당 분포) |
 | --- | --- | --- |
-| 남이 만든 것 (off-policy) | offline RL, [[DPO]] | [[supervised fine-tuning]], sequence-level KD, logit KD |
-| 학생이 만든 것 (on-policy) | [[GRPO]], [[Proximal Policy Optimization]] | **on-policy distillation** |
+| 다른 policy가 만든 문장 (off-policy) | offline RL, [[DPO]] | [[supervised fine-tuning]], sequence-level KD, logit KD |
+| 지금 학생이 뽑은 문장 (on-policy) | [[GRPO]], [[Proximal Policy Optimization]] | **on-policy distillation** |
 
-오른쪽 아래 칸이 오래 비어 있던 자리다. 학생이 스스로 뛰게 하되(on-policy), 채점은 "정답/오답" 한 글자가 아니라 토큰마다 교사 분포로 받는다. RL의 탐색과 SFT의 정보 밀도를 한꺼번에 갖는 게 이 기법의 전부다.
+오른쪽 아래 칸이 오래 비어 있던 자리다. 학생이 직접 써보게 하되(on-policy), 채점은 "정답/오답" 한 글자가 아니라 토큰마다 교사 분포로 받는다. RL의 탐색과 SFT의 정보 밀도를 한꺼번에 갖는 게 이 기법의 전부다.
 
 # C) Off-policy Distillation — 교사의 답안지를 베낀다
 
@@ -36,11 +46,36 @@ $$
 \mathcal{L}_{\text{seq}} = -\mathbb{E}_{y \sim \pi_T(\cdot|x)}\big[\log \pi_\theta(y \mid x)\big]
 $$
 
-**Token-level logit KD (soft distillation)**: 고정된 문장 위에서 각 위치의 교사 분포 전체를 학생이 맞추게 한다. Hinton식 KD를 autoregressive에 그대로 확장한 것으로, 보통 forward KL을 쓴다.
+여기서:
+
+| 기호 | 뜻 |
+| --- | --- |
+| $x$ | 프롬프트. 조건으로 주는 입력 |
+| $y = (y_1, \dots, y_{\lvert y \rvert})$ | 응답 시퀀스 **전체**. 토큰 하나가 아니다 |
+| $y_t$ / $y_{<t}$ | $t$번째 토큰 / 그 앞까지의 토큰들 |
+| $\pi_T$ | 교사 policy. 아래첨자 $T$는 teacher이고, 위치 인덱스 $t$와는 다른 기호다 |
+| $\pi_\theta$ | 학생 policy. $\theta$ 가 지금 학습되는 파라미터 |
+| $y \sim \pi_T(\cdot \mid x)$ | 교사에 $x$ 를 넣어 응답 $y$ 를 샘플링했다는 뜻 |
+| $\mathcal{D}$ | 학습 전에 만들어두고 학습 내내 바뀌지 않는 데이터셋 |
+| $\mathcal{L}$ | loss. 경사하강으로 줄이는 대상 |
+
+식이 낯설어 보여도 내용은 평범한 next-token prediction이다. autoregressive 모델에서 시퀀스 확률은 토큰별 조건부 확률의 곱이라, log를 씌우면 합으로 풀린다.
+
+$$
+\log \pi_\theta(y \mid x) = \sum_{t=1}^{\lvert y \rvert} \log \pi_\theta(y_t \mid x, y_{<t})
+$$
+
+결국 "교사가 뽑아준 응답을 학생이 그대로 뱉을 log 확률을 최대화하라"이고, 구현은 교사 텍스트에 대한 토큰별 cross-entropy다. sequence-level KD가 코드상으로는 그냥 SFT인 이유다. 데이터를 교사가 만들었다는 것만 다르다.
+
+**Token-level logit KD (soft distillation)**: 미리 준비해둔 문장 위에서 각 위치의 교사 분포 전체를 학생이 맞추게 한다. Hinton식 KD를 autoregressive에 그대로 확장한 것으로, 보통 forward KL을 쓴다.
 
 $$
 \mathcal{L}_{\text{tok}} = \mathbb{E}_{y \sim \mathcal{D}}\Big[\textstyle\sum_t D_{KL}\big(\pi_T(\cdot \mid y_{<t}) \,\|\, \pi_\theta(\cdot \mid y_{<t})\big)\Big]
 $$
+
+여기서 $\mathcal{D}$ 가 "미리 준비해둔" 쪽을 담당한다. 사람이 쓴 골드 텍스트일 수도, 교사가 앞서 뽑아둔 응답일 수도 있는데 어느 쪽이든 학습 시작 전에 확정돼 학습 내내 그대로다. 학생이 아무리 변해도 연습하는 문장은 바뀌지 않는다. D절 on-policy 식에서 같은 자리가 $\pi_	heta$ 로 바뀌는 게 이 노트의 핵심 대비다.
+
+두 번째 식의 $\pi_T(\cdot \mid y_{<t})$ 에서 가운뎃점은 "이 자리에 vocabulary의 모든 토큰이 들어간다"는 표시다. 첫 식은 교사가 실제로 고른 토큰 하나만 정답으로 쓰지만, 이 식은 그 위치에서 교사가 매긴 확률 전체를 쓴다. B절에서 말한 sparse/dense 차이가 두 식의 차이로 그대로 나타난다.
 
 싸고 안정적이다. 교사 샘플링은 한 번만 하면 되고, 그 뒤로는 평범한 SFT 루프라 병렬화도 쉽다. sequence-level KD는 토크나이저가 달라도 되니 다른 패밀리 모델 사이에서도 쓸 수 있다.
 
@@ -50,7 +85,7 @@ $$
 
 운전 교본을 아무리 정독해도 실제로 차선을 밟았을 때 어떻게 복구하는지는 배우지 못하는 것과 같다. 교본에는 차선을 밟은 상황 자체가 안 나오기 때문이다.
 
-# D) On-policy Distillation — 학생이 뛰고 교사가 매 토큰 채점한다
+# D) On-policy Distillation — 학생이 직접 써보고 교사가 매 토큰 채점한다
 
 절차는 세 단계다.
 
