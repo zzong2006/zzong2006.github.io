@@ -274,37 +274,62 @@ code.mermaid svg foreignObject :is(div, span, p) {
   white-space: nowrap;
 }
 
-// 압축된 폴더 체인. 세그먼트가 한 줄에 이어 붙고, 넘치면 줄바꿈된다.
-// 기존 폴더 라벨은 display: block + nowrap + ellipsis 라 체인에서는 풀어줘야 한다.
-.page > #quartz-body .sidebar.left .folder-container[data-chain] > div {
-  white-space: normal;
+// 현재 섹션만 보여주는 뷰. 조상 체인 밖의 가지를 숨기고, 조상 행 자체도 숨긴 뒤
+// 그 자리에 경로 한 줄(.explorer-crumb)을 넣는다. 활성 폴더의 목록만 남으므로
+// 들여쓰기와 안내선이 의미를 잃어 함께 걷어낸다.
+.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="hidden"] {
+  display: none;
 }
 
-.page > #quartz-body .sidebar.left .folder-container[data-chain] div > button,
-.page > #quartz-body .sidebar.left .folder-container[data-chain] div > a,
-.page > #quartz-body .sidebar.left .folder-container[data-chain] .folder-chain-text {
+.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="ancestor"] > .folder-container {
+  display: none;
+}
+
+.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="ancestor"] > .folder-outer > ul {
+  margin-left: 0;
+  padding: 0;
+  border-left: 0;
+}
+
+.page > #quartz-body .sidebar.left .explorer-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.05rem;
+  margin: 0 0 0.5rem;
+  padding: 0 0.35rem 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.page > #quartz-body .sidebar.left .explorer-crumb-sep {
+  margin: 0 0.14rem;
+  color: var(--gray);
+}
+
+.page > #quartz-body .sidebar.left .explorer-crumb-link,
+.page > #quartz-body .sidebar.left .explorer-crumb-text {
   display: inline;
   overflow: visible;
+  padding: 0;
+  background: none;
+  color: var(--gray);
+  font-size: inherit;
+  font-weight: 500;
   white-space: normal;
   text-overflow: clip;
 }
 
-.page > #quartz-body .sidebar.left .folder-chain-sep {
-  margin: 0 0.16rem;
-  color: var(--gray);
-  font-weight: 400;
-}
-
-.page > #quartz-body .sidebar.left .folder-chain-text {
+.page > #quartz-body .sidebar.left .explorer-crumb-link:hover {
   color: var(--secondary);
-  font-size: 0.88rem;
-  font-weight: 700;
 }
 
-// 마지막 세그먼트가 실제로 열리는 폴더다. 앞 세그먼트는 경로 표시이므로 약하게 둔다.
-.page > #quartz-body .sidebar.left .folder-container[data-chain] .folder-chain-lead {
-  opacity: 0.6;
-  font-weight: 500;
+// 마지막 항목이 현재 폴더다. 여기가 목록의 제목 역할을 한다.
+.page > #quartz-body .sidebar.left .explorer-crumb-current {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .page > #quartz-body .sidebar.left .folder-icon {
