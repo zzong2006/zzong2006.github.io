@@ -166,6 +166,21 @@ code.mermaid svg foreignObject :is(div, span, p) {
   color: var(--darkgray);
 }
 
+// 데스크톱에서 사이드바 칸은 $sidePanelWidth(320px) 로 고정이라, 탐색기를 접어도
+// 본문이 넓어지지 않는다. 회수되는 공간이 없고 빈 여백만 남으므로 토글을 죽인다.
+// 모바일에서는 접기가 실제로 공간을 회수하므로 그대로 둔다.
+// CSS 로는 마우스만 막을 수 있다. 키보드 활성화와 aria 정리는 컴포넌트/스크립트 쪽 일이다.
+@media all and (min-width: 800px) {
+  .page > #quartz-body .sidebar.left .explorer button.desktop-explorer {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .page > #quartz-body .sidebar.left .explorer button.desktop-explorer svg.fold {
+    display: none;
+  }
+}
+
 .page > #quartz-body .sidebar.left .explorer button.desktop-explorer h2 {
   font-size: 0.92rem;
   font-weight: 700;
@@ -197,16 +212,21 @@ code.mermaid svg foreignObject :is(div, span, p) {
   border-radius: 6px;
 }
 
+// 사이드바는 세로로 남고 가로로만 모자라다. 한 줄 고정(nowrap + ellipsis)은 그 여유를
+// 쓰지 못하게 만들어서 "자연스러운 한국어를 위한 LLM Post..." 처럼 한글 제목이 특히
+// 많이 잘렸다. 두 줄까지 허용하고, 두 줄을 넘으면 line-clamp 이 말줄임을 붙인다.
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   padding: 0.16rem 0.35rem;
   color: var(--darkgray);
   font-size: 0.82rem;
   font-weight: 500;
   line-height: 1.32;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  // llm_as_classifier 처럼 공백 없는 긴 식별자가 목록을 밀지 않게 한다.
+  overflow-wrap: anywhere;
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title:hover {
@@ -262,11 +282,14 @@ code.mermaid svg foreignObject :is(div, span, p) {
   opacity: 0.8;
 }
 
+// machine_learning > generative_ai > LLM > inference 처럼 4단까지 내려가는 경로가 있다.
+// 단계마다 margin 0.42rem + padding 0.72rem = 1.14rem 을 먹어서 4단이면 4.5rem,
+// 사이드바 안쪽 폭의 4분의 1이 들여쓰기로 사라졌다. 안내선은 남기고 폭만 줄인다.
 .page > #quartz-body .sidebar.left .explorer-content .folder-outer > ul {
   display: grid;
   gap: 0.04rem;
-  margin-left: 0.42rem;
-  padding: 0.08rem 0 0.22rem 0.72rem;
+  margin-left: 0;
+  padding: 0.08rem 0 0.22rem 0.5rem;
   border-left: 1px solid color-mix(in srgb, var(--lightgray) 74%, transparent);
 }
 
