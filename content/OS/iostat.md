@@ -1,6 +1,8 @@
 ---
 title: "iostat"
-tags: ["operating_system"]
+aliases: []
+tags:
+  - operating_system
 ---
 
 # A) Iostat ?

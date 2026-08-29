@@ -1,6 +1,8 @@
 ---
 title: "link function"
-tags: ["activation_function"]
+tags:
+  - activation_function
+aliases: []
 ---
 
 # A) Link Function ?

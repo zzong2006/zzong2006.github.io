@@ -1,6 +1,10 @@
 ---
 title: "SQL Tip"
-tags: ["tip", "SQL", "database"]
+aliases: []
+tags:
+  - tip
+  - SQL
+  - database
 ---
 
 # A) 반올림

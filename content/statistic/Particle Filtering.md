@@ -1,5 +1,7 @@
 ---
 title: "Particle Filtering"
+aliases: []
+tags: []
 ---
 * References
 	* http://www.lirmm.fr/ModuleImage/sidibe_module_image_2011.pdf

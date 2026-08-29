@@ -1,6 +1,7 @@
 ---
 title: "ReLU function"
-tags: ["activation_function"]
+tags: activation_function
+aliases: []
 ---
 
 # A) ReLU Function ?

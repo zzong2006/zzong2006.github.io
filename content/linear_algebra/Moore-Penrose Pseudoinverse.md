@@ -1,6 +1,8 @@
 ---
 title: "Moore-Penrose Pseudoinverse"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 Moore-Penrose 의사역행렬, 즉 $\boldsymbol{A}$의 pseudoinverse는 다음과 같이 정의됩니다.

@@ -1,6 +1,12 @@
 ---
 title: "Sparse Retrieval Serving"
-tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "search_engine"]
+tags:
+  - retrieval
+  - IR
+  - sparse_retrieval
+  - sparse_embedding
+  - search_engine
+aliases: []
 ---
 
 Sparse retrieval 모델([[BM25]], [[SPLADE]] 등)은 [[Inverted Index]] 위에서 동작하며, 기존 검색 엔진 인프라를 그대로 재활용할 수 있다. 이 노트에서는 SPLADE의 인퍼런스 흐름과 OpenSearch/Elasticsearch에서의 실무 적용을 다룬다.

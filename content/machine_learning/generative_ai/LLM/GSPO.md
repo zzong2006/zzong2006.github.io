@@ -1,7 +1,15 @@
 ---
-title: "Group Sequence Policy Optimization"
-tags: ["LLM", "reinforcement_learning", "post_training", "RLVR", "policy_optimization", "Qwen"]
-aliases: ["GSPO", "Group Sequence Policy Optimization"]
+title: Group Sequence Policy Optimization
+tags:
+  - LLM
+  - reinforcement_learning
+  - post_training
+  - RLVR
+  - policy_optimization
+  - Qwen
+aliases:
+  - GSPO
+  - Group Sequence Policy Optimization
 ---
 
 # A) 한줄 요약

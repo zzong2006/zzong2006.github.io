@@ -1,6 +1,7 @@
 ---
 title: "PEP"
-tags: ["python"]
+tags: python 
+aliases: []
 ---
 
 # A) PEP ?

@@ -1,6 +1,8 @@
 ---
 title: "django"
-tags: ["server"]
+aliases: []
+tags:
+  - server
 ---
 
 # A) Django ?

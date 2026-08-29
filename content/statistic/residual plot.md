@@ -1,6 +1,9 @@
 ---
 title: "residual plot"
-tags: ["statistic", "machine_learning"]
+tags:
+  - statistic
+  - machine_learning
+aliases: []
 ---
 
 # Residual Plot ?

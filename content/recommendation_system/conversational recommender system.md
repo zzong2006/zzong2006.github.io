@@ -1,7 +1,8 @@
 ---
 title: "conversational recommender system"
-tags: ["recommendation_system"]
 aliases: ["CRS"]
+tags:
+  - recommendation_system
 ---
 
 # A) Conversational Recommender System ?

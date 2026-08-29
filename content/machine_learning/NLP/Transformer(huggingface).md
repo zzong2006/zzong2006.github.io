@@ -1,6 +1,9 @@
 ---
 title: "Transformer(huggingface)"
-tags: ["NLP", "github"]
+aliases: []
+tags:
+  - NLP
+  - github
 ---
 
 # A) Transformer(huggingface) ?

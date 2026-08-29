@@ -1,6 +1,6 @@
 ---
 title: "Stacked autoencoder"
-tags: ["machine_learning"]
+tags: machine_learning 
 aliases: ["SAE"]
 ---
 

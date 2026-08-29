@@ -1,6 +1,8 @@
 ---
 title: "clickbait"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Clickbait ?

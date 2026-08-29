@@ -1,6 +1,7 @@
 ---
 title: "Laplace distribution"
-tags: ["probability_distribution"]
+tags: probability_distribution 
+aliases: []
 ---
 
 # A) Laplace Distribution ?

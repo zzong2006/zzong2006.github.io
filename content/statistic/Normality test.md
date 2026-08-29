@@ -1,6 +1,7 @@
 ---
 title: "Normality test"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) Noarmlity Test 란?

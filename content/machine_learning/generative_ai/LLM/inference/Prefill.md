@@ -1,7 +1,14 @@
 ---
-title: "Prefill"
-tags: ["LLM", "inference", "serving", "latency"]
-aliases: ["prefill", "prefill phase", "prefill throughput"]
+title: Prefill
+tags:
+  - LLM
+  - inference
+  - serving
+  - latency
+aliases:
+  - prefill
+  - prefill phase
+  - prefill throughput
 ---
 
 # A) 한줄 요약

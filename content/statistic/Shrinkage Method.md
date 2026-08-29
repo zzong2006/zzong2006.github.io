@@ -1,6 +1,9 @@
 ---
 title: "Shrinkage Method"
-tags: ["linear_regression", "machine_learning"]
+tags:
+  - linear_regression
+  - machine_learning
+aliases: []
 ---
 
 # I. Shrinkage Method ?

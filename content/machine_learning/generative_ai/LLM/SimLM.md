@@ -1,6 +1,8 @@
 ---
 title: "SimLM"
-tags: ["embedding"]
+aliases: []
+tags:
+  - embedding
 ---
 
 # A) SimLM의 핵심 특징

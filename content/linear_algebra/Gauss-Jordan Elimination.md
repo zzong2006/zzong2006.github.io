@@ -1,6 +1,7 @@
 ---
 title: "Gauss-Jordan Elimination"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # Gauss-Jordan Elimination ?

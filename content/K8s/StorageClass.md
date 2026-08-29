@@ -1,6 +1,8 @@
 ---
 title: "StorageClass"
-tags: ["Kubernetes"]
+tags:
+  - Kubernetes
+aliases: []
 ---
 
 # A) Storageclass ?

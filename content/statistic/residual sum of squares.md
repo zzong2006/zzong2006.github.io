@@ -1,7 +1,10 @@
 ---
 title: "residual sum of squares"
-tags: ["statistic", "machine_learning", "metrics"]
 aliases: ["RSS"]
+tags:
+  - statistic
+  - machine_learning
+  - metrics
 ---
 
 # A) Residual Sum of Squares ?

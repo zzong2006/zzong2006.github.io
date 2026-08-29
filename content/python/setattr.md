@@ -1,6 +1,9 @@
 ---
 title: "setattr"
-tags: ["python", "function"]
+aliases: []
+tags:
+  - python
+  - function
 ---
 
 # 1. Setattr ?

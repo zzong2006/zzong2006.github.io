@@ -1,5 +1,7 @@
 ---
 title: "Bias-variance tradeoff"
+aliases: []
+tags: 
 ---
 
 # A) Bias & Variance Trade-off

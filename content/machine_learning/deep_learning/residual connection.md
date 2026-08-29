@@ -1,6 +1,13 @@
 ---
 title: "residual connection"
-tags: ["resnet", "residual", "machine_learning", "CNN", "deep_learning"]
+tags:
+  - resnet
+  - residual
+  - machine_learning
+  - CNN
+  - deep_learning
+aliases: []
+title:
 ---
 
 # A) Residual Connection 이란?

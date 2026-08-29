@@ -1,6 +1,9 @@
 ---
 title: "Revisiting Reinforcement Learning for LLM Reasoning from A Cross-Domain Perspective"
-tags: ["LLM", "paper_review"]
+tags:
+  - LLM
+  - paper_review
+aliases: []
 ---
 
 # A) 논문 핵심 요약 (Executive Summary)

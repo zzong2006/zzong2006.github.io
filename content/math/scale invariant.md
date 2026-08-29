@@ -1,6 +1,9 @@
 ---
 title: "scale invariant"
-tags: ["machine_learning", "linear_regression"]
+tags:
+  - machine_learning
+  - linear_regression
+aliases: []
 ---
 
 # Scale Invariant ?

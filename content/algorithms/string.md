@@ -1,6 +1,11 @@
 ---
 title: "string"
-tags: ["programming", "python", "algorithm", "string"]
+aliases: []
+tags:
+  - programming
+  - python
+  - algorithm
+  - string
 ---
 
 # 1. 두 String 이 주어질 경우 문제

@@ -1,6 +1,8 @@
 ---
 title: "MLlib"
-tags: ["Spark"]
+tags:
+  - Spark
+aliases: []
 ---
 
 # A) Mlib ?

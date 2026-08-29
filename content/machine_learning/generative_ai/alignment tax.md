@@ -1,6 +1,8 @@
 ---
 title: "alignment tax"
-tags: ["generative_model"]
+tags:
+  - generative_model
+aliases: []
 ---
 
 # A) Alignment Tax ?

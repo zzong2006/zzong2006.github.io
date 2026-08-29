@@ -1,6 +1,9 @@
 ---
 title: "gradient accumulation"
-tags: ["deep_learning", "generative_model"]
+tags:
+  - deep_learning
+  - generative_model
+aliases: []
 ---
 
 # A) Gradient Accumulation ?

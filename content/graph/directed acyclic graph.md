@@ -1,7 +1,8 @@
 ---
 title: "directed acyclic graph"
-tags: ["graph"]
 aliases: ["DAG"]
+tags:
+  - graph
 ---
 ```table-of-contents
 ```

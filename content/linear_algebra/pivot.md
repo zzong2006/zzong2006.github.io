@@ -1,6 +1,6 @@
 ---
 title: "pivot"
-tags: ["linear_algebra"]
+tags: linear_algebra 
 aliases: ["pivot column"]
 ---
 

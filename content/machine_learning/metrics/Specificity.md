@@ -1,6 +1,7 @@
 ---
 title: "Specificity"
-tags: ["metrics"]
+tags: metrics 
+aliases: []
 ---
 
 # A) Specificity ?

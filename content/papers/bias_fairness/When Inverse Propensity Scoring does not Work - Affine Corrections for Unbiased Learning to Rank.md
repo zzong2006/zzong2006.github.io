@@ -1,6 +1,14 @@
 ---
 title: "When Inverse Propensity Scoring does not Work - Affine Corrections for Unbiased Learning to Rank"
-tags: ["CIKM", "bias", "fairness", "learning_to_rank", "paper_review", "position_bias", "y2020"]
+aliases: []
+tags:
+  - CIKM
+  - bias
+  - fairness
+  - learning_to_rank
+  - paper_review
+  - position_bias
+  - y2020
 ---
 
 # A) Abstract

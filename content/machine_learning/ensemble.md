@@ -1,6 +1,8 @@
 ---
 title: "ensemble"
-tags: ["machine_learning", "recommendation_system"]
+tags:
+  - machine_learning
+  - recommendation_system
 aliases: ["앙상블"]
 ---
 

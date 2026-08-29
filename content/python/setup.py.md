@@ -1,6 +1,8 @@
 ---
 title: "setup.py"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # A) setup.py ?

@@ -1,6 +1,9 @@
 ---
 title: "AUROC"
-tags: ["metrics", "machine_learning"]
+tags:
+  - metrics
+  - machine_learning
+aliases: []
 ---
 
 # A) AUROC ?

@@ -1,6 +1,7 @@
 ---
 title: "Probabilistic PCA"
-tags: ["machine_learning"]
+tags: machine_learning 
+aliases: []
 ---
 
 # 1. Probabilistic PCA ?

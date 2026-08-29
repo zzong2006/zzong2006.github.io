@@ -1,7 +1,10 @@
 ---
 title: "Lucene"
-tags: ["IR", "search_engine", "retrieval"]
-aliases: ["Apache Lucene", "루씬"]
+tags:
+  - IR
+  - search_engine
+  - retrieval
+aliases: [Apache Lucene, 루씬]
 ---
 
 # A) Lucene ?

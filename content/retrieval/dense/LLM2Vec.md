@@ -1,6 +1,10 @@
 ---
 title: "LLM2Vec"
-tags: ["embedding", "dense_retrieval", "LLM"]
+tags:
+  - embedding
+  - dense_retrieval
+  - LLM
+aliases: []
 ---
 
 # A) LLM2Vec이란 무엇인가?

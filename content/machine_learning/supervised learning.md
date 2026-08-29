@@ -1,5 +1,7 @@
 ---
 title: "supervised learning"
+aliases: []
+tags: 
 ---
 * Tags
 	* [[unsupervised learning]]

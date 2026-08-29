@@ -1,6 +1,12 @@
 ---
 title: "Recommender systems using LinUCB - A contextual multi-armed bandit approach"
-tags: ["MAB", "bandit", "paper_review", "recommendation_system", "thompson_sampling"]
+tags:
+  - MAB
+  - bandit
+  - paper_review
+  - recommendation_system
+  - thompson_sampling
+aliases: []
 ---
 * Metadata
 	* Tag: [[Contextual Bandit]], [[Thompson sampling]], [[LinUCB]], [[Multi-Armed Bandit]]

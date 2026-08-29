@@ -1,6 +1,8 @@
 ---
 title: "Initializing Weights"
-tags: ["machine_learning"]
+aliases: []
+tags:
+  - machine_learning
 ---
 
 # A) 신경망의 모든 Weights 와 Bias 를 0 으로 설정하면 무슨일이 일어날까?

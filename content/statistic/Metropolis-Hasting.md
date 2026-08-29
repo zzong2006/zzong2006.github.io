@@ -1,6 +1,9 @@
 ---
 title: "Metropolis-Hasting"
-tags: ["sampling", "statistic"]
+tags:
+  - sampling
+  - statistic
+aliases: []
 ---
 
 # Metropolis-Hasting ?

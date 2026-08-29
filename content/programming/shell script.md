@@ -1,6 +1,7 @@
 ---
 title: "shell script"
-tags: ["language"]
+tags: language 
+aliases: []
 ---
 
 # Shell Script ?

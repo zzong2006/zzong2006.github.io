@@ -1,6 +1,8 @@
 ---
 title: "slab"
-tags: ["linux"]
+aliases: []
+tags:
+  - linux
 ---
 
 # A) Slab ?

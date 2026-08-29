@@ -1,6 +1,10 @@
 ---
 title: "manifold"
-tags: ["machine_learning", "feature_engineering", "statistic"]
+tags:
+  - machine_learning
+  - feature_engineering
+  - statistic
+aliases: []
 ---
 
 # A) Manifold ?

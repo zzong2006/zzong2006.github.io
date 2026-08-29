@@ -1,7 +1,8 @@
 ---
 title: "nullspace"
-tags: ["linear_algebra"]
 aliases: ["영공간"]
+tags:
+  - linear_algebra
 ---
 
 # A) Nullspace ?

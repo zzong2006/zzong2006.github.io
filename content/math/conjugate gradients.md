@@ -1,6 +1,9 @@
 ---
 title: "conjugate gradients"
-tags: ["optimization", "numerical_method"]
+tags:
+  - optimization
+  - numerical_method
+aliases: []
 ---
 
 # Conjugate Gradients ?

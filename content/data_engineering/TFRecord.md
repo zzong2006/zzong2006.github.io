@@ -1,6 +1,11 @@
 ---
 title: "TFRecord"
-tags: ["TensorFlow", "python", "machine_learning", "deep_learning"]
+tags:
+  - TensorFlow
+  - python
+  - machine_learning
+  - deep_learning
+aliases: []
 ---
 
 # TFRecord ?

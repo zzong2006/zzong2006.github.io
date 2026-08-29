@@ -1,7 +1,12 @@
 ---
 title: "SEAL"
-tags: ["retrieval", "generative_retrieval", "paper_review", "y2022", "Meta"]
-aliases: ["SEAL", "Autoregressive Search Engines"]
+tags:
+  - retrieval
+  - generative_retrieval
+  - paper_review
+  - y2022
+  - Meta
+aliases: [SEAL, Autoregressive Search Engines]
 ---
 
 # A) 한줄 요약

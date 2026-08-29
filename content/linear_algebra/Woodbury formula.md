@@ -1,6 +1,7 @@
 ---
 title: "Woodbury formula"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # A) Woodbury Formula ?

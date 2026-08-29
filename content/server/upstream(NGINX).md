@@ -1,6 +1,7 @@
 ---
 title: "upstream(NGINX)"
-tags: ["server"]
+tags: server
+aliases: []
 ---
 
 # upstream(NGINX) ?

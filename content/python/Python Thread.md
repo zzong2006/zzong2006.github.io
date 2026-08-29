@@ -1,6 +1,8 @@
 ---
 title: "Python Thread"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # A) Python Thread 기본

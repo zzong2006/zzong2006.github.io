@@ -1,6 +1,12 @@
 ---
 title: "ConstBERT"
-tags: ["retrieval", "IR", "embedding", "multi_vector", "ColBERT"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - multi_vector
+  - ColBERT
+aliases: []
 ---
 
 # A) **개요**

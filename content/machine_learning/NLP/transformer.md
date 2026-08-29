@@ -1,6 +1,7 @@
 ---
 title: "transformer"
-tags: ["NLP"]
+tags:
+  - NLP
 aliases: ["트랜스포머"]
 ---
 

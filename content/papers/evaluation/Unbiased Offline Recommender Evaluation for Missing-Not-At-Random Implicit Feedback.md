@@ -1,6 +1,14 @@
 ---
 title: "Unbiased Offline Recommender Evaluation for Missing-Not-At-Random Implicit Feedback"
-tags: ["RecSyS", "bias", "evaluation", "implicit_feedback", "offline_evaluation", "paper_review", "y2018"]
+aliases: []
+tags:
+  - RecSyS
+  - bias
+  - evaluation
+  - implicit_feedback
+  - offline_evaluation
+  - paper_review
+  - y2018
 ---
 
 [Paper link](https://vision.cornell.edu/se3/wp-content/uploads/2018/08/recsys18_unbiased_eval.pdf)
@@ -8,7 +16,7 @@ tags: ["RecSyS", "bias", "evaluation", "implicit_feedback", "offline_evaluation"
 # A) Abstract
 
 * (a) investigate evaluation bias of AOA(Average-Over-All) evaluator
-* (b) an unbiased and practical offline evaluator for implicit [MNAR]([[MNAR]]) datasets 를 제안
+* (b) an unbiased and practical offline evaluator for implicit [[words/missing not at random|MNAR]] datasets 를 제안
 	* the Inverse-Propensity-Scoring ([IPS]([[inverse propensity score]])) technique 을 사용
 
 # B) Introduction

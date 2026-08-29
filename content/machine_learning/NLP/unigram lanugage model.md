@@ -1,6 +1,6 @@
 ---
 title: "unigram lanugage model"
-tags: ["tokenization"]
+tags: tokenization 
 aliases: ["unigram"]
 ---
 

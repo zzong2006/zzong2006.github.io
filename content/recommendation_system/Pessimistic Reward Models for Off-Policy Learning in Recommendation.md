@@ -1,6 +1,9 @@
 ---
 title: "Pessimistic Reward Models for Off-Policy Learning in Recommendation"
-tags: ["reinforcement_learning", "recommendation_system"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - recommendation_system
 ---
 
 # 1. Introduction

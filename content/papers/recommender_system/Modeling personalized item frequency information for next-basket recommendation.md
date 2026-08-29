@@ -1,6 +1,12 @@
 ---
 title: "Modeling personalized item frequency information for next-basket recommendation"
-tags: ["SBRS", "SIGIR", "paper_review", "recommendation_system", "y2020"]
+tags:
+  - SBRS
+  - SIGIR
+  - paper_review
+  - recommendation_system
+  - y2020
+aliases: []
 ---
 
 # A) Abstract

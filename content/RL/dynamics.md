@@ -1,6 +1,7 @@
 ---
 title: "dynamics"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # A) Dynamics ?

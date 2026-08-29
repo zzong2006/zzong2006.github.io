@@ -1,7 +1,9 @@
 ---
 title: "OSI 7 Layers"
-tags: ["network"]
-aliases: ["OSI"]
+tags:
+  - network
+aliases:
+  - OSI
 ---
 
 # A) OSI 7 Layers ?

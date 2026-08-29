@@ -1,6 +1,10 @@
 ---
 title: "A Survey on Deep Learning Based POI Recommendations"
-tags: ["deep_learning", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - deep_learning
+  - paper_review
+  - recommendation_system
 ---
 
 # A) A Survey on Deep Learning Based POI Recommendations ?

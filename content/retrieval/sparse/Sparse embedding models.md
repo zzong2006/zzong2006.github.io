@@ -1,6 +1,14 @@
 ---
 title: "Sparse embedding models"
-tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding", "nlp", "paper_review"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - sparse_retrieval
+  - sparse_embedding
+  - nlp
+  - paper_review
+aliases: []
 ---
 
 # A) 임베딩 모델의 개념

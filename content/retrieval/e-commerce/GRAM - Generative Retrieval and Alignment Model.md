@@ -1,7 +1,14 @@
 ---
 title: "GRAM - Generative Retrieval and Alignment Model"
-tags: ["retrieval", "e-commerce", "generative_retrieval", "LLM", "paper_review", "y2025", "JD"]
-aliases: ["GRAM"]
+tags:
+  - retrieval
+  - e-commerce
+  - generative_retrieval
+  - LLM
+  - paper_review
+  - y2025
+  - JD
+aliases: [GRAM]
 ---
 
 # A) 한줄 요약

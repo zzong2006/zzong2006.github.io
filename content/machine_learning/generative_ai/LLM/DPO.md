@@ -1,6 +1,8 @@
 ---
 title: "DPO"
-tags: ["LLM"]
+tags:
+  - LLM
+aliases: []
 ---
 
 # A) DPO를 한 문장으로 잡기

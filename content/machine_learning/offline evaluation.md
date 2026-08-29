@@ -1,6 +1,8 @@
 ---
 title: "offline evaluation"
-tags: ["machine_learning"]
+aliases: []
+tags:
+  - machine_learning
 ---
 
 # Offline Evaluation ?

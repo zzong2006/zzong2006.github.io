@@ -1,6 +1,8 @@
 ---
 title: "mean average precision"
-tags: ["metrics", "recommendation_system"]
+tags:
+  - metrics
+  - recommendation_system
 aliases: ["MAP"]
 ---
 

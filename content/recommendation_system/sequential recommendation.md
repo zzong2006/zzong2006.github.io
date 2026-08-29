@@ -1,7 +1,8 @@
 ---
 title: "sequential recommendation"
-tags: ["recommendation_system"]
 aliases: ["SRS"]
+tags:
+  - recommendation_system
 ---
 
 # Sequential Recommendation ?

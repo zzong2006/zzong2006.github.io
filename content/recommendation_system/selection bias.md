@@ -1,6 +1,8 @@
 ---
 title: "selection bias"
-tags: ["bias"]
+tags:
+  - bias
+aliases: []
 ---
 
 # A) Selection Bias ?

@@ -1,7 +1,11 @@
 ---
 title: "Context Precision"
-tags: ["retrieval", "RAG", "evaluation", "metrics"]
-aliases: ["Context precision"]
+tags:
+  - retrieval
+  - RAG
+  - evaluation
+  - metrics
+aliases: [Context precision]
 ---
 
 # A) Context Precision

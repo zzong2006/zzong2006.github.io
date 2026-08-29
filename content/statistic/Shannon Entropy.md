@@ -1,7 +1,10 @@
 ---
 title: "Shannon Entropy"
-tags: ["statistic", "information_theory", "metrics"]
-aliases: ["Shannon entropy"]
+tags:
+  - statistic
+  - information_theory
+  - metrics
+aliases: [Shannon entropy]
 ---
 
 # A) Shannon Entropy ?

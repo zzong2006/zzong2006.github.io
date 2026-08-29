@@ -1,6 +1,7 @@
 ---
 title: "leverage statistic"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) Leverage Statistic ?

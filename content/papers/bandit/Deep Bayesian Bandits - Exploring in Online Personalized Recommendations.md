@@ -1,7 +1,12 @@
 ---
 title: "Deep Bayesian Bandits - Exploring in Online Personalized Recommendations"
-tags: ["bandit", "paper_review", "recommendation_system", "exploration", "y2020"]
-aliases: ["Deep Bayesian Bandits", "DBB"]
+tags:
+  - bandit
+  - paper_review
+  - recommendation_system
+  - exploration
+  - y2020
+aliases: [Deep Bayesian Bandits, DBB]
 ---
 
 # A) 한줄 “요약

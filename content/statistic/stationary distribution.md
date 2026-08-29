@@ -1,5 +1,7 @@
 ---
 title: "stationary distribution"
+tags: 
+aliases: []
 ---
 
 # 1. Stationary Distribution ?

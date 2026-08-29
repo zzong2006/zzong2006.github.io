@@ -1,6 +1,7 @@
 ---
 title: "generator"
-tags: ["python"]
+tags:
+  - python
 aliases: ["생성자"]
 ---
 

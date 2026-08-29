@@ -1,7 +1,8 @@
 ---
 title: "Role Based Access Control"
-tags: ["security"]
-aliases: ["RBAC"]
+tags:
+  - security
+aliases: [RBAC]
 ---
 
 # A) Role Based Access Control ?

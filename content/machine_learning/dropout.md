@@ -1,6 +1,8 @@
 ---
 title: "dropout"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
+aliases: []
 ---
 
 # A) Dropout ?

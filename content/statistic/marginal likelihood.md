@@ -1,7 +1,8 @@
 ---
 title: "marginal likelihood"
-tags: ["statistic"]
 aliases: ["evidence"]
+tags:
+  - statistic
 ---
 
 # Marginal Likelihood ?

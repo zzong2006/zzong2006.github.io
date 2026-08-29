@@ -1,7 +1,9 @@
 ---
 title: "Redis"
-tags: ["database"]
-aliases: ["레디스"]
+tags:
+  - database
+aliases:
+  - 레디스
 ---
 
 # A) Redis ?

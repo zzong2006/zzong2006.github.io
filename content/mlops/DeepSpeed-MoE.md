@@ -1,6 +1,10 @@
 ---
 title: "DeepSpeed-MoE"
-tags: ["MoE", "deep_learning", "LLM"]
+tags:
+  - MoE
+  - deep_learning
+  - LLM
+aliases: []
 ---
 
 # A) DeepSpeed-MoE: Advancing Mixture-of-Experts Inference and Training to Power Next-Generation AI Scale

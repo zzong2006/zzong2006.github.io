@@ -1,6 +1,11 @@
 ---
 title: "Effects of User Negative Experience in Mobile News Streaming"
-tags: ["SIGIR", "paper_review", "recommendation_system", "y2019"]
+tags:
+  - SIGIR
+  - paper_review
+  - recommendation_system
+  - y2019
+aliases: []
 ---
 
 [paper link](http://www.thuir.cn/group/~mzhang/publications/SIGIR2019Lu.pdf)

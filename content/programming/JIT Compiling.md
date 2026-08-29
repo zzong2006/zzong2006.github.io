@@ -1,5 +1,7 @@
 ---
 title: "JIT Compiling"
+aliases: []
+tags: []
 ---
 
 # A) JIT 컴파일 (JIT Compiling)

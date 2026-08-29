@@ -1,7 +1,8 @@
 ---
 title: "Multiple Additive Regression Trees"
-tags: ["ensemble"]
 aliases: ["MART"]
+tags:
+  - ensemble
 ---
 
 # A) Multiple Additive Regression Trees ?

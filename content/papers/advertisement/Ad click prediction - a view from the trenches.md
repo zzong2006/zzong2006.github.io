@@ -1,6 +1,10 @@
 ---
 title: "Ad click prediction - a view from the trenches"
-tags: ["e-commerce", "advertisement", "paper_review"]
+tags:
+  - e-commerce
+  - advertisement
+  - paper_review
+aliases: []
 ---
 
 * [Paper link](https://static.googleusercontent.com/media/research.google.com/ko//pubs/archive/41159.pdf)

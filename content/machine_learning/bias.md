@@ -1,6 +1,9 @@
 ---
 title: "bias"
-tags: ["machine_learning", "statistic"]
+aliases: []
+tags:
+  - machine_learning
+  - statistic
 ---
 
 # A) Bias ?

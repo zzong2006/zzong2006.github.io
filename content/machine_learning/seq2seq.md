@@ -1,6 +1,9 @@
 ---
 title: "seq2seq"
-tags: ["RNN", "deep_learning"]
+aliases: []
+tags:
+  - RNN
+  - deep_learning
 ---
 
 # A) seq2seq ?

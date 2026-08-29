@@ -1,6 +1,11 @@
 ---
 title: "A Survey on AI Search with LargeLanguage Models"
-tags: ["retrieval", "IR", "survey", "LLM"]
+tags:
+  - retrieval
+  - IR
+  - survey
+  - LLM
+aliases: []
 ---
 
 # A) A Survey on AI Search with Large Language Models

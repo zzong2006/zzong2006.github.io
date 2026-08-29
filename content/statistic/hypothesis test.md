@@ -1,6 +1,8 @@
 ---
 title: "hypothesis test"
-tags: ["hypothesis_test", "statistic"]
+tags:
+  - hypothesis_test
+  - statistic
 aliases: ["significance test", "검정"]
 ---
 

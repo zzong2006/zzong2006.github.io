@@ -1,7 +1,8 @@
 ---
 title: "semi-supervised learning"
-tags: ["machine_learning"]
-aliases: ["Semi-Supervised Learning"]
+tags:
+  - machine_learning
+aliases: [Semi-Supervised Learning]
 ---
 
 # A) Semi-Supervised Learning

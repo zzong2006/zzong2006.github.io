@@ -1,6 +1,9 @@
 ---
 title: "WordPiece"
-tags: ["tokenization", "NLP"]
+tags:
+  - tokenization
+  - NLP
+aliases: []
 ---
 
 # A) WordPiece ?

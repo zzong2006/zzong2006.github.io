@@ -1,6 +1,8 @@
 ---
 title: "MixedPrecisionManager"
-tags: ["deep_learning"]
+aliases: []
+tags:
+  - deep_learning
 ---
 
 아래는 [modeling.py · pinecone/ConstBERT at main](https://huggingface.co/pinecone/ConstBERT/blob/main/modeling.py#L19-L49) 에서 확인할 수 있는 `MixedPrecisionManager` 클래스에 대해 궁금한 점을 정리한 내용입니다.

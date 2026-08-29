@@ -1,7 +1,8 @@
 ---
 title: "Kubernetes"
-tags: ["Kubernetes"]
 aliases: ["쿠버네티스", "k8s"]
+tags:
+  - Kubernetes
 ---
 
 # A) Kubernetes ?

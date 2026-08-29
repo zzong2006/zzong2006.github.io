@@ -1,6 +1,11 @@
 ---
-title: "Normalization"
-tags: ["database", "SQL"]
+layout: default
+title: Normalization
+category: Database
+order: 1
+tags:
+  - database
+  - SQL
 ---
 
 # A) 정규화란 ?

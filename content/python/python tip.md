@@ -1,6 +1,9 @@
 ---
 title: "python tip"
-tags: ["python", "programming"]
+tags:
+  - python
+  - programming
+aliases: []
 ---
 
 # Float

@@ -1,7 +1,11 @@
 ---
 title: "Pearson correlation"
-tags: ["statistic"]
-aliases: ["Pearson correlation coefficient", "PCC", "피어슨 상관 계수"]
+tags:
+  - statistic
+aliases:
+  - Pearson correlation coefficient
+  - PCC
+  - 피어슨 상관 계수
 ---
 
 # A) 피어슨 상관 계수

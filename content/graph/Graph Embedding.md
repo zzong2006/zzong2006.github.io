@@ -1,7 +1,9 @@
 ---
 title: "Graph Embedding"
-tags: ["graph", "representation_learning"]
-aliases: ["graph embedding"]
+tags:
+  - graph
+  - representation_learning
+aliases: [graph embedding]
 ---
 
 # A) Graph Embedding ?

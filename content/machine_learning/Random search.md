@@ -1,7 +1,9 @@
 ---
 title: "Random search"
-tags: ["machine_learning", "hyperparameter_optimization"]
-aliases: ["random search"]
+tags:
+  - machine_learning
+  - hyperparameter_optimization
+aliases: [random search]
 ---
 
 # A) Random Search ?

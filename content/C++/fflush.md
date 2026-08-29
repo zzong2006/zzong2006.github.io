@@ -1,6 +1,9 @@
 ---
 title: "fflush"
-tags: ["function", "Cpp"]
+tags:
+  - function
+  - Cpp
+aliases: []
 ---
 
 # `fflush`

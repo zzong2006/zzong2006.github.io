@@ -1,5 +1,7 @@
 ---
 title: "Huber Loss"
+aliases: []
+tags: 
 ---
 
 # A) MAE (Mean Absolute Error, 평균 절대 오차)

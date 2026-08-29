@@ -1,6 +1,9 @@
 ---
 title: "entropy"
-tags: ["statistic", "information_theory"]
+tags:
+  - statistic
+  - information_theory
+aliases: []
 ---
 
 # Entropy ?

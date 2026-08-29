@@ -1,6 +1,9 @@
 ---
 title: "concave function"
-tags: ["math", "numerical_method"]
+tags:
+  - math
+  - numerical_method
+aliases: []
 ---
 
 # 1. Concave Function ?

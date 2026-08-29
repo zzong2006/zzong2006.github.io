@@ -1,6 +1,6 @@
 ---
 title: "Software-as-a-Service"
-tags: ["cloud"]
+tags: cloud
 aliases: ["SaaS"]
 ---
 

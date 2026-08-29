@@ -1,7 +1,9 @@
 ---
 title: "Contents based recommendation"
-tags: ["recommendation_system", "work"]
-aliases: ["content_based"]
+tags:
+  - recommendation_system
+  - work
+aliases: [content_based]
 ---
 
 # 1. CB ?

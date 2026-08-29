@@ -1,6 +1,7 @@
 ---
 title: "Container and container orchestrator"
-tags: ["Kubernetes"]
+tags: Kubernetes 
+aliases: []
 ---
 
 # Container and Container Orchestrator ?

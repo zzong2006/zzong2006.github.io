@@ -1,7 +1,9 @@
 ---
 title: "Recurrent Neural Network"
-tags: ["NLP", "deep_learning"]
 aliases: ["RNN"]
+tags:
+  - NLP
+  - deep_learning
 ---
 
 # A) Recurrent Neural Networks (RNN) ?

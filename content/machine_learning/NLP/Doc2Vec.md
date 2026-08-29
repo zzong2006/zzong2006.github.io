@@ -1,6 +1,8 @@
 ---
 title: "Doc2Vec"
-tags: ["NLP"]
+aliases: []
+tags:
+  - NLP
 ---
 
 # A) Doc2Vec ?

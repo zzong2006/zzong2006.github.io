@@ -1,7 +1,10 @@
 ---
 title: "garbage collection"
-tags: ["language", "python"]
-aliases: ["garbage collector"]
+tags:
+  - language
+  - python
+aliases:
+  - garbage collector
 ---
 
 # A) Garbage Collection ?

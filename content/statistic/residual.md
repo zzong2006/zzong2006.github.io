@@ -1,6 +1,9 @@
 ---
 title: "residual"
-tags: ["statistic", "optimization"]
+aliases: []
+tags:
+  - statistic
+  - optimization
 ---
 
 # A) Residual ?

@@ -1,7 +1,8 @@
 ---
 title: "pointwise mutual information"
-tags: ["information_theory"]
 aliases: ["PMI", "NPMI"]
+tags:
+  - information_theory
 ---
 
 # A) Pointwise Mutual Information ?

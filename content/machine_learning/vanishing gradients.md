@@ -1,6 +1,8 @@
 ---
 title: "vanishing gradients"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
+aliases: []
 ---
 
 # 1. Vanishing Gradients ?

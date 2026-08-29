@@ -1,7 +1,12 @@
 ---
 title: "TF-IDF"
-tags: ["retrieval", "IR", "sparse_retrieval", "metrics", "NLP"]
-aliases: ["tfidf"]
+tags:
+  - retrieval
+  - IR
+  - sparse_retrieval
+  - metrics
+  - NLP
+aliases: [tfidf]
 ---
 
 # A) TF-IDF

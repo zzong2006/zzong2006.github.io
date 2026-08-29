@@ -1,7 +1,9 @@
 ---
 title: "Hadoop"
-tags: ["data_engineering", "hadoop"]
-aliases: ["Apache Hadoop"]
+tags:
+  - data_engineering
+  - hadoop
+aliases: [Apache Hadoop]
 ---
 
 # A) Hadoop

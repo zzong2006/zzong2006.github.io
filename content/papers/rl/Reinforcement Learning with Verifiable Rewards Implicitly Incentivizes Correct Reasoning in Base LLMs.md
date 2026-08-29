@@ -1,6 +1,11 @@
 ---
 title: "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs"
-tags: ["LLM", "RLVR", "paper_review", "reinforcement_learning"]
+tags:
+  - LLM
+  - RLVR
+  - paper_review
+  - reinforcement_learning
+aliases: []
 ---
 [Paper page - Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs](https://huggingface.co/papers/2506.14245)
 

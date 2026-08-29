@@ -1,6 +1,7 @@
 ---
 title: "GaP - a factor model for discrete data"
-tags: ["optimization probability_distribution paper_review"]
+tags: optimization probability_distribution paper_review 
+aliases: 
 ---
 
 # GaP - a Factor Model for Discrete Data ?

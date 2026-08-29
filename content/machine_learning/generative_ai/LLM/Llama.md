@@ -1,6 +1,6 @@
 ---
 title: "Llama"
-tags: ["LLM"]
+tags: LLM 
 aliases: ["라마", "라마2", "Llama2"]
 ---
 

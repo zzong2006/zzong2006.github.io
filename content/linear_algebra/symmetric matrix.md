@@ -1,6 +1,7 @@
 ---
 title: "symmetric matrix"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["정방 행렬"]
 ---
 

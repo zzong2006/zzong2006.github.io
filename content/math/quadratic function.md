@@ -1,6 +1,6 @@
 ---
 title: "quadratic function"
-tags: ["math"]
+tags: math 
 aliases: ["quadratic"]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "class imbalance problem"
-tags: ["classification"]
+tags: classification 
+aliases: []
 ---
 
 # 1. Class Imbalance Problem ?

@@ -1,7 +1,11 @@
 ---
 title: "supervised fine-tuning"
-tags: ["deep_learning", "LLM", "generative_ai", "alignment"]
-aliases: ["SFT", "supervised finetuning", "supervised fine-tuning"]
+tags:
+  - deep_learning
+  - LLM
+  - generative_ai
+  - alignment
+aliases: [SFT, supervised finetuning, supervised fine-tuning]
 ---
 
 # A) Supervised Fine-Tuning

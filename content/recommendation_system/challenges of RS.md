@@ -1,6 +1,8 @@
 ---
 title: "challenges of RS"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # 1. Challenge of RS ?

@@ -1,6 +1,7 @@
 ---
 title: "outer product"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["외적"]
 ---
 

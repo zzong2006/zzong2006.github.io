@@ -1,6 +1,13 @@
 ---
 title: "doc2query"
-tags: ["retrieval", "IR", "sparse_retrieval", "nlp", "paper_review", "y2019"]
+tags:
+  - retrieval
+  - IR
+  - sparse_retrieval
+  - nlp
+  - paper_review
+  - y2019
+aliases: []
 ---
 
 # A) doc2query ?

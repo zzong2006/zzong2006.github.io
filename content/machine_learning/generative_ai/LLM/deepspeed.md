@@ -1,6 +1,9 @@
 ---
 title: "deepspeed"
-tags: ["deep_learning", "LLM"]
+tags:
+  - deep_learning
+  - LLM
+aliases: []
 ---
 
 # A) ZeRO 의 역할과 최적화 단계

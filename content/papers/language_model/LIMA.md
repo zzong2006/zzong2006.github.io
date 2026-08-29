@@ -1,6 +1,11 @@
 ---
 title: "LIMA"
-tags: ["language_model", "LLM", "nlp", "paper_review"]
+aliases: []
+tags:
+  - language_model
+  - LLM
+  - nlp
+  - paper_review
 ---
 
 # A) LIMA ?

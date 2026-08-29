@@ -1,6 +1,7 @@
 ---
 title: "information value"
-tags: ["feature_engineering"]
+tags: feature_engineering 
+aliases: []
 ---
 
 # Information Value ?

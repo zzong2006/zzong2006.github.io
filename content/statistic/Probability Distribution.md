@@ -1,6 +1,9 @@
 ---
 title: "Probability Distribution"
-tags: ["statistic", "probability_distribution"]
+tags:
+  - statistic
+  - probability_distribution
+aliases: []
 ---
 
 # Probability Distribution ?

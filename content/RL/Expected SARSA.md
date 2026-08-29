@@ -1,6 +1,8 @@
 ---
 title: "Expected SARSA"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) Expected SARSA ?

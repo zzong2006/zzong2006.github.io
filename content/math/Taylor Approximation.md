@@ -1,6 +1,7 @@
 ---
 title: "Taylor Approximation"
 aliases: ["Taylor series"]
+tags: []
 ---
 
 # A) Taylor Approximation ?

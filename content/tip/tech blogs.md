@@ -1,6 +1,8 @@
 ---
 title: "tech blogs"
-tags: ["tech_blog"]
+aliases: []
+tags:
+  - tech_blog
 ---
 
 # A) Tech Blogs ?

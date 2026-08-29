@@ -1,5 +1,7 @@
 ---
 title: "LightGCN"
+aliases: []
+tags: []
 ---
 
 ### Z.1.1) **논문의 핵심 아이디어: "Less is More (더 적은 것이 더 낫다)"**

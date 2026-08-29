@@ -1,6 +1,10 @@
 ---
 title: "transfer learning"
-tags: ["deep_learning", "machine_learning", "recommendation_system"]
+aliases: []
+tags:
+  - deep_learning
+  - machine_learning
+  - recommendation_system
 ---
 
 # A) Transfer Learning ?

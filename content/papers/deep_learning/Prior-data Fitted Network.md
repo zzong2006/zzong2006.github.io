@@ -1,13 +1,41 @@
 ---
 title: "Prior-data Fitted Network"
-tags: 
-aliases: PFN
-draft: true
+tags: paper_review deep_learning ICLR y2022
+aliases: ["PFN"]
 ---
-# 1. Prior-data Fitted Network ?
 
+# A) 한줄 요약
 
-# 2. Related 
+베이즈 추론 자체를 신경망에 미리 학습시켜 두고, 실제 데이터셋이 들어오면 학습 없이 forward 한 번으로 예측을 내놓게 하는 접근이다. Müller et al., "Transformers Can Do Bayesian Inference", ICLR 2022.
 
-# 3. References
+# B) 문제의식
 
+새 데이터셋마다 모델을 학습시키는 것이 보통이다. 작은 표 형태 데이터셋에서는 이 학습 비용과 하이퍼파라미터 탐색이 데이터 자체보다 오래 걸리는 일이 흔하다.
+
+한편 이론적으로 가장 좋은 예측은 [[posterior]] predictive distribution 이다. 데이터를 만들어낸 모델에 대한 사전분포를 두고, 관측을 조건으로 모든 가능한 모델을 적분해 얻는다. 문제는 이 적분이 대부분 계산되지 않는다는 것이다([[tractable|intractable]]).
+
+PFN 의 발상은 이 적분을 풀지 않고 **근사 함수를 미리 학습해 두는** 것이다.
+
+# C) 어떻게 학습하나
+
+1. 데이터 생성 과정에 대한 사전분포를 정한다. 논문은 구조적 인과 모델이나 작은 베이즈 신경망을 쓴다
+2. 그 사전분포에서 가짜 데이터셋을 수백만 개 뽑는다. 각 데이터셋은 `(학습용 샘플들, 질의 샘플, 정답)` 형태다
+3. [[transformer]] 에 학습용 샘플들과 질의 샘플을 함께 넣고 정답을 맞히게 한다
+
+학습 단위가 샘플 하나가 아니라 **데이터셋 하나** 라는 점이 다르다. 모델은 "이런 학습 데이터가 주어졌을 때 이 질의의 답은 무엇인가" 라는 함수를 배우게 되고, 이는 posterior predictive 를 근사하는 것과 같다.
+
+# D) 추론
+
+실제 데이터셋이 들어오면 학습 데이터와 질의를 함께 입력에 넣고 forward 를 한 번 돌린다. 경사하강도, 하이퍼파라미터 탐색도 없다. attention 이 학습 샘플과 질의 사이의 관계를 처리하는 것이 사실상의 "학습" 이다.
+
+이 성질에서 두 가지가 따라온다. 예측이 몇 초 안에 끝나고, 대신 입력 길이 제한 때문에 다룰 수 있는 데이터셋 크기가 제한된다.
+
+# E) 한계와 TabPFN
+
+성능은 사전분포가 실제 데이터를 얼마나 잘 포괄하느냐에 달려 있다. 사전분포에서 벗어난 데이터에는 약하다.
+
+[[TabPFN]] 은 이 접근을 표 형태 데이터 분류에 특화시킨 모델이다. 작은 데이터셋(수천 행, 수십 열 규모)에서 튜닝된 gradient boosting 에 필적하거나 앞서면서 예측이 훨씬 빠르다는 결과를 보였다.
+
+# F) References
+
+* [\[2112.10510\] Transformers Can Do Bayesian Inference](https://arxiv.org/abs/2112.10510)

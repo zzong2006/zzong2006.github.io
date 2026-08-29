@@ -1,7 +1,8 @@
 ---
 title: "deployment(Kubernetes)"
-tags: ["Kubernetes"]
 aliases: ["디플로이먼트"]
+tags:
+  - Kubernetes
 ---
 
 * Once you have a running Kubernetes cluster, you can deploy your containerized applications on top of it.

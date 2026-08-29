@@ -1,6 +1,8 @@
 ---
 title: "Gamma distribution"
-tags: ["probability_distribution"]
+aliases: []
+tags:
+  - probability_distribution
 ---
 
 # A) Gamma Distribution ?

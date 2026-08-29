@@ -1,6 +1,11 @@
 ---
 title: "xRAG"
-tags: ["retrieval", "RAG", "IR", "paper_review"]
+tags:
+  - retrieval
+  - RAG
+  - IR
+  - paper_review
+aliases: []
 ---
 
 Retrieval-Augmented Generation (RAG) 시스템의 효율성을 극대화하기 위한 새로운 문맥 압축 방법론인 **xRAG**를 제안합니다. 핵심은 검색된 긴 문서의 전체 텍스트를 LLM에 입력하는 대신, 해당 문서를 대표하는 **단 하나의 임베딩 벡터(embedding vector)**만을 사용하여 LLM이 정보를 활용하도록 만드는 것입니다.

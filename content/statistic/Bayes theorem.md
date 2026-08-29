@@ -1,6 +1,9 @@
 ---
 title: "Bayes theorem"
-tags: ["statistic", "bayesian"]
+tags:
+  - statistic
+  - bayesian
+aliases: []
 ---
 
 # A) Bayes Theorem ?

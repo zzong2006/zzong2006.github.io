@@ -1,7 +1,18 @@
 ---
-title: "KaLM-Reranker-V1 - Fast but Not Late Interaction for Compressed Document Reranking"
-tags: ["retrieval", "IR", "ranking", "rerank", "paper_review", "y2026", "KaLM"]
-aliases: ["KaLM-Reranker-V1", "Fast but Not Late Interaction", "FBNL", "Compressed Document Reranking"]
+title: KaLM-Reranker-V1 - Fast but Not Late Interaction for Compressed Document Reranking
+tags:
+  - retrieval
+  - IR
+  - ranking
+  - rerank
+  - paper_review
+  - y2026
+  - KaLM
+aliases:
+  - KaLM-Reranker-V1
+  - Fast but Not Late Interaction
+  - FBNL
+  - Compressed Document Reranking
 ---
 
 # A) 한줄 요약

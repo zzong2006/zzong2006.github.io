@@ -1,7 +1,9 @@
 ---
 title: "t-Stochastic Nearest Embedding"
-tags: ["word2vec", "clustering"]
 aliases: ["t-SNE"]
+tags:
+  - word2vec
+  - clustering
 ---
 
 # A) t-SNE ?

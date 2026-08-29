@@ -1,6 +1,6 @@
 ---
 title: "resilient distributed datasets"
-tags: ["Spark"]
+tags: Spark
 aliases: ["RDD"]
 ---
 

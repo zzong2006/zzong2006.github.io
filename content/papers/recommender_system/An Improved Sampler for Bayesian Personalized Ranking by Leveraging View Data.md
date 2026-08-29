@@ -1,6 +1,11 @@
 ---
 title: "An Improved Sampler for Bayesian Personalized Ranking by Leveraging View Data"
-tags: ["WWW", "implicit_feedback", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - WWW
+  - implicit_feedback
+  - paper_review
+  - recommendation_system
 ---
 
 여기서는 DNS (dynamic negative sampling) 전략으로 불림

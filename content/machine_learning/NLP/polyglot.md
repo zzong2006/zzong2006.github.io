@@ -1,6 +1,10 @@
 ---
 title: "polyglot"
-tags: ["LLM", "korean", "NLP"]
+tags:
+  - LLM
+  - korean
+  - NLP
+aliases: []
 ---
 
 # 1. Polyglot ?

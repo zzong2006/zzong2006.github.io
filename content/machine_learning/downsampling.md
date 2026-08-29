@@ -1,6 +1,8 @@
 ---
 title: "downsampling"
-tags: ["machine_learning"]
+aliases: []
+tags:
+  - machine_learning
 ---
 
 # A) Downsampling ?

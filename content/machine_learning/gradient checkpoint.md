@@ -1,5 +1,7 @@
 ---
 title: "gradient checkpoint"
+tags: 
+aliases: []
 ---
 
 # A) Gradient Checkpoint ?

@@ -1,5 +1,7 @@
 ---
 title: "TensorFlow Serving"
+aliases: []
+tags: []
 ---
 * Versioning
 	* `FLAGS.model_version` specifies the **version** of the model.

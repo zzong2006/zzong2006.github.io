@@ -1,6 +1,7 @@
 ---
 title: "cache prefetch"
-tags: ["operating_system"]
+tags: operating_system
+aliases: []
 ---
 
 # 1. Cache Prefetch ?

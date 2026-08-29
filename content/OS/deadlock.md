@@ -1,6 +1,6 @@
 ---
 title: "deadlock"
-tags: ["operating_system"]
+tags: operating_system
 aliases: ["교착상태", "데드락"]
 ---
 

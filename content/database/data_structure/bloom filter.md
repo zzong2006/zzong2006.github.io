@@ -1,6 +1,8 @@
 ---
 title: "bloom filter"
-tags: ["data_structure", "database"]
+tags:
+  - data_structure
+  - database
 aliases: ["블룸 필터"]
 ---
 

@@ -1,6 +1,9 @@
 ---
 title: "Hypothesis"
-tags: ["statistic", "hypothesis_test"]
+tags:
+  - statistic
+  - hypothesis_test
+aliases: []
 ---
 
 # A) Hypothesis ?

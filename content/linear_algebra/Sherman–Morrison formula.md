@@ -1,6 +1,8 @@
 ---
 title: "Sherman–Morrison formula"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # 1. Sherman–Morrison Formula ?

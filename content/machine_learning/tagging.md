@@ -1,6 +1,7 @@
 ---
 title: "tagging"
-tags: ["github"]
+tags: github 
+aliases: []
 ---
 
 # A) Tagging ?

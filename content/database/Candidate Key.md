@@ -1,7 +1,9 @@
 ---
 title: "Candidate Key"
-tags: ["database", "relation"]
-aliases: ["candidate Key"]
+tags:
+  - database
+  - relation
+aliases: [candidate Key]
 ---
 
 # A) Candidate Key

@@ -1,7 +1,8 @@
 ---
 title: "Semantic Textual Similarity"
-tags: ["NLP"]
-aliases: ["STS"]
+tags:
+  - NLP
+aliases: [STS]
 ---
 
 # Semantic Textual Similarity ?

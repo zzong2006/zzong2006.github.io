@@ -1,7 +1,10 @@
 ---
 title: "Infrastructure-as-a-Service"
-tags: ["word", "server"]
-aliases: ["IaaS"]
+tags:
+  - word
+  - server
+aliases:
+  - IaaS
 ---
 
 # A) Infrastructure-as-a-Service ?

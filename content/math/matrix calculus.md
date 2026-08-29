@@ -1,6 +1,8 @@
 ---
 title: "matrix calculus"
-tags: ["differentitation"]
+aliases: []
+tags:
+  - differentitation
 ---
 
 # Matrix Calculus ?

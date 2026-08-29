@@ -1,6 +1,6 @@
 ---
 title: "singular value"
-tags: ["linear_algebra"]
+tags: linear_algebra
 aliases: ["특이값"]
 ---
 

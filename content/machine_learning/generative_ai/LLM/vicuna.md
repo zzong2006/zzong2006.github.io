@@ -1,7 +1,9 @@
 ---
 title: "vicuna"
-tags: ["LLM"]
-aliases: ["비쿠나"]
+tags:
+  - LLM
+aliases:
+  - 비쿠나
 ---
 
 # A) Vicuna ?

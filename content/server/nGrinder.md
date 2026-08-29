@@ -1,6 +1,7 @@
 ---
 title: "nGrinder"
-tags: ["server"]
+tags: server
+aliases: []
 ---
 
 # nGrinder ?

@@ -1,7 +1,8 @@
 ---
 title: "self-attention"
-tags: ["NLP"]
 aliases: ["self attention", "셀프 어텐션"]
+tags:
+  - NLP
 ---
 
 # A) Self-attention 이란 ?

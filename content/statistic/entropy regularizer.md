@@ -1,5 +1,7 @@
 ---
 title: "entropy regularizer"
+tags: 
+aliases: []
 ---
 
 # Entropy Regularizer ?

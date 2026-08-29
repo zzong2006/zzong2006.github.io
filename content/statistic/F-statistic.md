@@ -1,6 +1,7 @@
 ---
 title: "F-statistic"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # 1. F-statistic

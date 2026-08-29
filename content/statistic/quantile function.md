@@ -1,6 +1,7 @@
 ---
 title: "quantile function"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # 1. Quantile Function ?

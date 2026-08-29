@@ -1,7 +1,14 @@
 ---
 title: "Large Scale Deployment of BERT Based Cross Encoder Model for Re-Ranking in Walmart Search Engine"
-tags: ["e-commerce", "SIGIR", "paper_review", "retrieval", "ranking", "y2025"]
-aliases: ["Walmart Cross Encoder", "Walmart BERT Re-ranker"]
+tags:
+  - e-commerce
+  - SIGIR
+  - paper_review
+  - retrieval
+  - ranking
+  - y2025
+aliases: [Walmart Cross Encoder, Walmart BERT Re-ranker]
+rating: ⭐⭐⭐⭐
 ---
 
 # A) 한줄 요약

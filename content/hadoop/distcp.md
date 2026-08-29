@@ -1,6 +1,8 @@
 ---
 title: "distcp"
-tags: ["hadoop"]
+aliases: []
+tags:
+  - hadoop
 ---
 
 # A) `DistCp` ?

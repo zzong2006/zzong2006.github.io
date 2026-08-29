@@ -1,6 +1,8 @@
 ---
 title: "embedding matrix"
-tags: ["embedding"]
+tags:
+  - embedding
+aliases: []
 ---
 
 # A) Embedding Matrix 란?

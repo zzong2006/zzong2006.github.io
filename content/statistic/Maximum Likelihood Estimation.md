@@ -1,6 +1,7 @@
 ---
 title: "Maximum Likelihood Estimation"
 aliases: ["MLE"]
+tag: bayesian, statistic
 ---
 
 # A) MLE ?

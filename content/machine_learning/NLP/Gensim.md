@@ -1,6 +1,11 @@
 ---
 title: "Gensim"
-tags: ["topic_modeling", "open_source", "python", "NLP"]
+tags:
+  - topic_modeling
+  - open_source
+  - python
+  - NLP
+aliases: []
 ---
 
 # Gensim ?

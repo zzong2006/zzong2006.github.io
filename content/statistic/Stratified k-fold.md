@@ -1,5 +1,7 @@
 ---
 title: "Stratified k-fold"
+tags: 
+aliases: []
 ---
 
 # 1. Stratified K-fold ?

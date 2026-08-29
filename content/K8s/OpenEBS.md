@@ -1,6 +1,8 @@
 ---
 title: "OpenEBS"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # OpenEBS ?

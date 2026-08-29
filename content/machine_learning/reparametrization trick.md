@@ -1,6 +1,7 @@
 ---
 title: "reparametrization trick"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # Reparametrization Trick ?

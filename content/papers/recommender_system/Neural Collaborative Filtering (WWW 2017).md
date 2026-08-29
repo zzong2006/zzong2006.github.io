@@ -1,6 +1,11 @@
 ---
 title: "Neural Collaborative Filtering (WWW 2017)"
-tags: ["WWW", "deep_learning", "paper_review", "recommendation_system", "y2017"]
+tags:
+  - WWW
+  - deep_learning
+  - paper_review
+  - recommendation_system
+  - y2017
 aliases: ["NeuMF"]
 ---
 

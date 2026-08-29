@@ -1,5 +1,7 @@
 ---
 title: "personalized ranking model"
+aliases: []
+tags: []
 ---
 
 # A) Personalized Ranking Model ?

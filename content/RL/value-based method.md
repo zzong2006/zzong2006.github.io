@@ -1,6 +1,8 @@
 ---
 title: "value-based method"
-tags: ["reinforcement_learning"]
+aliases: []
+tags:
+  - reinforcement_learning
 ---
 
 # A) Value-based Method ?

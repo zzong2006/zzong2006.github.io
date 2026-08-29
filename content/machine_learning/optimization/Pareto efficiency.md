@@ -1,6 +1,9 @@
 ---
 title: "Pareto efficiency"
-tags: ["recommendation_system", "optimization", "multi_objective"]
+tags:
+  - recommendation_system
+  - optimization
+  - multi_objective
 aliases: ["Pareto Frontier", "Pareto Efficient"]
 ---
 

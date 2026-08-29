@@ -1,5 +1,7 @@
 ---
 title: "Floating Data Types"
+tags: 
+aliases: []
 ---
 
 # 1. Floating Data Types ?

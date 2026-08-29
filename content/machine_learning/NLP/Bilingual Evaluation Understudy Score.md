@@ -1,5 +1,6 @@
 ---
 title: "Bilingual Evaluation Understudy Score"
+tags: 
 aliases: ["BLEU Score"]
 ---
 

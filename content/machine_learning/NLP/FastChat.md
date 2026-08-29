@@ -1,6 +1,7 @@
 ---
 title: "FastChat"
-tags: ["LLM"]
+tags: LLM 
+aliases: []
 ---
 
 # A) FastChat ?

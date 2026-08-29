@@ -1,6 +1,8 @@
 ---
 title: "Kubernetes Node"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # A) Kubernetes Node ?

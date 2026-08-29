@@ -1,6 +1,7 @@
 ---
 title: "crontab"
-tags: ["linux"]
+tags: linux 
+aliases: []
 ---
 
 # A) Crontab ?

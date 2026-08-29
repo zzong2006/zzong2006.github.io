@@ -1,6 +1,7 @@
 ---
 title: "credible interval"
-tags: ["bayesian_inference"]
+tags: bayesian_inference 
+aliases: []
 ---
 
 # Credible Interval ?

@@ -1,6 +1,14 @@
 ---
 title: "Deep Bayesian Bandits Showdown - An Empirical Comparison of Bayesian Deep Networks for Thompson Sampling"
-tags: ["Google", "ICLR", "MAB", "bandit", "deep_learning", "paper_review", "y2018"]
+tags:
+  - Google
+  - ICLR
+  - MAB
+  - bandit
+  - deep_learning
+  - paper_review
+  - y2018
+aliases: []
 ---
 
 # A) Summary

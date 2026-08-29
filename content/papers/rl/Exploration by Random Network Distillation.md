@@ -1,6 +1,9 @@
 ---
 title: "Exploration by Random Network Distillation"
-tags: ["paper_review", "reinforcement_learning"]
+aliases: []
+tags:
+  - paper_review
+  - reinforcement_learning
 ---
 
 # A) Exploration by Random Network Distillation ?

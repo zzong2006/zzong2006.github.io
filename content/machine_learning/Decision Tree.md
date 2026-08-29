@@ -1,7 +1,10 @@
 ---
 title: "Decision Tree"
-tags: ["supervised_learning", "machine_learning", "ensemble"]
 aliases: ["의사결정나무"]
+tags:
+  - supervised_learning
+  - machine_learning
+  - ensemble
 ---
 
 # A) Decision Tree란?

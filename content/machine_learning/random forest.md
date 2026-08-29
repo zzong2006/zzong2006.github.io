@@ -1,7 +1,9 @@
 ---
 title: "random forest"
-tags: ["ensemble", "machine_learning"]
 aliases: ["RF"]
+tags:
+  - ensemble
+  - machine_learning
 ---
 **랜덤 포레스트는 결정 트리와 다르며, 결정 트리가 모여서 만들어진 숲(Forest) 같은 모델**이라고 생각하시면 쉽습니다.
 

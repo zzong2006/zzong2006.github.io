@@ -1,6 +1,11 @@
 ---
 title: "Reinforced Negative Sampling for Recommendation with Exposure Data"
-tags: ["IJCAI", "paper_review", "recommendation_system", "y2019"]
+aliases: []
+tags:
+  - IJCAI
+  - paper_review
+  - recommendation_system
+  - y2019
 ---
 
 # Introduction

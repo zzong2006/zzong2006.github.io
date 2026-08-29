@@ -1,7 +1,8 @@
 ---
 title: "interval estimation"
-tags: ["statistic"]
-aliases: ["구간 추정"]
+tags:
+  - statistic
+aliases: [구간 추정]
 ---
 
 # A) Interval Estimation ?

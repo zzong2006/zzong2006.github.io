@@ -1,6 +1,13 @@
 ---
 title: "Fifty Shades of Ratings - How to Benefit from a Negative Feedback in Top-N Recommendations Tasks"
-tags: ["RecSyS", "cold-start", "matrix_factorization", "paper_review", "recommendation_system", "y2016"]
+aliases: []
+tags:
+  - RecSyS
+  - cold-start
+  - matrix_factorization
+  - paper_review
+  - recommendation_system
+  - y2016
 ---
 
 # A) Abstract

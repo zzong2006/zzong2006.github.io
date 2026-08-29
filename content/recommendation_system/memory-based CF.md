@@ -1,6 +1,8 @@
 ---
 title: "memory-based CF"
-tags: ["recommendation_system"]
+tags:
+  - recommendation_system
+aliases: []
 ---
 
 # A) Memory-based CF ?

@@ -1,5 +1,7 @@
 ---
 title: "top-k Sampling"
+aliases: []
+tags: []
 ---
 
 # A) 빔 서치(Beam Search)

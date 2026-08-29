@@ -1,6 +1,8 @@
 ---
 title: "trace trick"
-tags: ["math"]
+aliases: []
+tags:
+  - math
 ---
 
 # A) Trace Trick ?

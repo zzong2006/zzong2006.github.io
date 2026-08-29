@@ -1,5 +1,7 @@
 ---
 title: "Bubble Sort"
+aliases: []
+tags: 
 ---
 * 장점
 	* 구현이 매우 간단하다.

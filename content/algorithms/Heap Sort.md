@@ -1,5 +1,7 @@
 ---
 title: "Heap Sort"
+aliases: []
+tags: 
 ---
 * Max [[Heap]] 이나 min [[Heap]] 을 구성해 정렬하는 방법
 	* 내림차순 정렬: max [[Heap]]

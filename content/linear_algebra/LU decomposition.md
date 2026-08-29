@@ -1,6 +1,7 @@
 ---
 title: "LU decomposition"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # 1. LU Decomposition ?

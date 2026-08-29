@@ -1,6 +1,11 @@
 ---
 title: "One Token to Fool LLM-as-a-Judge"
-tags: ["language_model", "RLVR", "nlp", "paper_review"]
+tags:
+  - language_model
+  - RLVR
+  - nlp
+  - paper_review
+aliases: []
 ---
 
 # A) 대형 언어모델(LLM)을 '심판'으로 쓸 때 발생하는 치명적 허점과 해결책

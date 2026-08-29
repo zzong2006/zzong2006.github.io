@@ -1,5 +1,7 @@
 ---
 title: "Qwen-VL"
+aliases: []
+tags: []
 ---
 - 패치 단위 텐서
 

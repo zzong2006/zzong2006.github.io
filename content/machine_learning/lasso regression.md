@@ -1,6 +1,9 @@
 ---
 title: "lasso regression"
-tags: ["linear_regression", "machine_learning"]
+tags:
+  - linear_regression
+  - machine_learning
+aliases: []
 ---
 
 # A) Lasso Regression ?

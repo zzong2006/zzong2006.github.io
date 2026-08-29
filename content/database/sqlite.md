@@ -1,6 +1,7 @@
 ---
 title: "sqlite"
-tags: ["database"]
+tags: database 
+aliases: []
 ---
 
 # Sqlite ?

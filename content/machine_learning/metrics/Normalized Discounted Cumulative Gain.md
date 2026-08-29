@@ -1,7 +1,8 @@
 ---
 title: "Normalized Discounted Cumulative Gain"
-tags: ["metrics"]
 aliases: ["NDCG"]
+tags:
+  - metrics
 ---
 
 # A) NDCG ?

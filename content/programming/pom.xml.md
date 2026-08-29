@@ -1,5 +1,7 @@
 ---
 title: "pom.xml"
+tags: 
+aliases: []
 ---
 
 # pom.xml ?

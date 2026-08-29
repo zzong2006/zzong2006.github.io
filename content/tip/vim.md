@@ -1,5 +1,7 @@
 ---
 title: "vim"
+tags: 
+aliases: []
 ---
 
 # 1. Vim ?

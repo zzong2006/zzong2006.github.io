@@ -1,6 +1,7 @@
 ---
 title: "hard negative"
-tags: ["machine_learning"]
+tags: machine_learning 
+aliases: []
 ---
 
 # 1. Hard Negative ?

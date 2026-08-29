@@ -1,7 +1,12 @@
 ---
-title: "Prompt Compression"
-tags: ["LLM", "inference", "prompt_compression"]
-aliases: ["프롬프트 압축", "prompt compression"]
+title: Prompt Compression
+aliases:
+  - 프롬프트 압축
+  - prompt compression
+tags:
+  - LLM
+  - inference
+  - prompt_compression
 ---
 
 # A) 한줄 요약

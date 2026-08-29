@@ -1,6 +1,7 @@
 ---
 title: "gaussian integral"
-tags: ["math"]
+tags: math 
+aliases: []
 ---
 
 # A) Gaussian Integral ?

@@ -1,7 +1,14 @@
 ---
 title: "WARP - An Efficient Engine for Multi-Vector Retrieval"
-tags: ["retrieval", "IR", "embedding", "multi_vector", "paper_review", "SIGIR", "y2025"]
-aliases: ["WARP"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - multi_vector
+  - paper_review
+  - SIGIR
+  - y2025
+aliases: [WARP]
 ---
 
 [2501.17788](https://arxiv.org/pdf/2501.17788)

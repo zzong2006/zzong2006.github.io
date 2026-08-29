@@ -1,6 +1,11 @@
 ---
 title: "Scalable Recommendation with Poisson Factorization"
-tags: ["collaborative_filtering", "paper_review", "probability_distribution", "recommendation_system"]
+aliases: []
+tags:
+  - collaborative_filtering
+  - paper_review
+  - probability_distribution
+  - recommendation_system
 ---
 
 # Abstract

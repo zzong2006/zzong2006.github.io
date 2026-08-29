@@ -1,6 +1,6 @@
 ---
 title: "stratified sampling"
-tags: ["statistic"]
+tags: statistic  
 aliases: ["층화추출법"]
 ---
 

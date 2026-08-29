@@ -1,7 +1,12 @@
 ---
 title: "One Hot Encoding"
-tags: ["word2vec", "machine_learning", "NLP"]
-aliases: ["ohe", "OHE"]
+tags:
+  - word2vec
+  - machine_learning
+  - NLP
+aliases:
+  - ohe
+  - OHE
 ---
 
 # A) One Hot Encoding ?

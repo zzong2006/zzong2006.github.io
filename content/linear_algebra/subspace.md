@@ -1,6 +1,8 @@
 ---
 title: "subspace"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
+aliases: []
 ---
 
 # 1. Subspace ?

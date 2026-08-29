@@ -1,6 +1,7 @@
 ---
 title: "ACID"
-tags: ["database"]
+tags:
+  - database
 ---
 
 # A) What is ACID?

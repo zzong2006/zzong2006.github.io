@@ -1,7 +1,8 @@
 ---
 title: "linear program"
-tags: ["optimization"]
 aliases: ["linear programming"]
+tags:
+  - optimization
 ---
 
 # Linear Program ?

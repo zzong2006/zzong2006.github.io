@@ -1,5 +1,7 @@
 ---
 title: "Sampling the Imaginary"
+aliases: []
+tags: 
 ---
 * Tags
 	* [[Statistical Rethinking]]

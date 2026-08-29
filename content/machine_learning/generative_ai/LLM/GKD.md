@@ -1,7 +1,11 @@
 ---
-title: "Generalized Knowledge Distillation"
-tags: ["LLM", "distillation"]
-aliases: ["GKD", "Generalized Knowledge Distillation"]
+title: Generalized Knowledge Distillation
+tags:
+  - LLM
+  - distillation
+aliases:
+  - GKD
+  - Generalized Knowledge Distillation
 ---
 
 # A) 한줄 요약

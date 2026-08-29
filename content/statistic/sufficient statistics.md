@@ -1,5 +1,7 @@
 ---
 title: "sufficient statistics"
+tags: 
+aliases: []
 ---
 
 # 1. Sufficient Statistics ?

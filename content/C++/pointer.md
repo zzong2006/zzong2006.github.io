@@ -1,6 +1,8 @@
 ---
 title: "pointer"
-tags: ["Cpp"]
+aliases: []
+tags:
+  - Cpp
 ---
 
 # A) 포인터 ?

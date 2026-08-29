@@ -1,6 +1,7 @@
 ---
 title: "packaging"
-tags: ["python"]
+tags: python 
+aliases: []
 ---
 
 # 1. Python Packaging ?

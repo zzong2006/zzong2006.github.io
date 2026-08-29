@@ -1,6 +1,13 @@
 ---
 title: "Jina-ColBERT-v2"
-tags: ["retrieval", "IR", "embedding", "multi_vector", "ColBERT", "y2024"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - multi_vector
+  - ColBERT
+  - y2024
+aliases: []
 ---
 
 [Jina-ColBERT-v2: A General Purpose Multilingual Late Interaction Retriever](https://arxiv.org/html/2408.16672v1)

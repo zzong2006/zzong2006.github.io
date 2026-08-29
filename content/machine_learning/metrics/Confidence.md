@@ -1,7 +1,10 @@
 ---
 title: "Confidence"
-tags: ["metrics", "recommendation_system", "association_rule"]
-aliases: ["confidence"]
+tags:
+  - metrics
+  - recommendation_system
+  - association_rule
+aliases: [confidence]
 ---
 
 # A) Confidence

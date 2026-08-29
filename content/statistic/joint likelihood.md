@@ -1,6 +1,8 @@
 ---
 title: "joint likelihood"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Joint Likelihood ?

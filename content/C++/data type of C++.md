@@ -1,6 +1,8 @@
 ---
 title: "data type of C++"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # A) Data Type of C++ ?

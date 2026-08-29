@@ -1,6 +1,7 @@
 ---
 title: "Hive"
-tags: ["database"]
+tags: database 
+aliases: []
 ---
 
 # A) Hive ?

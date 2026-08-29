@@ -1,7 +1,9 @@
 ---
 title: "multivariate Gaussian distribution"
-tags: ["probability_distribution", "statistic"]
 aliases: ["multivariate normal distribution", "MVN"]
+tags:
+  - probability_distribution
+  - statistic
 ---
 
 # A) Multivariate Gaussian Distribution ?

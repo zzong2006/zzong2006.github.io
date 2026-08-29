@@ -1,6 +1,10 @@
 ---
 title: "TrainerCallback"
-tags: ["huggingface", "deep_learning", "LLM"]
+aliases: []
+tags:
+  - huggingface
+  - deep_learning
+  - LLM
 ---
 
 # 1. `TrainerCallback` ?

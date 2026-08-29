@@ -1,6 +1,6 @@
 ---
 title: "t-distribution"
-tags: ["statistic"]
+tags: statistic 
 aliases: ["t-분포"]
 ---
 

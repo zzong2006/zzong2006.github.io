@@ -1,6 +1,10 @@
 ---
 title: "Optimal Regret Analysis of Thompson Sampling in Stochastic Multi-armed Bandit Problem with Multiple Plays"
-tags: ["MAB", "bandit", "paper_review"]
+tags:
+  - MAB
+  - bandit
+  - paper_review
+aliases: []
 ---
 
 # A) Optimal Regret Analysis of Thompson Sampling in Stochastic Multi-armed Bandit Problem with Multiple Plays ?

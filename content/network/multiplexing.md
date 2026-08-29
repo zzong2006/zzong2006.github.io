@@ -1,6 +1,6 @@
 ---
 title: "multiplexing"
-tags: ["network"]
+tags: network
 aliases: ["멀티플렉싱"]
 ---
 

@@ -1,6 +1,11 @@
 ---
 title: "backpropagation"
-tags: ["machine_learning", "math", "linear_algebra", "calculus", "deep_learning"]
+tags:
+  - machine_learning
+  - math
+  - linear_algebra
+  - calculus
+  - deep_learning
 aliases: ["back-propagation"]
 ---
 

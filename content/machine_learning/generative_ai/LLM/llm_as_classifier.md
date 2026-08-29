@@ -1,6 +1,8 @@
 ---
 title: "llm_as_classifier"
-tags: ["LLM"]
+tags:
+  - LLM
+aliases: []
 ---
 
 # A) llm_as_classifier ?

@@ -1,7 +1,8 @@
 ---
 title: "Operating System"
-tags: ["OS"]
-aliases: ["OS"]
+tags:
+  - OS
+aliases: [OS]
 ---
 
 # A) Operating System

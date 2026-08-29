@@ -1,6 +1,8 @@
 ---
 title: "filter bubble"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Filter Bubble ?

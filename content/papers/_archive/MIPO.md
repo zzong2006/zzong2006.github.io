@@ -1,7 +1,8 @@
 ---
 title: "MIPO"
-tags: ["paper_review"]
-aliases: ["Modulated Intervention Preference Optimization"]
+tags:
+  - paper_review
+aliases: [Modulated Intervention Preference Optimization]
 ---
 해당 논문은 대규모 언어 모델(LLM)을 인간의 선호도에 맞게 미세 조정하는 DPO(Direct Preference Optimization) 방식의 한계를 지적하고, 이를 개선한 **MIPO(Modulated Intervention Preference Optimization)** 라는 새로운 방법을 제안합니다. 논문의 부제인 **"Keep the Easy, Refine the Difficult" (쉬운 것은 유지하고, 어려운 것은 개선하라)** 가 MIPO의 핵심 아이디어를 잘 보여줍니다.
 

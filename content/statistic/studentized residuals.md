@@ -1,6 +1,7 @@
 ---
 title: "studentized residuals"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # Studentized Residuals ?

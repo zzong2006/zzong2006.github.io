@@ -1,6 +1,9 @@
 ---
 title: "ancestral sampling"
-tags: ["sampling", "PGM"]
+aliases: []
+tags:
+  - sampling
+  - PGM
 ---
 
 # Ancestral Sampling ?

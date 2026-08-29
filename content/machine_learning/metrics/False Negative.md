@@ -1,5 +1,6 @@
 ---
 title: "False Negative"
+tags: 
 aliases: ["2종 오류"]
 ---
 

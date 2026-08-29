@@ -1,7 +1,9 @@
 ---
 title: "R-squared"
-tags: ["statistic", "linear_regression"]
-aliases: ["R2", "coefficient of determination"]
+tags:
+  - statistic
+  - linear_regression
+aliases: [R2, coefficient of determination]
 ---
 
 # A) R-squared ?

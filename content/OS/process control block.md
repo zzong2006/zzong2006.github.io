@@ -1,7 +1,8 @@
 ---
 title: "process control block"
-tags: ["operating_system"]
 aliases: ["PCB"]
+tags:
+  - operating_system
 ---
 
 # A) PCB ?

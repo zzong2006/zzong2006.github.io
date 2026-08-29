@@ -1,7 +1,9 @@
 ---
 title: "perplexity"
-tags: ["metrics", "NLP"]
 aliases: ["PPL"]
+tags:
+  - metrics
+  - NLP
 ---
 
 # A) Perplexity ?

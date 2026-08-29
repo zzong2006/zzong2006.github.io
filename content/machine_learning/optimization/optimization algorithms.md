@@ -1,5 +1,8 @@
 ---
-title: "Optimization algorithms"
+layout: default
+title:  "Optimization algorithms"
+category: Deep Learning
+order: 8
 ---
 
 # A) Exponentially Weighted (moving) Averages

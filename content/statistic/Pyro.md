@@ -1,6 +1,12 @@
 ---
 title: "Pyro"
-tags: ["python", "statistic", "library", "PyTorch", "bayesian_inference"]
+tags:
+  - python
+  - statistic
+  - library
+  - PyTorch
+  - bayesian_inference
+aliases: []
 ---
 
 # A) Pyro ?

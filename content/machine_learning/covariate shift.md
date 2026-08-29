@@ -1,6 +1,7 @@
 ---
 title: "covariate shift"
-tags: ["machine_learning"]
+tags: machine_learning 
+aliases: []
 ---
 
 # Covariate Shift ?

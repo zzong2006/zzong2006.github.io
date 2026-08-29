@@ -1,6 +1,10 @@
 ---
 title: "ANN"
-tags: ["retrieval", "ANN", "vector_search"]
+tags:
+  - retrieval
+  - ANN
+  - vector_search
+aliases: []
 ---
 
 # A) ANN

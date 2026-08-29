@@ -1,6 +1,6 @@
 ---
 title: "chain rule (probability)"
-tags: ["statistic"]
+tags: statistic 
 aliases: ["chain rule"]
 ---
 

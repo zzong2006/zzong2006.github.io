@@ -1,7 +1,8 @@
 ---
 title: "high availability"
-tags: ["server"]
 aliases: ["HA", "고가용성"]
+tags:
+  - server
 ---
 
 # A) High Availability ?

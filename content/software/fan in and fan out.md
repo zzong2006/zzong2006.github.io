@@ -1,6 +1,7 @@
 ---
 title: "fan in and fan out"
-tags: ["software_design"]
+tags: software_design 
+aliases: []
 ---
 
 # A) Fan in and Fan out ?

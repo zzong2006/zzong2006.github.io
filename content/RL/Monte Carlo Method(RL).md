@@ -55,7 +55,7 @@ MC 의 궁극적인 목적은 $q_*$ 값을 추정하는 것이다 (policy evalua
 
 Monte Carlo Control
 
-DP 와 비슷한 [[GPI]](Generalized policy iteration) 방식으로 MC 도 optimal policies 를 approximate 할 수 있다.
+DP 와 비슷한 [[RL/policy iteration|GPI]](Generalized policy iteration) 방식으로 MC 도 optimal policies 를 approximate 할 수 있다.
 
 ![[img-a1d183165d.png||240]]
 

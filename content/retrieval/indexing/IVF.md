@@ -1,7 +1,9 @@
 ---
 title: "IVF"
-tags: ["ANN", "vector_search"]
-aliases: ["Inverted File Index"]
+tags:
+  - ANN
+  - vector_search
+aliases: [Inverted File Index]
 ---
 
 # A) IVF

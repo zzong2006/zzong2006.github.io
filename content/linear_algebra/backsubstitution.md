@@ -1,7 +1,8 @@
 ---
 title: "backsubstitution"
-tags: ["linear_algebra"]
-aliases: ["Back Substitution"]
+tags:
+  - linear_algebra
+aliases: [Back Substitution]
 ---
 
 # A) Back Substitution

@@ -1,6 +1,8 @@
 ---
 title: "Exploring Starts"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) Exploring Starts ?

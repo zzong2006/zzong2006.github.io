@@ -1,6 +1,7 @@
 ---
 title: "dimension reduction"
-tags: ["feature_engineering"]
+tags: feature_engineering
+aliases: []
 ---
 
 # A) Dimension Reduction ?

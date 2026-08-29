@@ -1,5 +1,7 @@
 ---
 title: "headless service"
+aliases: []
+tags: []
 ---
 K8s 기반 분산 ANN 서비스 면접 질문 대비: Headless Service, PV, PVC 완벽 정리
 Kubernetes(K8s) 환경에서 분산 ANN(Approximate Nearest Neighbor, 근사 최근접 이웃) 서비스를 구축할 때 자주 언급되는 Headless Service, Persistent Volume(PV), Persistent Volume Claim(PVC) 는 분산 시스템의 핵심적인 구성 요소입니다. 면접에서 이 개념들을 명확하게 설명하고, 왜 분산 ANN 서비스에 필요한지 연결하여 답변하는 것이 중요합니다.

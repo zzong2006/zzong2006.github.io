@@ -1,6 +1,7 @@
 ---
 title: "CMakeLists"
-tags: ["C++"]
+tags: C++ 
+aliases: []
 ---
 
 # CMakeLists ?

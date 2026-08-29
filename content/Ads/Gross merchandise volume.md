@@ -1,5 +1,6 @@
 ---
 title: "Gross merchandise volume"
+tags: 
 aliases: ["GMV"]
 ---
 

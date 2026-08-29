@@ -1,6 +1,9 @@
 ---
 title: "sample space"
-tags: ["statistic", "probability"]
+aliases: []
+tags:
+  - statistic
+  - probability
 ---
 
 # Sample Space ?

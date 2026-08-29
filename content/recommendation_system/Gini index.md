@@ -1,7 +1,9 @@
 ---
 title: "Gini index"
-tags: ["recommendation_system", "information_theory"]
 aliases: ["지니 계수"]
+tags:
+  - recommendation_system
+  - information_theory
 ---
 
 # A) In Recommender System

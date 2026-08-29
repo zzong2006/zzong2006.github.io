@@ -1,6 +1,9 @@
 ---
 title: "probit model"
-tags: ["linear_regression", "statistic"]
+tags:
+  - linear_regression
+  - statistic
+aliases: []
 ---
 
 # A) Probit Model ?

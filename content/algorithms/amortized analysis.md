@@ -1,6 +1,8 @@
 ---
 title: "amortized analysis"
-tags: ["algorithm"]
+aliases: []
+tags:
+  - algorithm
 ---
 
 # A) Amortized Analysis ?

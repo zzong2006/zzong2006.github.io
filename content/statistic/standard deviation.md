@@ -1,6 +1,6 @@
 ---
 title: "standard deviation"
-tags: ["statistic"]
+tags: statistic 
 aliases: ["표준 편차"]
 ---
 

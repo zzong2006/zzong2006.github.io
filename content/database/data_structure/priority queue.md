@@ -1,6 +1,6 @@
 ---
 title: "priority queue"
-tags: ["data_structure"]
+tags: data_structure 
 aliases: ["우선순위 큐"]
 ---
 

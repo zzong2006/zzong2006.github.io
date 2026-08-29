@@ -1,6 +1,8 @@
 ---
 title: "dot product"
-tags: ["linear_algebra", "math"]
+tags:
+  - linear_algebra
+  - math
 aliases: ["내적", "inner product"]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Context Switching"
-tags: ["operating_system"]
 aliases: ["컨텍스트 스위칭", "문맥 교환"]
+tags:
+  - operating_system
 ---
 
 # A) Context Switching 이란?

@@ -1,6 +1,6 @@
 ---
 title: "triangular matrix"
-tags: ["linear_algebra"]
+tags: linear_algebra
 aliases: ["대각 행렬"]
 ---
 

@@ -1,6 +1,12 @@
 ---
 title: "Bayesian BM25"
-tags: ["retrieval", "IR", "sparse_retrieval", "hybrid_search", "bayesian"]
+tags:
+  - retrieval
+  - IR
+  - sparse_retrieval
+  - hybrid_search
+  - bayesian
+aliases: []
 ---
 
 # A) 한줄 요약

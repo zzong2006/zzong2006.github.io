@@ -1,6 +1,9 @@
 ---
 title: "Open challenges in LLM research"
-tags: ["LLM", "research"]
+tags:
+  - LLM
+  - research
+aliases: []
 ---
 
 # A) Open Challenges in LLM Research ?

@@ -1,7 +1,11 @@
 ---
 title: "Learning rate"
-tags: ["machine_learning", "deep_learning"]
-aliases: ["학습률", "LR"]
+tags:
+  - machine_learning
+  - deep_learning
+aliases:
+  - 학습률
+  - LR
 ---
 
 # A) Learning Rate ?

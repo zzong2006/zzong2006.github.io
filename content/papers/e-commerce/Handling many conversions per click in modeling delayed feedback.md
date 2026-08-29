@@ -1,6 +1,12 @@
 ---
 title: "Handling many conversions per click in modeling delayed feedback"
-tags: ["e-commerce", "advertisement", "paper_review", "recommendation_system", "delayed_feedback"]
+aliases: []
+tags:
+  - e-commerce
+  - advertisement
+  - paper_review
+  - recommendation_system
+  - delayed_feedback
 ---
 
 # A) 핵심 요약

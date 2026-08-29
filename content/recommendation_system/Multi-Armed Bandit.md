@@ -1,7 +1,9 @@
 ---
 title: "Multi-Armed Bandit"
-tags: ["MAB", "reinforcement_learning"]
-aliases: ["MAB"]
+aliases: [MAB]
+tags:
+  - MAB
+  - reinforcement_learning
 ---
 
 # A) 정의

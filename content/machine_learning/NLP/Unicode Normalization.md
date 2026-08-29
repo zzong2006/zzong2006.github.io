@@ -1,6 +1,6 @@
 ---
 title: "Unicode Normalization"
-tags: ["NLP"]
+tags: NLP
 aliases: ["유니코드 정규화"]
 ---
 

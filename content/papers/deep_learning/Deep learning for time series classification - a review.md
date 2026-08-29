@@ -1,6 +1,9 @@
 ---
 title: "Deep learning for time series classification - a review"
-tags: ["deep_learning", "paper_review"]
+aliases: []
+tags:
+  - deep_learning
+  - paper_review
 ---
 
 # 1. Deep Learning for time Series Classification - a Review ?

@@ -1,6 +1,9 @@
 ---
 title: "conditional entropy"
-tags: ["information_theory", "statistic"]
+tags:
+  - information_theory
+  - statistic
+aliases: []
 ---
 
 # 1. Conditional Entropy ?

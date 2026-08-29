@@ -1,6 +1,8 @@
 ---
 title: "IPC"
-tags: ["network"]
+tags:
+  - network
+aliases: []
 ---
 
 # A) IPC ?

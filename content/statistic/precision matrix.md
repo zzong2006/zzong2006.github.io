@@ -1,6 +1,9 @@
 ---
 title: "precision matrix"
-tags: ["statistic", "probability_distribution"]
+aliases: []
+tags:
+  - statistic
+  - probability_distribution
 ---
 
 # A) Precision Matrix ?

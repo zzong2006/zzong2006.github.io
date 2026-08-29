@@ -1,6 +1,6 @@
 ---
 title: "stateless"
-tags: ["server"]
+tags: server
 aliases: ["무상태"]
 ---
 

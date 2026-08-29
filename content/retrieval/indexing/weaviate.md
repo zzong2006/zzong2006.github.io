@@ -1,6 +1,11 @@
 ---
 title: "weaviate"
-tags: ["vector_database", "ANN", "vector_search", "framework"]
+tags:
+  - vector_database
+  - ANN
+  - vector_search
+  - framework
+aliases: []
 ---
 
 # A) Weaviate ?

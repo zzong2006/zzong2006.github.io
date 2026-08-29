@@ -1,6 +1,8 @@
 ---
 title: "stopword"
-tags: ["NLP"]
+tags:
+  - NLP
+aliases: []
 ---
 
 # Stopword ?

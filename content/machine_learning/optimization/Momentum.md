@@ -1,6 +1,8 @@
 ---
 title: "Momentum"
-tags: ["optimization"]
+aliases: []
+tags:
+  - optimization
 ---
 
 Momentum(모멘텀)은 최적화 알고리즘에서 사용되는 기법으로, 이전 단계의 업데이트 방향을 일정 비율로 반영하여 학습의 속도를 높이고 진동을 줄이는 역할을 합니다.

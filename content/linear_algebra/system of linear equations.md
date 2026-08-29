@@ -1,6 +1,8 @@
 ---
 title: "system of linear equations"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # 1. System of Linear Equations ?

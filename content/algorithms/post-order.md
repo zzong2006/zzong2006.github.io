@@ -1,7 +1,9 @@
 ---
 title: "post-order"
-tags: ["algorithm", "tree"]
-aliases: ["postorder Search", "Postorder Search"]
+tags:
+  - algorithm
+  - tree
+aliases: [postorder Search, Postorder Search]
 ---
 
 # A) Post-Order Traversal

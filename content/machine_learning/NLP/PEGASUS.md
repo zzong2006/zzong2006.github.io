@@ -1,6 +1,11 @@
 ---
 title: "PEGASUS"
-tags: ["summarization", "Google", "ICML", "y2020"]
+tags:
+  - summarization
+  - Google
+  - ICML
+  - y2020
+aliases: []
 ---
 
 # 1. PEGASUS ?

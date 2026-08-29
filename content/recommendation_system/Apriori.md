@@ -1,6 +1,9 @@
 ---
 title: "Apriori"
-tags: ["algorithm", "recommendation_system"]
+tags:
+  - algorithm
+  - recommendation_system
+aliases: []
 ---
 
 # 1. Apriori ?

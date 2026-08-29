@@ -1,7 +1,11 @@
 ---
 title: "Non-Metric Space Library"
-tags: ["ANN", "vector_search", "open_source", "algorithm"]
-aliases: ["NMSLIB"]
+tags:
+  - ANN
+  - vector_search
+  - open_source
+  - algorithm
+aliases: [NMSLIB]
 ---
 
 # A) Non-Metric Space Library ?

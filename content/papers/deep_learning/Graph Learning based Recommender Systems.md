@@ -1,7 +1,11 @@
 ---
 title: "Graph Learning based Recommender Systems"
-tags: ["deep_learning", "graph", "paper_review", "recommendation_system"]
 aliases: ["GLRS"]
+tags:
+  - deep_learning
+  - graph
+  - paper_review
+  - recommendation_system
 ---
 
 # A) Graph 기반 추천을 하는 이유

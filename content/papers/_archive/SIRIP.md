@@ -1,6 +1,8 @@
 ---
 title: "SIRIP"
-tags: ["paper_review"]
+aliases: []
+tags:
+  - paper_review
 ---
 
 SIRIP: SIGIR Symposium on IR in Practice (Industry Track)

@@ -1,6 +1,8 @@
 ---
 title: "UMAP"
-tags: ["feature_engineering"]
+aliases: []
+tags:
+  - feature_engineering
 ---
 
 # A) UMAP ?

@@ -1,6 +1,8 @@
 ---
 title: "hyperplane"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
+aliases: []
 ---
 
 # Hyperplane ?

@@ -1,6 +1,9 @@
 ---
 title: "Machine Learning project lifecycle"
-tags: ["MLOps", "machine_learning"]
+aliases: []
+tags:
+  - MLOps
+  - machine_learning
 ---
 
 # A) Steps of an ML Project

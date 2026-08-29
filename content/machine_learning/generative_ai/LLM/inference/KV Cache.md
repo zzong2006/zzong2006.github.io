@@ -1,7 +1,10 @@
 ---
 title: "KV Cache"
-tags: ["LLM", "inference", "transformer"]
-aliases: ["Key-Value Cache"]
+tags:
+  - LLM
+  - inference
+  - transformer
+aliases: [Key-Value Cache]
 ---
 
 # A) KV Cache

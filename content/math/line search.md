@@ -1,6 +1,8 @@
 ---
 title: "line search"
-tags: ["optimization"]
+aliases: []
+tags:
+  - optimization
 ---
 
 # Line search ?

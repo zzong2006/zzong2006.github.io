@@ -1,6 +1,9 @@
 ---
 title: "layer normalization"
-tags: ["deep_learning", "machine_learning"]
+tags:
+  - deep_learning
+  - machine_learning
+aliases: []
 ---
 
 # Layer Normalization ?

@@ -1,6 +1,8 @@
 ---
 title: "approximate posterior inference"
-tags: ["bayesian_inference"]
+aliases: []
+tags:
+  - bayesian_inference
 ---
 
 # A) Approximate Posterior Inference ?

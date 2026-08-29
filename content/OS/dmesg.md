@@ -1,6 +1,8 @@
 ---
 title: "dmesg"
-tags: ["linux"]
+aliases: []
+tags:
+  - linux
 ---
 
 # A) `dmesg` ?

@@ -1,7 +1,18 @@
 ---
-title: "Ko-WideSearch - A Korean Breadth-Search Benchmark for Exhaustive Set Enumeration by Web Agents"
-tags: ["language_model", "llm", "agent", "web_agent", "benchmark", "Korean", "paper_review", "y2026"]
-aliases: ["Ko-WideSearch", "Korean WideSearch", "Ko WideSearch"]
+title: Ko-WideSearch - A Korean Breadth-Search Benchmark for Exhaustive Set Enumeration by Web Agents
+tags:
+  - language_model
+  - llm
+  - agent
+  - web_agent
+  - benchmark
+  - Korean
+  - paper_review
+  - y2026
+aliases:
+  - Ko-WideSearch
+  - Korean WideSearch
+  - Ko WideSearch
 ---
 
 # A) 한줄 요약

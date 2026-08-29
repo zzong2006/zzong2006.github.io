@@ -1,6 +1,11 @@
 ---
 title: "Rules of ML"
-tags: ["tech_blog", "machine_learning", "Google", "lessons"]
+tags:
+  - tech_blog
+  - machine_learning
+  - Google
+  - lessons
+aliases: []
 ---
 
 구글에서 제공하는 머신러닝을 활용할때 알아야할 규칙들

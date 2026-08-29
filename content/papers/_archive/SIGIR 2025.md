@@ -1,6 +1,9 @@
 ---
 title: "SIGIR 2025"
-tags: ["SIGIR", "paper_review"]
+tags:
+  - SIGIR
+  - paper_review
+aliases: []
 ---
 
 # A) Accepted Papers

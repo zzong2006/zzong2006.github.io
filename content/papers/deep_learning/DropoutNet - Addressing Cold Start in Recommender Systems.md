@@ -1,6 +1,12 @@
 ---
 title: "DropoutNet - Addressing Cold Start in Recommender Systems"
-tags: ["NIPS", "cold-start", "deep_learning", "paper_review", "recommendation_system", "y2017"]
+tags:
+  - NIPS
+  - cold-start
+  - deep_learning
+  - paper_review
+  - recommendation_system
+  - y2017
 aliases: ["DropoutNet"]
 ---
 

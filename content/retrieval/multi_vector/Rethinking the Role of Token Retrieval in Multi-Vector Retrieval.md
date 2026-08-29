@@ -1,7 +1,12 @@
 ---
 title: "Rethinking the Role of Token Retrieval in Multi-Vector Retrieval"
-tags: ["retrieval", "IR", "multi_vector", "ColBERT", "paper_review"]
-aliases: ["XTR"]
+tags:
+  - retrieval
+  - IR
+  - multi_vector
+  - ColBERT
+  - paper_review
+aliases: [XTR]
 ---
 
 구글 딥마인드 연구원들이 발표한 "다중 벡터 검색에서 토큰 검색의 역할에 대한 재고찰(Rethinking the Role of Token Retrieval in Multi-Vector Retrieval)"이라는 논문은 기존 정보 검색 기술의 효율성과 정확성을 한 단계 끌어올린 새로운 모델 'XTR(ConteXtualized Token Retriever)'을 제시합니다.

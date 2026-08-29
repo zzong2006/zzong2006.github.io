@@ -1,6 +1,7 @@
 ---
 title: "policy improvement"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # 1. Policy Improvement (theorem)?

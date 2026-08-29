@@ -1,5 +1,7 @@
 ---
 title: "stringstream(C++)"
+aliases: []
+tags: []
 ---
 
 # stringstream(C++) ?

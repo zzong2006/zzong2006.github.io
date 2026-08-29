@@ -1,6 +1,14 @@
 ---
 title: "Multimodal Semantic Retrieval for Product Search"
-tags: ["retrieval", "e-commerce", "multimodal", "dense_retrieval", "Amazon", "paper_review"]
+tags:
+  - retrieval
+  - e-commerce
+  - multimodal
+  - dense_retrieval
+  - Amazon
+  - paper_review
+aliases: []
+rating: ⭐⭐
 ---
 
 [2501.07365](https://arxiv.org/pdf/2501.07365)

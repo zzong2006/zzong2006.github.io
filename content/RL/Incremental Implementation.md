@@ -1,6 +1,9 @@
 ---
 title: "Incremental Implementation"
-tags: ["reinforcement_learning", "algorithm"]
+tags:
+  - reinforcement_learning
+  - algorithm
+aliases: []
 ---
 
 # A) Incremental Implementation ?

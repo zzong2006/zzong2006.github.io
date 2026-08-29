@@ -1,6 +1,8 @@
 ---
 title: "FP-Tree Mining"
-tags: ["association_rules"]
+aliases: []
+tags:
+  - association_rules
 ---
 
 # A) FP-Tree Mining ?

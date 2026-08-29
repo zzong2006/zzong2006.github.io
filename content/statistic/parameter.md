@@ -1,7 +1,9 @@
 ---
 title: "parameter"
-tags: ["machine_learning", "statistic"]
 aliases: ["parameters"]
+tags:
+  - machine_learning
+  - statistic
 ---
 
 # A) Parameter ?

@@ -1,6 +1,9 @@
 ---
 title: "position bias"
-tags: ["bias", "position_bias"]
+aliases: []
+tags:
+  - bias
+  - position_bias
 ---
 
 # A) Position Bias 확인하는 방법

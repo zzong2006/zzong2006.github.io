@@ -1,6 +1,9 @@
 ---
 title: "event"
-tags: ["statistic", "probability"]
+tags:
+  - statistic
+  - probability
+aliases: []
 ---
 
 # Event ?

@@ -1,6 +1,10 @@
 ---
 title: "Chunking"
-tags: ["retrieval", "IR", "chunking"]
+tags:
+  - retrieval
+  - IR
+  - chunking
+aliases: []
 ---
 
 

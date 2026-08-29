@@ -1,6 +1,8 @@
 ---
 title: "regression"
-tags: ["linear_regression"]
+aliases: []
+tags:
+  - linear_regression
 ---
 
 # A) Regression ?

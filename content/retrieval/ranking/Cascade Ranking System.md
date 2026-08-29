@@ -1,7 +1,13 @@
 ---
 title: "Cascade Ranking System"
-tags: ["retrieval", "ranking", "system-design", "recommendation", "search", "architecture"]
-aliases: ["Multi-stage Ranking System", "Funnel-based Ranking", "Cascade Ranking", "캐스케이드 랭킹"]
+tags:
+  - retrieval
+  - ranking
+  - system-design
+  - recommendation
+  - search
+  - architecture
+aliases: [Multi-stage Ranking System, Funnel-based Ranking, Cascade Ranking, 캐스케이드 랭킹]
 ---
 
 # A) Cascade Ranking System

@@ -1,6 +1,7 @@
 ---
 title: "tip(Kubernetes)"
-tags: ["tip"]
+tags: tip 
+aliases: []
 ---
 
 # A) Pods

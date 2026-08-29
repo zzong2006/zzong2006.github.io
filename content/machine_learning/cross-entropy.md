@@ -1,6 +1,9 @@
 ---
 title: "cross-entropy"
-tags: ["information_theory", "machine_learning", "metrics"]
+tags:
+  - information_theory
+  - machine_learning
+  - metrics
 aliases: ["logloss"]
 ---
 

@@ -1,6 +1,9 @@
 ---
 title: "RocksDB"
-tags: ["key_value_storage", "Meta"]
+tags:
+  - key_value_storage
+  - Meta
+aliases: []
 ---
 
 # A) RocksDB ?

@@ -1,6 +1,9 @@
 ---
 title: "all-mpnet-base-v2"
-tags: ["embedding", "dense_retrieval"]
+tags:
+  - embedding
+  - dense_retrieval
+aliases: []
 ---
 
 # A) 배경

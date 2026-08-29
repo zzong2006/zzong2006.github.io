@@ -1,7 +1,8 @@
 ---
 title: "columnar storage"
-tags: ["database"]
 aliases: ["column oriented DB"]
+tags:
+  - database
 ---
 
 # A) Columnar Storage ?

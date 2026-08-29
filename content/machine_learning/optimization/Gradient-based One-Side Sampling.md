@@ -1,6 +1,6 @@
 ---
 title: "Gradient-based One-Side Sampling"
-tags: ["optimization"]
+tags: optimization
 aliases: ["GOSS"]
 ---
 

@@ -1,6 +1,9 @@
 ---
 title: "fabs"
-tags: ["function", "Cpp"]
+tags:
+  - function
+  - Cpp
+aliases: []
 ---
 
 # A) Declaration

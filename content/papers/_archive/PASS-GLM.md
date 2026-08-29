@@ -1,6 +1,9 @@
 ---
 title: "PASS-GLM"
-tags: ["NIPS", "paper_review"]
+tags:
+  - NIPS
+  - paper_review
+aliases: []
 ---
 
 >polynomial approximate sufficient statistics for scalable Bayesian GLM inference

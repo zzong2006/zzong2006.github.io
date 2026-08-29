@@ -1,6 +1,7 @@
 ---
 title: "alternative hypothesis"
 aliases: ["대립가설"]
+tags: 
 ---
 
 * Related

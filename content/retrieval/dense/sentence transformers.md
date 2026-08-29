@@ -1,6 +1,11 @@
 ---
 title: "sentence transformers"
-tags: ["embedding", "dense_retrieval", "NLP", "BERT"]
+tags:
+  - embedding
+  - dense_retrieval
+  - NLP
+  - BERT
+aliases: []
 ---
 
 # Sentence Transformers ?

@@ -1,6 +1,8 @@
 ---
 title: "click(python library)"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # A) click(python library) ?

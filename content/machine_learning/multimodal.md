@@ -1,7 +1,9 @@
 ---
 title: "multimodal"
-tags: ["machine_learning", "multimodal"]
-aliases: ["Multimodal Learning"]
+tags:
+  - machine_learning
+  - multimodal
+aliases: [Multimodal Learning]
 ---
 
 # A) Multimodal Learning

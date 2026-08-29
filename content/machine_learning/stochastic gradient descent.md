@@ -1,6 +1,8 @@
 ---
 title: "stochastic gradient descent"
-tags: ["machine_learning", "optimization"]
+tags:
+  - machine_learning
+  - optimization
 aliases: ["SGD"]
 ---
 

@@ -1,6 +1,9 @@
 ---
 title: "Bayesian inference"
-tags: ["bayesian_inference", "statistic"]
+tags:
+  - bayesian_inference
+  - statistic
+aliases: []
 ---
 
 # 1. Bayesian Inference ?

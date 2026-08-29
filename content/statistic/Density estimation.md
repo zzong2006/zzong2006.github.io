@@ -1,6 +1,9 @@
 ---
 title: "Density estimation"
-tags: ["probability_distribution", "statistic"]
+aliases: []
+tags:
+  - probability_distribution
+  - statistic
 ---
 
 # A) 밀도 추정(Density Estimation)

@@ -1,6 +1,8 @@
 ---
 title: "square root law"
-tags: ["math", "statistic"]
+tags:
+  - math
+  - statistic
 aliases: ["제곱근법칙"]
 ---
 

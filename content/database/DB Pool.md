@@ -1,6 +1,8 @@
 ---
 title: "DB Pool"
-tags: ["database"]
+tags:
+  - database
+aliases: []
 ---
 
 클라이언트의 요청에 따라 각 어플리케이션의 thread 에서 데이터베이스에 접근하기 위해서는 연결 (Connection) 이 필요하다.

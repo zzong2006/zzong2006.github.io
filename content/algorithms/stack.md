@@ -1,6 +1,9 @@
 ---
 title: "stack"
-tags: ["algorithm", "data_structure"]
+aliases: []
+tags:
+  - algorithm
+  - data_structure
 ---
 
 # A) Stack ?

@@ -1,6 +1,9 @@
 ---
 title: "mean field approximation"
-tags: ["bayesian_inference", "optimization"]
+tags:
+  - bayesian_inference
+  - optimization
+aliases: []
 ---
 
 # A) Mean Field Approximation ?

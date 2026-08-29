@@ -1,6 +1,7 @@
 ---
 title: "law of conditional probability"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # Law of Conditional Probability ?

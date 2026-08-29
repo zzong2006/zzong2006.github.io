@@ -1,6 +1,6 @@
 ---
 title: "Cumulative Distribution Function"
-tags: ["statistic"]
+tags: statistic 
 aliases: ["CDF"]
 ---
 

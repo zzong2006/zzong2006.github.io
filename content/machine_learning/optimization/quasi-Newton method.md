@@ -1,6 +1,7 @@
 ---
 title: "quasi-Newton method"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # quasi-Newton Method ?

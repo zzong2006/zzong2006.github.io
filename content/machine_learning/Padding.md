@@ -1,6 +1,9 @@
 ---
 title: "Padding"
-aliases: ["deep_learning CNN", "plzlookup"]
+tags:
+aliases: []
+  - deep_learning CNN
+  - plzlookup
 ---
 
 # A) Padding ?

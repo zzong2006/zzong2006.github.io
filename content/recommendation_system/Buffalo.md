@@ -1,6 +1,11 @@
 ---
 title: "Buffalo"
-tags: ["open_source", "kakao", "work", "recommendation_system"]
+tags:
+  - open_source
+  - kakao
+  - work
+  - recommendation_system
+aliases: []
 ---
 
 # A) Buffalo ?

@@ -1,6 +1,12 @@
 ---
 title: "Fighting Fire with Fire - Using Antidote Data to Improve Polarization and Fairness of Recommender Systems"
-tags: ["WSDM", "bias", "fairness", "paper_review", "y2019"]
+tags:
+  - WSDM
+  - bias
+  - fairness
+  - paper_review
+  - y2019
+aliases: []
 ---
 
 [Paper link](https://arxiv.org/pdf/1812.01504.pdf)

@@ -1,6 +1,9 @@
 ---
 title: "p-value"
-tags: ["statistic", "hypothesis_test"]
+aliases: []
+tags:
+  - statistic
+  - hypothesis_test
 ---
 
 # A) P-value 는 무엇인가?

@@ -1,7 +1,8 @@
 ---
 title: "interquartile"
-tags: ["statistic"]
 aliases: ["IQR"]
+tags:
+  - statistic
 ---
 
 # IQR ?

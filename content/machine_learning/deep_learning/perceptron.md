@@ -1,7 +1,8 @@
 ---
 title: "perceptron"
-tags: ["deep_learning"]
 aliases: ["퍼셉트론"]
+tags:
+  - deep_learning
 ---
 
 # A) Perceptron ?

@@ -1,7 +1,19 @@
 ---
-title: "LLMLingua - Prompt Compression for LLM Inference"
-tags: ["LLM", "inference", "prompt_compression", "RAG", "paper_review", "y2023", "y2024"]
-aliases: ["LLMLingua", "LongLLMLingua", "LLMLingua-2", "LLM Lingua", "LLMLingua 2"]
+title: LLMLingua - Prompt Compression for LLM Inference
+tags:
+  - LLM
+  - inference
+  - prompt_compression
+  - RAG
+  - paper_review
+  - y2023
+  - y2024
+aliases:
+  - LLMLingua
+  - LongLLMLingua
+  - LLMLingua-2
+  - LLM Lingua
+  - LLMLingua 2
 ---
 
 # A) 한줄 요약

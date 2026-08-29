@@ -1,7 +1,8 @@
 ---
 title: "Standard Template Library"
-tags: ["Cpp"]
-aliases: ["STL"]
+tags:
+  - Cpp
+aliases: [STL]
 ---
 
 # A) C++ STL ?

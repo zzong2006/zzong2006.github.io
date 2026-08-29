@@ -1,7 +1,10 @@
 ---
 title: "ordinary least squares"
-tags: ["linear_algebra", "linear_regression", "machine_learning"]
-aliases: ["OLS", "Normal Equation"]
+tags:
+  - linear_algebra
+  - linear_regression
+  - machine_learning
+aliases: [OLS, Normal Equation]
 ---
 
 # A) OLS ?

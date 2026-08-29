@@ -1,6 +1,7 @@
 ---
 title: "cache locality"
-tags: ["operating_system"]
+tags: operating_system 
+aliases: []
 ---
 
 # A) Cache Locality ?

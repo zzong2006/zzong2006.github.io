@@ -1,6 +1,7 @@
 ---
 title: "Apache Spark"
-tags: ["open_source"]
+tags:
+  - open_source
 aliases: ["Spark"]
 ---
 

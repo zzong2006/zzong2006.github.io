@@ -1,6 +1,8 @@
 ---
 title: "maximum a posteriori probability"
-tags: ["statistic", "bayesian_inference"]
+tags:
+  - statistic
+  - bayesian_inference
 aliases: ["MAP"]
 ---
 

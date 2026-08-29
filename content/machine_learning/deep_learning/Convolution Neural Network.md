@@ -1,6 +1,8 @@
 ---
 title: "Convolution Neural Network"
-aliases: ["CNN"]
+tags: 
+aliases: [CNN]
+Tags: deep_learning, machine_learning, 
 ---
 
 # A) Why Convolutional Network?

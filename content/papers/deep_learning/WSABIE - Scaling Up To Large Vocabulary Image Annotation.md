@@ -1,7 +1,10 @@
 ---
 title: "WSABIE - Scaling Up To Large Vocabulary Image Annotation"
-tags: ["deep_learning", "paper_review", "recommendation_system"]
-aliases: ["WARP", "WSABIE"]
+tags:
+  - deep_learning
+  - paper_review
+  - recommendation_system
+aliases: [WARP, WSABIE]
 ---
 
 # A) WSABIE - 대용량 이미지 주석 작업을 위한 확장 가능한 방법

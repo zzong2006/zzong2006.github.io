@@ -1,6 +1,6 @@
 ---
 title: "hyperparameter"
-tags: ["machine_learning"]
+tags: machine_learning 
 aliases: ["하이퍼파라매터"]
 ---
 

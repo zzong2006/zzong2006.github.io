@@ -1,6 +1,7 @@
 ---
 title: "First Class function"
-tags: ["python"]
+tags: python
+aliases: []
 ---
 
 # A) First Class Function ?

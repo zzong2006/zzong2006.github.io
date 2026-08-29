@@ -1,6 +1,10 @@
 ---
 title: "On the equivalence between Non-negative Matrix Factorization and Probabilistic Latent Semantic Indexing"
-tags: ["collaborative_filtering", "paper_review", "recommendation_system"]
+tags:
+  - collaborative_filtering
+  - paper_review
+  - recommendation_system
+aliases: []
 ---
 
 # A) On the Equivalence between Non-negative Matrix Factorization and Probabilistic Latent Semantic Indexing ?

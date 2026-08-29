@@ -1,6 +1,9 @@
 ---
 title: "Human-level control through deep reinforcement learning"
-tags: ["reinforcement_learning", "deep_learning"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - deep_learning
 ---
 
 # A) Human-level Control through Deep Reinforcement Learning ?

@@ -1,7 +1,8 @@
 ---
 title: "reference(C++)"
-tags: ["Cpp"]
-aliases: ["참조자", "reference"]
+tags:
+  - Cpp
+aliases: [참조자, reference]
 ---
 
 # A) reference(C++) ?

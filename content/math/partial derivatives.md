@@ -1,6 +1,9 @@
 ---
 title: "partial derivatives"
-tags: ["differentitation", "calculus"]
+tags:
+  - differentitation
+  - calculus
+aliases: []
 ---
 
 # 1. Partial Derivatives ?

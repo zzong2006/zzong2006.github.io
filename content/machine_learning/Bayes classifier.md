@@ -1,6 +1,9 @@
 ---
 title: "Bayes classifier"
-tags: ["machine_learning", "statistic"]
+tags:
+  - machine_learning
+  - statistic
+aliases: []
 ---
 
 # 1. Bayes Classifier ?

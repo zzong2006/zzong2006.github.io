@@ -1,6 +1,9 @@
 ---
 title: "Scoping"
-tags: ["MLOps", "machine_learning"]
+aliases: []
+tags:
+  - MLOps
+  - machine_learning
 ---
 
 # A) Scoping Process

@@ -1,7 +1,8 @@
 ---
 title: "Linear Algebra"
-tags: ["linear_algebra"]
 aliases: ["선형 대수"]
+tags:
+  - linear_algebra
 ---
 
 # A) Linear Algebra ?

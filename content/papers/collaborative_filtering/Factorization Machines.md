@@ -1,7 +1,13 @@
 ---
 title: "Factorization Machines"
-tags: ["collaborative_filtering", "paper_review", "machine_learning"]
-aliases: ["FM"]
+tags:
+  - -
+  - collaborative_filtering
+  - paper_review
+  - paper_review
+  - machine_learning
+aliases:
+  - FM
 ---
 
 # A) Factorization Machines ?

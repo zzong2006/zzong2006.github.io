@@ -1,6 +1,8 @@
 ---
 title: "decorator"
-tags: ["python", "programming"]
+tags:
+  - python
+  - programming
 aliases: ["데코레이터"]
 ---
 

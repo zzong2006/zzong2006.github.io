@@ -1,6 +1,9 @@
 ---
 title: "joint training"
-tags: ["machine_learning", "recommendation_system"]
+tags:
+  - machine_learning
+  - recommendation_system
+aliases: []
 ---
 
 # A) Joint Training ?

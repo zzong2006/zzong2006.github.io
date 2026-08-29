@@ -1,6 +1,9 @@
 ---
 title: "Markov Chain"
-tags: ["reinforcement_learning", "probability_distribution"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - probability_distribution
 ---
 
 # 1. Markov Chain ?

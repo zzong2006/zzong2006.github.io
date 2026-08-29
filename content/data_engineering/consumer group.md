@@ -1,6 +1,6 @@
 ---
 title: "consumer group"
-tags: ["kafka"]
+tags: kafka 
 aliases: ["컨슈머 그룹"]
 ---
 

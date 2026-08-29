@@ -1,12 +1,45 @@
 ---
 title: "Contextual combinatorial cascading bandits"
-tags: ICML y2016 paper_review 
-aliases: 
-draft: true
+tags: ICML y2016 paper_review bandit
+aliases: ["C3-UCB"]
 ---
-# Contextual combinatorial cascading bandits ?
 
-# Related 
+# A) 한줄 요약
 
-# References
+한 번에 아이템 여러 개를 순서대로 배치하고, 사용자가 위에서부터 훑다가 하나를 클릭하면 멈춘다는 cascade 가정 아래에서, 특징 벡터를 쓰는 선형 bandit 알고리즘 C3-UCB 를 제안한다. Li et al., ICML 2016.
 
+# B) 세 가지 설정이 겹쳐 있다
+
+제목의 세 단어가 각각 하나의 확장이다.
+
+**combinatorial** — 매 라운드에 arm 하나가 아니라 아이템 $K$ 개의 **목록** 을 고른다. 추천 결과 한 페이지, 검색 결과 상위 $K$ 개가 이런 모양이다. 가능한 목록의 수가 조합적으로 폭발해서 목록 하나를 arm 으로 두는 접근은 쓸 수 없다.
+
+**cascade** — 사용자가 목록을 위에서부터 순서대로 보다가 마음에 드는 것을 클릭하면 거기서 멈춘다고 가정한다. 이 가정이 관측 구조를 정한다. 클릭이 $j$ 번째에서 일어났다면 1번부터 $j$ 번까지는 확인했고 그 아래는 보지 않았다는 것을 알 수 있다. 클릭이 없으면 전부 확인했지만 전부 마음에 들지 않았다는 뜻이다.
+
+이 부분 관측이 핵심이다. 클릭이 없었다는 것과 노출되지 않았다는 것이 구분되므로, 목록의 어느 위치까지 피드백을 신뢰할 수 있는지가 정해진다.
+
+**contextual** — 각 아이템에 특징 벡터 $\boldsymbol{x}$ 가 딸려 있고, 클릭 확률이 $\boldsymbol{\theta}^\top \boldsymbol{x}$ 로 표현된다고 가정한다. 아이템마다 독립적으로 통계를 쌓는 대신 공유된 $\boldsymbol{\theta}$ 를 학습하므로, 새 아이템이나 노출이 적은 아이템도 특징만 있으면 다룰 수 있다.
+
+# C) C3-UCB
+
+각 아이템의 클릭 확률을 추정하고, 추정 불확실성을 더한 상한(upper confidence bound)으로 점수를 매긴다.
+
+$$
+U(a) = \hat{\boldsymbol{\theta}}^\top \boldsymbol{x}_a + \alpha \sqrt{\boldsymbol{x}_a^\top M^{-1} \boldsymbol{x}_a}
+$$
+
+앞 항이 예상 클릭 확률(활용), 뒤 항이 그 아이템에 대해 아직 모르는 정도(탐색)다. $M$ 은 지금까지 관측한 특징 벡터들이 쌓인 행렬로, 비슷한 특징을 많이 봤을수록 뒤 항이 작아진다.
+
+이 점수 상위 $K$ 개를 목록으로 내보낸다. 조합 폭발을 피할 수 있는 이유는, cascade 가정 아래에서 최적 목록이 개별 점수 상위 $K$ 개를 고르는 것으로 얻어지기 때문이다.
+
+논문은 이 알고리즘의 regret 이 라운드 수 $T$ 에 대해 $\tilde{O}(d\sqrt{KT})$ 로 묶인다는 것을 보인다.
+
+# D) 실무적 시사점
+
+추천 슬레이트와 검색 결과가 정확히 이 구조다. 아이템을 여러 개 동시에 보여주고, 클릭 로그는 위치에 따라 편향돼 있으며, 아이템은 계속 새로 들어온다.
+
+cascade 가정 자체는 단순화다. 실제 사용자는 목록을 건너뛰며 보기도 하고 여러 개를 클릭하기도 한다. 이 가정을 느슨하게 한 후속 연구들이 이어졌다.
+
+# E) References
+
+* [\[1507.04910\] Contextual Combinatorial Cascading Bandits](https://arxiv.org/abs/1507.04910)

@@ -1,6 +1,9 @@
 ---
 title: "propensity"
-tags: ["bias", "recommendation_system"]
+aliases: []
+tags:
+  - bias
+  - recommendation_system
 ---
 
 # A) Propensity ?

@@ -1,7 +1,8 @@
 ---
 title: "quorum"
-tags: ["kafka"]
 aliases: ["쿼럼"]
+tags:
+  - kafka
 ---
 
 # A) Quorum ?

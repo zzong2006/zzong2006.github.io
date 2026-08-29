@@ -1,7 +1,9 @@
 ---
 title: "tangent plane"
-tags: ["differentitation", "calculus"]
 aliases: ["접평면"]
+tags:
+  - differentitation
+  - calculus
 ---
 
 # Tangent Plane ?

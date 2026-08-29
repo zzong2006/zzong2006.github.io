@@ -1,6 +1,7 @@
 ---
 title: "shapley additive explanations"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
 aliases: ["SHAP"]
 ---
 

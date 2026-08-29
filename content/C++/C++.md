@@ -1,6 +1,9 @@
 ---
 title: "C++"
-tags: ["programming", "Cpp"]
+tags:
+  - programming
+  - Cpp
+aliases: []
 ---
 
 # A) C++ ?

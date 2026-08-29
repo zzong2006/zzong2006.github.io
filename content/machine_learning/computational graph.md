@@ -1,6 +1,8 @@
 ---
 title: "computational graph"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # A) Computational Graph ?

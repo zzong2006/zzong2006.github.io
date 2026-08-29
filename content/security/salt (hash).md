@@ -1,6 +1,8 @@
 ---
 title: "salt (hash)"
-tags: ["info_sec"]
+aliases: []
+tags:
+  - info_sec
 ---
 
 # A) Salt (hash) ?

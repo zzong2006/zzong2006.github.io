@@ -1,6 +1,7 @@
 ---
 title: "Markov property"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # Markov Property ?

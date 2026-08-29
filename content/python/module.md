@@ -1,6 +1,8 @@
 ---
 title: "module"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # Module ?

@@ -1,6 +1,9 @@
 ---
 title: "TorchServe"
-tags: ["inference", "server"]
+tags:
+  - inference
+  - server
+aliases: []
 ---
 
 직렬화된 모델을 `torch-model-archiver` 를 통해 MAR 파일 형태로 저장할 수 있습니다.

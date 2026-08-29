@@ -1,6 +1,9 @@
 ---
 title: "variational EM algorithm"
-tags: ["optimization", "bayesian_inference"]
+tags:
+  - optimization
+  - bayesian_inference
+aliases: []
 ---
 
 # A) Variational EM Algorithm ?

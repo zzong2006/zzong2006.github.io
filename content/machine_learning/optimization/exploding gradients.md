@@ -1,5 +1,7 @@
 ---
 title: "exploding gradients"
+tags: 
+aliases: []
 ---
 
 # Exploding Gradients ?

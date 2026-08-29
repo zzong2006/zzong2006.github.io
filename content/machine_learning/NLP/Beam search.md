@@ -1,6 +1,8 @@
 ---
 title: "Beam search"
-tags: ["NLP"]
+aliases: []
+tags:
+  - NLP
 ---
 
 # A) Beam search ?

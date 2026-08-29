@@ -1,6 +1,10 @@
 ---
 title: "cosine similarity"
-tags: ["math", "metrics", "machine_learning"]
+tags:
+  - math
+  - metrics
+  - machine_learning
+aliases: []
 ---
 
 # A) Cosine Similarity ?

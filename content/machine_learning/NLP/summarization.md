@@ -1,6 +1,7 @@
 ---
 title: "summarization"
-tags: ["summarization"]
+tags: summarization 
+aliases: []
 ---
 
 # 1. Summarization ?

@@ -1,6 +1,8 @@
 ---
 title: "corpus"
-tags: ["NLP"]
+tags:
+  - NLP
+aliases: []
 ---
 
 # A) Corpus ?

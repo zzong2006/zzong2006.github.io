@@ -1,6 +1,7 @@
 ---
 title: "Jensen–Shannon divergence"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) Jensen–Shannon Divergence ?

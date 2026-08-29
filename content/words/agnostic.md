@@ -1,6 +1,8 @@
 ---
 title: "agnostic"
-tags: ["word"]
+aliases: []
+tags:
+  - word
 ---
 
 # A) Agnostic 을 활용한 용어들

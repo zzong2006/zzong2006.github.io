@@ -1,7 +1,9 @@
 ---
 title: "Open Neural Network Exchange"
-tags: ["deep_learning", "machine_learning"]
 aliases: ["ONNX"]
+tags:
+  - deep_learning
+  - machine_learning
 ---
 
 # A) Open Neural Network Exchange ?

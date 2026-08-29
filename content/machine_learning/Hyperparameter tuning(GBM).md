@@ -1,6 +1,8 @@
 ---
 title: "Hyperparameter tuning(GBM)"
-tags: ["GBM"]
+aliases: []
+tags:
+  - GBM
 ---
 
 # A) LightGBM

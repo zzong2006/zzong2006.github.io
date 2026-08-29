@@ -1,7 +1,10 @@
 ---
 title: "Mortal Multi-Armed Bandits"
-tags: ["bandit", "contextual_bandit", "paper_review"]
-aliases: ["Mortal MAB"]
+tags:
+  - bandit
+  - contextual_bandit
+  - paper_review
+aliases: [Mortal MAB]
 ---
 
 # Mortal Multi-Armed Bandits ?

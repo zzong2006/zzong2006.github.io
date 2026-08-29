@@ -1,6 +1,13 @@
 ---
 title: "An Efficiency Study for SPLADE Models"
-tags: ["retrieval", "IR", "sparse_retrieval", "sparse_embedding", "SPLADE", "paper_review"]
+tags:
+  - retrieval
+  - IR
+  - sparse_retrieval
+  - sparse_embedding
+  - SPLADE
+  - paper_review
+aliases: []
 ---
 
 paper link: [2207.03834](https://arxiv.org/pdf/2207.03834)

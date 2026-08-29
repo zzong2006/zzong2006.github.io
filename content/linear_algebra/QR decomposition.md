@@ -1,6 +1,8 @@
 ---
 title: "QR decomposition"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # QR Decomposition ?

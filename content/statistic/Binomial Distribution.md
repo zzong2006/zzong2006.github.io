@@ -1,6 +1,6 @@
 ---
 title: "Binomial Distribution"
-tags: ["probability_distribution"]
+tags: probability_distribution 
 aliases: ["이항 분포"]
 ---
 

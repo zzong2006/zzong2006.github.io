@@ -1,6 +1,8 @@
 ---
 title: "KSS"
-tags: ["self_dev"]
+tags:
+  - self_dev
+aliases: []
 ---
 
 # A) KSS ?

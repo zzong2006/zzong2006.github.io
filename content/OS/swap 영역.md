@@ -1,6 +1,7 @@
 ---
 title: "swap 영역"
-tags: ["operating_system"]
+tags: operating_system 
+aliases: []
 ---
 
 # Swap 영역 ?

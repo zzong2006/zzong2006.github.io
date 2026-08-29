@@ -1,6 +1,9 @@
 ---
 title: "value iteration"
-tags: ["reinforcement_learning", "DP"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - DP
 ---
 
 # Value Iteration ?

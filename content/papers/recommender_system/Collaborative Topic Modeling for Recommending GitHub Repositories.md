@@ -1,6 +1,10 @@
 ---
 title: "Collaborative Topic Modeling for Recommending GitHub Repositories"
-tags: ["paper_review", "recommendation_system", "topic_modeling"]
+aliases: []
+tags:
+  - paper_review
+  - recommendation_system
+  - topic_modeling
 ---
 
 # Collaborative Topic Modeling for Recommending GitHub Repositories ?

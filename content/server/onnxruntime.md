@@ -1,6 +1,9 @@
 ---
 title: "onnxruntime"
-tags: ["machine_learning", "open_source", "deep_learning"]
+tags:
+  - machine_learning
+  - open_source
+  - deep_learning
 aliases: ["ONNX Runtime"]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "min-max scaling"
-tags: ["feature_scaling"]
+tags: feature_scaling
+aliases: []
 ---
 
 # Min-max Scaling ?

@@ -1,7 +1,8 @@
 ---
 title: "diversity"
-tags: ["recommendation_system"]
 aliases: ["다양성"]
+tags:
+  - recommendation_system
 ---
 
 # A) 추천 결과 다양성의 종류

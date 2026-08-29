@@ -1,6 +1,8 @@
 ---
 title: "Xavier initialization"
-tags: ["deep_learning"]
+tags:
+  - deep_learning
+aliases: []
 ---
 
 # A. Xavier Initialization ?

@@ -1,6 +1,8 @@
 ---
 title: "kubectl"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # 1. Kubectl ?

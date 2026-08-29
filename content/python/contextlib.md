@@ -1,6 +1,8 @@
 ---
 title: "contextlib"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # 1. Contextlib ?

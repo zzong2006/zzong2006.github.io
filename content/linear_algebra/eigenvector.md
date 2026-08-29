@@ -1,6 +1,7 @@
 ---
 title: "eigenvector"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # A) Eigenvector ?

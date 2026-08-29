@@ -1,7 +1,13 @@
 ---
 title: "Latent Dirichlet Allocation"
-tags: ["nlp", "paper_review", "topic_modeling"]
-aliases: ["LDA"]
+aliases:
+  - LDA
+tags:
+  - -
+  - nlp
+  - paper_review
+  - topic_modeling
+  - topic_modeling
 ---
 
 paper link: https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf

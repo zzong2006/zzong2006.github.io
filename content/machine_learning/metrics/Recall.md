@@ -1,7 +1,9 @@
 ---
 title: "Recall"
-tags: ["machine_learning", "metrics"]
-aliases: ["sensitivity", "hit rate", "true positive rate", "TPR", "recall"]
+tags:
+  - machine_learning
+  - metrics
+aliases: [sensitivity, hit rate, true positive rate, TPR, recall]
 ---
 
 # A) Recall

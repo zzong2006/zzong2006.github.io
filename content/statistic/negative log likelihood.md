@@ -1,7 +1,11 @@
 ---
-title: "negative log likelihood"
-tags: ["statistic", "machine_learning"]
-aliases: ["NLL", "log-likelihood"]
+title: negative log likelihood
+tags:
+  - statistic
+  - machine_learning
+aliases:
+  - NLL
+  - log-likelihood
 ---
 
 # A) 한줄 요약

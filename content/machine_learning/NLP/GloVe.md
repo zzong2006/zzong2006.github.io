@@ -1,6 +1,7 @@
 ---
 title: "GloVe"
-tags: ["NLP"]
+tags: NLP 
+aliases: []
 ---
 
 # A) GloVe ?

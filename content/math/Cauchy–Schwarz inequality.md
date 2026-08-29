@@ -1,6 +1,7 @@
 ---
 title: "Cauchy–Schwarz inequality"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["코시-슈바르츠 부등식"]
 ---
 

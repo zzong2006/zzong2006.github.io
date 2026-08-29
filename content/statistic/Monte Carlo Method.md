@@ -1,7 +1,8 @@
 ---
 title: "Monte Carlo Method"
-tags: ["sampling"]
 aliases: ["Monte Carlo", "MC"]
+tags:
+  - sampling
 ---
 
 # A) Monte Carlo Method ?

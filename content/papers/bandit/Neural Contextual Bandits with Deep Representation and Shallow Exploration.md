@@ -1,6 +1,7 @@
 ---
 title: "Neural Contextual Bandits with Deep Representation and Shallow Exploration"
-tags: ["deep_learning contextual_bandit paper_review"]
+tags: deep_learning contextual_bandit paper_review 
+aliases: 
 ---
 
 # Neural Contextual Bandits with Deep Representation and Shallow Exploration ?

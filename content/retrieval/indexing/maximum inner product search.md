@@ -1,7 +1,10 @@
 ---
 title: "maximum inner product search"
-tags: ["retrieval", "IR", "vector_search"]
-aliases: ["MIPS"]
+tags:
+  - retrieval
+  - IR
+  - vector_search
+aliases: [MIPS]
 ---
 
 최대 내적 검색(Maximum Inner Product Search, MIPS)은 주어진 쿼리 벡터와 데이터베이스 내의 수많은 데이터 벡터들 사이에서, 내적(inner product) 값이 가장 큰 벡터를 찾는 문제를 의미합니다. 이 기술은 단순한 유사도 측정을 넘어 추천 시스템, 자연어 처리(NLP), 컴퓨터 비전 등 다양한 분야에서 중요한 역할을 합니다.

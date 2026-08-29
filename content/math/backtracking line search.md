@@ -1,6 +1,8 @@
 ---
 title: "backtracking line search"
-tags: ["optimization"]
+tags:
+  - optimization
+aliases: []
 ---
 
 # 1. Backtracking line search ?

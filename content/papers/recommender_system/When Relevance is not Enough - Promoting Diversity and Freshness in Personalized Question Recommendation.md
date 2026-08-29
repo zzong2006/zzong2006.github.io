@@ -1,6 +1,10 @@
 ---
 title: "When Relevance is not Enough - Promoting Diversity and Freshness in Personalized Question Recommendation"
-tags: ["diversity", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - diversity
+  - paper_review
+  - recommendation_system
 ---
 
 # A) When Relevance is not Enough - Promoting Diversity and Freshness in Personalized Question Recommendation ?

@@ -1,6 +1,8 @@
 ---
 title: "median"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # 중간값 (Median)

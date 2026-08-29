@@ -1,6 +1,12 @@
 ---
 title: "Between Clicks and Satisfaction - Study on Multi-Phase User Preferences and Satisfaction for Online News Reading"
-tags: ["e-commerce", "SIGIR", "paper_review", "recommendation_system", "y2018"]
+tags:
+  - e-commerce
+  - SIGIR
+  - paper_review
+  - recommendation_system
+  - y2018
+aliases: []
 ---
 
 # A) Between Clicks and Satisfaction - Study on Multi-Phase User Preferences and Satisfaction for Online News Reading ?

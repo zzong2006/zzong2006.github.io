@@ -1,6 +1,9 @@
 ---
 title: "quick Sort"
-tags: ["algorithm", "sorting"]
+aliases: []
+tags:
+  - algorithm
+  - sorting
 ---
 
 # A) Quick Sort ?

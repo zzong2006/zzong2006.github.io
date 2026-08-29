@@ -1,6 +1,10 @@
 ---
 title: "Approximate Nearest Neighbor"
-tags: ["retrieval", "ANN", "vector_search"]
+tags:
+  - retrieval
+  - ANN
+  - vector_search
+aliases: []
 ---
 
 # A) Approximate Nearest Neighbor ?

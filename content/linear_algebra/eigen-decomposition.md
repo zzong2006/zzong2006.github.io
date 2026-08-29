@@ -1,6 +1,8 @@
 ---
 title: "eigen-decomposition"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 정수를 소인수분해할 수 있듯이 ($12=2\times2\times3$), 행렬도 분해 (decomposition) 가 가능합니다.

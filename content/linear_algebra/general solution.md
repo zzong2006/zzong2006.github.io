@@ -1,6 +1,7 @@
 ---
 title: "general solution"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 ---
 
 # General Solution 찾는 법

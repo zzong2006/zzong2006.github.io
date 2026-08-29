@@ -1,6 +1,8 @@
 ---
 title: "Jensen's inequality"
-tags: ["optimization"]
+tags:
+  - optimization
+aliases: []
 ---
 
 # A) Jensen’s Inequality ?

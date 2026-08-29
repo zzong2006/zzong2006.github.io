@@ -1,6 +1,9 @@
 ---
 title: "anagram"
-tags: ["algorithm", "string", "word"]
+tags:
+  - algorithm
+  - string
+  - word
 ---
 
 # 1. Anagram?

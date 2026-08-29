@@ -1,7 +1,8 @@
 ---
 title: "morphemes"
-tags: ["NLP"]
 aliases: ["형태소"]
+tags:
+  - NLP
 ---
 
 # A) Morphemes ?

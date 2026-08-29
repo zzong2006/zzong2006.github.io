@@ -1,6 +1,11 @@
 ---
 title: "Gemini Embedding - Generalizable Embeddings from Gemini"
-tags: ["embedding", "dense_retrieval", "Google", "Gemini"]
+tags:
+  - embedding
+  - dense_retrieval
+  - Google
+  - Gemini
+aliases: []
 ---
 
 [2503.07891](https://arxiv.org/pdf/2503.07891)

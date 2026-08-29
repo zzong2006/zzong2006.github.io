@@ -1,6 +1,12 @@
 ---
 title: "Retrieval Paper List"
-tags: ["retrieval", "IR", "paper_list", "SIGIR", "y2025"]
+tags:
+  - retrieval
+  - IR
+  - paper_list
+  - SIGIR
+  - y2025
+aliases: []
 ---
 
 

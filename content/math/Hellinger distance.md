@@ -1,6 +1,9 @@
 ---
 title: "Hellinger distance"
-tags: ["statistic", "machine_learning"]
+tags:
+  - statistic
+  - machine_learning
+aliases: []
 ---
 
 # A) Hellinger Distance ?

@@ -1,7 +1,10 @@
 ---
 title: "Hidden Markov Model"
-tags: ["statistics", "machine_learning", "graphical_model"]
-aliases: ["HMM"]
+tags:
+  - statistics
+  - machine_learning
+  - graphical_model
+aliases: [HMM]
 ---
 
 # A) Hidden Markov Model

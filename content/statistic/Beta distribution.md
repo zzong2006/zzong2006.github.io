@@ -1,6 +1,9 @@
 ---
 title: "Beta distribution"
-tags: ["probability_distribution", "statistic"]
+tags:
+  - probability_distribution
+  - statistic
+aliases: []
 ---
 
 # 1. Beta Distribution ?

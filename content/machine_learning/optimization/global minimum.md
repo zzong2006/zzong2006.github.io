@@ -1,7 +1,9 @@
 ---
 title: "global minimum"
-tags: ["optimization", "machine_learning"]
-aliases: ["global optimum", "global minima"]
+tags:
+  - optimization
+  - machine_learning
+aliases: [global optimum, global minima]
 ---
 
 # A) Global Minimum ?

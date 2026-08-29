@@ -1,7 +1,9 @@
 ---
 title: "DSR"
-tags: ["finance"]
-aliases: ["Debt Service Ratio"]
+aliases:
+  - Debt Service Ratio
+tags:
+  - finance
 ---
 DSR은 **Debt Service Ratio**, 총부채원리금상환비율이에요.
 

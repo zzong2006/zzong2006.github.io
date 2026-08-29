@@ -1,6 +1,7 @@
 ---
 title: "argparse"
-tags: ["python"]
+tags: python 
+aliases: []
 ---
 
 # 1. `argparse` ?

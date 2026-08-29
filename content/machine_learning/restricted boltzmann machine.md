@@ -1,7 +1,8 @@
 ---
 title: "restricted boltzmann machine"
-tags: ["machine_learning"]
 aliases: ["RBM"]
+tags:
+  - machine_learning
 ---
 
 # A) Restricted Boltzmann Machine ?

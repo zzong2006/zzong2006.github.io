@@ -1,6 +1,6 @@
 ---
 title: "Evidence Lower Bound"
-tags: ["bayesian_inference"]
+tags: bayesian_inference 
 aliases: ["ELBO"]
 ---
 

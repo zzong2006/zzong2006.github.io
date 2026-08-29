@@ -1,6 +1,6 @@
 ---
 title: "DP (Reinforcement Learning)"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
 aliases: ["dynamic programming", "DP"]
 ---
 

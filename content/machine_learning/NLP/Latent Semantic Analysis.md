@@ -1,7 +1,10 @@
 ---
 title: "Latent Semantic Analysis"
-tags: ["topic_modeling", "embedding"]
-aliases: ["LSA"]
+aliases:
+  - LSA
+tags:
+  - topic_modeling
+  - embedding
 ---
 
 Latent Semantic Analysis 는 잠재 의미 분석 (Latent Semantic Indexing, LSI) 이라고 부르기도 함

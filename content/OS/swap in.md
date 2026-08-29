@@ -1,6 +1,8 @@
 ---
 title: "swap in"
-tags: ["operating_system"]
+aliases: []
+tags:
+  - operating_system
 ---
 
 # A) Swap in ?

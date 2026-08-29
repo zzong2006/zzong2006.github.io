@@ -1,6 +1,7 @@
 ---
 title: "korean nlp model"
-tags: ["NLP"]
+tags: NLP
+aliases: []
 ---
 
 # Korean Nlp Model ?

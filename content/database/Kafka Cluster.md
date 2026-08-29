@@ -1,6 +1,8 @@
 ---
 title: "Kafka Cluster"
-tags: ["kafka"]
+aliases: []
+tags:
+  - kafka
 ---
 
 Kafka Cluster 는 여러 대의 카프카 서버가 모여 구성된 클러스터입니다.

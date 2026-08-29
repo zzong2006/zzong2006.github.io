@@ -1,6 +1,9 @@
 ---
 title: "Key"
-tags: ["database", "relation"]
+aliases: []
+tags:
+  - database
+  - relation
 ---
 
 * 관계 데이터 모델에서 relation 에 포함된 tuple 들을 유일하게 구별해주는 역할

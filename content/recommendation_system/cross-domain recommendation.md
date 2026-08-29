@@ -1,6 +1,8 @@
 ---
 title: "cross-domain recommendation"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Cross-domain Recommendation ?

@@ -1,6 +1,8 @@
 ---
 title: "Count Sketch"
-tags: ["embedding"]
+aliases: []
+tags:
+  - embedding
 ---
 
 Count Sketch는 FDE뿐만 아니라 일반적인 단일 벡터(예: SBERT 768차원 임베딩)에도 그대로 적용하여 차원을 줄일 수 있는 방법입니다.

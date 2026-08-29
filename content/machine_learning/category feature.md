@@ -1,6 +1,7 @@
 ---
 title: "category feature"
-tags: ["feature_engineering"]
+tags: feature_engineering
+aliases: []
 ---
 
 # Category Feature ?

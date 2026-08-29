@@ -1,7 +1,9 @@
 ---
 title: "object-oriented programming"
-tags: ["python", "Cpp"]
-aliases: ["OOP"]
+tags:
+  - python
+  - Cpp
+aliases: [OOP]
 ---
 
 # A) OOP ?

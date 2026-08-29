@@ -1,6 +1,10 @@
 ---
 title: "pySpark"
-tags: ["python", "open_source", "Spark"]
+tags:
+  - python
+  - open_source
+  - Spark
+aliases: []
 ---
 
 # pySpark ?

@@ -1,6 +1,6 @@
 ---
 title: "Schwarz inequality"
-tags: ["linear_algebra"]
+tags: linear_algebra 
 aliases: ["슈바르츠 부등식"]
 ---
 

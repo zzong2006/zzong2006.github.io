@@ -1,6 +1,7 @@
 ---
 title: "tmux"
-tags: ["tip"]
+tags: tip
+aliases: []
 ---
 
 # Tmux ?

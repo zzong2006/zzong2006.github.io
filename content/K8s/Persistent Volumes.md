@@ -1,6 +1,8 @@
 ---
 title: "Persistent Volumes"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # Persistent Volumes ?

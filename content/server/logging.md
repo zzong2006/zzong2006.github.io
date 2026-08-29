@@ -1,6 +1,8 @@
 ---
 title: "logging"
-tags: ["python"]
+tags:
+  - python
+aliases: []
 ---
 
 # 1. Logging 레벨 조절

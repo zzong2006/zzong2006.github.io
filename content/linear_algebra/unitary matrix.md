@@ -1,7 +1,8 @@
 ---
 title: "unitary matrix"
-tags: ["linear_algebra"]
-aliases: ["Unitary Matrix"]
+tags:
+  - linear_algebra
+aliases: [Unitary Matrix]
 ---
 
 # A) Unitary Matrix

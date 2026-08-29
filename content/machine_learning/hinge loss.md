@@ -1,6 +1,8 @@
 ---
 title: "hinge loss"
-tags: ["machine_learning", "classification"]
+tags:
+  - machine_learning
+  - classification
 aliases: ["hinge"]
 ---
 

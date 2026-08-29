@@ -1,7 +1,9 @@
 ---
 title: "Frobenius norm"
-tags: ["math", "linear_algebra"]
 aliases: ["F-norm", "프로베니우스 노름"]
+tags:
+  - math
+  - linear_algebra
 ---
 
 # A) Frobenius Norm

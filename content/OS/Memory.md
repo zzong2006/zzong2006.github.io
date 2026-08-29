@@ -1,7 +1,8 @@
 ---
 title: "Memory"
-tags: ["operating_system"]
 aliases: ["메모리"]
+tags:
+  - operating_system
 ---
 
 # A) Memory ?

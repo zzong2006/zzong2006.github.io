@@ -1,7 +1,9 @@
 ---
 title: "joint entropy"
-tags: ["statistic", "information_theory"]
-aliases: ["Joint Entropy"]
+tags:
+  - statistic
+  - information_theory
+aliases: [Joint Entropy]
 ---
 
 # A) Joint Entropy ?

@@ -1,6 +1,8 @@
 ---
 title: "teacher forcing"
-tags: ["deep_learning"]
+aliases: []
+tags:
+  - deep_learning
 ---
 
 # A) Teacher Forcing ?

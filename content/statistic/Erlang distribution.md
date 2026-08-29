@@ -1,6 +1,8 @@
 ---
 title: "Erlang distribution"
-tags: ["probability_distribution"]
+tags:
+  - probability_distribution
+aliases: []
 ---
 
 # 1. Erlang Distribution ?

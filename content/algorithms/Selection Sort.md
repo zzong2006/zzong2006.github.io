@@ -1,6 +1,9 @@
 ---
 title: "Selection Sort"
-tags: ["algorithm", "sorting"]
+aliases: []
+tags:
+  - algorithm
+  - sorting
 ---
 
 # A) Selection Sort ?

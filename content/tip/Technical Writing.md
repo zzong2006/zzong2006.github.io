@@ -1,6 +1,8 @@
 ---
 title: "Technical Writing"
-tags: ["work"]
+aliases: []
+tags:
+  - work
 ---
 
 # A) Technical Writing 란?

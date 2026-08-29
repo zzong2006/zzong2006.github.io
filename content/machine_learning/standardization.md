@@ -1,7 +1,10 @@
 ---
 title: "standardization"
-tags: ["machine_learning", "statistic", "feature_scaling"]
-aliases: ["z-score", "z score", "z-score normalization"]
+tags:
+  - machine_learning
+  - statistic
+  - feature_scaling
+aliases: [z-score, z score, z-score normalization]
 ---
 
 # A) Standardization ?

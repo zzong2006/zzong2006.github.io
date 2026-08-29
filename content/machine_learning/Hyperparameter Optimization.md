@@ -1,5 +1,7 @@
 ---
 title: "Hyperparameter Optimization"
+tags: 
+aliases: []
 ---
 
 # A) 하이퍼파라미터 최적화
@@ -21,7 +23,7 @@ Grid search 와 [[Random search]] 는 이전 결과를 기반으로 다음 하�
 ### A.3.1) 핵심 모듈
 
 1. **Surrogate Model**: 확률 모델로, 하이퍼파라미터와 목적 함수 점수의 확률을 매핑합니다: $P(\text{score}\mid\text{hyperparameters})$
-2. **[[Acquisition Model]]**
+2. **Acquisition Function**: surrogate 모델의 예측 평균과 불확실성을 하나의 점수로 합쳐, 다음에 평가할 하이퍼파라미터를 고릅니다. 두 모듈이 맞물려 도는 방식은 [[Bayesian Optimization]] 에 정리돼 있습니다.
 
 ### A.3.2) 최적화 단계
 

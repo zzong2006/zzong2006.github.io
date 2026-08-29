@@ -1,7 +1,9 @@
 ---
 title: "kernel trick"
-tags: ["machine_learning", "kernel_method"]
-aliases: ["Kernel Trick"]
+tags:
+  - machine_learning
+  - kernel_method
+aliases: [Kernel Trick]
 ---
 
 # A) Kernel Trick

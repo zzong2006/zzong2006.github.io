@@ -1,5 +1,7 @@
 ---
 title: "Poisson point process"
+aliases: []
+tags: 
 ---
 * Related
 	* [[Poisson distribution]]

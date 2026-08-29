@@ -1,7 +1,10 @@
 ---
 title: "Topic(kafka)"
-tags: ["kafka", "streaming", "data_engineering"]
-aliases: ["Kafka Topic", "topic"]
+tags:
+  - kafka
+  - streaming
+  - data_engineering
+aliases: [Kafka Topic, topic]
 ---
 
 # A) Kafka Topic ?

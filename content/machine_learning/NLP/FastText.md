@@ -1,6 +1,9 @@
 ---
 title: "FastText"
-tags: ["NLP", "Meta"]
+aliases: []
+tags:
+  - NLP
+  - Meta
 ---
 
 # A) FastText ?

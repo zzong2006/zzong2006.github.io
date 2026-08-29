@@ -1,7 +1,9 @@
 ---
 title: "logit"
-tags: ["machine_learning", "statistic"]
 aliases: ["로짓"]
+tags:
+  - machine_learning
+  - statistic
 ---
 
 # A) Logit ?

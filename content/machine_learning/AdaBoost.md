@@ -1,6 +1,6 @@
 ---
 title: "AdaBoost"
-tags: ["ensemble"]
+tags: ensemble 
 aliases: ["Adaptive Boosting"]
 ---
 

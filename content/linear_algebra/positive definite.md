@@ -1,7 +1,8 @@
 ---
 title: "positive definite"
-tags: ["linear_algebra"]
 aliases: ["positive semi-definite"]
+tags:
+  - linear_algebra
 ---
 
 # 1. Positive Definite ?

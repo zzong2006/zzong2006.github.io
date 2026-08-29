@@ -1,6 +1,7 @@
 ---
 title: "S-MDP"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # A) S-MDP ?

@@ -1,7 +1,9 @@
 ---
 title: "Learning-to-Rank"
-tags: ["learning_to_rank", "machine_learning"]
 aliases: ["LTR"]
+tags:
+  - learning_to_rank
+  - machine_learning
 ---
 
 # A) Learning-to-Rank ?

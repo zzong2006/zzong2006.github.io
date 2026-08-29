@@ -1,6 +1,8 @@
 ---
 title: "Bellman optimality equation"
-tags: ["reinforcement_learning"]
+aliases: []
+tags:
+  - reinforcement_learning
 ---
 
 # A) Bellman Optimality Equation ?

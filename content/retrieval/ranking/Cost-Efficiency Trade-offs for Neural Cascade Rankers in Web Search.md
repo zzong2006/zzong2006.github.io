@@ -1,6 +1,11 @@
 ---
 title: "Cost-Efficiency Trade-offs for Neural Cascade Rankers in Web Search"
-tags: ["retrieval", "ranking", "rerank", "paper_review"]
+tags:
+  - retrieval
+  - ranking
+  - rerank
+  - paper_review
+aliases: []
 ---
 
 [assets.amazon.science/99/85/9df9cce0437db1670b24d9b6df6d/cost-efficiency-trade-offs-for-neural-cascade-rankers-in-web-search.pdf](https://assets.amazon.science/99/85/9df9cce0437db1670b24d9b6df6d/cost-efficiency-trade-offs-for-neural-cascade-rankers-in-web-search.pdf)

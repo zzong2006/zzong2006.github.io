@@ -1,6 +1,8 @@
 ---
 title: "combination"
-tags: ["probability"]
+aliases: []
+tags:
+  - probability
 ---
 
 # A) 조합(Combination)이란?

@@ -1,6 +1,8 @@
 ---
 title: "implicit feedback"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Implicit Feedback ?

@@ -1,6 +1,7 @@
 ---
 title: "scientific method"
-tags: ["hypothesis_test"]
+tags: hypothesis_test 
+aliases: []
 ---
 
 # A) Scientific Method ?

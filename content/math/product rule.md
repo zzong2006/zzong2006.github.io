@@ -1,6 +1,9 @@
 ---
 title: "product rule"
-tags: ["statistic", "bayesian"]
+tags:
+  - statistic
+  - bayesian
+aliases: []
 ---
 
 # Product Rule ?

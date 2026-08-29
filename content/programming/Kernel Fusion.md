@@ -1,6 +1,9 @@
 ---
 title: "Kernel Fusion"
-tags: ["server", "inference"]
+tags:
+  - server
+  - inference
+aliases: []
 ---
 
 # A) Kernel Fusion ?

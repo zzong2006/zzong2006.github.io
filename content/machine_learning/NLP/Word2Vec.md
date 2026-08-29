@@ -1,6 +1,9 @@
 ---
 title: "Word2Vec"
-tags: ["word2vec", "NLP"]
+aliases: []
+tags:
+  - word2vec
+  - NLP
 ---
 
 # A) Word2Vec ?

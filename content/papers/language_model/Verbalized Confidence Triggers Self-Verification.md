@@ -1,7 +1,14 @@
 ---
 title: "Verbalized Confidence Triggers Self-Verification"
-tags: ["language_model", "calibration", "confidence", "CoT", "paper_review", "KAIST", "y2025"]
-aliases: ["CSFT", "Confidence-Supervised Fine-Tuning"]
+tags:
+  - language_model
+  - calibration
+  - confidence
+  - CoT
+  - paper_review
+  - KAIST
+  - y2025
+aliases: [CSFT, Confidence-Supervised Fine-Tuning]
 ---
 
 # A) 한줄 요약

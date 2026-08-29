@@ -1,6 +1,9 @@
 ---
 title: "token pooling"
-tags: ["ColBERT", "IR"]
+tags:
+  - ColBERT
+  - IR
+aliases: []
 ---
 
 # A) Multi-Vector Representation

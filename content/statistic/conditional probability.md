@@ -1,6 +1,9 @@
 ---
 title: "conditional probability"
-tags: ["statistic", "chain_rule"]
+aliases: []
+tags:
+  - statistic
+  - chain_rule
 ---
 
 # Conditional Probability ?

@@ -1,6 +1,8 @@
 ---
 title: "Anti-Monotone property"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # A) Anti-Monotone Property ?

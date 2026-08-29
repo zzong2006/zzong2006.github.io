@@ -1,6 +1,8 @@
 ---
 title: "Eager Learning"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # Eager Learning ?

@@ -1,6 +1,7 @@
 ---
 title: "LSM Tree"
-tags: ["data_structure"]
+tags: data_structure 
+aliases: []
 ---
 
 # A) LSM Tree ?

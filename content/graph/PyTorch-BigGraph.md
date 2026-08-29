@@ -1,7 +1,9 @@
 ---
 title: "PyTorch-BigGraph"
-tags: ["PyTorch", "graph"]
 aliases: ["PBG"]
+tags:
+  - PyTorch
+  - graph
 ---
 
 # 1. PyTorch-BigGraph ?

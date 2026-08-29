@@ -1,7 +1,10 @@
 ---
 title: "Apache Parquet"
-tags: ["hadoop", "data_engineering", "file_format"]
-aliases: ["Parquet", "parquet"]
+tags:
+  - hadoop
+  - data_engineering
+  - file_format
+aliases: [Parquet, parquet]
 ---
 
 # A) Apache Parquet

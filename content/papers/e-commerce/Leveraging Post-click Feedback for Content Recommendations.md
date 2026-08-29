@@ -1,6 +1,12 @@
 ---
 title: "Leveraging Post-click Feedback for Content Recommendations"
-tags: ["e-commerce", "RecSyS", "paper_review", "recommendation_system", "y2019"]
+aliases: []
+tags:
+  - e-commerce
+  - RecSyS
+  - paper_review
+  - recommendation_system
+  - y2019
 ---
 
 # A) Leveraging Post-click Feedback for Content Recommendations ?

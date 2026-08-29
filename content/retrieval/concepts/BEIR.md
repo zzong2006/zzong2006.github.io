@@ -1,7 +1,10 @@
 ---
 title: "BEIR"
-tags: ["retrieval", "IR", "benchmark"]
-aliases: ["BEIR Benchmark"]
+tags:
+  - retrieval
+  - IR
+  - benchmark
+aliases: [BEIR Benchmark]
 ---
 
 # A) BEIR

@@ -1,6 +1,7 @@
 ---
 title: "Euclidean space"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # A) Euclidean Space ?

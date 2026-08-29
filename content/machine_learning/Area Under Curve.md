@@ -1,7 +1,10 @@
 ---
 title: "Area Under Curve"
-tags: ["classification", "metrics", "machine_learning"]
 aliases: ["AUC"]
+tags:
+  - classification
+  - metrics
+  - machine_learning
 ---
 
 # A) AUC

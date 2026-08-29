@@ -1,6 +1,9 @@
 ---
 title: "git"
-tags: ["tip", "github"]
+aliases: []
+tags:
+  - tip
+  - github
 ---
 
 # A) Save Id & Password

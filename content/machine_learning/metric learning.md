@@ -1,6 +1,9 @@
 ---
 title: "metric learning"
-tags: ["recommendation_system", "machine_learning"]
+tags:
+  - recommendation_system
+  - machine_learning
+aliases: []
 ---
 
 # A) Metric Learning ?

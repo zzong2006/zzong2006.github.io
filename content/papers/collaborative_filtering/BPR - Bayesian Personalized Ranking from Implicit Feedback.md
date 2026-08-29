@@ -1,6 +1,14 @@
 ---
 title: "BPR - Bayesian Personalized Ranking from Implicit Feedback"
-tags: ["BPR", "MF", "implicit_feedback", "collaborative_filtering", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - BPR
+  - MF
+  - implicit_feedback
+  - collaborative_filtering
+  - paper_review
+  - recommendation_system
+Alias: [BPR]
 ---
 
 # A) Abstract

@@ -1,6 +1,11 @@
 ---
 title: "Joint distribution of PGM"
-tags: ["PGM", "paper_review", "probability_distribution", "statistic"]
+tags:
+  - PGM
+  - paper_review
+  - probability_distribution
+  - statistic
+aliases: []
 ---
 
 # A) Joint Distribution of PGM ?

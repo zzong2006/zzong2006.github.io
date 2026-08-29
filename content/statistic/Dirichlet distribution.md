@@ -1,6 +1,8 @@
 ---
 title: "Dirichlet distribution"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # 1. Dirichlet Distribution ?

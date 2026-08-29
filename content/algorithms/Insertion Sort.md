@@ -1,6 +1,8 @@
 ---
 title: "Insertion Sort"
-tags: ["algorithm"]
+aliases: []
+tags:
+  - algorithm
 ---
 
 # A) Insertion Sort ?

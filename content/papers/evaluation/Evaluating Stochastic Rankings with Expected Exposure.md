@@ -1,6 +1,7 @@
 ---
 title: "Evaluating Stochastic Rankings with Expected Exposure"
-tags: ["paper_review"]
+tags: paper_review 
+aliases: 
 ---
 # Evaluating Stochastic Rankings with Expected Exposure ?
 - Links

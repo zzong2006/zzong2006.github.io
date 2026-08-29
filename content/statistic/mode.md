@@ -1,6 +1,8 @@
 ---
 title: "mode"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Mode ?

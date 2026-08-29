@@ -1,6 +1,11 @@
 ---
 title: "Jina-Embeddings-v4"
-tags: ["embedding", "dense_retrieval", "multi_vector", "ColBERT"]
+tags:
+  - embedding
+  - dense_retrieval
+  - multi_vector
+  - ColBERT
+aliases: []
 ---
 
 # A) 📘 Jina-Embeddings-v4 논문 요약

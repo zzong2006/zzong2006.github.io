@@ -1,6 +1,7 @@
 ---
 title: "voting"
-tags: ["ensemble"]
+tags: ensemble 
+aliases: []
 ---
 
 # Voting ?

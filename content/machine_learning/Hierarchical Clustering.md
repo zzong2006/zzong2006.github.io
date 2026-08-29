@@ -1,6 +1,8 @@
 ---
 title: "Hierarchical Clustering"
-tags: ["machine_learning", "clustering"]
+tags:
+  - machine_learning
+  - clustering
 aliases: ["계층 군집화"]
 ---
 

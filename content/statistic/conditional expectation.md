@@ -1,7 +1,9 @@
 ---
 title: "conditional expectation"
-tags: ["statistics", "probability"]
-aliases: ["Conditional Expectation"]
+tags:
+  - statistics
+  - probability
+aliases: [Conditional Expectation]
 ---
 
 # A) Conditional Expectation

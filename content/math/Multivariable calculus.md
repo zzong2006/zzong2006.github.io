@@ -1,6 +1,8 @@
 ---
 title: "Multivariable calculus"
-tags: ["calculus"]
+tags:
+  - calculus
+aliases: []
 ---
 
 # 1. Multivariable Calculus ?

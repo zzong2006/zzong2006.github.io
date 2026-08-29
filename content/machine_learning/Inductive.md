@@ -1,6 +1,8 @@
 ---
 title: "Inductive"
-tags: ["machine_learning"]
+aliases: []
+tags:
+  - machine_learning
 ---
 
 # Inductive ?

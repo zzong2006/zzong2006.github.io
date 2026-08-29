@@ -1,5 +1,8 @@
 ---
 title: "diversified recommendation"
+aliases: []
+tags: 
+Tag: [recommendation_system, diversity]
 ---
 * 내용
 	* re-rank a pre-ranked item list through post-processing actions

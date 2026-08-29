@@ -1,6 +1,9 @@
 ---
 title: "Interpreted language"
-tags: ["python", "programming"]
+aliases: []
+tags:
+  - python
+  - programming
 ---
 
 # A) Interpreted Language ?

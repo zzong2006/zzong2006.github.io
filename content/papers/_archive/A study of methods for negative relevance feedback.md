@@ -1,6 +1,10 @@
 ---
 title: "A study of methods for negative relevance feedback"
-tags: ["SIGIR", "paper_review", "y2008"]
+aliases: []
+tags:
+  - SIGIR
+  - paper_review
+  - y2008
 ---
 
 search query retrieval 를 주제로 하여 negative feedback signal 을 학습할 수 있는 알고리즘의 overview 조사

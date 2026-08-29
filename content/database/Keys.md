@@ -1,5 +1,7 @@
 ---
-title: "Keys"
+layout: default
+title: Keys
+category: Database
 ---
 
 Key: tuple 을 찾거나 순서대로 정렬할 때, 다른 튜플들과 구별할 수 있는 유일한 기준이 되는 속성

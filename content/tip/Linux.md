@@ -1,6 +1,9 @@
 ---
 title: "Linux"
-tags: ["tip", "linux"]
+tags:
+  - tip
+  - linux
+aliases: []
 ---
 
 # 1. Pip Install

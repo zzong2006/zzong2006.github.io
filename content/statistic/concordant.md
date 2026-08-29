@@ -1,6 +1,7 @@
 ---
 title: "concordant"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # 1. Concordant ?

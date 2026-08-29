@@ -1,7 +1,14 @@
 ---
 title: "LREF"
-tags: ["retrieval", "IR", "paper_review", "LLM", "e-commerce", "relevance", "y2025"]
-aliases: ["LLM-based Relevance Framework"]
+tags:
+  - retrieval
+  - IR
+  - paper_review
+  - LLM
+  - e-commerce
+  - relevance
+  - y2025
+aliases: [LLM-based Relevance Framework]
 ---
 
 # A) 한줄 요약

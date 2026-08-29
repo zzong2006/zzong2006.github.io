@@ -1,6 +1,9 @@
 ---
 title: "Geometric distribution"
-tags: ["statistic", "probability_distribution"]
+aliases: []
+tags:
+  - statistic
+  - probability_distribution
 ---
 
 # A) Geometric Distribution 의 정의

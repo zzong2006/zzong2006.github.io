@@ -1,5 +1,6 @@
 ---
 title: "empirical risk minimization"
+tags: 
 aliases: ["ERM"]
 ---
 

@@ -1,7 +1,10 @@
 ---
 title: "loss function"
-tags: ["machine_learning", "optimization", "loss_function"]
-aliases: ["loss", "objective loss"]
+tags:
+  - machine_learning
+  - optimization
+  - loss_function
+aliases: [loss, objective loss]
 ---
 
 # A) Loss Function

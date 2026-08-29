@@ -1,6 +1,12 @@
 ---
 title: "Evaluating Chunking Strategies for Retrieval"
-tags: ["retrieval", "IR", "chunking", "evaluation", "Chroma"]
+tags:
+  - retrieval
+  - IR
+  - chunking
+  - evaluation
+  - Chroma
+aliases: []
 ---
 
 [Evaluating Chunking Strategies for Retrieval \| Chroma Research](https://research.trychroma.com/evaluating-chunking)

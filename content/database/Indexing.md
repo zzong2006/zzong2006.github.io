@@ -1,5 +1,7 @@
 ---
 title: "Indexing"
+aliases: []
+tags: []
 ---
 
 # A) Indexing

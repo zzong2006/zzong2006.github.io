@@ -1,6 +1,7 @@
 ---
 title: "permutation"
-tags: ["math"]
+tags: math 
+aliases: []
 ---
 
 # A) Permutation ?

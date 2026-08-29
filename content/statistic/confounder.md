@@ -1,6 +1,8 @@
 ---
 title: "confounder"
-tags: ["statistic", "linear_regression"]
+tags:
+  - statistic
+  - linear_regression
 aliases: ["confounding variable", "교란 변수"]
 ---
 

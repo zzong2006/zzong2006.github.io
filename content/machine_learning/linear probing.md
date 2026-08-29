@@ -1,6 +1,7 @@
 ---
 title: "linear probing"
-tags: ["deep_learning"]
+tags: deep_learning 
+aliases: []
 ---
 
 # A) Linear Probing ?

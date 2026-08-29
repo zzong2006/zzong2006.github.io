@@ -1,6 +1,8 @@
 ---
 title: "NodePort"
-tags: ["Kubernetes"]
+aliases: []
+tags:
+  - Kubernetes
 ---
 
 # NodePort ?

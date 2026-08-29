@@ -1,6 +1,8 @@
 ---
 title: "RLHF"
-tags: ["LLM", "reinforcement_learning"]
+tags:
+  - LLM
+  - reinforcement_learning
 aliases: ["Reinforcement Learning from Human Feedback"]
 ---
 

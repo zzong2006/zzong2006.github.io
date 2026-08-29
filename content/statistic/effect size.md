@@ -1,6 +1,9 @@
 ---
 title: "effect size"
-tags: ["statistic", "experiments"]
+tags:
+  - statistic
+  - experiments
+aliases: []
 ---
 
 # A) 효과 크기 (Effect Size)

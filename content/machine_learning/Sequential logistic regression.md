@@ -1,6 +1,8 @@
 ---
 title: "Sequential logistic regression"
-tags: ["linear_regression"]
+tags:
+  - linear_regression
+aliases: []
 ---
 
 # Sequential Logistic Regression ?

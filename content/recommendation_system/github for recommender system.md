@@ -1,6 +1,9 @@
 ---
 title: "github for recommender system"
-tags: ["recommendation_system", "github"]
+aliases: []
+tags:
+  - recommendation_system
+  - github
 ---
 
 # A) Github for Recommender System ?

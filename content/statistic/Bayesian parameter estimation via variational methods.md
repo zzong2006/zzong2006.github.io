@@ -1,5 +1,7 @@
 ---
 title: "Bayesian parameter estimation via variational methods"
+tags: 
+aliases: []
 ---
 
 # 1. Bayesian Parameter Estimation via Variational Methods ?

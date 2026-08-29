@@ -1,5 +1,7 @@
 ---
 title: "unsupervised learning"
+aliases: []
+tags: 
 ---
 * [[clustering]]
 	* [[K-means]]

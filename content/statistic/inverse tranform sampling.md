@@ -1,6 +1,8 @@
 ---
 title: "inverse tranform sampling"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Inverse Transform Sampling ?

@@ -1,6 +1,9 @@
 ---
 title: "UCB"
-tags: ["MAB", "reinforcement_learning"]
+aliases: []
+tags:
+  - MAB
+  - reinforcement_learning
 ---
 
 # A) UCB란?

@@ -1,6 +1,7 @@
 ---
 title: "convex function"
-tags: ["optimization"]
+tags:
+  - optimization
 aliases: ["convex", "concave"]
 ---
 

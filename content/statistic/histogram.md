@@ -1,6 +1,7 @@
 ---
 title: "histogram"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # Histogram ?

@@ -1,6 +1,6 @@
 ---
 title: "String"
-tags: ["rust"]
+tags: [rust]
 aliases: ["string"]
 ---
 

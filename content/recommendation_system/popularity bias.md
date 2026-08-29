@@ -1,6 +1,9 @@
 ---
 title: "popularity bias"
-tags: ["bias", "recommendation_system"]
+aliases: []
+tags:
+  - bias
+  - recommendation_system
 ---
 * Tags
 	* [[Matthew effect]]

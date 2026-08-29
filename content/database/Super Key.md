@@ -1,6 +1,9 @@
 ---
 title: "Super Key"
-tags: ["database", "relation"]
+tags:
+  - database
+  - relation
+aliases: []
 ---
 
 # A) Super Key

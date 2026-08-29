@@ -1,5 +1,7 @@
 ---
 title: "pool shifting"
+aliases: []
+tags: 
 ---
 
 # A) What is the Pool Shifting?

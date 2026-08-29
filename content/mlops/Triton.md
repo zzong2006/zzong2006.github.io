@@ -1,7 +1,11 @@
 ---
 title: "Triton"
-tags: ["server", "deep_learning", "MLOps"]
-aliases: ["트리톤"]
+tags:
+  - server
+  - deep_learning
+  - MLOps
+aliases:
+  - 트리톤
 ---
 
 # A) Triton ?

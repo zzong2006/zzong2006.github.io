@@ -1,6 +1,9 @@
 ---
 title: "exponential family"
-tags: ["statistic", "probability_distribution"]
+aliases: []
+tags:
+  - statistic
+  - probability_distribution
 ---
 
 # A) Exponential Family ?

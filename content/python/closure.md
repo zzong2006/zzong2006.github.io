@@ -1,7 +1,9 @@
 ---
 title: "closure"
-tags: ["python", "programming"]
 aliases: ["클로저", "클로져"]
+tags:
+  - python
+  - programming
 ---
 
 # Closure ?

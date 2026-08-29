@@ -1,6 +1,10 @@
 ---
 title: "MT-bench"
-tags: ["LMSYS", "LLM", "evaluation"]
+tags:
+  - LMSYS
+  - LLM
+  - evaluation
+aliases: []
 ---
 
 # A) MT-bench ?

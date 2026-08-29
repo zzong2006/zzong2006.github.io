@@ -1,6 +1,7 @@
 ---
 title: "row based storage"
-tags: ["database"]
+tags: database 
+aliases: []
 ---
 
 # Row Based Storage ?

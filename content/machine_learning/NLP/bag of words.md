@@ -1,6 +1,8 @@
 ---
 title: "bag of words"
-tags: ["NLP", "word2vec"]
+tags:
+  - NLP
+  - word2vec
 aliases: ["BoW"]
 ---
 

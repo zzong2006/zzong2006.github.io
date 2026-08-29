@@ -1,6 +1,9 @@
 ---
 title: "MLOps"
-tags: ["machine_learning", "pipeline"]
+tags:
+  - machine_learning
+  - pipeline
+aliases: []
 ---
 
 # A) MLOps 정의

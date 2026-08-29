@@ -1,6 +1,8 @@
 ---
 title: "LinUCB"
-tags: ["contextual_bandit"]
+aliases: []
+tags:
+  - contextual_bandit
 ---
 
 [[A Contextual-Bandit Approach to Personalized News Article Recommendation]] 를 참고하자.

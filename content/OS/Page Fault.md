@@ -1,6 +1,8 @@
 ---
 title: "Page Fault"
-tags: ["linux"]
+aliases: []
+tags:
+  - linux
 ---
 
 # A) Page Fault ?

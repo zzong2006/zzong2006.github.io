@@ -1,6 +1,9 @@
 ---
 title: "deductive reasoning"
-tags: ["word", "statistic"]
+aliases: []
+tags:
+  - word
+  - statistic
 ---
 
 # A) 연역적 추론

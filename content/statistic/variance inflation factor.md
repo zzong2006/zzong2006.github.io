@@ -1,6 +1,6 @@
 ---
 title: "variance inflation factor"
-tags: ["statistic"]
+tags: statistic
 aliases: ["VIF"]
 ---
 

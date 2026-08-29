@@ -1,7 +1,9 @@
 ---
 title: "mean squared error"
-tags: ["machine_learning", "linear_regression"]
-aliases: ["MSE", "RMSE"]
+tags:
+  - machine_learning
+  - linear_regression
+aliases: [MSE, RMSE]
 ---
 
 # A) Mean Squared Error ?

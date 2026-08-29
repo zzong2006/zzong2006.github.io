@@ -1,6 +1,8 @@
 ---
 title: "CUDA"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # CUDA에서 Blocks와 Threads의 결합

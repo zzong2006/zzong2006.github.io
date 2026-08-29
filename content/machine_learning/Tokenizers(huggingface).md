@@ -1,6 +1,7 @@
 ---
 title: "Tokenizers(huggingface)"
-tags: ["NLP"]
+tags: NLP
+aliases: []
 ---
 
 # Tokenizers(huggingface) ?

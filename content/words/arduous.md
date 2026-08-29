@@ -1,6 +1,8 @@
 ---
 title: "arduous"
-tags: ["word"]
+tags:
+  - word
+aliases: []
 ---
 
 # 1. Arduous ?

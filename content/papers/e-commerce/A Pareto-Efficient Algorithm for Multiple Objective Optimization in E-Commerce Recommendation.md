@@ -1,6 +1,12 @@
 ---
 title: "A Pareto-Efficient Algorithm for Multiple Objective Optimization in E-Commerce Recommendation"
-tags: ["e-commerce", "multi_objective", "multiple_feedback", "paper_review", "recommendation_system"]
+tags:
+  - e-commerce
+  - multi_objective
+  - multiple_feedback
+  - paper_review
+  - recommendation_system
+aliases: []
 ---
 
 [[Pareto efficiency|Pareto Efficient]] 추천을 위한 framework 를 제안했다.

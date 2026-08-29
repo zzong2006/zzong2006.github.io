@@ -1,6 +1,9 @@
 ---
 title: "rule of probabilities"
-tags: ["statistic", "probability"]
+tags:
+  - statistic
+  - probability
+aliases: []
 ---
 
 # A) Rule of Probabilities ?

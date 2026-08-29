@@ -1,6 +1,6 @@
 ---
 title: "display ad"
-tags: ["advertisement"]
+tags: advertisement 
 aliases: ["DA"]
 ---
 

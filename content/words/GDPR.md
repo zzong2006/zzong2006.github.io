@@ -1,5 +1,6 @@
 ---
 title: "GDPR"
+tags: 
 aliases: ["일반 데이터 보호 규칙"]
 ---
 

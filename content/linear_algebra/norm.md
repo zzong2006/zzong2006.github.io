@@ -1,6 +1,10 @@
 ---
 title: "norm"
-tags: ["math", "linear_algebra", "machine_learning"]
+aliases: []
+tags:
+  - math
+  - linear_algebra
+  - machine_learning
 ---
 
 norm $V$ 이란, 벡터 공간에 존재하는 벡터의 크기를 측정하기 위한 함수를 의미한다.

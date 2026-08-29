@@ -1,6 +1,9 @@
 ---
 title: "Page"
-tags: ["linux", "operating_system"]
+tags:
+  - linux
+  - operating_system
+aliases: []
 ---
 
 # 1. Page ?

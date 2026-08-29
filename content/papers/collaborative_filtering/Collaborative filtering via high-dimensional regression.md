@@ -1,6 +1,13 @@
 ---
 title: "Collaborative filtering via high-dimensional regression"
-tags: ["Netflix", "bias", "collaborative_filtering", "paper_review", "popularity_bias", "recommendation_system"]
+aliases: []
+tags:
+  - Netflix
+  - bias
+  - collaborative_filtering
+  - paper_review
+  - popularity_bias
+  - recommendation_system
 ---
 
 [paper link](https://arxiv.org/abs/1904.13033)

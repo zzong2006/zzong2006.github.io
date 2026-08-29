@@ -1,6 +1,9 @@
 ---
 title: "Newton-Raphson method"
-tags: ["machine_learning", "optimization"]
+tags:
+  - machine_learning
+  - optimization
+aliases: []
 ---
 
 # 1. Newton-Raphson Method ?

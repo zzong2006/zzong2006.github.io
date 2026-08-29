@@ -1,6 +1,7 @@
 ---
 title: "chain rule (calculus)"
-tags: ["calculus"]
+tags:
+  - calculus
 aliases: ["chain rule"]
 ---
 

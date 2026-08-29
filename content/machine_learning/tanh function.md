@@ -1,7 +1,10 @@
 ---
 title: "tanh function"
-tags: ["machine_learning", "deep_learning", "activation_function"]
-aliases: ["tanh", "hyperbolic tangent"]
+tags:
+  - machine_learning
+  - deep_learning
+  - activation_function
+aliases: [tanh, hyperbolic tangent]
 ---
 
 # A) Tanh Function ?

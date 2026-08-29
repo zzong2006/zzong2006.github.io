@@ -1,6 +1,14 @@
 ---
 title: "MPNet"
-tags: ["language_model", "Microsoft", "NIPS", "NLP", "nlp", "paper_review", "y2020"]
+tags:
+  - language_model
+  - Microsoft
+  - NIPS
+  - NLP
+  - nlp
+  - paper_review
+  - y2020
+aliases: []
 ---
 
 >MPNet - Masked and Permuted Pre-training for Language Understanding

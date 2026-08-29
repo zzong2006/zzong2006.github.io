@@ -1,7 +1,10 @@
 ---
 title: "LFU"
-tags: ["algorithm", "OS", "cache"]
-aliases: ["Least Frequently Used"]
+tags:
+  - algorithm
+  - OS
+  - cache
+aliases: [Least Frequently Used]
 ---
 
 # A) LFU

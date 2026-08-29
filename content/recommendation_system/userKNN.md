@@ -1,6 +1,9 @@
 ---
 title: "userKNN"
-tags: ["machine_learning", "recommendation_system"]
+aliases: []
+tags:
+  - machine_learning
+  - recommendation_system
 ---
 
 # A) userKNN ?

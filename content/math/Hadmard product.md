@@ -1,6 +1,7 @@
 ---
 title: "Hadmard product"
-tags: ["math"]
+tags: math 
+aliases: []
 ---
 
 # Hadmard Product ?

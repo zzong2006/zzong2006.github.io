@@ -1,6 +1,9 @@
 ---
 title: "Exaone 3.0"
-tags: ["LG"]
+tags:
+  - LG
+aliases: []
+date: 2024. 08. 21.
 ---
 
 # A) EXAONE 3.0

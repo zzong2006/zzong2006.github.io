@@ -1,6 +1,8 @@
 ---
 title: "GPT-2"
-tags: ["LLM"]
+tags:
+  - LLM
+aliases: []
 ---
 
 # A) GPT-2 ?

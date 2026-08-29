@@ -1,7 +1,10 @@
 ---
 title: "DRN - A Deep Reinforcement Learning Framework for News Recommendation"
-tags: ["paper_review", "reinforcement_learning", "WWW"]
-aliases: ["DRN"]
+aliases: [DRN]
+tags:
+  - paper_review
+  - reinforcement_learning
+  - WWW
 ---
 
 # A) Abstract

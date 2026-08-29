@@ -1,5 +1,7 @@
 ---
 title: "generative model"
+aliases: []
+tags: 
 ---
 * Refer link
 	* https://statproofbook.github.io/D/gm

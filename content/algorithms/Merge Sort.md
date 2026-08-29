@@ -1,5 +1,7 @@
 ---
 title: "Merge Sort"
+aliases: []
+tags: []
 ---
 * 분할 단계와 병합 단계로 나뉘는 divide and conquer 알고리즘
 	* 시간 복잡도: `O(nlog(n))`

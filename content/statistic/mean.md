@@ -1,6 +1,8 @@
 ---
 title: "mean"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # A) Mean ?

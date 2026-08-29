@@ -1,7 +1,9 @@
 ---
 title: "Named Entity Recognition"
-tags: ["NLP", "machine_learning"]
-aliases: ["NER"]
+tags:
+  - NLP
+  - machine_learning
+aliases: [NER]
 ---
 
 # A) Named Entity Recognition

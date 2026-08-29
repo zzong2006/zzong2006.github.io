@@ -1,6 +1,7 @@
 ---
 title: "Lagrange multiplier method"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # A) Lagrange Multiplier Method ?

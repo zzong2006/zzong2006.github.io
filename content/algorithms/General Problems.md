@@ -1,5 +1,7 @@
 ---
 title: "General Problems"
+aliases: []
+tags: 
 ---
 
 # A) 문자열 압축

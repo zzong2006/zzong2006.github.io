@@ -1,6 +1,7 @@
 ---
 title: "HBase"
-tags: ["NoSQL"]
+tags: NoSQL
+aliases: []
 ---
 
 # A) HBase ?

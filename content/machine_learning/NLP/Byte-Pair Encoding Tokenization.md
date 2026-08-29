@@ -1,6 +1,6 @@
 ---
 title: "Byte-Pair Encoding Tokenization"
-tags: ["tokenization"]
+tags: tokenization 
 aliases: ["BPE"]
 ---
 

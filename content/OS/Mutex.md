@@ -1,6 +1,8 @@
 ---
 title: "Mutex"
-tags: ["operating_system"]
+tags:
+  - operating_system
+aliases: []
 ---
 
 # A) Mutex ?

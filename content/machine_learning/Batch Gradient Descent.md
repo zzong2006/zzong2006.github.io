@@ -1,6 +1,7 @@
 ---
 title: "Batch Gradient Descent"
-tags: ["optimization"]
+tags:
+  - optimization
 aliases: ["BGD"]
 ---
 

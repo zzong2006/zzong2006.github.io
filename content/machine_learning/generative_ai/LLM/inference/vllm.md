@@ -1,6 +1,8 @@
 ---
 title: "vllm"
-tags: ["LLM"]
+tags:
+  - LLM
+aliases: []
 ---
 
 LLM의 추론 과정은 크게 두 단계로 나뉩니다.
@@ -26,7 +28,7 @@ LLM의 추론 과정은 크게 두 단계로 나뉩니다.
 
 > **핵심 시사점:** PagedAttention 덕분에 vLLM은 메모리 단편화 없이 거의 100%에 가까운 메모리 활용률을 달성할 수 있습니다.
 
-## A.1) [[Rerank]] 에서의 **Point-wise vs. List-wise: PagedAttention 관점에서의 비교**
+## A.1) [[retrieval/ranking/Re-ranking|Rerank]] 에서의 **Point-wise vs. List-wise: PagedAttention 관점에서의 비교**
 
 PagedAttention이 있음에도 불구하고, 두 방식의 KV Cache 관리 방식은 시스템에 다른 종류의 부담을 줍니다.
 

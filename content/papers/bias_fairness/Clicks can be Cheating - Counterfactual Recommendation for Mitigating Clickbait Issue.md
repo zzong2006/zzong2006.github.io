@@ -1,6 +1,11 @@
 ---
 title: "Clicks can be Cheating - Counterfactual Recommendation for Mitigating Clickbait Issue"
-tags: ["SIGIR", "y2021", "recommendation_system", "paper_review"]
+tags:
+  - SIGIR
+  - y2021
+  - recommendation_system
+  - paper_review
+aliases:
 ---
 
 # A) Clicks Can Be Cheating - Counterfactual Recommendation for Mitigating Clickbait Issue ?

@@ -1,6 +1,9 @@
 ---
 title: "softmax function"
-tags: ["activation_function", "classification", "machine_learning"]
+tags:
+  - activation_function
+  - classification
+  - machine_learning
 aliases: ["softmax"]
 ---
 

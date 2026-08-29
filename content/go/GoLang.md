@@ -1,6 +1,10 @@
 ---
 title: "GoLang"
-tags: ["programming", "language", "server"]
+aliases: []
+tags:
+  - programming
+  - language
+  - server
 ---
 
 # A) GoLang ?

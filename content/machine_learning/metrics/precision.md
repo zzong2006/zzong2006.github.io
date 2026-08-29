@@ -1,6 +1,8 @@
 ---
 title: "precision"
-tags: ["metrics", "statistic"]
+tags:
+  - metrics
+  - statistic
 aliases: ["정밀도"]
 ---
 

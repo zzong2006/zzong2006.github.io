@@ -1,7 +1,10 @@
 ---
 title: "graphical model"
-tags: ["graph", "probability", "machine_learning"]
-aliases: ["PGM", "Probabilistic Graphical Model"]
+aliases: [PGM, Probabilistic Graphical Model]
+tags:
+  - graph
+  - probability
+  - machine_learning
 ---
 
 # A) 핵심 요약

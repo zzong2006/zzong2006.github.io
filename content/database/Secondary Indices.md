@@ -1,5 +1,7 @@
 ---
 title: "Secondary Indices"
+aliases: []
+tags: []
 ---
 * search-key 가 아닌 다른 field 에 대한 index 가 search-key 값에 대한 index record 를 가리키고 있을 때
 	* ![[img-5ce8a18001.png]]

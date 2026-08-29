@@ -1,7 +1,9 @@
 ---
 title: "overfitting"
-tags: ["machine_learning"]
-aliases: ["오버피팅"]
+tags:
+  - machine_learning
+aliases:
+  - 오버피팅
 ---
 
 # A) Overfitting 이란?

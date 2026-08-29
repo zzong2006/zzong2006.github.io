@@ -1,7 +1,9 @@
 ---
 title: "Deep Q-Network"
-tags: ["reinforcement_learning", "deep_learning"]
 aliases: ["DQN"]
+tags:
+  - reinforcement_learning
+  - deep_learning
 ---
 
 # A) DQN

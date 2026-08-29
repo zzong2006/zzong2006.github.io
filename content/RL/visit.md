@@ -1,6 +1,9 @@
 ---
 title: "visit"
-tags: ["reinforcement_learning", "word"]
+tags:
+  - reinforcement_learning
+  - word
+aliases: []
 ---
 
 # A) Visit In [[statistic/Monte Carlo Method]]

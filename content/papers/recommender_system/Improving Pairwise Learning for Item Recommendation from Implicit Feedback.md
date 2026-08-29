@@ -1,6 +1,11 @@
 ---
 title: "Improving Pairwise Learning for Item Recommendation from Implicit Feedback"
-tags: ["WSDM", "paper_review", "recommendation_system", "y2014"]
+tags:
+  - WSDM
+  - paper_review
+  - recommendation_system
+  - y2014
+aliases: []
 ---
 
 # A) Abstract

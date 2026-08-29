@@ -1,6 +1,8 @@
 ---
 title: "hpp"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # A) Hpp ?

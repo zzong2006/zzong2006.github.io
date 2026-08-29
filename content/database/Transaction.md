@@ -1,5 +1,8 @@
 ---
-title: "Transaction"
+layout: default
+title:  "Transaction"
+category: Database
+order: 2
 ---
 
 # A) Transaction 의 정의

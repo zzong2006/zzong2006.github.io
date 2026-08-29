@@ -1,6 +1,14 @@
 ---
 title: "ColBERT"
-tags: ["retrieval", "DEVIEW", "IR", "SIGIR", "nlp", "paper_review", "y2020"]
+tags:
+  - retrieval
+  - DEVIEW
+  - IR
+  - SIGIR
+  - nlp
+  - paper_review
+  - y2020
+aliases: []
 ---
 
 # A) ColBERT: BERT를 넘어선 효율성과 정확성의 조화

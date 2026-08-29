@@ -1,6 +1,8 @@
 ---
 title: "knowledge distillation"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # 1. Knowledge Distillation ?

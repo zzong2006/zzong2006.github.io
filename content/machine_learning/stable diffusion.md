@@ -1,6 +1,9 @@
 ---
 title: "stable diffusion"
-tags: ["generative_model", "diffusion"]
+tags:
+  - generative_model
+  - diffusion
+aliases: []
 ---
 
 # A) Stable Diffusion ?

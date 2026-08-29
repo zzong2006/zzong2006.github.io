@@ -1,7 +1,16 @@
 ---
 title: "CalibRAG"
-tags: ["retrieval", "RAG", "calibration", "uncertainty", "reranking", "NeurIPS", "KAIST", "paper_review", "y2024"]
-aliases: ["Calibrated RAG", "CalibRAG"]
+tags:
+  - retrieval
+  - RAG
+  - calibration
+  - uncertainty
+  - reranking
+  - NeurIPS
+  - KAIST
+  - paper_review
+  - y2024
+aliases: [Calibrated RAG, CalibRAG]
 ---
 
 # A) 한줄 요약

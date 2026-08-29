@@ -1,6 +1,9 @@
 ---
 title: "Singular Value Decomposition"
-tags: ["linear_algebra", "matrix_factorization", "machine_learning"]
+tags:
+  - linear_algebra
+  - matrix_factorization
+  - machine_learning
 aliases: ["SVD"]
 ---
 

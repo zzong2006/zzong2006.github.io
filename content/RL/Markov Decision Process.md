@@ -1,7 +1,8 @@
 ---
 title: "Markov Decision Process"
-tags: ["reinforcement_learning"]
 aliases: ["MDP"]
+tags:
+  - reinforcement_learning
 ---
 
 # A) Markov Decision Process ?

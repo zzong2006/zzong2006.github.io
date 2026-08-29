@@ -1,6 +1,11 @@
 ---
 title: "Algorithmic Effects on the Diversity of Consumption on Spotify"
-tags: ["WWW", "diversity", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - WWW
+  - diversity
+  - paper_review
+  - recommendation_system
 ---
 
 # A) Generalist Specialist Score (GS-score)

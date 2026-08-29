@@ -1,5 +1,7 @@
 ---
 title: "billion"
+tags: 
+aliases: []
 ---
 
 # A) Billion ?

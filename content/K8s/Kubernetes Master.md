@@ -1,7 +1,8 @@
 ---
 title: "Kubernetes Master"
-tags: ["Kubernetes"]
-aliases: ["control plane", "Kubernetes Control Plane", "master node"]
+tags:
+  - Kubernetes
+aliases: [control plane, Kubernetes Control Plane, master node]
 ---
 
 # A) Kubernetes Master ?

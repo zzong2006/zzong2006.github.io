@@ -1,6 +1,7 @@
 ---
 title: "i.i.d."
 aliases: ["independent identically distributed"]
+tag: statistic 
 ---
 
 # A) i.i.d. ?

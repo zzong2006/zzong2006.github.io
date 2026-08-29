@@ -1,5 +1,7 @@
 ---
 title: "Alpaca"
+tags: 
+aliases: []
 ---
 
 # 1. Alpaca ?

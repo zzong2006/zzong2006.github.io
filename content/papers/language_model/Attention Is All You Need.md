@@ -1,6 +1,11 @@
 ---
 title: "Attention Is All You Need"
-tags: ["language_model", "NLP", "nlp", "paper_review"]
+tags:
+  - language_model
+  - NLP
+  - nlp
+  - paper_review
+aliases: []
 ---
 
 # A) Abstract

@@ -1,6 +1,8 @@
 ---
 title: "LambdaMART"
-tags: ["learning_to_rank"]
+aliases: []
+tags:
+  - learning_to_rank
 ---
 
 # A) LambdaMART란?

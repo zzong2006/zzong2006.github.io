@@ -1,6 +1,12 @@
 ---
 title: "Self-Rewarding Language Models"
-tags: ["language_model", "Meta", "nlp", "paper_review", "y2024"]
+tags:
+  - language_model
+  - Meta
+  - nlp
+  - paper_review
+  - y2024
+aliases: []
 ---
 
 # A) Self-Rewarding Language Models ?

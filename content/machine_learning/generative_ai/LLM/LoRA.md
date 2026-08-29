@@ -1,7 +1,8 @@
 ---
 title: "LoRA"
-tags: ["LLM"]
-aliases: ["Low-Rank Adaptation"]
+aliases: [Low-Rank Adaptation]
+tags:
+  - LLM
 ---
 
 전통적인 미세 조정(Fine-tuning)은 사전 학습된 모델의 가중치 행렬 $W_0$를 새로운 가중치 $W$로 업데이트하는 과정입니다. 이 과정은 다음과 같이 표현할 수 있습니다.

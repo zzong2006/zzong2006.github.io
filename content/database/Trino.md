@@ -1,6 +1,7 @@
 ---
 title: "Trino"
-tags: ["SQL"]
+tags: SQL
+aliases: []
 ---
 
 # A) Trino ?

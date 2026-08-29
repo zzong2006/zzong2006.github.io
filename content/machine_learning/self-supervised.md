@@ -1,13 +1,26 @@
 ---
 title: "self-supervised"
+aliases: ["self supervised", "self-supervised learning", "자기지도학습"]
 tags:
   - deep_learning
-aliases: ["self supervised"]
-draft: true
 ---
 
-# Self-supervised ?
+# A) Self-supervised Learning ?
 
-데이터로부터 target(label) 을 만들어내는 학습
+사람이 붙인 라벨 없이, 데이터 자체에서 정답을 만들어 지도학습처럼 훈련하는 방식이다. 입력의 일부를 감추거나 변형해 놓고 원래 모습을 맞히게 하면, 정답은 원본에 이미 들어 있으므로 라벨링 비용이 들지 않는다.
 
-# References
+라벨이 없다는 점에서 [[unsupervised learning]] 에 속하지만, 실제 학습 루프는 손실 함수와 정답이 있는 지도학습과 똑같다. 그래서 따로 이름을 붙여 부른다.
+
+# B) 정답을 만드는 방법
+
+**가리고 복원하기** — [[masked language modeling]] 은 문장의 토큰을 가리고 그 자리를 맞히게 한다. 이미지 쪽 masked autoencoder 는 패치를 가리고 픽셀을 복원한다. [[autoencoder]] 는 입력을 좁은 병목으로 압축한 뒤 원래 입력을 되살리게 하는데, 여기서 정답은 입력 그 자체다.
+
+**순서·위치 맞히기** — 다음 토큰을 예측하는 언어모델 학습, 뒤섞인 이미지 조각의 원래 배치 맞히기 등이 여기 속한다.
+
+**같은 것과 다른 것 구분하기** — [[contrastive learning]] 은 하나의 샘플에 서로 다른 변형(crop, 색 왜곡 등)을 가해 만든 두 결과를 가깝게, 다른 샘플에서 온 것은 멀게 만든다. 정답 라벨 대신 "같은 원본에서 나왔는가" 를 감독 신호로 쓴다.
+
+# C) 왜 쓰나
+
+라벨 붙은 데이터는 비싸고 적지만, 라벨 없는 데이터는 웹 규모로 있다. self-supervised 로 대량의 데이터에서 일반적인 표현을 먼저 학습해 두고, 실제 풀려는 작업에는 적은 양의 라벨로 미세조정하는 흐름이 표준이 됐다. 지금의 대형 언어모델과 이미지 표현 학습이 모두 이 구조 위에 있다.
+
+# D) References

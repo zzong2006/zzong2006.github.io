@@ -1,7 +1,18 @@
 ---
-title: "Qwen-AgentWorld - Language World Models for General Agents"
-tags: ["language_model", "llm", "agent", "world_model", "reinforcement_learning", "paper_review", "Qwen", "y2026"]
-aliases: ["Qwen-AgentWorld", "Language World Models for General Agents", "AgentWorldBench"]
+title: Qwen-AgentWorld - Language World Models for General Agents
+tags:
+  - language_model
+  - llm
+  - agent
+  - world_model
+  - reinforcement_learning
+  - paper_review
+  - Qwen
+  - y2026
+aliases:
+  - Qwen-AgentWorld
+  - Language World Models for General Agents
+  - AgentWorldBench
 ---
 
 # A) 한줄 요약

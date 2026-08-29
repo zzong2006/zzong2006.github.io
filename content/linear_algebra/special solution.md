@@ -1,6 +1,7 @@
 ---
 title: "special solution"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["particular solution"]
 ---
 

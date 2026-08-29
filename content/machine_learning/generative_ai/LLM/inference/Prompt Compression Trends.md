@@ -1,7 +1,17 @@
 ---
-title: "Prompt Compression Trends - From Token Pruning to Context Engineering"
-tags: ["LLM", "inference", "prompt_compression", "context_compression", "RAG", "y2026"]
-aliases: ["Prompt Compression Trends", "Context Compression Trends", "문장 압축 기술 발전", "프롬프트 압축 기술 발전"]
+title: Prompt Compression Trends - From Token Pruning to Context Engineering
+tags:
+  - LLM
+  - inference
+  - prompt_compression
+  - context_compression
+  - RAG
+  - y2026
+aliases:
+  - Prompt Compression Trends
+  - Context Compression Trends
+  - 문장 압축 기술 발전
+  - 프롬프트 압축 기술 발전
 ---
 
 # A) 한줄 요약

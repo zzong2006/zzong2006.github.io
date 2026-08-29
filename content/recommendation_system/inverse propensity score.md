@@ -1,6 +1,8 @@
 ---
 title: "inverse propensity score"
 aliases: ["IPS", "propensity score"]
+tags: 
+tag: [importance_sampling, IPS, bias]
 ---
 
 # A) 정의

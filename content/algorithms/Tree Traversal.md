@@ -1,6 +1,8 @@
 ---
 title: "Tree Traversal"
-tags: ["algorithm"]
+tags:
+  - algorithm
+aliases: []
 ---
 
 # A) Tree Traversal ?

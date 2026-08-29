@@ -1,6 +1,9 @@
 ---
 title: "K-prototype"
-tags: ["clustering", "machine_learning"]
+tags:
+  - clustering
+  - machine_learning
+aliases: []
 ---
 
 # A) K-prototype ?

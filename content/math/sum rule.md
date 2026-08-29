@@ -1,6 +1,7 @@
 ---
 title: "sum rule"
-tags: ["statistic"]
+tags:
+  - statistic
 aliases: ["marginalization property"]
 ---
 

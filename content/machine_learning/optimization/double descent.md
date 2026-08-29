@@ -1,6 +1,7 @@
 ---
 title: "double descent"
-tags: ["deep_learning"]
+tags: deep_learning 
+aliases: []
 ---
 
 # A) Double Descent ?

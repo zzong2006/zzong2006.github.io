@@ -1,6 +1,7 @@
 ---
 title: "Fisher information"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) Fisher Information ?

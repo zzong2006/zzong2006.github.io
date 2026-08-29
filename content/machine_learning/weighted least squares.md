@@ -1,6 +1,9 @@
 ---
 title: "weighted least squares"
-tags: ["machine_learning", "linear_regression"]
+tags:
+  - machine_learning
+  - linear_regression
+aliases: []
 ---
 
 # A) Weighted Least Squares ?

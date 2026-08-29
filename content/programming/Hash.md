@@ -1,7 +1,9 @@
 ---
 title: "Hash"
-tags: ["programming", "data_structure"]
-aliases: ["hash", "hash function"]
+tags:
+  - programming
+  - data_structure
+aliases: [hash, hash function]
 ---
 
 # A) Hash ?

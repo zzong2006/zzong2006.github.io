@@ -1,6 +1,8 @@
 ---
 title: "CBOW"
-tags: ["word2vec", "NLP"]
+tags:
+  - word2vec
+  - NLP
 aliases: ["continuous bag of words"]
 ---
 

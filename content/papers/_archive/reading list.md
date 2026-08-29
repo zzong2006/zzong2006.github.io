@@ -1,6 +1,9 @@
 ---
 title: "reading list"
-tags: ["paper_review", "todo"]
+tags:
+  - paper_review
+  - todo
+aliases: []
 ---
 
 # A) LLM

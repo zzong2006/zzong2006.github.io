@@ -1,6 +1,7 @@
 ---
 title: "Batch Decoding"
-tags: ["LLM"]
+tags: LLM
+aliases: []
 ---
 
 # A) Batch Decoding ?

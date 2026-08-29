@@ -1,6 +1,9 @@
 ---
 title: "Data Augmentation"
-tags: ["machine_learning", "deep_learning"]
+aliases: []
+tags:
+  - machine_learning
+  - deep_learning
 ---
 
 # A) Data Augmentation ?

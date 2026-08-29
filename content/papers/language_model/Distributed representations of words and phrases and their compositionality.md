@@ -1,6 +1,12 @@
 ---
 title: "Distributed representations of words and phrases and their compositionality"
-tags: ["language_model", "NIPS", "nlp", "paper_review", "word2vec"]
+aliases: []
+tags:
+  - language_model
+  - NIPS
+  - nlp
+  - paper_review
+  - word2vec
 ---
 
 [paper link](https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf)

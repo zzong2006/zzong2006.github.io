@@ -1,7 +1,10 @@
 ---
 title: "curse of dimensionality"
-tags: ["machine_learning", "feature_engineering"]
-aliases: ["차원의 저주"]
+tags:
+  - machine_learning
+  - feature_engineering
+aliases:
+  - 차원의 저주
 ---
 
 # A) Curse of Dimensionality ?

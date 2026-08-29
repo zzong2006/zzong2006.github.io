@@ -1,6 +1,7 @@
 ---
 title: "policy"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # Policy ?

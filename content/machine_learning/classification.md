@@ -1,7 +1,8 @@
 ---
 title: "classification"
-tags: ["classification"]
-aliases: ["분류"]
+tags:
+  - classification
+aliases: [분류]
 ---
 
 # A) Classification ?

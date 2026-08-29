@@ -1,6 +1,6 @@
 ---
 title: "supply side platform"
-tags: ["advertisement"]
+tags: advertisement 
 aliases: ["SSP"]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "MoE"
-aliases: ["Mixture-of-Experts"]
+tags: []
+aliases: [Mixture-of-Experts]
 ---
 
 # A) MoE ?

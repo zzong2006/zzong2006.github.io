@@ -1,6 +1,8 @@
 ---
 title: "free variable"
-tags: ["linear_algebra", "programming"]
+tags:
+  - linear_algebra
+  - programming
 ---
 
 # In Linear Algebra

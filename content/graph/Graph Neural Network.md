@@ -1,7 +1,9 @@
 ---
 title: "Graph Neural Network"
-tags: ["graph", "deep_learning"]
 aliases: ["GNN"]
+tags:
+  - graph
+  - deep_learning
 ---
 
 # A) Graph Neural Network ?

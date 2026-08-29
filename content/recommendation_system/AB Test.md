@@ -1,7 +1,9 @@
 ---
 title: "AB Test"
-tags: ["hypothesis_test", "statistic"]
-aliases: ["A/B 테스트"]
+tags:
+  - hypothesis_test
+  - statistic
+aliases: [A/B 테스트]
 ---
 
 # A) AB Test ?

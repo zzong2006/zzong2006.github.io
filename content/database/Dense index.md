@@ -1,6 +1,8 @@
 ---
 title: "Dense index"
-tags: ["database"]
+aliases: []
+tags:
+  - database
 ---
 
 # A) Dense Index ?

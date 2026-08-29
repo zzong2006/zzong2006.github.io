@@ -1,6 +1,6 @@
 ---
 title: "Markov Reward Process"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
 aliases: ["MRP"]
 ---
 

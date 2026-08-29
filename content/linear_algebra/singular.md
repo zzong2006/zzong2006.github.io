@@ -1,6 +1,7 @@
 ---
 title: "singular"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
 aliases: ["noninvertible"]
 ---
 

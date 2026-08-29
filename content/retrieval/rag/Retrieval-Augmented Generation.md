@@ -1,7 +1,9 @@
 ---
 title: "Retrieval-Augmented Generation"
-tags: ["retrieval", "RAG"]
-aliases: ["RAG"]
+tags:
+  - retrieval
+  - RAG
+aliases: [RAG]
 ---
 
 # A) Retrieval-Augmented Generation ?

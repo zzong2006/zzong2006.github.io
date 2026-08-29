@@ -1,6 +1,8 @@
 ---
 title: "overriding"
-tags: ["programming"]
+tags:
+  - programming
+aliases: []
 ---
 
 # A) Overriding ?

@@ -1,6 +1,8 @@
 ---
 title: "UNET"
-tags: ["deep_learning"]
+aliases: []
+tags:
+  - deep_learning
 ---
 
 # A) UNET ?

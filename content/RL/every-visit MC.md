@@ -1,6 +1,7 @@
 ---
 title: "every-visit MC"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # A) Every-visit MC ?

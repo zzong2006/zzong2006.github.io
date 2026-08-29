@@ -1,6 +1,7 @@
 ---
 title: "constrained optimization problem"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # Constrained Optimization Problem ?

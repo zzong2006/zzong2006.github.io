@@ -1,6 +1,8 @@
 ---
 title: "power series representation"
-tags: ["math"]
+tags:
+  - math
+aliases: []
 ---
 
 # A) Power Series Representation ?

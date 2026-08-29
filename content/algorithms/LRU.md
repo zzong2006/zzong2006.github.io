@@ -1,7 +1,10 @@
 ---
 title: "LRU"
-tags: ["algorithm", "OS", "cache"]
-aliases: ["Least Recently Used"]
+tags:
+  - algorithm
+  - OS
+  - cache
+aliases: [Least Recently Used]
 ---
 
 # A) LRU

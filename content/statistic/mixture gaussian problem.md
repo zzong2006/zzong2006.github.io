@@ -1,6 +1,9 @@
 ---
 title: "mixture gaussian problem"
-tags: ["statistic", "bayesian_inference"]
+tags:
+  - statistic
+  - bayesian_inference
+aliases: []
 ---
 
 # Mixture Gaussian Problem ?

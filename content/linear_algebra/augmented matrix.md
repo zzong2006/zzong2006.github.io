@@ -1,6 +1,8 @@
 ---
 title: "augmented matrix"
-tags: ["linear_algebra"]
+tags:
+  - linear_algebra
+aliases: []
 ---
 
 # A) Augmented Matrix ?

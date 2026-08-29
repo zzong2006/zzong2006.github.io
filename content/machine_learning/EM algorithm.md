@@ -1,7 +1,10 @@
 ---
 title: "EM algorithm"
-tags: ["statistic", "bayesian_inference", "bayesian"]
 aliases: ["EM"]
+tags:
+  - statistic
+  - bayesian_inference
+  - bayesian
 ---
 
 # A) EM Algorithm 으로 풀 수 있는 문제들

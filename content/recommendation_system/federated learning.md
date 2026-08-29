@@ -1,6 +1,9 @@
 ---
 title: "federated learning"
-tags: ["machine_learning", "recommendation_system"]
+tags:
+  - machine_learning
+  - recommendation_system
+aliases: []
 ---
 
 # A) Federated Learning ?

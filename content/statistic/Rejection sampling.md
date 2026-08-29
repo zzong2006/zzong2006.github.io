@@ -1,6 +1,9 @@
 ---
 title: "Rejection sampling"
-tags: ["sampling", "statistic"]
+tags:
+  - sampling
+  - statistic
+aliases: []
 ---
 
 # A) Rejection Sampling ?

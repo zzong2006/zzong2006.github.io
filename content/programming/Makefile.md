@@ -1,6 +1,7 @@
 ---
 title: "Makefile"
-tags: ["C++"]
+tags: C++ 
+aliases: []
 ---
 
 # Makefile ?

@@ -1,6 +1,8 @@
 ---
 title: "inscrutable"
-tags: ["word"]
+tags:
+  - word
+aliases: []
 ---
 
 # A) Inscrutable ?

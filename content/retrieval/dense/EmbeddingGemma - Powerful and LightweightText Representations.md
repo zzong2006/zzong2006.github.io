@@ -1,6 +1,11 @@
 ---
 title: "EmbeddingGemma - Powerful and LightweightText Representations"
-tags: ["embedding", "dense_retrieval", "DeepMind", "y2025"]
+tags:
+  - embedding
+  - dense_retrieval
+  - DeepMind
+  - y2025
+aliases: []
 ---
 
 

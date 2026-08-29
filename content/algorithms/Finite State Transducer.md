@@ -1,7 +1,10 @@
 ---
 title: "Finite State Transducer"
-tags: ["algorithm", "data_structure", "search_engine"]
-aliases: ["FST", "finite state transducer"]
+tags:
+  - algorithm
+  - data_structure
+  - search_engine
+aliases: [FST, finite state transducer]
 ---
 
 # A) Finite State Transducer ?

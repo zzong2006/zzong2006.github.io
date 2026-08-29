@@ -1,7 +1,11 @@
 ---
 title: "DPR"
-tags: ["IR", "embedding", "dense_retrieval", "QA"]
-aliases: ["Dense Passage Retrieval", "Dense Retrieval"]
+tags:
+  - IR
+  - embedding
+  - dense_retrieval
+  - QA
+aliases: [Dense Passage Retrieval, Dense Retrieval]
 ---
 
 # A) DPR (Dense Passage Retrieval) ?

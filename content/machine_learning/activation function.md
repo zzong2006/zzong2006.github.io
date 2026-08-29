@@ -1,6 +1,9 @@
 ---
 title: "activation function"
-tags: ["machine_learning", "deep_learning"]
+tags:
+  - machine_learning
+  - deep_learning
+aliases: []
 ---
 
 # A) Non-Linear Activation(비 선형 함수) 의 사용 이유

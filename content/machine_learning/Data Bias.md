@@ -1,6 +1,10 @@
 ---
 title: "Data Bias"
-tags: ["bias", "recommendation_system", "machine_learning"]
+tags:
+  - bias
+  - recommendation_system
+  - machine_learning
+aliases: []
 ---
 
 # A) Data Bias ?

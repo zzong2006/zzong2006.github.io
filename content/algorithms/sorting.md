@@ -1,6 +1,8 @@
 ---
 title: "sorting"
-tags: ["algorithm"]
+aliases: []
+tags:
+  - algorithm
 ---
 
 # Sorting ?

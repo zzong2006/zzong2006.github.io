@@ -1,6 +1,7 @@
 ---
 title: "Bayesian"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 

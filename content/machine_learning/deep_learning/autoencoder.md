@@ -1,6 +1,8 @@
 ---
 title: "autoencoder"
 aliases: ["AE", "오토인코더"]
+tags: 
+tag: [deep_learning, machine_learning, supervised_learning]
 ---
 
 # A) Autoencoder?

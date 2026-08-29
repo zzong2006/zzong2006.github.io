@@ -1,6 +1,8 @@
 ---
 title: "optimization problem"
-tags: ["optimization"]
+aliases: []
+tags:
+  - optimization
 ---
 
 # A) Optimization Problem ?

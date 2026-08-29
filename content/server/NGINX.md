@@ -1,6 +1,6 @@
 ---
 title: "NGINX"
-tags: ["server"]
+tags: server
 aliases: ["엔진엑스"]
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "g++"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # A) g++ ?

@@ -1,6 +1,6 @@
 ---
 title: "eCPM"
-tags: ["advertisement"]
+tags: advertisement 
 aliases: ["CPM", "cost per mile"]
 ---
 

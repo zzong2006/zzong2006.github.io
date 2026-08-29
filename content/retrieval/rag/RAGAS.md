@@ -1,7 +1,11 @@
 ---
 title: "RAGAS"
-tags: ["retrieval", "RAG", "evaluation", "metrics"]
-aliases: ["라가스"]
+tags:
+  - retrieval
+  - RAG
+  - evaluation
+  - metrics
+aliases: [라가스]
 ---
 
 ==RAGAS==에서 Retrieval 단계를 평가할 때 사용하는 대표적인 지표 중 하나는 context recall 입니다.

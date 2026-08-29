@@ -1,6 +1,9 @@
 ---
 title: "EXP3"
-tags: ["reinforcement_learning", "MAB"]
+aliases: []
+tags:
+  - reinforcement_learning
+  - MAB
 ---
 
 # A) References

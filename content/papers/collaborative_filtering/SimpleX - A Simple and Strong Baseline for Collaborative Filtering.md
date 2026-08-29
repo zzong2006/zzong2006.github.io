@@ -1,6 +1,10 @@
 ---
 title: "SimpleX - A Simple and Strong Baseline for Collaborative Filtering"
-tags: ["collaborative_filtering", "paper_review", "recommendation_system"]
+aliases: []
+tags:
+  - collaborative_filtering
+  - paper_review
+  - recommendation_system
 ---
 
 # 1. Introduction

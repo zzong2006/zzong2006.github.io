@@ -1,6 +1,9 @@
 ---
 title: "Term Weighting Schemes for Latent Dirichlet Allocation"
-tags: ["nlp", "paper_review"]
+aliases: []
+tags:
+  - nlp
+  - paper_review
 ---
 
 * Tags

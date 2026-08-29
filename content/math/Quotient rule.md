@@ -1,6 +1,9 @@
 ---
 title: "Quotient rule"
-tags: ["differentitation", "calculus"]
+tags:
+  - differentitation
+  - calculus
+aliases: []
 ---
 
 # Quotient Rule ?

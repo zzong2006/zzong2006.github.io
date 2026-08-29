@@ -1,6 +1,8 @@
 ---
 title: "property decorator"
-tags: ["python"]
+tags:
+  - python
+aliases: []
 ---
 
 # Property Decorator ?

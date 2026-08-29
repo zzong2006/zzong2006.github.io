@@ -1,6 +1,9 @@
 ---
 title: "WWW"
-tags: ["WWW", "paper_review"]
+tags:
+  - WWW
+  - paper_review
+aliases: []
 ---
 
 # A) WWW ?

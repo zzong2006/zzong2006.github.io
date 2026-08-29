@@ -1,6 +1,8 @@
 ---
 title: "polynomial regression"
-tags: ["linear_regression"]
+tags:
+  - linear_regression
+aliases: []
 ---
 
 # A) Polynomial Regression ?

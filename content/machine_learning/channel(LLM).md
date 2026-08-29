@@ -1,6 +1,7 @@
 ---
 title: "channel(LLM)"
-aliases: ["channel"]
+aliases: [channel]
+tags: []
 ---
 
 # A) LLM에서의 '채널'이란?

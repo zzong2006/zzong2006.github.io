@@ -1,5 +1,8 @@
 ---
-title: "Mutex and Semaphore"
+layout: default
+title:  "Mutex and Semaphore"
+category: Operating System
+order: 1
 ---
 
 # A) 뮤텍스 (Mutex)

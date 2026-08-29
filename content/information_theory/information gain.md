@@ -1,6 +1,8 @@
 ---
 title: "information gain"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Information Gain ?

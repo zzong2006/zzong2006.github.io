@@ -1,6 +1,6 @@
 ---
 title: "Web Server Gateway Interface"
-tags: ["server"]
+tags: server 
 aliases: ["WSGI"]
 ---
 

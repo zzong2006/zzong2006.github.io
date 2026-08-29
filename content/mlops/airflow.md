@@ -1,6 +1,8 @@
 ---
 title: "airflow"
-tags: ["MLOps"]
+aliases: []
+tags:
+  - MLOps
 ---
 
 # A) Airflow ?

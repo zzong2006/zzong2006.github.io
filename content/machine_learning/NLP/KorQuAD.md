@@ -1,6 +1,9 @@
 ---
 title: "KorQuAD"
-tags: ["NLP", "dataset"]
+tags:
+  - NLP
+  - dataset
+aliases: []
 ---
 
 # A) KorQuAD ?

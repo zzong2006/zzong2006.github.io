@@ -1,6 +1,7 @@
 ---
 title: "tokenization"
-tags: ["NLP"]
+tags: NLP 
+aliases: []
 ---
 
 # A) Tokenization 요약

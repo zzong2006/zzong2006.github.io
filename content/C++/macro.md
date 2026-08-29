@@ -1,6 +1,8 @@
 ---
 title: "macro"
-tags: ["Cpp"]
+aliases: []
+tags:
+  - Cpp
 ---
 
 # A) Macro ?

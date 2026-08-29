@@ -1,7 +1,10 @@
 ---
 title: "Alternating Least Squares"
-tags: ["machine_learning", "matrix_factorization", "recommendation_system"]
-aliases: ["ALS", "WRMF", "WMF"]
+tags:
+  - machine_learning
+  - matrix_factorization
+  - recommendation_system
+aliases: [ALS, WRMF, WMF]
 ---
 
 [[collaborative filtering]] 의 [[matrix factorization|MF]] 기법은 [[gradient descent]] update 를 이용하여 user 와 item 의 latent vector 를 찾아내는데, 이러한 최적화 과정은 너무 느리고 많은 반복이 필요하다.

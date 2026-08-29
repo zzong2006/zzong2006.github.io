@@ -1,7 +1,9 @@
 ---
 title: "CPU"
-tags: ["operating_system", "computer_architecture"]
-aliases: ["processor", "central processing unit"]
+tags:
+  - operating_system
+  - computer_architecture
+aliases: [processor, central processing unit]
 ---
 
 # A) CPU ?

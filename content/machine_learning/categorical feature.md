@@ -1,6 +1,9 @@
 ---
 title: "categorical feature"
-tags: ["classification", "feature_engineering"]
+tags:
+  - classification
+  - feature_engineering
+aliases: []
 ---
 
 # A) Categorical Feature ?

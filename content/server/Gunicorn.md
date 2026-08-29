@@ -1,6 +1,10 @@
 ---
 title: "Gunicorn"
-tags: ["network", "server", "python"]
+aliases: []
+tags:
+  - network
+  - server
+  - python
 ---
 
 # A) Gunicorn ?

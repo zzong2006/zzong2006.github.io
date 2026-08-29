@@ -1,6 +1,11 @@
 ---
 title: "Electra"
-tags: ["NLP", "Google", "y2020", "ICLR"]
+tags:
+  - NLP
+  - Google
+  - y2020
+  - ICLR
+aliases: []
 ---
 
 # A) Electra ?

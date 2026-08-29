@@ -1,7 +1,8 @@
 ---
 title: "cluster(Kubernetes)"
-tags: ["Kubernetes"]
 aliases: ["cluster"]
+tags:
+  - Kubernetes
 ---
 
 # A) Kubernetes Cluster ?

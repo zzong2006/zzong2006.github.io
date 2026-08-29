@@ -1,6 +1,9 @@
 ---
 title: "Foreign Key"
-tags: ["database", "relation"]
+tags:
+  - database
+  - relation
+aliases: []
 ---
 
 # A) Foreign Key

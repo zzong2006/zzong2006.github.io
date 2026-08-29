@@ -1,6 +1,7 @@
 ---
 title: "socket"
-tags: ["network"]
+tags: network 
+aliases: []
 ---
 
 # Socket ?

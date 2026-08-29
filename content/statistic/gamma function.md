@@ -1,7 +1,9 @@
 ---
 title: "gamma function"
-tags: ["statistic", "math"]
-aliases: ["Gamma function"]
+tags:
+  - statistic
+  - math
+aliases: [Gamma function]
 ---
 
 # A) Gamma Function ?

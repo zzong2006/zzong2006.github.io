@@ -1,7 +1,9 @@
 ---
 title: "BART"
-tags: ["summarization", "NLP"]
 aliases: ["Bidirectional and Auto-Regressive Transformers"]
+tags:
+  - summarization
+  - NLP
 ---
 
 # A) BART란?

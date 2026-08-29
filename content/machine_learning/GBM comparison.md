@@ -1,6 +1,9 @@
 ---
 title: "GBM comparison"
-tags: ["machine_learning", "tabular"]
+aliases: []
+tags:
+  - machine_learning
+  - tabular
 ---
 
 # 1. CatBoost vs. LightGBM vs. XGBoost

@@ -1,6 +1,9 @@
 ---
 title: "CatBoost"
-tags: ["GBM", "ensemble"]
+aliases: []
+tags:
+  - GBM
+  - ensemble
 ---
 
 # 1. What is the CatBoost?

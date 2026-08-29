@@ -1,6 +1,14 @@
 ---
 title: "An Asymptotically Optimal Primal-Dual Incremental Algorithm for Contextual Linear Bandits"
-tags: ["MAB", "NIPS", "bandit", "contextual_bandit", "linear_regression", "paper_review", "y2020"]
+tags:
+  - MAB
+  - NIPS
+  - bandit
+  - contextual_bandit
+  - linear_regression
+  - paper_review
+  - y2020
+aliases: []
 ---
 
 # Links

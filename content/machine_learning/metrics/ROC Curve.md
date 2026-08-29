@@ -1,6 +1,9 @@
 ---
 title: "ROC Curve"
-tags: ["machine_learning", "metrics", "classification"]
+tags:
+  - machine_learning
+  - metrics
+  - classification
 aliases: ["ROC"]
 ---
 

@@ -1,7 +1,9 @@
 ---
 title: "standard normal distribution"
-tags: ["probability_distribution", "statistic"]
-aliases: ["표준 정규 분포"]
+tags:
+  - probability_distribution
+  - statistic
+aliases: [표준 정규 분포]
 ---
 
 # 1. Standard Normal Distribution ?

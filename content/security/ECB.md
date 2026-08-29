@@ -1,6 +1,6 @@
 ---
 title: "ECB"
-tags: ["security"]
+tags: security
 aliases: ["Electronic codebook"]
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "LightGBM"
-tags: ["GBM"]
+aliases: []
+tags:
+  - GBM
 ---
 
 # A) LightGBM ?

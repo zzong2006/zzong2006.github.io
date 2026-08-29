@@ -1,7 +1,9 @@
 ---
 title: "pre-order"
-tags: ["algorithm", "tree"]
-aliases: ["preorder", "preorder traversal", "pre-order traversal"]
+tags:
+  - algorithm
+  - tree
+aliases: [preorder, preorder traversal, pre-order traversal]
 ---
 
 # A) Pre-Order ?

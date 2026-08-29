@@ -1,6 +1,8 @@
 ---
 title: "Solving Ax=b"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # 1. Solving Ax=b ?

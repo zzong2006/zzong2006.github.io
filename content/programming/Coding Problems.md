@@ -1,6 +1,7 @@
 ---
 title: "Coding Problems"
-tags: ["programming"]
+tags: programming 
+aliases: []
 ---
 
 # A) NAVER 코딩 테스트

@@ -1,7 +1,8 @@
 ---
 title: "Locally Linear Embedding"
-tags: ["machine_learning"]
 aliases: ["LLE"]
+tags:
+  - machine_learning
 ---
 
 # A) LLE ?

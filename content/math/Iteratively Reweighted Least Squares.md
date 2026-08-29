@@ -1,5 +1,7 @@
 ---
 title: "Iteratively Reweighted Least Squares"
+tags: 
+aliases: []
 ---
 
 # Iteratively Reweighted Least Squares ?

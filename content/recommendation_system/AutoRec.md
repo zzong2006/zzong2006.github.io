@@ -1,6 +1,9 @@
 ---
 title: "AutoRec"
-tags: ["recommendation_system", "deep_learning"]
+aliases: []
+tags:
+  - recommendation_system
+  - deep_learning
 ---
 
 # A) AutoRec ?

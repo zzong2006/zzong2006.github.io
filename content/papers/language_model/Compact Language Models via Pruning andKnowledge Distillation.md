@@ -1,6 +1,14 @@
 ---
 title: "Compact Language Models via Pruning andKnowledge Distillation"
-tags: ["language_model", "distillation", "pruning", "LLM", "nlp", "paper_review", "sLLM"]
+tags:
+  - language_model
+  - distillation
+  - pruning
+  - LLM
+  - nlp
+  - paper_review
+  - sLLM
+aliases: []
 ---
 
 # A) NVIDIA 의 Pruning 과 Knowledge Distillation 을 통한 언어 모델 압축

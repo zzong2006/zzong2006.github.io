@@ -1,6 +1,8 @@
 ---
 title: "Frequentist"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Frequentist ?

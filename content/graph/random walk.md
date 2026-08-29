@@ -1,7 +1,10 @@
 ---
 title: "random walk"
-tags: ["graph", "probability", "markov_chain"]
-aliases: ["Random Walk"]
+tags:
+  - graph
+  - probability
+  - markov_chain
+aliases: [Random Walk]
 ---
 
 # A) Random Walk ?

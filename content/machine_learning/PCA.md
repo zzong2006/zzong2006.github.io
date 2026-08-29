@@ -1,6 +1,9 @@
 ---
 title: "PCA"
-tags: ["machine_learning", "topic_modeling"]
+tags:
+  - machine_learning
+  - topic_modeling
+aliases: []
 ---
 
 # A) PCA ?

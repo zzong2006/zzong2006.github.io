@@ -1,6 +1,8 @@
 ---
 title: "hierarchical softmax"
-tags: ["word2vec"]
+tags:
+  - word2vec
+aliases: []
 ---
 
 # A) Hierarchical Softmax ?

@@ -1,6 +1,6 @@
 ---
 title: "survival analysis"
-tags: ["statistic"]
+tags: statistic 
 aliases: ["생존분석"]
 ---
 

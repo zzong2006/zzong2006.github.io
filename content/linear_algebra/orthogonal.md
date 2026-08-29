@@ -1,7 +1,8 @@
 ---
 title: "orthogonal"
-tags: ["linear_algebra"]
-aliases: ["orthogonal matrix", "Orthogonal Matrix"]
+tags:
+  - linear_algebra
+aliases: [orthogonal matrix, Orthogonal Matrix]
 ---
 
 # A) Orthogonal

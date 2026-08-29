@@ -1,6 +1,7 @@
 ---
 title: "heterogeneous"
-tags: ["word"]
+tags: word 
+aliases: []
 ---
 
 # A) Heterogeneous 의 사전적 의미

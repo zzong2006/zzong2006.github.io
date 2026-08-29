@@ -1,6 +1,10 @@
 ---
 title: "Matthew effect"
-tags: ["bias", "recommendation_system", "machine_learning"]
+tags:
+  - bias
+  - recommendation_system
+  - machine_learning
+aliases: []
 ---
 
 # A) Matthew Effect ?

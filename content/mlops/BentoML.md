@@ -1,6 +1,8 @@
 ---
 title: "BentoML"
-tags: ["MLOps"]
+tags:
+  - MLOps
+aliases: []
 ---
 
 # A) BentoML ?

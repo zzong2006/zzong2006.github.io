@@ -1,6 +1,15 @@
 ---
 title: "Scaling Laws For Dense Retrieval"
-tags: ["retrieval", "IR", "embedding", "dense_retrieval", "SIGIR", "nlp", "paper_review", "y2024"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - dense_retrieval
+  - SIGIR
+  - nlp
+  - paper_review
+  - y2024
+aliases: []
 ---
 
 # A) **Dense Retrieval 모델의 스케일링 법칙: 모델 크기와 데이터가 성능에 미치는 영향**

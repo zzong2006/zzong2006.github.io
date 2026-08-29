@@ -1,6 +1,8 @@
 ---
 title: "over-smoothing"
-tags: ["graph"]
+aliases: []
+tags:
+  - graph
 ---
 
 # A) Over-smoothing

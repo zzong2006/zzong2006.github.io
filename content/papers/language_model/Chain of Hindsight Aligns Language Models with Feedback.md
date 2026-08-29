@@ -1,7 +1,16 @@
 ---
 title: "Chain of Hindsight Aligns Language Models with Feedback"
-tags: ["language_model", "LLM", "nlp", "paper_review", "y2023"]
-aliases: ["CoH"]
+tags:
+  - language_model
+  - -
+  - LLM
+  - nlp
+  - paper_review
+  - LLM
+  - paper_review
+  - y2023
+aliases:
+  - CoH
 ---
 
 # A) Chain of Hindsight Aligns Language Models with Feedback?

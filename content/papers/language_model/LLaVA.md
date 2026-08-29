@@ -1,6 +1,11 @@
 ---
 title: "LLaVA"
-tags: ["language_model", "vision_language", "multimodal", "paper_review"]
+aliases: []
+tags:
+  - language_model
+  - vision_language
+  - multimodal
+  - paper_review
 ---
 
 # A) 핵심 요약

@@ -1,6 +1,7 @@
 ---
 title: "t-statistic"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # A) T-statistic ?

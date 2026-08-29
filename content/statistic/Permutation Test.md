@@ -1,7 +1,8 @@
 ---
 title: "Permutation Test"
-tags: ["hypothesis_test"]
 aliases: ["순열 검정"]
+tags:
+  - hypothesis_test
 ---
 
 # A) Permutation Test ?

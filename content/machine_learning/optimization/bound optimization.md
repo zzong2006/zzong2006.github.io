@@ -1,6 +1,8 @@
 ---
 title: "bound optimization"
-tags: ["optimization"]
+tags:
+  - optimization
+aliases: []
 ---
 
 # A) Bound Optimization ?

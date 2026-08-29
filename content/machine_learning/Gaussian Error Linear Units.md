@@ -1,7 +1,9 @@
 ---
 title: "Gaussian Error Linear Units"
-tags: ["activation_function"]
-aliases: ["GELU"]
+aliases:
+  - GELU
+tags:
+  - activation_function
 ---
 
 # A) Gaussian Error Linear Units ?

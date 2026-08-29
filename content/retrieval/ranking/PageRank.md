@@ -1,7 +1,12 @@
 ---
 title: "PageRank"
-tags: ["retrieval", "ranking", "search_engine", "graph", "markov_chain"]
-aliases: ["Page Rank", "PR"]
+tags:
+  - retrieval
+  - ranking
+  - search_engine
+  - graph
+  - markov_chain
+aliases: [Page Rank, PR]
 ---
 
 # A) PageRank ?

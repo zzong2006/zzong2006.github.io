@@ -1,6 +1,8 @@
 ---
 title: "feature engineering"
-tags: ["feature_engineering"]
+aliases: []
+tags:
+  - feature_engineering
 ---
 
 # A) **1. 누락 데이터(결측값) 처리**

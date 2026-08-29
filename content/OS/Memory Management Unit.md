@@ -1,7 +1,8 @@
 ---
 title: "Memory Management Unit"
-tags: ["operating_system"]
 aliases: ["MMU"]
+tags:
+  - operating_system
 ---
 
 # A) MMU ?

@@ -1,6 +1,10 @@
 ---
 title: "ArgoCD"
-tags: ["machine_learning", "pipeline", "CI/CD"]
+tags:
+  - machine_learning
+  - pipeline
+  - CI/CD
+aliases: []
 ---
 
 # A) ArgoCD ?

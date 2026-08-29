@@ -1,6 +1,13 @@
 ---
 title: "Causal Inference for Recommendation"
-tags: ["UAI", "bias", "fairness", "paper_review", "popularity_bias", "y2016"]
+aliases: []
+tags:
+  - UAI
+  - bias
+  - fairness
+  - paper_review
+  - popularity_bias
+  - y2016
 ---
 
 [paper link](https://dawenl.github.io/publications/LiangCB16-causalrec.pdf)

@@ -1,6 +1,11 @@
 ---
 title: "Burst-induced Multi-Armed Bandit for Learning Recommendation"
-tags: ["MAB", "RecSyS", "bandit", "paper_review"]
+aliases: []
+tags:
+  - MAB
+  - RecSyS
+  - bandit
+  - paper_review
 ---
 
 # A) Burst-induced Multi-Armed Bandit for Learning Recommendation ?

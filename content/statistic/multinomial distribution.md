@@ -1,6 +1,9 @@
 ---
 title: "multinomial distribution"
-tags: ["probability_distribution", "statistic"]
+aliases: []
+tags:
+  - probability_distribution
+  - statistic
 ---
 
 # A) Multinomial Distribution ?

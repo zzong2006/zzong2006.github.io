@@ -1,7 +1,8 @@
 ---
 title: "collaborative filtering"
-tags: ["recommendation_system"]
 aliases: ["CF"]
+tags:
+  - recommendation_system
 ---
 
 # A) Collaborative Filtering ?

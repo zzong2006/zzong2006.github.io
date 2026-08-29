@@ -1,7 +1,11 @@
 ---
 title: "Probabilistic latent Semantic Indexing"
-tags: ["bayesian_inference", "nlp", "paper_review", "statistic"]
-aliases: ["plsi"]
+aliases: [plsi]
+tags:
+  - bayesian_inference
+  - nlp
+  - paper_review
+  - statistic
 ---
 
 # A) Probabilistic Latent Semantic Indexing ?

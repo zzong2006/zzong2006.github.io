@@ -1,6 +1,9 @@
 ---
 title: "epsilon-greedy algorithm"
-tags: ["reinforcement_learning", "algorithm", "MAB"]
+tags:
+  - reinforcement_learning
+  - algorithm
+  - MAB
 aliases: ["epsilon-greedy"]
 ---
 

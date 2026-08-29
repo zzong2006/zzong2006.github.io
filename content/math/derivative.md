@@ -1,6 +1,9 @@
 ---
 title: "derivative"
-tags: ["math", "linear_algebra"]
+tags:
+  - math
+  - linear_algebra
+aliases: []
 ---
 
 # Derivative ?

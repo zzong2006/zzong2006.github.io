@@ -1,6 +1,10 @@
 ---
 title: "Hessian matrix"
-tags: ["linear_algebra", "calculus", "differentitation", "optimization"]
+tags:
+  - linear_algebra
+  - calculus
+  - differentitation
+  - optimization
 aliases: ["헤시안 행렬", "Hessian"]
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "TensorFlow"
+aliases: []
+tags: 
 ---
 * Custom Dataset 만들기 (from [[generator]])
 

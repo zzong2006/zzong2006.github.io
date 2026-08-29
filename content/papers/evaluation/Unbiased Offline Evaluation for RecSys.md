@@ -1,6 +1,12 @@
 ---
-title: "추천시스템에서 Unbiased Offline Evaluation"
-tags: ["MAB", "evaluation", "kakao", "offline_evaluation", "paper_review"]
+aliases: []
+tags:
+  - MAB
+  - evaluation
+  - kakao
+  - offline_evaluation
+  - paper_review
+title: 추천시스템에서 Unbiased Offline Evaluation
 ---
 
 # A) 핵심 요약

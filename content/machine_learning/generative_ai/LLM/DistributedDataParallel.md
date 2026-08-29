@@ -1,7 +1,10 @@
 ---
 title: "DistributedDataParallel"
-tags: ["deep_learning", "LLM"]
-aliases: ["DDP"]
+tags:
+  - deep_learning
+  - LLM
+aliases:
+  - DDP
 ---
 
 # A) DistributedDataParallel ?

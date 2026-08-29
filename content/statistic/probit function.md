@@ -1,6 +1,7 @@
 ---
 title: "probit function"
-tags: ["statistic"]
+tags: statistic 
+aliases: []
 ---
 
 # Probit Function ?

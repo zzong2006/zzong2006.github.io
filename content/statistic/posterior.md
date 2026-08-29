@@ -1,6 +1,9 @@
 ---
 title: "posterior"
-tags: ["statistic", "bayesian_inference"]
+tags:
+  - statistic
+  - bayesian_inference
+aliases: []
 ---
 
 # A) Posterior ?

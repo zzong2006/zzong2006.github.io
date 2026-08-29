@@ -1,6 +1,8 @@
 ---
 title: "Chamfer distance"
-tags: ["IR"]
+tags:
+  - IR
+aliases: []
 ---
 
 # A) Chamfer Distance ?

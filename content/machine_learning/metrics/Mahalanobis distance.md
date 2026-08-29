@@ -1,6 +1,7 @@
 ---
 title: "Mahalanobis distance"
-tags: ["metrics"]
+tags: metrics 
+aliases: []
 ---
 
 # A) Mahalanobis Distance ?

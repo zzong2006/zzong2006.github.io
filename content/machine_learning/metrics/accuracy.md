@@ -1,5 +1,6 @@
 ---
 title: "accuracy"
+tag: metrics, machine_learning, 
 ---
 
 # A) Accuracy 란?

@@ -1,6 +1,8 @@
 ---
 title: "Lazy learning"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # A) Lazy Learning ?

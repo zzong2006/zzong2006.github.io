@@ -1,6 +1,9 @@
 ---
 title: "SQL Join"
-tags: ["database", "SQL"]
+tags:
+  - database
+  - SQL
+aliases: []
 ---
 
 # A) SQL Join ?

@@ -1,6 +1,8 @@
 ---
 title: "poetry"
-tags: ["python"]
+tags:
+  - python
+aliases: []
 ---
 
 # A) Poetry ?

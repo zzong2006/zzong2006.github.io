@@ -1,5 +1,8 @@
 ---
-title: "Database Term"
+layout: default
+title:  "Database Term"
+category: Database
+order: 0.0
 ---
 
 1. Relation (릴레이션) : 테이블

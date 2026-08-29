@@ -1,7 +1,10 @@
 ---
 title: "cursor based pagination"
-tags: ["database", "pagination", "API"]
-aliases: ["Keyset Pagination", "커서 기반 페이지네이션"]
+tags:
+  - database
+  - pagination
+  - API
+aliases: [Keyset Pagination, 커서 기반 페이지네이션]
 ---
 
 # A) Cursor Based Pagination

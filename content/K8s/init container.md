@@ -1,6 +1,7 @@
 ---
 title: "init container"
-tags: ["Kubernetes"]
+tags: Kubernetes
+aliases: []
 ---
 
 # Init Container ?

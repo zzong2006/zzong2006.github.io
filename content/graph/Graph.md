@@ -1,6 +1,8 @@
 ---
 title: "Graph"
-tags: ["graph"]
+tags:
+  - graph
+aliases: []
 ---
 
 # A) Graph

@@ -1,6 +1,8 @@
 ---
 title: "OpenMP"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # A) OpenMP ?

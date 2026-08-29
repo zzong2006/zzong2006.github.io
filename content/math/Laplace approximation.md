@@ -1,6 +1,9 @@
 ---
 title: "Laplace approximation"
-tags: ["statistic", "bayesian_inference"]
+aliases: []
+tags:
+  - statistic
+  - bayesian_inference
 ---
 
 # A) Laplace Approximation ?

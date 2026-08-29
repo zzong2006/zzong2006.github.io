@@ -1,6 +1,12 @@
 ---
 title: "Top-K Contextual Bandits with Equity of Exposure"
-tags: ["RecSyS", "bandit", "contextual_bandit", "paper_review", "y2021"]
+aliases: []
+tags:
+  - RecSyS
+  - bandit
+  - contextual_bandit
+  - paper_review
+  - y2021
 ---
 
 # Top-K Contextual Bandits with Equity of Exposure ?

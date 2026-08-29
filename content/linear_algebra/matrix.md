@@ -1,6 +1,8 @@
 ---
 title: "matrix"
-tags: ["linear_algebra", "math"]
+tags:
+  - linear_algebra
+  - math
 aliases: ["matrices", "행렬"]
 ---
 

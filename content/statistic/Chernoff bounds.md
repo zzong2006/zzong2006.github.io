@@ -1,6 +1,7 @@
 ---
 title: "Chernoff bounds"
-tags: ["MAB"]
+tags: MAB 
+aliases: []
 ---
 
 # A) Chernoff Bounds ?

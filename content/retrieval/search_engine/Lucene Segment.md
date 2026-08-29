@@ -1,7 +1,11 @@
 ---
 title: "Lucene Segment"
-tags: ["IR", "search_engine", "retrieval", "lucene"]
-aliases: ["Lucene Segment", "Lucene segment", "루씬 세그먼트"]
+tags:
+  - IR
+  - search_engine
+  - retrieval
+  - lucene
+aliases: [Lucene Segment, Lucene segment, 루씬 세그먼트]
 ---
 
 # A) Lucene Segment ?

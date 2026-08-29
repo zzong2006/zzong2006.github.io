@@ -1,7 +1,8 @@
 ---
 title: "POI recommendation"
-tags: ["recommendation_system"]
 aliases: ["POI 추천"]
+tags:
+  - recommendation_system
 ---
 
 # 1. POI Recommendation ?

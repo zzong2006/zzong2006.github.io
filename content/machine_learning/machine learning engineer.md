@@ -1,6 +1,9 @@
 ---
 title: "machine learning engineer"
-tags: ["machine_learning", "work"]
+aliases: []
+tags:
+  - machine_learning
+  - work
 ---
 
 # A) Machine Learning Engineer ?

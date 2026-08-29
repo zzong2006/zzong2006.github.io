@@ -1,6 +1,9 @@
 ---
 title: "RLlib"
-tags: ["reinforcement_learning", "python"]
+tags:
+  - reinforcement_learning
+  - python
+aliases: []
 ---
 
 # A) RLlib ?

@@ -1,7 +1,9 @@
 ---
 title: "heteroscedasticity"
-tags: ["statistic", "regression"]
-aliases: ["heteroskedasticity", "non-constant variance"]
+tags:
+  - statistic
+  - regression
+aliases: [heteroskedasticity, non-constant variance]
 ---
 
 # A) Heteroscedasticity ?

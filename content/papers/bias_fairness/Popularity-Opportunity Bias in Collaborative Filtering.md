@@ -1,6 +1,13 @@
 ---
 title: "Popularity-Opportunity Bias in Collaborative Filtering"
-tags: ["WSDM", "bias", "fairness", "paper_review", "popularity_bias", "y2021"]
+aliases: []
+tags:
+  - WSDM
+  - bias
+  - fairness
+  - paper_review
+  - popularity_bias
+  - y2021
 ---
 
 [paper link](https://dl.acm.org/doi/pdf/10.1145/3437963.3441820)

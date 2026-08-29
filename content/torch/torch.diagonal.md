@@ -1,6 +1,10 @@
 ---
 title: "torch.diagonal"
-tags: ["PyTorch", "NLP", "attention"]
+aliases: []
+tags:
+  - PyTorch
+  - NLP
+  - attention
 ---
 
 Transformer 모델에서는 보통 마스크를 $(\text{batch}, \text{heads}, \text{seq}, \text{seq})$ 형태로 만듭니다. 이 마스크에서 $(i, j)$ 위치는 “토큰 $i$가 토큰 $j$를 볼 수 있는가”를 의미하며, 허용된 경우 $0$, 차단된 경우에는 $-\infty$와 같은 큰 음수 값이 들어갑니다.

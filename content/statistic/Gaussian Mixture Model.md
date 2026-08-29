@@ -1,6 +1,7 @@
 ---
 title: "Gaussian Mixture Model"
 aliases: ["GMM"]
+tag: bayesian_inference, statistic, machine_learning, 
 ---
 
 # A) GMM?

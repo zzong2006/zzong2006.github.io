@@ -1,6 +1,8 @@
 ---
 title: "itemKNN"
-tags: ["recommendation_system"]
+aliases: []
+tags:
+  - recommendation_system
 ---
 
 # itemKNN ?

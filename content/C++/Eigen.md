@@ -1,6 +1,9 @@
 ---
 title: "Eigen"
-tags: ["library", "Cpp"]
+tags:
+  - library
+  - Cpp
+aliases: []
 ---
 
 # A) Eigen

@@ -1,6 +1,9 @@
 ---
 title: "glue code"
-tags: ["word", "programming"]
+tags:
+  - word
+  - programming
+aliases: []
 ---
 
 # A) Glue Code ?

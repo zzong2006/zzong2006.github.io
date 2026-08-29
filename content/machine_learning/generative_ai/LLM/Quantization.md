@@ -1,7 +1,9 @@
 ---
-title: "Quantization"
-tags: ["deep_learning", "quantization"]
-aliases: ["양자화"]
+title: Quantization
+aliases: [양자화]
+tags:
+  - deep_learning
+  - quantization
 ---
 
 # A) Quantization ?

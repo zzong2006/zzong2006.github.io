@@ -1,6 +1,7 @@
 ---
 title: "Presto"
-tags: ["SQL"]
+tags:  SQL
+aliases: []
 ---
 
 # Presto ?

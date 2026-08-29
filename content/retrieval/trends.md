@@ -1,6 +1,10 @@
 ---
 title: "trends"
-tags: ["retrieval", "IR", "survey"]
+tags:
+  - retrieval
+  - IR
+  - survey
+aliases: []
 ---
 
 2025년 retrieval 구성 방식에 따른 트랜드 조사

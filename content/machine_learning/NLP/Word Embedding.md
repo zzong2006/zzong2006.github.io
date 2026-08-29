@@ -1,6 +1,10 @@
 ---
 title: "Word Embedding"
-tags: ["word2vec", "NLP", "machine_learning"]
+tags:
+  - word2vec
+  - NLP
+  - machine_learning
+aliases: []
 ---
 
 # A) Word Embedding ?

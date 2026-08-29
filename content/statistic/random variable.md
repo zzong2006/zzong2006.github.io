@@ -1,5 +1,7 @@
 ---
 title: "random variable"
+aliases: []
+tags: []
 ---
 
 # A) Random Variable ?

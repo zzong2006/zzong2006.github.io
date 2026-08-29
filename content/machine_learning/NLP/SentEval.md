@@ -1,6 +1,9 @@
 ---
 title: "SentEval"
-tags: ["machine_learning", "classification"]
+tags:
+  - machine_learning
+  - classification
+aliases: []
 ---
 
 # A) SentEval ?

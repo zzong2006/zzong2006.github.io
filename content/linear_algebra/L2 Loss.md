@@ -1,7 +1,10 @@
 ---
 title: "L2 Loss"
-tags: ["machine_learning", "loss_function", "linear_algebra"]
-aliases: ["squared loss", "L2 loss"]
+tags:
+  - machine_learning
+  - loss_function
+  - linear_algebra
+aliases: [squared loss, L2 loss]
 ---
 
 # A) L2 Loss ?

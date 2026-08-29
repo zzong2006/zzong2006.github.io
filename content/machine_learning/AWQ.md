@@ -1,7 +1,8 @@
 ---
 title: "AWQ"
-tags: ["quantization"]
-aliases: ["Activation-aware Weight Quantization"]
+aliases: [Activation-aware Weight Quantization]
+tags:
+  - quantization
 ---
 AWQ는 QAT(양자화 인식 훈련)가 아닌 **PTQ(훈련 후 양자화)** 방식에 속합니다. 모델을 처음부터 다시 훈련할 필요 없이, 이미 훈련된 모델에 작은 보정용 데이터셋(calibration dataset)을 사용하여 양자화를 진행하기 때문입니다.
 

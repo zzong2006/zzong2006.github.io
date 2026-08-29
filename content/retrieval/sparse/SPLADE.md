@@ -1,6 +1,12 @@
 ---
 title: "SPLADE"
-tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - sparse_retrieval
+  - sparse_embedding
+aliases: []
 ---
 
 # A) SPLADE란

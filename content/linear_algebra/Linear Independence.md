@@ -1,7 +1,8 @@
 ---
 title: "Linear Independence"
-tags: ["linear_algebra"]
 aliases: ["linearly independent", "선형 독립", "linearly dependent"]
+tags:
+  - linear_algebra
 ---
 
 # A) Linear Independence?

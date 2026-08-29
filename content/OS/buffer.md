@@ -1,6 +1,6 @@
 ---
 title: "buffer"
-tags: ["operating_system"]
+tags: operating_system 
 aliases: ["버퍼"]
 ---
 

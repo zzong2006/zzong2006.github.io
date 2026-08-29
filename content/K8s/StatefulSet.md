@@ -1,6 +1,7 @@
 ---
 title: "StatefulSet"
-tags: ["Kubernetes"]
+tags: Kubernetes
+aliases: []
 ---
 
 # Statefulset ?

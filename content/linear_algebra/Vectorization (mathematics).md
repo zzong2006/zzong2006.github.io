@@ -1,6 +1,7 @@
 ---
 title: "Vectorization (mathematics)"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # A) Vectorization (mathematics) ?

@@ -1,6 +1,11 @@
 ---
 title: "muvera-py"
-tags: ["retrieval", "embedding", "multi_vector", "python"]
+tags:
+  - retrieval
+  - embedding
+  - multi_vector
+  - python
+aliases: []
 ---
 
 # A) `projection_dimension` Vs. `final_projection_dimension`

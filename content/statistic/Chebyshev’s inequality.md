@@ -1,6 +1,7 @@
 ---
 title: "Chebyshev’s inequality"
-tags: ["statistic"]
+tags:
+  - statistic
 aliases: ["Chebyshev's theorem"]
 ---
 

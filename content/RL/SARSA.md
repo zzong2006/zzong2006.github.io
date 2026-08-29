@@ -1,6 +1,8 @@
 ---
 title: "SARSA"
-tags: ["reinforcement_learning"]
+tags:
+  - reinforcement_learning
+aliases: []
 ---
 
 # A) SARSA ?

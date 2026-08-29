@@ -1,6 +1,7 @@
 ---
 title: "Kafka Replication"
-tags: ["kafka"]
+tags: kafka 
+aliases: []
 ---
 
 # Kafka Replication ?

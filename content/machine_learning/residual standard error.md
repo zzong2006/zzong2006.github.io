@@ -1,7 +1,8 @@
 ---
 title: "residual standard error"
-tags: ["metrics"]
 aliases: ["RSE"]
+tags:
+  - metrics
 ---
 
 # A) Residual Standard Error, RSE ?

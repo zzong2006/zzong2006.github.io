@@ -1,6 +1,8 @@
 ---
 title: "psql"
-tags: ["database"]
+aliases: []
+tags:
+  - database
 ---
 
 # Psql ?

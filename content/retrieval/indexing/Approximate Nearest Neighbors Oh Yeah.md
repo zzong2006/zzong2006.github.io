@@ -1,7 +1,10 @@
 ---
 title: "Approximate Nearest Neighbors Oh Yeah"
-tags: ["ANN", "vector_search", "Spotify"]
-aliases: ["Annoy"]
+tags:
+  - ANN
+  - vector_search
+  - Spotify
+aliases: [Annoy]
 ---
 
 # A) What is Annoy?

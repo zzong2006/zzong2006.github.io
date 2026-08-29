@@ -1,6 +1,8 @@
 ---
 title: "reinterpret_cast"
-tags: ["Cpp"]
+tags:
+  - Cpp
+aliases: []
 ---
 
 # A) reinterpret_cast ?

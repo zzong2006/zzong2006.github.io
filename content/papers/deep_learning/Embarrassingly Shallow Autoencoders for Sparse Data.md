@@ -1,7 +1,12 @@
 ---
 title: "Embarrassingly Shallow Autoencoders for Sparse Data"
-tags: ["WWW", "deep_learning", "linear_regression", "paper_review", "y2019"]
 aliases: ["EASE"]
+tags:
+  - WWW
+  - deep_learning
+  - linear_regression
+  - paper_review
+  - y2019
 ---
 
 # Abstract

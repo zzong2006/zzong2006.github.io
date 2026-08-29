@@ -1,6 +1,8 @@
 ---
 title: "batch inference"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # 1. Batch Inference ?

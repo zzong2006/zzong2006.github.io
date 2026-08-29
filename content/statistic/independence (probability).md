@@ -1,6 +1,8 @@
 ---
 title: "independence (probability)"
-tags: ["statistic"]
+tags:
+  - statistic
+aliases: []
 ---
 
 # A) Independence (probability) ?

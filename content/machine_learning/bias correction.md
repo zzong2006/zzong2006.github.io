@@ -1,6 +1,7 @@
 ---
 title: "bias correction"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # A) Bias Correction ?

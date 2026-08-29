@@ -1,6 +1,7 @@
 ---
 title: "advantage function"
-tags: ["reinforcement_learning"]
+tags: reinforcement_learning 
+aliases: []
 ---
 
 # 1. Advantage Function ?

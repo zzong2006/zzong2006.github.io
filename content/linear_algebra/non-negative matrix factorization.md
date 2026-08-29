@@ -1,6 +1,8 @@
 ---
 title: "non-negative matrix factorization"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # A) Non-negative Matrix Factorization (NMF)

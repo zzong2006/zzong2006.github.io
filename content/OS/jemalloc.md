@@ -1,6 +1,8 @@
 ---
 title: "jemalloc"
-tags: ["operating_system"]
+tags:
+  - operating_system
+aliases: []
 ---
 
 # A) Jemalloc ?

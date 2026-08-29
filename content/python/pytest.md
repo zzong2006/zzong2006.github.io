@@ -1,6 +1,9 @@
 ---
 title: "pytest"
-tags: ["test", "python"]
+tags:
+  - test
+  - python
+aliases: []
 ---
 
 # A) `fixtures`

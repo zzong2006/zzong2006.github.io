@@ -1,6 +1,9 @@
 ---
 title: "Cython"
-tags: ["python", "language"]
+aliases: []
+tags:
+  - python
+  - language
 ---
 
 # Cython?

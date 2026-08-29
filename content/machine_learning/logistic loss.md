@@ -1,6 +1,8 @@
 ---
 title: "logistic loss"
-tags: ["machine_learning"]
+tags:
+  - machine_learning
+aliases: []
 ---
 
 # A) Logistic Loss ?

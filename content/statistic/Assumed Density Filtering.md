@@ -1,6 +1,7 @@
 ---
 title: "Assumed Density Filtering"
-tags: ["bayesian_inference"]
+tags:
+  - bayesian_inference
 aliases: ["ADF", "moment matching", "weak marginalization"]
 ---
 

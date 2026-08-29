@@ -1,6 +1,8 @@
 ---
 title: "data"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # In Statistic

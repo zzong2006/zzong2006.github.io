@@ -1,6 +1,7 @@
 ---
 title: "free column"
-tags: ["linear_algebra"]
+tags: linear_algebra 
+aliases: []
 ---
 
 # Free Column ?

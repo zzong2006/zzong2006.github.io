@@ -1,6 +1,11 @@
 ---
 title: "A Survey on Reinforcement Learning for Recommender Systems"
-tags: ["paper_review", "survey", "reinforcement_learning", "recommendation_system"]
+tags:
+  - paper_review
+  - survey
+  - reinforcement_learning
+  - recommendation_system
+aliases:
 ---
 
 # A) Survey on Reinforcement Learning for Recommender Systems ?

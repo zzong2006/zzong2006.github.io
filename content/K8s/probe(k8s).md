@@ -1,6 +1,7 @@
 ---
 title: "probe(k8s)"
-tags: ["Kubernetes"]
+tags: Kubernetes 
+aliases: []
 ---
 
 # probe(k8s) ?

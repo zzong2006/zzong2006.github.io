@@ -1,6 +1,7 @@
 ---
 title: "KL annealing"
-tags: ["optimization"]
+tags: optimization 
+aliases: []
 ---
 
 # KL Annealing ?

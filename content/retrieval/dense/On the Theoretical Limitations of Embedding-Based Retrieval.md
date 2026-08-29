@@ -1,6 +1,14 @@
 ---
 title: "On the Theoretical Limitations of Embedding-Based Retrieval"
-tags: ["retrieval", "IR", "embedding", "dense_retrieval", "theory", "Google", "DeepMind"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - dense_retrieval
+  - theory
+  - Google
+  - DeepMind
+aliases: []
 ---
 
 [2508.21038](https://arxiv.org/pdf/2508.21038)

@@ -1,5 +1,7 @@
 ---
 title: "Generate Image from AI"
+aliases: []
+tags: []
 ---
 
 # A) Generate Image from AI ?

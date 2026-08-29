@@ -1,6 +1,7 @@
 ---
 title: "covariate"
-tags: ["statistic"]
+tags:
+  - statistic
 aliases: ["공변량"]
 ---
 

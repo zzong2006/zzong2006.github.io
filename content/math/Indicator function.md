@@ -1,6 +1,8 @@
 ---
 title: "Indicator function"
-tags: ["math"]
+aliases: []
+tags:
+  - math
 ---
 
 # Indicator Function ?

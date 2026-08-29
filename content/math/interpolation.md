@@ -1,6 +1,7 @@
 ---
 title: "interpolation"
-tags: ["math"]
+tags:
+  - math
 aliases: ["보간법"]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "CPU Scheduling"
-tags: ["operating_system"]
-aliases: ["scheduler", "process scheduling"]
+tags:
+  - operating_system
+aliases: [scheduler, process scheduling]
 ---
 
 # A) CPU Scheduling ?

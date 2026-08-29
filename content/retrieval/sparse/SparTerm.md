@@ -1,6 +1,12 @@
 ---
 title: "SparTerm"
-tags: ["retrieval", "IR", "embedding", "sparse_retrieval", "sparse_embedding"]
+tags:
+  - retrieval
+  - IR
+  - embedding
+  - sparse_retrieval
+  - sparse_embedding
+aliases: []
 ---
 
 # A) SparTerm이란

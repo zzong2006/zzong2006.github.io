@@ -1,6 +1,11 @@
 ---
 title: "Calibrated Recommendations"
-tags: ["bias", "fairness", "paper_review", "recommendation_system"]
+tags:
+  - bias
+  - fairness
+  - paper_review
+  - recommendation_system
+aliases: []
 ---
 
 # 1. Calibrated Recommendations ?

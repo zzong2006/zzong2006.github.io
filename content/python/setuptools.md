@@ -1,6 +1,8 @@
 ---
 title: "setuptools"
-tags: ["python"]
+aliases: []
+tags:
+  - python
 ---
 
 # A) Setuptools ?

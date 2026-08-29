@@ -1,6 +1,7 @@
 ---
 title: "Hidden Technical Debt in Machine Learning Systems"
-tags: ["machine_learning NIPS paper_review Google y2015"]
+tags: machine_learning NIPS paper_review Google y2015
+aliases: 
 ---
 
 # Hidden Technical Debt in Machine Learning Systems ?

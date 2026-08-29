@@ -1,6 +1,8 @@
 ---
 title: "matrix multiplication"
-tags: ["linear_algebra"]
+aliases: []
+tags:
+  - linear_algebra
 ---
 
 # Matrix Multiplication

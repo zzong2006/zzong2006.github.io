@@ -1,7 +1,15 @@
 ---
 title: "Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations"
-tags: ["Google", "RecSyS", "bias", "deep_learning", "fairness", "paper_review", "recommendation_system", "y2019"]
 aliases: ["two-tower model"]
+tags:
+  - Google
+  - RecSyS
+  - bias
+  - deep_learning
+  - fairness
+  - paper_review
+  - recommendation_system
+  - y2019
 ---
 
 Figure: two-tower DNN model for learning query and candidate representations

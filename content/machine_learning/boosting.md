@@ -1,6 +1,7 @@
 ---
 title: "boosting"
-tags: ["ensemble"]
+tags: ensemble
+aliases: []
 ---
 
 # A) Boosting ?

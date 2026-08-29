@@ -1,6 +1,9 @@
 ---
 title: "elastic net"
-tags: ["linear_regression", "machine_learning"]
+aliases: []
+tags:
+  - linear_regression
+  - machine_learning
 ---
 
 # A) Elastic Net ?

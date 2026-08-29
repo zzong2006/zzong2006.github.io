@@ -1,6 +1,10 @@
 ---
 title: "faiss"
-tags: ["ANN", "vector_search", "Facebook"]
+tags:
+  - ANN
+  - vector_search
+  - Facebook
+aliases: []
 ---
 
 # A) Faiss ?

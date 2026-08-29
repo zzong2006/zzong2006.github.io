@@ -1,6 +1,9 @@
 ---
 title: "Reinforcement Learning for Slate-based Recommender Systems - A Tractable Decomposition and Practical Methodology"
-tags: ["paper_review", "reinforcement_learning"]
+aliases: []
+tags:
+  - paper_review
+  - reinforcement_learning
 ---
 
 # Empirical Evaluation: Live Experiments

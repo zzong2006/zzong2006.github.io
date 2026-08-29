@@ -1,6 +1,9 @@
 ---
 title: "experiment"
-tags: ["word", "statistic"]
+aliases: []
+tags:
+  - word
+  - statistic
 ---
 
 # A) Experiment ?

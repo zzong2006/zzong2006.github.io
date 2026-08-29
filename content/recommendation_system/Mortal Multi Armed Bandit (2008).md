@@ -1,6 +1,8 @@
 ---
 title: "Mortal Multi Armed Bandit (2008)"
-tags: ["MAB"]
+aliases: []
+tags:
+  - MAB
 ---
 
 # A) Mortal Multi Armed Bandit (2008) ?

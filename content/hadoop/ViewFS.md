@@ -1,6 +1,8 @@
 ---
 title: "ViewFS"
-tags: ["hadoop"]
+aliases: []
+tags:
+  - hadoop
 ---
 
 # A) Viewfs 란?

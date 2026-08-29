@@ -1,5 +1,7 @@
 ---
 title: "mixed precision"
+tags: 
+aliases: []
 ---
 
 # A) Mixed Precision ?

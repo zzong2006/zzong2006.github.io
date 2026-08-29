@@ -1,6 +1,10 @@
 ---
 title: "m3-embedding"
-tags: ["embedding", "dense_retrieval", "multi_vector"]
+tags:
+  - embedding
+  - dense_retrieval
+  - multi_vector
+aliases: []
 ---
 
 # A) M3-Embedding 논문 핵심 요약

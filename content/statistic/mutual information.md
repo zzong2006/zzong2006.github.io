@@ -1,7 +1,10 @@
 ---
 title: "mutual information"
-tags: ["information_theory", "statistic"]
-aliases: ["MI"]
+tags:
+  - information_theory
+  - statistic
+aliases:
+  - MI
 ---
 
 # A) Mutual Information

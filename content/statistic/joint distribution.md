@@ -1,6 +1,9 @@
 ---
 title: "joint distribution"
-tags: ["probability_distribution", "statistic"]
+aliases: []
+tags:
+  - probability_distribution
+  - statistic
 ---
 
 # A) Joint Distribution ?

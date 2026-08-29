@@ -1,6 +1,8 @@
 ---
 title: "Microservice Architecture"
-aliases: ["MSA"]
+tags: 
+aliases:
+  - MSA
 ---
 
 # A) MSA ?

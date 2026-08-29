@@ -1,6 +1,7 @@
 ---
 title: "confidence interval"
-tags: ["statistic"]
+tags:
+  - statistic
 aliases: ["CI", "신뢰 구간"]
 ---
 

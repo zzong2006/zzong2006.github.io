@@ -1,6 +1,8 @@
 ---
 title: "NP-complete"
-tags: ["algorithm"]
+aliases: []
+tags:
+  - algorithm
 ---
 
 # A) NP-complete ?

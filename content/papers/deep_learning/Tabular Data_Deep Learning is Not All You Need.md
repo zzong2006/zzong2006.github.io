@@ -1,6 +1,9 @@
 ---
 title: "Tabular Data_Deep Learning is Not All You Need"
-tags: ["deep_learning", "paper_review"]
+aliases: []
+tags:
+  - deep_learning
+  - paper_review
 ---
 
 [Tabular Data: Deep Learning is Not All You Need](https://arxiv.org/abs/2106.03253)

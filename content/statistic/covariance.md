@@ -1,7 +1,10 @@
 ---
 title: "covariance"
-tags: ["statistic", "metrics", "linear_regression"]
 aliases: ["covariance matrix", "공분산"]
+tags:
+  - statistic
+  - metrics
+  - linear_regression
 ---
 
 # 1. Covariance ?

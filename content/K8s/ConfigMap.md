@@ -1,6 +1,8 @@
 ---
 title: "ConfigMap"
-tags: ["Kubernetes"]
+tags:
+  - Kubernetes
+aliases: []
 ---
 
 # ConfigMap ?

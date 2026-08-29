@@ -1,7 +1,9 @@
 ---
 title: "Grid Search"
-tags: ["machine_learning", "hyperparameter_optimization"]
-aliases: ["grid search", "GridSearchCV"]
+tags:
+  - machine_learning
+  - hyperparameter_optimization
+aliases: [grid search, GridSearchCV]
 ---
 
 # A) Grid Search ?

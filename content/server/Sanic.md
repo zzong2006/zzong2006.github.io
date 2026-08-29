@@ -1,6 +1,9 @@
 ---
 title: "Sanic"
-tags: ["python", "server"]
+aliases: []
+tags:
+  - python
+  - server
 ---
 
 # Sanic ?

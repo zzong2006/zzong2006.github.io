@@ -1,6 +1,8 @@
 ---
 title: "paper review"
-tags: ["paper_review"]
+aliases: []
+tags:
+  - paper_review
 ---
 
 # A) 논문의 퀄리티 측정법

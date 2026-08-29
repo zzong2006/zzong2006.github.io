@@ -1,6 +1,8 @@
 ---
 title: "Unimodal distribution"
-tags: ["statistic"]
+aliases: []
+tags:
+  - statistic
 ---
 
 # A) Unimodal 분포란?

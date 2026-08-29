@@ -1,6 +1,9 @@
 ---
 title: "Pororo"
-tags: ["NLP", "BERT"]
+aliases: []
+tags:
+  - NLP
+  - BERT
 ---
 
 # Pororo ?

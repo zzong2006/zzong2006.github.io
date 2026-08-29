@@ -1,6 +1,7 @@
 ---
 title: "exponential distribution"
-tags: ["probability_distribution"]
+tags: probability_distribution 
+aliases: []
 ---
 
 # Exponential Distribution ?

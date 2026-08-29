@@ -1,7 +1,9 @@
 ---
 title: "Naïve Bayes"
-tags: ["machine_learning", "classification"]
-aliases: ["나이브 베이즈", "Naive Bayes"]
+tags:
+  - machine_learning
+  - classification
+aliases: [나이브 베이즈, Naive Bayes]
 ---
 
 # A) Naïve Bayes ?

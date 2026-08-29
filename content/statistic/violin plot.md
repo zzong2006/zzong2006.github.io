@@ -1,6 +1,9 @@
 ---
 title: "violin plot"
-tags: ["statistic", "visualization"]
+tags:
+  - statistic
+  - visualization
+aliases: []
 ---
 
 # Violin Plot ?

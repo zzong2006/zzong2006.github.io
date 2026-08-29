@@ -1,6 +1,8 @@
 ---
 title: "L-BFGS-B"
-tags: ["optimization"]
+aliases: []
+tags:
+  - optimization
 ---
 
 # What is the L-BFGS-B ?

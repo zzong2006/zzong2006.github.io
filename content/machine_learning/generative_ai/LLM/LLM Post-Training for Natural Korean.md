@@ -1,7 +1,15 @@
 ---
-title: "자연스러운 한국어를 위한 LLM Post-Training"
-tags: ["LLM", "post_training", "alignment", "instruction_tuning", "korean"]
-aliases: ["Korean Instruction Tuning", "Natural Korean Post-Training", "LLM Post-Training"]
+title: 자연스러운 한국어를 위한 LLM Post-Training
+tags:
+  - LLM
+  - post_training
+  - alignment
+  - instruction_tuning
+  - korean
+aliases:
+  - Korean Instruction Tuning
+  - Natural Korean Post-Training
+  - LLM Post-Training
 ---
 
 # A) 자연스러운 한국어를 위한 LLM Post-Training

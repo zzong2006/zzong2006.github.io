@@ -1,6 +1,9 @@
 ---
 title: "LVLM 를 따라하는 정보 넣기"
-tags: ["LLM", "LVLM"]
+tags:
+  - LLM
+  - LVLM
+aliases: []
 ---
 
 # A) General LVLMs 학습 방법

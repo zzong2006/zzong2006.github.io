@@ -1,7 +1,8 @@
 ---
 title: "Common Gateway Interface"
-tags: ["network"]
 aliases: ["CGI"]
+tags:
+  - network
 ---
 
 # A) Common Gateway Interface ?

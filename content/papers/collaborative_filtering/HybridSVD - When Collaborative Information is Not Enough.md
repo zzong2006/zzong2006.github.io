@@ -1,6 +1,12 @@
 ---
 title: "HybridSVD - When Collaborative Information is Not Enough"
-tags: ["paper_review", "y2019", "cold-start", "RecSyS", "collaborative_filtering"]
+tags:
+  - paper_review
+  - y2019
+  - cold-start
+  - RecSyS
+  - collaborative_filtering
+aliases: []
 ---
 
 # A) HybridSVD - When Collaborative Information is Not Enough ?

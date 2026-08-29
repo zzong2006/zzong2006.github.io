@@ -1,6 +1,9 @@
 ---
 title: "cmake"
-tags: ["compile", "Cpp"]
+tags:
+  - compile
+  - Cpp
+aliases: []
 ---
 
 # A) Install Latest Cmake

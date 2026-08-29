@@ -1,6 +1,8 @@
 ---
 title: "SQL"
-tags: ["SQL"]
+aliases: []
+tags:
+  - SQL
 ---
 ```table-of-contents
 ```

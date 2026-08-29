@@ -1,6 +1,9 @@
 ---
 title: "lua"
-tags: ["programming", "language"]
+tags:
+  - programming
+  - language
+aliases: []
 ---
 
 # 1. Lua ?

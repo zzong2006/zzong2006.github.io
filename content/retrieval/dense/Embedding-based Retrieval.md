@@ -1,7 +1,10 @@
 ---
 title: "Embedding-based Retrieval"
-tags: ["retrieval", "dense_retrieval", "embedding"]
-aliases: ["EBR"]
+tags:
+  - retrieval
+  - dense_retrieval
+  - embedding
+aliases: [EBR]
 ---
 
 # A) Embedding-Based Retrieval

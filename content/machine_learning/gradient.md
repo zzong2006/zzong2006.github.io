@@ -1,6 +1,8 @@
 ---
 title: "gradient"
-tags: ["calculus", "differentitation"]
+tags:
+  - calculus
+  - differentitation
 aliases: ["그래디언트"]
 ---
 

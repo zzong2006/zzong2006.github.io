@@ -1,7 +1,8 @@
 ---
 title: "partition(Spark)"
-tags: ["Spark"]
 aliases: ["partition"]
+tags:
+  - Spark
 ---
 
 # A) Spark Partition ?
