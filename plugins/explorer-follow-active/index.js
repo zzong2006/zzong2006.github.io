@@ -248,6 +248,13 @@ function buildScript(options) {
 
   function sortList(list, dates) {
     const items = Array.from(list.children).filter((item) => !item.classList.contains("overflow-end"));
+
+    // 정렬 결과는 목록이 바뀌지 않는 한 그대로다. sync 는 nav/render/load/재시도로
+    // 여러 번 도는데, 매번 1725개를 다시 붙이면 순수한 낭비다.
+    // 자식 수를 지문으로 삼아 바뀐 목록만 다시 정렬한다.
+    const fingerprint = String(items.length);
+    if (list.dataset.sortedFor === fingerprint) return;
+
     items.sort((left, right) => {
       const leftFolder = isFolderItem(left);
       const rightFolder = isFolderItem(right);
@@ -263,7 +270,13 @@ function buildScript(options) {
       });
     });
 
-    for (const item of items) list.appendChild(item);
+    // 항목마다 appendChild 하면 목록 하나에 DOM 이동이 항목 수만큼 일어난다.
+    // fragment 에 모아 한 번에 넣으면 삽입이 1회로 끝난다.
+    const fragment = document.createDocumentFragment();
+    for (const item of items) fragment.appendChild(item);
+    list.appendChild(fragment);
+
+    list.dataset.sortedFor = fingerprint;
   }
 
   function sortExplorer(explorer, dates) {
@@ -305,6 +318,11 @@ function buildScript(options) {
     neutralizeDesktopToggle();
 
     for (const explorer of explorers) {
+      // 탐색기 트리는 <template> 에서 클라이언트가 만든다. 아직 비어 있으면
+      // 정렬할 것도 접을 것도 없다. 이 가드가 없으면 재시도 12회가 매번
+      // 빈 트리를 훑고 지나간다.
+      if (!explorer.querySelector("a.nav-file-title")) continue;
+
       tidyFolderLabels(explorer);
       sortExplorer(explorer, dates);
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
