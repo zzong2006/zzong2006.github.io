@@ -144,7 +144,7 @@ importance ratio / clipping: token level
 
 즉 답변 전체에 대한 reward를 받은 뒤, 실제 update에서는 token마다 ratio와 clipping을 따로 적용한다. 긴 reasoning 답변에서는 token-level ratio가 많이 쌓이고, token마다 clipping 여부도 달라질 수 있다.
 
-[[GSPO]]는 이 지점을 바꾼다. reward가 response 단위라면 policy ratio와 clipping도 response sequence 단위로 맞추자는 접근이다.
+[[GSPO]]는 이 지점을 바꾼다. 채점이 답변 하나를 단위로 이뤄지니, policy ratio와 clipping도 같은 단위로 두자는 것이다.
 
 # G) 장점과 주의점
 
