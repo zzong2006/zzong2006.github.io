@@ -14,395 +14,358 @@ aliases:
 
 # A) 한줄 요약
 
-GSPO(Group Sequence Policy Optimization)는 LLM RL에서 답변 하나를 통째로 한 단위로 보고 policy를 업데이트하는 방법이다.
+GSPO(Group Sequence Policy Optimization)는 대규모 언어 모델(LLM)의 강화학습에서 **답변 전체(sequence)를 하나의 기본 단위로 보고 policy를 업데이트하는 알고리즘**이다.
 
-[[GRPO]]는 value model 없이 group reward로 advantage를 만들지만, policy를 업데이트할 때는 token마다 importance ratio를 따로 계산한다. GSPO가 바꾸는 곳이 여기다. 채점이 답변 하나를 단위로 이뤄지니, 업데이트에 쓰는 확률 비율(importance ratio)과 그 비율을 잘라내는 clipping도 같은 단위로 두자는 것이다.
+기존 [[GRPO]]는 별도의 가치 모델(value model) 없이 그룹 내 상대 평가로 어드밴티지(advantage)를 구하지만, 정책을 업데이트할 때는 각 토큰마다 확률 비율(importance ratio)을 따로 계산하고 토큰마다 개별적으로 클리핑(clipping)을 적용했다. 반면 GSPO는 "채점이 답변 전체를 대상으로 매겨진다면, 업데이트에 쓰는 확률 비율과 클리핑도 답변 전체 단위로 맞춰야 한다"는 문제의식에서 출발한다.
 
-한 줄로 줄이면 이렇게 볼 수 있다.
+| 알고리즘 | 가치 모델 (Critic) | Advantage 단위 | Policy Ratio / Clipping 단위 | 핵심 특성 |
+| --- | --- | --- | --- | --- |
+| PPO | 필요함 (별도 모델) | 토큰 또는 문장 | 토큰 (Token) | 메모리와 연산 비용이 큼 |
+| [[GRPO]] | 없음 (제거) | 그룹 내 상대 점수 (Sequence) | 토큰 (Token) | 채점 단위와 업데이트 단위가 불일치 |
+| **GSPO** | 없음 (제거) | 그룹 내 상대 점수 (Sequence) | **답변 전체 (Sequence)** | **채점 단위와 업데이트 단위를 일치** |
 
-> GRPO가 "좋은 답변 안의 token들을 어떻게 밀 것인가"를 본다면, GSPO는 "좋은 답변 하나가 old policy 대비 얼마나 달라졌는가"를 본다.
-
-Qwen Team은 Qwen3-30B-A3B-Base로 이 방식을 검증했고, [[GRPO]] 대비 training stability와 efficiency가 낫고 AIME'24, LiveCodeBench, CodeForces 점수도 높다고 보고한다. 특히 [[MoE]] 모델의 RL training을 안정화한다. [[papers/language_model/Qwen-AgentWorld - Language World Models for General Agents|Qwen-AgentWorld]]의 RL stage에서도 `GSPO`가 사용된다.
-
-# B) ratio를 token마다 계산하면 무엇이 어긋나는가
-
-## B.1) 채점 단위와 업데이트 단위가 다르다
-
-LLM RLVR에서는 보통 답변 하나에 reward 하나가 매겨진다.
+Qwen 팀은 Qwen3 시리즈의 포스트 트레이닝 과정에서 이 방식을 도입했다. 긴 사고 과정(Chain-of-Thought)을 요구하는 수학·코딩 벤치마크에서 안정적인 성능 향상을 보였으며, 특히 [[MoE]](Mixture of Experts) 모델의 강화학습 안정성을 획기적으로 개선했다.
 
 ```text
-prompt x
--> response y
--> verifier/reward r(x, y)
+GRPO:  "좋은 답변 안에 포함된 수많은 토큰 각각의 확률을 개별적으로 어떻게 밀어줄 것인가?"
+GSPO:  "좋은 답변 하나 전체가 이전 정책(old policy) 대비 평균적으로 얼마나 더 그럴듯해졌는가?"
 ```
 
-수학 문제라면 최종 답이 맞았는지, coding task라면 test를 통과했는지가 reward가 된다. 채점 대상은 token 하나하나가 아니라 답변 전체다.
+# B) 왜 기존 GRPO의 토큰 단위 ratio가 문제가 되었나
 
-그런데 GRPO는 이렇게 얻은 response-level reward로 advantage를 만든 뒤, policy update에서는 token-level ratio를 쓴다. 두 방법이 무엇을 한 덩어리로 보는지 나란히 두면 차이가 드러난다.
+## B.1) 채점 단위와 업데이트 단위의 불일치
+
+수학 문제 풀이나 코딩처럼 정답 여부를 검증할 수 있는 환경(RLVR, Reinforcement Learning with Verifiable Rewards)에서는 보통 답변 하나 전체에 대해 하나의 보상(reward)이 부여된다. 최종 답이 맞았으면 1점, 틀렸으면 0점이다.
 
 ```text
-                   ┌──────────── 답변 y (token 512개) ────────────┐
-채점 (verifier)    │           r(x, y) = 1  ->  A = +0.8          │
-                   └────────── 답변 하나에 값 하나 ───────────────┘
-
-GRPO 의 update     [t1][t2][t3][t4] ...................... [t512]
-                    ratio 512개, clip 512번   <- 채점 단위와 어긋난다
-
-GSPO 의 update     [──────────────── y ────────────────]
-                    ratio 1개, clip 1번       <- 채점 단위와 같다
+Prompt (문제)
+  │
+  ▼
+Response (답변 전체 y)
+  │
+  ▼
+Verifier (검증기 채점) ──▶ r(x, y) = 1 (답변 하나에 보상 하나)
 ```
 
-verifier는 답변 하나를 놓고 값 하나를 낸다. 위 그림의 첫 줄이 그것이다.
+문제는 GRPO가 이 보상을 다루는 방식이다. GRPO는 답변 전체에 매겨진 보상으로 어드밴티지 값을 계산한 뒤, 모델 파라미터를 업데이트할 때는 답변에 포함된 수백~수천 개의 토큰마다 개별적으로 확률 비율을 계산하고 토큰마다 클리핑을 건다.
 
-GRPO는 그 값 하나를 512개 token이 나눠 갖게 한 뒤, token마다 별도의 ratio를 계산하고 별도로 clip 여부를 판정한다. 채점은 한 번인데 판정은 512번이다.
+```text
+                   ┌──────────── 답변 y (토큰 512개) ────────────┐
+채점 (Verifier)    │           r(x, y) = 1  ──▶  A = +0.8        │
+                   └────────── 답변 하나에 점수 하나 ────────────┘
 
-GSPO는 판정도 한 번으로 맞춘다. 답변 전체에 ratio 하나를 두고 clip도 한 번만 건다. 이 어긋남을 없애는 것이 GSPO의 출발점이다.
+GRPO의 업데이트    [토큰 1]  [토큰 2]  [토큰 3]  ...  [토큰 512]
+                   - 토큰마다 개별 ratio 계산 (512개)
+                   - 토큰마다 개별 클리핑 판정 (일부는 잘리고, 일부는 통과)
+                   - 채점 단위(문장)와 업데이트 단위(토큰)가 어긋남
 
-## B.2) token-level ratio가 하는 일
+GSPO의 업데이트    [──────────────── 답변 y 전체 ────────────────]
+                   - 답변 전체의 평균 ratio 1개 계산
+                   - 답변 전체에 대해 클리핑 1회 판정 (통째로 반영 또는 제한)
+                   - 채점 단위와 업데이트 단위가 일치
+```
 
-token-level importance ratio는 "old policy가 이미 뽑은 token을 current policy가 지금은 얼마나 더, 또는 덜 뽑으려 하는가"를 보는 비율이다. 예를 들어 old policy가 어떤 자리에서 `4` token을 낼 확률을 `0.20`으로 봤고, current policy가 `0.30`으로 본다면 ratio는 `1.5`다. 현재 모델이 그 token을 이전보다 더 밀고 있다는 뜻이다.
+이 불일치는 실제 학습 과정에서 심각한 부작용을 낳는다.
 
-이 ratio는 update lever에 가깝다. 답변 전체가 좋은 reward를 받으면 그 답변 안의 token 확률을 올리는 방향으로, 나쁜 reward를 받으면 낮추는 방향으로 작동한다.
+## B.2) 단일 토큰 샘플로 만든 ratio는 노이즈가 된다
 
-## B.3) sample 하나로 만든 ratio는 보정 역할을 못 한다
+강화학습에서 중요도 샘플링(Importance Sampling)은 이전 정책 $\pi_{\theta_{\mathrm{old}}}$에서 생성된 데이터를 활용해 현재 정책 $\pi_\theta$의 기댓값을 추정하기 위한 장치다. 이때 두 정책 사이의 확률 비(likelihood ratio)를 가중치로 곱해준다.
 
-[[importance sampling]]은 샘플을 뽑기 쉬운 분포 $q$에서 뽑은 sample에 $p(x)/q(x)$ 비율을 곱해, 정작 알고 싶은 분포 $p$의 기댓값을 계산하는 기법이다. 그 비율이 바로 likelihood ratio다. RL에서 이 보정이 필요한 이유는 rollout은 old policy로 뽑았지만 업데이트는 current policy 기준이어야 하기 때문이다.
+이 통계적 보정이 이론적으로 성립하려면 충분한 수의 샘플을 평균내어 기댓값을 구해야 한다. 그러나 언어 모델이 답변을 생성할 때 각 위치 $t$에서 나오는 토큰은 수만 개 이상의 어휘(vocabulary) 중에서 **단 한 번 무작위로 추출된 단일 샘플**이다.
 
-문제는 보정이 성립하는 조건이다. 비율을 곱해서 분포를 옮기는 계산은 같은 분포에서 뽑은 sample $N$개를 평균할 때 원래 기댓값에 수렴한다. GRPO의 token-level ratio는 각 위치에서 sample 하나, 즉 실제로 생성된 token 하나만 갖고 비율을 만든다. 그래서 GSPO 논문은 이 ratio가 분포 차이를 보정하는 역할을 하지 못하고 대신 분산이 큰 noise를 [[Policy Gradient|policy gradient]]에 집어넣는다고 지적한다.
+단 하나의 토큰 샘플에 대해 계산된 비율 $\frac{\pi_\theta(y_t)}{\pi_{\theta_{\mathrm{old}}}(y_t)}$는 두 정책 분포의 차이를 정확히 나타내지 못한다. 오히려 우연에 의해 심하게 튀는 고분산 노이즈(high-variance noise)를 그래디언트에 직접 주입하게 된다.
 
-noise 하나하나는 작지만, 긴 reasoning 답변에서는 token 위치마다 쌓인다. clipping은 이를 더 키운다. token별로 ratio를 자르면 어떤 token은 gradient가 통째로 사라지고 어떤 token은 남으므로, 같은 답변 안에서도 업데이트 크기가 고르지 않게 된다.
+## B.3) 토큰별 클리핑이 추론 흐름을 토막 낸다
 
-[[MoE]] 모델에서는 token마다 활성화되는 expert가 달라질 수 있어 token-level likelihood ratio가 더 흔들린다.
+수학 문제를 풀거나 코드를 작성할 때는 수백~수천 개의 토큰이 하나의 긴 논리적 흐름(CoT)을 이룬다. 답변 전체가 정답을 맞혀 $+0.8$이라는 높은 보상을 받았다고 하자.
+
+GRPO에서는 각 토큰 위치마다 개별적으로 클리핑(보통 허용 범위 $\varepsilon = 0.2$)을 적용한다.
+- 우연히 확률이 20% 이상 크게 튄 토큰들은 클리핑에 걸려 그래디언트가 $0$으로 잘려나간다.
+- 덜 튄 주변 토큰들은 그래디언트가 온전히 남아 모델을 업데이트한다.
+
+결과적으로 하나의 완결된 논리적 추론 문장 안에서 특정 토큰들만 임의로 빠진 채 누더기 형태로 그래디언트가 반영된다. 추론 단계가 길어질수록 이 노이즈와 왜곡이 누적되어 학습이 급격히 불안정해진다.
+
+## B.4) MoE 모델에서의 학습 붕괴
+
+[[MoE]](Mixture of Experts) 아키텍처에서는 토큰마다 서로 다른 전문가 네트워크(Expert)로 라우팅된다. 정책 파라미터가 조금만 업데이트되어도 이전 스텝에서는 Expert 1로 가던 토큰이 Expert 2로 라우팅될 수 있다.
+
+라우팅이 바뀌면 해당 위치의 토큰 확률이 예측하기 어려울 정도로 요동친다. GRPO는 이 요동치는 토큰 확률을 그대로 비율에 반영하기 때문에, MoE 모델을 학습할 때 정책이 쉽게 붕괴하는 현상이 발생했다. 이를 막기 위해 이전 정책의 라우팅 결정을 캐시에 저장해 두고 억지로 재현하는 복잡한 기법(Routing Replay)을 동원해야만 했다.
 
 # C) 핵심 아이디어: 단위를 sequence로 옮긴다
 
-GSPO는 앞에서 본 채점 단위와 업데이트 단위의 어긋남을 ratio 쪽을 고쳐서 맞춘다. reward를 token 단위로 쪼개는 대신, ratio와 clipping을 답변 단위로 올린다.
+GSPO의 해법은 단순하고 명확하다. **보상이 답변 전체에 주어지듯, 확률 비율(ratio)과 클리핑(clipping)도 답변 전체 단위로 계산하는 것**이다.
 
-하나의 prompt $x$에 대해 old policy에서 $G$개의 답변을 샘플링한다.
+## C.1) Group 상대 Advantage 계산 (GRPO와 동일)
+
+먼저 하나의 질문(prompt) $x$에 대해 현재 모델 이전의 정책 $\pi_{\theta_{\mathrm{old}}}$에서 $G$개의 답변을 독립적으로 생성한다.
 
 $$
-y_1, y_2, \ldots, y_G
-\sim
-\pi_{\theta_{\mathrm{old}}}(\cdot \mid x)
+y_1, y_2, \ldots, y_G \sim \pi_{\theta_{\mathrm{old}}}(\cdot \mid x)
 $$
 
-각 답변 $y_i$는 verifier로 reward를 받는다.
+각 답변 $y_i$는 검증기(verifier)로부터 점수를 받는다.
 
 $$
 r(x, y_i)
 $$
 
-그다음 group 안에서 상대 advantage를 계산한다.
+같은 문제에 대해 나온 $G$개의 답변 점수를 기준으로 평균과 표준편차를 구해, 각 답변의 상대적 우수함을 나타내는 어드밴티지(advantage)를 계산한다.
 
 $$
-\widehat{A}_i =
-\frac{
-  r(x, y_i) - \mathrm{mean}(\{r(x, y_j)\}_{j=1}^{G})
-}{
-  \mathrm{std}(\{r(x, y_j)\}_{j=1}^{G})
-}
+\widehat{A}_i = \frac{r(x, y_i) - \mathrm{mean}\left(\{r(x, y_j)\}_{j=1}^{G}\right)}{\mathrm{std}\left(\{r(x, y_j)\}_{j=1}^{G}\right)}
 $$
 
-notation은 다음처럼 읽으면 된다.
+그룹 평균보다 잘 푼 답변은 양수($\widehat{A}_i > 0$), 못 푼 답변은 음수($\widehat{A}_i < 0$)를 받는다. 여기까지는 GRPO와 동일하다.
 
-| 기호 | 뜻 |
+## C.2) Sequence-level Importance Ratio $s_i(\theta)$
+
+차이는 확률 비율을 정의하는 지점에서 나타난다. GRPO는 토큰별 비율 $w_{i,t}(\theta)$를 사용했다.
+
+$$
+w_{i,t}(\theta) = \frac{\pi_\theta(y_{i,t} \mid x, y_{i,<t})}{\pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})}
+$$
+
+GSPO는 개별 토큰이 아니라, 답변 전체 $y_i$의 생성 확률을 비교한다. 언어 모델에서 문장 전체의 생성 확률은 각 토큰 조건부 확률의 누적 곱이다.
+
+$$
+\pi_\theta(y_i \mid x) = \prod_{t=1}^{|y_i|} \pi_\theta(y_{i,t} \mid x, y_{i,<t})
+$$
+
+따라서 문장 전체의 확률 비율은 각 토큰 비율들의 곱이 된다. GSPO는 여기에 답변 길이 $|y_i|$로 제곱근을 취하는 **기하평균(geometric mean)** 형태의 sequence ratio $s_i(\theta)$를 정의한다.
+
+$$
+s_i(\theta) = \left( \frac{\pi_\theta(y_i \mid x)}{\pi_{\theta_{\mathrm{old}}}(y_i \mid x)} \right)^{\frac{1}{|y_i|}} = \exp \left( \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \log \frac{\pi_\theta(y_{i,t} \mid x, y_{i,<t})}{\pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})} \right)
+$$
+
+수식에 쓰인 기호의 정의는 다음과 같다.
+
+| 기호 | 설명 |
 | --- | --- |
-| $x$ | prompt 또는 query |
-| $G$ | 한 prompt에 대해 뽑는 답변 개수 (group size) |
-| $y_i$ | $i$번째 response |
-| $\lvert y_i \rvert$ | $i$번째 response의 token 수 |
-| $y_{i,t}$ | $i$번째 response의 $t$번째 token |
-| $y_{i,<t}$ | $t$번째 token 앞에 이미 생성된 prefix |
-| $\pi_\theta$ | 지금 업데이트하려는 current policy |
-| $\pi_{\theta_{\mathrm{old}}}$ | rollout을 만들 때 쓴 old policy |
-| $\widehat{A}_i$ | $i$번째 response의 group 상대 advantage |
-| $w_{i,t}(\theta)$ | GRPO의 token-level ratio |
-| $s_i(\theta)$ | GSPO의 sequence-level ratio |
-| $\varepsilon$ | clipping 범위 |
+| $x$ | 입력 질문 (Prompt) |
+| $G$ | 한 질문당 생성하는 답변 개수 (Group size, 보통 4–16개) |
+| $y_i$ | 생성된 $i$번째 답변 (Response sequence) |
+| $\lvert y_i \rvert$ | $i$번째 답변의 총 토큰 수 (답변 길이) |
+| $y_{i,t}$ | $i$번째 답변의 $t$번째 토큰 |
+| $y_{i,<t}$ | $t$번째 토큰 앞에 이미 생성된 이전 토큰들 (Prefix context) |
+| $\pi_\theta$ | 현재 학습하여 업데이트하려는 정책 모델 (Current policy) |
+| $\pi_{\theta_{\mathrm{old}}}$ | 샘플을 생성할 때 사용한 이전 정책 모델 (Old policy / Rollout policy) |
+| $\widehat{A}_i$ | $i$번째 답변이 그룹 내에서 얻은 표준화된 어드밴티지 |
+| $s_i(\theta)$ | GSPO의 길이 정규화된 시퀀스 레벨 확률 비율 (Sequence importance ratio) |
+| $\varepsilon$ | 정책의 급격한 변화를 제한하는 클리핑 임계값 (Clipping epsilon) |
 
-여기까지는 GRPO와 같다. 차이는 policy ratio다. GRPO는 token마다 ratio를 둔다.
+## C.3) 왜 길이 정규화(기하평균)가 필수적인가
 
-$$
-w_{i,t}(\theta) =
-\frac{
-  \pi_\theta(y_{i,t} \mid x, y_{i,<t})
-}{
-  \pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})
-}
-$$
+단순히 두 문장의 확률 비율 $\frac{\pi_\theta(y_i \mid x)}{\pi_{\theta_{\mathrm{old}}}(y_i \mid x)}$을 그대로 쓰지 않고, 굳이 $\frac{1}{|y_i|}$ 제곱근을 취하는 이유는 **누적 곱의 복리 폭발**을 막기 위해서다.
 
-GSPO는 이 token-level ratio를 답변 전체의 sequence-level ratio로 바꾼다.
+토큰 하나하나의 확률 비율이 평균 $1.001$(즉, $0.1\%$ 증가)로 아주 미세하게 달라졌다고 가정해보자. 답변 길이에 따라 단순 누적 곱과 기하평균이 어떻게 달라지는지 비교하면 다음과 같다.
 
-$$
-s_i(\theta)
-= \left(
-\frac{\pi_\theta(y_i \mid x)}
-{\pi_{\theta_{\mathrm{old}}}(y_i \mid x)}
-\right)^{\frac{1}{|y_i|}}
-=
-\exp \left(
-\frac{1}{|y_i|}
-\sum_{t=1}^{|y_i|}
-\log
-\frac{
-  \pi_\theta(y_{i,t} \mid x, y_{i,<t})
-}{
-  \pi_{\theta_{\mathrm{old}}}(y_{i,t} \mid x, y_{i,<t})
-}
-\right)
-$$
-
-여기서 $\pi_\theta(y_i \mid x)$는 response 전체를 한 번에 내는 확률처럼 보이지만, 실제로는 token 확률의 곱이다.
-
-$$
-\pi_\theta(y_i \mid x)
-=
-\prod_{t=1}^{\lvert y_i \rvert}
-\pi_\theta(y_{i,t} \mid x, y_{i,<t})
-$$
-
-## C.1) 왜 길이로 정규화하는가
-
-$s_i(\theta)$에는 $1/\lvert y_i \rvert$ 지수가 붙어 있다. 왜 두 확률의 비를 그냥 쓰지 않는지 보려면, 정규화하지 않은 sequence ratio가 실제로 어떤 값인지부터 봐야 한다.
-
-답변 확률이 token 확률의 곱이므로, 두 policy의 비도 token별 ratio의 곱이 된다.
-
-$$
-\frac{\pi_\theta(y_i \mid x)}{\pi_{\theta_{\mathrm{old}}}(y_i \mid x)}
-=
-\prod_{t=1}^{\lvert y_i \rvert}
-w_{i,t}(\theta)
-$$
-
-곱이라는 것이 문제다. token 하나하나의 ratio는 1에 가깝지만, 1에서 조금 벗어난 값을 수백 번 곱하면 그 작은 차이가 복리처럼 불어난다.
-
-token ratio가 전부 1.001인 답변을 길이만 바꿔가며 계산하면 이렇게 된다.
-
-| 답변 길이 | 곱 (정규화 안 함) | $\lvert y_i \rvert$ 제곱근 |
+| 답변 길이 ($\lvert y_i \rvert$) | 단순 누적 곱 ($1.001^{\lvert y_i \rvert}$) | 기하평균 ($s_i(\theta)$) |
 | --- | --- | --- |
-| 100 token | 1.105 | 1.0010 |
-| 512 token | 1.668 | 1.0010 |
-| 5000 token | 148.0 | 1.0010 |
+| 100 토큰 | 1.105 (약 10% 증가) | **1.0010** |
+| 512 토큰 | 1.668 (약 67% 증가) | **1.0010** |
+| 2,000 토큰 | 7.374 (약 637% 증가) | **1.0010** |
+| 5,000 토큰 | 148.0 (약 14,700% 증가) | **1.0010** |
 
-token 하나당 0.1%씩 벗어난 것은 세 경우가 똑같다. 그런데 곱은 1.1에서 148까지 벌어진다. 모델이 더 크게 변해서가 아니라 답변이 길어서 커진 값이다.
+토큰 하나당 정책 변화율($0.1\%$)은 모든 경우에 완전히 동일하다. 그러나 단순 곱을 취하면 답변이 길다는 이유만으로 비율이 수백 배로 폭증하거나 반대로 0으로 쪼그라든다. 이렇게 되면 문장 길이에 따라 클리핑 기준을 일정하게 잡는 것이 불가능해진다.
 
-이러면 clipping 범위를 정할 수가 없다. 짧은 답변에 맞춰 범위를 잡으면 긴 답변은 전부 잘려나가고, 긴 답변에 맞추면 짧은 답변에는 아무 제약도 걸리지 않는다.
+$\frac{1}{|y_i|}$ 승(기하평균)을 취해주면 문장 길이와 무관하게 값이 일정해진다. 즉, $s_i(\theta)$가 측정하는 값은 **"이 답변을 이루는 토큰 하나당 평균적으로 확률이 몇 배 증가(또는 감소)했는가"**가 된다. 덕분에 답변 길이가 몇 토큰이든 동일한 클리핑 임계값 $\varepsilon$을 적용할 수 있다.
 
-$\lvert y_i \rvert$ 제곱근을 씌우면 그 문제가 사라진다. 오른쪽 열은 길이와 무관하게 1.0010이다. 이 값이 답하는 질문이 "답변 전체가 몇 배 그럴듯해졌는가"에서 **"token 하나당 평균 몇 배 그럴듯해졌는가"** 로 바뀌었기 때문이다. 길이가 답에서 빠졌으므로 길이가 다른 답변들에 같은 $\varepsilon$을 쓸 수 있다.
+## C.4) 그래디언트의 균등 분배: 토큰 왜곡이 사라지는 원리
 
-같은 이유로 분산도 준다. 정규화하지 않으면 token 하나의 확률이 두 배가 될 때 sequence ratio도 그대로 두 배가 된다. 기하평균에서는 그 token이 $1/\lvert y_i \rvert$의 비중만 갖는다. 논문이 length normalization의 목적을 분산을 줄이고 $s_i(\theta)$를 일정한 수치 범위 안에 두는 것으로 설명하는 이유가 이것이다.
+수식 $s_i(\theta)$를 도입했을 때 실제 역전파(Backpropagation)에서 모델 파라미터가 어떻게 업데이트되는지 살펴보면 GSPO의 핵심 이점이 명확히 드러난다.
 
-정규화되는 대상은 reward가 아니라 policy ratio다. reward와 advantage는 여전히 response 단위로 계산된다. 결과적으로 $s_i(\theta)$는 답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는지를 나타내는 값이 된다.
-
-# D) Objective
-
-GSPO의 clipped objective는 다음과 같다.
+목적함수 $\mathcal{J}(\theta)$에서 클리핑이 걸리지 않은 상태의 그래디언트를 구하면 다음과 같이 전개된다.
 
 $$
-\mathcal{J}_{\mathrm{GSPO}}(\theta)
-=
-\mathbb{E}
-\left[
-\frac{1}{G}
-\sum_{i=1}^{G}
-\min \left(
-  s_i(\theta)\widehat{A}_i,
-  \mathrm{clip}(s_i(\theta), 1-\varepsilon, 1+\varepsilon)\widehat{A}_i
-\right)
-\right]
+\nabla_\theta \log s_i(\theta) = \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \nabla_\theta \log \pi_\theta(y_{i,t} \mid x, y_{i,<t})
 $$
 
-수식 모양은 [[Proximal Policy Optimization|PPO]]와 [[GRPO]]를 닮았지만, clipping 대상이 다르다. PPO는 [[advantage function|advantage]]를 value model로 추정하고, GRPO와 GSPO는 group 안의 상대 reward로 대신한다.
-
-| 방법 | ratio 단위 | reward/advantage 단위 | 핵심 차이 |
-| --- | --- | --- | --- |
-| PPO | token/action | token/action 또는 value 기반 | value model이 필요함 |
-| [[GRPO]] | token | response group | value model은 없지만 token-level ratio를 씀 |
-| GSPO | response sequence | response group | reward와 optimization 단위를 sequence로 맞춤 |
-
-GSPO는 좋은 advantage를 받은 답변의 sequence likelihood를 높이고, 낮은 advantage를 받은 답변의 sequence likelihood를 낮춘다. 이때 특정 token 하나가 아니라 답변 전체의 평균 log ratio를 보고 clip한다.
-
-## D.1) clipping 범위는 GRPO와 자리수가 다르다
-
-앞에서 본 기하평균의 성질이 여기서 다시 걸린다. 기하평균은 token 하나의 큰 변화를 $1/\lvert y_i \rvert$의 비중으로 눌러버리므로, $s_i(\theta)$는 token-level ratio보다 훨씬 좁게 1 근처에 모인다. 그래서 GRPO에서 쓰던 $\varepsilon$을 그대로 가져오면 clipping이 사실상 걸리지 않는다.
-
-논문 실험의 설정을 비교하면 규모 차이가 드러난다.
-
-| 방법 | clipping 범위 $\varepsilon$ |
-| --- | --- |
-| GRPO | 0.2, 0.27 |
-| GSPO | 3e-4, 4e-4 |
-
-세 자리수 차이다. 답변 하나를 놓고 두 설정을 나란히 적용해 보면 무슨 일이 벌어지는지 보인다.
-
-```text
-어떤 답변의 token ratio 8개
-
-  1.0008  0.9994  1.0021  1.0002  0.9987  1.0015  0.9996  1.0009
-  가장 많이 벗어난 것도 1에서 0.21%
-
-  s_i = 이 8개의 기하평균 = 1.000399
-  벗어난 정도가 0.040% 로 줄었다
-
-GRPO   ε = 0.2     허용 구간 [0.8000, 1.2000]
-                   8개 token 이 모두 구간 안  ->  아무것도 clip 되지 않는다
-
-GSPO   ε = 3e-4    허용 구간 [0.9997, 1.0003]
-                   s_i = 1.000399 는 구간 밖  ->  답변 전체가 clip 된다
-```
-
-기하평균은 편차를 눌러준다. token 하나가 0.21% 벗어나도 8개를 평균한 $s_i$는 0.040%까지 줄었다. token이 512개라면 더 줄어든다. 그래서 $s_i$를 판정하는 $\varepsilon$은 token ratio를 판정하던 값과 같은 자리수일 수 없다. GSPO를 도입할 때 하이퍼파라미터를 그대로 옮기면 안 되는 지점이 여기다.
-
-같은 예시가 clip 비율 차이도 설명한다. 이 답변에서 GRPO는 token을 하나도 버리지 않는데 GSPO는 8개를 전부 버린다. GSPO가 GRPO보다 훨씬 많은 token을 clip한다는 관찰이 이렇게 만들어진다.
-
-## D.2) GSPO-token: token마다 advantage를 달리 줘야 할 때
-
-multi-turn RL처럼 답변 안 구간마다 advantage를 달리 주고 싶은 경우가 있다. 이때 쓰는 변형이 GSPO-token이다.
+따라서 파라미터 $\theta$에 전달되는 그래디언트는 다음과 같다.
 
 $$
-s_{i,t}(\theta)
-=
-\mathrm{sg}\!\left[s_i(\theta)\right]
-\cdot
-\frac{
-  \pi_\theta(y_{i,t} \mid x, y_{i,<t})
-}{
-  \mathrm{sg}\!\left[\pi_\theta(y_{i,t} \mid x, y_{i,<t})\right]
-}
+\nabla_\theta \left( s_i(\theta) \widehat{A}_i \right) = s_i(\theta) \widehat{A}_i \cdot \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \nabla_\theta \log \pi_\theta(y_{i,t} \mid x, y_{i,<t})
 $$
 
-$\mathrm{sg}[\cdot]$는 stop-gradient로, 값은 그대로 쓰되 gradient는 흐르지 않게 하는 연산이다. 뒤쪽 분수는 분자와 분모가 같은 값이라 수치상 항상 1이므로, $s_{i,t}(\theta)$의 값 자체는 $s_i(\theta)$와 같다. 달라지는 것은 gradient가 흐르는 경로다. clipping은 sequence-level 값 하나로 판정되지만 gradient는 각 token 확률에서 나오므로, token마다 다른 advantage를 곱할 수 있다.
+이 식이 의미하는 바는 다음과 같다.
+1. **모든 토큰에 완벽히 균등한 가중치가 실린다**: 문장 안의 모든 토큰 $t$는 동일한 스케일 $\frac{s_i(\theta) \widehat{A}_i}{|y_i|}$를 곱한 그래디언트를 받는다.
+2. **토큰 단위 누더기 업데이트가 사라진다**: 특정 토큰만 확률이 튀어서 중간에 클리핑되거나 그래디언트가 왜곡되는 현상이 원천적으로 차단된다.
+3. **전체 논리 구조가 보존된다**: 좋은 답변($\widehat{A}_i > 0$)이면 문장 전체의 토큰들이 일관되게 강화되고, 나쁜 답변($\widehat{A}_i < 0$)이면 문장 전체가 일관되게 억제된다.
 
-모든 token에 같은 advantage를 주면 GSPO와 gradient가 동일하다. 즉 GSPO-token은 GSPO를 대체하는 것이 아니라, token별 advantage가 필요할 때만 꺼내 쓰는 확장이다.
+# D) Objective와 Clipping의 비밀
 
-# E) GRPO 대비 실제로 달라지는 것
+## D.1) Clipped Surrogate Objective
 
-## E.1) token마다 다른 가중치를 줄인다
+GSPO의 최종 목적함수는 PPO, GRPO와 동일한 형태의 클리핑 구조를 취한다.
 
-GRPO에서는 같은 답변 안의 token이라도 token-level ratio가 다르다. 그래서 같은 response-level advantage를 공유하더라도, 실제 gradient에서는 token마다 다른 weight가 걸린다.
+$$
+\mathcal{J}_{\mathrm{GSPO}}(\theta) = \mathbb{E} \left[ \frac{1}{G} \sum_{i=1}^{G} \min \left( s_i(\theta)\widehat{A}_i, \; \mathrm{clip}(s_i(\theta), 1-\varepsilon, 1+\varepsilon)\widehat{A}_i \right) \right]
+$$
 
-GSPO는 답변 하나에 sequence-level ratio 하나를 둔다. 좋은 답변이면 답변 전체를 밀고, 나쁜 답변이면 답변 전체를 덜어낸다. reward가 답변 전체에 매겨지는 RLVR task에서는 이쪽이 더 직접적이다.
+문장 레벨의 비율 $s_i(\theta)$가 허용 범위 $[1-\varepsilon, 1+\varepsilon]$를 벗어나면 클리핑되어 추가적인 이득이 제한된다.
 
-## E.2) 긴 답변에서 noise 누적을 줄인다
+## D.2) $\varepsilon$이 0.2에서 0.0003으로 3자리나 작아진 이유
 
-긴 reasoning 답변에는 token이 많다. token-level ratio가 조금씩 흔들려도 많이 쌓이면 update가 불안정해진다.
+실무에서 GRPO에서 GSPO로 전환할 때 가장 많이 혼동하는 부분이 하이퍼파라미터 $\varepsilon$의 크기다.
 
-GSPO는 response-level ratio 하나로 clipping을 하므로, token-level fluctuation이 gradient에 직접 쌓이는 경로를 줄인다. 논문은 이 차이가 long response RL에서 stability를 높인다고 본다.
+| 알고리즘 | 클리핑 대상 | 논문 권장 $\varepsilon$ 값 |
+| --- | --- | --- |
+| GRPO | 개별 토큰의 비율 ($w_{i,t}$) | **0.2** (약 20% 변동 허용) |
+| **GSPO** | 문장 전체 토큰 비율의 기하평균 ($s_i$) | **0.0003 – 0.0004** ($3 \times 10^{-4} – 4 \times 10^{-4}$) |
 
-## E.3) 더 많이 clip하는데도 학습 효율이 높다
+왜 GSPO는 이렇게 극단적으로 작은 $\varepsilon$을 사용할까? **기하평균은 편차를 강하게 압축하기 때문**이다.
 
-논문의 관찰 하나가 이 설명을 뒷받침한다. clipping이 걸린 token의 비율을 보면 GSPO와 GRPO 사이에 두 자리수 차이가 난다. 앞의 clipping 범위 예시가 그 이유였다. GSPO는 답변 하나를 통째로 판정하므로, 한 번 걸릴 때 그 답변의 token이 한꺼번에 빠진다.
+1,000개의 토큰으로 이루어진 답변을 생각해보자.
+- **GRPO 관점**: 토큰 하나의 확률이 $0.20$에서 $0.24$로 $20\%$ 변하는 것은 언어 모델에서 흔히 일어나는 국소적 변동이다. 따라서 $\varepsilon = 0.2$가 적절하다.
+- **GSPO 관점**: $s_i$는 1,000개 토큰의 평균 변화율이다. 만약 $s_i$가 $1.0004$(즉, 토큰당 평균 $0.04\%$ 증가)가 되었다면, 문장 전체 확률의 변화는 다음과 같다.
 
-그런데도 GSPO의 training efficiency가 GRPO보다 높다. 학습에 쓰는 token을 훨씬 적게 가져가면서 더 빨리 좋아진다는 뜻이다. 논문은 이것을 GRPO의 token-level gradient estimate가 애초에 noise가 많아 효율이 낮다는 증거로 읽는다.
+$$
+(1.0004)^{1000} \approx 1.4918 \quad (\text{문장 전체 확률 약 } 49.2\% \text{ 증가})
+$$
 
-## E.4) MoE training에서 Routing Replay 의존을 줄인다
+토큰당 평균으로는 고작 $0.04\%$ 늘어났을 뿐인데, 1,000개 토큰 전체의 결합 확률은 무려 $50\%$ 가까이 폭증한 것이다.
 
-MoE 모델은 token마다 활성화 expert가 달라진다. GRPO에서 token-level likelihood ratio를 안정적으로 계산하려면, old policy에서 어떤 expert가 활성화됐는지 캐시해두고 current policy에서 같은 routing을 재현하는 Routing Replay 같은 workaround가 필요했다.
+만약 GSPO에 GRPO의 기본값인 $\varepsilon = 0.2$를 그대로 대입한다면 어떻게 될까? 토큰당 평균 $20\%$ 증가를 허용한다는 뜻이므로, 1,000토큰 문장 전체 확률로는 $(1.2)^{1000} \approx 10^{79}$배의 변화를 허용하게 된다. 실질적으로 클리핑이 단 한 번도 작동하지 않는 것과 같다.
 
-GSPO는 sequence likelihood만 보기 때문에 개별 token의 expert routing 변화에 둔감하다. 모델이 language modeling 능력을 유지하는 동안에는 sequence likelihood가 크게 튀지 않는다는 것이 논문의 설명이다. Qwen Team은 이 덕분에 MoE RL training에서 Routing Replay를 걷어낼 수 있었다고 보고한다.
+따라서 GSPO에서는 토큰 수가 긴 문장의 특성을 반영하여 $\varepsilon$을 $3 \times 10^{-4}$ 수준으로 설정해야 비로소 정책 변화를 안정적인 구간 내로 제어할 수 있다.
 
-## E.5) inference engine이 낸 확률을 그대로 쓸 수 있다
+## D.3) GSPO-token: 토큰별 어드밴티지가 필요할 때
 
-RL training에서 rollout은 [[vllm|vLLM]] 같은 inference engine이 만들고, 업데이트는 training engine이 한다. 같은 weight라도 두 엔진의 커널과 연산 순서가 달라 token 확률이 미세하게 어긋난다. GRPO는 token-level ratio를 쓰므로 이 차이가 ratio에 그대로 들어가고, 그래서 보통 training engine으로 확률을 다시 계산한다.
+대화형 멀티턴(multi-turn) 에이전트 환경이나 단계별 보상 모델(Process Reward Model, PRM)이 있어서 **특정 단계나 토큰마다 서로 다른 어드밴티지 $\widehat{A}_{i,t}$를 부여해야 하는 경우**가 있다. 이때는 GSPO의 기본형을 살짝 변형한 `GSPO-token`을 사용한다.
 
-GSPO는 sequence likelihood 하나만 보므로 이 precision 차이에 훨씬 관대하고, rollout 때 inference engine이 반환한 확률을 그대로 optimization에 쓸 수 있다. 재계산 비용이 사라지면서 partial rollout, multi-turn RL, training/inference 분리 배치가 모두 단순해진다.
+$$
+s_{i,t}(\theta) = \mathrm{sg}[s_i(\theta)] \cdot \frac{\pi_\theta(y_{i,t} \mid x, y_{i,<t})}{\mathrm{sg}[\pi_\theta(y_{i,t} \mid x, y_{i,<t})]}
+$$
+
+여기서 $\mathrm{sg}[\cdot]$는 역전파 시 그래디언트가 흐르지 않게 막는 `stop-gradient` 연산이다.
+
+이 수식의 동작 메커니즘은 다음과 같다.
+- **값 자체의 크기**: 오른쪽 분수식은 분자와 분모의 수치가 완전히 같으므로 값은 항상 $1$이다. 따라서 $s_{i,t}(\theta)$의 수치값은 시퀀스 레벨 비율인 $s_i(\theta)$와 정확히 같다. 클리핑 판정도 시퀀스 단위로 안정적으로 수행된다.
+- **역전파 경로**: 왼쪽의 $\mathrm{sg}[s_i(\theta)]$는 상수로 취급되어 그래디언트가 차단되고, 오른쪽 분자의 $\pi_\theta(y_{i,t})$를 통해서만 역전파된다.
+- **효과**: 클리핑은 시퀀스 레벨의 안정적인 비율로 판정하면서도, 역전파되는 그래디언트에는 토큰별로 서로 다른 어드밴티지 $\widehat{A}_{i,t}$를 곱해줄 수 있다.
+
+만약 모든 토큰의 어드밴티지가 동일하다면 GSPO-token과 표준 GSPO의 결과는 수학적으로 완전히 같다.
+
+# E) 실무와 엔지니어링에서 실제로 얻은 이점
+
+GSPO를 실제 대규모 학습 인프라에 적용했을 때 나타나는 핵심적인 실무적 장점은 다음과 같다.
+
+## E.1) 더 많이 클리핑되는데도 학습 효율이 더 높은 이유
+
+GSPO를 적용하면 모니터링 대시보드에서 **클리핑에 걸리는 토큰의 비율(clipped ratio)**이 GRPO 대비 훨씬 높게(두 자릿수 이상) 치솟는 현상이 관찰된다.
+
+- GRPO는 문장 안에서 튀는 몇몇 토큰들만 솎아내어 클리핑한다.
+- GSPO는 문장 전체의 평균 비율 $s_i(\theta)$가 임계값을 넘으면 문장 전체에 속한 수천 개의 토큰이 한꺼번에 클리핑 처리된다.
+
+직관적으로는 토큰이 너무 많이 버려져서 학습이 느려질 것 같지만, 실제 실험 결과는 반대다. 같은 스텝 수나 토큰 수를 소모했을 때 GSPO의 벤치마크 점수가 훨씬 빠르고 높게 상승한다.
+
+이는 GRPO가 유지하던 수많은 토큰 레벨의 업데이트 신호들이 실제로는 학습에 유익한 정보가 아니라 **분산만 키우는 노이즈**였음을 증명한다. GSPO는 신뢰할 수 없는 과도한 변화를 문장 단위로 과감하게 차단함으로써 훨씬 깨끗한 그래디언트만 모델에 전달한다.
+
+## E.2) MoE 모델에서 Routing Replay의 완전한 제거
+
+기존 GRPO로 DeepSeek-V3나 Qwen-MoE 같은 거대 MoE 모델을 학습할 때는 토큰별 라우팅 변화 때문에 학습이 터지는 문제가 심각했다. 이를 막기 위해 롤아웃(rollout) 당시의 전문가 선택 정보를 GPU 메모리에 저장해 두었다가 학습 스텝에서 강제로 재현하는 **Routing Replay** 기법을 써야 했다. 이는 막대한 통신 비용과 메모리 오버헤드를 유발했다.
+
+GSPO는 개별 토큰이 어떤 전문가를 거쳤는지에 연연하지 않는다. 문장 전체 수천 개 토큰의 결합 확률만 평가하기 때문에, 몇몇 토큰의 전문가 라우팅이 바뀌더라도 문장 전체 수준에서는 통계적으로 상쇄된다. Qwen 팀은 GSPO 도입 후 번거롭고 무거운 Routing Replay 메커니즘을 완전히 제거할 수 있었다고 보고했다.
+
+## E.3) 추론 엔진(vLLM)의 생성 확률 직접 재사용
+
+강화학습 파이프라인에서는 속도를 위해 롤아웃 생성은 [[vllm|vLLM]] 같은 추론 전용 엔진으로 수행하고, 가중치 업데이트는 Megatron-LM이나 PyTorch FSDP 같은 분산 학습 엔진으로 수행한다.
+
+문제는 두 엔진의 구현 커널, FP16/BF16 부동소수점 연산 순서가 미세하게 다르다는 점이다.
+- GRPO에서는 이 미세한 수치 오차가 개별 토큰 ratio에 직접 반영되어 분산을 유발하므로, 생성된 문장을 학습 엔진에 다시 통과시켜 forward pass 확률을 재계산해야 했다.
+- GSPO에서는 토큰 수천 개의 기하평균을 취하는 과정에서 엔진 간의 미세한 부동소수점 오차가 자연스럽게 평균 $0$으로 상쇄된다. 따라서 vLLM이 롤아웃 시점에 뱉어낸 로그 확률(logprob)을 추가 재계산 없이 목적함수에 그대로 주입할 수 있다.
+
+이로 인해 forward 연산 비용이 대폭 절감되고 학습 파이프라인의 복잡도가 획기적으로 낮아졌다.
 
 # F) 한계와 후속 흐름
 
-GSPO는 GRPO의 token-level ratio 문제를 줄이지만, 모든 문제를 끝내지는 않는다.
+GSPO가 GRPO의 고질적인 노이즈 문제를 해결했지만, 모든 문제가 사라진 것은 아니다.
 
-## F.1) length bias
+## F.1) 길이 편향(Length Bias)과 LUSPO
 
-GSPO는 sequence ratio를 길이로 정규화하지만, reward를 길이로 정규화하지는 않는다. 또 objective 안에서 response 하나가 하나의 loss 항처럼 평균되므로, 긴 답변의 token 하나하나가 loss에 기여하는 비중은 짧은 답변보다 작아진다.
+GSPO의 목적함수에서 문장 확률 비율 $s_i(\theta)$는 길이 $|y_i|$로 정규화되어 있다. 그리고 목적함수는 여러 문장들의 손실(loss)을 단순 평균($\frac{1}{G}\sum$)한다.
 
-후속 연구인 LUSPO(Length-Unbiased Sequence Policy Optimization)는 이 지점을 GSPO의 length bias로 본다. sequence-level clipping은 token-level clipping보다 더 많은 token을 한꺼번에 clip하고, 실제 학습에서 함께 쓰이는 Clip-Higher와 결합되면 positive/negative sample의 token 기여가 불균형해진다는 것이다. Clip-Higher는 clipping의 상한과 하한을 분리해 entropy collapse를 막는 [[DAPO]]의 기법이다. 그 결과 GSPO가 response length collapse, 즉 답변이 점점 짧아지는 방향으로 치우칠 수 있다고 지적한다.
+이 구조로 인해 **긴 답변 안에 포함된 토큰 하나가 전체 손실에 미치는 영향력이 짧은 답변의 토큰보다 훨씬 작아지는 문제**가 발생한다.
+- 100토큰짜리 답변의 토큰 1개는 손실에 $\frac{1}{100}$의 비중을 갖는다.
+- 2,000토큰짜리 긴 추론 답변의 토큰 1개는 손실에 $\frac{1}{2000}$의 비중만 갖는다.
 
-LUSPO의 보정은 reward를 길이로 나누는 쪽이 아니다. 오히려 GSPO loss에 response 길이 $\lvert y_i \rvert$를 곱해서, 긴 sequence의 token 기여가 과소평가되지 않도록 맞춘다.
+이 불균형에 엔트로피 붕괴를 막기 위한 비대칭 클리핑(DAPO의 Clip-Higher 등)이 결합되면, 모델이 학습할수록 복잡하고 긴 추론을 기피하고 답변 길이를 비정상적으로 줄여버리는 **답변 길이 붕괴(Length Collapse)** 현상이 발생할 수 있다.
+
+이 한계를 보완하기 위해 제안된 후속 연구가 **LUSPO(Length-Unbiased Sequence Policy Optimization)**다. LUSPO는 GSPO 목적함수에 다시 문장 길이 $|y_i|$를 가중치로 곱해줌으로써, 토큰 레벨 기여도의 균형을 복원한다.
 
 $$
-\mathcal{J}_{\mathrm{LUSPO}}(\theta)
-=
-\mathbb{E}
-\left[
-\frac{1}{G}
-\sum_{i=1}^{G}
-\min \left(
-  s_i(\theta)\widehat{A}_i,
-  \mathrm{clip}(s_i(\theta), 1-\varepsilon, 1+\varepsilon)\widehat{A}_i
-\right)
-\cdot \lvert y_i \rvert
-\right]
+\mathcal{J}_{\mathrm{LUSPO}}(\theta) = \mathbb{E} \left[ \frac{1}{G} \sum_{i=1}^{G} \min \left( s_i(\theta)\widehat{A}_i, \; \mathrm{clip}(s_i(\theta), 1-\varepsilon, 1+\varepsilon)\widehat{A}_i \right) \cdot |y_i| \right]
 $$
 
-## F.2) credit assignment
+## F.2) 세밀한 신용 할당(Fine-grained Credit Assignment)의 부재
 
-두 번째 한계는 답변 안에서 어느 부분이 좋았는지 가려내기 어렵다는 점이다. 다만 이것이 "GRPO는 각 reasoning step의 좋고 나쁨을 정확히 안다"는 뜻은 아니다. GRPO도 reward와 advantage는 답변 전체에 붙이고, 같은 advantage를 답변 안의 token들이 공유한다.
+GSPO는 답변 전체를 하나의 덩어리로 묶어 처리한다.
+만약 10단계로 이루어진 긴 수학 증명 과정에서 1~9단계는 완벽했고 마지막 10단계의 사소한 연산 실수로 오답이 나왔다면, GSPO는 문장 전체에 음수 어드밴티지를 부여하고 1~9단계의 훌륭한 추론 토큰들까지 함께 억제하게 된다.
 
-차이는 정도에 있다. GRPO는 token마다 ratio와 clipping이 달라서 token별 gradient 크기가 달라진다. GSPO는 sequence 전체를 더 강하게 묶는다. step-level credit assignment가 중요한 task라면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다. 앞서 본 GSPO-token은 token별 advantage를 넣을 자리를 열어주지만, 그 advantage를 어디서 얻을지는 여전히 별도 문제다.
+추론의 각 중간 단계(step)별로 잘잘못을 정밀하게 따져야 하는 작업이라면, 과정 검증기(PRM)를 활용한 스텝 단위 채점과 함께 앞서 살펴본 `GSPO-token`과 같은 하이브리드 접근법이 필요하다.
 
-# G) Qwen-AgentWorld에서 왜 쓰였나
+# G) Qwen-AgentWorld에서 왜 필수적이었는가
 
-[[papers/language_model/Qwen-AgentWorld - Language World Models for General Agents|Qwen-AgentWorld]]의 RL stage는 일반 answer RL보다 prompt와 output의 길이 차이가 크다.
+[[papers/language_model/Qwen-AgentWorld - Language World Models for General Agents|Qwen-AgentWorld]]는 자율 에이전트 학습을 위한 환경 시뮬레이터(World Model)를 구축하는 연구다. 여기서 강화학습 단계는 일반적인 질의응답과 입력·출력 구조가 크게 다르다.
 
 ```text
-prompt: 수만 token의 interaction history
-output: 다음 environment observation 하나
+입력 (Prompt): 수만 토큰에 달하는 장기 상호작용 이력 (Long Interaction History)
+출력 (Response): 에이전트 행동 뒤에 이어질 단 하나의 환경 상태 관찰값 (Observation)
 ```
 
-모델은 긴 history를 읽고, 방금 agent action 뒤에 나올 observation을 예측해야 한다. reward는 이 observation 전체의 format, factuality, consistency, realism, quality에 붙는다.
-
-예를 들어 observation이 다음처럼 생겼다고 하자.
+출력되는 관찰값은 보통 아래와 같은 구조화된 JSON 데이터다.
 
 ```json
 {
-  "screen": "checkout page",
-  "status": "payment failed",
-  "message": "card expired"
+  "screen": "checkout_page",
+  "status": "payment_failed",
+  "error_code": "card_expired",
+  "ui_elements": ["retry_button", "back_button"]
 }
 ```
 
-이때 reward가 보는 것은 `screen`이라는 token 하나가 따로 좋았는지가 아니다. JSON 형식이 맞는지, 현재 agent action 뒤에 나올 만한 상태인지, 앞선 interaction history와 모순되지 않는지, observation 전체가 실제 환경처럼 보이는지를 함께 본다. 평가 단위가 token 하나가 아니라 observation 한 덩어리다.
+이 환경에서 검증기가 평가하는 것은 특정 단어(예: `"checkout_page"`) 하나가 맞았는지가 아니다.
+1. JSON 문법이 올바르게 닫혔는가?
+2. 앞선 수만 토큰의 히스토리와 논리적으로 모순되지 않는가?
+3. 에이전트의 이전 액션과 인과관계가 현실적인가?
 
-그래서 이 구조에서는 token마다 ratio를 따로 흔드는 것보다, observation sequence 전체의 확률을 한 단위로 보고 업데이트하는 편이 자연스럽다. GSPO는 좋은 observation이면 그 sequence 전체의 likelihood를 올리고, 나쁜 observation이면 전체 likelihood를 낮춘다. 긴 context, long trajectory, MoE serving 비용까지 겹치므로 training stability와 infrastructure 단순화가 모두 중요하고, 그 점에서 GSPO가 잘 맞는다.
+즉, **평가의 본질이 JSON 블록 전체의 일관성과 현실성**에 있다. 여기에 수만 토큰의 컨텍스트를 다루는 MoE 모델이 결합되어 있으므로, 토큰 단위의 비율 진동은 치명적이다. 관찰값 블록 전체의 확률을 한 단위로 묶어 평가하고 업데이트하는 GSPO가 최적의 선택이 될 수밖에 없었던 배경이다.
 
-# H) 실무 체크리스트
+# H) 실무 도입 체크리스트
 
-GSPO를 실제 실험에 넣는다면 아래 항목을 같이 봐야 한다.
+실제 강화학습 파이프라인에 GSPO를 도입하고자 한다면 다음 항목들을 순서대로 점검해야 한다.
 
-1. reward가 정말 response-level인가?
-2. group size $G$가 reward normalization에 충분한가?
-3. clipping 범위를 GSPO 규모로 다시 잡았는가? 논문 설정으로 보면 GRPO의 `0.2`대와 GSPO의 `3e-4`대는 세 자리수 차이다.
-4. clip이 걸린 token 비율을 로깅하고 있는가? GSPO에서는 이 값이 GRPO보다 크게 나오는 것이 정상이다.
-5. response length가 훈련 중 줄거나 늘어나는지 추적하는가?
-6. positive/negative sample의 length 분포가 reward와 엉키지 않는가?
-7. MoE 모델이라면 expert routing instability가 줄었는가?
-8. inference engine 확률을 그대로 쓸 것인가, training engine으로 재계산할 것인가?
-9. sequence-level update가 필요한 만큼의 fine-grained credit assignment를 잃고 있지는 않은가?
+1. **보상 단위 확인**: 현재 풀고자 하는 태스크의 보상이 문장 전체 단위(규칙 기반 검증, 최종 결과 채점)로 주어지는가?
+2. **클리핑 $\varepsilon$ 재설정**: GRPO의 기본값($0.2$)을 그대로 두고 돌리지 않았는가? 기하평균을 고려해 **$3 \times 10^{-4} – 4 \times 10^{-4}$** 범위로 조정했는가?
+3. **클리핑 토큰 비율 모니터링**: Wandb 대시보드 등에서 클리핑 비율이 GRPO보다 현저히 높게(두 자릿수 퍼센트) 나오는지 확인했는가? (GSPO에서는 이것이 정상적인 현상이다.)
+4. **답변 길이(Length) 변화 추적**: 학습이 진행되면서 모델의 평균 출력 토큰 수가 급격히 줄어드는 Length Collapse 징후가 없는가? 징후가 보인다면 LUSPO 가중치 도입을 검토해야 한다.
+5. **MoE 모델 적용 시**: 불필요해진 Routing Replay 코드를 걷어내고 메모리 확보 및 통신 오버헤드 감소를 확인했는가?
+6. **추론 엔진 연동**: 롤아웃 시 vLLM이 생성한 logprob을 학습 엔진 forward pass 없이 직접 활용하도록 파이프라인을 간소화했는가?
 
-# I) 면접에서 이렇게 말하면 된다
+# I) 면접에서 이렇게 답변하자
 
-**Q1. GSPO를 GRPO와 비교해서 설명해주세요.**
+**Q1. GSPO와 GRPO의 핵심적인 차이는 무엇인가요?**
 
-> GSPO는 GRPO의 group-relative advantage는 유지하되, policy ratio와 clipping을 token 단위가 아니라 sequence 단위로 옮긴 방법입니다. GRPO는 response 전체 reward를 쓰면서 token-level importance ratio를 적용하는데, 각 token 위치에서 sample 하나로 만든 ratio는 분포 보정 역할을 못 하고 분산만 키웁니다. 이 noise가 긴 답변에서 누적되고 clipping으로 증폭되면서 long response나 MoE 모델에서 instability가 생깁니다. GSPO는 response likelihood ratio를 길이로 정규화해서 쓰고, 답변 전체를 하나의 update 단위로 다룹니다.
+> "가장 큰 차이는 **확률 비율(importance ratio)과 클리핑을 계산하는 단위**입니다. GRPO는 보상을 문장 전체 단위로 받으면서도, 정책을 업데이트할 때는 각 토큰별 확률 비율을 계산하고 토큰 단위로 클리핑합니다. 단일 토큰 샘플로 계산된 비율은 분산이 큰 노이즈가 되어 긴 추론 과정에서 그래디언트를 왜곡합니다. 반면 GSPO는 문장 전체 확률의 기하평균을 취해 시퀀스 레벨의 비율을 만들고 클리핑도 문장 단위로 적용합니다. 그 결과 채점 단위와 최적화 단위가 완벽히 일치하여, 문장 내 모든 토큰이 왜곡 없이 균등한 가중치로 안정되게 업데이트됩니다."
 
-**Q2. GSPO가 MoE training에서 유리한 이유는 무엇인가요?**
+**Q2. GSPO에서 클리핑 임계값 $\varepsilon$을 GRPO($0.2$)보다 수백 배 작은 $3 \times 10^{-4}$ 수준으로 설정하는 이유는 무엇인가요?**
 
-> MoE 모델은 update 전후로 같은 token이 다른 expert를 탈 수 있어서 token-level likelihood ratio가 흔들립니다. GRPO에서는 이 ratio가 update에 직접 들어가므로 Routing Replay처럼 old policy의 routing을 재현하는 장치가 필요했습니다. GSPO는 sequence likelihood를 기준으로 보기 때문에 token-level routing 변동에 둔감하고, Qwen Team은 이 덕분에 MoE RL training에서 그 장치를 걷어낼 수 있었다고 보고합니다.
+> "GSPO의 비율 $s_i(\theta)$는 문장에 포함된 수백~수천 개 토큰 확률 비의 **기하평균**이기 때문입니다. 기하평균은 개별 토큰의 편차를 크게 압축합니다. 1,000토큰 문장에서 토큰당 평균 확률이 고작 $0.04\%$만 증가해도, 문장 전체 확률로는 $(1.0004)^{1000} \approx 1.49$배, 즉 $50\%$ 가까이 폭증합니다. 만약 GRPO처럼 $\varepsilon = 0.2$를 쓰면 문장 전체 확률이 천문학적으로 변할 때까지 클리핑이 전혀 걸리지 않으므로, 기하평균의 스케일에 맞춰 $\varepsilon$을 $3 \times 10^{-4}$ 수준으로 작게 잡아야 정책 폭주를 방어할 수 있습니다."
 
-**Q3. GSPO를 도입할 때 실무에서 가장 먼저 챙길 것은 무엇인가요?**
+**Q3. GSPO가 MoE 모델 학습에서 Routing Replay를 제거할 수 있었던 원리는 무엇인가요?**
 
-> clipping 범위입니다. sequence ratio는 token ratio의 기하평균이라 1 근처에 훨씬 좁게 모이므로, GRPO의 `0.2`대 값을 그대로 쓰면 clipping이 거의 걸리지 않습니다. 논문 실험은 `3e-4`대를 씁니다. 함께 볼 것은 clip된 token 비율인데, GSPO는 GRPO보다 두 자리수 많은 token을 clip하면서도 training efficiency가 더 높게 나옵니다. 이 값이 GRPO 수준으로 낮게 나온다면 clipping 범위 설정을 다시 봐야 한다는 신호입니다.
+> "MoE 모델은 정책이 조금만 업데이트되어도 토큰이 라우팅되는 전문가가 바뀌어 토큰별 확률이 요동칩니다. GRPO는 토큰별 확률을 직접 비율에 반영하므로 라우팅 변화가 곧장 학습 불안정으로 이어져, 이전 라우팅을 강제로 재현하는 Routing Replay가 필요했습니다. 하지만 GSPO는 문장 전체 수천 개 토큰의 결합 확률만 평가하므로, 일부 토큰의 전문가 라우팅 변화가 전체 평균에서 자연스럽게 상쇄됩니다. 따라서 별도의 라우팅 고정 장치 없이도 MoE 학습을 안정적으로 유지할 수 있습니다."
 
-**Q4. GSPO의 한계는 무엇인가요?**
+**Q4. GSPO의 한계점과 이를 보완한 후속 연구는 무엇이 있나요?**
 
-> sequence 단위로 안정성을 얻는 대신, 답변 내부의 어느 token이나 reasoning step이 실제로 좋았는지 세밀하게 구분하기 어렵습니다. token별 advantage가 필요하면 GSPO-token 변형으로 자리는 열 수 있지만, 그 advantage를 만들 process reward나 step-level verifier는 따로 필요합니다. 또 후속 연구는 GSPO에 length bias가 생겨 답변이 점점 짧아질 수 있다고 지적합니다. 그래서 GSPO를 쓸 때는 reward와 benchmark score뿐 아니라 response length, clip된 token 비율, positive/negative sample의 길이 분포까지 함께 봐야 합니다.
+> "두 가지가 있습니다. 첫째는 **신용 할당(credit assignment)**의 한계로, 문장 전체를 하나로 묶어 평가하므로 긴 추론 과정 중 어느 단계가 결정적이었는지 세밀하게 구별하지 못합니다. 둘째는 **길이 편향(length bias)**입니다. 시퀀스 길이로 정규화하는 과정에서 긴 답변에 속한 토큰의 손실 기여도가 짧은 답변보다 작아져, 학습이 진행될수록 답변이 짧아지는 길이 붕괴가 발생할 수 있습니다. 후속 연구인 **LUSPO**는 GSPO 손실에 문장 길이를 다시 가중치로 곱해줌으로써 토큰별 기여도의 균형을 맞춰 이 문제를 해결했습니다."
 
 # References
 
-- Zheng et al., [Group Sequence Policy Optimization](https://arxiv.org/abs/2507.18071)
+- Zheng et al., [Group Sequence Policy Optimization](https://arxiv.org/abs/2507.18071) (Qwen Team)
 - Zheng et al., [Group Sequence Policy Optimization HTML](https://ar5iv.labs.arxiv.org/html/2507.18071v2)
-- Liu et al., [Length-Unbiased Sequence Policy Optimization](https://arxiv.org/abs/2602.05261)
+- Liu et al., [Length-Unbiased Sequence Policy Optimization](https://arxiv.org/abs/2602.05261) (LUSPO)
 - [[GRPO]]
 - [[DPO]]
+- [[DAPO]]
 - [[LLM Post-Training for Natural Korean]]
 - [[papers/language_model/Qwen-AgentWorld - Language World Models for General Agents|Qwen-AgentWorld]]
