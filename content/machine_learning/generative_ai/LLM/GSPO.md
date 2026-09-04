@@ -24,7 +24,7 @@ GSPO(Group Sequence Policy Optimization)는 LLM RL에서 답변 하나를 통째
 
 Qwen Team은 Qwen3-30B-A3B-Base로 이 방식을 검증했고, [[GRPO]] 대비 training stability와 efficiency가 낫고 AIME'24, LiveCodeBench, CodeForces 점수도 높다고 보고한다. 특히 [[MoE]] 모델의 RL training을 안정화한다. [[papers/language_model/Qwen-AgentWorld - Language World Models for General Agents|Qwen-AgentWorld]]의 RL stage에서도 `GSPO`가 사용된다.
 
-# B) token마다 ratio를 재면 무엇이 어긋나는가
+# B) ratio를 token마다 계산하면 무엇이 어긋나는가
 
 ## B.1) 채점 단위와 업데이트 단위가 다르다
 
@@ -55,11 +55,11 @@ token-level importance ratio는 "old policy가 이미 뽑은 token을 current po
 
 ## B.3) sample 하나로 만든 ratio는 보정 역할을 못 한다
 
-importance sampling은 A 분포에서 뽑은 sample을 B 분포 기준으로 다시 무게를 잡아 기댓값을 옮기는 기법이다. rollout은 old policy로 뽑았지만 업데이트는 current policy 기준이어야 하니, RL에서는 이 보정이 필요하다.
+[[importance sampling]]은 샘플을 뽑기 쉬운 분포 $q$에서 뽑은 sample에 $p(x)/q(x)$ 비율을 곱해, 정작 알고 싶은 분포 $p$의 기댓값을 계산하는 기법이다. 그 비율이 바로 likelihood ratio다. RL에서 이 보정이 필요한 이유는 rollout은 old policy로 뽑았지만 업데이트는 current policy 기준이어야 하기 때문이다.
 
-문제는 보정이 성립하는 조건이다. 확률 비율을 곱해서 분포를 옮기는 계산은 같은 분포에서 뽑은 sample이 여러 개 모여 평균될 때 원래 기댓값에 수렴한다. GRPO의 token-level ratio는 각 위치에서 sample 하나, 즉 실제로 생성된 token 하나만 갖고 비율을 만든다. 그래서 GSPO 논문은 이 ratio가 분포 차이를 보정하는 역할을 하지 못하고 대신 분산이 큰 noise를 gradient에 집어넣는다고 지적한다.
+문제는 보정이 성립하는 조건이다. 비율을 곱해서 분포를 옮기는 계산은 같은 분포에서 뽑은 sample $N$개를 평균할 때 원래 기댓값에 수렴한다. GRPO의 token-level ratio는 각 위치에서 sample 하나, 즉 실제로 생성된 token 하나만 갖고 비율을 만든다. 그래서 GSPO 논문은 이 ratio가 분포 차이를 보정하는 역할을 하지 못하고 대신 분산이 큰 noise를 [[Policy Gradient|policy gradient]]에 집어넣는다고 지적한다.
 
-noise 하나하나는 작지만, 긴 reasoning 답변에서는 token 위치마다 쌓인다. clipping은 이를 더 키운다. token별로 ratio를 자르면 어떤 token은 gradient가 통째로 사라지고 어떤 token은 남아서, 같은 답변 안에서도 업데이트가 들쭉날쭉해진다.
+noise 하나하나는 작지만, 긴 reasoning 답변에서는 token 위치마다 쌓인다. clipping은 이를 더 키운다. token별로 ratio를 자르면 어떤 token은 gradient가 통째로 사라지고 어떤 token은 남으므로, 같은 답변 안에서도 업데이트 크기가 고르지 않게 된다.
 
 [[MoE]] 모델에서는 token마다 활성화되는 expert가 달라질 수 있어 token-level likelihood ratio가 더 흔들린다.
 
@@ -158,7 +158,7 @@ $s_i(\theta)$에는 $1/\lvert y_i \rvert$ 지수가 붙어 있다. token 확률�
 
 둘째, 정규화하지 않은 sequence ratio는 token 몇 개의 확률 변화만으로도 크게 튄다. 논문은 length normalization의 목적을 분산을 줄이고 $s_i(\theta)$를 일정한 수치 범위 안에 두는 것으로 설명한다.
 
-정규화되는 대상은 reward가 아니라 policy ratio다. reward와 advantage는 여전히 response 단위로 계산된다. 결과적으로 $s_i(\theta)$는 "답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는가"를 재는 값이 된다.
+정규화되는 대상은 reward가 아니라 policy ratio다. reward와 advantage는 여전히 response 단위로 계산된다. 결과적으로 $s_i(\theta)$는 답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는지를 나타내는 값이 된다.
 
 # D) Objective
 
@@ -178,7 +178,7 @@ $$
 \right]
 $$
 
-수식 모양은 PPO/GRPO와 비슷하지만, clipping 대상이 다르다.
+수식 모양은 [[Proximal Policy Optimization|PPO]]와 [[GRPO]]를 닮았지만, clipping 대상이 다르다. PPO는 [[advantage function|advantage]]를 value model로 추정하고, GRPO와 GSPO는 group 안의 상대 reward로 대신한다.
 
 | 방법 | ratio 단위 | reward/advantage 단위 | 핵심 차이 |
 | --- | --- | --- | --- |
@@ -237,7 +237,7 @@ GSPO는 response-level ratio 하나로 clipping을 하므로, token-level fluctu
 
 ## E.3) 더 많이 clip하는데도 학습 효율이 높다
 
-논문의 관찰 하나가 이 설명을 뒷받침한다. clipping이 걸린 token의 비율을 재보면 GSPO와 GRPO 사이에 두 자리수 차이가 난다. GSPO는 sequence 단위로 판정하므로 한 번 clip될 때 그 답변의 token이 한꺼번에 빠진다.
+논문의 관찰 하나가 이 설명을 뒷받침한다. clipping이 걸린 token의 비율을 보면 GSPO와 GRPO 사이에 두 자리수 차이가 난다. GSPO는 sequence 단위로 판정하므로 한 번 clip될 때 그 답변의 token이 한꺼번에 빠진다.
 
 그런데도 GSPO의 training efficiency가 GRPO보다 높다. 학습에 쓰는 token을 훨씬 적게 가져가면서 더 빨리 좋아진다는 뜻이다. 논문은 이것을 GRPO의 token-level gradient estimate가 애초에 noise가 많아 효율이 낮다는 증거로 읽는다.
 
@@ -249,7 +249,7 @@ GSPO는 sequence likelihood만 보기 때문에 개별 token의 expert routing �
 
 ## E.5) inference engine이 낸 확률을 그대로 쓸 수 있다
 
-RL training에서 rollout은 vLLM 같은 inference engine이 만들고, 업데이트는 training engine이 한다. 같은 weight라도 두 엔진의 커널과 연산 순서가 달라 token 확률이 미세하게 어긋난다. GRPO는 token-level ratio를 쓰므로 이 차이가 ratio에 그대로 들어가고, 그래서 보통 training engine으로 확률을 다시 계산한다.
+RL training에서 rollout은 [[vllm|vLLM]] 같은 inference engine이 만들고, 업데이트는 training engine이 한다. 같은 weight라도 두 엔진의 커널과 연산 순서가 달라 token 확률이 미세하게 어긋난다. GRPO는 token-level ratio를 쓰므로 이 차이가 ratio에 그대로 들어가고, 그래서 보통 training engine으로 확률을 다시 계산한다.
 
 GSPO는 sequence likelihood 하나만 보므로 이 precision 차이에 훨씬 관대하고, rollout 때 inference engine이 반환한 확률을 그대로 optimization에 쓸 수 있다. 재계산 비용이 사라지면서 partial rollout, multi-turn RL, training/inference 분리 배치가 모두 단순해진다.
 
