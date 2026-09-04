@@ -1,35 +1,161 @@
 ---
-title: "importance sampling"
-aliases: ["inverse propensity score"]
+title: Importance Sampling
 tags:
   - sampling
+  - statistic
+aliases:
+  - importance sampling
 ---
 
-# Importance Sampling ?
+# A) 한줄 요약
 
-Importance sampling 은 효율적으로 기댓값을 추정하기 위해 고안된 방법이다.
+Importance sampling 은 **뽑기 어려운 분포의 기댓값을, 뽑기 쉬운 분포에서 뽑아서 계산하는** 방법이다.
 
-# Why We Need IS?
+어떤 확률 분포 $p$ 에서 $f(x)$ 의 평균이 궁금한데 $p$ 에서 sample 을 만들기 어려운 경우가 있다. 이때 sample 은 만들기 쉬운 분포 $q$ 에서 뽑고, 뽑힌 sample 하나하나에 $p(x)/q(x)$ 라는 무게를 다시 매겨서 $p$ 의 기댓값을 복원한다.
 
-[[Rejection sampling]] 는 rejection 이 많을 경우 계산 비용이 많이드는 단점이 있다.
-또한, 우리는 전체 분포에 대해서 알 필요가 없이, 어떤 확률 분포의 기댓값에 대해서만 관심이 있는 경우가 많다.
+핵심은 sample 을 바꾼 것이 아니라 **무게를 바꿨다**는 점이다.
 
-a.k.a. [[inverse propensity score]]
-	- Importance sampling 은 [기댓값]([[expectation]]) 을 계산하고자 하는 확률 분포 $f(x)$ 의 [확률 밀도 함수]([[Probability Density Function]]) $p$ 를 알고있지만 샘플들을 생성하기 어려울 때, 비교적 쉬운 pdf 인 $q(x)$ 에서 샘플을 생성하여 $f$ 의 기댓값을 계산하는 방법이다.
+# B) 왜 필요한가
 
-아래의 식을 보면, $q$ 에서 생성된 샘플을 통해 $p$ 의 기댓값을 계산할 수 있다는 것을 알 수 있다.
+두 가지 상황에서 쓴다.
+
+첫째, $p$ 에서 직접 뽑는 것이 비싼 경우다. [[Rejection sampling]] 은 뽑은 sample 을 조건에 안 맞으면 버리는데, 버리는 비율이 높으면 계산 비용이 크게 늘어난다.
+
+둘째, 애초에 분포 전체가 필요하지 않은 경우다. 우리가 알고 싶은 것이 "$p$ 를 따를 때 $f(x)$ 의 평균" 하나뿐이라면, $p$ 를 그대로 재현하는 sample 을 만들 필요가 없다. 기댓값만 맞으면 된다.
+
+세 번째 상황이 실무에서 가장 흔하다. **이미 다른 분포로 뽑아둔 데이터밖에 없는 경우**다. 과거 정책이 남긴 로그로 새 정책을 평가하거나, 예전 모델이 만든 rollout 으로 지금 모델을 업데이트하는 상황이 여기 해당한다.
+
+# C) 어떻게 동작하나
+
+## C.1) 그림으로 보면
+
+```text
+알고 싶은 것 :  x 를 p 에서 뽑았을 때 f(x) 의 평균
+막히는 곳    :  p 에서 뽑기가 어렵다
+
+        p(x)  ────  뽑기 어려움  ────X
+         │
+         │  대신
+         ▼
+        q(x)  ────  뽑기 쉬움  ────>  x1, x2, ... , xN
+                                       │
+                                       │  sample 마다 무게를 다시 매긴다
+                                       ▼
+                                  w_n = p(x_n) / q(x_n)
+                                       │
+                                       ▼
+                       E_p[f] 의 추정값 = (1/N) Σ w_n · f(x_n)
+```
+
+무게 $w$ 가 하는 일은 한 줄로 정리된다.
+
+```text
+q 가 자주 뽑는데 p 에서는 드문 구간   ->  w = p/q < 1  ->  무게를 줄인다
+q 가 드물게 뽑는데 p 에서는 흔한 구간 ->  w = p/q > 1  ->  무게를 키운다
+```
+
+$q$ 가 실제 분포보다 많이 뽑아온 것은 깎고, 적게 뽑아온 것은 부풀린다. 그래서 $q$ 로 뽑았는데도 평균이 $p$ 의 것으로 맞춰진다.
+
+## C.2) 식으로 보면
+
+시작은 [[expectation|기댓값]]의 정의다. $p$ 는 $p$ 의 [[Probability Density Function|확률 밀도 함수]]다.
 
 $$
-\displaystyle E_{x\sim p}[f(x)]\\=\int p(x)f(x)dx \\ =\int\frac{p(x)}{q(x)}q(x)f(x)dx\\=E_{x\sim q}\left[\frac{p(x)}{q(x)}f(x)\right]\approx\frac{1}{N}\sum_{n=1}^{N}\frac{p\left(x_{n}\right)}{q\left(x_{n}\right)}f\left(x_{n}\right),\quad x_{n}\sim q
+E_{x \sim p}[f(x)] = \int p(x) f(x)\, dx
 $$
 
-$\displaystyle E_{x\sim q}\left[\frac{p(x)}{q(x)}f(x)\right]$ 에서 $p(x)/q(x)$ 를 likelihood ratio 라고 하며,  
-$p$ 를 nominal distribution, $q$ 를 importance distribution 이라고 한다.
+여기에 $q(x)/q(x)$ 를 곱한다. 값은 그대로다.
 
-# Importance Sampling 과정
+$$
+= \int \frac{p(x)}{q(x)} q(x) f(x)\, dx
+$$
+
+이제 $q(x)$ 가 앞에 붙었으므로, 이 식은 $q$ 에 대한 기댓값 모양이 된다.
+
+$$
+= E_{x \sim q}\!\left[ \frac{p(x)}{q(x)} f(x) \right]
+$$
+
+마지막으로 이 기댓값을 $q$ 에서 뽑은 sample $N$ 개로 근사한다.
+
+$$
+\approx
+\frac{1}{N}
+\sum_{n=1}^{N}
+\frac{p(x_n)}{q(x_n)} f(x_n),
+\qquad
+x_n \sim q
+$$
+
+기호는 다음처럼 읽으면 된다.
+
+| 기호 | 뜻 |
+| --- | --- |
+| $p(x)$ | 원래 알고 싶은 분포. nominal distribution |
+| $q(x)$ | 실제로 sample 을 뽑는 분포. importance distribution |
+| $f(x)$ | 기댓값을 구하려는 대상 함수 |
+| $p(x)/q(x)$ | sample 하나에 매기는 무게. likelihood ratio |
+| $N$ | $q$ 에서 뽑은 sample 개수 |
+
+$q$ 를 고를 때 조건이 하나 있다. $p(x) f(x) \neq 0$ 인 곳에서는 $q(x) > 0$ 이어야 한다. $p$ 에서 일어날 수 있는 일을 $q$ 가 아예 안 뽑으면, 그 부분은 추정값에 영원히 반영되지 않는다.
 
 ![|600](https://i.imgur.com/qa65j3i.png)
 
+# D) 숫자로 따라가기
+
+결과가 세 개뿐인 분포로 확인해 보자. $f$ 는 C 가 나올 때만 10 을 준다.
+
+| 결과 | $p(x)$ | $q(x)$ | $f(x)$ | $w = p/q$ | $w \cdot f(x)$ |
+| --- | --- | --- | --- | --- | --- |
+| A | 0.1 | 0.4 | 0 | 0.250 | 0 |
+| B | 0.2 | 0.3 | 0 | 0.667 | 0 |
+| C | 0.7 | 0.3 | 10 | 2.333 | 23.333 |
+
+직접 계산한 참값은 이렇다.
+
+$$
+E_{x \sim p}[f(x)] = 0.7 \times 10 = 7
+$$
+
+$q$ 에서 뽑아 무게를 매긴 쪽도 같은 값이 나온다.
+
+$$
+E_{x \sim q}\!\left[ w \cdot f \right]
+= 0.4 \times 0 + 0.3 \times 0 + 0.3 \times 23.333
+= 7
+$$
+
+$q$ 는 C 를 0.3 만큼만 뽑는데 실제 $p$ 에서는 0.7 이다. 적게 뽑힌 만큼 무게 $2.333$ 배로 부풀려서 균형을 맞춘 것이다.
+
+# E) sample 이 적으면 무너진다
+
+위 계산이 성립하는 것은 **기댓값 차원**의 이야기다. 실제로는 sample 을 유한 개 뽑아 평균을 내므로, $N$ 이 작으면 추정값이 참값과 크게 어긋난다.
+
+같은 예시에서 $N$ 을 바꿔가며 추정해 보면 이렇게 된다.
+
+| $N$ | 추정값의 평균 | 추정값의 표준편차 |
+| --- | --- | --- |
+| 1 | 약 7.0 | 10.7 |
+| 10 | 약 7.0 | 3.5 |
+| 100 | 약 7.0 | 1.0 |
+| 1000 | 약 7.0 | 0.34 |
+
+평균은 어느 $N$ 에서나 7 근처다. importance sampling 추정량이 편향되지 않았다는 뜻이다. 하지만 $N = 1$ 일 때 표준편차가 10.7 로, 추정하려는 값 7 보다도 크다.
+
+이유는 표를 보면 바로 보인다. sample 을 하나만 뽑으면 결과가 두 가지뿐이다. A 나 B 가 나오면 추정값은 0 이고, C 가 나오면 23.333 이다. 7 이라는 값은 그 중간 어디에도 없다. 여러 번 뽑아 평균을 내야 비로소 7 에 모인다.
+
+**그래서 importance sampling 은 "비율을 곱했으니 보정됐다" 고 말할 수 있는 기법이 아니다.** 충분히 많은 sample 을 평균해야 보정이 완성된다. 무게의 분산이 클수록, 즉 $p$ 와 $q$ 가 많이 다를수록 필요한 $N$ 이 커진다.
+
+이 성질은 LLM RL 에서 실제 논쟁거리가 된다. [[GSPO]] 논문은 [[GRPO]] 가 각 token 위치에서 sample 하나로 비율을 만드는 것을 두고, 그것이 분포를 보정하는 역할을 하지 못하고 분산만 키운다고 지적한다. 위 표의 $N = 1$ 행이 바로 그 상황이다.
+
+# F) 어디에 쓰이나
+
+- **off-policy RL** — 과거 policy 로 만든 rollout 으로 현재 policy 를 업데이트한다. $p$ 가 현재 policy, $q$ 가 rollout 을 만든 policy 다. [[Proximal Policy Optimization|PPO]] 계열의 ratio 가 이 $p/q$ 이고, clipping 은 그 무게가 너무 커지지 않도록 자르는 장치다.
+- **offline 평가** — 서비스 중인 정책이 남긴 로그로 새 정책의 성능을 추정한다. 추천 도메인에서는 노출될 확률의 역수로 무게를 주는 [[inverse propensity score]] 라는 이름으로 더 많이 불린다. 같은 아이디어를 다른 각도에서 부르는 것이다.
+- **드문 사건의 추정** — 확률이 아주 낮은 사건을 $p$ 에서 그냥 뽑으면 거의 관측되지 않는다. 그 사건 쪽을 자주 뽑는 $q$ 를 만들어 두고 무게로 되돌리면 훨씬 적은 sample 로 추정할 수 있다.
+
 # References
 
-* [edwith](https://www.edwith.org/machinelearning2__17/lecture/10876?isDesc=false)
+- [edwith](https://www.edwith.org/machinelearning2__17/lecture/10876?isDesc=false)
+- [[Rejection sampling]]
+- [[Monte Carlo Method]]

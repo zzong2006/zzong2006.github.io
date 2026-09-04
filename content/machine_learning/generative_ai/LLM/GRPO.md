@@ -14,7 +14,7 @@ GRPO(Group Relative Policy Optimization)는 LLM의 추론 능력을 강화하기
 
 핵심은 PPO처럼 별도의 value model을 두지 않고, 같은 prompt에서 나온 여러 답변을 서로 비교해 advantage를 만든다는 점이다. 한 prompt에 대해 답변을 여러 개 뽑고, 그중 group 평균보다 좋은 답변은 더 나오게 만들고, 평균보다 나쁜 답변은 덜 나오게 만든다.
 
-수학, 코딩, tool use처럼 verifier가 답변 전체를 비교적 명확하게 채점할 수 있는 RLVR 환경에서 특히 잘 맞는다. 2026년 post-training 흐름에서는 GRPO 자체뿐 아니라 `DAPO`, [[GSPO]], `RLOO`, `REINFORCE++` 같은 변형도 함께 봐야 한다. 자연스러운 한국어 instruction tuning 관점의 위치는 [[LLM Post-Training for Natural Korean]]에 따로 정리해둔다.
+수학, 코딩, tool use처럼 verifier가 답변 전체를 비교적 명확하게 채점할 수 있는 RLVR 환경에서 특히 잘 맞는다. 2026년 post-training 흐름에서는 GRPO 자체뿐 아니라 [[DAPO]], [[GSPO]], `RLOO`, `REINFORCE++` 같은 변형도 함께 봐야 한다. 자연스러운 한국어 instruction tuning 관점의 위치는 [[LLM Post-Training for Natural Korean]]에 따로 정리해둔다.
 
 # B) 왜 PPO 대신 GRPO를 쓰나
 

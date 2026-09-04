@@ -15,7 +15,7 @@ DPO(Direct Preference Optimization)는 `chosen/rejected` 답변 쌍을 이용해
 
 여기서 중요한 점은 "좋은 답변의 확률을 무조건 크게 만든다"가 아니다. DPO는 **기존 SFT 모델이 보던 확률 분포를 기준점으로 삼고**, 그 기준점에서 `chosen`을 더 선호하고 `rejected`는 상대적으로 덜 선호하도록 조정한다.
 
-2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline** 에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 좋은 선택지다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 `DAPO`, [[GSPO]] 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
+2026년 기준으로 DPO는 최신 유행의 중심이라기보다, 비용이 낮고 안정적인 **offline preference tuning baseline** 에 가깝다. 자연스러운 한국어 문체처럼 reward를 명확한 규칙으로 만들기 어려운 문제에서는 여전히 좋은 선택지다. 반대로 수학, 코딩, tool use처럼 검증 가능한 보상이 있는 영역은 [[GRPO]] 계열과 [[DAPO]], [[GSPO]] 같은 on-policy RL 흐름을 함께 봐야 한다. 전체 지형은 [[LLM Post-Training for Natural Korean]]에 정리해둔다.
 
 # B) DPO가 왜 필요한가
 

@@ -38,14 +38,25 @@ prompt x
 
 수학 문제라면 최종 답이 맞았는지, coding task라면 test를 통과했는지가 reward가 된다. 채점 대상은 token 하나하나가 아니라 답변 전체다.
 
-그런데 GRPO는 이렇게 얻은 response-level reward로 advantage를 만든 뒤, policy update에서는 token-level ratio를 쓴다.
+그런데 GRPO는 이렇게 얻은 response-level reward로 advantage를 만든 뒤, policy update에서는 token-level ratio를 쓴다. 두 방법이 무엇을 한 덩어리로 보는지 나란히 두면 차이가 드러난다.
 
 ```text
-reward / advantage: response level
-importance ratio / clipping: token level
+                   ┌──────────── 답변 y (token 512개) ────────────┐
+채점 (verifier)    │           r(x, y) = 1  ->  A = +0.8          │
+                   └────────── 답변 하나에 값 하나 ───────────────┘
+
+GRPO 의 update     [t1][t2][t3][t4] ...................... [t512]
+                    ratio 512개, clip 512번   <- 채점 단위와 어긋난다
+
+GSPO 의 update     [──────────────── y ────────────────]
+                    ratio 1개, clip 1번       <- 채점 단위와 같다
 ```
 
-이 어긋남이 GSPO의 출발점이다.
+verifier는 답변 하나를 놓고 값 하나를 낸다. 위 그림의 첫 줄이 그것이다.
+
+GRPO는 그 값 하나를 512개 token이 나눠 갖게 한 뒤, token마다 별도의 ratio를 계산하고 별도로 clip 여부를 판정한다. 채점은 한 번인데 판정은 512번이다.
+
+GSPO는 판정도 한 번으로 맞춘다. 답변 전체에 ratio 하나를 두고 clip도 한 번만 건다. 이 어긋남을 없애는 것이 GSPO의 출발점이다.
 
 ## B.2) token-level ratio가 하는 일
 
@@ -65,7 +76,7 @@ noise 하나하나는 작지만, 긴 reasoning 답변에서는 token 위치마�
 
 # C) 핵심 아이디어: 단위를 sequence로 옮긴다
 
-GSPO는 B절에서 본 어긋남을 ratio 쪽을 고쳐서 맞춘다. reward를 token 단위로 쪼개는 대신, ratio와 clipping을 답변 단위로 올린다.
+GSPO는 앞에서 본 채점 단위와 업데이트 단위의 어긋남을 ratio 쪽을 고쳐서 맞춘다. reward를 token 단위로 쪼개는 대신, ratio와 clipping을 답변 단위로 올린다.
 
 하나의 prompt $x$에 대해 old policy에서 $G$개의 답변을 샘플링한다.
 
@@ -199,7 +210,27 @@ $s_i(\theta)$는 token ratio들의 기하평균이다. token 하나의 확률이
 | GRPO | 0.2, 0.27 |
 | GSPO | 3e-4, 4e-4 |
 
-세 자리수 차이다. GSPO를 도입할 때 하이퍼파라미터를 그대로 옮기면 안 되는 지점이 여기다.
+세 자리수 차이다. 답변 하나를 놓고 두 설정을 나란히 적용해 보면 무슨 일이 벌어지는지 보인다.
+
+```text
+어떤 답변의 token ratio 8개
+
+  1.0008  0.9994  1.0021  1.0002  0.9987  1.0015  0.9996  1.0009
+  가장 많이 벗어난 것도 1에서 0.21%
+
+  s_i = 이 8개의 기하평균 = 1.000399
+  벗어난 정도가 0.040% 로 줄었다
+
+GRPO   ε = 0.2     허용 구간 [0.8000, 1.2000]
+                   8개 token 이 모두 구간 안  ->  아무것도 clip 되지 않는다
+
+GSPO   ε = 3e-4    허용 구간 [0.9997, 1.0003]
+                   s_i = 1.000399 는 구간 밖  ->  답변 전체가 clip 된다
+```
+
+기하평균은 편차를 눌러준다. token 하나가 0.21% 벗어나도 8개를 평균한 $s_i$는 0.040%까지 줄었다. token이 512개라면 더 줄어든다. 그래서 $s_i$를 판정하는 $\varepsilon$은 token ratio를 판정하던 값과 같은 자리수일 수 없다. GSPO를 도입할 때 하이퍼파라미터를 그대로 옮기면 안 되는 지점이 여기다.
+
+같은 예시가 clip 비율 차이도 설명한다. 이 답변에서 GRPO는 token을 하나도 버리지 않는데 GSPO는 8개를 전부 버린다. GSPO가 GRPO보다 훨씬 많은 token을 clip한다는 관찰이 이렇게 만들어진다.
 
 ## D.2) GSPO-token: token마다 advantage를 달리 줘야 할 때
 
@@ -237,7 +268,7 @@ GSPO는 response-level ratio 하나로 clipping을 하므로, token-level fluctu
 
 ## E.3) 더 많이 clip하는데도 학습 효율이 높다
 
-논문의 관찰 하나가 이 설명을 뒷받침한다. clipping이 걸린 token의 비율을 보면 GSPO와 GRPO 사이에 두 자리수 차이가 난다. GSPO는 sequence 단위로 판정하므로 한 번 clip될 때 그 답변의 token이 한꺼번에 빠진다.
+논문의 관찰 하나가 이 설명을 뒷받침한다. clipping이 걸린 token의 비율을 보면 GSPO와 GRPO 사이에 두 자리수 차이가 난다. 앞의 clipping 범위 예시가 그 이유였다. GSPO는 답변 하나를 통째로 판정하므로, 한 번 걸릴 때 그 답변의 token이 한꺼번에 빠진다.
 
 그런데도 GSPO의 training efficiency가 GRPO보다 높다. 학습에 쓰는 token을 훨씬 적게 가져가면서 더 빨리 좋아진다는 뜻이다. 논문은 이것을 GRPO의 token-level gradient estimate가 애초에 noise가 많아 효율이 낮다는 증거로 읽는다.
 
@@ -261,7 +292,7 @@ GSPO는 GRPO의 token-level ratio 문제를 줄이지만, 모든 문제를 끝�
 
 GSPO는 sequence ratio를 길이로 정규화하지만, reward를 길이로 정규화하지는 않는다. 또 objective 안에서 response 하나가 하나의 loss 항처럼 평균되므로, 긴 답변의 token 하나하나가 loss에 기여하는 비중은 짧은 답변보다 작아진다.
 
-후속 연구인 LUSPO(Length-Unbiased Sequence Policy Optimization)는 이 지점을 GSPO의 length bias로 본다. sequence-level clipping은 token-level clipping보다 더 많은 token을 한꺼번에 clip하고, 실제 학습에서 함께 쓰이는 Clip-Higher와 결합되면 positive/negative sample의 token 기여가 불균형해진다는 것이다. 그 결과 GSPO가 response length collapse, 즉 답변이 점점 짧아지는 방향으로 치우칠 수 있다고 지적한다.
+후속 연구인 LUSPO(Length-Unbiased Sequence Policy Optimization)는 이 지점을 GSPO의 length bias로 본다. sequence-level clipping은 token-level clipping보다 더 많은 token을 한꺼번에 clip하고, 실제 학습에서 함께 쓰이는 Clip-Higher와 결합되면 positive/negative sample의 token 기여가 불균형해진다는 것이다. Clip-Higher는 clipping의 상한과 하한을 분리해 entropy collapse를 막는 [[DAPO]]의 기법이다. 그 결과 GSPO가 response length collapse, 즉 답변이 점점 짧아지는 방향으로 치우칠 수 있다고 지적한다.
 
 LUSPO의 보정은 reward를 길이로 나누는 쪽이 아니다. 오히려 GSPO loss에 response 길이 $\lvert y_i \rvert$를 곱해서, 긴 sequence의 token 기여가 과소평가되지 않도록 맞춘다.
 
@@ -284,7 +315,7 @@ $$
 
 두 번째 한계는 답변 안에서 어느 부분이 좋았는지 가려내기 어렵다는 점이다. 다만 이것이 "GRPO는 각 reasoning step의 좋고 나쁨을 정확히 안다"는 뜻은 아니다. GRPO도 reward와 advantage는 답변 전체에 붙이고, 같은 advantage를 답변 안의 token들이 공유한다.
 
-차이는 정도에 있다. GRPO는 token마다 ratio와 clipping이 달라서 token별 gradient 크기가 달라진다. GSPO는 sequence 전체를 더 강하게 묶는다. step-level credit assignment가 중요한 task라면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다. D.2절의 GSPO-token은 token별 advantage를 넣을 자리를 열어주지만, 그 advantage를 어디서 얻을지는 여전히 별도 문제다.
+차이는 정도에 있다. GRPO는 token마다 ratio와 clipping이 달라서 token별 gradient 크기가 달라진다. GSPO는 sequence 전체를 더 강하게 묶는다. step-level credit assignment가 중요한 task라면 process reward, step-level verifier, token-wise advantage 같은 별도 신호가 필요하다. 앞서 본 GSPO-token은 token별 advantage를 넣을 자리를 열어주지만, 그 advantage를 어디서 얻을지는 여전히 별도 문제다.
 
 # G) Qwen-AgentWorld에서 왜 쓰였나
 
