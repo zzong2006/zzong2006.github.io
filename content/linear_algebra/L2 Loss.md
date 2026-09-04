@@ -9,7 +9,7 @@ aliases: [squared loss, L2 loss]
 
 # A) L2 Loss ?
 
-L2 Loss 는 예측값과 정답의 차이를 제곱해서 penalty 를 주는 [[machine_learning/loss function|loss function]] 이다.
+L2 Loss 는 예측값과 정답의 차이를 제곱해서 penalty 를 주는 [[loss function]] 이다.
 
 $$
 L = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2
@@ -19,7 +19,7 @@ $$
 
 # B) MSE 와의 관계
 
-[[machine_learning/mean squared error|MSE]] 는 L2 Loss 를 sample 수로 평균낸 형태로 볼 수 있다.
+[[mean squared error|MSE]] 는 L2 Loss 를 sample 수로 평균낸 형태로 볼 수 있다.
 
 $$
 \operatorname{MSE} = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2

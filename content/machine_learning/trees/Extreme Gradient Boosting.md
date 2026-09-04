@@ -7,7 +7,7 @@ aliases: ["XGBoost"]
 
 # A) Extreme Gradient Boosting ?
 
-XGBoost is another popular [[machine_learning/boosting]] algorithm, and XGBoost is simply an improvised version of the [[Gradient Boosting Machine|GBM]] algorithm.
+XGBoost is another popular [[boosting]] algorithm, and XGBoost is simply an improvised version of the [[Gradient Boosting Machine|GBM]] algorithm.
 
 # B) Vs. GBM
 

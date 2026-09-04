@@ -20,7 +20,7 @@ aliases: []
 
 # B) Vs. Boosting
 
-* bagging 은 [[machine_learning/boosting]] 에 비해 구조의 단순성 때문에 정확도가 상대적으로 낮은 편이다.
+* bagging 은 [[boosting]] 에 비해 구조의 단순성 때문에 정확도가 상대적으로 낮은 편이다.
 * variance 를 낮추는 전략으로 인해 [[overfitting]] 에 robust 한 편이다.
 
 # C) Bagging Model

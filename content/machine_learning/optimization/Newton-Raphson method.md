@@ -62,7 +62,7 @@ $$
 
  ^e64b16
 
-* $\boldsymbol{H}^{-1}$ 는 [[machine_learning/gradient]] 로 해석된다.
+* $\boldsymbol{H}^{-1}$ 는 [[gradient]] 로 해석된다.
 
 아래는 Newton’s method 를 적용하는 알고리즘을 나타낸다.  
 ![](https://i.imgur.com/76JP7sb.png)

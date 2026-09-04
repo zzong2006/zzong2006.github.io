@@ -49,7 +49,7 @@ output 은 가중치가 곱해진 values 들의 합이고, 가중치 (weight) �
 
 일반적으로 가장 많이 사용하는 attention function 은 additive attention 과 multiplicative(dot-product) attention 이 있다.
 
-두 함수의 차이점은 compatibility function 으로 한개의 hidden layer 가 있는 [[MLP]] 를 사용하는가 (additive) 아니면, softmax function 을 사용하는가 (multiplicative) 의 차이점이 있다. dot-product 가 더 계산은 빠르지만, key 의 차원 $d_k$ 가 커질수록 additive 방식이 좋은 성능을 보인다고 한다.
+두 함수의 차이점은 compatibility function 으로 한개의 hidden layer 가 있는 [[multilayer perceptrons|MLP]] 를 사용하는가 (additive) 아니면, softmax function 을 사용하는가 (multiplicative) 의 차이점이 있다. dot-product 가 더 계산은 빠르지만, key 의 차원 $d_k$ 가 커질수록 additive 방식이 좋은 성능을 보인다고 한다.
 
 ### B.1.1) Scaled Dot-Product Attention
 
@@ -65,7 +65,7 @@ $$
 
 #### B.1.1.1) Why Scaled?
 
-$d_k$ 가 커질수록 dot products 의 값이 커지기 때문에 softmax 에서 [[machine_learning/gradient]] 값이 매우 작아지게 된다. 이러한 현상을 막기 위해서 scale 값을 적용했다고 한다.
+$d_k$ 가 커질수록 dot products 의 값이 커지기 때문에 softmax 에서 [[gradient]] 값이 매우 작아지게 된다. 이러한 현상을 막기 위해서 scale 값을 적용했다고 한다.
 
 #### B.1.1.2) Example Figure
 

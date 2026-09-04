@@ -14,7 +14,7 @@ Gradient Boosting Algorithm (GBM) 은 [[regression]] 또는 [[classification]] �
 
 ## A.1) Introduction
 
-다른 boosting 방식과 동일하게, gradient boosting 도 반복적인 과정을 통해 약한 모델들을 하나의 강한 모델로 합치게 된다. 가장 쉽게 설명할 수 있는 것은 [[least squares estimation]] 환경으로, 모델 $F$ 에게 [[machine_learning/mean squared error|MSE]] $\frac{1}{n} \sum_{i}\left(\hat{y}_{i}-y_{i}\right)^{2}$ 를 최소화하는 출력 $\hat{y}=F(x)$ 을 가지도록 학습시키는 것이다.
+다른 boosting 방식과 동일하게, gradient boosting 도 반복적인 과정을 통해 약한 모델들을 하나의 강한 모델로 합치게 된다. 가장 쉽게 설명할 수 있는 것은 [[least squares estimation]] 환경으로, 모델 $F$ 에게 [[mean squared error|MSE]] $\frac{1}{n} \sum_{i}\left(\hat{y}_{i}-y_{i}\right)^{2}$ 를 최소화하는 출력 $\hat{y}=F(x)$ 을 가지도록 학습시키는 것이다.
 
 이제 gradient boosting 알고리즘이 $M$ 스테이지를 반복한다고 해보자. 각 스테이지 $m$ ($1 \leq m \leq M$) 의 불완전한 모델을 $F_{m}$ 라고 표현하자. $m$ 이 낮을 경우, 이 모델은 아마도 $\hat{y}_{i}=\bar{y}$ 와 같은 출력을 내보낼 것이다 (관측된 결과의 평균 값).
 
@@ -107,7 +107,7 @@ non-linear kernel 을 사용하는 SVM 은 높은 차원에서 복잡한 decisio
 
 ## F.3) Naive 기술과 비교
 
-[[Naïve Bayes]] 와 같은 naive 한 기술은 collinear feature 에 취약하다. 왜냐하면 feature 간 독립적이라는 가정을 만족하지 못하기 때문이다.
+[[Naive Bayes]] 와 같은 naive 한 기술은 collinear feature 에 취약하다. 왜냐하면 feature 간 독립적이라는 가정을 만족하지 못하기 때문이다.
 
 [[k-Nearest Neighbors|KNN]] 방식도 대용량 데이터셋에 대해서 쉽게 overfitting 되는 문제가 있다.
 

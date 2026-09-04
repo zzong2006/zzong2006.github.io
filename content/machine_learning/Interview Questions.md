@@ -6,7 +6,7 @@ title: "Interview Questions"
 
 모니터링 지표
 
-* [[AUROC]], [[Kolmogorov-Smirnov]], [[Population Stability Index]]
+* [[Area Under Curve|AUROC]], [[Kolmogorov-Smirnov]], [[Population Stability Index]]
 
 # B) Machine Learning
 

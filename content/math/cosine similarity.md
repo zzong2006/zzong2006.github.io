@@ -20,7 +20,7 @@ $$
 
 # B) Vs. MSE
 
-[[machine_learning/mean squared error|MSE]] 와 차이점은 두 벡터 크기를 이용해 유사도의 정도를 [[machine_learning/Normalization|Normalization]] 할 수 있다는 점이다.
+[[mean squared error|MSE]] 와 차이점은 두 벡터 크기를 이용해 유사도의 정도를 [[machine_learning/Normalization|Normalization]] 할 수 있다는 점이다.
 
 # C) Cosine Similarity 의 범위
 

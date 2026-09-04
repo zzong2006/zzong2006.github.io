@@ -16,7 +16,7 @@ RLHF나 DPO 같은 preference optimization을 바로 적용하기 전에 SFT를 
 
 # B) Fine-Tuning과의 차이
 
-일반적인 [[machine_learning/fine tuning|fine tuning]]은 pretrained model을 특정 domain이나 task에 맞게 추가 학습하는 넓은 개념이다. SFT는 그중에서도 **정답 response가 있는 supervised data** 를 사용해 instruction following을 학습하는 LLM alignment 단계에 가깝다.
+일반적인 [[fine tuning]]은 pretrained model을 특정 domain이나 task에 맞게 추가 학습하는 넓은 개념이다. SFT는 그중에서도 **정답 response가 있는 supervised data** 를 사용해 instruction following을 학습하는 LLM alignment 단계에 가깝다.
 
 | 구분 | 목적 | 데이터 |
 | --- | --- | --- |

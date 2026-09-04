@@ -19,7 +19,7 @@ $$
 
 여기서 $\boldsymbol{H}^{-1}$ 를 구하는 것이 계산 비용 상승의 주된 원인인데, 이를 근사하는 방향으로 계산 비용을 줄인다. 즉, [[quasi-Newton method]] 방식을 적용하여 low-rank update 를 통해 matrix $\boldsymbol{M}_{t}$ 에 대한 inverse 를 approximate 한다.
 
-inverse [[Hessian matrix]] 근사 $\boldsymbol{M}_{t}$ 를 업데이트하면, descent 방향 $\boldsymbol{\rho}_{t}$ 는 $\boldsymbol{\rho}_{t}=\boldsymbol{M}_{t} \boldsymbol{g}_{t}$ 로 계산되고 ($\boldsymbol{g}_{t}$ 는 [[machine_learning/gradient]]), 해당 방향으로 parameter update 가 진행된다.  
+inverse [[Hessian matrix]] 근사 $\boldsymbol{M}_{t}$ 를 업데이트하면, descent 방향 $\boldsymbol{\rho}_{t}$ 는 $\boldsymbol{\rho}_{t}=\boldsymbol{M}_{t} \boldsymbol{g}_{t}$ 로 계산되고 ($\boldsymbol{g}_{t}$ 는 [[gradient]]), 해당 방향으로 parameter update 가 진행된다.  
 
 $$
 \boldsymbol{\theta}_{t+1}=\boldsymbol{\theta}_{t}+\epsilon^{*} \boldsymbol{\rho}_{t}

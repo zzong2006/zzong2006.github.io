@@ -19,11 +19,11 @@ Loss function 은 모델의 예측이 정답과 얼마나 다른지를 숫자로
 
 | 문제 유형 | 자주 쓰는 loss | 읽는 포인트 |
 | --- | --- | --- |
-| Regression | [[linear_algebra/L2 Loss]], [[machine_learning/mean squared error]] (MSE) | 큰 오차에 더 큰 penalty 를 줄지 |
-| Binary / Multiclass Classification | [[machine_learning/logistic loss]], [[machine_learning/cross-entropy]] | 확률 예측과 decision boundary 를 어떻게 맞출지 |
-| Maximum-margin Classification | [[machine_learning/hinge loss]] | 정답만 맞히는 것이 아니라 margin 을 확보할지 |
+| Regression | [[linear_algebra/L2 Loss]], [[mean squared error]] (MSE) | 큰 오차에 더 큰 penalty 를 줄지 |
+| Binary / Multiclass Classification | [[logistic loss]], [[cross-entropy]] | 확률 예측과 decision boundary 를 어떻게 맞출지 |
+| Maximum-margin Classification | [[hinge loss]] | 정답만 맞히는 것이 아니라 margin 을 확보할지 |
 | Metric Learning / Retrieval | [[retrieval/concepts/Triplet Loss]], [[retrieval/concepts/InfoNCE]] | positive 는 가깝게, negative 는 멀게 만들지 |
-| Language Model | next-token [[machine_learning/cross-entropy]] | 다음 token 분포를 얼마나 잘 맞추는지 |
+| Language Model | next-token [[cross-entropy]] | 다음 token 분포를 얼마나 잘 맞추는지 |
 
 # C) Loss 와 Metric 은 다르다
 

@@ -60,7 +60,7 @@ $$
 
 ## E.1) Gradient Descent For Linear Regression
 
-$h_\theta(x_i)=\theta_0+\theta_1x_i$ 의 비용 함수 $J(\theta_0,\theta_1)$ 을 이용하여 gradient descent 를 진행해보자. [[machine_learning/mean squared error|MSE]] 를 고려한 비용 함수 $J(\theta_0,\theta_1)$ 는 다음과 같다.
+$h_\theta(x_i)=\theta_0+\theta_1x_i$ 의 비용 함수 $J(\theta_0,\theta_1)$ 을 이용하여 gradient descent 를 진행해보자. [[mean squared error|MSE]] 를 고려한 비용 함수 $J(\theta_0,\theta_1)$ 는 다음과 같다.
 
 $$
 \displaystyle J(\theta_0,\theta_1)=\frac{1}{2m}\sum^{m}_{i=1}(h_\theta(x_i)-y_i)^2

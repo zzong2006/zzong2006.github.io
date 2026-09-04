@@ -9,7 +9,7 @@ tags:
 
 Latent Semantic Analysis 는 잠재 의미 분석 (Latent Semantic Indexing, LSI) 이라고 부르기도 함
 
-LSA 는 기본적으로 DTM 이나 [[TF-IDF|TF-IDF]] 행렬에 절단된 [[machine_learning/Singular Value Decomposition]](truncated SVD) 를 사용하여 차원을 축소시키고, 단어들의 잠재적인 의미를 끌어낸다는 아이디어를 갖고 있음
+LSA 는 기본적으로 DTM 이나 [[TF-IDF]] 행렬에 절단된 [[machine_learning/Singular Value Decomposition]](truncated SVD) 를 사용하여 차원을 축소시키고, 단어들의 잠재적인 의미를 끌어낸다는 아이디어를 갖고 있음
 
 # A) 예시
 

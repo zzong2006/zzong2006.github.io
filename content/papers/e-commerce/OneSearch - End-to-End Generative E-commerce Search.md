@@ -124,7 +124,7 @@ matches = {
 
 ### D.1.2) RQ-Kmeans는 embedding을 여러 단계 cluster ID로 바꾼다
 
-`RQ-Kmeans`는 Residual Quantization K-means로 이해하면 된다. 기본 [[machine_learning/K-means|K-means]] 는 vector를 가장 가까운 centroid ID 하나로 바꾼다. RQ-Kmeans는 여기서 끝내지 않고, 첫 centroid로 설명하지 못한 residual을 다시 다음 K-means로 보낸다.
+`RQ-Kmeans`는 Residual Quantization K-means로 이해하면 된다. 기본 [[K-means]] 는 vector를 가장 가까운 centroid ID 하나로 바꾼다. RQ-Kmeans는 여기서 끝내지 않고, 첫 centroid로 설명하지 못한 residual을 다시 다음 K-means로 보낸다.
 
 흐름은 이렇다.
 

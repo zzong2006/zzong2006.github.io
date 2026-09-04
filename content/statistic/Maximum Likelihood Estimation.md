@@ -60,7 +60,7 @@ $$
 
 * $r_n$ 은 $n$ 번째 잔차를 의미한다.
 
-또한, [[residual sum of squares|RSS]] 를 example 개수 $N$ 으로 나누게 된다면 [[machine_learning/mean squared error]] 가 된다.  
+또한, [[residual sum of squares|RSS]] 를 example 개수 $N$ 으로 나누게 된다면 [[mean squared error]] 가 된다.  
 
 $$
 \displaystyle\operatorname{MSE}(\boldsymbol{w})=\frac{1}{N}\operatorname{RSS}(\boldsymbol{w})=\frac{1}{N}\sum_{n=1}^{N}\left(y_{n}-\boldsymbol{w}^{\top}\boldsymbol{x}_{n}\right)^{2}

@@ -8,7 +8,7 @@ tags:
 
 # A) Elastic Net ?
 
-[[machine_learning/ridge regression|ridge]] 과 [[lasso regression]] 을 합친 하이브리드 선형 모델
+[[ridge regression|ridge]] 과 [[lasso regression]] 을 합친 하이브리드 선형 모델
 
 $$
 \mathcal{L}\left(\boldsymbol{w}, \lambda_{1}, \lambda_{2}\right)=\|\boldsymbol{y}-\mathbf{X} \boldsymbol{w}\|^{2}+\lambda_{2}\|\boldsymbol{w}\|_{2}^{2}+\lambda_{1}\|\boldsymbol{w}\|_{1}

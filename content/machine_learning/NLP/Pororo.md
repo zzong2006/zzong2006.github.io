@@ -14,7 +14,7 @@ tags:
 
 * [[sentence transformers]] 라이브러리 사용
 * 한국어 모델의 경우 `brainsbert.base.ko.kornli.korsts` 를 사용중임
-* brainsbert 의 경우 사용가능한 모델은 [[RoBERTa|RoBERTa]] 밖에 없음
+* brainsbert 의 경우 사용가능한 모델은 [[RoBERTa]] 밖에 없음
 
 # References
 

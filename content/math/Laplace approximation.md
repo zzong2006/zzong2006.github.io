@@ -13,7 +13,7 @@ tags:
 
 Laplace approximation 은 [[approximate posterior inference]] 를 위한 방식이다.
 
-Quadratic approximation 이라고도 불리며, 연속 랜덤 변수에 대한 posterior 를 multivariate Gaussian 을 활용해서 approximate 하기 위한 방법이다. 즉, Laplace 방식은 true distribution $p(z)$ 의 [[mode|mode]] 를 중심으로하는 Gaussian approximation $q(z)$ 를 찾는 것으로 생각할 수 있다.
+Quadratic approximation 이라고도 불리며, 연속 랜덤 변수에 대한 posterior 를 multivariate Gaussian 을 활용해서 approximate 하기 위한 방법이다. 즉, Laplace 방식은 true distribution $p(z)$ 의 [[mode]] 를 중심으로하는 Gaussian approximation $q(z)$ 를 찾는 것으로 생각할 수 있다.
 
 ![|500](https://i.imgur.com/YEbD9rW.png)
 

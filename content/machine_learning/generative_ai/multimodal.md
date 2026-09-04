@@ -8,7 +8,7 @@ aliases: [Multimodal Learning]
 
 # A) Multimodal Learning
 
-Multimodal learning은 text, image, audio, video, tabular feature처럼 서로 다른 modality의 정보를 함께 사용하는 학습 설정이다. [[machine_learning/CLIP|CLIP]]은 image와 text를 같은 embedding space에 맞추는 대표적인 multimodal model이다.
+Multimodal learning은 text, image, audio, video, tabular feature처럼 서로 다른 modality의 정보를 함께 사용하는 학습 설정이다. [[CLIP]]은 image와 text를 같은 embedding space에 맞추는 대표적인 multimodal model이다.
 
 # B) 어려운 점
 

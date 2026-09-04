@@ -42,7 +42,7 @@ collaborative filtering 추천은 사용자들의 콘텐츠 사용 패턴을 분
 	* Interaction Encoder
 		* 각 사용자와 아이템에 대한 embedding 을 학습하기 위해 사용하는 function
 	* Loss Function
-		* Pointwise loss function: binary [[cross-entropy]], [[machine_learning/mean squared error]]
+		* Pointwise loss function: binary [[cross-entropy]], [[mean squared error]]
 		* Pairwise loss function: [[BPR - Bayesian Personalized Ranking from Implicit Feedback]]
 	* Negative Sampling
 		* informative negative samples

@@ -48,7 +48,7 @@ $$
 2. Kernel Machines ([[kernel trick]] 을 사용한 SVMs)
 3. deep learning 계열의 [[neural network]]
 4. [[Decision Tree]] 와 ensemble 기반의 tree ([[random forest]], [[Gradient Boosting Machine|GBM]])
-5. [[k-Nearest Neighbors|KNN]] 또는 [[Naïve Bayes]] 와 같은 Naive 한 기술들
+5. [[k-Nearest Neighbors|KNN]] 또는 [[Naive Bayes]] 와 같은 Naive 한 기술들
 
 # E) References
 

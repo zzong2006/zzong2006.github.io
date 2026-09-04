@@ -16,7 +16,7 @@ aliases: ["앙상블"]
 
 * [[bagging]]
 	* [[random forest]]
-* [[machine_learning/boosting]]
+* [[boosting]]
 	* [[Gradient Boosting Machine]]
 
 # C) References

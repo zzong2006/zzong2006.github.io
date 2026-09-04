@@ -19,7 +19,7 @@ $$
 \displaystyle \mathbf{J}=\left[\begin{array}{ccc}\displaystyle\frac{\partial\mathbf{f}}{\partial x_{1}}&\displaystyle\cdots&\displaystyle\frac{\partial\mathbf{f}}{\partial x_{n}}\end{array}\right]=\left[\begin{array}{c}\nabla^{\mathrm{T}}f_{1}\\\vdots\\\nabla^{\mathrm{T}}f_{m}\end{array}\right]=\displaystyle\left[\begin{array}{ccc}\frac{\partial f_{1}}{\partial x_{1}}&\displaystyle\cdots&\frac{\partial f_{1}}{\partial x_{n}}\\\vdots&\ddots&\vdots\\\frac{\partial f_{m}}{\partial x_{1}}&\cdots&\frac{\partial f_{m}}{\partial x_{n}}\end{array}\right]
 $$
 
-여기서 $\nabla^{\mathrm{T}}f_{i}$ 는 $i$ 번째 원소의 gradient 에 대한 transpose (row vector) 이다. 즉, 자코비안 행렬의 각 행은 특정 함수의 [[machine_learning/gradient]] 를 나타낸 것으로 생각할 수 있다.
+여기서 $\nabla^{\mathrm{T}}f_{i}$ 는 $i$ 번째 원소의 gradient 에 대한 transpose (row vector) 이다. 즉, 자코비안 행렬의 각 행은 특정 함수의 [[gradient]] 를 나타낸 것으로 생각할 수 있다.
 
 자세한 내용은 여기를 참고: [Difference between gradient and Jacobian](https://math.stackexchange.com/questions/1519367/difference-between-gradient-and-jacobian)
 

@@ -29,7 +29,7 @@ aliases: []
 
 6 개의 동일한 레이어들로 이루어져 있고, 각 레이어는 두개의 sub-layers 로 구성되어 있음
 하나는 multi-head [[self-attention]] 메커니즘이고, 다른하나는 position-wise fully connected FFN(feed-forward network) 이다.
-두 sub-layers 에 각각 [[layer normalization]] 이후 [[residual connection]] 를 적용했다. 즉, 각 sub-layer 의 출력은 $\text{LayerNorm}(x+\text{Sublayer}(x))$ 와 같다.
+두 sub-layers 에 각각 [[layer normalization]] 이후 [[skip connection|residual connection]] 를 적용했다. 즉, 각 sub-layer 의 출력은 $\text{LayerNorm}(x+\text{Sublayer}(x))$ 와 같다.
 여기서 $\text{Sublayer}(x)$ 는 sub-layer 자체 function 이다.
 
 ### C.1.2) Decoder

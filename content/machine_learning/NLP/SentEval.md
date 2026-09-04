@@ -52,7 +52,7 @@ $p$ 의 각 원소를 위의 식을 따라 계산하면 해당 벡터를 label �
 
 ## B.2) 모델
 
-모델은 간단한 softmax 를 활용한 선형 모델이다. Loss 는 [[machine_learning/mean squared error|MSE]] 를 적용했다.
+모델은 간단한 softmax 를 활용한 선형 모델이다. Loss 는 [[mean squared error|MSE]] 를 적용했다.
 
 ```python
 model = nn.Sequential(  

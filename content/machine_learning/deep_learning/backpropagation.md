@@ -32,7 +32,7 @@ $$
 \delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right)
 $$
 
-여기서 error $\delta_{j}^{l}$ 란, 신경망의 $l$ 번째 layer 가중치 합 $z_{j}^{l}=\sum_{k} w_{j k}^{l} a_{k}^{l-1}+b_{j}^{l}$ 에 대한 $C$ 의 변화량을 의미한다: $\displaystyle \delta_{j}^{l} \equiv \frac{\partial C}{\partial z_{j}^{l}}$ ($j$ 는 $l$ 번째 layer 의 $j$ 번째 neuron 을 의미). 그리고 $\nabla_{a} C$ 는 편미분 $\partial C / \partial a_{j}^{L}$ 를 원소로 가지는 [[machine_learning/gradient]] 를 의미한다.  
+여기서 error $\delta_{j}^{l}$ 란, 신경망의 $l$ 번째 layer 가중치 합 $z_{j}^{l}=\sum_{k} w_{j k}^{l} a_{k}^{l-1}+b_{j}^{l}$ 에 대한 $C$ 의 변화량을 의미한다: $\displaystyle \delta_{j}^{l} \equiv \frac{\partial C}{\partial z_{j}^{l}}$ ($j$ 는 $l$ 번째 layer 의 $j$ 번째 neuron 을 의미). 그리고 $\nabla_{a} C$ 는 편미분 $\partial C / \partial a_{j}^{L}$ 를 원소로 가지는 [[gradient]] 를 의미한다.  
 위 식은 [[activation function]] $\sigma$ 에 상관없이 항상 적용될 수 있는 식이다.
 
 (2) 그리고 $l$ 번째 layer 의 error 를 $l+1$ 번째 layer 의 error 로 표현하면 다음과 같다.  

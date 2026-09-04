@@ -23,7 +23,7 @@ $$
 \operatorname{RSS}=\left(y_{1}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{1}\right)^{2}+\left(y_{2}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{2}\right)^{2}+\cdots+\left(y_{n}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{n}\right)^{2}
 $$
 
-이 경우 [[machine_learning/mean squared error|MSE]] 와 비슷하다.
+이 경우 [[mean squared error|MSE]] 와 비슷하다.
 
 # B) Related
 

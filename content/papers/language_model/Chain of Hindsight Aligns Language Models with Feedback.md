@@ -15,7 +15,7 @@ aliases:
 
 # A) Chain of Hindsight Aligns Language Models with Feedback?
 
-# B) [[machine_learning/supervised fine-tuning|SFT]]
+# B) [[supervised fine-tuning|SFT]]
 
 * 사전 학습된 언어 모델을 미세 조정하는 데 사용됩니다.
 * 인간이 주석을 달아준 데이터와 긍정적으로 평가된 모델 생성에 의존합니다.

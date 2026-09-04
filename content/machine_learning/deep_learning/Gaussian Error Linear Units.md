@@ -36,4 +36,4 @@ GELU 는 아래처럼 생겼는데 x 축이 음에 가까울수록 출력이 fla
 
 # D) Questions
 
-* 왜 GELU 가 [[machine_learning/ReLU function|ReLU function]] 보다 dead relu 이슈가 적을까?
+* 왜 GELU 가 [[ReLU function]] 보다 dead relu 이슈가 적을까?

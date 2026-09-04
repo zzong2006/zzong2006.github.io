@@ -9,7 +9,7 @@ aliases: [OLS, Normal Equation]
 
 # A) OLS ?
 
-[[machine_learning/mean squared error|MSE]] 를 cost function 으로 가지는 [[linear regression|선형 회귀]] 모델에 대한 closed form solution
+[[mean squared error|MSE]] 를 cost function 으로 가지는 [[linear regression|선형 회귀]] 모델에 대한 closed form solution
 
 다음과 같은 선형 회귀 모델에 대한 [[residual sum of squares|RSS]] 가 있다고 해보자.
 
@@ -17,7 +17,7 @@ $$
 \displaystyle\operatorname{RSS}(\boldsymbol{w})=\frac{1}{2}\sum_{n=1}^{N}\left(y_{n}-\boldsymbol{w}^{\top}\boldsymbol{x}_{n}\right)^{2}=\frac{1}{2}\|\mathbf{X}\boldsymbol{w}-\boldsymbol{y}\|_{2}^{2}=\frac{1}{2}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})^{\top}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})
 $$
 
-이를 미분해서 [[machine_learning/gradient]] 를 구하면 다음과 같다.
+이를 미분해서 [[gradient]] 를 구하면 다음과 같다.
 
 $$
 \nabla_{\boldsymbol{w}}\operatorname{RSS}(\boldsymbol{w})=\mathbf{X}^{\top}\mathbf{X}\boldsymbol{w}-\mathbf{X}^{\top}\boldsymbol{y}

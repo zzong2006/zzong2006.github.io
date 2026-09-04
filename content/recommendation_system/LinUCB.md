@@ -15,7 +15,7 @@ LinUCB 는 ridge regression 을 기반으로 하지만, 이 과정에서 몇 가
 
 ### A.1.1) 독립성 가정
 
-LinUCB 에서 사용하는 [[machine_learning/ridge regression|ridge regression]] 은 다음과 같은 가정을 전제로 합니다:
+LinUCB 에서 사용하는 [[ridge regression]] 은 다음과 같은 가정을 전제로 합니다:
 
 * 샘플 $\left(x_{t,a},r_{t,a_{t}}\right)$ 들이 서로 독립적일 때, ridge regression 을 통해 $\theta^{*}$ 의 closed-form 추정치를 얻을 수 있습니다:
 
