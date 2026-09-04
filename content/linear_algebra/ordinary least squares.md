@@ -51,7 +51,7 @@ $$
 
 $$
 
-만약 $\mathbf{X}$ 가 full [rank]([[the rank of a matrix]]) 인 경우, $\mathbf{H}$ 는 [[positive definite]] 하다.
+만약 $\mathbf{X}$ 가 full [[the rank of a matrix|rank]] 인 경우, $\mathbf{H}$ 는 [[positive definite]] 하다.
 
 여기서 full rank 인 경우는 $\mathbf{X}:=\left[\boldsymbol{x}_{1}, \ldots, \boldsymbol{x}_{N}\right]^{\top} \in \mathbb{R}^{N \times D}$ 의 rank 가 $D$ 를 만족한다는 의미이고, positive definite 는 $\boldsymbol{v}>0$ 에 대해 $\boldsymbol{v}^{\top}\left(\mathbf{X}^{\top}\mathbf{X}\right)\boldsymbol{v}=(\mathbf{X}\boldsymbol{v})^{\top}(\mathbf{X}\boldsymbol{v})=\|\mathbf{X}\boldsymbol{v}\|^{2}>0$ 를 만족한다는 의미이다.
 

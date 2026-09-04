@@ -41,7 +41,7 @@ $$
 
 # C) Negative Sampling 과의 관계
 
-* 인기에 기반한 가중치 전략은 [BPR]([[BPR - Bayesian Personalized Ranking from Implicit Feedback]]) 에서 인기 기반의 oversampling 기법과 동일한 직관을 가지고 있다.
+* 인기에 기반한 가중치 전략은 [[BPR - Bayesian Personalized Ranking from Implicit Feedback|BPR]] 에서 인기 기반의 oversampling 기법과 동일한 직관을 가지고 있다.
 	* 인기가 많은 아이템에 대한 negative feedback 을 sampling 하는 경우, 더 높은 확률로 뽑히도록 유도
 * 하지만 경험적으로 이러한 oversampling 방식은 basic uniform sampling 방식보다 성능이 떨어진다.
 	* 그 이유를 이 논문에서는 SGD 학습 방식이 덜 인기있는 아이템에 대해서는 under-trained 되었기 떄문이라고 밝히고 있다.

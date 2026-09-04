@@ -141,10 +141,10 @@ $$
 $$
 
 * Methods
-	* [LMF]([[Logistic Matrix Factorization for Implicit Feedback Data]]), [BPR]([[BPR - Bayesian Personalized Ranking from Implicit Feedback]]), 또는 대부분의 신경망 기반 추천 모델들 ([NCF]([[Neural Collaborative Filtering]]), LightGCN)
+	* [[Logistic Matrix Factorization for Implicit Feedback Data|LMF]], [[BPR - Bayesian Personalized Ranking from Implicit Feedback|BPR]], 또는 대부분의 신경망 기반 추천 모델들 ([[Neural Collaborative Filtering|NCF]], LightGCN)
 	* 인기있는 negative items 을 oversampling 하는 것도 고려한 연구가 존재
 	* sampler 를 향상시키기 위해 side-information 을 사용하는 방법도 고려했음
-		* 노출되었지만 클릭하지 않은 데이터를 통해 사용자의 노출 정도를 평가하는데 활용함: [46]([[An Improved Sampler for Bayesian Personalized Ranking by Leveraging View Data]]), [47]([[Reinforced Negative Sampling for Recommendation with Exposure Data]])
+		* 노출되었지만 클릭하지 않은 데이터를 통해 사용자의 노출 정도를 평가하는데 활용함: [[An Improved Sampler for Bayesian Personalized Ranking by Leveraging View Data|46]], [[Reinforced Negative Sampling for Recommendation with Exposure Data|47]]
 
 #### E.2.2.3) Exposure-based Model
 
@@ -198,7 +198,7 @@ $$
 adversary $D$ 는 popular-niche 아이템 쌍 $\left(\tilde{i}^{p},\tilde{i}^{n}\mid u\right)$ 에 대해 생성된 합성 데이터와 동일한 수의 실제 데이터 $\left(i^{p},i^{n}\right)$ 쌍을 입력으로 받는다.
 
 * 실제 쌍은 global co-occurrence 에서 샘플링되고, 합성 쌍은 recommender $G$ 에 의해 생성된다.
-	* $G$ 는 [NCF]([[Neural Collaborative Filtering]]) 와 같은 추천 모델이 될 수 있음
+	* $G$ 는 [[Neural Collaborative Filtering|NCF]] 와 같은 추천 모델이 될 수 있음
 
  $D$ 는 popular 와 niche 아이템 간 암묵적 관계를 학습하고, $G$ 는 사용자 history 기반의 더 niche 한 item 을 찾아냄으로써 , long-tail 아이템을 추천 가능하게 함
 

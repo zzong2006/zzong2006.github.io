@@ -11,7 +11,7 @@ aliases: []
 
 * [paper link](https://www.sciencedirect.com/science/article/pii/S0167947308000145)
 * Abstract & Introduction (Summary)
-	* [PLSI]([[Probabilistic latent Semantic Indexing]]) 와 [NMF]([[non-negative matrix factorization]]) 는 동일한 목적 함수를 최적화하는 것임을 보임
+	* [[Probabilistic latent Semantic Indexing|PLSI]] 와 [[non-negative matrix factorization|NMF]] 는 동일한 목적 함수를 최적화하는 것임을 보임
 		* NMF 의 경우 I-divergence objective function ($L_1$-normalization NMF)
 	* 다만, NMF 와 PLSI 는 서로 다른 알고리즘임
 		* 동일한 초기화 조건으로 시작해도, 서로 다른 solution(local minima) 으로 converge 하게됨
@@ -31,7 +31,7 @@ aliases: []
 		* PLSI 의 최대화 likelihood
 			* $\displaystyleJ_{\mathrm{PLSI}}=\sum_{i=1}^{m}\sum_{j=1}^{n}F_{ij}\logP\left(w_{i},d_{j}\right)$
 				* $\begin{aligned}P\left(w_{i},d_{j}\right)&=\sum_{k}P\left(w_{i},d_{j}\midz_{k}\right)P\left(z_{k}\right)\\&=\sum_{k}P\left(w_{i}\midz_{k}\right)P\left(d_{j}\midz_{k}\right)P\left(z_{k}\right)\end{aligned}$
-					* $z_k$ 가 주어졌을 때, $w_i$ 하고 $d_j$ 는 서로 [조건부 독립]([[independence (probability)]]) 임을 가정
+					* $z_k$ 가 주어졌을 때, $w_i$ 하고 $d_j$ 는 서로 [[independence (probability)|조건부 독립]] 임을 가정
 		* probability factors
 			* $\sum_{i=1}^{m}p\left(w_{i}\midz_{k}\right)=1$
 			* $\sum_{j=1}^{n}p\left(d_{j}\midz_{k}\right)=1$

@@ -12,10 +12,10 @@ tags:
 
 # 2. PBG 가 학습하는 모델들
 
-* [RESCAL]([[A Three-Way Model for Collective Learning on Multi-Relational Data]])
+* [[A Three-Way Model for Collective Learning on Multi-Relational Data|RESCAL]]
 * [DistMult]()
 * [TransE]()
-* [ComplEx]([[Complex Embeddings for Simple Link Prediction]])
+* [[Complex Embeddings for Simple Link Prediction|ComplEx]]
 
 # 3. Related
 

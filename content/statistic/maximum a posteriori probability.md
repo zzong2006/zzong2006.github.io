@@ -8,7 +8,7 @@ aliases: ["MAP"]
 
 # Maximum a Posteriori Probability ?
 
-MAP(maximum a posteriori probability) estimate is an estimate of an unknown quantity, that equals the [mode]([[mode]]) of the posterior distribution.
+MAP(maximum a posteriori probability) estimate is an estimate of an unknown quantity, that equals the [[mode]] of the posterior distribution.
 
 $$
 \theta_{\mathrm{MAP}}=\underset{\theta}{\operatorname{argmax}}\left(\log (g(\theta))+\sum_{i=1}^n \log \left(f\left(X_i \mid \theta\right)\right)\right)
@@ -93,7 +93,7 @@ $\theta$ 에 대해서 풀면, MAP estimate 는 $\displaystyle\theta_{\text{map}
 
 # Mode 와 MAP 관계
 
-The estimate by MAP is the [mode]([[mode]]) of the posterior distribution.
+The estimate by MAP is the [[mode]] of the posterior distribution.
 
 여기서 posterior distribution 은 [[Bayesian inference]] 를 통해 계산할 수 있다.
 

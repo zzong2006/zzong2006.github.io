@@ -70,7 +70,7 @@ $\begin{aligned}\log p(y\mid\theta,\beta)=&\left(\sum_{\left\{y_{ui}>0\right\}}y
 * user activity 그리고 item popularity shape parameters 는 다음과 같이 설정: $\kappa_{u}^{\mathrm{shp}}=a^{\prime}+Ka;\quad\tau_{i}^{\mathrm{shp}}=c^{\prime}+Kc$
 	* $a^{\prime},a,c,c^{\prime}$ 은 모두 0.3 으로 설정
 * 이후 수렴될때까지 아래의 과정을 반복
-	* $y_{ui}>0$ 를 만족하는 각 사용자/아이템에 대하여,다음의 [multinomial]([[multinomial distribution]]) 을 업데이트
+	* $y_{ui}>0$ 를 만족하는 각 사용자/아이템에 대하여,다음의 [[multinomial distribution|multinomial]] 을 업데이트
 
 : $\phi_{ui}\propto\exp\left\{\Psi\left(\gamma_{uk}^{\mathrm{shp}}\right)-\log\gamma_{uk}^{\mathrm{rte}}+\Psi\left(\lambda_{ik}^{\mathrm{shp}}\right)-\log\lambda_{ik}^{\mathrm{rte}}\right\}$
 

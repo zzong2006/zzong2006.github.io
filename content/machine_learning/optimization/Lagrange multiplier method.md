@@ -11,7 +11,7 @@ aliases: []
 	* Assuming that $f$ and $g$ have continuous partial derivatives.
 * Lagrange function: $L(x,y,\lambda)=f(x,y)+\lambda(g(x,y)-c)$
 * Applications
-	* [MLE]([[Maximum Likelihood Estimation]]) parameter of multinomial distribution
+	* [[Maximum Likelihood Estimation|MLE]] parameter of multinomial distribution
 * Examples
 	* MLE for the categorical distribution
 		* Refer: [[Probabilistic Machine Learning - An Introduction]], 4.2.4

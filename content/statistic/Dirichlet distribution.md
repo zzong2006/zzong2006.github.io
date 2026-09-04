@@ -55,7 +55,7 @@ $K=2$ 인 경우 [[statistic/Beta distribution]] 이다.
 
 $p(\theta\mid X)=\operatorname{Dir}\left(\theta\mid\left(\begin{array}{c}\ldots\\\alpha_{k}+x_{k}\\\ldots\end{array}\right)\right)$
 
-* [Maximum log-Likelihood Estimation]([[Maximum Likelihood Estimation]]) of Dirichlet distribution parameters
+* [[Maximum Likelihood Estimation|Maximum log-Likelihood Estimation]] of Dirichlet distribution parameters
 	* $\begin{aligned}F(\alpha)&=\log p(D\mid\alpha)\\&=\log\prod_{i}p\left(\mathbf{p}_{i}\mid\alpha\right)\\&=\log\prod_{i}\frac{\Gamma\left(\sum_{k}\alpha_{k}\right)}{\prod_{k}\Gamma\left(\alpha_{k}\right)}\prod_{k}p_{ik}^{\alpha_{k}-1}\\&=N\left(\log\Gamma\left(\sum_{k}\alpha_{k}\right)-\sum_{k}\log\Gamma\left(\alpha_{k}\right)+\sum_{k}\left(\alpha_{k}-1\right)\log\hat{p}_{k}\right)\end{aligned}$
 		* $\log\hat{p}_{k}=\frac{1}{N}\sum_{i}\log p_{ik}$ 는 관찰된 [[sufficient statistics]]
 		* 해당 log-likelihood 함수는 $\alpha$ 에 대해 convex 하기 때문에 unique optimum 을 보장한다.

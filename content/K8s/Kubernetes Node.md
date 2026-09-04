@@ -14,7 +14,7 @@ A Node is a worker machine in [[Kubernetes]] and may be either a virtual or a ph
 ![[img-4a628c7313.png]]
 
 * 각 노드는 master 에 의해 관리된다.
-	* 하나의 노드는 여러개의 [pods]([[pod(Kubernetes)]]) 을 가지고, the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster.
+	* 하나의 노드는 여러개의 [[pod(Kubernetes)|pods]] 을 가지고, the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster.
 	* The Master’s automatic scheduling takes into account the available resources on each Node.
 * Every Kubernetes Node runs at least:
 	* 각 노드에는 [[kubelet]] 이라는 agent 가 존재하며, 이 Kubelet 이 해당 노드를 관리하고 쿠버네티스 마스터와 통신하는 역할을 함

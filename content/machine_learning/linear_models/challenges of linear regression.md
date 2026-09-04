@@ -28,8 +28,8 @@ aliases: []
 
 ## A.4) Outlier
 
-* [[outlier]] 자체가 [least squares]([[least squares estimation]]) 를 통해 생성한 모델에는 큰 영향을 주지 않을 수 있다.
-* 하지만, 단일 outlier 자체가 [RSE]([[residual standard error]]) 값을 크게 바꾸기 때문에, 모든 [[confidence interval]] 과 [[p-value]] 계산에 큰 영향을 줄 수 있다.
+* [[outlier]] 자체가 [[least squares estimation|least squares]] 를 통해 생성한 모델에는 큰 영향을 주지 않을 수 있다.
+* 하지만, 단일 outlier 자체가 [[residual standard error|RSE]] 값을 크게 바꾸기 때문에, 모든 [[confidence interval]] 과 [[p-value]] 계산에 큰 영향을 줄 수 있다.
 * 결과적으로, 학습된 모델의 해석에 암묵적인 (implication) 어려움을 줄 수 있는 것이다.
 * [[residual plot]]s can be used to identify outliers.
 	* 그러나 이 방법보다는 [[studentized residuals]] 을 그려봄으로써 outlier 를 찾을 수 있다.

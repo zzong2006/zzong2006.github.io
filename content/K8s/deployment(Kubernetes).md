@@ -9,7 +9,7 @@ tags:
 	* To do so, you create a [[deployment(Kubernetes)]] configuration.
 * Deployment 는 Application instance 를 생성하고 업데이트하는 역할을 담당한다.
 	* 즉, 어떻게 생성하고 업데이트 하는지 지시한다.
-* Deployment 가 만들어지면, [[Kubernetes Master]] 는 해당 deployment 에 포함된 application instance 가 cluster 의 개별 [노드]([[Kubernetes Node]]) 에서 실행되도록 스케줄링함
+* Deployment 가 만들어지면, [[Kubernetes Master]] 는 해당 deployment 에 포함된 application instance 가 cluster 의 개별 [[Kubernetes Node|노드]] 에서 실행되도록 스케줄링함
 
 ![[img-8c3552a066.png||500]]
 

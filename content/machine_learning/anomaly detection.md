@@ -24,7 +24,7 @@ $$
 
 # C) Parameter Estimation
 
-주어진 데이터셋 $\left\{x^{(1)},x^{(2)},\ldots,x^{(m)}\right\},x^{(i)}\in\mathbb{R}$ 에 대하여 [가우시안 분포]([[Gaussian distribution]])에 대한 parameter들($\mu$, $\sigma$) 을 예측하는 것  
+주어진 데이터셋 $\left\{x^{(1)},x^{(2)},\ldots,x^{(m)}\right\},x^{(i)}\in\mathbb{R}$ 에 대하여 [[Gaussian distribution|가우시안 분포]]에 대한 parameter들($\mu$, $\sigma$) 을 예측하는 것  
 
 $$
 \displaystyle\mu=\frac{1}{m}\sum_{i=1}^{m}x^{(i)}

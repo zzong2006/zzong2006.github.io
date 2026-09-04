@@ -27,7 +27,7 @@ Relations as Real Part of Low-Rank Normal Matrices
 	* $X\in\mathbb{R}^{n\times n}$ 는 a latent matrix of scores 그리고 $Y$ 는 partially observed sign matrix
 * 본 논문의 목적은 $X$ 에 대한 generic structure 를 찾는 것
 * 일반적인 [[matrix factorization]] 에 의하면 다음과 같이 표현할 수 있음: $X=UV^{T}$
-	* $U$ 와 $V$ 는 $n\times K$ 크기의 독립된 matrices ($K$ 는 [matrix rank]([[the rank of a matrix]]))
+	* $U$ 와 $V$ 는 $n\times K$ 크기의 독립된 matrices ($K$ 는 [[the rank of a matrix|matrix rank]])
 1. Low-Rank Decomposition
 
 # Related

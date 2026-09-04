@@ -32,7 +32,7 @@ $$
 
 * $\boldsymbol{\mu}$ 는 $D$- 차원 mean vector
 * $\mathbf{\Sigma}$ 는 $D\times D$ 차원의 [[covariance]] matrix: $\operatorname{Cov}[\mathbf{x}]\triangleq\mathbb{E}\left[(\mathbf{x}-\mathbb{E}[\mathbf{x}])(\mathbf{x}-\mathbb{E}[\mathbf{x}])^{\top}\right]$
-* covariance matrix 는 [positive-definite matrix]([[positive definite]]) 여야 한다.
+* covariance matrix 는 [[positive definite|positive-definite matrix]] 여야 한다.
 	* [[normalizing constant]]: $Z=(2\pi)^{D/2}|\boldsymbol{\Sigma}|^{1/2}$
 
 [[Mahalanobis distance]]: $\Delta$

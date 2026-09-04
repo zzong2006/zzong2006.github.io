@@ -14,7 +14,7 @@ normalizing constant (정규화 상수) 는 어느 확률 분포를 총 합이 $
 
 어느 가우시안 함수 $p(x)=e^{-x^{2}/2},x\in(-\infty,\infty)$ 를 고려해보자.
 
-[가우시안 적분]([[gaussian integral]]) 을 적용하면 $\int_{-\infty}^{\infty}p(x)dx=\int_{-\infty}^{\infty}e^{-x^{2}/2}dx=\sqrt{2\pi}$ 총 합이 $1$ 이 아니다.
+[[gaussian integral|가우시안 적분]] 을 적용하면 $\int_{-\infty}^{\infty}p(x)dx=\int_{-\infty}^{\infty}e^{-x^{2}/2}dx=\sqrt{2\pi}$ 총 합이 $1$ 이 아니다.
 
 다음과 같은 함수는 적분 값이 $1$ 이다: $\varphi(x)=\frac{1}{\sqrt{2\pi}}p(x)=\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2}$
 

@@ -10,8 +10,8 @@ tags:
 
 * 추천 시스템에서 발생하는 loop 는 bias 를 일으킴
 	* (1) collect data, (2) train model, (3) deploy model loop
-* off-policy learning 에서 biased data 로 부터 unbiased learning 을 지향하는 방법에는 [[importance sampling]] or [Inverse Propensity Score (IPS) weighting]([[inverse propensity score]]) 이 존재함
-* [value-based models]([[value-based method]])
+* off-policy learning 에서 biased data 로 부터 unbiased learning 을 지향하는 방법에는 [[importance sampling]] or [[inverse propensity score|Inverse Propensity Score (IPS) weighting]] 이 존재함
+* [[value-based method|value-based models]]
 
 ## 1.1. Contributions
 
@@ -19,7 +19,7 @@ tags:
 * 추천의 맥락에서 the Optimiser’s Curse 라는 decision-making 현상을 소개하고, 일반적인 naive reward 모델이 어떻게 영향을 받는지 보임
 * pessimism 을 표현하기 위해 ridge regressor 의 posterior mean 과 variance 를 closed-form 으로 estimate 하는 방법을 제시하고, off-policy recommendation 에서 효율적으로 적용하는 방법을 제시
 * 시뮬레이션을 통해 pessimism 이 ML 또는 MAP 기반 decision-making 방식과 비교해서, 온라인 추천 퍼포먼스를 향상시킬 수 있음을 보임
-* target problem: [Batch Learning from logged Bandit Feedback (BLBF)]([[batch learning with logged bandit feedback, BLBF]])
+* target problem: [[batch learning with logged bandit feedback, BLBF|Batch Learning from logged Bandit Feedback (BLBF)]]
 	* online learning 과 달리, batch learning 은 system 상의 상호작용이 필요 없고, 기존 데이터를 재사용 할 수 있을 뿐만 아니라 offline [[cross-validation]] 기법도 적용이 가능함
 
 # 2. Background and Related Work

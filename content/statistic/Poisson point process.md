@@ -26,7 +26,7 @@ tags:
 			* 이제 해당 구간 $\Delta$ 내에서 arrivals 의 수가 $0$ 일때의 확률은 다음과 같다
 : $\begin{aligned}P(N(\Delta)=0)&=e^{-\lambda\Delta}\\&=1-\lambda\Delta+\frac{\lambda^{2}}{2}\Delta^{2}-\cdots\text{(TaylorSeries)}\end{aligned}$
 
-			* [테일러 급수]([[Taylor Approximation]]) 에서 2 차 이상은 $\Delta$ 가 0 에 가까워질수록 의미없어진다 (negligible).
+			* [[Taylor Approximation|테일러 급수]] 에서 2 차 이상은 $\Delta$ 가 0 에 가까워질수록 의미없어진다 (negligible).
 			* arrival 수가 $1$ 인 경우도 비슷하게 정리하면 다음과 같다
 : $\begin{aligned}P(N(\Delta)=1)&=e^{-\lambda\Delta}\lambda\Delta\\&=\lambda\Delta\left(1-\lambda\Delta+\frac{\lambda^{2}}{2}\Delta^{2}-\cdots\right)\quad\text{(TaylorSeries)}\\&=\lambda\Delta+\left(-\lambda^{2}\Delta^{2}+\frac{\lambda^{3}}{2}\Delta^{3}\cdots\right)\\&=\lambda\Delta+o(\Delta)\end{aligned}$
 

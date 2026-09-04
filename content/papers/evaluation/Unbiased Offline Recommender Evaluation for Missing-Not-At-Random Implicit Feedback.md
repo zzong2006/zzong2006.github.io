@@ -17,7 +17,7 @@ tags:
 
 * (a) investigate evaluation bias of AOA(Average-Over-All) evaluator
 * (b) an unbiased and practical offline evaluator for implicit [[words/missing not at random|MNAR]] datasets 를 제안
-	* the Inverse-Propensity-Scoring ([IPS]([[inverse propensity score]])) technique 을 사용
+	* the Inverse-Propensity-Scoring ([[inverse propensity score|IPS]]) technique 을 사용
 
 # B) Introduction
 

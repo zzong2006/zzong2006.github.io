@@ -16,7 +16,7 @@ Gibbs sampling 은 특정 multivariate 확률 분포에서 approximated 된 일�
 
 Gibbs sampling 의 basic version 은 [[Metropolis-Hasting]] 알고리즘의 특수한 케이스로 생각할 수 있다.
 
-It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$) forming a Markov chain with [stationary distribution]([[stationary distribution]]) $f_{t-1}$.
+It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$) forming a Markov chain with [[stationary distribution]] $f_{t-1}$.
 
 # B) 특징
 

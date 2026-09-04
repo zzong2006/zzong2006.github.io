@@ -104,7 +104,7 @@ $$
 * training 과 sampling 은 prediction 값 $\hat{y}^{<t>}$ 를 $t+1$ 의 input 으로 쓰느냐 마느냐의 차이가 있다.
 * ![[img-dd27349704.png|image-20201101200043936]]
 * 그림과 같이 초기 token $x^{<1>}$ 은 zero vector 로 입력 후, 출력 vector $\hat{y}^{<1>}$ 를 이용하여 출력 값을 정한다.
-	* $\hat{y}^{<1>}$ 는 [SoftMax]([[softmax function]]) 를 이용하여 확률 벡터로 치환된 후, 그 확률 중에서 임의로 word 또는 character 를 선택한다.
+	* $\hat{y}^{<1>}$ 는 [[softmax function|SoftMax]] 를 이용하여 확률 벡터로 치환된 후, 그 확률 중에서 임의로 word 또는 character 를 선택한다.
 * 그리고 출력 vector $\hat{y}^{<1>}$ 는 그 다음 출력 vector $\hat{y}^{<2>}$ 를 위한 입력 vector 로 들어가게 된다.
 * 이와 같은 작업을 반복하여 출력 vector 가 `<EOS>` 로 선택되거나, 미리 정의된 sampling 횟수 이상을 출력한다면 중지한다.
 

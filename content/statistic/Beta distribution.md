@@ -27,7 +27,7 @@ $$
 # 4. 평균과 분산
 
 * Mean: $\displaystyle\frac{\alpha}{\alpha+\beta}$
-* [mode]([[mode]]): $\displaystyle\frac{\alpha-1}{\alpha+\beta-2}$
+* [[mode]]: $\displaystyle\frac{\alpha-1}{\alpha+\beta-2}$
 * Variance: $\displaystyle\frac{\alpha\beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}$
 
 # 5. 특징

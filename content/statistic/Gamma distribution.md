@@ -31,7 +31,7 @@ The exponential distribution, Erlang distribution, and chi-square distribution a
 * Variance: $k\theta^2$
 * Mode: $(k-1)\theta$ for $k \geq 1$
 
-[pdf]([[Probability Density Function]]) of Gamma distribution
+[[Probability Density Function|pdf]] of Gamma distribution
 
 * $\displaystyle f(x;\alpha,\beta)=\frac{x^{\alpha-1}e^{-\beta x}\beta^{\alpha}}{\Gamma(\alpha)}\text{for}x>0\quad\alpha,\beta>0$
 	* $\alpha=k$: shape parameter, $\beta=1/\theta$:rate parameter

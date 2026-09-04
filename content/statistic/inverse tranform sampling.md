@@ -7,7 +7,7 @@ tags:
 
 # A) Inverse Transform Sampling ?
 
-Inverse transform sampling 는 어떤 확률 분포에서 해당 분포의 inverse [cumulative distribution]([[Cumulative Distribution Function]]) (또는 [[quantile function]]) $F^{-1}(x)$ 를 활용해서 임의의 값을 생성하는 방법을 의미한다.
+Inverse transform sampling 는 어떤 확률 분포에서 해당 분포의 inverse [[Cumulative Distribution Function|cumulative distribution]] (또는 [[quantile function]]) $F^{-1}(x)$ 를 활용해서 임의의 값을 생성하는 방법을 의미한다.
 
 * 랜덤 변수 $X$ 의 누적 분포: $F_{X}(x)=P(X\leq x)$
 

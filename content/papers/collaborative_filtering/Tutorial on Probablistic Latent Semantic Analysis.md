@@ -38,7 +38,7 @@ Choose a term $w$ ∼ Multinomial($φ_z$)
 	* we wish to obtain the parameters that can maximize the above likelihood.
 * objective function
 : $\displaystyle\arg\max_{\Phi,\Theta}\left[\logp(\mathcal{W}\mid\Phi,\Theta)+\sum_{d}^{D}\lambda_{d}\left(1-\sum_{z}^{T}\theta_{(d,z)}\right)+\sum_{z}^{T}\sigma_{k}\left(1-\sum_{w}^{V}\phi_{(z,w)}\right)\right]$
-	* the second and the third part of the equation is [Lagrange Multipliers]([[Lagrange multiplier method]]) to guarantee Multinomial parameters in range `[0, 1]`.
+	* the second and the third part of the equation is [[Lagrange multiplier method|Lagrange Multipliers]] to guarantee Multinomial parameters in range `[0, 1]`.
 	* It is difficult to directly optimize the above equation due to the log sign is out of a summation.
 	* $\displaystyle\mathcal{L}=\logp(\mathcal{W}\mid\mathbf{R},\Phi,\Theta)=\sum_{d}^{D}\sum_{di}^{N_{d}}\sum_{z}^{T}R_{\left(w_{di},z\right)}\left(\log\phi_{\left(z,w_{di}\right)}+\log\theta_{(d,z)}\right)$
 * [[machine_learning/EM algorithm]] of PLSA

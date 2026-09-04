@@ -43,7 +43,7 @@ $$
 ![[img-d9814d0a8c.png||500]]  
 $\theta=0.6666..$ 에서 각 분포가 [[mode]] 를 지니지만, 기계 A 가 B 보다 더 가파른 distribution 을 지닌다.
 
-[MAP]([[maximum a posteriori probability]]) 와 Bayesian Inference 의 차이점은 [[Bayes theorem]] 에서 evidence $P(D)$ 를 계산하는 것에 있다.
+[[maximum a posteriori probability|MAP]] 와 Bayesian Inference 의 차이점은 [[Bayes theorem]] 에서 evidence $P(D)$ 를 계산하는 것에 있다.
 
 * evidence 또는 marginal likelihood 라고도 한다.
 * $\theta$ 가 continuous variable 인 경우, $\theta$ 는 joint probability 에 의해 계산한다.

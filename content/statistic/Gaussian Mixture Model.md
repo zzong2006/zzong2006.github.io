@@ -88,7 +88,7 @@ mixing coefficient $\pi_k$ 는 constraint 이 존재하므로 [[Lagrange multipl
 
 [[stochastic gradient descent]] 를 이용해서 학습할 수 있지만, 두 가지 이유로 EM 보다는 비 효율적이다.
 
-1. GMM 에서의 가우시안 분포들의 covariance matrix $\Sigma_k$ 는 [positive semi-definite]([[positive definite]]) 여야 한다는 조건이 붙는다. 하지만 SGD 로는 이러한 제약조건을 명시하면서 학습할 수 없다.
+1. GMM 에서의 가우시안 분포들의 covariance matrix $\Sigma_k$ 는 [[positive definite|positive semi-definite]] 여야 한다는 조건이 붙는다. 하지만 SGD 로는 이러한 제약조건을 명시하면서 학습할 수 없다.
 2. EM 방식은 주어진 문제의 structure 를 활용할 수 있다. 즉, SGD 보다 EM 이 더욱 적은 iteration 만으로도 optimal 한 결과에 다다를 수 있다 (더 낮은 loss 또는 높은 likelihood 포함).
 
 # D) Expression of GMM by [[Bayesian network]]
