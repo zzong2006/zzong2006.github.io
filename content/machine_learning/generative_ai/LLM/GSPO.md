@@ -163,11 +163,34 @@ $$
 
 ## C.1) 왜 길이로 정규화하는가
 
-$s_i(\theta)$에는 $1/\lvert y_i \rvert$ 지수가 붙어 있다. token 확률의 곱을 그대로 쓰지 않고, 평균 log ratio를 만든 뒤 다시 $\exp$를 씌우는 것이다. 이유가 두 가지다.
+$s_i(\theta)$에는 $1/\lvert y_i \rvert$ 지수가 붙어 있다. 왜 두 확률의 비를 그냥 쓰지 않는지 보려면, 정규화하지 않은 sequence ratio가 실제로 어떤 값인지부터 봐야 한다.
 
-첫째, 곱을 그대로 쓰면 답변 길이에 따라 값의 규모가 달라진다. 긴 답변은 1보다 작은 확률을 수천 번 곱하므로 likelihood가 훨씬 작아지고, 그러면 길이가 다른 답변들에 같은 clipping 범위를 적용할 수 없다.
+답변 확률이 token 확률의 곱이므로, 두 policy의 비도 token별 ratio의 곱이 된다.
 
-둘째, 정규화하지 않은 sequence ratio는 token 몇 개의 확률 변화만으로도 크게 튄다. 논문은 length normalization의 목적을 분산을 줄이고 $s_i(\theta)$를 일정한 수치 범위 안에 두는 것으로 설명한다.
+$$
+\frac{\pi_\theta(y_i \mid x)}{\pi_{\theta_{\mathrm{old}}}(y_i \mid x)}
+=
+\prod_{t=1}^{\lvert y_i \rvert}
+w_{i,t}(\theta)
+$$
+
+곱이라는 것이 문제다. token 하나하나의 ratio는 1에 가깝지만, 1에서 조금 벗어난 값을 수백 번 곱하면 그 작은 차이가 복리처럼 불어난다.
+
+token ratio가 전부 1.001인 답변을 길이만 바꿔가며 계산하면 이렇게 된다.
+
+| 답변 길이 | 곱 (정규화 안 함) | $\lvert y_i \rvert$ 제곱근 |
+| --- | --- | --- |
+| 100 token | 1.105 | 1.0010 |
+| 512 token | 1.668 | 1.0010 |
+| 5000 token | 148.0 | 1.0010 |
+
+token 하나당 0.1%씩 벗어난 것은 세 경우가 똑같다. 그런데 곱은 1.1에서 148까지 벌어진다. 모델이 더 크게 변해서가 아니라 답변이 길어서 커진 값이다.
+
+이러면 clipping 범위를 정할 수가 없다. 짧은 답변에 맞춰 범위를 잡으면 긴 답변은 전부 잘려나가고, 긴 답변에 맞추면 짧은 답변에는 아무 제약도 걸리지 않는다.
+
+$\lvert y_i \rvert$ 제곱근을 씌우면 그 문제가 사라진다. 오른쪽 열은 길이와 무관하게 1.0010이다. 이 값이 답하는 질문이 "답변 전체가 몇 배 그럴듯해졌는가"에서 **"token 하나당 평균 몇 배 그럴듯해졌는가"** 로 바뀌었기 때문이다. 길이가 답에서 빠졌으므로 길이가 다른 답변들에 같은 $\varepsilon$을 쓸 수 있다.
+
+같은 이유로 분산도 준다. 정규화하지 않으면 token 하나의 확률이 두 배가 될 때 sequence ratio도 그대로 두 배가 된다. 기하평균에서는 그 token이 $1/\lvert y_i \rvert$의 비중만 갖는다. 논문이 length normalization의 목적을 분산을 줄이고 $s_i(\theta)$를 일정한 수치 범위 안에 두는 것으로 설명하는 이유가 이것이다.
 
 정규화되는 대상은 reward가 아니라 policy ratio다. reward와 advantage는 여전히 response 단위로 계산된다. 결과적으로 $s_i(\theta)$는 답변 전체가 old policy 대비 평균적으로 얼마나 더 그럴듯해졌는지를 나타내는 값이 된다.
 
@@ -201,7 +224,7 @@ GSPO는 좋은 advantage를 받은 답변의 sequence likelihood를 높이고, �
 
 ## D.1) clipping 범위는 GRPO와 자리수가 다르다
 
-$s_i(\theta)$는 token ratio들의 기하평균이다. token 하나의 확률이 크게 변해도 $1/\lvert y_i \rvert$만큼만 반영되므로, $s_i(\theta)$는 token-level ratio보다 훨씬 좁게 1 근처에 모인다. 그래서 GRPO에서 쓰던 $\varepsilon$을 그대로 가져오면 clipping이 사실상 걸리지 않는다.
+앞에서 본 기하평균의 성질이 여기서 다시 걸린다. 기하평균은 token 하나의 큰 변화를 $1/\lvert y_i \rvert$의 비중으로 눌러버리므로, $s_i(\theta)$는 token-level ratio보다 훨씬 좁게 1 근처에 모인다. 그래서 GRPO에서 쓰던 $\varepsilon$을 그대로 가져오면 clipping이 사실상 걸리지 않는다.
 
 논문 실험의 설정을 비교하면 규모 차이가 드러난다.
 
