@@ -20,7 +20,7 @@ $$
 
 | 방법 | 수식 | 설명 |
 |------|------|------|
-| 원소별 | $\sqrt{\sum_{i,j}\lvert a_{ij} vert^2}$ | 모든 원소 제곱합의 제곱근 |
+| 원소별 | $\sqrt{\sum_{i,j}\lvert a_{ij} \rvert^2}$ | 모든 원소 제곱합의 제곱근 |
 | Trace | $\sqrt{\text{tr}(A^*A)}$ | $A^*A$의 대각합의 제곱근 |
 | Singular value | $\sqrt{\sum_i \sigma_i^2}$ | 특이값 제곱합의 제곱근 |
 

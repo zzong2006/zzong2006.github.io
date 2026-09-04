@@ -31,5 +31,5 @@ $$
 
 | 구분 | 형태 | 특징 |
 | --- | --- | --- |
-| L1 Loss | $\lvert y-\hat{y} vert$ | outlier 에 비교적 덜 민감 |
+| L1 Loss | $\lvert y-\hat{y} \rvert$ | outlier 에 비교적 덜 민감 |
 | L2 Loss | $(y-\hat{y})^2$ | 큰 오차를 강하게 줄이도록 학습 |

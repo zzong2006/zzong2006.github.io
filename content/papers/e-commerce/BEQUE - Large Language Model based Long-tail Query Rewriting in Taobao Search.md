@@ -152,9 +152,9 @@ flowchart LR
 
 | Metric | 수식 | 의미 |
 | --- | --- | --- |
-| **Relevance** | $rac{\sum_i \mathbb{1}_{f(x, z_y^i) > 	au'}}{\lvert Z_y vert}$ | Rewrite로 검색된 상품이 원래 query와 관련 있는 비율 |
-| **Increment** | $rac{\sum_i \mathbb{1}_{f(x, z_{xy}^i) > 	au'}}{\sum_i \mathbb{1}_{f(x, z_x^i) > 	au'}}$ | Rewrite로 인한 관련 상품 증가율 |
-| **Hitrate** | $rac{\lvert E \cap (Z_x \cup Z_y) vert}{\sum_i \mathbb{1}_{f(x, e_i) > 	au'}}$ | Semantic gap 보완 능력 |
+| **Relevance** | $\frac{\sum_i \mathbb{1}_{f(x, z_y^i) > \tau'}}{\lvert Z_y \rvert}$ | Rewrite로 검색된 상품이 원래 query와 관련 있는 비율 |
+| **Increment** | $\frac{\sum_i \mathbb{1}_{f(x, z_{xy}^i) > \tau'}}{\sum_i \mathbb{1}_{f(x, z_x^i) > \tau'}}$ | Rewrite로 인한 관련 상품 증가율 |
+| **Hitrate** | $\frac{\lvert E \cap (Z_x \cup Z_y) \rvert}{\sum_i \mathbb{1}_{f(x, e_i) > \tau'}}$ | Semantic gap 보완 능력 |
 
 - $Z_x$, $Z_y$: query x, rewrite y로 검색된 상품 집합
 - $E$: 사용자가 검색 외 시나리오에서 거래한 상품 (ground truth)
