@@ -12,6 +12,8 @@ aliases: ["정밀도"]
 
 모델이 positive 하다고 예측한 것들 중에서, 얼마나 많은 true positive 가 존재하는가?
 
+[[Recall]]과의 분모 차이, threshold를 바꿀 때의 변화, F1으로 묶는 방법은 [[분류 모델의 학습과 평가]]에서 같은 예제로 비교한다.
+
 ## A.2) Formulation
 
 $$

@@ -25,6 +25,8 @@ Recall은 “놓치면 안 되는 positive를 얼마나 잘 잡는가”를 본�
 
 # C) Precision과의 차이
 
+두 지표를 같은 confusion matrix에서 계산하고 ROC-AUC와 비교하는 흐름은 [[분류 모델의 학습과 평가]]에서 설명한다.
+
 | 지표 | 보는 관점 | 질문 |
 | --- | --- | --- |
 | [[machine_learning/metrics/Recall]] | 실제 positive 기준 | positive를 얼마나 놓치지 않았나 |

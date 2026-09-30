@@ -14,7 +14,7 @@ $$
 \displaystyle\text{F1Score}=2\times\frac{\text{Precision}\times\text{Recall}}{\text{Precision}+\text{Recall}}
 $$
 
-F1 Score는 0.0–1.0 사이의 값을 가지며 높을수록 좋다. Confusion matrix부터 threshold 선택까지의 흐름은 [[분류 모델의 학습과 평가 - 면접 기초]]에서 함께 정리한다.
+F1 Score는 0.0–1.0 사이의 값을 가지며 높을수록 좋다. Confusion matrix부터 threshold 선택까지의 흐름은 [[분류 모델의 학습과 평가]]에서 함께 정리한다.
 
 # B) F1 Score 를 사용하는 이유
 
