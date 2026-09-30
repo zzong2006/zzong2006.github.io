@@ -22,15 +22,15 @@ ROC(Receiver Operating Characteristic) curve 는 [[classification]] 의 모델�
 
 # C) ROC Curve 에서 TPR 과 FPR 의 의미
 
-일반적으로 binary 분류기는 출력 값이 미리 정의된 threshold 이상인 경우를 positive, 이하일 경우 negative 로 결정한다.
+일반적으로 binary 분류기는 출력 값이 threshold 이상이면 positive, 미만이면 negative로 판정한다.
 
-만약 [[machine_learning/metrics/Recall]] 이 높다면, 어떤 데이터이든 대부분 positive 로 분류하려고 하는 경향이 강하기 때문에, 모델이 **낮은 threshold** 를 사용하고 있다는 것을 의미한다. 또한, FPR 도 동시에 높아지게 되는데, 그 이유는 threshold 를 너무 낮춰버리면 negative example 도 positive 로 판정하기 때문이다.
+같은 데이터와 점수를 고정하고 threshold를 낮추면 positive로 판정하는 집합이 커진다. 따라서 [[machine_learning/metrics/Recall]]과 FPR은 줄어들지 않는다. 다만 Recall이 높다는 사실만으로 threshold가 낮다고 판단할 수는 없다. Positive와 negative를 잘 구별하는 모델은 높은 Recall과 낮은 FPR을 동시에 얻을 수 있다.
 
-반대로, 높은 threshold 는 TPR 와 FPR 을 동시에 낮춘다.결과적으로, threshold 가 변함에 따라서 FPR 과 TPR 이 어느 정도는 비례적으로 값이 바뀐다는 것을 알 수 있다.
+반대로 threshold를 높이면 TPR과 FPR은 증가하지 않는다. 두 값이 일정한 비율로 변하는 것은 아니다.
 
 # D) ROC Curve 에서 Curve 의 의미
 
-ROC Curve 에 위치한 점은 특정 threshold 에 대한, TPR 와 FPR 의 비율을 의미한다. 즉, ROC Curve 는 가능한 모든 threshold 에 대한 TPR 와 FPR 의 비율을 표시한 것이다.
+ROC curve의 점 하나는 특정 threshold에서의 좌표 $(FPR, TPR)$다. 두 값을 나눈 비율이 아니다. 가능한 threshold를 바꾸며 이 좌표를 연결한다. ROC-AUC의 쌍별 순위 해석과 PR curve와의 차이는 [[분류 모델의 학습과 평가 - 면접 기초]]에서 함께 설명한다.
 
 ![[img-bf257d03ea.gif]]
 
