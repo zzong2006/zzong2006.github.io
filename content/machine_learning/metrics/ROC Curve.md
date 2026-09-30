@@ -30,7 +30,7 @@ ROC(Receiver Operating Characteristic) curve 는 [[classification]] 의 모델�
 
 # D) ROC Curve 에서 Curve 의 의미
 
-ROC curve의 점 하나는 특정 threshold에서의 좌표 $(FPR, TPR)$다. 두 값을 나눈 비율이 아니다. 가능한 threshold를 바꾸며 이 좌표를 연결한다. ROC-AUC의 쌍별 순위 해석과 PR curve와의 차이는 [[분류 모델의 학습과 평가 - 면접 기초]]에서 함께 설명한다.
+ROC curve의 점 하나는 특정 threshold에서의 좌표 $(FPR, TPR)$다. 두 값을 나눈 비율이 아니다. 가능한 threshold를 바꾸며 이 좌표를 연결한다. ROC-AUC의 쌍별 순위 해석과 PR curve와의 차이는 [[분류 모델의 학습과 평가]]에서 함께 설명한다.
 
 ![[img-bf257d03ea.gif]]
 
