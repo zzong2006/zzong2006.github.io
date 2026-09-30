@@ -43,7 +43,9 @@ function isDisplayableMarkdown(data) {
 }
 
 function parentFolderSlugs(slug) {
-  const parts = String(slug ?? "").split("/").filter(Boolean)
+  const parts = String(slug ?? "")
+    .split("/")
+    .filter(Boolean)
   if (parts.length === 0) return []
 
   const folderParts = isIndexSlug(slug) ? parts.slice(0, -1) : parts.slice(0, -1)
@@ -62,12 +64,24 @@ function parentFolderSlugs(slug) {
 async function emitExplorerDates(ctx, content, options) {
   const files = {}
   const folders = {}
+  const labels = {}
 
   for (const [, file] of content) {
     const data = file.data ?? {}
     if (!isDisplayableMarkdown(data)) continue
 
     const slug = String(data.slug ?? "")
+    const frontmatter = data.frontmatter ?? {}
+    const title = String(frontmatter.title ?? "").trim()
+    const rawAliases = frontmatter.aliases ?? frontmatter.alias
+    const aliases = Array.isArray(rawAliases) ? rawAliases : [rawAliases]
+    // Alias order is author-controlled. Use the first shorter name, not an
+    // arbitrary shortest synonym. Keep the full title for hover/accessibility.
+    const alias = aliases.find(
+      (value) => typeof value === "string" && value.trim() && value.trim().length < title.length,
+    )
+    if (alias && !isIndexSlug(slug)) labels[slug] = { label: alias.trim(), title }
+
     const modified = dateValue(data)
     if (!modified) continue
 
@@ -89,6 +103,7 @@ async function emitExplorerDates(ctx, content, options) {
       generatedAt: new Date().toISOString(),
       files,
       folders,
+      labels,
     })}\n`,
     "utf8",
   )
