@@ -34,7 +34,7 @@ cross-entropy 는 상당히 자주 쓰이는데, 주된 이유는 cross-entropy 
 
 # C) Entropy 와 비교
 
-cross-entropy 의 값은 [[entropy]] 값보다 항상 크다.
+Cross-entropy는 [[entropy]]보다 크거나 같다. 정답 분포와 예측 분포가 같으면 두 값도 같다. 학습 loss와 평가 지표의 연결은 [[분류 모델의 학습과 평가 - 면접 기초]]에서 숫자 예제와 함께 정리한다.
 
 예를 들어, 가방에 0.8/0.1/0.1 의 비율로, 빨간/녹색/노랑 공이 들어가 있고, 모델을 통한 예측 $p$ 로는 0.2/0.2/0.6 의 비율로 가정했다고 해보자.  
 
@@ -67,7 +67,7 @@ $$
 
 # G) [[perplexity]] 와 연관성
 
-Perplexity and cross-entropy are closely related in language models. Perplexity is defined as 2 raised to the power of the cross-entropy. Mathematically, this relationship is expressed as:
+Perplexity는 토큰당 평균 cross-entropy를 지수화한 값이다. 자연로그로 계산했다면 $\exp(H)$, 밑이 2인 로그로 계산했다면 아래처럼 $2^H$다. 여기서 $H$는 같은 평가 토큰들에 대한 평균 cross-entropy다.
 
 $$
 \text { Perplexity }=2^{\text {Cross-Entropy }}
