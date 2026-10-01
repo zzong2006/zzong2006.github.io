@@ -11,8 +11,10 @@
 <body>
 <header><a class="brand" href="/">zzong<span> / </span>notes</a><span class="lab-label">ML PRACTICE <small>01</small></span><a href="/">노트로 돌아가기 ↗</a></header>
 <main>
-  <section class="intro"><div><p class="eyebrow">READ IT. BUILD IT. UNDERSTAND IT.</p><h1>읽었던 수식을, 내 코드로.</h1><p id="course-description">한 번의 업데이트부터 작은 선형회귀 모델까지. Python 기본 문법으로 다섯 단계를 따라갑니다.</p></div><div class="progress-box"><span id="progress">0 / 5</span><span>문제 통과</span><progress id="progress-bar" value="0" max="5" aria-label="실습 진행률"></progress></div></section>
-  <div class="course-picker"><label for="course">학습 코스</label><select id="course"><option value="basics">입문 · Gradient descent부터</option><option value="advanced">심화 · GRPO &amp; GSPO</option></select><span>처음이라면 01번부터 차례대로 풀어 보세요.</span></div>
+  <section class="intro"><div><p class="eyebrow">READ IT. BUILD IT. UNDERSTAND IT.</p><h1>읽었던 수식을, 내 코드로.</h1><p id="course-description">경사하강법부터 벡터, 전처리, 신경망까지. 코스를 골라 직접 구현해 보세요.</p></div><div class="progress-box"><span id="progress">0 / 20</span><span>전체 문제 통과</span><progress id="progress-bar" value="0" max="20" aria-label="실습 진행률"></progress></div></section>
+  <nav id="course-nav" aria-label="학습 코스"></nav>
+  <details id="catalog"><summary id="catalog-title">전체 문제 한눈에 보기</summary><div id="catalog-list"></div></details>
+  <p id="course-count" class="muted"></p>
   <nav id="problem-nav" aria-label="실습 문제"></nav>
   <section class="workspace">
     <article class="problem-panel"><div class="problem-meta"><span id="category"></span><span id="difficulty"></span></div><h2 id="title"></h2><div id="description"></div><a id="source" class="source" target="_blank" rel="noopener">원문 노트 읽기 ↗</a><h3>입력과 출력</h3><pre id="example"></pre><h3>구현 조건</h3><ul id="constraints"></ul><div id="hints"></div><details id="solution-details"><summary>참고 풀이 보기</summary><p>먼저 구현한 뒤 비교해 보세요. 참고 풀이를 읽어도 통과 표시는 바뀌지 않습니다.</p><pre id="solution"></pre><button id="use-solution" class="secondary">참고 풀이를 에디터에 넣기</button></details></article>

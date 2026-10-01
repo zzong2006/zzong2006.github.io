@@ -17,6 +17,17 @@ def check(fn, case):
         return type(error).__name__ == case.get('raises')
 
 wrong = {
+    'dot-product': lambda a,b: [x*y for x,y in zip(a,b)],
+    'matrix-vector': lambda a,b: [sum(x*y for x,y in zip(col,b)) for col in zip(*a)],
+    'min-max': lambda values: [(x-min(values))/max(values) for x in values],
+    'standardize': lambda values: [(x-sum(values)/len(values))/math.sqrt(sum((v-sum(values)/len(values))**2 for v in values)/(len(values)-1)) for x in values],
+    'sigmoid': lambda x: 1/(1+math.exp(-x)),
+    'relu': lambda values: [x for x in values if x>0],
+    'softmax': lambda values: [math.exp(x)/sum(math.exp(v) for v in values) for x in values],
+    'binary-cross-entropy': lambda pred,target,eps=1e-7: -sum(y*math.log(max(p,eps)) for p,y in zip(pred,target))/len(pred),
+    'categorical-cross-entropy': lambda probs,labels,eps=1e-7: -sum(math.log(max(max(row),eps)) for row in probs)/len(labels),
+    'classification-accuracy': lambda pred,target: 100*sum(p==y for p,y in zip(pred,target))/len(pred),
+    'momentum-step': lambda w,v,g,lr,beta: [w-lr*(beta*v+lr*g),beta*v+lr*g],
     'gradient-step': lambda w, grad, lr: w + lr * grad,
     'quadratic-descent': lambda w, target, lr, steps: w - steps * lr * 2 * (w-target),
     'mse-loss': lambda pred, target: sum(abs(p-y) for p,y in zip(pred,target))/len(pred),
@@ -49,6 +60,8 @@ assert not all(check(sequential_update,c) for c in training['tests']), 'Sequenti
 ids = [p['id'] for p in problems]
 assert len(ids)==len(set(ids))
 assert problems[0]['id']=='gradient-step'
-assert sum(p['course']=='basics' for p in problems)==5
+assert sum(p['course']=='basics' for p in problems)==6
+assert sum(p['course']=='foundations' for p in problems)==4
+assert sum(p['course']=='neural' for p in problems)==6
 assert sum(p['course']=='advanced' for p in problems)==4
 print(f'{total} reference cases passed; {len(wrong)+1} misconception implementations rejected; source notes exist.')

@@ -183,6 +183,12 @@ plugins:
     layout:
       position: afterBody
       priority: 5
+  - source: ./plugins/ml-practice
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 30
+      display: all
   - source: ./plugins/related-notes
     enabled: true
     options:

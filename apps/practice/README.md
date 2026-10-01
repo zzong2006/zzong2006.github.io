@@ -4,8 +4,18 @@ Public personal study surface at `/practice/`, deployed with the existing Quartz
 GitHub Pages workflow. Canonical lesson data is `problems.json`; it is derived from
 public notes, not a vault synchronization target. The default beginner course
 is gradient step, quadratic descent, MSE, linear gradients, and linear regression
-training. The original four GRPO/GSPO exercises remain in the advanced course;
+training and Momentum (6 exercises). Vectors/preprocessing adds 4 exercises;
+activations/classification adds 6. The original four GRPO/GSPO exercises remain in the advanced course;
 stable problem IDs preserve saved code, progress, and old hash links.
+All four course cards and their counts stay visible, even on advanced deep links.
+Progress in the header is for all 20 exercises; the current course count is
+separately labeled. The expandable catalog links directly to every exercise.
+
+`plugins/ml-practice` reads the same problem data at build time and adds exercise
+buttons above matching notes. `source` is the published, hyphenated note URL;
+`sourceNote` is the original path used by validation. Optional `relatedNotes`
+adds more published note URLs to the reverse mapping (e.g. linear regression).
+No generated note bodies or private vault sources need modification.
 
 Curriculum inspiration: NeetCode ML (https://neetcode.io/practice/machine-learning)
 and TensorTonic Cracking ML (https://www.tensortonic.com/study-plans/cracking-ml).

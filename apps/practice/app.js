@@ -1,5 +1,11 @@
 const $ = (id) => document.getElementById(id);
 const key = 'zzong-ml-practice-v1';
+const courses = {
+  basics: {title:'경사하강법과 회귀',description:'한 걸음부터 선형회귀 학습과 Momentum까지. 처음이라면 이 코스부터 시작하세요.'},
+  foundations: {title:'벡터와 전처리',description:'내적, 행렬 곱, 스케일링을 직접 구현하며 모델 입력을 준비합니다.'},
+  neural: {title:'활성화와 분류',description:'Sigmoid·ReLU·Softmax에서 분류 loss와 정확도까지 이어집니다.'},
+  advanced: {title:'GRPO · GSPO',description:'심화 코스 · policy update를 네 개의 함수로 구현합니다.'},
+};
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem(key) || '{}'); if (!saved || typeof saved !== 'object') saved = {}; } catch {}
 let problems, current, worker, ready = false, running = false, timer;
@@ -7,10 +13,17 @@ const courseProblems = () => problems.filter(p => p.course === current.course);
 const persist = () => { try { localStorage.setItem(key, JSON.stringify(saved)); $('save-state').textContent = '이 기기에 저장됨'; } catch { $('save-state').textContent = '저장 불가 · 코드를 따로 복사하세요'; } };
 function updateProgress() {
   const visible = courseProblems();
-  const count = visible.filter(p => saved[p.id]?.passed).length;
-  $('progress').textContent = `${count} / ${visible.length}`;
-  $('progress-bar').max = visible.length;
+  const count = problems.filter(p => saved[p.id]?.passed).length;
+  $('progress').textContent = `${count} / ${problems.length}`;
+  $('progress-bar').max = problems.length;
   $('progress-bar').value = count;
+  for (const [id,course] of Object.entries(courses)) {
+    const items = problems.filter(p=>p.course===id);
+    const button = document.querySelector(`[data-course="${id}"]`);
+    button.setAttribute('aria-current',String(current.course===id));
+    button.querySelector('small').textContent=`${items.length}문제 · ${items.filter(p=>saved[p.id]?.passed).length}개 완료`;
+  }
+  $('course-count').textContent=`${courses[current.course].title} · ${visible.length}문제 / 전체 ${problems.length}문제`;
   for (const p of visible) {
     const button = document.querySelector(`[data-id="${p.id}"]`);
     button.setAttribute('aria-current', String(current.id === p.id));
@@ -21,9 +34,8 @@ function updateProgress() {
 function select(id) {
   if (running) stop('문제를 바꿔 실행을 중지했습니다.');
   current = problems.find(p => p.id === id) || problems[0];
-  $('course').value = current.course;
   $('problem-nav').replaceChildren(...courseProblems().map(p=>{const b=document.createElement('button');b.dataset.id=p.id;const num=document.createElement('span');num.className='number';const title=document.createElement('span');title.textContent=p.short;b.append(num,title);b.onclick=()=>select(p.id);return b;}));
-  $('course-description').textContent = current.course === 'basics' ? '한 번의 업데이트부터 작은 선형회귀 모델까지. Python 기본 문법으로 다섯 단계를 따라갑니다.' : '심화 코스 · GRPO와 GSPO의 policy update를 네 개의 함수로 구현합니다.';
+  $('course-description').textContent = courses[current.course].description;
   history.replaceState(null,'',`#${current.id}`);
   for (const name of ['title','category','difficulty','example','solution']) $(name).textContent = current[name];
   $('description').innerHTML = current.description; // repository-owned content only
@@ -94,9 +106,21 @@ function experiment(){
   $('experiment-note').textContent=lr===0?'학습률이 0이면 이동하지 않습니다.':lr<.5?'최솟값 w=1을 향해 같은 쪽에서 접근합니다.':lr===.5?'한 번 업데이트하면 정확히 w=1에 도착합니다.':lr<1?'최솟값을 번갈아 넘으면서 가까워집니다.':lr===1?'w=4와 −2를 왕복하며 loss가 줄지 않습니다.':'학습률이 너무 커서 최솟값에서 점점 멀어집니다.';
 }
 $('steps').oninput=experiment;$('learning-rate').oninput=experiment;experiment();
-$('course').onchange=()=>select(problems.find(p=>p.course===$('course').value).id);
 try {
   const response=await fetch('./problems.json');if(!response.ok)throw new Error(`HTTP ${response.status}`);problems=await response.json();
+  $('course-nav').replaceChildren(...Object.entries(courses).map(([id,course])=>{
+    const b=document.createElement('button');b.dataset.course=id;
+    const title=document.createElement('strong');title.textContent=course.title;
+    const count=document.createElement('small');b.append(title,count);
+    b.onclick=()=>select(problems.find(p=>p.course===id).id);return b;
+  }));
+  $('catalog-title').textContent=`전체 ${problems.length}문제 한눈에 보기`;
+  $('catalog-list').replaceChildren(...Object.entries(courses).map(([id,course])=>{
+    const section=document.createElement('section');const h=document.createElement('h3');h.textContent=course.title;
+    const ul=document.createElement('ul');
+    for(const p of problems.filter(p=>p.course===id)){const li=document.createElement('li');const a=document.createElement('a');a.href=`#${p.id}`;a.textContent=p.title;a.onclick=e=>{e.preventDefault();select(p.id);$('catalog').open=false;$('title').scrollIntoView({block:'start'});};li.append(a);ul.append(li);}
+    section.append(h,ul);return section;
+  }));
   select(location.hash.slice(1));
   window.addEventListener('hashchange',()=>select(location.hash.slice(1)));
 }catch(e){$('title').textContent='문제를 불러오지 못했습니다.';$('description').textContent='페이지를 새로고침해 주세요. '+String(e);$('run').disabled=true;}

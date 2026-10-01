@@ -384,7 +384,10 @@
         ]
       }
     ],
-    "sourceNote": "/machine_learning/optimization/gradient descent"
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ]
   },
   {
     "id": "train-linear",
@@ -530,7 +533,1009 @@
         ]
       }
     ],
-    "sourceNote": "/machine_learning/optimization/gradient descent"
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ]
+  },
+  {
+    "id": "momentum-step",
+    "title": "이전 이동량을 기억하는 Momentum",
+    "short": "Momentum",
+    "course": "basics",
+    "category": "입문 / OPTIMIZATION",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/optimization/Momentum",
+    "sourceNote": "/machine_learning/optimization/Momentum",
+    "sourceLabel": "내 노트 · Momentum",
+    "description": "<p>기본 경사하강법에 이전 이동량을 더해 봅시다. 이 문제는 노트와 같은 convention으로, velocity 안에 학습률이 포함됩니다.</p><div class=\"formula\">v_next = beta × v + lr × grad\nw_next = w − v_next</div><p>현재 w, 이전 velocity v, 현재 gradient grad를 받아 <code>[w_next, v_next]</code>를 반환하세요. 학습률을 두 번 곱하지 않도록 주의하세요.</p>",
+    "starter": "def momentum_step(w, v, grad, lr, beta):\n    raise NotImplementedError\n",
+    "solution": "def momentum_step(w, v, grad, lr, beta):\n    v_next = beta * v + lr * grad\n    return [w - v_next, v_next]\n",
+    "function": "momentum_step",
+    "hints": [
+      "먼저 v_next를 계산하세요.",
+      "새 w는 w - v_next입니다. lr은 이미 v_next에 들어 있습니다."
+    ],
+    "tests": [
+      {
+        "name": "이전 이동량 반영",
+        "args": [
+          4,
+          0.2,
+          3,
+          0.1,
+          0.9
+        ],
+        "expected": [
+          3.52,
+          0.48
+        ]
+      },
+      {
+        "name": "첫 걸음",
+        "args": [
+          2,
+          0,
+          4,
+          0.1,
+          0.9
+        ],
+        "expected": [
+          1.6,
+          0.4
+        ]
+      },
+      {
+        "name": "beta=0",
+        "args": [
+          2,
+          3,
+          4,
+          0.1,
+          0
+        ],
+        "expected": [
+          1.6,
+          0.4
+        ]
+      },
+      {
+        "name": "반대 gradient",
+        "args": [
+          1,
+          0.5,
+          -2,
+          0.1,
+          0.8
+        ],
+        "expected": [
+          0.8,
+          0.2
+        ]
+      },
+      {
+        "name": "학습률 0",
+        "args": [
+          2,
+          0.5,
+          4,
+          0,
+          0.8
+        ],
+        "expected": [
+          1.6,
+          0.4
+        ]
+      }
+    ],
+    "example": "momentum_step(4, 0.2, 3, 0.1, 0.9)\n# [3.52, 0.48]",
+    "constraints": [
+      "모든 입력은 유한 실수입니다. lr은 0 이상, beta는 0 이상 1 미만입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "dot-product",
+    "title": "벡터 내적 구하기",
+    "short": "내적",
+    "course": "foundations",
+    "category": "기초 / VECTORS & DATA",
+    "difficulty": "기초 · 10분",
+    "source": "/linear_algebra/dot-product",
+    "sourceNote": "/linear_algebra/dot product",
+    "sourceLabel": "내 노트 · dot product",
+    "description": "<p>같은 위치의 두 값을 곱한 뒤 모두 더하면 <strong>내적</strong>이 됩니다. 선형 모델의 가중합을 계산할 때 쓰는 연산입니다.</p><div class=\"formula\">dot(a, b) = Σ a[i] × b[i]</div><p>리스트 a와 b를 받아 내적 하나를 반환하세요. 원소별 곱의 리스트를 반환하는 문제는 아닙니다.</p>",
+    "starter": "def dot_product(a, b):\n    raise NotImplementedError\n",
+    "solution": "def dot_product(a, b):\n    return sum(x * y for x, y in zip(a, b))\n",
+    "function": "dot_product",
+    "hints": [
+      "zip으로 같은 위치의 원소를 묶으세요.",
+      "각 x * y를 모두 더하면 됩니다."
+    ],
+    "tests": [
+      {
+        "name": "세 원소",
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            0,
+            -1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "name": "직교 벡터",
+        "args": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": 0
+      },
+      {
+        "name": "음수 값",
+        "args": [
+          [
+            -2,
+            3
+          ],
+          [
+            4,
+            -1
+          ]
+        ],
+        "expected": -11
+      },
+      {
+        "name": "소수",
+        "args": [
+          [
+            0.5,
+            1.5
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "expected": 4
+      }
+    ],
+    "example": "dot_product([1, 2, 3], [4, 0, -1])\n# 1",
+    "constraints": [
+      "길이가 같은 비어 있지 않은 유한 실수 리스트입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "matrix-vector",
+    "title": "행렬과 벡터 곱하기",
+    "short": "행렬 × 벡터",
+    "course": "foundations",
+    "category": "기초 / VECTORS & DATA",
+    "difficulty": "기초 · 10분",
+    "source": "/linear_algebra/matrix-multiplication",
+    "sourceNote": "/linear_algebra/matrix multiplication",
+    "sourceLabel": "내 노트 · matrix multiplication",
+    "description": "<p>행렬의 <strong>각 행과 벡터의 내적</strong>을 구해 리스트로 반환하세요. 행이 데이터 하나라면 여러 데이터의 가중합을 한 번에 계산하는 셈입니다.</p><div class=\"formula\">out[i] = Σ matrix[i][j] × vector[j]</div><p>m×n 행렬과 길이 n의 벡터를 곱하면 길이 m의 벡터가 나옵니다.</p>",
+    "starter": "def matrix_vector(matrix, vector):\n    raise NotImplementedError\n",
+    "solution": "def matrix_vector(matrix, vector):\n    return [sum(a * b for a, b in zip(row, vector)) for row in matrix]\n",
+    "function": "matrix_vector",
+    "hints": [
+      "행마다 내적을 한 번씩 구합니다.",
+      "바깥 반복은 행, 안쪽 반복은 행의 원소와 vector의 짝입니다."
+    ],
+    "tests": [
+      {
+        "name": "직사각 행렬",
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          [
+            1,
+            0,
+            -1
+          ]
+        ],
+        "expected": [
+          -2,
+          -2
+        ]
+      },
+      {
+        "name": "항등 행렬",
+        "args": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "열 하나",
+        "args": [
+          [
+            [
+              2
+            ],
+            [
+              -3
+            ]
+          ],
+          [
+            4
+          ]
+        ],
+        "expected": [
+          8,
+          -12
+        ]
+      },
+      {
+        "name": "영 벡터",
+        "args": [
+          [
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "expected": [
+          0
+        ]
+      }
+    ],
+    "example": "matrix_vector([[1, 2, 3], [4, 5, 6]], [1, 0, -1])\n# [-2, -2]",
+    "constraints": [
+      "행렬은 비어 있지 않고 모든 행 길이가 vector 길이와 같습니다. 원소는 유한 실수입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "min-max",
+    "title": "0부터 1 사이로 스케일 바꾸기",
+    "short": "Min-max scaling",
+    "course": "foundations",
+    "category": "기초 / VECTORS & DATA",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/min-max-scaling",
+    "sourceNote": "/machine_learning/min-max scaling",
+    "sourceLabel": "내 노트 · min-max scaling",
+    "description": "<p>리스트에서 가장 작은 값을 0, 가장 큰 값을 1로 바꿉니다. 중간 값은 같은 비율로 변환합니다.</p><div class=\"formula\">scaled[i] = (x[i] − min(x)) / (max(x) − min(x))</div><p>모든 값이 같으면 분모가 0입니다. 이 문제에서는 그 경우 모두 0을 반환합니다.</p>",
+    "starter": "def min_max_scale(values):\n    raise NotImplementedError\n",
+    "solution": "def min_max_scale(values):\n    lo, hi = min(values), max(values)\n    if hi == lo:\n        return [0.0] * len(values)\n    return [(x - lo) / (hi - lo) for x in values]\n",
+    "function": "min_max_scale",
+    "hints": [
+      "최솟값과 최댓값을 각각 한 번 구하세요.",
+      "hi == lo인 경우를 먼저 처리한 뒤 나눕니다."
+    ],
+    "tests": [
+      {
+        "name": "세 값",
+        "args": [
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "expected": [
+          0,
+          0.5,
+          1
+        ]
+      },
+      {
+        "name": "음수 포함",
+        "args": [
+          [
+            -4,
+            0,
+            4
+          ]
+        ],
+        "expected": [
+          0,
+          0.5,
+          1
+        ]
+      },
+      {
+        "name": "상수 입력",
+        "args": [
+          [
+            3,
+            3
+          ]
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "입력 순서 보존",
+        "args": [
+          [
+            10,
+            0,
+            5
+          ]
+        ],
+        "expected": [
+          1,
+          0,
+          0.5
+        ]
+      },
+      {
+        "name": "한 개",
+        "args": [
+          [
+            9
+          ]
+        ],
+        "expected": [
+          0
+        ]
+      }
+    ],
+    "example": "min_max_scale([2, 4, 6])\n# [0, 0.5, 1]",
+    "constraints": [
+      "비어 있지 않은 유한 실수 리스트를 받아 같은 길이의 리스트로 반환합니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "standardize",
+    "title": "평균 0으로 표준화하기",
+    "short": "표준화",
+    "course": "foundations",
+    "category": "기초 / VECTORS & DATA",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/standardization",
+    "sourceNote": "/machine_learning/standardization",
+    "sourceLabel": "내 노트 · standardization",
+    "description": "<p>평균을 빼고 표준편차로 나눠 서로 다른 척도를 비교할 수 있게 만듭니다. 이 문제는 <strong>모집단 표준편차(ddof=0)</strong>를 사용합니다.</p><div class=\"formula\">mean = Σ x[i] / N\nstd = sqrt(Σ(x[i] − mean)² / N)\nz[i] = (x[i] − mean) / std</div><p>모든 값이 같으면 모두 0을 반환합니다. 여기서는 분모에 epsilon을 더하지 않습니다.</p>",
+    "starter": "def standardize(values):\n    raise NotImplementedError\n",
+    "solution": "import math\n\ndef standardize(values):\n    mean = sum(values) / len(values)\n    std = math.sqrt(sum((x - mean) ** 2 for x in values) / len(values))\n    if std == 0:\n        return [0.0] * len(values)\n    return [(x - mean) / std for x in values]\n",
+    "function": "standardize",
+    "hints": [
+      "분산은 편차 제곱의 평균입니다. N−1로 나누지 않습니다.",
+      "math.sqrt로 std를 구하고, 0이면 나눗셈 전에 반환하세요."
+    ],
+    "tests": [
+      {
+        "name": "두 값",
+        "args": [
+          [
+            1,
+            3
+          ]
+        ],
+        "expected": [
+          -1,
+          1
+        ]
+      },
+      {
+        "name": "세 값",
+        "args": [
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          -1.224744871391589,
+          0,
+          1.224744871391589
+        ]
+      },
+      {
+        "name": "상수",
+        "args": [
+          [
+            7,
+            7
+          ]
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "이미 표준화됨",
+        "args": [
+          [
+            -1,
+            1
+          ]
+        ],
+        "expected": [
+          -1,
+          1
+        ]
+      },
+      {
+        "name": "한 개",
+        "args": [
+          [
+            3
+          ]
+        ],
+        "expected": [
+          0
+        ]
+      }
+    ],
+    "example": "standardize([1, 3])\n# [-1, 1]",
+    "constraints": [
+      "입력은 비어 있지 않은 리스트이며 값의 절댓값은 1000 이하입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "sigmoid",
+    "title": "Sigmoid로 확률 만들기",
+    "short": "Sigmoid",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/deep_learning/sigmoid-function",
+    "sourceNote": "/machine_learning/deep_learning/sigmoid function",
+    "sourceLabel": "내 노트 · sigmoid function",
+    "description": "<p>실수를 0과 1 사이로 바꾸는 sigmoid를 구현하세요. 큰 양수는 1, 큰 음수는 0에 가까워집니다.</p><div class=\"formula\">sigmoid(x) = 1 / (1 + exp(−x))</div><p>x가 아주 작은 음수일 때 exp(−x)를 그대로 계산하면 overflow가 납니다. x가 음수인 경우 <code>exp(x) / (1 + exp(x))</code>를 사용하면 피할 수 있습니다.</p>",
+    "starter": "def sigmoid(x):\n    raise NotImplementedError\n",
+    "solution": "import math\n\ndef sigmoid(x):\n    if x >= 0:\n        return 1 / (1 + math.exp(-x))\n    e = math.exp(x)\n    return e / (1 + e)\n",
+    "function": "sigmoid",
+    "hints": [
+      "math.exp를 사용하고 x의 부호에 따라 식을 나누세요.",
+      "음수에서는 e=exp(x)를 구한 뒤 e/(1+e)를 반환하세요."
+    ],
+    "tests": [
+      {
+        "name": "원점",
+        "args": [
+          0
+        ],
+        "expected": 0.5
+      },
+      {
+        "name": "양수",
+        "args": [
+          2
+        ],
+        "expected": 0.8807970779778823
+      },
+      {
+        "name": "음수",
+        "args": [
+          -2
+        ],
+        "expected": 0.11920292202211755
+      },
+      {
+        "name": "큰 양수",
+        "args": [
+          1000
+        ],
+        "expected": 1
+      },
+      {
+        "name": "큰 음수",
+        "args": [
+          -1000
+        ],
+        "expected": 0
+      }
+    ],
+    "example": "sigmoid(0)\n# 0.5",
+    "constraints": [
+      "x는 −1000 이상 1000 이하인 실수입니다. 실수 하나를 반환합니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "relu",
+    "title": "ReLU 활성화 함수 구현하기",
+    "short": "ReLU",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/deep_learning/ReLU-function",
+    "sourceNote": "/machine_learning/deep_learning/ReLU function",
+    "sourceLabel": "내 노트 · ReLU function",
+    "description": "<p>ReLU는 음수는 0으로 바꾸고 양수는 그대로 통과시킵니다. 벡터의 각 원소에 ReLU를 적용하세요.</p><div class=\"formula\">ReLU(x) = max(0, x)</div><p>출력 길이는 입력과 같습니다. 음수 원소를 리스트에서 제거하면 안 됩니다.</p>",
+    "starter": "def relu(values):\n    raise NotImplementedError\n",
+    "solution": "def relu(values):\n    return [max(0, x) for x in values]\n",
+    "function": "relu",
+    "hints": [
+      "각 원소마다 max(0, x)를 계산하세요.",
+      "리스트 컴프리헨션으로 입력 순서를 유지하세요."
+    ],
+    "tests": [
+      {
+        "name": "혼합 입력",
+        "args": [
+          [
+            -2,
+            0,
+            3
+          ]
+        ],
+        "expected": [
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "음수만",
+        "args": [
+          [
+            -1,
+            -5
+          ]
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "양수만",
+        "args": [
+          [
+            0.5,
+            2
+          ]
+        ],
+        "expected": [
+          0.5,
+          2
+        ]
+      },
+      {
+        "name": "빈 리스트",
+        "args": [
+          []
+        ],
+        "expected": []
+      }
+    ],
+    "example": "relu([-2, 0, 3])\n# [0, 0, 3]",
+    "constraints": [
+      "유한 실수 리스트이며 빈 리스트도 허용합니다. 입력을 수정하지 않고 새 리스트를 반환하세요.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "softmax",
+    "title": "안정적인 Softmax 구현하기",
+    "short": "Softmax",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/deep_learning/softmax-function",
+    "sourceNote": "/machine_learning/deep_learning/softmax function",
+    "sourceLabel": "내 노트 · softmax function",
+    "description": "<p>여러 클래스의 점수(logit)를 합이 1인 확률로 바꿉니다. 각 값에 exp를 적용한 뒤 그 합으로 나눕니다.</p><div class=\"formula\">m = max(logits)\ne[i] = exp(logits[i] − m)\np[i] = e[i] / Σ e[j]</div><p>모든 logit에서 같은 최댓값을 빼도 결과는 같습니다. 이 단계로 큰 logit의 overflow를 막을 수 있습니다.</p>",
+    "starter": "def softmax(logits):\n    raise NotImplementedError\n",
+    "solution": "import math\n\ndef softmax(logits):\n    m = max(logits)\n    exps = [math.exp(x - m) for x in logits]\n    total = sum(exps)\n    return [x / total for x in exps]\n",
+    "function": "softmax",
+    "hints": [
+      "먼저 max(logits)를 구합니다.",
+      "exp(x - m)의 리스트를 만든 뒤 합으로 나누세요."
+    ],
+    "tests": [
+      {
+        "name": "같은 점수",
+        "args": [
+          [
+            0,
+            0
+          ]
+        ],
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "확률 비율",
+        "args": [
+          [
+            0,
+            0.6931471805599453
+          ]
+        ],
+        "expected": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      {
+        "name": "큰 점수",
+        "args": [
+          [
+            1000,
+            1000,
+            1000
+          ]
+        ],
+        "expected": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ]
+      },
+      {
+        "name": "한 클래스",
+        "args": [
+          [
+            7
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "name": "음수 점수",
+        "args": [
+          [
+            -1000,
+            -1000
+          ]
+        ],
+        "expected": [
+          0.5,
+          0.5
+        ]
+      }
+    ],
+    "example": "softmax([0, 0])\n# [0.5, 0.5]",
+    "constraints": [
+      "logits는 비어 있지 않은 실수 리스트입니다. 각 값의 절댓값은 10000 이하입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "binary-cross-entropy",
+    "title": "이진 분류의 loss 계산하기",
+    "short": "Binary CE",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/loss/cross-entropy",
+    "sourceNote": "/machine_learning/loss/cross-entropy",
+    "sourceLabel": "내 노트 · cross-entropy",
+    "description": "<p>이진 분류에서 정답 1에 낮은 확률을 주거나 정답 0에 높은 확률을 주면 loss가 커집니다. 확률 pred와 정답 target으로 평균 BCE를 구하세요.</p><div class=\"formula\">BCE = −mean(y × ln(p) + (1−y) × ln(1−p))</div><p>log(0)을 피하려고 p를 먼저 <code>[eps, 1−eps]</code> 안으로 clip합니다. 자연로그를 사용하며, 입력은 logit이 아닌 확률입니다.</p>",
+    "starter": "def binary_cross_entropy(pred, target, eps=1e-7):\n    raise NotImplementedError\n",
+    "solution": "import math\n\ndef binary_cross_entropy(pred, target, eps=1e-7):\n    loss = 0.0\n    for p, y in zip(pred, target):\n        p = min(max(p, eps), 1 - eps)\n        loss -= y * math.log(p) + (1 - y) * math.log(1 - p)\n    return loss / len(pred)\n",
+    "function": "binary_cross_entropy",
+    "hints": [
+      "각 확률을 min(max(p, eps), 1-eps)로 자르세요.",
+      "양성 항과 음성 항 모두 더한 뒤 음수를 붙이고 평균을 냅니다."
+    ],
+    "tests": [
+      {
+        "name": "반반 확률",
+        "args": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": 0.6931471805599453
+      },
+      {
+        "name": "맞는 방향",
+        "args": [
+          [
+            0.8,
+            0.2
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "expected": 0.2231435513142097
+      },
+      {
+        "name": "틀린 방향",
+        "args": [
+          [
+            0.2
+          ],
+          [
+            1
+          ]
+        ],
+        "expected": 1.6094379124341003
+      },
+      {
+        "name": "경계 확률과 eps",
+        "args": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          0.1
+        ],
+        "expected": 2.3025850929940455
+      },
+      {
+        "name": "정답 확률 0 또는 1",
+        "args": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": 1.0000000494736474e-07
+      }
+    ],
+    "example": "binary_cross_entropy([0.5, 0.5], [0, 1])\n# 0.6931471805599453",
+    "constraints": [
+      "길이가 같은 비어 있지 않은 리스트입니다. pred는 0~1, target은 0 또는 1입니다.",
+      "0 < eps < 0.5입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "categorical-cross-entropy",
+    "title": "다중 분류의 loss 계산하기",
+    "short": "Categorical CE",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/loss/cross-entropy",
+    "sourceNote": "/machine_learning/loss/cross-entropy",
+    "sourceLabel": "내 노트 · cross-entropy",
+    "description": "<p>각 샘플의 클래스 확률과 정답 클래스 인덱스가 주어집니다. <strong>정답 클래스에 부여한 확률</strong>의 음의 로그를 구한 뒤 평균을 내세요.</p><div class=\"formula\">loss = −Σ ln(max(probs[i][labels[i]], eps)) / N</div><p>가장 큰 확률의 클래스를 고르는 게 아니라 labels가 가리키는 확률을 사용합니다. 입력은 이미 softmax 등을 거친 확률입니다.</p>",
+    "starter": "def categorical_cross_entropy(probs, labels, eps=1e-7):\n    raise NotImplementedError\n",
+    "solution": "import math\n\ndef categorical_cross_entropy(probs, labels, eps=1e-7):\n    return -sum(math.log(max(row[label], eps)) for row, label in zip(probs, labels)) / len(labels)\n",
+    "function": "categorical_cross_entropy",
+    "hints": [
+      "i번째 샘플의 정답 확률은 probs[i][labels[i]]입니다.",
+      "확률이 0이면 eps로 바꾸고 math.log를 적용하세요."
+    ],
+    "tests": [
+      {
+        "name": "두 샘플",
+        "args": [
+          [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": 0.164252033486018
+      },
+      {
+        "name": "낮은 정답 확률",
+        "args": [
+          [
+            [
+              0.9,
+              0.1
+            ]
+          ],
+          [
+            1
+          ]
+        ],
+        "expected": 2.3025850929940455
+      },
+      {
+        "name": "균등 분포",
+        "args": [
+          [
+            [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ]
+          ],
+          [
+            2
+          ]
+        ],
+        "expected": 1.3862943611198906
+      },
+      {
+        "name": "확률 0",
+        "args": [
+          [
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            1
+          ],
+          0.01
+        ],
+        "expected": 4.605170185988091
+      },
+      {
+        "name": "완벽한 예측",
+        "args": [
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            1
+          ]
+        ],
+        "expected": 0
+      }
+    ],
+    "example": "categorical_cross_entropy([[0.8, 0.2], [0.1, 0.9]], [0, 1])\n# 0.164252033486018",
+    "constraints": [
+      "probs는 N×C 확률 행렬입니다. N,C는 1 이상이고 각 행 합은 1입니다.",
+      "labels의 길이는 N이고, 각 값은 0 이상 C 미만인 정수입니다. 0 < eps < 1입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
+  },
+  {
+    "id": "classification-accuracy",
+    "title": "분류 정확도 계산하기",
+    "short": "Accuracy",
+    "course": "neural",
+    "category": "신경망 / ACTIVATION & LOSS",
+    "difficulty": "기초 · 10분",
+    "source": "/machine_learning/metrics/accuracy",
+    "sourceNote": "/machine_learning/metrics/accuracy",
+    "sourceLabel": "내 노트 · accuracy",
+    "description": "<p>모델이 맞힌 샘플 수를 전체 샘플 수로 나눈 값이 accuracy입니다. 확률이 아니라 이미 선택된 클래스 번호가 주어집니다.</p><div class=\"formula\">accuracy = 정답인 샘플 수 / 전체 샘플 수</div><p>퍼센트가 아닌 0~1 사이의 비율을 반환하세요.</p>",
+    "starter": "def accuracy(pred, target):\n    raise NotImplementedError\n",
+    "solution": "def accuracy(pred, target):\n    return sum(p == y for p, y in zip(pred, target)) / len(pred)\n",
+    "function": "accuracy",
+    "hints": [
+      "각 위치에서 p == y인지 비교하세요.",
+      "맞은 개수를 len(pred)로 나눕니다."
+    ],
+    "tests": [
+      {
+        "name": "일부 정답",
+        "args": [
+          [
+            0,
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "expected": 0.5
+      },
+      {
+        "name": "모두 정답",
+        "args": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "name": "모두 오답",
+        "args": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "expected": 0
+      },
+      {
+        "name": "셋 중 하나",
+        "args": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "expected": 0.3333333333333333
+      }
+    ],
+    "example": "accuracy([0, 2, 1, 1], [0, 1, 1, 0])\n# 0.5",
+    "constraints": [
+      "두 리스트는 길이가 같고 비어 있지 않으며, 원소는 0 이상의 정수입니다.",
+      "Python 표준 라이브러리만 사용합니다. 반환값은 반올림하지 마세요."
+    ]
   },
   {
     "id": "group-advantage",
