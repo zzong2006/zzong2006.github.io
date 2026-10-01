@@ -15,7 +15,7 @@ Jev는 TypeSafe AI가 2026년 9월 공개한 **구조화된 판단 모델** 이�
 
 RLCD의 공개된 목표는 판단의 정확도뿐 아니라 [[machine_learning/probability calibration|확률의 calibration]]까지 맞추는 것이다. 반면 일반적인 [[machine_learning/contrastive learning|contrastive learning]]은 positive와 negative를 구별하는 표현을 학습한다. 두 방법의 차이를 이해하려면 먼저 **무엇을 예측하는지**, 그다음 **어떤 loss와 절차로 학습하는지**를 나누어 봐야 한다.
 
-2026년 10월 2일 확인한 공식 소개와 문서에는 RLCD의 목적은 나오지만, 재현할 수 있는 loss 수식·reward 정의·업데이트 알고리즘은 제시되어 있지 않다. 아래의 log loss와 Brier loss는 calibration을 설명하기 위한 일반적인 예시이며, Jev가 실제로 사용한다고 확인된 수식은 아니다.
+2026년 10월 2일 확인한 TypeSafe 공식 자료에는 RLCD의 목적은 나오지만, 재현할 수 있는 loss 수식·reward 정의·업데이트 알고리즘은 제시되어 있지 않다. 반면 Laya, Kev, NanoJev 같은 독립적인 오픈 모델은 학습 방식도 공개한다. **원본 Jev에서 알려진 것과 오픈 모델이 선택한 구현을 구분** 하면, 같은 판단 인터페이스를 지도학습과 RL로 각각 어떻게 만드는지 비교할 수 있다. 아래의 log loss와 Brier loss도 Jev의 확인된 수식이 아니라 이 비교를 위한 출발점이다.
 
 # B) 입력과 출력
 
@@ -46,7 +46,7 @@ Calibration은 여러 예측을 모아서 판단한다. 예를 들어 ‘환불 
 | rollout, advantage, KL penalty 구성 | 확인되지 않음 |
 | 학습 데이터·기반 모델·세부 구조 | 재현 가능한 학습 설정이 제시되어 있지 않음 |
 
-따라서 RLCD를 ‘GRPO에 Brier reward를 붙인 방법’처럼 설명할 근거는 없다. RL이라는 이름만으로 reward model의 유무나 샘플링 단위를 정할 수도 없다.
+따라서 원본 Jev의 RLCD를 ‘GRPO에 Brier reward를 붙인 방법’처럼 설명할 근거는 없다. RL이라는 이름만으로 reward model의 유무나 샘플링 단위를 정할 수도 없다. 뒤에서 살펴볼 Laya의 RLCD 구현과 NanoJev의 RLCD-inspired 실험은 각 프로젝트가 설계한 방법이며, TypeSafe의 학습법을 복원했다는 증거는 아니다.
 
 이름도 주의해야 한다. 2023년 논문 *Reinforcement Learning from Contrastive Distillation* 역시 RLCD라는 약자를 쓴다. 이 논문은 서로 대조되는 프롬프트로 선호 쌍을 만들고 preference model을 학습한 뒤 RL에 활용한다. **Jev의 Calibrated Decisions와 다른 방법** 이다. [Yang et al., 2023](https://arxiv.org/abs/2307.12950)
 
@@ -131,12 +131,79 @@ RL에서는 모델의 행동이나 샘플 결과를 보상으로 평가해 기�
 | loss의 예 | InfoNCE | log loss, Brier loss | 정확한 식 미공개 |
 | 업데이트 절차 | loss를 encoder에 역전파 | loss를 classifier에 역전파 | RL이라고 소개되었으나 세부 알고리즘 미공개 |
 
-공개 자료로 설명할 수 있는 것은 이 목표의 차이까지다. Jev가 contrastive objective를 일부 함께 쓰는지, calibration을 어떤 reward로 구현하는지까지는 판단할 수 없다.
+원본 Jev에 대해서는 이 목표의 차이까지 설명할 수 있다. 오픈 모델에서는 한 걸음 더 나아가, 실제로 공개된 학습 절차를 비교할 수 있다.
 
-# G) 평가자로 사용할 때의 의미
+# G) 오픈 모델에서 확인되는 구현
+
+아래는 2026년 10월 2일 확인한 공개 자료 기준이다. API 형식이 비슷하더라도 모델 구조, 학습 데이터, loss는 서로 다르다. 특히 **가중치 공개, 학습 코드 공개, 원본 Jev의 학습법 공개는 각각 다른 범위** 다.
+
+| 프로젝트 | 기반 모델과 공개 범위 | 공개된 학습 방식 |
+| --- | --- | --- |
+| [Laya](https://huggingface.co/convaiinnovations/laya) | ModernBERT 기반 421M, 다국어 mmBERT 기반 322M. 가중치와 fine-tuning notebook, Apache-2.0 | Proper scoring rule reward와 REINFORCE 계열 업데이트 |
+| [Kev](https://github.com/jaredpalmer/kev#training) | Qwen 기반 모델군. 가중치와 학습 코드, Apache-2.0 | 정답 선택지에 대한 cross-entropy. 0.8B·4B·9B는 LoRA와 pointer head 학습 |
+| [NanoJev](https://github.com/TianyuCodings/NanoJev) | Qwen3-0.6B 기반. 모델·데이터·학습 pipeline, MIT | 배포된 게임 모델은 cross-entropy SFT. 별도의 RLCD-inspired 확률 학습 실험 공개 |
+| [OpenJev](https://huggingface.co/openjev/openjev) | 27B 가중치, CC BY-NC 4.0. 비상업용으로 공개 | 정답 선택과 선택지 순서 변경에 대한 일관성을 학습했다고 설명. 상세 loss는 모델 카드만으로 확인하기 어려움 |
+
+## G.1) Kev: cross-entropy로 만드는 판단 모델
+
+Kev는 질문과 선택지를 읽은 hidden state에서 선택지별 점수를 계산하는 pointer head를 쓴다. Softmax로 분포를 만들고, 정답 선택지의 확률이 커지도록 cross-entropy를 최소화한다. 소형 모델에서는 기반 가중치를 고정하고 LoRA adapter와 head를 함께 학습하며, 27B는 전체 가중치를 fine-tuning하는 별도 경로를 쓴다. Jev 출력으로 학습하지 않았다고 명시한다. [구조와 학습 설명](https://github.com/jaredpalmer/kev#how-it-works)
+
+이는 앞의 확률 분류 loss를 실제 판단 모델에 적용한 사례다. 새로운 질문마다 선택지를 입력으로 주므로, 고정된 클래스 목록만 지원하는 classifier와는 사용 방식이 다르다. 다만 선택지를 동적으로 받는다는 사실 자체가 RL을 요구하지는 않는다. Fine-tuning 안내에는 별도로 남겨 둔 데이터에서 temperature를 맞추는 과정도 포함되어 있다. [Kev fine-tuning](https://github.com/jaredpalmer/kev#fine-tune-on-your-own-data)
+
+## G.2) Laya: 예측 분포에 보상을 주는 RL
+
+Laya의 모델 카드는 다음과 같이 학습 과정을 설명한다. 선택지 logit에 평균이 0인 Gaussian noise를 넣어 탐색하고, 그 예측 분포를 proper scoring rule로 평가한다. Reward에는 **log score와 spherical score**, 순서가 있는 질문에는 ranked probability score도 사용한다. Log score는 정답에 부여한 확률을, spherical score는 분포의 크기로 정규화한 정답 확률을 평가하며, ranked probability score는 순서에 따른 누적확률 오차를 다룬다. 업데이트는 그룹 평균을 baseline으로 둔 REINFORCE다. [Laya 모델 카드](https://huggingface.co/convaiinnovations/laya#training)
+
+작성자의 ‘GRPO-style’ 표현은 그룹 baseline을 사용하는 방식을 가리킨다. 이것만으로 clipping이나 KL penalty까지 DeepSeek GRPO와 같다고 볼 수는 없다. Laya는 자체 학습법에도 RLCD라는 이름을 쓰지만, 원본 Jev가 같은 reward나 구조를 쓴다는 뜻은 아니다.
+
+공개 [fine-tuning notebook](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)은 학습 뒤 temperature를 맞추는 단계도 포함한다. 따라서 **학습 목표가 proper하다는 수학적 성질과 배포 모델의 실제 calibration은 구분** 해야 한다. 모델 카드도 영어 모델의 분포 밖 언어 입력에서 과신하는 사례를 기록하고 있다.
+
+## G.3) NanoJev: 같은 확률 목표를 직접 loss와 policy gradient로 비교
+
+NanoJev의 배포 게임 모델 `unified-games-v1`은 질문 전체의 선택지 분포에 cross-entropy를 적용한 SFT 모델이다. 별도의 [RLCD-inspired 실험](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md)은 직접 cross-entropy, 직접 Brier loss, 샘플 기반 policy gradient를 비교한다. 배포 모델의 학습법과 이 연구 실험을 혼동하면 안 된다.
+
+실험에서는 예측 분포에서 label을 여러 번 독립적으로 뽑는다. 관측 정답과 일치하면 보상하고, 샘플끼리 지나치게 같은 label에 몰리면 페널티를 준다. 아래는 문서의 reward를 옮긴 것이다. 앞 절의 이진 확률과 달리 여기서 $\mathbf p,\mathbf q$는 전체 선택지에 대한 **확률 벡터** 다.
+
+$$
+R=\frac{2}{M}\sum_{i=1}^{M}\mathbf 1[A_i=Y]
+-\frac{1}{M(M-1)}\sum_k c_k(c_k-1)
+$$
+
+$$
+\mathbb E[R\mid x]
+=2\mathbf p^\top\mathbf q-\|\mathbf p\|_2^2
+=\|\mathbf q\|_2^2-\|\mathbf p-\mathbf q\|_2^2
+$$
+
+| 기호 | 의미 |
+| --- | --- |
+| $x$ | 상황과 질문을 포함한 입력 |
+| $\mathbf p,\mathbf q$ | 입력 $x$에서 모델의 예측 분포와 실제 정답 분포 |
+| $Y$ | 실제 정답 분포에서 관측한 label |
+| $M$ | 독립적인 복원추출 횟수, 2 이상 |
+| $A_i$ | 예측 분포에서 뽑은 $i$번째 label |
+| $c_k$ | label $k$가 뽑힌 횟수 |
+| $\mathbf 1[\cdot]$ | 조건이 참이면 1, 아니면 0 |
+| $R$ | 샘플 묶음의 reward |
+| $\mathbb E[\cdot\mid x]$ | 입력 $x$를 고정한 조건부 기대값 |
+| $\|\cdot\|_2$ | 벡터의 Euclidean norm |
+
+마지막 식에서 실제 분포의 norm은 고정되어 있으므로, 기대 보상을 높이면 두 분포의 제곱오차가 줄어든다. **정답 일치 보상만 주면 가장 유력한 label에 몰릴 수 있어**, 샘플 간 일치 페널티가 필요하다.
+
+이 관계에는 조건이 있다. 입력이 주어졌을 때 관측 정답과 예측 샘플이 독립이어야 하고, 페널티에서 자기 자신과의 쌍은 제외해야 한다. 샘플은 결과를 바꾸는 실제 행동이 아니라 같은 사건의 가능한 label이다. 적절한 baseline을 쓰는 policy gradient는 기대 Brier 목표의 stochastic gradient estimator가 된다. [수식과 조건](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md#objective-and-necessary-conditions)
+
+작성자도 직접 loss보다 이 방식이 일반적으로 우월하다는 증거는 없다고 밝힌다. 선택지가 적고 직접 Brier gradient를 계산할 수 있다면, sampling은 추가 분산을 만든다. 이 사례는 새로운 확률 목표를 제시했다기보다 **같은 목표를 다른 gradient 추정 방식으로 학습할 수 있음**을 보여준다.
+
+## G.4) OpenJev: 가중치 공개와 학습 재현성의 차이
+
+OpenJev는 선택지마다 문자를 배정하고 첫 출력 위치에서 그 문자들의 logit을 읽는다. 이후 calibration을 적용해 확률로 바꾼다. 모델 카드는 정답 선택과 선택지 순서를 바꿔도 판단을 유지하는 방향으로 tuning했다고 설명하지만, 그것만으로 전체 loss나 RL 사용 여부를 특정할 수는 없다. **실행 가능한 가중치가 공개되어 있어도 학습 전 과정을 재현할 수 있다는 뜻은 아니다.** 가중치는 비상업용 CC BY-NC 4.0이며, helper와 serving 코드는 Apache-2.0이다. [OpenJev 모델 카드](https://huggingface.co/openjev/openjev#how-it-works-in-one-paragraph)
+
+# H) 평가자로 사용할 때의 의미
 
 [[machine_learning/generative_ai/evaluation/MT-bench|MT-Bench]] 같은 평가에서는 judge가 답변 품질을 판정한다. Jev를 평가에 활용한다면, 예를 들어 응답과 근거 문서를 state로 주고 ‘주장이 근거에 의해 뒷받침되는가’를 Noul로 물을 수 있다. 이는 사용 예시이며 MT-Bench의 기존 judge와 동등한 평가 성능을 보장하는 구성은 아니다.
 
 실제 도입에서는 정답 label과의 일치도, 확률 calibration, 판단을 보류했을 때의 오류율을 함께 측정해야 한다. ‘calibrated’라는 학습 목표만으로 모든 도메인에서 동일한 threshold를 쓸 수는 없다.
+
+오픈 모델과 비교할 때도 zero-shot 결과와 해당 과제에 fine-tuning한 결과, 보정 전 확률과 temperature 보정 후 확률을 나누어 봐야 한다. 가령 Laya는 typed-decisions에서 높은 점수가 해당 benchmark의 학습 split으로 fine-tuning한 checkpoint의 결과임을 명시한다. 이를 Jev에 대한 전반적인 우위로 확대해서 읽으면 안 된다. [Laya의 평가 범위와 한계](https://huggingface.co/convaiinnovations/laya#honest-limits)
 
 2026년 9월 29일 공개된 독립 평가 preprint는 `jev-1.13.0`의 Choice 확률이 잘 보정되어 있다고 보고하면서도, binary probability에는 고정 0.5 threshold가 잘 맞지 않는 과제가 있다고 지적했다. UNFAIR-ToS에서는 학습 데이터로 threshold를 조정하자 micro-F1이 0.50에서 0.75로 올랐다. 이는 특정 버전·데이터셋의 결과이며, RLCD의 학습 수식을 밝힌 연구는 아니다. [Evaluating and Benchmarking the System One Model Jev](https://arxiv.org/abs/2609.37647)
