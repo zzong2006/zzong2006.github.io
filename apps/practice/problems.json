@@ -545,7 +545,7 @@
     "course": "basics",
     "category": "입문 / OPTIMIZATION",
     "difficulty": "기초 · 10분",
-    "source": "/machine_learning/optimization/Momentum",
+    "source": "/machine_learning/optimization/momentum",
     "sourceNote": "/machine_learning/optimization/Momentum",
     "sourceLabel": "내 노트 · Momentum",
     "description": "<p>기본 경사하강법에 이전 이동량을 더해 봅시다. 이 문제는 노트와 같은 convention으로, velocity 안에 학습률이 포함됩니다.</p><div class=\"formula\">v_next = beta × v + lr × grad\nw_next = w − v_next</div><p>현재 w, 이전 velocity v, 현재 gradient grad를 받아 <code>[w_next, v_next]</code>를 반환하세요. 학습률을 두 번 곱하지 않도록 주의하세요.</p>",
@@ -1085,7 +1085,7 @@
     "course": "neural",
     "category": "신경망 / ACTIVATION & LOSS",
     "difficulty": "기초 · 10분",
-    "source": "/machine_learning/deep_learning/ReLU-function",
+    "source": "/machine_learning/deep_learning/relu-function",
     "sourceNote": "/machine_learning/deep_learning/ReLU function",
     "sourceLabel": "내 노트 · ReLU function",
     "description": "<p>ReLU는 음수는 0으로 바꾸고 양수는 그대로 통과시킵니다. 벡터의 각 원소에 ReLU를 적용하세요.</p><div class=\"formula\">ReLU(x) = max(0, x)</div><p>출력 길이는 입력과 같습니다. 음수 원소를 리스트에서 제거하면 안 됩니다.</p>",
@@ -1544,7 +1544,7 @@
     "category": "01 / GRPO · REWARD",
     "difficulty": "기초 · 15분",
     "description": "<p>같은 prompt에 대한 답변들은 서로 다른 reward를 받습니다. 그룹 평균을 빼고 표준편차로 나누어 각 답변의 상대적인 점수를 계산하세요.</p><p>이 실습에서는 <strong>모집단 표준편차(ddof=0)</strong>를 사용하고, 분모에 eps를 더합니다. 모든 reward가 같으면 결과는 모두 0입니다.</p><div class=\"formula\">A[i] = (reward[i] − mean) / (std + eps)</div>",
-    "source": "/machine_learning/generative_ai/LLM/GRPO",
+    "source": "/machine_learning/generative_ai/llm/grpo",
     "sourceLabel": "GRPO · Group 상대 Advantage",
     "example": "group_advantages([1, 0, 1, 0])\n# 약 [1.0, -1.0, 1.0, -1.0]",
     "constraints": [
@@ -1645,7 +1645,7 @@
     "category": "02 / GRPO · IMPORTANCE RATIO",
     "difficulty": "기초 · 10분",
     "description": "<p>rollout을 만든 old policy와 현재 policy가 같은 토큰에 부여한 확률을 비교합니다. 입력은 확률이 아니라 <strong>자연로그 확률</strong>입니다.</p><p>각 확률을 따로 복원해 나누면 아주 작은 값에서 0/0이 될 수 있습니다. 로그 확률의 차이를 먼저 계산하세요.</p><div class=\"formula\">ratio[t] = exp(new_logp[t] − old_logp[t])</div>",
-    "source": "/machine_learning/generative_ai/LLM/GRPO",
+    "source": "/machine_learning/generative_ai/llm/grpo",
     "sourceLabel": "GRPO · Token-level importance ratio",
     "example": "token_ratios([-1.2039728043], [-1.6094379124])\n# 약 [1.5] : 0.30 / 0.20",
     "constraints": [
@@ -1744,7 +1744,7 @@
     "category": "03 / GSPO · SEQUENCE",
     "difficulty": "중급 · 20분",
     "description": "<p>GSPO는 답변 전체의 policy ratio를 길이로 정규화합니다. 토큰 ratio의 <strong>기하평균</strong>이며, 산술평균이나 단순 누적 곱과 다릅니다.</p><p>padding 위치는 mask가 0입니다. 유효한 토큰의 로그 확률 차이만 합산하고 <strong>유효 토큰 수</strong>로 나눈 뒤 지수 함수를 적용하세요.</p><div class=\"formula\">s = exp(sum(mask[t] × Δlogp[t]) / sum(mask))</div>",
-    "source": "/machine_learning/generative_ai/LLM/GSPO",
+    "source": "/machine_learning/generative_ai/llm/gspo",
     "sourceLabel": "GSPO · Sequence-level importance ratio",
     "example": "sequence_ratio([-1, -3, -10], [-2, -2, -1], [1, 1, 0])\n# 1.0 : exp((1 + (-1)) / 2)",
     "constraints": [
@@ -1871,7 +1871,7 @@
     "category": "04 / POLICY UPDATE · OBJECTIVE",
     "difficulty": "중급 · 20분",
     "description": "<p>ratio를 허용 범위로 자르는 것만으로는 clipped objective가 완성되지 않습니다. 원래 항과 clipped 항 중 <strong>작은 값</strong>을 선택해야 합니다. advantage가 음수일 때도 같은 규칙입니다.</p><p>각 표본의 값을 구한 뒤 평균을 반환하세요. 이 문제는 <strong>최대화하는 objective</strong>를 계산합니다. 최소화용 loss의 음수 부호, KL 항, gradient 계산은 포함하지 않습니다.</p><div class=\"formula\">mean(min(r × A, clip(r, 1−ε, 1+ε) × A))</div>",
-    "source": "/machine_learning/generative_ai/LLM/GSPO",
+    "source": "/machine_learning/generative_ai/llm/gspo",
     "sourceLabel": "GSPO · Clipped objective",
     "example": "clipped_objective([1.5, 0.5], [1, -1], 0.2)\n# 0.2 : mean([1.2, -0.8])",
     "constraints": [
