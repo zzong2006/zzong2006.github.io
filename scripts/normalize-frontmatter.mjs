@@ -53,7 +53,12 @@ function normalizeFrontmatter(text, fallbackTitle) {
     if (!fallbackTitle) {
       return text
     }
-    return [frontmatterFence, `title: ${yamlString(fallbackTitle)}`, frontmatterFence, ...lines].join(newline)
+    return [
+      frontmatterFence,
+      `title: ${yamlString(fallbackTitle)}`,
+      frontmatterFence,
+      ...lines,
+    ].join(newline)
   }
 
   const end = lines.findIndex((line, index) => index > 0 && line === frontmatterFence)
@@ -67,6 +72,7 @@ function normalizeFrontmatter(text, fallbackTitle) {
   const aliases = []
   let title = null
   let draft = false
+  const dates = {}
 
   for (let index = 0; index < fm.length; index += 1) {
     const line = fm[index]
@@ -78,6 +84,9 @@ function normalizeFrontmatter(text, fallbackTitle) {
 
     const [, key, raw] = match
     const normalizedKey = key === "alias" ? "aliases" : key
+    if (["created", "modified", "published"].includes(normalizedKey) && raw.trim()) {
+      dates[normalizedKey] = cleanValue(raw)
+    }
     const values = normalizedKey === "tags" ? tags : normalizedKey === "aliases" ? aliases : null
 
     if (values) {
@@ -124,6 +133,9 @@ function normalizeFrontmatter(text, fallbackTitle) {
 
   if (draft) {
     next.push("draft: true")
+  }
+  for (const [key, value] of Object.entries(dates)) {
+    next.push(`${key}: ${yamlString(value)}`)
   }
 
   if (next.length === 0) {

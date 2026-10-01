@@ -68,6 +68,9 @@ jobs:
       - name: Patch search tokenizer
         run: npm run patch-search
 
+      - name: Validate note dates
+        run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js
+
       - name: Normalize Obsidian frontmatter
         run: npm run normalize-frontmatter
 

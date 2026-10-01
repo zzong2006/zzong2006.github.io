@@ -43,6 +43,22 @@ in `quartz.config.yaml` to the Worker URL.
 
 ## Content Policy
 
+### Note dates
+
+`note-dates` resolves `created`, `modified`, and `published` from explicit note
+frontmatter first, then the site's full Git history. `note-meta` displays creation
+and modification dates in `Asia/Seoul`, alongside reading time. The normalizer
+preserves these three frontmatter fields.
+
+Without an explicit creation date, the displayed date is the first record in this
+site repository, not necessarily the original writing date in an older vault.
+The date tooltip explains this distinction. Git-detected renames preserve creation
+dates; deletions followed by new additions start a new history. Modification dates
+include formatting and metadata commits. Checkout/build timestamps are never used.
+Keep `fetch-depth: 0` in the deployment workflow. Untracked notes without explicit
+dates omit dates until committed. Restart preview after new commits to refresh the
+per-process history cache.
+
 Only public technical note folders are copied into `content/`.
 
 Excluded by default:
