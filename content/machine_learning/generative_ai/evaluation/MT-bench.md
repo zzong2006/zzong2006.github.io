@@ -89,7 +89,43 @@ Judge도 잘못 채점할 수 있다. 논문은 답변 위치에 따른 **positi
 
 같은 논문의 Chatbot Arena는 사용자가 익명의 두 모델과 대화하고 선호하는 답변에 투표하는 방식이다. 고정 질문에 대한 judge 점수를 얻는 MT-Bench와는 질문 수집·평가 방식이 다르다. [논문 §2.3](https://arxiv.org/html/2306.05685v4#S2.SS3)
 
-# F) 실험 결과를 비교할 때 기록할 조건
+# F) MT-Bench 이후에는 무엇을 더 평가하는가
+
+MT-Bench의 2턴 대화만으로는 여러 차례 수정 요청을 받은 모델이 앞선 조건을 유지하는지 알기 어렵다. 답변 품질을 judge에게 맡기는 평가와, 정답이나 출력 조건을 직접 검사하는 평가도 서로 다른 정보를 준다. 함께 볼 벤치마크는 측정하려는 능력에 따라 고른다.
+
+| 평가 목적 | 벤치마크 | MT-Bench와 비교해 볼 점 |
+| --- | --- | --- |
+| 어려운 개방형 질문의 답변 품질 | [Arena-Hard v2](https://github.com/lmarena/arena-hard-auto) | 실제 사용자 질문에서 고른 어려운 질문 500개와 창작 질문 250개를 LLM judge로 평가한다. 고정 2턴 대화 구성과는 다르다. |
+| 여러 턴에 걸친 조건 유지 | [MultiChallenge](https://labs.scale.com/leaderboard/multichallenge) | 지시 유지, 대화에서 추론한 정보의 기억, 자기 일관성, 여러 버전에 걸친 수정 능력을 평가한다. |
+| 답변 선호도와 길이 편향 | [AlpacaEval 2.0 LC](https://github.com/tatsu-lab/alpaca_eval) | 기준 모델과의 답변 비교에서 길이 효과를 보정한 승률을 제공한다. LC는 length-controlled를 뜻한다. |
+| 정확한 지시 이행 | [IFBench — Ai2](https://allenai.org/blog/ifbench-artificial-analysis) | 형식·개수·문장 조건 등 검증 가능한 지시를 지켰는지 평가한다. 전반적인 답변의 인상과 제약 충족 여부를 구분한다. |
+| 정답을 검증할 수 있는 능력 | [LiveBench](https://arxiv.org/abs/2406.19314) | 수학·코딩·추론 등의 답을 정답 기준으로 채점하며, 문제를 갱신해 학습 데이터 오염 위험을 줄이도록 설계했다. |
+| 실제 사용자의 선호 | [Arena의 Text 평가](https://arena.ai/how-it-works) | 익명 모델 간 답변에 대한 사용자 투표를 모은다. 고정 질문 세트인 벤치마크와 구분되는 평가 플랫폼이다. |
+
+예를 들어 글을 작성한 뒤 말투를 바꾸고, 길이를 줄이고, 특정 문장을 보존하도록 차례로 요청하는 상황을 생각할 수 있다. 마지막 답변이 자연스러워도 처음에 지정한 조건을 잊었다면 대화 전체의 요구를 충족하지 못한다. 이런 실패를 살펴보려면 MultiChallenge처럼 여러 턴의 조건 유지를 다루는 평가가 맞다. MultiChallenge는 2026년 3월 judge를 Gemini 2.5 Pro로 바꾸고 약 54개 과제를 다듬었으므로 결과를 인용할 때 평가 버전도 함께 확인한다. [업데이트 안내](https://labs.scale.com/blog/multichallenge-update)
+
+Judge를 사용하는 평가에서는 **평가자 자체의 능력** 도 별도로 검증할 수 있다. [JudgeBench](https://arxiv.org/abs/2410.12784)는 지식·추론·수학·코딩 답변 쌍에서 judge가 옳고 그름을 구별하는 능력을 다룬다. 2026년 공개된 [LongJudgeBench](https://arxiv.org/abs/2606.01629)는 긴 출력물을 평가하는 judge를 대상으로 한다. 답변을 잘 만드는 모델이 평가자로도 적합한지는 별도의 검증 문제다.
+
+# G) Artificial Analysis의 종합 점수와는 어떻게 다른가
+
+**Artificial Analysis Intelligence Index** 는 여러 능력의 평가 결과를 합친 종합 지수다. 2026-10-01 확인한 v4.3.2에는 MT-Bench, Arena-Hard, MultiChallenge, AlpacaEval, LiveBench, Arena 사용자 선호 점수가 포함되지 않는다. [공식 방법론](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
+
+이 버전은 다음 10개 평가를 묶는다. 이름이 비슷한 LiveBench와 LiveCodeBench는 서로 다른 벤치마크이며, 아래 구성에는 둘 다 없다.
+
+| 영역 | v4.3.2에 포함된 평가 |
+| --- | --- |
+| 에이전트 업무 수행 | AA-Briefcase v1.1, GDPval-AA v2.1, AutomationBench-AA |
+| 코딩 | Terminal-Bench 4.0, SciCode |
+| 일반 능력 | AA-Omniscience, GDP.pdf, AA-LCR v1.1 |
+| 과학 추론 | Humanity's Last Exam, CritPt |
+
+출처: [Intelligence Index 평가 구성](https://artificialanalysis.ai/methodology/intelligence-benchmarking). 구성과 가중치는 버전에 따라 바뀌므로 서로 다른 버전의 점수를 그대로 비교하지 않는다.
+
+IFBench는 채택 이력과 현재 상태를 구분해야 한다. 2025년 8월 v2.1에 포함됐지만, 2026년 6월 v4.1에서는 상위 모델 간 차이를 충분히 구분하지 못한다는 이유로 제외됐다. Artificial Analysis는 이후에도 신규 모델의 IFBench 결과를 별도로 평가한다. **사이트에 평가 결과가 있다는 것과 종합 점수에 반영된다는 것은 다르다.** [버전 이력](https://artificialanalysis.ai/methodology/intelligence-benchmarking), [v4.1 변경 안내](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-1)
+
+종합 지수는 여러 용도의 모델을 비교하는 출발점으로 쓸 수 있다. 다만 높은 종합 점수만으로 문체 선호나 대화 중 수정 능력까지 판단하기는 어렵다. 대화형 서비스라면 종합 지수에 더해 앞 절의 대화·지시 이행 평가와 실제 서비스 질문의 결과를 함께 보는 편이 목적에 맞다.
+
+# H) 실험 결과를 비교할 때 기록할 조건
 
 MT-Bench를 모델이나 프롬프트 변경 전후의 비교에 쓴다면 질문 세트와 채점 조건을 고정하는 편이 해석하기 쉽다. 다음 항목을 결과와 함께 남긴다.
 
@@ -101,7 +137,7 @@ Judge나 프롬프트를 바꿨다면 기존 답변도 새 조건으로 다시 �
 
 실제 서비스 선택에는 서비스 질문으로 만든 별도 평가 세트와 사람의 표본 검토를 함께 쓰는 편이 좋다. MT-Bench 평균에서 차이가 나더라도, 어떤 질문과 턴에서 개선됐는지 확인해야 서비스에서 필요한 능력의 변화인지 판단할 수 있다.
 
-# G) References
+# I) References
 
 - [Zheng et al. (2023), Judging LLM-as-a-judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685)
 - [FastChat LLM Judge — 실행 방법과 평가 모드](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge)
