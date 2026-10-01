@@ -79,6 +79,11 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=6144
         run: node quartz/bootstrap-cli.mjs build --concurrency=2
 
+      - name: Validate and build ML Practice
+        run: |
+          python3 scripts/test-practice.py
+          node scripts/build-practice.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

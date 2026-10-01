@@ -1,0 +1,74 @@
+[
+  {
+    "id":"group-advantage","short":"Group advantage","title":"그룹 안에서 advantage 계산하기","category":"01 / GRPO · REWARD","difficulty":"기초 · 15분",
+    "description":"<p>같은 prompt에 대한 답변들은 서로 다른 reward를 받습니다. 그룹 평균을 빼고 표준편차로 나누어 각 답변의 상대적인 점수를 계산하세요.</p><p>이 실습에서는 <strong>모집단 표준편차(ddof=0)</strong>를 사용하고, 분모에 eps를 더합니다. 모든 reward가 같으면 결과는 모두 0입니다.</p><div class=\"formula\">A[i] = (reward[i] − mean) / (std + eps)</div>",
+    "source":"/machine_learning/generative_ai/LLM/GRPO","sourceLabel":"GRPO · Group 상대 Advantage",
+    "example":"group_advantages([1, 0, 1, 0])\n# 약 [1.0, -1.0, 1.0, -1.0]",
+    "constraints":["비어 있지 않은 유한 실수 리스트를 받아 같은 길이의 리스트를 반환합니다.","분산은 제곱 편차의 합을 N으로 나눕니다. N−1이 아닙니다.","eps는 양수이며 기본값은 1e-8입니다.","math 등 Python 표준 라이브러리를 사용할 수 있습니다. NumPy와 PyTorch는 이 코스에서 사용하지 않습니다."],
+    "starter":"import math\n\ndef group_advantages(rewards, eps=1e-8):\n    # 평균, 모집단 표준편차, 정규화 값을 계산하세요.\n    raise NotImplementedError\n",
+    "hints":["mean = sum(rewards) / len(rewards)부터 계산해 보세요.","표준편차는 sqrt(mean((r - mean) ** 2))입니다. 분모는 std + eps입니다."],
+    "solution":"import math\n\ndef group_advantages(rewards, eps=1e-8):\n    mean = sum(rewards) / len(rewards)\n    variance = sum((r - mean) ** 2 for r in rewards) / len(rewards)\n    std = math.sqrt(variance)\n    return [(r - mean) / (std + eps) for r in rewards]\n",
+    "function":"group_advantages",
+    "tests":[
+      {"name":"정답과 오답이 섞인 그룹","args":[[1,0,1,0]],"expected":[0.9999999800000003,-0.9999999800000003,0.9999999800000003,-0.9999999800000003]},
+      {"name":"모든 reward가 같음","args":[[3,3,3]],"expected":[0,0,0]},
+      {"name":"답변이 하나인 그룹","args":[[7]],"expected":[0]},
+      {"name":"음수 reward와 지정한 eps","args":[[-3,-1],0.5],"expected":[-0.6666666666666666,0.6666666666666666]},
+      {"name":"세 답변 · ddof=0 확인","args":[[0,1,2],1e-8],"expected":[-1.2247448563915893,0,1.2247448563915893]}
+    ]
+  },
+  {
+    "id":"token-ratio","short":"Token ratio","title":"로그 확률로 policy ratio 구하기","category":"02 / GRPO · IMPORTANCE RATIO","difficulty":"기초 · 10분",
+    "description":"<p>rollout을 만든 old policy와 현재 policy가 같은 토큰에 부여한 확률을 비교합니다. 입력은 확률이 아니라 <strong>자연로그 확률</strong>입니다.</p><p>각 확률을 따로 복원해 나누면 아주 작은 값에서 0/0이 될 수 있습니다. 로그 확률의 차이를 먼저 계산하세요.</p><div class=\"formula\">ratio[t] = exp(new_logp[t] − old_logp[t])</div>",
+    "source":"/machine_learning/generative_ai/LLM/GRPO","sourceLabel":"GRPO · Token-level importance ratio",
+    "example":"token_ratios([-1.2039728043], [-1.6094379124])\n# 약 [1.5] : 0.30 / 0.20",
+    "constraints":["두 입력 리스트의 길이는 같고 1 이상입니다.","로그 확률은 유한한 0 이하 실수입니다. 두 로그 확률의 차이는 −20 이상 20 이하입니다.","각 위치의 ratio를 같은 길이의 리스트로 반환합니다.","매우 작은 로그 확률(예: −1000)도 처리해야 합니다."],
+    "starter":"import math\n\ndef token_ratios(new_logp, old_logp):\n    # 같은 위치의 로그 확률 차이를 사용하세요.\n    raise NotImplementedError\n",
+    "hints":["log(a/b) = log(a) - log(b)입니다.","math.exp(new - old)를 각 토큰 위치에 적용하세요."],
+    "solution":"import math\n\ndef token_ratios(new_logp, old_logp):\n    return [math.exp(new - old) for new, old in zip(new_logp, old_logp)]\n",
+    "function":"token_ratios",
+    "tests":[
+      {"name":"확률이 1.5배 증가","args":[[-1.2039728043259361],[-1.6094379124341003]],"expected":[1.5]},
+      {"name":"변화가 없는 policy","args":[[-2,-4,-1],[-2,-4,-1]],"expected":[1,1,1]},
+      {"name":"증가와 감소가 섞인 토큰","args":[[-2,-3,-4],[-3,-2,-4]],"expected":[2.718281828459045,0.36787944117144233,1]},
+      {"name":"언더플로를 피하는 로그 차이","args":[[-999,-1001],[-1000,-1000]],"expected":[2.718281828459045,0.36787944117144233]}
+    ]
+  },
+  {
+    "id":"sequence-ratio","short":"Sequence ratio","title":"GSPO의 길이 정규화 구현하기","category":"03 / GSPO · SEQUENCE","difficulty":"중급 · 20분",
+    "description":"<p>GSPO는 답변 전체의 policy ratio를 길이로 정규화합니다. 토큰 ratio의 <strong>기하평균</strong>이며, 산술평균이나 단순 누적 곱과 다릅니다.</p><p>padding 위치는 mask가 0입니다. 유효한 토큰의 로그 확률 차이만 합산하고 <strong>유효 토큰 수</strong>로 나눈 뒤 지수 함수를 적용하세요.</p><div class=\"formula\">s = exp(sum(mask[t] × Δlogp[t]) / sum(mask))</div>",
+    "source":"/machine_learning/generative_ai/LLM/GSPO","sourceLabel":"GSPO · Sequence-level importance ratio",
+    "example":"sequence_ratio([-1, -3, -10], [-2, -2, -1], [1, 1, 0])\n# 1.0 : exp((1 + (-1)) / 2)",
+    "constraints":["세 리스트의 길이는 같고 1 이상입니다. mask는 0 또는 1입니다.","유효 토큰이 하나도 없으면 ValueError를 발생시킵니다.","로그 확률은 유한하며 유효 위치의 차이는 −20 이상 20 이하입니다.","답변 하나의 ratio를 float로 반환합니다. 입력은 한 답변에 해당합니다."],
+    "starter":"import math\n\ndef sequence_ratio(new_logp, old_logp, mask):\n    # padding을 제외한 평균 로그 비율을 계산하세요.\n    raise NotImplementedError\n",
+    "hints":["유효 길이는 len(mask)가 아니라 sum(mask)입니다.","유효 위치의 (new - old)를 더한 다음 길이로 나누고 math.exp를 적용하세요."],
+    "solution":"import math\n\ndef sequence_ratio(new_logp, old_logp, mask):\n    length = sum(mask)\n    if length == 0:\n        raise ValueError('유효 토큰이 없습니다.')\n    log_ratio = sum((n - o) * m for n, o, m in zip(new_logp, old_logp, mask))\n    return math.exp(log_ratio / length)\n",
+    "function":"sequence_ratio",
+    "tests":[
+      {"name":"padding 제외","args":[[-1,-3,-10],[-2,-2,-1],[1,1,0]],"expected":1},
+      {"name":"길이가 3이어도 exp(1)","args":[[-1,-1,-1],[-2,-2,-2],[1,1,1]],"expected":2.718281828459045},
+      {"name":"기하평균과 산술평균 구분","args":[[-1,-3],[-3,-1],[1,1]],"expected":1},
+      {"name":"중간 padding과 음의 로그 차이","args":[[-3,-9,-4],[-2,-1,-3],[1,0,1]],"expected":0.36787944117144233},
+      {"name":"유효 길이 0은 오류","args":[[-1,-2],[-2,-3],[0,0]],"raises":"ValueError"}
+    ]
+  },
+  {
+    "id":"clipped-objective","short":"Clipped objective","title":"advantage 부호까지 고려한 clipping","category":"04 / POLICY UPDATE · OBJECTIVE","difficulty":"중급 · 20분",
+    "description":"<p>ratio를 허용 범위로 자르는 것만으로는 clipped objective가 완성되지 않습니다. 원래 항과 clipped 항 중 <strong>작은 값</strong>을 선택해야 합니다. advantage가 음수일 때도 같은 규칙입니다.</p><p>각 표본의 값을 구한 뒤 평균을 반환하세요. 이 문제는 <strong>최대화하는 objective</strong>를 계산합니다. 최소화용 loss의 음수 부호, KL 항, gradient 계산은 포함하지 않습니다.</p><div class=\"formula\">mean(min(r × A, clip(r, 1−ε, 1+ε) × A))</div>",
+    "source":"/machine_learning/generative_ai/LLM/GSPO","sourceLabel":"GSPO · Clipped objective",
+    "example":"clipped_objective([1.5, 0.5], [1, -1], 0.2)\n# 0.2 : mean([1.2, -0.8])",
+    "constraints":["ratios와 advantages는 같은 길이의 비어 있지 않은 유한 실수 리스트입니다.","ratio는 양수이며 0 < epsilon < 1입니다.","objective의 평균을 float로 반환합니다.","양수 advantage·음수 advantage·경계 안팎의 ratio를 모두 고려합니다."],
+    "starter":"def clipped_objective(ratios, advantages, epsilon=0.2):\n    # 각 표본의 unclipped / clipped 항 중 작은 값을 평균내세요.\n    raise NotImplementedError\n",
+    "hints":["clipped = min(max(r, 1 - epsilon), 1 + epsilon)으로 범위를 제한하세요.","min(r * a, clipped * a)를 사용하세요. min(r, clipped) * a는 음수 advantage에서 틀립니다."],
+    "solution":"def clipped_objective(ratios, advantages, epsilon=0.2):\n    terms = []\n    for r, a in zip(ratios, advantages):\n        clipped = min(max(r, 1 - epsilon), 1 + epsilon)\n        terms.append(min(r * a, clipped * a))\n    return sum(terms) / len(terms)\n",
+    "function":"clipped_objective",
+    "tests":[
+      {"name":"양수와 음수 advantage","args":[[1.5,0.5],[1,-1],0.2],"expected":0.2},
+      {"name":"음수 advantage · 높은 ratio 유지","args":[[1.5],[-1],0.2],"expected":-1.5},
+      {"name":"양수 advantage · 낮은 ratio 유지","args":[[0.5],[1],0.2],"expected":0.5},
+      {"name":"clip 범위 안","args":[[0.9,1.1],[2,-2],0.2],"expected":-0.2},
+      {"name":"advantage가 모두 0","args":[[0.1,4],[0,0],0.2],"expected":0},
+      {"name":"작은 epsilon","args":[[1.01],[2],0.001],"expected":2.002}
+    ]
+  }
+]

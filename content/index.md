@@ -15,6 +15,7 @@ aliases: ["Home"]
 
 # B) Main Paths
 
+- **ML Practice** — <a href="/practice/" data-router-ignore>GRPO·GSPO를 Python으로 구현하는 실습장</a>
 - **Retrieval** — [[retrieval/retrieval|retrieval]], [[retrieval/sparse/BM25|BM25]], [[retrieval/dense/DPR|DPR]]
 - **Machine Learning** — [[machine_learning/machine learning|machine learning]], [[machine_learning/deep Learning|deep learning]], [[machine_learning/generative_ai/LLM/Large Language Model|large language model]]
 - **Recommendation** — [[recommendation_system/Recommendation System|recommendation system]], [[recommendation_system/collaborative filtering|collaborative filtering]], [[recommendation_system/sequential recommendation|sequential recommendation]]
