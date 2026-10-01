@@ -150,13 +150,66 @@ Kev는 질문과 선택지를 읽은 hidden state에서 선택지별 점수를 �
 
 이는 앞의 확률 분류 loss를 실제 판단 모델에 적용한 사례다. 새로운 질문마다 선택지를 입력으로 주므로, 고정된 클래스 목록만 지원하는 classifier와는 사용 방식이 다르다. 다만 선택지를 동적으로 받는다는 사실 자체가 RL을 요구하지는 않는다. Fine-tuning 안내에는 별도로 남겨 둔 데이터에서 temperature를 맞추는 과정도 포함되어 있다. [Kev fine-tuning](https://github.com/jaredpalmer/kev#fine-tune-on-your-own-data)
 
-## G.2) Laya: 예측 분포에 보상을 주는 RL
+## G.2) Laya: 여러 예측을 시험하고 확률을 채점하는 학습
 
-Laya의 모델 카드는 다음과 같이 학습 과정을 설명한다. 선택지 logit에 평균이 0인 Gaussian noise를 넣어 탐색하고, 그 예측 분포를 proper scoring rule로 평가한다. Reward에는 **log score와 spherical score**, 순서가 있는 질문에는 ranked probability score도 사용한다. Log score는 정답에 부여한 확률을, spherical score는 분포의 크기로 정규화한 정답 확률을 평가하며, ranked probability score는 순서에 따른 누적확률 오차를 다룬다. 업데이트는 그룹 평균을 baseline으로 둔 REINFORCE다. [Laya 모델 카드](https://huggingface.co/convaiinnovations/laya#training)
+Laya의 학습은 세 단계로 나누면 이해하기 쉽다. **예측을 조금씩 바꿔 본다 → 각 예측 확률에 점수를 준다 → 점수가 좋은 방향으로 모델을 바꾼다.** 첫 단계가 logit noise, 두 번째가 proper scoring rule, 세 번째가 policy-gradient 업데이트에 해당한다. 이는 Laya가 공개한 구현이며 원본 Jev의 학습법을 설명하는 것은 아니다.
 
-작성자의 ‘GRPO-style’ 표현은 그룹 baseline을 사용하는 방식을 가리킨다. 이것만으로 clipping이나 KL penalty까지 DeepSeek GRPO와 같다고 볼 수는 없다. Laya는 자체 학습법에도 RLCD라는 이름을 쓰지만, 원본 Jev가 같은 reward나 구조를 쓴다는 뜻은 아니다.
+### G.2.1) Logit noise와 label smoothing의 차이
 
-공개 [fine-tuning notebook](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)은 학습 뒤 temperature를 맞추는 단계도 포함한다. 따라서 **학습 목표가 proper하다는 수학적 성질과 배포 모델의 실제 calibration은 구분** 해야 한다. 모델 카드도 영어 모델의 분포 밖 언어 입력에서 과신하는 사례를 기록하고 있다.
+Logit은 softmax로 확률을 만들기 전의 선택지별 점수다. 환불 요청 여부를 판별할 때 `[yes, no]`의 logit이 `[2, 0]`이면 확률은 약 `[0.881, 0.119]`가 된다. 여기서 noise를 넣는다는 것은 **정답은 그대로 두고 모델 쪽 점수를 조금씩 바꿔 여러 예측을 시험한다**는 뜻이다.
+
+아래는 학습에서 뽑힐 수 있는 noise를 단순화한 설명용 예시다. 실제 난수 추출 결과나 모델의 측정값은 아니다.
+
+| 경우 | 더한 noise | 바뀐 logit | yes 확률 |
+| --- | --- | --- | --- |
+| 원래 예측 | 없음 | `[2, 0]` | 0.881 |
+| 시험 A | `[-0.5, +0.5]` | `[1.5, 0.5]` | 0.731 |
+| 시험 B | `[+0.5, -0.5]` | `[2.5, -0.5]` | 0.953 |
+
+시험 A는 덜 확신하고, 시험 B는 더 확신한다. **Noise를 넣는다고 항상 확률이 평평해지지는 않는다.** 평균 0인 Gaussian noise는 양수와 음수 방향으로 흔들되 특정 방향의 변화만 지속해서 더하지 않는다는 뜻이다. 공개 코드는 각 질문의 유효 선택지에 더한 noise의 평균도 빼 준다. 모든 logit에 같은 값을 더하면 softmax가 바뀌지 않으므로, 선택지 사이의 상대적인 차이를 흔드는 것이다. [Laya fine-tuning 코드](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
+
+[[machine_learning/label smoothing|Label smoothing]]은 바꾸는 대상부터 다르다. 실제 정답이 yes일 때 학습용 정답표 `[1, 0]`을 예를 들어 `[0.95, 0.05]`로 바꾼다. 이를 통해 one-hot 정답을 끝까지 확신하도록 학습하는 압력을 줄인다. 위 noise 예시는 정답표를 바꾸지 않는다.
+
+| 방법 | 바꾸는 대상 | 여기서의 역할 |
+| --- | --- | --- |
+| Label smoothing | 학습용 target 분포 | 정답에 확률 1을 주도록 강제하는 압력을 줄임 |
+| Laya의 logit noise | 모델이 출력한 선택지 점수 | 현재 예측 주변의 다른 확률 분포를 시험함 |
+
+Noise 자체가 정답 확률을 알려 주거나 calibration을 보장하지는 않는다. 바꿔 본 예측 중 무엇이 더 좋은지 정할 채점법이 필요하다.
+
+### G.2.2) Proper scoring rule: 확률을 솔직하게 말할수록 유리한 채점법
+
+Scoring rule은 **예측한 확률과 실제 결과를 받아 점수를 주는 규칙**이다. 그중 proper하다는 것은 실제 확률을 그대로 보고할 때 기대 점수가 최대라는 뜻이다. 다른 확률보다 유일하게 더 좋은 경우를 strictly proper라고 한다. Loss처럼 작을수록 좋은 형태로 쓰면 기대 loss가 최소라는 뜻이 된다. [Proper scoring rule의 정의](https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf)
+
+같은 조건의 고객 문의에서 환불 요청이 실제로 80% 발생한다고 하자. 확률을 잘 채점하는 규칙이라면 50%나 99%라고 말하기보다 **80%라고 말할 때 장기적인 평균 점수가 가장 좋아야 한다.** 매 사례마다 80%라는 정답표를 제공해야 한다는 뜻은 아니다. 개별 사례의 yes/no 정답을 모아 평균 loss를 줄여도 이런 성질을 얻을 수 있다.
+
+앞 절의 binary cross-entropy가 바로 이런 loss다. 실제 비율이 80%일 때 평균 loss를 계산하면 다음과 같다. 자연로그를 사용한 설명용 계산이다.
+
+| 모델이 보고한 yes 확률 | 기대 cross-entropy, 낮을수록 좋음 |
+| --- | --- |
+| 0.50 | 0.6931 |
+| 0.80 | 0.5004 |
+| 0.99 | 0.9291 |
+
+99%라고 말한 모델은 yes인 사례에서는 높은 점수를 받지만, no인 20%에서 크게 손해를 본다. 그래서 평균적으로는 80%를 보고하는 편이 낫다. 반면 0.5를 기준으로 정답 여부만 채점하면 0.80과 0.99의 차이를 구별하지 못한다. **Proper는 단순히 ‘정확한 분류’가 아니라 ‘확률을 부풀리거나 낮춰 말해서 이득을 얻을 수 없는 채점 방식’의 성질**이다.
+
+Laya 코드에는 세 가지 점수가 들어간다. 이름보다 각각의 역할을 구분하면 된다.
+
+| 점수 | 어떻게 채점하는가 |
+| --- | --- |
+| Log score | 정답에 준 확률의 로그. Cross-entropy에 음수를 붙인 reward로 이해할 수 있음 |
+| Spherical score | 정답에 준 확률을 전체 확률 벡터의 길이로 나눔. 확률 분포를 채점하는 또 다른 proper rule |
+| Ranked probability score | 낮음·보통·높음처럼 순서가 있을 때 누적확률의 오차를 계산. Reward에서는 이 오차를 뺌 |
+
+세 점수를 처음부터 모두 외울 필요는 없다. 핵심은 **정답 label뿐 아니라 그 정답에 얼마만큼 확신했는지를 채점한다**는 것이다. Spherical score와 순서형 점수의 구현은 [proper_reward 함수](https://github.com/NandhaKishorM/laya/blob/main/laya/common.py)에서 확인할 수 있다. 이 구현은 수치 안정성을 위해 log score에 하한을 두므로, 이상적인 scoring rule의 엄밀한 성질과 실제 코드의 모든 경계 동작까지 같다고 보지는 않는다.
+
+### G.2.3) 점수가 좋은 시험 결과를 학습에 반영
+
+한 질문에 noise를 다르게 넣어 여러 예측 분포를 만들고 각각 채점한다. 그 묶음의 평균보다 점수가 높으면 양의 advantage, 낮으면 음의 advantage를 준다. 여기서 baseline은 비교 기준인 그룹 평균이고, advantage는 그 기준보다 얼마나 잘했는지다. REINFORCE는 이를 이용해 좋은 점수를 받은 noisy logit이 더 잘 나오도록 원래 logit을 만드는 모델을 조정한다. 선택지 label 하나를 뽑는 것과 noisy logit 벡터를 뽑는 것은 구분해야 한다.
+
+2026년 10월 2일 확인한 공개 fine-tuning notebook은 **이 policy-gradient loss와 원래 logit의 cross-entropy loss를 함께 사용**한다. 따라서 이 경로를 순수한 REINFORCE 학습이라고만 설명하면 불완전하다. 저자의 ‘GRPO-style’ 표현 역시 그룹 평균을 비교 기준으로 쓴다는 뜻으로 읽어야 하며, clipping이나 KL penalty까지 DeepSeek GRPO와 같다는 근거는 아니다. [학습 notebook](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
+
+학습 뒤에는 별도의 데이터로 temperature도 맞춘다. 좋은 확률을 유도하는 objective를 골랐다는 사실만으로 실제 배포 모델의 calibration이 보장되지는 않는다. 데이터와 모델의 한계, 분포 변화는 여전히 남는다.
 
 ## G.3) NanoJev: 같은 확률 목표를 직접 loss와 policy gradient로 비교
 
