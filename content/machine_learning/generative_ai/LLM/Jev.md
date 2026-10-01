@@ -147,7 +147,7 @@ Contrastive learning으로 얻은 표현에 classifier를 붙이고 확률을 �
 
 # E) 확률을 맞추는 loss의 예
 
-같은 환불 요청 판별 문제에서, 정답 label과 예측 확률을 직접 비교한다고 해 보자. 이진 분류의 log loss와 Brier loss는 다음과 같다. **두 수식 모두 설명용이며, Jev의 공개된 loss가 아니다.**
+같은 환불 요청 판별 문제에서, 정답 label과 예측 확률을 직접 비교한다고 해 보자. 이진 분류의 log loss와 [[machine_learning/loss/Brier loss|Brier loss]]는 다음과 같다. Brier loss는 예측 확률과 0 또는 1 정답 사이의 제곱오차, 즉 확률에 적용한 MSE로 이해하면 된다. **두 수식 모두 설명용이며, Jev의 공개된 loss가 아니다.**
 
 $$
 \mathcal L_{\log}(p,y)=-y\log p-(1-y)\log(1-p)
