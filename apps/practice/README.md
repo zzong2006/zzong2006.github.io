@@ -29,7 +29,7 @@ repository root. After a Quartz build, copy the practice assets **after** Quartz
 (which can clean `public/`). The CI workflow does this automatically.
 
 Python 3 runs through Pyodide 0.27.7 in a Web Worker. The first run downloads the
-runtime from jsDelivr. Exercises use only the standard library. Execution is
+runtime and NumPy from jsDelivr. NumPy is preloaded before execution. NumPy ndarrays and scalar results are normalized for grading; shape, finite values, and tolerances are still checked. Execution is
 limited to eight seconds after runtime initialization; Stop destroys the worker.
 This is a self-study runner, not a secure assessment or a hidden-test service.
 All tests and reference solutions are intentionally public. There is no backend,
@@ -42,3 +42,5 @@ solution, explicit constraints, tests, and a link to its published source note.
 The advanced course uses population standard deviation and adds epsilon to the
 denominator. Its clipped objective excludes KL and returns a maximization
 objective, not a negated training loss. It does not train an LLM.
+
+Editor: Ace 1.44.0 (BSD license in vendor/ace/LICENSE), vendored from the official ace-builds npm package. Python highlighting, autoindent, bracket pairing, undo, and lexical completions are available. NumPy/math suggestions are curated; this is not a Python language server or AI completion. Saved drafts keep the same localStorage key and problem IDs.

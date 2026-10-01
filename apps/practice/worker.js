@@ -5,7 +5,7 @@ const runtime = loadPyodide({
   indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/',
   stdout: (line) => { if (output.length < 8000) output += line.slice(0, 1000) + '\n'; },
   stderr: (line) => { if (output.length < 8000) output += line.slice(0, 1000) + '\n'; },
-});
+}).then(async py => { await py.loadPackage('numpy'); return py; });
 runtime.then(() => postMessage({type:'ready'})).catch(e => postMessage({type:'error',error:String(e)}));
 self.onmessage = async ({data}) => {
   const py = await runtime;
@@ -14,6 +14,7 @@ self.onmessage = async ({data}) => {
   try {
     const result = await py.runPythonAsync(`
 import json, math, traceback, copy
+import numpy as np
 def grade(source, function_name, test_json):
     scope = {"__name__": "__submission__"}
     exec(compile(source, "solution.py", "exec"), scope)
@@ -21,6 +22,10 @@ def grade(source, function_name, test_json):
     if not callable(fn):
         raise ValueError(f"{function_name} 함수를 정의하세요.")
     def close(a, b):
+        if isinstance(a, np.ndarray):
+            a = a.tolist()
+        elif isinstance(a, np.generic):
+            a = a.item()
         if isinstance(b, list):
             return isinstance(a, (list, tuple)) and len(a) == len(b) and all(close(x,y) for x,y in zip(a,b))
         return isinstance(a, (int,float)) and not isinstance(a,bool) and math.isfinite(a) and math.isclose(a,b,rel_tol=1e-6,abs_tol=1e-8)
