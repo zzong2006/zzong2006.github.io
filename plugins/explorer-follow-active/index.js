@@ -331,7 +331,7 @@ function buildScript(options) {
         if (!entry) continue;
         if (link.textContent !== entry.label) link.textContent = entry.label;
         link.title = entry.title;
-        link.setAttribute("aria-label", entry.title);
+        link.setAttribute("aria-label", entry.label + " — " + entry.title);
       }
       sortExplorer(explorer, dates);
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
