@@ -274,7 +274,7 @@ Laya 코드에는 세 가지 점수가 들어간다. 이름보다 각각의 역�
 
 ### G.2.3) 점수가 좋은 시험 결과를 학습에 반영
 
-한 질문에 noise를 다르게 넣어 여러 예측 분포를 만들고 각각 채점한다. 그 묶음의 평균보다 점수가 높으면 양의 advantage, 낮으면 음의 advantage를 준다. 여기서 baseline은 비교 기준인 그룹 평균이고, advantage는 그 기준보다 얼마나 잘했는지다. REINFORCE는 이를 이용해 좋은 점수를 받은 noisy logit이 더 잘 나오도록 원래 logit을 만드는 모델을 조정한다. 선택지 label 하나를 뽑는 것과 noisy logit 벡터를 뽑는 것은 구분해야 한다.
+한 질문에 noise를 다르게 넣어 여러 예측 분포를 만들고 각각 채점한다. 그 묶음의 평균보다 점수가 높으면 양의 advantage, 낮으면 음의 advantage를 준다. 여기서 baseline은 비교 기준인 그룹 평균이고, advantage는 그 기준보다 얼마나 잘했는지다. [[RL/REINFORCE|REINFORCE]]는 이를 이용해 좋은 점수를 받은 noisy logit이 더 잘 나오도록 원래 logit을 만드는 모델을 조정한다. 선택지 label 하나를 뽑는 것과 noisy logit 벡터를 뽑는 것은 구분해야 한다.
 
 2026년 10월 2일 확인한 공개 fine-tuning notebook은 **이 policy-gradient loss와 원래 logit의 cross-entropy loss를 함께 사용**한다. 따라서 이 경로를 순수한 REINFORCE 학습이라고만 설명하면 불완전하다. 저자의 ‘GRPO-style’ 표현 역시 그룹 평균을 비교 기준으로 쓴다는 뜻으로 읽어야 하며, clipping이나 KL penalty까지 DeepSeek GRPO와 같다는 근거는 아니다. [학습 notebook](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
 
@@ -312,7 +312,7 @@ $$
 
 마지막 식에서 실제 분포의 norm은 고정되어 있으므로, 기대 보상을 높이면 두 분포의 제곱오차가 줄어든다. **정답 일치 보상만 주면 가장 유력한 label에 몰릴 수 있어**, 샘플 간 일치 페널티가 필요하다.
 
-이 관계에는 조건이 있다. 입력이 주어졌을 때 관측 정답과 예측 샘플이 독립이어야 하고, 페널티에서 자기 자신과의 쌍은 제외해야 한다. 샘플은 결과를 바꾸는 실제 행동이 아니라 같은 사건의 가능한 label이다. 적절한 baseline을 쓰는 policy gradient는 기대 Brier 목표의 stochastic gradient estimator가 된다. [수식과 조건](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md#objective-and-necessary-conditions)
+이 관계에는 조건이 있다. 입력이 주어졌을 때 관측 정답과 예측 샘플이 독립이어야 하고, 페널티에서 자기 자신과의 쌍은 제외해야 한다. 샘플은 결과를 바꾸는 실제 행동이 아니라 같은 사건의 가능한 label이다. [[RL/REINFORCE|REINFORCE]]처럼 샘플의 log probability를 미분하는 방법에 적절한 baseline을 쓰면, 기대 Brier 목표의 stochastic gradient estimator를 만들 수 있다. [수식과 조건](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md#objective-and-necessary-conditions)
 
 작성자도 직접 loss보다 이 방식이 일반적으로 우월하다는 증거는 없다고 밝힌다. 선택지가 적고 직접 Brier gradient를 계산할 수 있다면, sampling은 추가 분산을 만든다. 이 사례는 새로운 확률 목표를 제시했다기보다 **같은 목표를 다른 gradient 추정 방식으로 학습할 수 있음**을 보여준다.
 

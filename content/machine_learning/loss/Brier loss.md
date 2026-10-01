@@ -119,4 +119,4 @@ $$
 
 Brier loss는 확률 예측 전체의 품질을 평가한다. Calibration뿐 아니라 입력에 따라 결과를 얼마나 잘 구별하는지도 영향을 준다. 그래서 **Brier가 낮아졌다는 사실 하나로 calibration만 좋아졌다고 단정할 수 없다.** 비교할 때는 같은 평가 데이터와 계산 정의를 쓰고, calibration curve도 함께 살펴보는 편이 좋다.
 
-[[machine_learning/generative_ai/LLM/Jev|Jev와 RLCD]]에서 소개한 NanoJev의 별도 실험은 이 확률 목표를 RL 방식으로 학습하는 사례다. 직접 Brier loss를 미분할 수도 있고, 기대 보상이 같은 목표와 연결되도록 설계한 뒤 policy gradient로 학습할 수도 있다. **Brier는 무엇을 좋다고 평가할지 정하는 loss이고, RL은 업데이트를 만드는 방식** 이므로 둘을 같은 개념으로 볼 필요는 없다. 이는 NanoJev의 독립 실험이며 원본 Jev의 공개된 loss가 아니다. [NanoJev 실험](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md)
+[[machine_learning/generative_ai/LLM/Jev|Jev와 RLCD]]에서 소개한 NanoJev의 별도 실험은 이 확률 목표를 RL 방식으로 학습하는 사례다. 직접 Brier loss를 미분할 수도 있고, 기대 보상이 같은 목표와 연결되도록 설계한 뒤 [[RL/REINFORCE|REINFORCE]] 같은 policy-gradient 방법으로 학습할 수도 있다. **Brier는 무엇을 좋다고 평가할지 정하는 loss이고, RL은 업데이트를 만드는 방식** 이므로 둘을 같은 개념으로 볼 필요는 없다. 이는 NanoJev의 독립 실험이며 원본 Jev의 공개된 loss가 아니다. [NanoJev 실험](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md)
