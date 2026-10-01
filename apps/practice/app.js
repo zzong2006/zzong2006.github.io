@@ -1,4 +1,5 @@
 import { createEditor } from './editor.js';
+import { renderMath } from './math.js';
 const $ = (id) => document.getElementById(id);
 const key = 'zzong-ml-practice-v1';
 const courses = {
@@ -43,6 +44,7 @@ function select(id) {
   history.replaceState(null,'',`#${current.id}`);
   for (const name of ['title','category','difficulty','example','solution']) $(name).textContent = current[name];
   $('description').innerHTML = current.description; // repository-owned content only
+  renderMath($('description'));
   $('connection').hidden = !current.connection;
   $('connection').textContent = current.connection || '';
   const helperProblems=(current.helpers||[]).map(id=>problems.find(p=>p.id===id));
@@ -124,6 +126,7 @@ function experiment(){
   $('experiment-note').textContent=lr===0?'학습률이 0이면 이동하지 않습니다.':lr<.5?'최솟값 w=1을 향해 같은 쪽에서 접근합니다.':lr===.5?'한 번 업데이트하면 정확히 w=1에 도착합니다.':lr<1?'최솟값을 번갈아 넘으면서 가까워집니다.':lr===1?'w=4와 −2를 왕복하며 loss가 줄지 않습니다.':'학습률이 너무 커서 최솟값에서 점점 멀어집니다.';
 }
 $('steps').oninput=experiment;$('learning-rate').oninput=experiment;experiment();
+renderMath(document.querySelector('.intuition'));
 try {
   const response=await fetch('./problems.json');if(!response.ok)throw new Error(`HTTP ${response.status}`);problems=await response.json();
   $('course-nav').replaceChildren(...Object.entries(courses).map(([id,course])=>{

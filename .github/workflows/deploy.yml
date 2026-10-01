@@ -85,6 +85,7 @@ jobs:
       - name: Validate and build ML Practice
         run: |
           python3 scripts/test-practice.py
+          node scripts/test-practice-math.mjs
           node --test plugins/ml-practice/matching.test.js plugins/ml-practice/render.test.js
           node scripts/build-practice.mjs
 

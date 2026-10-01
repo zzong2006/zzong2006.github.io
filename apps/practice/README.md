@@ -18,6 +18,11 @@ function contract and ID. Previous/next links stay within the current course.
 Training results display actual submitted loss history endpoints after passing.
 All tests remain public; this is a study tool, not a secure interview grader.
 
+Math is authored as LaTeX in `data-tex` attributes and rendered with vendored
+KaTeX 0.18.10 (`math.js`). Display equations and inline symbols include MathML
+for accessibility. The stylesheet and fonts are served locally. `node
+scripts/test-practice-math.mjs` validates every expression and font before deploy.
+
 `plugins/ml-practice` reads the same problem data at build time and adds exercise
 buttons above matching notes. `source` is the published, hyphenated note URL;
 `sourceNote` is the original path used by validation. Optional `relatedNotes`
