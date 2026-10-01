@@ -235,8 +235,11 @@ code.mermaid svg foreignObject :is(div, span, p) {
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title.active {
-  background: color-mix(in srgb, var(--tertiary) 14%, transparent);
+  background: color-mix(in srgb, var(--secondary) 15%, var(--light));
+  box-shadow: inset 3px 0 0 var(--secondary);
+  border-radius: 4px;
   color: var(--secondary);
+  font-weight: 700;
   opacity: 1;
 }
 

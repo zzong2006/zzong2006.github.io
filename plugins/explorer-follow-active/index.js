@@ -292,9 +292,11 @@ function buildScript(options) {
       const linkSlug = normalizeUrlPath(link.href);
       if (linkSlug === currentSlug) {
         link.classList.add("active", "is-active");
+        link.setAttribute("aria-current", "page");
         active = link;
       } else {
         link.classList.remove("active", "is-active");
+        link.removeAttribute("aria-current");
       }
     }
 
@@ -324,6 +326,13 @@ function buildScript(options) {
       if (!explorer.querySelector("a.nav-file-title")) continue;
 
       tidyFolderLabels(explorer);
+      for (const link of explorer.querySelectorAll("a.nav-file-title")) {
+        const entry = dates?.labels?.[normalizeUrlPath(link.href)];
+        if (!entry) continue;
+        if (link.textContent !== entry.label) link.textContent = entry.label;
+        link.title = entry.title;
+        link.setAttribute("aria-label", entry.label + " — " + entry.title);
+      }
       sortExplorer(explorer, dates);
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
       // 남지 않도록 continue 하기 전에 먼저 지운다.
