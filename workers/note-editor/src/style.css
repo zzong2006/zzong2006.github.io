@@ -1,6 +1,20 @@
 @import "katex/dist/katex.min.css";
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../quartz/static/fonts/Pretendard-Regular.subset.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../quartz/static/fonts/Pretendard-Bold.subset.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
-  font-family: system-ui, sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   color: #263541;
   background: #f6f5f1;
   color-scheme: light dark;
@@ -90,9 +104,11 @@ textarea {
   border-radius: 8px;
   background: #fff;
   color: #263541;
-  font:
-    14px/1.75 ui-monospace,
-    monospace;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: normal;
   tab-size: 4;
 }
 article {
@@ -102,6 +118,17 @@ article {
   min-height: 60vh;
   overflow-wrap: anywhere;
   line-height: 1.8;
+  word-break: keep-all;
+}
+article h1,
+article h2,
+article h3 {
+  line-height: 1.45;
+}
+article pre,
+article code {
+  font-family: ui-monospace, Consolas, monospace;
+  word-break: normal;
 }
 article pre {
   overflow: auto;
