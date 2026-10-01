@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>노트 편집 · Zzong's Notes</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="https://zzong2006.github.io" rel="noreferrer">Zzong's Notes</a>
+        <h1>노트 편집</h1>
+        <p id="path"></p>
+      </div>
+      <nav><a id="login" hidden>GitHub 로그인</a><button id="logout" hidden>로그아웃</button></nav>
+    </header>
+    <p id="status" role="status" aria-live="polite">로그인 상태를 확인하고 있습니다.</p>
+    <p id="detail">저장은 원본만 갱신합니다. 발행을 눌러야 검증 후 공개 사이트에 반영됩니다.</p>
+    <div class="toolbar">
+      <button id="reload" disabled>원본 다시 불러오기</button
+      ><button id="download" disabled>작성 내용 내려받기</button
+      ><button id="save" disabled>원본 저장</button
+      ><button id="publish" disabled>저장된 버전 발행</button
+      ><button id="resume" hidden>진행 상태 다시 확인</button
+      ><button id="clear" hidden>요청 추적 종료</button
+      ><a id="run" hidden target="_blank" rel="noopener noreferrer">진행 내역</a>
+    </div>
+    <main>
+      <section>
+        <h2>Markdown 원본</h2>
+        <textarea
+          id="source"
+          aria-label="노트 Markdown 원본"
+          spellcheck="false"
+          disabled
+        ></textarea>
+      </section>
+      <section>
+        <h2>미리보기</h2>
+        <p class="hint">
+          수식·표·위키링크를 확인할 수 있습니다. Mermaid·임베드와 실제 링크 연결은 발행 사이트에서
+          확인하세요.
+        </p>
+        <article id="preview"></article>
+      </section>
+    </main>
+    <dialog id="confirm-dialog" aria-labelledby="confirm-message">
+      <p id="confirm-message"></p>
+      <div class="toolbar">
+        <button id="confirm-no">취소</button><button id="confirm-yes">확인</button>
+      </div>
+    </dialog>
+  </body>
+</html>

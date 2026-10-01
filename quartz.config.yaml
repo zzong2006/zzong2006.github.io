@@ -40,6 +40,14 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
+  # Owner-only editor; server checks identity and publication eligibility.
+  - source: ./plugins/note-editor-link
+    enabled: true
+    options:
+      endpoint: "https://zzong-note-editor.zzong-note-editor.workers.dev"
+    layout:
+      position: beforeBody
+      priority: 90
   - source: ./plugins/frontmatter
     enabled: true
     order: 1

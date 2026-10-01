@@ -1,0 +1,34 @@
+{
+  "name": "note-editor-link",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./index.js"
+  },
+  "scripts": {
+    "build": "node -e \"\""
+  },
+  "quartz": {
+    "name": "note-editor-link",
+    "displayName": "Note editor link",
+    "description": "Owner-only web editor entry",
+    "version": "1.0.0",
+    "category": "component",
+    "defaultEnabled": false,
+    "defaultOptions": {
+      "endpoint": ""
+    },
+    "components": {
+      "NoteEditorLink": {
+        "name": "NoteEditorLink",
+        "displayName": "Note editor link",
+        "description": "Owner-only web editor entry",
+        "version": "1.0.0",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 90
+      }
+    }
+  }
+}
