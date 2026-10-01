@@ -2,7 +2,8 @@ import { createEditor } from './editor.js';
 const $ = (id) => document.getElementById(id);
 const key = 'zzong-ml-practice-v1';
 const courses = {
-  basics: {title:'경사하강법과 회귀',description:'한 걸음부터 선형회귀 학습과 Momentum까지. 처음이라면 이 코스부터 시작하세요.'},
+  basics: {title:'선형회귀 완성하기',description:'예측 → 손실 → 미분 → 갱신 → 학습 → 미니배치. 하나의 모델을 6단계로 완성합니다.'},
+  optimization: {title:'최적화 보충',description:'스칼라 경사하강법과 Momentum을 따로 연습하는 보충 코스입니다.'},
   foundations: {title:'벡터와 전처리',description:'내적, 행렬 곱, 스케일링을 직접 구현하며 모델 입력을 준비합니다.'},
   neural: {title:'활성화와 분류',description:'Sigmoid·ReLU·Softmax에서 분류 loss와 정확도까지 이어집니다.'},
   advanced: {title:'GRPO · GSPO',description:'심화 코스 · policy update를 네 개의 함수로 구현합니다.'},
@@ -35,12 +36,30 @@ function updateProgress() {
 }
 function select(id) {
   if (running) stop('문제를 바꿔 실행을 중지했습니다.');
-  current = problems.find(p => p.id === id) || problems[0];
+  const legacy = {'linear-gradient':'lr-gradient','train-linear':'lr-train'};
+  current = problems.find(p => p.id === (legacy[id] || id)) || problems[0];
   $('problem-nav').replaceChildren(...courseProblems().map(p=>{const b=document.createElement('button');b.dataset.id=p.id;const num=document.createElement('span');num.className='number';const title=document.createElement('span');title.textContent=p.short;b.append(num,title);b.onclick=()=>select(p.id);return b;}));
   $('course-description').textContent = courses[current.course].description;
   history.replaceState(null,'',`#${current.id}`);
   for (const name of ['title','category','difficulty','example','solution']) $(name).textContent = current[name];
   $('description').innerHTML = current.description; // repository-owned content only
+  $('connection').hidden = !current.connection;
+  $('connection').textContent = current.connection || '';
+  const helperProblems=(current.helpers||[]).map(id=>problems.find(p=>p.id===id));
+  $('helpers').hidden=helperProblems.length===0;
+  $('helpers').open=false;
+  $('helper-list').replaceChildren(...helperProblems.map(p=>{
+    const item=document.createElement('li');const signature=document.createElement('code');
+    signature.textContent=p.starter.split('\n')[0].replace(/^def /,'').replace(/:$/,'');
+    const link=document.createElement('a');link.href=`#${p.id}`;link.textContent=`${p.short} 문제`;
+    item.append(signature,' · ',link);return item;
+  }));
+  $('helper-import').textContent=`from course import ${helperProblems.map(p=>p.function).join(', ')}`;
+  const sequence=courseProblems(), index=sequence.indexOf(current);
+  for(const [name,offset] of [['previous',-1],['next',1]]){
+    const adjacent=sequence[index+offset];$(name).hidden=!adjacent;
+    if(adjacent){$(name).href=`#${adjacent.id}`;$(name).textContent=`${offset<0?'← 이전':'다음 →'} · ${adjacent.short}`;}
+  }
   $('source').href = current.source;
   $('source').textContent = `${current.sourceLabel} · 원문 ↗`;
   $('constraints').replaceChildren(...current.constraints.map(t => {const li=document.createElement('li');li.textContent=t;return li;}));
@@ -51,6 +70,7 @@ function select(id) {
   $('result-content').replaceChildren();
   const p = document.createElement('p');p.className='muted';p.textContent=`${current.tests.length}개의 공개 테스트 · 허용 오차 rtol=1e-6, atol=1e-8`;$('result-content').append(p);
   $('stdout').hidden = true;
+  $('title').closest('.problem-panel').scrollTop=0;
   updateProgress();
 }
 function saveCode() { saved[current.id] = {...saved[current.id],code:editor.getValue(),passed:false}; persist(); updateProgress(); $('status').textContent='수정됨 · 다시 채점하세요'; }
@@ -61,7 +81,7 @@ function send() {
   $('status').textContent='테스트 실행 중…';
   clearTimeout(timer);
   timer=setTimeout(()=>stop('8초 제한을 초과했습니다. 반복문과 종료 조건을 확인하세요.'),8000);
-  worker.postMessage({code:editor.getValue(),function:current.function,tests:current.tests});
+  worker.postMessage({code:editor.getValue(),function:current.function,tests:current.tests,enforcePure:current.course==='basics',helpers:(current.helpers||[]).map(id=>problems.find(p=>p.id===id).solution).join('\n')});
 }
 function run() {
   if(running)return;
@@ -83,6 +103,7 @@ function run() {
         const row=document.createElement('div');row.className='test-row';
         const line=document.createElement('div');const label=document.createElement('span');label.textContent=t.name;
         const badge=document.createElement('span');badge.className=t.passed?'pass':'fail';badge.textContent=t.passed?'통과':'실패';line.append(label,badge);row.append(line);
+        if(t.learning){const metric=document.createElement('p');metric.className='learning-result';metric.textContent=`제출 코드의 MSE: ${t.learning[0].toPrecision(5)} → ${t.learning[1].toPrecision(5)} · ${t.learning[2]}개 시점 기록`;row.append(metric);}
         if(!t.passed){const pre=document.createElement('pre');pre.textContent=`입력: ${t.input}\n기대: ${t.expected}\n실제: ${t.actual}`;row.append(pre);}return row;
       }));
       saved[current.id]={code:editor.getValue(),passed:passed===data.results.length};persist();updateProgress();

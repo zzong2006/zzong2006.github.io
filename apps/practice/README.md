@@ -2,14 +2,21 @@
 
 Public personal study surface at `/practice/`, deployed with the existing Quartz
 GitHub Pages workflow. Canonical lesson data is `problems.json`; it is derived from
-public notes, not a vault synchronization target. The default beginner course
-is gradient step, quadratic descent, MSE, linear gradients, and linear regression
-training and Momentum (6 exercises). Vectors/preprocessing adds 4 exercises;
-activations/classification adds 6. The original four GRPO/GSPO exercises remain in the advanced course;
-stable problem IDs preserve saved code, progress, and old hash links.
-All four course cards and their counts stay visible, even on advanced deep links.
-Progress in the header is for all 20 exercises; the current course count is
-separately labeled. The expandable catalog links directly to every exercise.
+public notes, not a vault synchronization target. The default course builds one multivariate linear regression model in six stages:
+prediction, MSE, gradient, simultaneous update, full-batch training with loss
+history, and deterministic mini-batch training. Each statement gives mathematical
+definitions and shapes, with implementation guidance behind collapsed hints.
+Starters contain only a signature and `pass`. The runner supplies earlier
+reference functions through an isolated `course` module (listed under Provided
+Functions); learners do not have to copy previous code or pass previous lessons.
+
+There are 23 exercises in five courses, including a separate three-exercise
+optimization supplement. `linear-gradient` and `train-linear` deep links redirect
+to the new multivariate exercises, whose new IDs avoid reusing incompatible saved
+code or pass flags. Existing stored data is not deleted. MSE retains its unchanged
+function contract and ID. Previous/next links stay within the current course.
+Training results display actual submitted loss history endpoints after passing.
+All tests remain public; this is a study tool, not a secure interview grader.
 
 `plugins/ml-practice` reads the same problem data at build time and adds exercise
 buttons above matching notes. `source` is the published, hyphenated note URL;

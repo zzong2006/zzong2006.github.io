@@ -1,11 +1,1208 @@
 [
   {
+    "source": "/machine_learning/linear_models/linear-regression",
+    "sourceNote": "/machine_learning/linear_models/linear regression",
+    "sourceLabel": "내 노트 · Linear regression",
+    "id": "lr-predict",
+    "short": "예측",
+    "title": "행렬에서 예측 벡터 만들기",
+    "course": "basics",
+    "category": "01 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "predict",
+    "starter": "def predict(X, w, b):\n    pass\n",
+    "solution": "def predict(X, w, b):\n    return [sum(x * weight for x, weight in zip(row, w)) + b for row in X]\n",
+    "description": "<p>이 코스에서는 여러 특성을 가진 데이터로 선형회귀 모델을 학습합니다. 첫 단계는 파라미터가 주어졌을 때 각 표본의 예측값을 계산하는 일입니다.</p><div class=\"formula\">ŷ = Xw + b·1ₙ<br>ŷᵢ = ∑ⱼ₌₁ᴰ Xᵢⱼ wⱼ + b</div><p>X의 행은 표본, 열은 특성입니다. w는 특성별 가중치, b는 모든 표본에 공통인 편향, 1ₙ은 원소가 모두 1인 길이 N의 벡터입니다. 예측 벡터 ŷ를 반환하세요.</p>",
+    "example": "predict([[1, 2], [3, 0]], [2, -1], 0.5)\n# [0.5, 6.5]",
+    "constraints": [
+      "X는 (N, D), w는 (D,), b는 scalar입니다. 1 ≤ N ≤ 32, 1 ≤ D ≤ 8이며 차원은 서로 일치합니다.",
+      "반환 shape는 (N,)입니다. N=1 또는 D=1이어도 해당 축을 없애지 않습니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "출력의 각 원소가 X의 어느 축에 대응하는지 확인하세요.",
+      "NumPy에서 (N, D)와 (D,)의 행렬 곱은 (N,)입니다.",
+      "각 행과 w의 내적에 b를 더해 하나의 예측값을 만듭니다."
+    ],
+    "connection": "출발점: 입력 X와 파라미터 (w, b) → 예측 ŷ. 다음 단계에서는 이 예측의 오차를 하나의 숫자로 측정합니다.",
+    "helpers": [],
+    "tests": [
+      {
+        "name": "서로 다른 두 특성",
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            2,
+            -1
+          ],
+          0.5
+        ],
+        "expected": [
+          0.5,
+          6.5
+        ]
+      },
+      {
+        "name": "직사각형 입력",
+        "args": [
+          [
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          [
+            2,
+            -1,
+            0.5
+          ],
+          1
+        ],
+        "expected": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "name": "한 표본",
+        "args": [
+          [
+            [
+              2,
+              -1
+            ]
+          ],
+          [
+            3,
+            4
+          ],
+          -2
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "name": "한 특성",
+        "args": [
+          [
+            [
+              -1
+            ],
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            2
+          ],
+          1
+        ],
+        "expected": [
+          -1,
+          1,
+          5
+        ]
+      },
+      {
+        "name": "편향만 남는 입력",
+        "args": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            3,
+            -2
+          ],
+          1.5
+        ],
+        "expected": [
+          1.5,
+          1.5
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/machine_learning/metrics/mean-squared-error",
+    "sourceNote": "/machine_learning/metrics/mean squared error",
+    "sourceLabel": "내 노트 · Mean squared error",
+    "id": "mse-loss",
+    "short": "손실",
+    "title": "예측 벡터의 손실 정의하기",
+    "course": "basics",
+    "category": "02 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "mse_loss",
+    "starter": "def mse_loss(pred, target):\n    pass\n",
+    "solution": "def mse_loss(pred, target):\n    return sum((p - y) ** 2 for p, y in zip(pred, target)) / len(pred)\n",
+    "description": "<p>앞에서 만든 예측 벡터 ŷ와 정답 y가 얼마나 다른지 측정합니다. 이 코스에서 최소화할 목적함수는 다음과 같습니다.</p><div class=\"formula\">L(ŷ, y) = (1/N) ‖ŷ − y‖₂²<br>= (1/N) ∑ᵢ₌₁ᴺ (ŷᵢ − yᵢ)²</div><p>pred가 ŷ, target이 y에 대응합니다. 손실 L을 scalar로 반환하세요. 이후 gradient와 학습 기록에서도 같은 정의를 사용합니다.</p>",
+    "example": "mse_loss([0.5, 6.5], [1, 5])\n# 1.25",
+    "constraints": [
+      "pred와 target의 shape는 (N,)이고 1 ≤ N ≤ 32입니다.",
+      "손실의 계수는 1/N입니다. 1/(2N)이나 제곱근을 사용하지 않습니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "벡터 차이의 L2 norm과 그 제곱은 서로 다릅니다.",
+      "N은 특성 수가 아니라 예측한 표본 수입니다.",
+      "각 표본의 제곱 오차를 합산한 뒤 N으로 나눕니다."
+    ],
+    "connection": "예측 ŷ → 손실 L. 앞 문제의 예측값을 그대로 입력으로 사용하며, 다음에는 이 손실을 파라미터로 미분합니다.",
+    "helpers": [],
+    "tests": [
+      {
+        "name": "서로 다른 오차",
+        "args": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "expected": 2.5
+      },
+      {
+        "name": "완벽한 예측",
+        "args": [
+          [
+            2,
+            -1
+          ],
+          [
+            2,
+            -1
+          ]
+        ],
+        "expected": 0
+      },
+      {
+        "name": "오차의 상쇄 방지",
+        "args": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "name": "평균을 내야 함",
+        "args": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "name": "한 개의 예측",
+        "args": [
+          [
+            -2
+          ],
+          [
+            1
+          ]
+        ],
+        "expected": 9
+      },
+      {
+        "name": "앞 문제 예측값",
+        "args": [
+          [
+            0.5,
+            6.5
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "expected": 1.25
+      }
+    ]
+  },
+  {
+    "source": "/machine_learning/optimization/gradient-descent",
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "sourceLabel": "내 노트 · Gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ],
+    "id": "lr-gradient",
+    "short": "미분",
+    "title": "여러 특성에 대한 gradient 계산하기",
+    "course": "basics",
+    "category": "03 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "gradients",
+    "starter": "def gradients(X, y, w, b):\n    pass\n",
+    "solution": "from course import predict\n\ndef gradients(X, y, w, b):\n    errors = [p - target for p, target in zip(predict(X, w, b), y)]\n    n, d = len(X), len(w)\n    dw = [2 * sum(errors[i] * X[i][j] for i in range(n)) / n for j in range(d)]\n    return [dw, 2 * sum(errors) / n]\n",
+    "description": "<p>이제 같은 MSE를 가중치 벡터 w와 편향 b에 대해 미분합니다. 현재 파라미터에서의 gradient를 반환하세요.</p><div class=\"formula\">e = ŷ − y,　ŷ = Xw + b·1ₙ<br>∇w L = (2/N) Xᵀe<br>∂L/∂b = (2/N) 1ₙᵀe</div><p>Xᵀ는 X의 전치 행렬입니다. 반환값은 [dw, db]이며, dw의 각 원소는 해당 특성의 가중치에 대한 편미분입니다. 이 문제에서는 파라미터를 갱신하지 않습니다.</p>",
+    "example": "gradients([[1, 2], [3, 0]], [1, 5], [2, -1], 0.5)\n# [[4.0, -1.0], 1.0]",
+    "constraints": [
+      "X는 (N, D), y는 (N,), w는 (D,), b는 scalar입니다. 1 ≤ N ≤ 32, 1 ≤ D ≤ 8이며 차원은 서로 일치합니다.",
+      "반환 형식은 [dw, db]이며 dw는 (D,), db는 scalar입니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "Xᵀe의 결과가 표본 수 N이 아니라 특성 수 D와 같은 길이인지 확인하세요.",
+      "편향 b는 모든 예측값에 같은 계수로 들어갑니다.",
+      "predict로 구한 잔차를 각 특성과 곱해 합산합니다. dw와 db 모두 2/N을 곱합니다."
+    ],
+    "connection": "손실 L → gradient (dw, db). 예측 함수는 제공되므로 이번에는 미분식의 차원과 축에 집중합니다.",
+    "helpers": [
+      "lr-predict"
+    ],
+    "tests": [
+      {
+        "name": "두 특성",
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            -1
+          ],
+          0.5
+        ],
+        "expected": [
+          [
+            4,
+            -1
+          ],
+          1
+        ]
+      },
+      {
+        "name": "세 특성",
+        "args": [
+          [
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          0
+        ],
+        "expected": [
+          [
+            -1,
+            2,
+            -1
+          ],
+          0
+        ]
+      },
+      {
+        "name": "정확한 모델",
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            0.5,
+            6.5
+          ],
+          [
+            2,
+            -1
+          ],
+          0.5
+        ],
+        "expected": [
+          [
+            0,
+            0
+          ],
+          0
+        ]
+      },
+      {
+        "name": "편향만 영향",
+        "args": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            -1
+          ],
+          1
+        ],
+        "expected": [
+          [
+            0,
+            0
+          ],
+          -2
+        ]
+      },
+      {
+        "name": "한 표본 한 특성",
+        "args": [
+          [
+            [
+              2
+            ]
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ],
+          -1
+        ],
+        "expected": [
+          [
+            16
+          ],
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/machine_learning/optimization/gradient-descent",
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "sourceLabel": "내 노트 · Gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ],
+    "id": "lr-step",
+    "short": "갱신",
+    "title": "파라미터 벡터를 한 번 갱신하기",
+    "course": "basics",
+    "category": "04 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "gd_step",
+    "starter": "def gd_step(X, y, w, b, lr):\n    pass\n",
+    "solution": "from course import gradients\n\ndef gd_step(X, y, w, b, lr):\n    dw, db = gradients(X, y, w, b)\n    return [[weight - lr * g for weight, g in zip(w, dw)], b - lr * db]\n",
+    "description": "<p>앞에서 구한 gradient로 파라미터 상태를 한 번 전이시킵니다. 학습률 η는 입력 lr에 대응합니다.</p><div class=\"formula\">w⁽ᵗ⁺¹⁾ = w⁽ᵗ⁾ − η ∇w L(w⁽ᵗ⁾, b⁽ᵗ⁾)<br>b⁽ᵗ⁺¹⁾ = b⁽ᵗ⁾ − η ∂L/∂b(w⁽ᵗ⁾, b⁽ᵗ⁾)</div><p>새 상태 [w_next, b_next]를 반환하세요. 두 식의 gradient는 같은 시점 t의 파라미터에서 정의됩니다.</p>",
+    "example": "gd_step([[1, 2], [3, 0]], [1, 5], [2, -1], 0.5, 0.1)\n# [[1.6, -0.9], 0.4]",
+    "constraints": [
+      "X는 (N, D), y는 (N,), w는 (D,), b는 scalar입니다. 1 ≤ N ≤ 32, 1 ≤ D ≤ 8이며 차원은 서로 일치합니다.",
+      "lr은 0 이상 0.1 이하입니다. 반환 형식은 [(D,) 벡터, scalar]입니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "gradient 함수와 갱신 함수의 역할을 구분하세요.",
+      "w를 먼저 바꾼 뒤 db를 다시 구하면 식에 적힌 시점 t가 달라집니다.",
+      "기존 (w, b)로 dw, db를 구한 다음 새 w와 새 b를 반환합니다."
+    ],
+    "connection": "gradient → 새 파라미터. 다음 문제에서는 이 한 번의 갱신을 반복하고 손실 변화를 기록합니다.",
+    "helpers": [
+      "lr-predict",
+      "lr-gradient"
+    ],
+    "tests": [
+      {
+        "name": "동시 갱신",
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            -1
+          ],
+          0.5,
+          0.1
+        ],
+        "expected": [
+          [
+            1.6,
+            -0.9
+          ],
+          0.4
+        ]
+      },
+      {
+        "name": "학습률 0",
+        "args": [
+          [
+            [
+              2
+            ]
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ],
+          -1,
+          0
+        ],
+        "expected": [
+          [
+            3
+          ],
+          -1
+        ]
+      },
+      {
+        "name": "정확한 모델",
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            0.5,
+            6.5
+          ],
+          [
+            2,
+            -1
+          ],
+          0.5,
+          0.1
+        ],
+        "expected": [
+          [
+            2,
+            -1
+          ],
+          0.5
+        ]
+      },
+      {
+        "name": "한 표본",
+        "args": [
+          [
+            [
+              2
+            ]
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ],
+          -1,
+          0.1
+        ],
+        "expected": [
+          [
+            1.4
+          ],
+          -1.8
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/machine_learning/optimization/gradient-descent",
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "sourceLabel": "내 노트 · Gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ],
+    "id": "lr-train",
+    "short": "학습 루프",
+    "title": "손실 기록이 남는 선형회귀 학습기",
+    "course": "basics",
+    "category": "05 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "fit_linear",
+    "starter": "def fit_linear(X, y, w0, b0, lr, steps):\n    pass\n",
+    "solution": "from course import predict, mse_loss, gd_step\n\ndef fit_linear(X, y, w0, b0, lr, steps):\n    w, b = list(w0), b0\n    losses = [mse_loss(predict(X, w, b), y)]\n    for _ in range(steps):\n        w, b = gd_step(X, y, w, b, lr)\n        losses.append(mse_loss(predict(X, w, b), y))\n    return [w, b, losses]\n",
+    "description": "<p>예측, 손실, 갱신을 연결해 학습기를 완성합니다. 초기 상태 θ⁽⁰⁾=(w0, b0)에서 전체 데이터에 대한 경사하강법을 정확히 steps번 수행하세요.</p><div class=\"formula\">θ⁽ᵗ⁺¹⁾ = θ⁽ᵗ⁾ − η ∇θ L(θ⁽ᵗ⁾)<br>H = [L(θ⁽⁰⁾), L(θ⁽¹⁾), …, L(θ⁽ˢᵗᵉᵖˢ⁾)]</div><p>[w, b, history]를 반환하세요. history는 초기 손실부터 마지막 갱신 후의 손실까지 담습니다. 채점 결과에서 제출한 학습기의 시작·마지막 손실을 확인할 수 있습니다.</p>",
+    "example": "fit_linear([[0], [1]], [1, 3], [0], 0, 0.1, 2)\n# [[0.53], 0.69, [5.0, 2.825, 1.63225]]",
+    "constraints": [
+      "X는 (N, D), y는 (N,), w는 (D,), b는 scalar입니다. 1 ≤ N ≤ 32, 1 ≤ D ≤ 8이며 차원은 서로 일치합니다.",
+      "0 ≤ steps ≤ 1000, 0 ≤ lr ≤ 0.1입니다. |Xᵢⱼ|, |yᵢ|, |w0ⱼ|, |b0| ≤ 3입니다.",
+      "history의 길이는 steps+1입니다. steps=0이면 초기 파라미터와 초기 손실 하나를 반환합니다.",
+      "각 갱신은 전체 데이터를 사용합니다. 조기 종료와 정규방정식은 사용하지 않습니다. 손실이 증가하더라도 정해진 횟수를 수행합니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "history의 인덱스 t는 t번 갱신한 상태와 대응합니다.",
+      "초기 손실과 마지막 손실이 빠지지 않았는지, 입력 w0를 덮어쓰지 않았는지 확인하세요.",
+      "초기 손실 기록 → gd_step → 새 손실 기록을 steps번 반복합니다."
+    ],
+    "connection": "한 번 갱신 → 전체 학습. 앞 단계 함수들을 조합해 학습이 실제로 진행되는지 확인합니다.",
+    "helpers": [
+      "lr-predict",
+      "mse-loss",
+      "lr-gradient",
+      "lr-step"
+    ],
+    "tests": [
+      {
+        "name": "0회 학습",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0.5
+          ],
+          -0.2,
+          0.1,
+          0
+        ],
+        "expected": [
+          [
+            0.5
+          ],
+          -0.2,
+          [
+            4.365
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "두 번 갱신",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0
+          ],
+          0,
+          0.1,
+          2
+        ],
+        "expected": [
+          [
+            0.53
+          ],
+          0.69,
+          [
+            5.0,
+            2.8249999999999997,
+            1.63225
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "여러 특성 학습",
+        "args": [
+          [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            -1,
+            2,
+            3,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          0,
+          0.1,
+          80
+        ],
+        "expected": [
+          [
+            1.999563050998943,
+            -0.9997815254994715
+          ],
+          0.9999999823315294,
+          [
+            3.5,
+            2.665,
+            2.0498499999999997,
+            1.5907464999999998,
+            1.2439401849999998,
+            0.9790702826499997,
+            0.7747933179384998,
+            0.6159002764850647,
+            0.4914025448840256,
+            0.3932509867519796,
+            0.3154708515224915,
+            0.2535714231753866,
+            0.20413847417505088,
+            0.16454936177970336,
+            0.1327711895682235,
+            0.10721583572732583,
+            0.0866343771324554,
+            0.0700391576010146,
+            0.05664551741600631,
+            0.04582770095284322,
+            0.03708513015316492,
+            0.03001635854813521,
+            0.024298788423395393,
+            0.01967276294257005,
+            0.015929014348038378,
+            0.012898710495227329,
+            0.010445529180056546,
+            0.008459325790356126,
+            0.006851060069075076,
+            0.005548722610438248,
+            0.004494058245326944,
+            0.003639926654472883,
+            0.0029481738546082003,
+            0.002387914111503142,
+            0.0019341421354506687,
+            0.0015666114210002337,
+            0.0012689272774327196,
+            0.0010278131916309152,
+            0.0008325172272437073,
+            0.0006743316209619141,
+            0.0005462039197916298,
+            0.00044242217139121414,
+            0.0003583600364972816,
+            0.00029027039927184884,
+            0.00023511823602399352,
+            0.00019044526725225957,
+            0.00015426034396094076,
+            0.00012495067219979003,
+            0.00010120991238034525,
+            8.197994448313017e-05,
+            6.640370092256453e-05,
+            5.378696311766457e-05,
+            4.356741796235658e-05,
+            3.528959436521863e-05,
+            2.858456235788325e-05,
+            2.315348970000041e-05,
+            1.8754322938673995e-05,
+            1.5190999200597298e-05,
+            1.2304707829457051e-05,
+            9.966812367123102e-06,
+            8.07311739353772e-06,
+            6.539224689513215e-06,
+            5.2967717429845784e-06,
+            4.290384948284133e-06,
+            3.475211703448307e-06,
+            2.8149214128095413e-06,
+            2.28008630150598e-06,
+            1.846869876783472e-06,
+            1.4959645826355193e-06,
+            1.2117313006966721e-06,
+            9.815023463722071e-07,
+            7.950168959585354e-07,
+            6.439636827803847e-07,
+            5.216105811666657e-07,
+            4.2250456953847026e-07,
+            3.422287005537551e-07,
+            2.772052469542691e-07,
+            2.2453624971683077e-07,
+            1.8187436206813405e-07,
+            1.4731823314567232e-07,
+            1.1932776876512894e-07
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "학습률 0",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0.5
+          ],
+          -0.2,
+          0,
+          3
+        ],
+        "expected": [
+          [
+            0.5
+          ],
+          -0.2,
+          [
+            4.365,
+            4.365,
+            4.365,
+            4.365
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "손실 증가도 기록",
+        "args": [
+          [
+            [
+              3,
+              3
+            ]
+          ],
+          [
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          0,
+          0.1,
+          3
+        ],
+        "expected": [
+          [
+            -20.744,
+            -20.744
+          ],
+          -7.248000000000001,
+          [
+            36.0,
+            282.24,
+            2212.7616000000007,
+            17348.050944
+          ]
+        ],
+        "trackLoss": true
+      }
+    ]
+  },
+  {
+    "source": "/machine_learning/optimization/gradient-descent",
+    "sourceNote": "/machine_learning/optimization/gradient descent",
+    "sourceLabel": "내 노트 · Gradient descent",
+    "relatedNotes": [
+      "/machine_learning/linear_models/linear-regression"
+    ],
+    "id": "lr-minibatch",
+    "short": "미니배치",
+    "title": "같은 학습기를 미니배치로 확장하기",
+    "course": "basics",
+    "category": "06 / LINEAR REGRESSION",
+    "difficulty": "기초 → 응용",
+    "function": "fit_minibatch",
+    "starter": "def fit_minibatch(X, y, w0, b0, lr, epochs, batch_size):\n    pass\n",
+    "solution": "from course import predict, mse_loss, gd_step\n\ndef fit_minibatch(X, y, w0, b0, lr, epochs, batch_size):\n    w, b = list(w0), b0\n    losses = [mse_loss(predict(X, w, b), y)]\n    for _ in range(epochs):\n        for start in range(0, len(X), batch_size):\n            w, b = gd_step(X[start:start + batch_size], y[start:start + batch_size], w, b, lr)\n        losses.append(mse_loss(predict(X, w, b), y))\n    return [w, b, losses]\n",
+    "description": "<p>데이터 전체 대신 일부 표본만으로 한 번씩 갱신합니다. 한 epoch는 주어진 순서의 모든 표본을 한 번 사용하는 과정입니다. 표본을 섞지 않고 연속된 batch_size개씩 배치를 구성하세요.</p><div class=\"formula\">Lᴮ(θ) = (1/|B|) ∑ᵢ∈ᴮ (xᵢᵀw + b − yᵢ)²<br>θ_next = θ − η ∇θ Lᴮ(θ)<br>H = [L_full(θ_initial), L_full(θ_epoch1), …]</div><p>각 배치 뒤에는 파라미터가 갱신되고, history에는 초기 상태와 각 epoch 종료 시점의 <strong>전체 데이터 MSE</strong>를 기록합니다. 반환 형식은 앞 문제와 같은 [w, b, history]입니다.</p>",
+    "example": "fit_minibatch([[0], [1]], [1, 3], [0], 0, 0.1, 1, 1)\n# [[0.56], 0.76, [5.0, 1.44]]",
+    "constraints": [
+      "X는 (N, D), y는 (N,), w는 (D,), b는 scalar입니다. 1 ≤ N ≤ 32, 1 ≤ D ≤ 8이며 차원은 서로 일치합니다.",
+      "0 ≤ epochs ≤ 100, 1 ≤ batch_size ≤ 64, 0 ≤ lr ≤ 0.1입니다. |Xᵢⱼ|, |yᵢ|, |w0ⱼ|, |b0| ≤ 3입니다.",
+      "마지막 배치가 작아도 포함합니다. |B|는 해당 배치의 실제 표본 수입니다.",
+      "셔플과 조기 종료는 사용하지 않습니다. history의 길이는 epochs+1입니다. batch_size ≥ N이면 한 epoch가 앞 문제의 한 step과 같습니다.",
+      "입력은 Python 리스트와 유한 실수입니다. NumPy를 사용할 수 있고, 같은 shape의 배열·scalar 반환도 허용합니다.",
+      "입력 객체를 변경하지 마세요. 반환값은 반올림하지 않습니다."
+    ],
+    "hints": [
+      "파라미터 갱신 주기와 전체 손실 기록 주기는 다릅니다.",
+      "마지막 배치의 크기와 batch_size가 항상 같지는 않습니다.",
+      "epoch마다 연속 배치를 순회해 gd_step을 호출하고, epoch가 끝나면 전체 데이터 손실을 한 번 기록합니다."
+    ],
+    "connection": "전체 배치 학습 → 미니배치 학습. 같은 함수와 손실 정의를 유지한 채 갱신에 사용하는 데이터 범위를 바꿉니다.",
+    "helpers": [
+      "lr-predict",
+      "mse-loss",
+      "lr-gradient",
+      "lr-step"
+    ],
+    "tests": [
+      {
+        "name": "마지막 작은 배치",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0
+          ],
+          0,
+          0.05,
+          2,
+          2
+        ],
+        "expected": [
+          [
+            0.90825
+          ],
+          0.6072500000000001,
+          [
+            4.666666666666667,
+            1.0032916666666667,
+            0.24035229166666658
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "전체 배치와 동일",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0
+          ],
+          0,
+          0.1,
+          2,
+          8
+        ],
+        "expected": [
+          [
+            0.53
+          ],
+          0.69,
+          [
+            5.0,
+            2.8249999999999997,
+            1.63225
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "표본 하나씩",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0
+          ],
+          0,
+          0.1,
+          1,
+          1
+        ],
+        "expected": [
+          [
+            0.5599999999999999
+          ],
+          0.76,
+          [
+            5.0,
+            1.4400000000000002
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "0 epoch",
+        "args": [
+          [
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            -1
+          ],
+          0.5,
+          0.1,
+          0,
+          1
+        ],
+        "expected": [
+          [
+            1,
+            -1
+          ],
+          0.5,
+          [
+            6.25
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "학습률 0",
+        "args": [
+          [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0.5
+          ],
+          -0.2,
+          0,
+          2,
+          1
+        ],
+        "expected": [
+          [
+            0.5
+          ],
+          -0.2,
+          [
+            4.365,
+            4.365,
+            4.365
+          ]
+        ],
+        "trackLoss": true
+      },
+      {
+        "name": "두 특성 미니배치",
+        "args": [
+          [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            -1,
+            2,
+            3,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          0,
+          0.05,
+          20,
+          3
+        ],
+        "expected": [
+          [
+            1.4967711535266592,
+            -0.8396589841970885
+          ],
+          0.8914653605126915,
+          [
+            3.5,
+            2.934288888888889,
+            2.4707833708641975,
+            2.0879081830945623,
+            1.7695329619807882,
+            1.5033590040058775,
+            1.2798428828824298,
+            1.0914645985769134,
+            0.932220000810512,
+            0.7972615220635713,
+            0.6826386773769488,
+            0.5851069083130398,
+            0.501984138341295,
+            0.43104127991179225,
+            0.37041736355523874,
+            0.3185528521934645,
+            0.2741366197479525,
+            0.2360633613424913,
+            0.203399082453772,
+            0.1753529255735821,
+            0.15125402460443937
+          ]
+        ],
+        "trackLoss": true
+      }
+    ]
+  },
+  {
     "id": "gradient-step",
     "short": "GD 한 걸음",
     "title": "경사하강법, 한 번만 움직여 보기",
     "category": "입문 / OPTIMIZATION",
     "difficulty": "입문 · 5분",
-    "course": "basics",
+    "course": "optimization",
     "description": "<p>모델을 학습한다는 건 loss가 작아지도록 파라미터를 조금씩 바꾸는 일입니다. <strong>gradient는 loss가 증가하는 방향의 기울기</strong>이므로, 그 반대 방향으로 움직입니다.</p><p>현재 값 <code>w</code>, 이미 계산된 기울기 <code>grad</code>, 학습률 <code>lr</code>을 받아 다음 값을 반환하세요. 이번 문제에서는 미분을 직접 계산할 필요가 없습니다.</p><div class=\"formula\">w_next = w − lr × grad</div><p>예를 들어 w=4, grad=6, lr=0.1이면 0.6만큼 내려가서 3.4가 됩니다. grad가 음수라면 w는 커집니다.</p>",
     "source": "/machine_learning/optimization/gradient-descent",
     "sourceLabel": "내 노트 · Gradient descent",
@@ -17,7 +1214,7 @@
       "반환값을 반올림하지 마세요. 채점기가 실수 오차를 허용합니다.",
       "리스트 대신 같은 shape의 NumPy 배열을 반환해도 됩니다. NumPy scalar도 허용합니다."
     ],
-    "starter": "def gradient_step(w, grad, lr):\n    # gradient의 반대 방향으로 한 번 이동하세요.\n    raise NotImplementedError\n",
+    "starter": "def gradient_step(w, grad, lr):\n    pass\n",
     "hints": [
       "이동할 크기는 lr * grad입니다.",
       "현재 값에서 이동량을 빼세요. 음수 gradient도 같은 식으로 처리합니다."
@@ -79,7 +1276,7 @@
     "title": "반복해서 최솟값에 다가가기",
     "category": "입문 / OPTIMIZATION",
     "difficulty": "입문 · 10분",
-    "course": "basics",
+    "course": "optimization",
     "description": "<p>이제 한 걸음을 반복합니다. loss는 <code>L(w) = (w − target)²</code>이고, gradient는 <code>2 × (w − target)</code>입니다. 최솟값은 w=target에 있습니다.</p><p><code>w0</code>에서 시작해 정확히 <code>steps</code>번 업데이트한 뒤 마지막 w를 반환하세요. <strong>매번 바뀐 w로 gradient를 다시 계산</strong>해야 합니다.</p><div class=\"formula\">grad = 2 × (w − target)\nw = w − lr × grad</div><p>4에서 시작해 target=1, lr=0.1이면 4 → 3.4 → 2.92로 이동합니다.</p>",
     "source": "/machine_learning/optimization/gradient-descent",
     "sourceLabel": "내 노트 · Gradient descent",
@@ -92,7 +1289,7 @@
       "반환값을 반올림하지 마세요. 채점기가 실수 오차를 허용합니다.",
       "리스트 대신 같은 shape의 NumPy 배열을 반환해도 됩니다. NumPy scalar도 허용합니다."
     ],
-    "starter": "def quadratic_descent(w0, target, lr, steps):\n    w = w0\n    # 매번 gradient를 다시 계산해 업데이트하세요.\n    raise NotImplementedError\n",
+    "starter": "def quadratic_descent(w0, target, lr, steps):\n    pass\n",
     "hints": [
       "for _ in range(steps): 반복문을 사용하세요.",
       "반복문 안에서 grad = 2 * (w - target)을 계산하고 w -= lr * grad를 적용하세요."
@@ -164,397 +1361,17 @@
     "sourceNote": "/machine_learning/optimization/gradient descent"
   },
   {
-    "id": "mse-loss",
-    "short": "MSE",
-    "title": "예측이 얼마나 틀렸는지 계산하기",
-    "category": "입문 / OPTIMIZATION",
-    "difficulty": "입문 · 8분",
-    "course": "basics",
-    "description": "<p>선형회귀를 학습하기 전에 오차를 숫자로 표현해 봅시다. <strong>MSE(평균 제곱 오차)</strong>는 예측과 정답의 차이를 제곱한 뒤 평균을 낸 값입니다.</p><div class=\"formula\">MSE = Σ(pred[i] − target[i])² / N</div><p>제곱하면 양수와 음수 오차가 상쇄되지 않습니다. 예측 리스트 <code>pred</code>와 정답 리스트 <code>target</code>을 받아 MSE를 반환하세요. 제곱근은 씌우지 않습니다.</p>",
-    "source": "/machine_learning/metrics/mean-squared-error",
-    "sourceLabel": "내 노트 · Mean squared error",
-    "example": "mse_loss([1, 3], [2, 1])\n# (1 + 4) / 2 = 2.5",
-    "constraints": [
-      "두 리스트는 길이가 같고 비어 있지 않습니다. 원소는 유한 실수입니다.",
-      "이 코스는 1/N을 사용합니다. 일부 교재의 1/(2N) loss와 다릅니다.",
-      "Python 기본 연산만으로 풀 수 있습니다. NumPy도 사용할 수 있습니다.",
-      "반환값을 반올림하지 마세요. 채점기가 실수 오차를 허용합니다.",
-      "리스트 대신 같은 shape의 NumPy 배열을 반환해도 됩니다. NumPy scalar도 허용합니다."
-    ],
-    "starter": "def mse_loss(pred, target):\n    # 제곱 오차의 평균을 반환하세요.\n    raise NotImplementedError\n",
-    "hints": [
-      "zip(pred, target)으로 같은 위치의 값을 짝지으세요.",
-      "각 차이를 제곱해 더한 뒤 len(pred)로 나눕니다."
-    ],
-    "solution": "def mse_loss(pred, target):\n    return sum((p - y) ** 2 for p, y in zip(pred, target)) / len(pred)\n",
-    "function": "mse_loss",
-    "tests": [
-      {
-        "name": "서로 다른 오차",
-        "args": [
-          [
-            1,
-            3
-          ],
-          [
-            2,
-            1
-          ]
-        ],
-        "expected": 2.5
-      },
-      {
-        "name": "완벽한 예측",
-        "args": [
-          [
-            2,
-            -1
-          ],
-          [
-            2,
-            -1
-          ]
-        ],
-        "expected": 0
-      },
-      {
-        "name": "오차의 상쇄 방지",
-        "args": [
-          [
-            0,
-            2
-          ],
-          [
-            1,
-            1
-          ]
-        ],
-        "expected": 1
-      },
-      {
-        "name": "평균을 내야 함",
-        "args": [
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            1,
-            2,
-            2
-          ]
-        ],
-        "expected": 3
-      },
-      {
-        "name": "한 개의 예측",
-        "args": [
-          [
-            -2
-          ],
-          [
-            1
-          ]
-        ],
-        "expected": 9
-      }
-    ],
-    "sourceNote": "/machine_learning/metrics/mean squared error"
-  },
-  {
-    "id": "linear-gradient",
-    "short": "회귀 gradient",
-    "title": "선형회귀의 기울기 계산하기",
-    "category": "입문 / OPTIMIZATION",
-    "difficulty": "입문 · 15분",
-    "course": "basics",
-    "description": "<p>모델은 <code>pred = w × x + b</code>입니다. 앞에서 만든 MSE를 줄이려면 w와 b를 어느 방향으로 바꿔야 할까요? 아래 미분식을 코드로 옮겨 보세요.</p><div class=\"formula\">error[i] = w × x[i] + b − y[i]\ndw = (2/N) × Σ(error[i] × x[i])\ndb = (2/N) × Σ(error[i])</div><p>모든 데이터의 오차를 <strong>현재 w와 b</strong>로 계산해 <code>[dw, db]</code>를 반환하세요. 아직 파라미터를 업데이트하지 않습니다. 노트의 1/(2N) 예시와 달리 여기서는 MSE의 1/N을 사용하므로 gradient에 2가 붙습니다.</p>",
-    "source": "/machine_learning/optimization/gradient-descent",
-    "sourceLabel": "내 노트 · Gradient descent",
-    "example": "linear_gradient([0, 1], [1, 3], 0, 0)\n# [-3.0, -4.0]",
-    "constraints": [
-      "x와 y는 길이가 같은 비어 있지 않은 유한 실수 리스트입니다.",
-      "w, b는 유한 실수입니다. 반환 순서는 [dw, db]입니다.",
-      "Python 기본 연산만으로 풀 수 있습니다. NumPy도 사용할 수 있습니다.",
-      "반환값을 반올림하지 마세요. 채점기가 실수 오차를 허용합니다.",
-      "리스트 대신 같은 shape의 NumPy 배열을 반환해도 됩니다. NumPy scalar도 허용합니다."
-    ],
-    "starter": "def linear_gradient(x, y, w, b):\n    # 같은 w, b에서 모든 오차를 계산하세요.\n    raise NotImplementedError\n",
-    "hints": [
-      "errors = [w * xi + b - yi for xi, yi in zip(x, y)]를 먼저 만드세요.",
-      "dw에는 error * x를, db에는 error만 더합니다. 둘 다 2 / len(x)를 곱하세요."
-    ],
-    "solution": "def linear_gradient(x, y, w, b):\n    errors = [w * xi + b - yi for xi, yi in zip(x, y)]\n    dw = 2 * sum(e * xi for e, xi in zip(errors, x)) / len(x)\n    db = 2 * sum(errors) / len(x)\n    return [dw, db]\n",
-    "function": "linear_gradient",
-    "tests": [
-      {
-        "name": "0에서 시작",
-        "args": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ],
-          0,
-          0
-        ],
-        "expected": [
-          -3,
-          -4
-        ]
-      },
-      {
-        "name": "정확한 직선",
-        "args": [
-          [
-            0,
-            1,
-            2
-          ],
-          [
-            1,
-            3,
-            5
-          ],
-          2,
-          1
-        ],
-        "expected": [
-          0,
-          0
-        ]
-      },
-      {
-        "name": "bias만 영향",
-        "args": [
-          [
-            0,
-            0
-          ],
-          [
-            1,
-            3
-          ],
-          5,
-          1
-        ],
-        "expected": [
-          0,
-          -2
-        ]
-      },
-      {
-        "name": "음수 입력",
-        "args": [
-          [
-            -1,
-            1
-          ],
-          [
-            -2,
-            2
-          ],
-          1,
-          0
-        ],
-        "expected": [
-          -2,
-          0
-        ]
-      },
-      {
-        "name": "평균과 계수 2",
-        "args": [
-          [
-            1,
-            2,
-            3
-          ],
-          [
-            0,
-            0,
-            0
-          ],
-          1,
-          0
-        ],
-        "expected": [
-          9.333333333333334,
-          4
-        ]
-      }
-    ],
-    "sourceNote": "/machine_learning/optimization/gradient descent",
-    "relatedNotes": [
-      "/machine_learning/linear_models/linear-regression"
-    ]
-  },
-  {
-    "id": "train-linear",
-    "short": "회귀 학습",
-    "title": "작은 선형회귀 모델 끝까지 학습하기",
-    "category": "입문 / OPTIMIZATION",
-    "difficulty": "입문 · 20분",
-    "course": "basics",
-    "description": "<p>지금까지 만든 조각을 연결해 봅시다. <code>w=0, b=0</code>에서 시작해서 전체 데이터의 MSE gradient를 계산하고, 경사하강법을 반복합니다.</p><div class=\"formula\">error[i] = w × x[i] + b − y[i]\ndw = (2/N) × Σ(error[i] × x[i])\ndb = (2/N) × Σ(error[i])\nw_next = w − lr × dw\nb_next = b − lr × db</div><p>정확히 <code>steps</code>번 반복한 뒤 <code>[w, b]</code>를 반환하세요. dw와 db를 모두 계산한 다음 w와 b를 바꿔야 합니다. 각 문제는 독립 실행되므로 이전 함수가 필요하면 이 에디터에도 정의하세요.</p>",
-    "source": "/machine_learning/optimization/gradient-descent",
-    "sourceLabel": "내 노트 · Gradient descent",
-    "example": "train_linear([0, 1], [1, 3], 0.1, 2)\n# [0.53, 0.69]",
-    "constraints": [
-      "x와 y는 길이가 같고 비어 있지 않습니다. 모든 값은 −3 이상 3 이하입니다.",
-      "lr은 0 이상 0.1 이하입니다.",
-      "steps는 0 이상 1000 이하 정수입니다. 0회이면 [0, 0]을 반환합니다.",
-      "정규화·정규방정식·조기 종료 없이 batch gradient descent를 구현합니다.",
-      "Python 기본 연산만으로 풀 수 있습니다. NumPy도 사용할 수 있습니다.",
-      "반환값을 반올림하지 마세요. 채점기가 실수 오차를 허용합니다.",
-      "리스트 대신 같은 shape의 NumPy 배열을 반환해도 됩니다. NumPy scalar도 허용합니다."
-    ],
-    "starter": "def train_linear(x, y, lr, steps):\n    w, b = 0.0, 0.0\n    # gradient 계산 → 두 파라미터 업데이트를 반복하세요.\n    raise NotImplementedError\n",
-    "hints": [
-      "반복문 안에서 모든 errors, dw, db를 먼저 계산하세요.",
-      "w를 바꾼 뒤 error를 다시 계산해서 db를 구하면 동시 업데이트가 아닙니다. dw, db를 구한 뒤 w -= lr * dw; b -= lr * db를 실행하세요."
-    ],
-    "solution": "def train_linear(x, y, lr, steps):\n    w, b = 0.0, 0.0\n    for _ in range(steps):\n        errors = [w * xi + b - yi for xi, yi in zip(x, y)]\n        dw = 2 * sum(e * xi for e, xi in zip(errors, x)) / len(x)\n        db = 2 * sum(errors) / len(x)\n        w -= lr * dw\n        b -= lr * db\n    return [w, b]\n",
-    "function": "train_linear",
-    "tests": [
-      {
-        "name": "0회 반복",
-        "args": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ],
-          0.1,
-          0
-        ],
-        "expected": [
-          0,
-          0
-        ]
-      },
-      {
-        "name": "한 번 업데이트",
-        "args": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ],
-          0.1,
-          1
-        ],
-        "expected": [
-          0.3,
-          0.4
-        ]
-      },
-      {
-        "name": "동시 업데이트 두 번",
-        "args": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ],
-          0.1,
-          2
-        ],
-        "expected": [
-          0.53,
-          0.69
-        ]
-      },
-      {
-        "name": "y=2x+1 학습",
-        "args": [
-          [
-            -1,
-            0,
-            1
-          ],
-          [
-            -1,
-            1,
-            3
-          ],
-          0.05,
-          1000
-        ],
-        "expected": [
-          2,
-          1
-        ]
-      },
-      {
-        "name": "상수값 학습",
-        "args": [
-          [
-            0,
-            0
-          ],
-          [
-            2,
-            2
-          ],
-          0.05,
-          1000
-        ],
-        "expected": [
-          0,
-          2
-        ]
-      },
-      {
-        "name": "학습률 0",
-        "args": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ],
-          0,
-          10
-        ],
-        "expected": [
-          0,
-          0
-        ]
-      }
-    ],
-    "sourceNote": "/machine_learning/optimization/gradient descent",
-    "relatedNotes": [
-      "/machine_learning/linear_models/linear-regression"
-    ]
-  },
-  {
     "id": "momentum-step",
     "title": "이전 이동량을 기억하는 Momentum",
     "short": "Momentum",
-    "course": "basics",
+    "course": "optimization",
     "category": "입문 / OPTIMIZATION",
     "difficulty": "기초 · 10분",
     "source": "/machine_learning/optimization/momentum",
     "sourceNote": "/machine_learning/optimization/Momentum",
     "sourceLabel": "내 노트 · Momentum",
     "description": "<p>기본 경사하강법에 이전 이동량을 더해 봅시다. 이 문제는 노트와 같은 convention으로, velocity 안에 학습률이 포함됩니다.</p><div class=\"formula\">v_next = beta × v + lr × grad\nw_next = w − v_next</div><p>현재 w, 이전 velocity v, 현재 gradient grad를 받아 <code>[w_next, v_next]</code>를 반환하세요. 학습률을 두 번 곱하지 않도록 주의하세요.</p>",
-    "starter": "def momentum_step(w, v, grad, lr, beta):\n    raise NotImplementedError\n",
+    "starter": "def momentum_step(w, v, grad, lr, beta):\n    pass\n",
     "solution": "def momentum_step(w, v, grad, lr, beta):\n    v_next = beta * v + lr * grad\n    return [w - v_next, v_next]\n",
     "function": "momentum_step",
     "hints": [
