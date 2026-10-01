@@ -24,8 +24,77 @@ RLCD의 공개된 목표는 판단의 정확도뿐 아니라 [[machine_learning/
 | 형식 | 질문 예시 | 결과의 의미 |
 | --- | --- | --- |
 | Choice | 문의 유형이 환불·배송·기타 중 무엇인가 | 선택한 항목과 전체 선택지의 확률 분포 |
-| Score | 명시한 기준에서 답변 품질이 어느 수준인가 | 정의한 수준에 따른 점수와 수준별 확률 분포 |
+| Score | 고객이 어느 정도로 불만을 표현하는가 | 정의한 수준에 따른 점수와 수준별 확률 분포 |
 | Noul | 고객이 환불을 요청했는가 | yes일 확률인 0–1 값 |
+
+## B.1) 고객 문의 하나에 세 가지 질문하기
+
+고객이 “같은 주문이 두 번 결제됐네요. 번거롭지만 중복 결제한 금액을 환불해 주세요”라고 문의했다고 하자. 이 문장이 `state`이고, 무엇을 판단할지는 `questions`에 따로 적는다. 아래는 요청에서 `state`와 `questions`만 발췌한 예시다.
+
+```json
+{
+  "state": {
+    "customer_message": "같은 주문이 두 번 결제됐네요. 번거롭지만 중복 결제한 금액을 환불해 주세요."
+  },
+  "questions": {
+    "request_type": {
+      "type": "choice",
+      "instructions": "customer_message의 주된 문의 유형은 무엇인가?",
+      "criteria": {
+        "refund": "결제한 돈을 돌려달라는 요청",
+        "delivery": "배송 상태나 일정에 관한 문의",
+        "other": "위 유형에 해당하지 않는 문의"
+      }
+    },
+    "frustration": {
+      "type": "score",
+      "instructions": "customer_message에서 고객이 불만을 어느 정도 표현하는가?",
+      "criteria": [
+        "불만 표현 없이 사실이나 요청만 전달한다",
+        "불편함을 표현하지만 정중하게 요청한다",
+        "강한 분노나 비난을 표현한다"
+      ]
+    },
+    "refund_requested": {
+      "type": "noul",
+      "instructions": "customer_message에서 고객이 환불을 요청하는가?"
+    }
+  }
+}
+```
+
+`request_type` 같은 키는 질문과 응답을 연결하는 ID다. 모델이 이 이름만 보고 질문을 이해하는 것은 아니므로, 실제 판단할 내용은 `instructions`에 적는다. 세 질문은 같은 state를 각각 평가한다. Choice의 답을 읽고 Noul의 답을 만드는 순차 처리로 이해하면 안 된다.
+
+## B.2) 반환된 값을 읽는 방법
+
+다음은 **설명용 가상 출력** 이다. 실제 API를 호출한 결과가 아니며, 응답 중 `answers`의 주요 필드만 남겼다. Choice·Score의 `confidence`와 Score의 `legend` 등은 생략했다.
+
+```json
+{
+  "answers": {
+    "request_type": {
+      "type": "choice",
+      "choice": "refund",
+      "probabilities": {"refund": 0.94, "delivery": 0.01, "other": 0.05}
+    },
+    "frustration": {
+      "type": "score",
+      "score": 1.0,
+      "probabilities": {"0": 0.10, "1": 0.80, "2": 0.10}
+    },
+    "refund_requested": {
+      "type": "noul",
+      "noul": 0.98
+    }
+  }
+}
+```
+
+Choice는 `refund`를 골랐고, 주된 문의가 환불 유형일 확률을 0.94로 평가했다. Noul의 0.98은 ‘환불을 요청했는가’라는 별도 질문에 대한 yes 확률이다. **문의의 주된 유형과 특정 요청의 존재 여부는 다른 판단** 이므로 두 숫자가 같을 필요는 없다.
+
+Score의 수준 번호는 `criteria` 배열의 순서에 따라 0부터 붙는다. 이 예시에서는 ‘정중하지만 불편함을 표현함’인 수준 1에 확률 0.80을 부여했다. 반환 점수는 수준 번호의 확률 가중 평균이므로 `0 × 0.10 + 1 × 0.80 + 2 × 0.10 = 1.0`이다. 여기서 **1.0은 정답 확률 100%가 아니라 불만 수준의 위치** 다. [Score 문서](https://docs.typesafe.ai/primitives/score)
+
+소프트웨어는 `choice`가 `refund`이면 환불 담당으로 문의를 보내는 식으로 이 값을 사용할 수 있다. 고객이 환불을 요청했다는 판단만으로 실제 환불 자격이나 승인 여부까지 확인된 것은 아니다. 그런 판단에는 주문·결제 내역과 환불 규정을 추가로 제공해야 한다.
 
 Choice와 Score에는 `confidence`도 붙는다. 이는 반환된 확률 분포의 집중도를 요약한 통계량이다. 곧바로 ‘선택한 답의 정답 확률’과 같은 숫자라고 해석하면 안 된다. Noul에는 별도 confidence가 없으며, 0.5는 yes와 no에 같은 확률을 부여했다는 뜻이다. [Confidence 문서](https://docs.typesafe.ai/confidence)
 
