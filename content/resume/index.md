@@ -98,7 +98,7 @@ LLM, 검색, 추천 등 production ML 을 다루는 Machine Learning Engineer �
 - 실제 검색 패턴과 장소 추천 의도를 반영한 합성 학습 데이터를 구축했습니다.
 - 32B 자체 모델을 파인튜닝해 tool-call 정확도에서 GPT-4o를 넘어섰습니다.
 - 후보 밖 장소 ID 출력·후보 개수 초과·금칙어를 감점하는 보상 함수를 설계해 Gemma3-12B 리랭킹 모델을 GRPO로 학습했습니다.
-- 이 모델로 GPT-4.1 수준의 리랭킹 F1(0.667 vs 0.682)을 GPT-4o보다 1.6배 빠른 속도로 달성해 배포했습니다.
+- 이 모델로 GPT-4.1 수준의 리랭킹 F1(0.667 vs 0.682)을 GPT-4.1 API보다 약 2.5배 빠른 속도로 달성해 배포했습니다.
 - Multi-node 학습에서 Megatron-LM이 DeepSpeed ZeRO-3 대비 최소 2배(MoE 모델은 최대 20배) 빠른 것을 확인했습니다.
 
 ### D.2.2) Cost-Aware LLM Router
