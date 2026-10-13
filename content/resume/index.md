@@ -27,11 +27,9 @@ LLM, 검색, 추천 등 production ML 을 다루는 Machine Learning Engineer �
 **AI Search Modeling Lead**  
 2026.03 - Present
 
-- 7명 규모의 모델러·데이터 엔지니어 조직을 이끌며, 웹·쇼핑 검색 모델(LLM, Cross-Encoder, Embedding 등)과 카카오톡 지면의 온디바이스 맥락 기반 추천 모델 개발을 리드합니다.
-- Google Grounding, Perplexity 등 상용 검색 API를 자체 웹 검색 시스템으로 대체하는 조직 목표를 수립하고, LLM·랭킹 모델·평가 체계의 개발 우선순위와 일정을 결정합니다.
-- Kanana Foundation Model·인퍼런스 최적화·서빙 플랫폼 조직과 공동 개발 범위와 담당 역할을 정했습니다.
-- 개발용 GPU를 산정해 확보하고, 자체 검색과 상용 검색 API의 품질과 호출당 비용을 비교해 전환 근거를 마련했습니다.
-- 조직을 이끄는 동시에 웹 문서 품질 모델과 커머스 검색어 분류 모델의 데이터 구축·학습·평가·배치 적용을 직접 수행했습니다.
+- 약 10명 규모의 모델러·데이터 엔지니어로 구성된 모델링 조직을 이끌며, 웹·쇼핑 검색 모델과 카카오톡 온디바이스 맥락 기반 추천 모델 개발을 리드합니다.
+- 상용 검색 API(Google Grounding, Perplexity)를 자체 웹 검색으로 대체하는 목표를 세우고, 품질·비용 비교로 전환 근거를 마련했습니다.
+- Kanana Foundation Model·인퍼런스 최적화·서빙 플랫폼 조직과 공동 개발 범위를 정하고, 학습·서빙 GPU 자원을 관리합니다.
 
 **Machine Learning Engineer, Search Agent TF**  
 2025.07 - 2026.02
@@ -42,7 +40,7 @@ LLM, 검색, 추천 등 production ML 을 다루는 Machine Learning Engineer �
 **Machine Learning Engineer, LLM Alignment Team**  
 2023.10 - 2025.06
 
-- 장소 추천, 프로야구봇 요약, 도메인 QA·RAG, LLM 라우팅 등 실제 서비스에 적용되는 LLM 모델을 개발했습니다.
+- 장소 추천, 야구 경기 요약, 도메인 QA·RAG, LLM 라우팅 등 실제 서비스에 적용되는 LLM 모델을 개발했습니다.
 - 학습 데이터 합성을 통한 데이터 구축부터 모델 파인튜닝, 평가, vLLM 기반 모델 서빙까지 맡아 서비스 품질과 운영 비용을 함께 개선했습니다.
 
 **Machine Learning Engineer, Recommendation Team**  
@@ -64,25 +62,25 @@ LLM, 검색, 추천 등 production ML 을 다루는 Machine Learning Engineer �
 
 **2025.07 - Present**
 
-### D.1.2) Web Corpus Quality Models And Large-Scale Processing
-
-**2026.04 - 2026.09**
-
-### D.1.3) Commerce Search Ranking And Multimodal Product Embedding
-
-**2025.10 - 2026.06**
-
-### D.1.4) Commerce Query Understanding And Product Data
-
-**2026.01 - Present**
-
-### D.1.5) Web Search Ranking Models
+### D.1.2) Web Search Ranking Models
 
 **2026.07 - Present**
 
-### D.1.6) On-Device Context-Based Personalized Query Recommendation
+### D.1.3) On-Device Context-Based Personalized Query Recommendation
 
 **2026.04 - 2026.09**
+
+### D.1.4) Commerce Search Ranking And Multimodal Product Embedding
+
+**2025.10 - 2026.06**
+
+### D.1.5) Commerce Query Understanding And Product Data
+
+**2026.01 - Present**
+
+### D.1.6) Web Corpus Quality Models And Large-Scale Processing
+
+**2026.05 - 2026.08**
 
 ## D.2) LLM Services (2023 - 2025)
 
