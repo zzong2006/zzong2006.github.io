@@ -35,7 +35,3 @@ $$
 2 차원 point $(2, 0)$ 을 예시로 보면 다음과 같다. 만약 우리가 $\displaystyle \frac{\partial f}{\partial x}$ 가 궁금한 경우 $y$ 는 상수라고 생각하기 때문에, 함수 $f$ 와 $y=0$ 인 평면이 만나는 선에 대한 기울기를 partial derivative 라 생각할 수 있다.
 
 ![](https://i.imgur.com/uKP0dBW.png)
-
-# 4. Related
-
-# 5. References

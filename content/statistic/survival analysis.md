@@ -19,5 +19,3 @@ $$
 $$
 S(t)=e^{-\int_{0}^{t} \lambda(x) d x}
 $$
-
-# References

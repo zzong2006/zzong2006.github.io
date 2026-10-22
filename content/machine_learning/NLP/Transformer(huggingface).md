@@ -15,5 +15,3 @@ tags:
 # C) Tranining Model from Scratch
 
 This is a good approach to take if you have a lot of data and it is very different from the pretraining data used for the available models. However, it also requires considerably more compute resources to pretrain a language model than just to fine-tune an existing one.
-
-# D) References

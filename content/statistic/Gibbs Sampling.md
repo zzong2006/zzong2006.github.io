@@ -57,5 +57,3 @@ It produces a sequence of sampled parameters ($\hat{\theta}^{n}:n=0,1,2,\ldots$)
 
 * [[Thompson sampling]] tutorial: https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf
 * [wiki](https://en.wikipedia.org/wiki/Gibbs_sampling)
-
-# E) References

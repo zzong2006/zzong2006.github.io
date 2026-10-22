@@ -22,4 +22,3 @@ $(\lambda \boldsymbol{C})^{\top}=\boldsymbol{C}^{\top} \lambda^{\top}=\boldsymbo
 
 ## With Inverse
 만약 $\boldsymbol{A}$ 가 [[Inverse matrix|invertible]] 하면, $\boldsymbol{A}^{\top}$ 도 그렇다. 그래서 $\left(\boldsymbol{A}^{-1}\right)^{\top}=\left(\boldsymbol{A}^{\top}\right)^{-1}=: \boldsymbol{A}^{-\top}$ 를 만족한다.
-# References

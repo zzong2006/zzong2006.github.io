@@ -13,7 +13,3 @@ logging.basicConfig(level=logging.INFO)
   
 logging.info('This is an info message') 
 ```
-
-# 2. Related
-
-# 3. References

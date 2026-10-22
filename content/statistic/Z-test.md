@@ -34,5 +34,3 @@ Two-tails test
 # Related
 
 * [[statistical significance]]
-
-# References

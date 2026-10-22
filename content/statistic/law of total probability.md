@@ -52,5 +52,3 @@ $$
 # E) [[conditional probability]] 에 적용되는 Law of Total Probability
 
 * $P(A|C)=∑_n P(A|C∩B_n) P(B_n|C)$
-
-# F) References

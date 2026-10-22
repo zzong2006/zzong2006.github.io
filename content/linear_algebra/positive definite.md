@@ -23,5 +23,3 @@ tags:
 # 3. Related
 
 * [[machine_learning/Singular Value Decomposition]]
-
-# 4. References

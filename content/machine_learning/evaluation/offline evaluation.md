@@ -25,5 +25,3 @@ tags:
 # Related
 
 [[online evaluation]]
-
-# References

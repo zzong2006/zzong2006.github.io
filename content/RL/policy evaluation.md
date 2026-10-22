@@ -39,5 +39,3 @@ v_{\pi^{\prime}}(s) \geq v_{\pi}(s) \quad \forall s \in S
 $$
 
 $\pi$ 보다 $\pi'$ 가 좋다는 걸 알았다면, 과연 어떻게 $\pi$ 에서 $\pi'$ 로 갈 수 있는가? 이에 대한 해답은 [[policy improvement]] 를 참고할 것.
-
-# References

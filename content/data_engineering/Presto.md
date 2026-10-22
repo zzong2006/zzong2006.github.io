@@ -34,5 +34,3 @@ aliases: []
 				* relational database 의 table 개념과 동일함
 			* source data 로 부터 tables 의 mapping 은 connector 가 담당한다.
 		* 
-
-# References

@@ -23,5 +23,3 @@ $$
 # C) Related
 
 [[Maximum Likelihood Estimation|MLE]]
-
-# D) References

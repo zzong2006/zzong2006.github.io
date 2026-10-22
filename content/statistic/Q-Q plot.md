@@ -23,7 +23,3 @@ Q-Q plot 은 두 확률 분포를 비교하는 시각적 방법으로, 확률 �
 # 3. Notes
 
 Q-Q plot (Quantile-Quantile Plot) 의 Quantile 은 분위수로, 사분위수 [[quartile]] 과 헷갈리면 안된다.
-
-# 4. Related
-
-# 5. References

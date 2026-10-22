@@ -13,8 +13,6 @@ aliases: []
 * `action='store_true'`: 값이 입력되면 True 를 출력하고 아니면 False 를 출력.
 * `action='store_False'`: 값이 입력되면 False 를 출력하고 아니면 True 를 출력.
 
-# 3. Related
-
 # 4. References
 
 * [Python argparse action='store\_true'의 의미](https://kyujinpy.tistory.com/67)

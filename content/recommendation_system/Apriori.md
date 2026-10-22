@@ -16,7 +16,3 @@ aliases: []
 
 * 위 그림은 최소 [[support]] 값이 0.5 이고, 최소 [[machine_learning/metrics/Confidence]] 값이 1.0 인 Apriori 알고리즘 동작 예시다.
 * PHASE 1 과 2 를 통해서 유효한 itemset 을 구하고 (Apriori), 구해진 itemset 을 이용해 rule 을 만들어서 [[machine_learning/metrics/Confidence]] 를 계산한다.
-
-# 2. Related
-
-# 3. References

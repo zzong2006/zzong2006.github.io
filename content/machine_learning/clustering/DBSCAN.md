@@ -20,5 +20,3 @@ DBSCAN은 density 기반 clustering 알고리즘이다. 가까운 이웃이 충�
 # C) K-Means와의 차이
 
 [[K-means]]는 cluster 수를 미리 정하고 대체로 둥근 cluster를 잘 찾는다. DBSCAN은 cluster 수를 직접 주지 않아도 되고, noise point를 따로 분리할 수 있으며, 비구형 cluster에도 더 잘 맞는다. 대신 density가 지역마다 크게 다른 데이터에서는 파라미터 하나로 모든 cluster를 잡기 어렵다.
-
-# References

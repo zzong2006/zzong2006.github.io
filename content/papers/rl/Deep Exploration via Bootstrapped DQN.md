@@ -21,5 +21,3 @@ randomized value functions can implement something similar to Thompson sampling 
 # C) Related
 
 * [Paper link](https://arxiv.org/pdf/1602.04621.pdf)
-
-# D) References

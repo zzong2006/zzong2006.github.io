@@ -36,5 +36,3 @@ app.run(..., access_log=False)
 # C) Custom Application
 
 `gunicorn.app.base.BaseApplication` 를 상속해서 WSGI application 을 만들어 볼 수 있다.
-
-# D) References

@@ -13,5 +13,3 @@ tags:
 # B) 예시
 
 $P(\mathrm{x}=x,\mathrm{y}=y)$ denotes the probability that $\mathbf{x}=x$ and $\mathbf{y}=y$ simultaneously.
-
-# C) References

@@ -27,7 +27,3 @@ column space 가 중요한 이유는 $Ax=b$ 를 풀기 위해서는 **$b$ 를 $A
 
 * $I=\left[\begin{array}{ll}1&0\\0&1\end{array}\right]$ 의 column space 는 $\mathbf{R}^{2}$ 전체 공간이다.
 * $A=\left[\begin{array}{ll}1&2\\2&4\end{array}\right]$ 의 column space 는 line 이다. 즉, $\mathbb{R}^{2}$ 에서의 1 차원 공간 (line) 을 의미한다. 왜냐하면 $(2,4)$ 열 벡터가 $(1,2)$ 열 벡터와 선형 독립이 아니기 때문이다.
-
-# 5. Related
-
-# 6. References

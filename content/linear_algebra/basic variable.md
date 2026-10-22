@@ -22,5 +22,3 @@ x_{3}-x_{4}+3 x_{5} & = & -2 \\
 $$
 
 에서 basic variable은 $x_1, x_3, x_4$ 이고, free variable은 $x_2, x_5$이다.
-
-# References

@@ -33,5 +33,3 @@ Service 가 대상으로 하는 pod set 은 보통 LabelSelector 에 의해 결�
 	* Service 는 pod set 에 걸쳐 traffic 을 routing 한다.
 		* 그리고 종속적인 pod 들 사이에서 discovery 와 routing 은 [[service(Kubernetes)]] 들에 의해 처리됨
 	* 
-
-# B) References

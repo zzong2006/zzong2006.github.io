@@ -9,5 +9,3 @@ tags:
 # A) Human-level Control through Deep Reinforcement Learning ?
 
 * [paper link](http://files.davidqiu.com//research/nature14236.pdf)
-
-# B) References

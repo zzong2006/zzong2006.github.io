@@ -20,5 +20,3 @@ aliases: []
 length_sorted_idx = np.argsort([-self._text_length(sen) for sen in sentences])
 sentences_sorted = [sentences[idx] for idx in length_sorted_idx]
 ```
-
-# References

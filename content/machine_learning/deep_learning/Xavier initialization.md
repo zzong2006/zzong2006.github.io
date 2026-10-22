@@ -25,8 +25,6 @@ $$
 
 ## B.1. Joto Matthe
 
-# C. Related
-
 # D. References
 
 * https://www.deeplearning.ai/ai-notes/initialization/

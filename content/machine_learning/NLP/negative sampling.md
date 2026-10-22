@@ -35,5 +35,3 @@ $k$ 개의 단어는 어떻게 결정하는가?
 # D) Related
 
 [[hierarchical softmax]]
-
-# E) References

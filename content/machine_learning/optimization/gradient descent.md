@@ -96,4 +96,3 @@ Use $b$ examples in each iteration where $b<m$ is the mini-batch size (e.g. $b=1
 # Related
 [[Newton-Raphson method]]
 [[Batch Gradient Descent]]
-# References

@@ -44,5 +44,3 @@ p' = \min(\max(p,\ \epsilon),\ 1-\epsilon)
 $$
 
 $\epsilon$ 은 $10^{-15}$ 같은 작은 값이다. 이렇게 하면 손실이 유한한 값으로 묶인다.
-
-# E) References

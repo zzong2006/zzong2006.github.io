@@ -19,5 +19,3 @@ aliases: []
 	* [[alternative hypothesis]] (대립가설)
 * [[null hypothesis]] 와 [[alternative hypothesis]] 을 세웠다면, 수집한 표본 데이터를 바탕으로 귀무가설이 옳은지 (채택, Accept) 아니면 옳다고 볼 수 없는지 (기각, Reject) 를 판단해야 한다.
 	* 이를 귀무가설의 유의성 검정 ([[null hypothesis]] Significance Testing, NHST) 이라고 한다.
-
-# B) References

@@ -28,5 +28,3 @@ $$
 # B) Related
 
 * [[random variable]]
-
-# C) References

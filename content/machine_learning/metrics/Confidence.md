@@ -22,5 +22,3 @@ $$
 $\{butter, bread\} \Rightarrow \{milk\}$의 confidence가 `1.0`이라면, butter와 bread를 함께 산 transaction은 모두 milk도 함께 샀다는 뜻이다.
 
 Confidence가 높다고 항상 좋은 추천 규칙이라는 뜻은 아니다. $Y$ 자체가 너무 흔한 item이면 confidence가 높게 나올 수 있으므로, [[machine_learning/metrics/Lift|Lift]]나 support와 함께 보는 편이 안전하다.
-
-# References

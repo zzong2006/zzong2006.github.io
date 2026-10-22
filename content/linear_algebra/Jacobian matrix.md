@@ -90,5 +90,3 @@ identity function $\mathbf{f}(\mathbf{x})=\mathbf{x}$ 에 대한 자코비안 �
 ![|350](https://i.imgur.com/jyzvUDl.png)
 
 여기서 함수가 scalar 라는 의미는 입력값을 넣었을 때 결과값이 scalar 란 뜻이다.
-
-# E) References

@@ -13,5 +13,3 @@ tags:
 
 * Counterfactual Risk Minimization: Learning from Logged Bandit Feedback
 * [[Counterfactual learning for recommender system]]
-
-# References

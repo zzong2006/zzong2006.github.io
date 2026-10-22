@@ -19,5 +19,3 @@ frequent itemset 을 찾는 것 = 최소 [[support]] 값 이상을 가지는 tra
 
 * 이러한 많은 경우의 수를 효율적으로 고려하기 위해서 [[support]] 값의 downward-closure 속성을 활용한다.
 	* downward-closure 속성은 [[Anti-Monotone property]] 라고 부른다.
-
-# C) References

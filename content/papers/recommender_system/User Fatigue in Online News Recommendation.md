@@ -26,5 +26,3 @@ tags:
 		* 사용자들이 반복적인 추천을 봤을 때 fatigue 되는 것인가?
 		* 만약 그렇다면, 사용자의 fatigue 에 영향을 미치는 major factor 는 무엇인가?
 	* fatigue 와 관련있는 factor 를 활용한 방법을 고안하여 더 나은 ranking 결과를 낼 수 있도록 함
-
-# B) References

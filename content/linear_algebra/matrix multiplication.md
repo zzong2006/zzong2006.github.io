@@ -49,5 +49,3 @@ $$
 	* $A$ 가 invertible.
 	* columns are independent.
 	* the determinant isn’t zero.
-
-# References

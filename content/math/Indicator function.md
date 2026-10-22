@@ -13,5 +13,3 @@ Products of Indicator Functions
 * Examples
 	* $I_{\{x<5\}}\cdot I_{\{x\geq0\}}=I_{\{0\leq x<5\}}$
 	* $\displaystyle\prod_{i=1}^{n}I_{\left\{x_{i}<2\right\}}=I_{\left\{x_{i}<2\text{forall}i\right\}}=I_{\left\{\max_{i}x_{i}<2\right\}}$
-
-# References

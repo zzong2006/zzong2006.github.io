@@ -82,5 +82,3 @@ $$
 중간에 $\sum_{k=1}^{K}$ 값이 사라지는 이유는 $\mu_k$ 에 대해서 미분하므로, $k$ 와 관련없는 값은 상수로 사라지기 때문이다. 즉, $k=1\sim K$ 까지 값을 대입하므로, $k$ 와 더이상 관련이 없는 상수가 된다.
 
 최종적으로 $\displaystyle\mu_{k}=\frac{\sum_{n=1}^{N}r_{nk}x_{n}}{\sum_{n=1}^{N}r_{nk}}$ 가 되는데, 이 식을 자세히보면 centroid 는 $k$ 번째 cluster 에 속하는 모든 data point 들의 평균을 의미한다.
-
-# D) References

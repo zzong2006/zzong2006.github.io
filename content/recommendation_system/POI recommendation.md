@@ -13,5 +13,3 @@ tags:
 * 각 [[POI]] $p$ 는 위도 $x_p$, 경도 $y_p$, 그리고 POI semantics 을 표현하는 attributes 의 한 집합 $W_p$ 이 코드화되어 있다.
 	* 이러한 정보들을 일반적으로 user check-in 정보라고 한다.
 	* POI semantics features 에는 POIs 생성 날짜, check-in 횟수, geolocations (latitude, longitude), 사용자 reviews 등 이 존재한다.
-
-# 2. Related

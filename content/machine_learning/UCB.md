@@ -23,5 +23,3 @@ $$
 # B) 관련 내용
 
 [[A Contextual-Bandit Approach to Personalized News Article Recommendation|LinUCB]]
-
-# C) 참고 문헌

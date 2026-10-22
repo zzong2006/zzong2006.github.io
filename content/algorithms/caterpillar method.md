@@ -32,5 +32,3 @@ for right in range(n):
 ```
 
 `left` 는 절대 뒤로 가지 않는다. 안쪽 `while` 이 있어도 `left` 의 총 이동량이 $n$ 이하이므로 전체가 $O(n)$ 이다.
-
-# D) References

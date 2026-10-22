@@ -25,5 +25,3 @@ Monolithic Architecture 란, 소프트웨어의 모든 구성요소가 한 프�
 * 부분의 장애가 전체 서비스의 장애로 이어지는 경우가 발생하게됩니다.
 
 ![](https://i.imgur.com/Ybtq5b0.png)
-
-# B) References

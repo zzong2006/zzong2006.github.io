@@ -17,5 +17,3 @@ garbage collection 의 동작은 reference counting 으로 단순히 설명할 �
 
 * `sys.getrefcount(변수 이름)` 으로 참조 횟수를 확인 가능하다.
 * reference counting 은 python 에서 비활성화 할 수 없는 동작이다.
-
-# C) References

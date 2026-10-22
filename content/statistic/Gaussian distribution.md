@@ -72,5 +72,3 @@ $$
 * [[standard normal distribution]]
 * [[Q-Q plot]]
 * [[mixture gaussian problem]]
-
-# F) References

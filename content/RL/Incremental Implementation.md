@@ -32,5 +32,3 @@ $$
 * 또한 StepSize $1/n=\alpha$ 는 수렴을 위해 $0 <\alpha < 1$ 사이를 만족해야 한다.
 
 편의를 위해 $Q_{0} \triangleq 0$ 로 정의한다.
-
-# B) References

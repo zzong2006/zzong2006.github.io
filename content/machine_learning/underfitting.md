@@ -31,5 +31,3 @@ underfitting 은 high bias 상태다. bias 는 모델이 표현할 수 있는 �
 - 특징을 추가한다 — 다항 항, 상호작용 항, 도메인 지식으로 만든 변수
 - regularization 을 줄인다 — [[ridge regression]] 의 $\lambda$ 처럼 계수를 억누르는 값이 너무 크면 인위적으로 underfitting 을 만든다
 - 더 오래 학습한다 — 아직 수렴하지 않은 것과 표현력이 부족한 것은 다르므로, 학습 곡선이 아직 내려가는 중인지 먼저 확인한다
-
-# D) References

@@ -15,5 +15,3 @@ $$
 * [[multivariate Gaussian distribution]] 의 pdf 의 log 는 다음과 같이 표현된다.
 	* [[Probability Density Function|pdf]]: $\displaystyle\mathcal{N}(\boldsymbol{y}\mid\boldsymbol{\mu},\boldsymbol{\Sigma})\triangleq\frac{1}{(2\pi)^{D/2}|\boldsymbol{\Sigma}|^{1/2}}\exp\left[-\frac{1}{2}(\boldsymbol{y}-\boldsymbol{\mu})^{\top}\boldsymbol{\Sigma}^{-1}(\boldsymbol{y}-\boldsymbol{\mu})\right]$
 	* $\log p(\boldsymbol{y}\mid\boldsymbol{\mu},\boldsymbol{\Sigma})=-\frac{1}{2}(\boldsymbol{y}-\boldsymbol{\mu})^{\top}\boldsymbol{\Sigma}^{-1}(\boldsymbol{y}-\boldsymbol{\mu})+\text{const}$
-
-# B) References

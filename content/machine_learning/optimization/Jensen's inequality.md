@@ -24,5 +24,3 @@ For a random variable $x$, if $f(x)$ is concave, then $f(E[x])>=E[f(x)]$
 # B) Related
 
 * [[convex function]], [[machine_learning/EM algorithm]], [[KL-Divergence]]
-
-# C) References

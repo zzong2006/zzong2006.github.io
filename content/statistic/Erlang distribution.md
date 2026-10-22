@@ -24,7 +24,3 @@ $$
 rate 가 $\lambda$ 인 $n$ 개의 독립된 [[exponential distribution]] 를 합한 값은 Erlang$(n,\lambda)$ 를 따른다.
 
 즉, Erlang$(1,\lambda)$ 는 rate 가 $\lambda$ 인 단일 [[exponential distribution]] 이다.
-
-# 4. Related
-
-# 5. References

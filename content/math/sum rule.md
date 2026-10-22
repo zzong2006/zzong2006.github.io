@@ -22,5 +22,3 @@ Performing high-dimensional sums or integrals is generally computationally hard,
 # 3. Related
 
 [[product rule]], [[marginal distribution]]
-
-# 4. References

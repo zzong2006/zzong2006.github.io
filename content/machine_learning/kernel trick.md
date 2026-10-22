@@ -17,5 +17,3 @@ Kernel trick은 데이터를 고차원 feature space로 직접 변환하지 않�
 # C) 주의할 점
 
 Kernel을 쓰면 feature engineering 부담은 줄지만, 데이터 수가 커질수록 kernel matrix 계산과 저장 비용이 커진다. 대규모 학습에서는 linear model, approximate kernel, neural representation을 쓰는 쪽이 더 현실적인 경우가 많다.
-
-# References

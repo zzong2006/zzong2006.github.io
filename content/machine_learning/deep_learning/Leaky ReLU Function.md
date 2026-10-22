@@ -17,5 +17,3 @@ f(x)=\left\{\begin{array}{ll}\alpha \cdot x & \text { for } x \leq 0 \\ x & \tex
 $$
 
 주로 $\alpha$ 값은 $0.01$ 이다.
-
-# B) References

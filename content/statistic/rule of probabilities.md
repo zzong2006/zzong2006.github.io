@@ -22,5 +22,3 @@ Evidence 는 다음과 같이 sum 과 product rule 을 동시에 사용하여 �
 $$
 p(X)=\sum_{Y}p(X\mid Y)p(Y)
 $$
-
-# B) References

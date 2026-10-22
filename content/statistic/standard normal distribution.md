@@ -21,5 +21,3 @@ Related: [[standardization]]
 # 3. Related
 
 [[Gaussian distribution]]
-
-# 4. References

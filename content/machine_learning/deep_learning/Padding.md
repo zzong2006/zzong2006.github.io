@@ -30,5 +30,3 @@ Padding 을 사용하는 두 가지 이유
 $$
 \displaystyle n+2p-f+1=n\rightarrow p=\frac{f-1}{2}
 $$
-
-# B) References

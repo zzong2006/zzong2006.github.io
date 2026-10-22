@@ -160,5 +160,3 @@ $$
 # I) Related
 
 * [[novelty detection]]
-
-# J) References

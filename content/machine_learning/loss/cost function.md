@@ -69,7 +69,3 @@ $$
 
 * Loss function 은 단일 training example 에 대한 prediction 과 ground truth 값의 차이를 의미한다.
 * Cost function 은 모든 training examples 들에 대한 loss function 의 평균 값을 의미한다.
-
-# 5. Related
-
-# 6. References

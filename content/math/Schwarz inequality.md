@@ -19,5 +19,3 @@ $$
 $$
 \displaystyle\sqrt{xy}\leq\frac{x+y}{2}
 $$
-
-# References

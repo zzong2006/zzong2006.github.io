@@ -34,7 +34,3 @@ $$
 ![](https://i.imgur.com/YPlb0DC.png)
 
 ![](https://i.imgur.com/Z1dc4pw.png)
-
-# 6. Related
-
-# 7. References

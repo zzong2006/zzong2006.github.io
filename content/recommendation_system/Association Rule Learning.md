@@ -49,5 +49,3 @@ $$
 	* [[Eclat]]
 	* [[FP-growth algorithm]]
 	* [[FP-Tree Mining]]
-
-# References

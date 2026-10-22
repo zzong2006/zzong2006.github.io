@@ -13,5 +13,3 @@ tags:
 
 * Numerical: [[linear regression]]
 * Categorical: [[logistic regression]]
-
-# B) References

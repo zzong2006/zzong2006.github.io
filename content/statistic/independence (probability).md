@@ -40,5 +40,3 @@ $$
 	* 그런데, $n_k$ 를 알고있는 조건에서는 서로 conditionally independent 하다.
 		* 왜냐하면 이미 $K$ 가 말해준 숫자를 알고 있기 때문에, $A$ 입장에서는 $B$ 의 숫자가 아무 쓸모가 없다.
 		* 즉, $P\left(n_{a}=1\mid n_{b}=1,n_{k}=2\right)=P\left(n_{a}=1\mid n_{k}=2\right)$ 를 만족한다.
-
-# B) References

@@ -32,5 +32,3 @@ aliases: []
 ## B.3) (3) Transfer FedRec
 
 사용자도 거의 겹치지 않고, 추천 아이템 풀도 거의 겹치지 않는 추천 시나리오.
-
-# C) References

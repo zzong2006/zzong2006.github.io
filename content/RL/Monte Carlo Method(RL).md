@@ -190,5 +190,3 @@ On-policy 방법은 생성된 sample 을 기반으로 policy improvement 와 eva
 				* $W$ 가 $A_t=\pi(S_t)$ 의 경우에만 업데이트되는 이유는 target policy 와 behavior policy 가 동일한 action 을 취하는 경우기 때문에
 			* 만약, $A_t\neq\pi(S_t)$ 조건을 지웠다면 $W$ 업데이트 방식도 이전과 동일해야한다.
 		* 실제 구현을 해보니 이전의 evaluation version 이 훨씬 수렴성이 좋다.
-
-# G) References

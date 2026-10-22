@@ -112,5 +112,3 @@ $(0+0.33+1.3)/3=1.63/3=54.3\%$
 - stochastic model 로 근사화
 	- Ranking score 기반의 weighted sampling 을 통해 추천 확률을 생성할 수 있음
 	- Doubly Robust 방법론을 적용해 볼 수 있음
-
-# E) References

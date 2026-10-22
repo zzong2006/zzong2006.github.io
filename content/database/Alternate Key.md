@@ -29,5 +29,3 @@ alternate key 도 유일성을 보장해야 하는 속성이므로, 제약조건
 primary key 와 다른 점은 두 가지다. 하나는 primary key 가 NULL 을 허용하지 않는 반면 alternate key 는 DBMS 에 따라 NULL 을 허용할 수 있다는 것이고, 다른 하나는 [[Foreign Key]] 가 보통 primary key 를 참조한다는 것이다.
 
 어느 candidate key 를 primary key 로 삼을지는 값이 바뀌지 않는지, 길이가 짧은지, 외부에 노출해도 되는지로 정한다. 주민등록번호처럼 유일하더라도 노출 위험이 있는 값은 primary key 로 두지 않는다.
-
-# D) References

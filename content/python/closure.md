@@ -77,5 +77,3 @@ print(my_func.__closure__[0].cell_contents)  #13
 # print(my_func.__closure__[0].cell_contents)
 Hi
 ```
-
-# References

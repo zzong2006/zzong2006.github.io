@@ -16,5 +16,3 @@ aliases: ["Pareto Frontier", "Pareto Efficient"]
 여기서 dominates 란, 한 솔루션이 모든 objective function 에서 우위 (최소) 를 만족하는 경우를 의미한다: $f_{1}^{i} \leq f_{1}^{j}, f_{2}^{i} \leq f_{2}^{j}, \ldots, f_{K}^{i} \leq f_{K}^{j}$ .
 
 Pareto efficient soltuon 들은 고유하지 않다 (not unique). 그리고 이러한 solution 들의 모음을 Pareto Frontier 라고 부른다.
-
-# B) References

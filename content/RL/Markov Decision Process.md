@@ -83,5 +83,3 @@ $$
 * Transition probability: agent 가 사용자 feedback $r$ 을 받고 state $s$ 에서 $s'$ 으로 넘어갈 확률 $p\left(s^{\prime}, r \mid s, a\right)$
 * Reward Function $\mathcal{R}$: user’s feedback $r(s, a)$
 * $\gamma$: Discount Factor
-
-# E) References

@@ -11,5 +11,3 @@ aliases: []
 $$
 \displaystyle\frac{\text{TrueNegative}}{\text{TrueNegative+FalsePositive}}
 $$
-
-# B) References

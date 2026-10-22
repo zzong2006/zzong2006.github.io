@@ -49,8 +49,6 @@ $$
 \operatorname{Var}(X)=\mathrm{E}\left[X^{2}\right]-(\mathrm{E}[X])^{2}
 $$
 
-# 4. Related
-
 # 5. References
 
 * https://danielkhashabi.com/learn/ep.pdf

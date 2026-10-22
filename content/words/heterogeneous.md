@@ -25,5 +25,3 @@ homogeneous
 # C) 예시
 
 the heterogeneous population of the United States: 다인종으로 이뤄진 미국 인구
-
-# D) References

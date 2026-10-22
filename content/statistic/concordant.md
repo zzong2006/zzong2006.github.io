@@ -19,7 +19,3 @@ $$
 $$
 
 즉, concordant pair 는 쌍 한쪽의 양 원소가 다른 한쪽의 양 원소보다 둘 다 크거나 같거나 작거나를 만족한다.
-
-# 2. Related
-
-# 3. References

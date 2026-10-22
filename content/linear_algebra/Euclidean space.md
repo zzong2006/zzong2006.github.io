@@ -11,5 +11,3 @@ $n$- 차원 유클리디안 공간은 $\mathbb{R}^{n}$ 와 같이 표시된다. 
 $$
 \mathbf{x}=\left(x_{1}, x_{2}, \ldots, x_{n}\right)
 $$
-
-# B) References

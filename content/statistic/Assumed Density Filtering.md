@@ -24,5 +24,3 @@ $$
 # B) Related
 
 위 ADF 는 [[Kalman filtering]] 과 비슷한 아이디어이다.  
-
-# C) References

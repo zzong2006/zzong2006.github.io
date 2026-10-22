@@ -23,7 +23,3 @@ aliases: []
 		* 주어진 데이터 $x_0$ 와 가장 가까운 $K$ 개의 데이터 포인트 ($\mathcal{N}_{0}$) 를 찾고, 해당 데이터들이 어떤 클래스에 해당하는 지 검사. 이후 과반수 클래스를 $x_0$ 에 부여
 		* $\displaystyle\operatorname{Pr}\left(Y=j\mid X=x_{0}\right)=\frac{1}{K}\sum_{i\in\mathcal{N}_{0}}I\left(y_{i}=j\right)$
 		* KNN can often produce classifiers that are surprisingly close to the optimal Bayes classifier
-
-# 3. Related
-
-# 4. References

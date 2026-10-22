@@ -35,5 +35,3 @@ Numerical 데이터로 바꿀 때, 0 또는 1 만을 사용하는 방법을 의�
 # C) Notes
 
 일반적으로 One Hot Encoding 이후 [[machine_learning/Principal Component Analysis]] 를 적용하는 과정을 거치면 좋다.
-
-# D) References

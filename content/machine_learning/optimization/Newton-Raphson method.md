@@ -89,5 +89,3 @@ $$
  * https://brilliant.org/wiki/newton-raphson-method/
  * http://sanghyukchun.github.io/63/
  * [[deep learning book]] - 8.6.1. Newton’s Method
-
-# 5. References

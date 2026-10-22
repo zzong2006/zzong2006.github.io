@@ -39,5 +39,3 @@ $$
 $$
 
 여기서 $\boldsymbol{\alpha}_{j}, j=1,2,3$ 는 $C$ 에 대한 $\Phi\left(\boldsymbol{b}_{j}\right)$ 의 [[coordinates]] vector 다.
-
-# C) References

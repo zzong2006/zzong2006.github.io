@@ -20,5 +20,3 @@ aliases: []
 	* [[BPR - Bayesian Personalized Ranking from Implicit Feedback]]
 * [[CoFactors]]
 	* Liang, Dawen, et al. “Factorization meets the item embedding: Regularizing matrix factorization with item co-occurrence.” Proceedings of the 10th ACM conference on recommender systems. ACM, 2016.
-
-# C) References

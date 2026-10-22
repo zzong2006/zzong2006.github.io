@@ -36,5 +36,3 @@ Graph Neural Network 는 graph 의 사전 지식이 필요없으며, 이 신경�
 * node classification: 노드를 분류하는 문제
 * link prediction: 그래프의 노드들 사이의 관계를 파악하고 두 노드 사이의 연관성이 얼마인지 예측하는 문제
 * graph classification: 그래프 자체를 분류하는 문제
-
-# D) References

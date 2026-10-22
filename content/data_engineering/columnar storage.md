@@ -27,5 +27,3 @@ columnar storage 에서는 Row group 이라는 개념을 통해 데이터를 분
 ## B.2) 단점 ?
 
 IO 비용을 최소화 하기 위해서는 block size 내 에서 최대 크기가 되도록 partition 을 나누는 것이 필요하다.
-
-# C) References

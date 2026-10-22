@@ -19,8 +19,6 @@ $$
 
 이 식의 general 한 버전이 [[Woodbury formula]] 이다.
 
-# 2. Related
-
 # 3. References
 
 https://jjycjnmath.tistory.com/398

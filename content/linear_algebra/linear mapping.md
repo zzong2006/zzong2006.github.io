@@ -37,4 +37,3 @@ $\Phi: V \rightarrow W$ 는 다음과 같은 특성을 가질 수 있다.
 * Endomorphism: $\Phi: V \rightarrow V$ linear 한 경우
 * Automorphism: $\Phi: V \rightarrow V$ 에서 linear 하고 bijective 하는 경우
 * 
-# C) References

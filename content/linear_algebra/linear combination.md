@@ -42,5 +42,3 @@ $$
 $$
 x\left[\begin{array}{r}2 \\ -1\end{array}\right]+y\left[\begin{array}{c}-1 \\ 2\end{array}\right]=\left[\begin{array}{l}0 \\ 3\end{array}\right]
 $$
-
-# C) References

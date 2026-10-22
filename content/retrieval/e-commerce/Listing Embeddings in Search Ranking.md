@@ -27,5 +27,3 @@ aliases: []
 	* 클릭한 목록들의 embedding 과 candidate 목록들 간 cosine similarity 를 계산해서 가장 값이 큰 (유사한) 목록들부터 정렬하여 ranking
 * Real time personalization in Search using Embeddings
 	* 2 주간 클릭한 아이템 목록과 skip 한 아이템 목록을 ranking 에 반영
-
-# B) References

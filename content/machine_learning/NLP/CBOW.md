@@ -41,5 +41,3 @@ Optimization 을 위해 [[stochastic gradient descent|SGD]] 를 사용한다.
 ## A.2) Vs. Skip-gram
 
 [[skip-gram]]
-
-# B) References

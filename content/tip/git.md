@@ -67,5 +67,3 @@ git checkout -t update/master
 
 * 로컬에 수정된 사항 확인하기: `git diff`
 * 스테이지된 파일의 수정된 사항 확인하기: `git diff --staged`
-
-# J) References

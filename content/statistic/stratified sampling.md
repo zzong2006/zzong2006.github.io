@@ -15,5 +15,3 @@ aliases: ["층화추출법"]
 # 2. Related
 
 [[Stratified k-fold]]
-
-# 3. References

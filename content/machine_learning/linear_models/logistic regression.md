@@ -69,5 +69,3 @@ $$
 
  * [[Sequential logistic regression]], [[Decision boundary]], [[odds ratio]],
  * [[binary logistic regression]]
-
-# F) References

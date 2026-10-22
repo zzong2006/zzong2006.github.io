@@ -17,5 +17,3 @@ aliases: []
 	* ![[img-514369057a.png]]
 	* ![[img-aad31c40b4.png]]
 		* 연속 분포의 경우 density 는 반드시 0 과 1 사이일 필요가 없다.
-
-# References

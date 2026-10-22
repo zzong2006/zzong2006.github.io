@@ -17,5 +17,3 @@ $$
 
 * $x_{i}\sim p\left(x_{i}\mid\theta\right)$ 는 $\theta$ 를 parameter 로 가지는 어떤 확률 분포를 따르는 데이터 포인트
 * 그리고 $\theta$ 는 데이터와 마찬가지로 어떤 분포에 의해 설명되는 랜덤 변수: $\theta\sim p(\theta\mid\alpha)$
-
-# References

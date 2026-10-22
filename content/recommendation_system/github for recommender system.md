@@ -14,5 +14,3 @@ tags:
 
 * https://github.com/microsoft/recommenders/
 	* This repository contains examples and best practices for building recommendation systems, provided as Jupyter notebooks
-
-# C) References

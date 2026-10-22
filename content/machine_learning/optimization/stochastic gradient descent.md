@@ -19,5 +19,3 @@ SGD 를 수행하기 전에, dataset 를 임의로 shuffle 한다 (섞는다). s
 이후 아래와 같이 전체 $m$ 개 examples 에 대한 parameter 업데이트를 각각 진행한다.
 
 ![[img-cfa218e9d5.png|image-20201018172431535]]
-
-# C) References

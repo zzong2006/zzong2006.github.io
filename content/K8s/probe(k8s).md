@@ -47,5 +47,3 @@ livenessProbe:
     path: /healthz
     port: liveness-port
 ```
-
-# References

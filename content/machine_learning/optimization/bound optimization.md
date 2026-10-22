@@ -18,5 +18,3 @@ $$
 * If Q is a quadratic lower bound, the overall method is similar to Newton’s method, which repeatedly fits and then optimizes a quadratic approximation.
 * The difference is that optimizing Q is guaranteed to lead to an improvement in the objective, even if it is not convex, whereas
 [[Newton-Raphson method]] may overshoot or lead to a decrease in the objective
-
-# B) References

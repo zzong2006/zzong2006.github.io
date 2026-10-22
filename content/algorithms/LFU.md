@@ -18,5 +18,3 @@ LFU(Least Frequently Used)는 사용 빈도가 가장 낮은 항목을 먼저 �
 # C) 실무에서 볼 점
 
 실제 시스템에서는 빈도에 시간 감쇠를 넣거나, LRU와 LFU를 섞어 recency와 frequency를 같이 본다. 추천, 검색, feature store cache처럼 트래픽 패턴이 크게 바뀌는 환경에서는 단순 LFU만으로는 부족한 경우가 많다.
-
-# References

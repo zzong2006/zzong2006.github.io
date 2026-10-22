@@ -13,5 +13,3 @@ Stable Diffusion fine-tuning
 * [GitHub - justinpinkney/stable-diffusion](https://github.com/justinpinkney/stable-diffusion#fine-tuning)
 
 키워드 광고
-
-# B) References

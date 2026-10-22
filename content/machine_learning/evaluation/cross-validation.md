@@ -60,5 +60,3 @@ $k$ 가 높을수록, 데이터를 나누고 학습 및 평가하는 횟수가 �
 Validation set 을 구성할 수 있는 경우의 수는 ${}_{n}C_{p}$ 이다 ($n$ 은 데이터 샘플의 총 개수).
 
 $k$-fold [[cross-validation]] 과 마찬가지로, 각 data fold set 에 대하여 나온 검증 결과들을 aggregate 하여 최종적인 검증 결과를 도출하는 것이 일반적이다.
-
-# D) References

@@ -21,5 +21,3 @@ aliases: []
 # B) 예시
 
 ![|600](https://i.imgur.com/QW2dXye.png)
-
-# C) References

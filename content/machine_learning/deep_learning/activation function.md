@@ -31,5 +31,3 @@ aliases: []
 	* [[sigmoid function]] 함수와 [[tanh function]] 함수의 단점
 		* 입력 데이터 $x$ 의 크기가 매우 크거나 작을 때, [[sigmoid function]] 과 [[tanh function]] 의 미분값이 $0$ 에 매우 가깝게 나오므로 학습이 느려지는 현상을 보인다.
 * [[ReLU function]] and [[Leaky ReLU Function]]
-
-# B) References

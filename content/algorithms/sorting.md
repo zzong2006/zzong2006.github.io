@@ -13,5 +13,3 @@ tags:
 * [[Bubble Sort]]
 * [[quick Sort]]
 * [[Heap Sort]]
-
-# References

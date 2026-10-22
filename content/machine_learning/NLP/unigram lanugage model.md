@@ -19,5 +19,3 @@ merge 를 기반으로 수행하는 [[Byte-Pair Encoding Tokenization|BPE]] 또�
 유니그램은 각 토큰에 대한 확률값을 가지고 있기때문에, 실제로 토크나이징 할때 가장 높은 확률을 가진 토큰화 결과를 출력한다. (그런데 여기서 높은 확률은 무엇인지..?)
 
 일반적으로 [[SentencePiece]] 라이브러리에서 사용된다.
-
-# B) References

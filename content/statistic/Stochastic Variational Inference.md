@@ -20,5 +20,3 @@ tags:
 # B) Related
 
 [[variational inference]]
-
-# C) References

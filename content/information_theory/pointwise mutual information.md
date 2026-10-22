@@ -49,5 +49,3 @@ PMI 를 이용한 우리말 어휘의 의미 극성 판단
 # D) Related
 
 [[mutual information]]
-
-# E) References

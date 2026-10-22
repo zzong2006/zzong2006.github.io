@@ -34,5 +34,3 @@ quadratic 계산 복잡도 ($O(N^2)$) 로 인해 작은 데이터셋에만 한�
 * **Names****Formula**
 * Maximum or complete-linkage clustering$\max{d(a,b):a\in A,b\in B}$
 * Minimum or single-linkage clustering$\min{d(a,b):a\in A,b\in B}$
-
-# E) References

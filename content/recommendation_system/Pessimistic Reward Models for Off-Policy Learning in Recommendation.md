@@ -75,8 +75,6 @@ $$
 		* $\pi_{\text{pop}}$ 의 부족함은 $\epsilon$-greedy 방식이 해결
 	* reco-gym 의 사용 이유는 off-policy 실험을 위한 public dataset 이 부족해서 그런것
 
-# 3. Related
-
 # 4. References
 
 * Related paper

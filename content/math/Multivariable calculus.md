@@ -20,5 +20,3 @@ $f(x, y)=x^{2}+y$ 또는 $f(x, y)=\left[\begin{array}{l}3 x \\ 2 y\end{array}\ri
 # 2. Related
 
 * [칸 아카데미 수업](https://www.khanacademy.org/math/multivariable-calculus#thinking-about-multivariable-function)
-
-# 3. References

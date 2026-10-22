@@ -28,5 +28,3 @@ tags:
 이 논증이 음수 가중치에서는 깨진다. 나중에 음수 간선을 타면 확정한 거리보다 싸질 수 있어서, 음수 간선이 있으면 Bellman-Ford 를 쓴다.
 
 같은 [[greedy algorithm]] 계열인 [[Prim algorithm]] 과 뼈대가 거의 같지만, 비교하는 값이 다르다. Dijkstra 는 출발점으로부터의 누적 거리를, Prim 은 트리에 붙이는 간선 하나의 가중치를 본다.
-
-# D) References

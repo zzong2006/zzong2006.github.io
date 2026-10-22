@@ -125,5 +125,3 @@ Product: "나이키 에어맥스 90 블랙 메쉬 러닝화 270mm"
 
 - [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]] — NER 속성 기반 코드를 generative retrieval에 활용
 - [[machine_learning/NLP/BART|BERT]] — NER에 가장 많이 사용되는 base model
-
-# C) References

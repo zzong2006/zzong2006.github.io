@@ -20,7 +20,3 @@ Asynchronous(비동기) DP 는 state 의 value 값의 갱신 여부에 관계없
 * For many problems, not all parts of the state space are of equal importance. Therefore, it is wasteful to wait for a complete sweep of the state space before there is an update to the policy.
 
 *
-
-# 3. Related
-
-# 4. References

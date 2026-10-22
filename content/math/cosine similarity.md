@@ -29,5 +29,3 @@ $$
 $$
 
 ![[img-aa38387822.png||300]]
-
-# D) References

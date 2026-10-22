@@ -31,8 +31,6 @@ aliases: ["프록시"]
 
 [[reverse proxy]] 참조
 
-# D) References
-
 # F) Tips
 
 ## F.1) Pip 설치 오류

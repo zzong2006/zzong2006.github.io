@@ -17,5 +17,3 @@ aliases: []
 # C) Header File
 
 `<math.h>`
-
-# D) References

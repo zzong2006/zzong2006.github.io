@@ -37,5 +37,3 @@ tags:
 | temperature scaling | 신경망의 logit 을 스칼라 $T$ 로 나눈 뒤 [[softmax function]] 을 적용한다. 파라미터가 하나라 순위를 전혀 바꾸지 않는다 |
 
 보정 정도는 예측 확률을 구간별로 묶어 실제 비율과 비교하는 reliability diagram 이나, 그 차이를 하나의 수로 요약한 expected calibration error (ECE) 로 본다.
-
-# E) References

@@ -25,8 +25,6 @@ class MyCallback(TrainerCallback):
         print("Starting training")
 ```
 
-# 4. Related
-
 # 5. References
 
 [Huggingface:TrainerCallback - Woongjoon\_AI](https://woongjoonchoi.github.io/huggingface/Trainer-Callback/)

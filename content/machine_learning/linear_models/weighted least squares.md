@@ -18,5 +18,3 @@ aliases: []
 # B) Related
 
  * [[least squares estimation]]
-
-# C) References

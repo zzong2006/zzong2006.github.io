@@ -50,5 +50,3 @@ literal value 로 column 을 생성할 때 사용한다. dataframe 에 없고 �
 ```python
 df.fillna(0, subset=['a', 'b'])
 ```
-
-# References

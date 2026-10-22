@@ -15,5 +15,3 @@ the conditional probability that $\mathrm{y}=y$ given $\mathrm{x}=x$ as $P(\math
 # Related
 
 * #[[chain rule (probability)]], [[law of conditional probability]]
-
-# References

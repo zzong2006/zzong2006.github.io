@@ -32,5 +32,3 @@ aliases: []
 # D) Related
 
 [[bootstrapping|bootstrap]]
-
-# E) References

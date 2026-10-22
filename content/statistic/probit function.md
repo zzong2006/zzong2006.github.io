@@ -13,5 +13,3 @@ $$
 $$
 
 ![](https://i.imgur.com/FRIBESy.png)
-
-# References

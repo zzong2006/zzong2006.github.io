@@ -20,7 +20,3 @@ h:X\rightarrow Y
 $$
 
 $X$ 는 입력 데이터 공간 (space), $Y$ 는 출력 데이터 공간
-
-# 3. Related
-
-# 4. References

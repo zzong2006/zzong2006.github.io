@@ -26,5 +26,3 @@ Feature crosses 를 만들 때, 다소 직관에 반할 수 있지만, 원래의
 # D) Related
 
 DCN (Deep & Cross Network): cross feature 를 효과적으로 학습하기 위해 디자인 된 모델
-
-# E) References

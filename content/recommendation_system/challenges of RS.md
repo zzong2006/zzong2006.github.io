@@ -25,7 +25,3 @@ tags:
 	* popularity bias
 	* Soltuons
 		* [[inverse propensity scoring weighting, IPW]]
-
-# 2. Related
-
-# 3. References

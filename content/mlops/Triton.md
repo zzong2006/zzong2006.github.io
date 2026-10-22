@@ -58,5 +58,3 @@ platform: "tensorrt_plan"
   ```
 
 # D) Vs. [[BentoML]]
-
-# E) References

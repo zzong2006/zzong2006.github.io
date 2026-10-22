@@ -25,5 +25,3 @@ Parquet는 압축과 encoding 효율이 좋고, schema를 함께 저장할 수 �
 | Schema | 별도 관리 필요 | file metadata에 포함 |
 | 압축 효율 | 낮은 편 | 높은 편 |
 | 분석 query | 전체 row scan이 잦음 | 필요한 column 중심으로 읽기 쉬움 |
-
-# D) References

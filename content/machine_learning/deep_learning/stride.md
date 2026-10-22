@@ -28,5 +28,3 @@ stride 를 키우는 목적은 feature map 을 줄여 뒤 층의 계산량과 �
 대신 건너뛴 위치의 정보는 그 층에서 쓰이지 않는다. 위치를 세밀하게 구분해야 하는 작업(segmentation, 작은 객체 검출)에서는 stride 를 크게 잡으면 손해가 크다.
 
 한편 출력 한 값이 보는 입력 범위(receptive field)는 stride 를 키울수록 빠르게 넓어진다. 적은 층으로 넓은 맥락을 보게 만드는 데는 유리하다.
-
-# D) References

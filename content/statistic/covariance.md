@@ -103,7 +103,3 @@ covariance matrix 의 종류
 * full : $D(D+1)/2$ 개의 원소를 가진 공분산 행렬 (대각선 절반이 가득 찬 행렬)
 * diagonal : $D$ 개의 원소를 가진 공분산 행렬 ([[diagonal matrix]])
 * spherical 또는 isotropic: $\boldsymbol{\Sigma}=\sigma^{2}\mathbf{I}_{D}$, one free parameter $\sigma^{2}$ 에 의해 좌우되는 공분산 행렬
-
-# 7. Related
-
-# 8. References

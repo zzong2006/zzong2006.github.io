@@ -43,5 +43,3 @@ second, the fluctuations caused by using ~zt instead of
 # B) Related
 
 * [[A Contextual-Bandit Approach to Personalized News Article Recommendation]]
-
-# C) References

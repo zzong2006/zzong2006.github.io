@@ -44,5 +44,3 @@ grid_dtree = GridSearchCV(dtree, param_grid=parameters, cv=3, refit=True)
 # 2. Related
 
 * [[Random search]]
-
-# 3. References

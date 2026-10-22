@@ -75,5 +75,3 @@ Elimination 뿐만 아니라 $A$ 를 [[LU decomposition]] 을 통해 $LU$ 로 �
 # 5. Related
 
 [[Gauss-Jordan Elimination]]
-
-# 6. References

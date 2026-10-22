@@ -32,5 +32,3 @@ $\boldsymbol{\theta} = (\theta_1, \dots, \theta_K)$ 가 각 결과의 확률이�
 categorical 의 [[conjugate prior]] 는 [[Dirichlet distribution]] 이다. Dirichlet 을 [[prior]] 로 두고 categorical 관측을 넣으면 [[posterior]] 가 다시 Dirichlet 이 되고, 파라미터는 각 범주의 관측 횟수를 더한 값이 된다.
 
 이 성질 덕분에 토픽 모델에서 자주 짝지어 나타난다. Latent Dirichlet Allocation 은 문서마다 Dirichlet 에서 토픽 비율을 뽑고, 각 단어마다 그 비율을 파라미터로 하는 categorical 에서 토픽을 하나 고른다.
-
-# D) References

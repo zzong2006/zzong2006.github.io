@@ -28,5 +28,3 @@ $$
 Different coordinate representations of a vector $x$, depending on the choice of basis.
 
 ![|200](https://i.imgur.com/cjlLFAT.png)
-
-# References

@@ -24,5 +24,3 @@ DB 를 두번만 scan 해서 [[Association Rule Learning]] 이 가능하다.
 3. 각 transaction 의 itemset 도, table 에 해당하는 item 만 남기고 frequency 순으로 정렬한다: 위 그림의 (ordered) frequent items
 4. 이제 FP-tree 를 만들어야 한다. 정렬된 transactions(TID: 100,200,300,400,500) 을 root tree 에 넣으면서 각 노드의 원소마다 count 를 증가시킨다. 이 구조는 Trie 와 흡사하다.
 5. 또한, 트리의 노드를 만들때 마다, 해당 노드를 가리키는 포인터를 table 에 저장한다 (Header Table 의 header).
-
-# C) References

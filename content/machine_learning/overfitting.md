@@ -17,5 +17,3 @@ aliases:
 3. [[regularization]]
 4. [[dropout]]
 5. [[Early Stopping]]
-
-# C) References

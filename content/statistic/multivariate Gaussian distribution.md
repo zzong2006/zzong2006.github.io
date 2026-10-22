@@ -36,5 +36,3 @@ $$
 # D) Related
 
  * [[Mahalanobis distance]]
-
-# E) References

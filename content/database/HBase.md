@@ -44,5 +44,3 @@ row 를 다시 생각해보면 CF 가 아닌 여러개의 column(=family:qualifi
 # D) Lesson Learned
 
 테이블의 CF 가 총 n 개 존재한다고 하더라도 각 row 에 해당하는 CF 는 꼭 n 개일 필요는 없다. 최소 한개 이상만 존재하면 된다.
-
-# E) References

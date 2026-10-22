@@ -77,5 +77,3 @@ curl -X GET "localhost:8080/v1/objects?class=Sphere&limit=1"
 # G) Update Data
 
 [FAQ | Weaviate - vector search engine](https://weaviate.io/developers/weaviate/more-resources/faq#q-what-is-best-practice-for-updating-data)
-
-# H) References

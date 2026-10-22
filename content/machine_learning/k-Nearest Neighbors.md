@@ -32,5 +32,3 @@ aliases: ["KNN"]
 # B) Related
 
 [[userKNN]], [[itemKNN]]
-
-# C) References

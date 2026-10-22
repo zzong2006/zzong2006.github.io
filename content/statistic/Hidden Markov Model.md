@@ -22,5 +22,3 @@ Hidden Markov Model(HMM)은 관측되지 않는 latent state가 Markov chain으�
 # C) 어디에 쓰나
 
 음성 인식, 품사 태깅, user state modeling, 추천 session modeling 같은 sequence 문제에 쓰였다. Deep learning 이후에는 RNN/Transformer가 많은 영역을 대체했지만, HMM은 probabilistic sequence model의 기본 구조를 이해하는 데 여전히 좋다.
-
-# References

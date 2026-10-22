@@ -35,5 +35,3 @@ Intelligence ($I$: $i^0,i^1$), Difficulty ($D$: $d^0,d^1$), Grade ($G$: $g^1,g^2
 		* $\sum_{I}P(I,D)=P(D)$
 
 ![[img-1c7ac96f19.png]]
-
-# D) References

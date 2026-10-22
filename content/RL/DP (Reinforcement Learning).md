@@ -22,5 +22,3 @@ DP 방식이 optimal solution 을 제공하긴 하지만 굉장히 제한적이�
 * [[value iteration]]
 * [[policy improvement]]
 * [[bootstrapping]]
-
-# C) References

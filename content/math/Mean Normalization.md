@@ -22,5 +22,3 @@ aliases: []
 * 그리고 언급된 cost function 을 이용하여 학습을 진행한다.
 	* 이 경우 당연히 Eve 의 parameter 는 0 으로 수렴한다.
 * 학습 이후 rating 을 추정할 때, 추정값에 이전에 구한 평균 값 $\mu$ 를 더해준다.
-
-# References

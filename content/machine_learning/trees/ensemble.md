@@ -18,5 +18,3 @@ aliases: ["앙상블"]
 	* [[random forest]]
 * [[boosting]]
 	* [[Gradient Boosting Machine]]
-
-# C) References

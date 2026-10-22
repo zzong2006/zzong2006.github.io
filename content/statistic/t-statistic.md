@@ -27,7 +27,3 @@ $$
 # C) Related
 
 이건 무슨 테스트?
-
-## C.1) 테스트 입니다
-
-# D) References

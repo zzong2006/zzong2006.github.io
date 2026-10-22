@@ -17,5 +17,3 @@ converge faster
 ## B.2) Cons
 
 overfitting when dataset is small
-
-# C) References

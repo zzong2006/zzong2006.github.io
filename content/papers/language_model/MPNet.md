@@ -34,5 +34,3 @@ MPNet 은 [[permuted language modeling|PLM]] 방식을 통해 예측된 토큰�
 # C) Related
 
 * [paper](https://proceedings.neurips.cc/paper/2020/file/c3a690be93aa602ee2dc0ccab5b7b67e-Paper.pdf)
-
-# D) References

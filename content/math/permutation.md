@@ -42,5 +42,3 @@ n_{1}, n_{2}, \ldots, n_{r}
 $$
 
 만약 나누려는 cell 이 두개인 경우, 이를 [[combination]] 이라 부른다.
-
-# C) References

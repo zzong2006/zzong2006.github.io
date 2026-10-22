@@ -19,5 +19,3 @@ Normality Test 말고도 [[Q-Q plot]] 이나 [[Frequency Distribution]] 을 통�
 [[null hypothesis]]: 관찰한 데이터셋의 표본들은 정규 분포에서 가져온 것이다.
 
 [[alternative hypothesis]]: 관찰한 데이터셋의 표본들은 정규 분포가 아닌 분포에서 가져왔다.
-
-# C) References

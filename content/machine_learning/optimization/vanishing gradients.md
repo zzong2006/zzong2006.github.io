@@ -15,7 +15,3 @@ gradient 가 backpropagation 을 통해 layer 들을 지날 때 마다 exponenti
  * 해결책: gradient clipping
  * ![[img-99b35f73a1.png|image-20201101234742246]]
  * 다른 해결책: Truncated Backpropagation through time (Truncated BPTT)# 정의
-
-# 2. Related
-
-# 3. References

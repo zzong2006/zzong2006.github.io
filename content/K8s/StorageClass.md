@@ -12,5 +12,3 @@ aliases: []
 ![](https://i.imgur.com/U6jJEUX.png)
 
 개발자가 `PersistentVolumeClaim` 을 생성할 때 이전에는 직접적으로 PersistentVolume 을 참조했다면 지금은 `StorageClass` 를 참조한다.
-
-# B) References

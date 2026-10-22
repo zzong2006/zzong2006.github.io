@@ -16,5 +16,3 @@ aliases: ["군집화"]
 
 * [[K-means]] Clustering
 * [[Hierarchical Clustering]]
-
-# D) References

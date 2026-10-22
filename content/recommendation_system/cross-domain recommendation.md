@@ -51,5 +51,3 @@ Paper lists
 # F) (5) Deep Learning
 
 A deep function was used to map the benchmark factors with the ones computed in each domain. Example) Leveraged unstructured text for collaborative recommendations.
-
-# G) References

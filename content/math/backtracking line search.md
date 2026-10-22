@@ -15,8 +15,6 @@ aliases: []
 
 ![|600](https://i.imgur.com/epjbGYS.png)
 
-# 2. Related
-
 # 3. References
 
 * https://convex-optimization-for-all.github.io/contents/chapter06/2021/03/20/06_02_02_backtracking_line_search/

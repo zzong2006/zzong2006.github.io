@@ -29,5 +29,3 @@ Containerization helps package software to serve these goals, enabling applicati
  * [[cluster(Kubernetes)]]
  * [[Kubernetes Node]]
  * [[pod(Kubernetes)]], [[deployment(Kubernetes)]], [[service(Kubernetes)]], [[kubelet]]
-
-# E) References

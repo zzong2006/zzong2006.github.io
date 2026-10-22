@@ -35,5 +35,3 @@ $$
 두 번째 문제를 다루려고 나온 것이 doubly robust 계열이다. propensity 모델과 결과 예측 모델을 둘 다 두고, 둘 중 **하나만** 맞아도 편향이 없어지도록 결합한다.
 
 같은 아이디어를 부르는 이름이 여럿이다. 통계·인과추론에서는 IPW, 추천·bandit 쪽 문헌에서는 [[inverse propensity score|IPS]] 라고 쓰는 경우가 많고, 강화학습에서는 off-policy 평가를 위한 [[Importance sampling]] 과 같은 형태다.
-
-# D) References

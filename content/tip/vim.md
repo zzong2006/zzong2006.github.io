@@ -17,7 +17,3 @@ aliases: []
 ```bash
 :%!python -m json.tool
 ```
-
-# 3. Related
-
-# 4. References

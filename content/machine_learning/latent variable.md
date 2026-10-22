@@ -31,5 +31,3 @@ $$
 **[[EM algorithm]]** — $z$ 의 사후분포로 기댓값을 취해 하한을 만든 뒤(E-step), 그 하한을 최대화하는 파라미터를 찾는다(M-step). 두 단계를 번갈아 돌리면 likelihood 가 단조 증가한다.
 
 **[[variational inference]]** — 다루기 어려운 [[posterior]] $p(z \mid x)$ 를 다루기 쉬운 분포 $q(z)$ 로 근사하고, 둘 사이의 [[KL-Divergence]] 를 줄이는 방향으로 $q$ 를 고른다.
-
-# D) References

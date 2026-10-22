@@ -95,7 +95,3 @@ cat /proc/cpuinfo
 # 8. Network
 
 `nload` 를 사용하면 현재 네트워크의 throughput 을 파악할 수 있다.
-
-# 9. Related
-
-# 10. References

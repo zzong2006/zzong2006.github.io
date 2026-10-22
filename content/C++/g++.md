@@ -17,5 +17,3 @@ aliases: []
 * `-I`: include 에 해당하는 디렉토리 specify
 	* 특이한 점은 directory path 와 `-I` 를 붙여써야된다.
 	* 예시) Eigen 경로 추가: `g++ -I/usr/local/include/eigen3`
-
-# C) References

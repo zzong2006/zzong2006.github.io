@@ -34,7 +34,3 @@ LightGBM 과 XGBoost 는 서로 다른 비대칭 트리를 가진다. LightGBM �
 CatBoost 는 greedy method 를 사용한다. feature-split 을 위해 가능한 모든 후보군들을 나열하여 leaf 에 할당하고 가장 작은 패널티를 보이는 split 을 선택한다.
 
 LightGBM 은 gradient 기반 one-side sampling (GOSS) 를 사용한다.
-
-# 3. Related
-
-# 4. References

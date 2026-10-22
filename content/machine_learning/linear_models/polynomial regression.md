@@ -28,5 +28,3 @@ $$
 $$
 
 * [[#interaction effect]] 와 달리 모델의 degree 가 $1$ 이 아니다.
-
-# D) References

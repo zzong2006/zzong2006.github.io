@@ -25,5 +25,3 @@ $f(\boldsymbol{x} ; \boldsymbol{w})=\sum_{d=1}^{D} w_{d} x_{d}$ 를 계산할 �
 # C) Related
 
 [[elastic net]]
-
-# D) References

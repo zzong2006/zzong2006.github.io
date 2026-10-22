@@ -17,5 +17,3 @@ Modality마다 noise, scale, sampling rate, 정보 밀도가 다르다. 그래�
 # C) 실무에서 볼 점
 
 검색과 추천에서는 text query와 image, item metadata를 함께 쓰는 일이 많다. 이때 multimodal representation은 recall을 넓히는 데 도움을 주지만, ranking 단계에서는 modality별 오류와 bias를 따로 점검해야 한다.
-
-# References

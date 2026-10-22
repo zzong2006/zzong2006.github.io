@@ -7,5 +7,3 @@ aliases: []
 # Weight Decay ?
 
 [[regularization#Weight Decay]] 를 참고할 것.
-
-# References

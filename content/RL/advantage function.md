@@ -15,7 +15,3 @@ $$
 이 함수는 $\mathbb{E}_{a \sim \pi(s)}\left[A^{\pi}(s, a)\right]=0$ 를 만족하는 특징이 있다.
 
 advantage 함수는 각 action 의 상대적 중요성을 판단하기 위해 사용하는 값이다.
-
-# 2. Related
-
-# 3. References

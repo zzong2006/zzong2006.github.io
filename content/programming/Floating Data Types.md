@@ -15,8 +15,6 @@ Here are the commonly used floating point data types choice of which impacts bot
 
 # 2. `fp16`
 
-# 3. Related
-
 # 4. References
 
 * [Performance and Scalability: How To Fit a Bigger Model and Train It Faster](https://huggingface.co/docs/transformers/v4.15.0/performance)

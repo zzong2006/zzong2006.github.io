@@ -23,5 +23,3 @@ $$
 # Related
 
 [Example Problem](https://www.youtube.com/watch?v=zWxhmBCdvFs&ab_channel=MITOpenCourseWare)
-
-# References

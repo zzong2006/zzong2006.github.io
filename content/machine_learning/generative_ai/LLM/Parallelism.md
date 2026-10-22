@@ -229,5 +229,3 @@ But once we sorted those out, the training itself was surprisingly smooth and wi
 Overall it was a super-intense but very rewarding experience.
 
 Training large language models is still a challenging task, but we hope by building and sharing this technology in the open others can build on top of our experience.
-
-# P) [](https://huggingface.co/blog/bloom-megatron-deepspeed#resources)

@@ -27,5 +27,3 @@ Alter the order of ranked recommendations or search results in some manner
   좀 더 진화한 구글 논문. 마찬가지로 EM 알고리즘을 활용한다.
 
 * Unbiased Learning-to-Rank with Biased Feedback
-
-# C) References

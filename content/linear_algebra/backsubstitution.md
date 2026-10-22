@@ -16,5 +16,3 @@ Back substitution은 upper triangular system $Ux=b$를 마지막 변수부터 �
 # C) 주의할 점
 
 대각 성분이 0에 가깝거나 matrix condition이 나쁘면 수치적으로 불안정해질 수 있다. 그래서 실제 계산에서는 pivoting, decomposition 선택, floating point error를 함께 고려한다.
-
-# References

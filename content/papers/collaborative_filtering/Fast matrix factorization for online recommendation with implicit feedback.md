@@ -49,5 +49,3 @@ $$
 # D) Related
 
 * [Paper link](https://arxiv.org/pdf/1708.05024.pdf)
-
-# E) References

@@ -25,6 +25,3 @@ $$
 # B) False Positive 와의 관계
 
 [[False Positive]] 는 개별 예측 오류의 종류이고, FPR 은 그 오류가 실제 negative 전체 중 얼마나 자주 일어나는지를 나타내는 비율이다.
-
-# C) References
-

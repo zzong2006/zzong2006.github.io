@@ -30,5 +30,3 @@ $$
 Orthogonal transformation은 vector의 길이와 각도를 보존한다. 그래서 rotation, reflection, [[linear_algebra/QR decomposition|QR decomposition]], PCA의 basis 변환을 이해할 때 자주 등장한다.
 
 [[linear_algebra/orthonormal|Orthonormal]] basis로 좌표계를 잡으면 projection과 decomposition 계산이 단순해지는 이유도 이 성질 때문이다.
-
-# References

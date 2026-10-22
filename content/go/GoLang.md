@@ -39,5 +39,3 @@ func main() {
 struct 변수 이름은 항상 대문자로 시작할 것 !
 
 [JSON-to-Go: Convert JSON to Go instantly](https://mholt.github.io/json-to-go/) 이거 쓰면 편함
-
-# D) References

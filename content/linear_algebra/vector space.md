@@ -29,5 +29,3 @@ vector space $\mathbf{R}^{n}$ 는 $n$ 개의 원소가 존재하는 모든 colum
 * [[subspace]]
 * [[Introduction to Linear Algebra]], chapter 3
 * [[column space]]
-
-# References

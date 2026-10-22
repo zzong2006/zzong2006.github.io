@@ -23,5 +23,3 @@ $$
 
 * [[variational inference]]
 * [[RL/Monte Carlo Method(RL)]]
-
-# C) References

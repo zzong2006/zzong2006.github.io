@@ -74,5 +74,3 @@ standard error 는 regression 의 coefficient 들에 대해서 [[hypothesis test
 $\displaystyle\mathrm{SE}\left(\hat{\beta}_{0}\right)^{2}=\sigma^{2}\left[\frac{1}{n}+\frac{\bar{x}^{2}}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\right]$, $\displaystyle\mathrm{SE}\left(\hat{\beta}_{1}\right)^{2}=\frac{\sigma^{2}}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}$
 
 위에서 $\sigma$ 는 노이즈의 분산 $\sigma^{2}=\operatorname{Var}(\epsilon)$ 을 의미하며, 실질적으로 계산할수는 없다. 그래서 [[residual standard error|RSE]] 를 통해 $\sigma$ 를 추정한다: $\sigma\approx\operatorname{RSE}=\sqrt{\operatorname{RSS}/(n-2)}$
-
-# C) References

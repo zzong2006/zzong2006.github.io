@@ -26,5 +26,3 @@ matrix $\boldsymbol{A}$ 의 eigenvector 는 $\boldsymbol{A}\boldsymbol{v}=\lambd
 # D) Related
 
 * [[eigen-decomposition]]
-
-# E) References

@@ -41,5 +41,3 @@ $\Gamma_{u}$ is a vector of dimension equal to the number of hidden units $a^{<t
 # F) Peephole Connection
 
 [[peephole connection]] 이란, 각 gate 의 weight 에 곱해질 vector 에 이전 cell state 를 포함하는 방법을 말한다. 즉, $[a^{<t-1>},x^{<t>}]$ 를 $[a^{<t-1>},x^{<t>},c^{<t-1>}]$ 로 변경하는 방식이다.
-
-# G) References

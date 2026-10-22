@@ -36,7 +36,3 @@ aliases: []
 # 4. 사용 사례
 
 * [Training CodeParrot 🦜 from Scratch](https://huggingface.co/blog/codeparrot)
-
-# 5. Related
-
-# 6. References

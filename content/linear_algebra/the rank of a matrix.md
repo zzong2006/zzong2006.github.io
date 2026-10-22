@@ -57,5 +57,3 @@ solution 개수에 대하여 간단히 생각하면 이렇다.
 * 솔루션이 unique 한 조건을 만족하려면, full column rank 를 만족해야 한다.
 
 ![](https://i.imgur.com/TSOa3HU.png)
-
-# D) References

@@ -72,5 +72,3 @@ High Variance 는 주로 복잡한 모델에서 나타나는데, 모델이 복�
 * 모델을 간단하게 만들기
 * [[regularization]] / [[dropout]] / Data Augment / Early Stopping
 * NN architecture search
-
-# G) References

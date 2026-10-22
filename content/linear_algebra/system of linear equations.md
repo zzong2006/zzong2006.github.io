@@ -32,7 +32,3 @@ $$
 $$
 \left[\begin{array}{ccc}a_{11} & \cdots & a_{1 n} \\ \vdots & & \vdots \\ a_{m 1} & \cdots & a_{m n}\end{array}\right]\left[\begin{array}{c}x_{1} \\ \vdots \\ x_{n}\end{array}\right]=\left[\begin{array}{c}b_{1} \\ \vdots \\ b_{m}\end{array}\right]
 $$
-
-# 2. Related
-
-# 3. References

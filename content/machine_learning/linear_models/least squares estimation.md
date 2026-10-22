@@ -30,5 +30,3 @@ $$
 # B) Related
 
 [[statistic/negative log likelihood|NLL]], [[ordinary least squares]], [[weighted least squares]]
-
-# C) References

@@ -47,5 +47,3 @@ $$
 즉, 첫번째 term 을 통해 varitional distribution 이 얼마나 기존의 데이터의 분포 ($p(x | z)$) 를 잘 학습하는지?
 
 그리고 두번째 term 을 통해 varitional distribution 이 얼마나 prior $p(z)$ 에 가깝게 둘 것인지? 의 개념으로 볼 수 있다는 것이다.
-
-# C) References

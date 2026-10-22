@@ -127,5 +127,3 @@ $$
 # E) Related
 
 [[Latent Semantic Analysis]]
-
-# F) References

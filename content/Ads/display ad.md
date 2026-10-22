@@ -11,5 +11,3 @@ aliases: ["DA"]
 장점
 
 단점
-
-# References

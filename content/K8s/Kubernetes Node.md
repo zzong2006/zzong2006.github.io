@@ -21,5 +21,3 @@ A Node is a worker machine in [[Kubernetes]] and may be either a virtual or a ph
 	* 또한, Node 는 container 운영을 담당하는 docker 또는 containerd 와 같은 툴도 포함해야 한다.
 	* A container runtime (like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
 * Node 는 [[Kubernetes Master]] 가 제공하는 kubernetes API 를 통해 master 와 통신하며, 최종 사용자 역시 kubernetes API 를 직접 사용해서 cluster 와 상호작용 할 수 있음
-
-# B) References

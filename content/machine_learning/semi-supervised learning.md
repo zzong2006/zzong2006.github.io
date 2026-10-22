@@ -20,5 +20,3 @@ Unlabeled data 자체가 정답을 주지는 않지만, 입력 분포의 구조�
 | Pseudo-labeling | 모델 예측을 임시 label로 사용 |
 | Consistency regularization | 입력 perturbation 후에도 예측이 안정되도록 학습 |
 | Self-training | high-confidence sample을 점진적으로 학습 데이터에 추가 |
-
-# References

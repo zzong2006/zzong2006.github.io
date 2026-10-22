@@ -47,5 +47,3 @@ $p(\boldsymbol{y}\mid\boldsymbol{x},\mathcal{D})=\int p(\boldsymbol{y}\mid\bolds
 # 3. Related
 
 * [[prior predictive distribution]]
-
-# 4. References

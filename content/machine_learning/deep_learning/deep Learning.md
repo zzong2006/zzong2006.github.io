@@ -28,5 +28,3 @@ aliases: ["딥러닝", "deep learning"]
 - 대규모 라벨 데이터셋 (ImageNet 등)
 - GPU 로 행렬 연산을 대량 병렬 처리
 - gradient 가 깊은 층까지 전달되게 하는 기법들 — ReLU, [[skip connection]], [[Batch Normalization]]
-
-# E) References

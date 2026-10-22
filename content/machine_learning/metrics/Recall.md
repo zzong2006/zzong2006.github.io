@@ -31,5 +31,3 @@ Recall은 “놓치면 안 되는 positive를 얼마나 잘 잡는가”를 본�
 | --- | --- | --- |
 | [[machine_learning/metrics/Recall]] | 실제 positive 기준 | positive를 얼마나 놓치지 않았나 |
 | [[machine_learning/metrics/precision]] | 예측 positive 기준 | positive라고 한 것 중 얼마나 맞았나 |
-
-# References

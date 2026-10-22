@@ -26,5 +26,3 @@ aliases: []
 # C) Bagging Model
 
 [[random forest]] 는 feature selection 주로 사용된다.
-
-# D) References

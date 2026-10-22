@@ -21,5 +21,3 @@ Embedding-based Retrieval(EBR)은 query와 document/item을 vector로 표현한 
 # C) 실무에서 볼 점
 
 EBR은 recall을 넓히는 데 강하지만, embedding space가 모든 relevance를 보장하지는 않는다. 그래서 [[BM25]] 같은 lexical baseline, hard negative sampling, reranking, freshness, diversity를 함께 설계해야 한다.
-
-# References

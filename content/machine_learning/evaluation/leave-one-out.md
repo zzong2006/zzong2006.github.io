@@ -19,5 +19,3 @@ LOOCV 의 장점으로는 결국 모든 샘플에 대해서 다 한번씩은 tes
 ## A.2) 단점
 
 반면 단점은 그만큼 많은 수의 model 을 만들고 test 해야하기 때문에 computing time 이 굉장히 오래 걸릴 수 있습니다. 또한 나중에 언급할 k-fold CV 에 비해서 model 의 다양성을 포함하기 어렵다는 단점이 있습니다.
-
-# B) References

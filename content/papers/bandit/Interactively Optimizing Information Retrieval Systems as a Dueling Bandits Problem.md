@@ -16,5 +16,3 @@ aliases: ["DBGD", "Dueling Bandit Gradient Descent"]
 [[papers/recommender_system/Online learning to rank for information retrieval]]
 
 [[Multileave Gradient Descent]]
-
-# C) References

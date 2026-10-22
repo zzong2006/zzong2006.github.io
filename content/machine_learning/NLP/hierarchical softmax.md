@@ -14,5 +14,3 @@ Hierarchical Softmax 는 [[softmax function]] 를 전체로 계산하기 보다�
 # B) Related
 
 * [[skip-gram]]
-
-# C) References

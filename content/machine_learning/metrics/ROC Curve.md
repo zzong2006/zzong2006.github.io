@@ -36,5 +36,3 @@ ROC curve의 점 하나는 특정 threshold에서의 좌표 $(FPR, TPR)$다. 두
 
 * 왼쪽 그래프의 빨간색 [[Probability Density Function|pdf]] 는 true positive, 파란색 pdf 는 true negative example 의 분포를 의미한다.
 * 왼쪽 그래프의 x-axis $x$ 는 threshold 를 의미한다.
-
-# E) References

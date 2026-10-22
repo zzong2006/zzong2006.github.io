@@ -58,5 +58,3 @@ $$
 평균과 분산을 둘 다 모르면 prior 로 normal-inverse-gamma 를 쓴다. 다변량에서는 [[multivariate Gaussian distribution]] 에 같은 논리가 적용되고, precision 행렬끼리 더해지는 형태가 된다.
 
 선형 관측 모델 $y = A\boldsymbol{x} + \boldsymbol{\epsilon}$ 에 가우시안 prior 를 두면 같은 구조가 나오는데, 이것이 [[Bayesian linear regression for practitioners|베이지안 선형회귀]] 와 칼만 필터의 갱신식이다.
-
-# E) References

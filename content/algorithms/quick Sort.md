@@ -63,8 +63,3 @@ def partition(alist,first,last):
 
     return leftmark
     ```
-
-
-# 2. Related 
-
-# 3. References

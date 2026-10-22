@@ -99,5 +99,3 @@ $$
 $\mathbf{X}^{\top} \mathbf{X}$ 가 invertible 하지 않는 경우, 즉 [[singular]] 인 경우는 잘 동작하지 않는다.
 
 이런 경우는 대부분 $m<n$ ($\mathbf{X}$ 는 $m \times n$ matrix) 이거나 일부 feature 가 불필요하는 경우다.
-
-# F) References

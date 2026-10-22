@@ -14,5 +14,3 @@ $$
 $$
 
 만약, 두 벡터가 서로 [[Linear Independence|선형 독립]] 하지 않다면, 위 식의 양쪽은 서로 같다.
-
-# References

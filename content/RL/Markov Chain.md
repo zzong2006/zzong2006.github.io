@@ -70,7 +70,3 @@ $$
 $n$ steps 대신 $T$ 시간 이후의 transition 확률을 계산할 수 있는 시스템으로, 이 시스템은 discrete time step 대신 continuous 한 time step 을 고려한다.
 
 예시) queuing system (고객 센터에서 손님이 언제든 껴들을 수 있음)
-
-# 5. Related
-
-# 6. References

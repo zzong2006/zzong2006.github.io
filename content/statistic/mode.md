@@ -19,5 +19,3 @@ For a discrete random variable, the mode is defined as the value of $x$ having t
 * 평균이나 중앙값처럼 mode 도 단일 값으로 표현될 수 있다.
 
 The estimate by [[maximum a posteriori probability|MAP]] is the mode of the posterior distribution.
-
-# B) References

@@ -54,5 +54,3 @@ Since collinearity reduces the accuracy of the estimates of the regression coeff
 
 * collinearity 를 판단하는 방법은 [[correlation]] matrix 를 이용하면 되지만, 세 개 이상의 변수가 correlated 하다면, 발견해내기 힘들다.
 	* 이 경우, [[variance inflation factor]] 를 활용해서 multicollinearity 를 판단한다.
-
-# B) References

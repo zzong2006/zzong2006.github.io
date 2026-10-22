@@ -22,5 +22,3 @@ aliases: ["귀무가설 영가설"]
 # C) Related
 
 * [[alternative hypothesis]]
-
-# D) References

@@ -25,5 +25,3 @@ $$
 # B) Related
 
 [[Cauchy–Schwarz inequality]]
-
-# C) References

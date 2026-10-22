@@ -29,5 +29,3 @@ stacking 이라고 부르며, 다음과 같은 단계로 진행된다.
 # B) Related
 
 * [How to Use Out-of-Fold Predictions in Machine Learning - MachineLearningMastery.com](https://machinelearningmastery.com/out-of-fold-predictions-in-machine-learning/#:%7E:text=An%20out%2Dof%2Dfold%20prediction,example%20in%20the%20training%20dataset.)
-
-# C) References

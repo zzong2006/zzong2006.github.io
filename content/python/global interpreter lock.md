@@ -32,7 +32,3 @@ sys.getrefcount(a) # 3
 Multi-threading 대신, multi-processing 을 수행한다.
 
 각 python process 는 python interpreter 와 memory 공간을 개별적으로 가지게 될 것이고 GIL 이 lock 을 거는일은 없을 것이다. 그 대신 멀티프로세스를 사용하게 되면, 자원 공유가 어려워지고 프로세스 spawn 과정에서 시간이 조금 더 지연될 수 있다.
-
-# 4. Related
-
-# 5. References

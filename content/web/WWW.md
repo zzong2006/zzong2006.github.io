@@ -14,5 +14,3 @@ The Web Coferences
 
 1. On Designing a Two-stage Auction for Online Advertising
 2. Alleviating Cold-start Problem in CTR Prediction with A Variational Embedding Learning Framework
-
-# C) References

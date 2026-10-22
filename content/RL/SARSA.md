@@ -22,5 +22,3 @@ SARSA 는 [[state-value function]] 값 말고, [[action-value function]] 값을 
 # B) Algorithm
 
 ![[img-f76cf77c72.png|image-20201023173337312|700]]
-
-# C) References

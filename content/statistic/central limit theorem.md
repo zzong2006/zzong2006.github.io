@@ -43,5 +43,3 @@ $$
 # D) Related
 
 * [[Z-test]]
-
-# E) References

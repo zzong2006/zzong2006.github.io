@@ -29,5 +29,3 @@ $$
 $$
 
 여기서 $\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{n}$ 이다.
-
-# References

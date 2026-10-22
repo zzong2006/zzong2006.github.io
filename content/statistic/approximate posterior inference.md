@@ -32,8 +32,6 @@ $$
 
 * [[statistic/MCMC approximation]]
 
-# C) References
-
 # D) References
 
 * [[Computing Bayes - Bayesian Computation from 1763 to the 21st Century]]

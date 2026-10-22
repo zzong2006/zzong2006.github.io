@@ -27,5 +27,3 @@ for index, batch in enumerate(training_dataloader):
         scheduler.step()
         optimizer.zero_grad()
 ```
-
-# C) References

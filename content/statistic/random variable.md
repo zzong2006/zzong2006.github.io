@@ -17,5 +17,3 @@ function $X:\Omega\rightarrow\mathcal{T}$ 에 대한 mapping 또는 association 
     - 즉, $\Omega=\{\mathrm{hh},\mathrm{tt},\mathrm{ht},th\},\mathcal{T}=\{0,1,2\}$
 * 기타
 	* Quantifying uncertainty requires the idea of a random variable.
-
-# C) References

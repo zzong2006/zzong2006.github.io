@@ -23,5 +23,3 @@ Graph는 node(vertex)와 edge로 관계를 표현하는 자료구조이자 수�
 # C) ML에서 왜 중요한가
 
 추천에서는 user-item bipartite graph가 기본 구조가 되고, [[graph/Graph Neural Network|GNN]]은 graph 위에서 neighborhood 정보를 모아 node representation을 만든다. Temporal interaction을 다룰 때는 [[graph/Temporal Graph Network|Temporal Graph Network]]처럼 시간 축까지 함께 모델링한다.
-
-# References

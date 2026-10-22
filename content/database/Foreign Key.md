@@ -13,5 +13,3 @@ Foreign Key는 한 relation의 attribute가 다른 relation의 [[database/Primar
 # B) 무엇을 막아주나
 
 Foreign Key는 존재하지 않는 parent row를 참조하는 child row가 생기는 것을 막는다. 예를 들어 `orders.user_id`가 `users.id`를 참조한다면, 존재하지 않는 user에 대한 order가 들어가지 않도록 제약할 수 있다.
-
-# References

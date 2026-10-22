@@ -33,5 +33,3 @@ Kafka client API에서는 다음 값을 구분해서 보는 일이 많다.
 # D) 같이 볼 개념
 
 [[data_engineering/Producer|Producer]]는 message를 topic으로 보내고, [[data_engineering/Consumer|Consumer]]는 topic에서 message를 읽는다. 둘 사이의 logical stream이 [[data_engineering/Topic(kafka)|Kafka Topic]]이다.
-
-# References

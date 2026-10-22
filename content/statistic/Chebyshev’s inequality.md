@@ -44,8 +44,6 @@ $$
 
 그런데 여기서 단어 수에 대한 분포가 [[Gaussian distribution|normal distribution]] 임을 추가적으로 알고 있다면, 75% 확률로 단어 수는 770 자 이상 1230 이하를 포함할 것으로 생각할 수 있다 (which is an even tighter bound).
 
-# IV. Related
-
 # V. References
 
 * https://math.mit.edu/~goemans/18310S15/chernoff-notes.pdf

@@ -26,5 +26,3 @@ Image captioning: Example of the Alexnet
 # D) Related
 
  * [[Beam search]]
-
-# E) References

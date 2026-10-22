@@ -121,5 +121,3 @@ gc.collect()
 # G) Related
 
 * [[PyTorch-BigGraph]]
-
-# H) References

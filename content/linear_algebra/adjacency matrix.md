@@ -20,7 +20,3 @@ undirected graph 는 다음과 같이 생겼다.
 ![|200](https://i.imgur.com/JiLNpoW.png)  
 그리고 이에 따른 adjacency matrix 는 다음과 같다.  
 ![|180](https://i.imgur.com/f7pGae5.png)
-
-# II. Related
-
-# III. References

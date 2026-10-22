@@ -13,5 +13,3 @@ tags:
 # B) Vs. Error
 
 [[error]] 는 실제 값과 관측된 값의 차이를 의미한다. 여기서 실제 값은 모집단과 같은 곳에서 구해지는 true value 를 의미한다.
-
-# C) References

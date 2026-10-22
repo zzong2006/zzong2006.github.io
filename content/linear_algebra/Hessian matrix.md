@@ -31,5 +31,3 @@ Hessian matrix 는 symmetric matrix 다. 왜냐하면 함수 $f$ 가 2 차 미�
 # D) Related
 
 [[Jacobian matrix]]
-
-# E) References

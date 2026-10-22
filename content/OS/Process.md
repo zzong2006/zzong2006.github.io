@@ -25,5 +25,3 @@ OS 로 부터 시스템 자원을 할당받고 메모리에 적재되어 실행�
 
 총 5 개: new, ready, running, waiting, terminated
 ![[img-5b465fa094.jpg|https://i.loli.net/2020/10/19/nwYzpmhc7rS6eid.jpg]]
-
-# D) References

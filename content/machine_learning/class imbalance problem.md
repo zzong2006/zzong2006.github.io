@@ -15,7 +15,3 @@ class 분류 문제에서 class 당 instance 수의 균형이 맞지 않는 문�
 # 3. Solutions
 
 1. Negative down sampling
-
-# 4. IV. Related
-
-# 5. References

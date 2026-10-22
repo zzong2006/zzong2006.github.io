@@ -25,5 +25,3 @@ velocity (속도) -> vector
 4. Elements of $\mathbb{R}^{n}$
 
 ![|600](https://i.imgur.com/3ySjdsw.png)
-
-# D) References

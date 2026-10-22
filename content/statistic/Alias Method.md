@@ -75,5 +75,3 @@ aliases: []
 # F) References
 
 [1] A Linear Algorithm For Generating Random Numbers With a Given Distribution
-
-# H) References

@@ -16,5 +16,3 @@ $f\left(\mathbf{x}_{i}, \beta\right)$ 는 모델의 출력값이고 $y_{i}$ 는 
 $$
 \log \left(1+\exp \left(-y_{i} f\left(\mathbf{x}_{i}, \beta\right)\right)\right)
 $$
-
-# B) References

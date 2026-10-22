@@ -23,5 +23,3 @@ aliases: ["BPE"]
 [[WordPiece]] 토크나이저 역시 subword 토크나이징 방식이다.
 
 openAI 에서 지원하는 토크나이저 tiktoken. 허깅페이스 토크나이저보다 최대 6 배 빠르다고 한다: [GitHub - openai/tiktoken](https://github.com/openai/tiktoken)
-
-# D) References

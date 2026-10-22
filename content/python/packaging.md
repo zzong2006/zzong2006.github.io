@@ -94,8 +94,6 @@ __all__ = ['echo']
 
 여기에서 `__all__` 이 의미하는 것은 sound 디렉터리에서 `*` 기호를 사용하여 import 할 경우 이곳에 정의된 echo 모듈만 import 된다는 의미이다.`
 
-# 5. Related
-
 # 6. References
 
 * https://py-pkgs.org/01-introduction

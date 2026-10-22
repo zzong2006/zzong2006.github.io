@@ -22,5 +22,3 @@ tags:
 	* Data
 * Deployment: 온라인 배포
 	* Concept drift / Data drift
-
-# B) References

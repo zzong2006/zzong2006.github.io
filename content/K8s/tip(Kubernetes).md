@@ -23,5 +23,3 @@ aliases: []
 `kubectl get all` 을 치면 모든 리소스를 확인할 수 있다.
 
 일반적으로 [[deployment(Kubernetes)]] 가 범인일 수 있는데, [[StatefulSet]] 이라는 것도 확인해봐야 한다.
-
-# B) References

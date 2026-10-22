@@ -30,5 +30,3 @@ missing value 들을 스스로 처리함
 ```Python
 xgb.XGBClassifier(max_depth = 2, n_estimators = 95, random_state = 73, scale_pos_weight = 4.71)
 ```
-
-# D) References

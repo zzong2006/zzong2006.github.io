@@ -20,5 +20,3 @@ $$
 | [[dot product]] | scalar | 두 vector의 정렬 정도 |
 | [[linear_algebra/outer product]] | matrix | 두 vector의 모든 성분 조합 |
 | Vector product | vector | 두 vector가 만드는 평면에 수직인 방향 |
-
-# References

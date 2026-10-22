@@ -25,8 +25,6 @@ $$
 \begin{aligned}&\mathrm{P}\left(X_{4},X_{3},X_{2},X_{1}\right)\\&=\mathrm{P}\left(X_{4}\mid X_{3},X_{2},X_{1}\right)\cdot\mathrm{P}\left(X_{3},X_{2},X_{1}\right)\\&=\mathrm{P}\left(X_{4}\mid X_{3},X_{2},X_{1}\right)\cdot\mathrm{P}\left(X_{3}\mid X_{2},X_{1}\right)\cdot\mathrm{P}\left(X_{2},X_{1}\right)\\&=\mathrm{P}\left(X_{4}\mid X_{3},X_{2},X_{1}\right)\cdot\mathrm{P}\left(X_{3}\mid X_{2},X_{1}\right)\cdot\mathrm{P}\left(X_{2}\mid X_{1}\right)\cdot\mathrm{P}\left(X_{1}\right)\end{aligned}
 $$
 
-# III. Related
-
 # IV. References
 
 * https://en.wikipedia.org/wiki/Chain_rule_(probability)

@@ -18,5 +18,3 @@ dmesg 명령어는 시스템 부팅 메시지를 확인하는 명령어다. 또�
 * 하드 디스크 정보 확인
 
   `dmesg | grep sda`
-
-# C) References

@@ -17,5 +17,3 @@ $$
 # 단점
 
 [[outlier]] 에 취약한 편이다. 반대로, [[standardization]] is much less affected by outliers.
-
-# References

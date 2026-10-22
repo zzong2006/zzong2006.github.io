@@ -18,7 +18,3 @@ aliases: []
 * 이 논문에서 제시하는 것
 	* metrics for quantifying the degree of calibration
 	* a simple yet effective re-ranking algorithm for post-processing the output of recommender systems
-
-# 2. Related
-
-# 3. References

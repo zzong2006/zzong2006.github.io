@@ -13,5 +13,3 @@ Candidate Key는 tuple을 유일하게 식별하면서도 불필요한 attribute
 # B) Primary Key와의 관계
 
 여러 Candidate Key 중 실제 대표 식별자로 선택한 것이 [[database/Primary Key|Primary Key]]다. 선택되지 않은 Candidate Key는 보통 [[database/Alternate Key|Alternate Key]]라고 부른다.
-
-# References

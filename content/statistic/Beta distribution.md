@@ -43,5 +43,3 @@ $$
 * [[Binomial Distribution]]
 * [[multinomial distribution]]
 * [[Dirichlet distribution]]
-
-# 8. References

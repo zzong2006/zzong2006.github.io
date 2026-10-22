@@ -17,7 +17,3 @@ aliases:
 			* [[The good, the bad and the bait - Detecting and characterizing clickbait on YouTube]]
 			* [[Effects of User Negative Experience in Mobile News Streaming]]
 			* [[Leveraging Post-click Feedback for Content Recommendations]]
-
-# B) Related
-
-# C) References

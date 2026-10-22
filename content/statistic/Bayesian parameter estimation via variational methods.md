@@ -15,7 +15,3 @@ aliases: []
 	* 왜 이 논문에서 소개된 Laplace approximation 업데이트 방식하고, original Laplace approx paper([1]) 에서 소개된 업데이트 방식이 다른지?
 		* [1] Sequential Updating of Conditional Probabilities on Directed Graphical Structures
 		* Answer: 다른게 아니라 서로 동치인 업데이트 방식이다. 왜 동치인지는 잘 모르겠음
-
-# 2. Related
-
-# 3. References

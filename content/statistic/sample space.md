@@ -27,5 +27,3 @@ $$
 # Null Set
 
 sample space 또는 [[event]] 개수가 0 개인 집합: $A=\phi$
-
-# References

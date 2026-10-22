@@ -85,5 +85,3 @@ Policy Gradient 는 value 를 통해 action 을 고르는 것이 아니라 actio
 * $\mu:\mathcal{S}\times\mathbb{R}^{d^{\prime}}\rightarrow\mathbb{R}$ and $\sigma:\mathcal{S}\times\mathbb{R}^{d^{\prime}}\rightarrow\mathbb{R}^{+}$
 * 표준 편차 $\sigma$ 의 경우 항상 양수여야 하므로, 선형 함수의 exponential 을 활용하는 것이 좋다.
 * $\mu(s,\boldsymbol{\theta})\doteq\boldsymbol{\theta}_{\mu}^{\top}\mathbf{x}_{\mu}(s)\quad\text{and}\quad\sigma(s,\boldsymbol{\theta})\doteq\exp\left(\boldsymbol{\theta}_{\sigma}^{\top}\mathbf{x}_{\sigma}(s)\right)$
-
-# F) References

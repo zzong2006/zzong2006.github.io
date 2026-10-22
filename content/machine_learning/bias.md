@@ -46,5 +46,3 @@ $$
 $$
 
 bias(intercept) 는 $x_{i 1}=x_{i 2}=\ldots=x_{i p}=0$ 일 때 $y$ 의 [[expectation|expected value]] 를 의미한다.
-
-# E) References

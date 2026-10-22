@@ -14,5 +14,3 @@ aliases: []
 $$
 \displaystyle p(A\mid B)=\frac{p(A,B)}{p(B)}
 $$
-
-# References

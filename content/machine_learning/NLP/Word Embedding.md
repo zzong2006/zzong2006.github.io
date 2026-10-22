@@ -75,5 +75,3 @@ $e_w$ 는 찾으려하는 word 의 embedding vector 다.
 	* [[CBOW]]
 	* [[GloVe]]
 	* [[negative sampling]]
-
-# E) References

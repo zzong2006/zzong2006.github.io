@@ -11,5 +11,3 @@ aliases: ["차원"]
 # B) Note
 
 [[matrix]] 은 [[the rank of a matrix|rank]] 가 존재하지만 차원 개념은 없다. 반대로, [[subspace]] 는 차원 개념은 존재하지만 rank 가 없다.
-
-# C) References

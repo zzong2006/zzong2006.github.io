@@ -18,5 +18,3 @@ aliases: [Mixture-of-Experts]
 * [jetmoe/jetmoe-8b · Hugging Face](https://huggingface.co/jetmoe/jetmoe-8b?utm_source=tldrai)
 * [On PHATGOOSE: The Challenge of Recycling PEFT Modules for Zero-Shot Generalization](https://colinraffel.com/blog/phatgoose.html)
 	* LoRA based MoE
-
-# D) References

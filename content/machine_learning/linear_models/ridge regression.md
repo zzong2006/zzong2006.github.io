@@ -37,5 +37,3 @@ $\lambda = 0$ 이면 [[ordinary least squares]] 와 같아지고, $\lambda$ 를 
 그래서 변수 선택이 목적이면 lasso, 상관된 변수들의 계수를 고르게 나눠 갖게 하려면 ridge 를 쓴다. 둘을 섞은 것이 [[elastic net]] 이다.
 
 변수마다 단위가 다르면 벌점이 불공평하게 걸리므로, 적합 전에 설명변수를 표준화한다.
-
-# D) References

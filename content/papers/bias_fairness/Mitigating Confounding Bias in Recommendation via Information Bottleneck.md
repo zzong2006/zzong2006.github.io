@@ -59,7 +59,3 @@ $y^{i}\iny$ 는 binary response: $y=\{0,1\}$
 
 * Confounding bias is essentially a collection of biases at the system level, such as the position bias and popularity bias.
 * The proposed method
-
-# II. Related
-
-# III. References

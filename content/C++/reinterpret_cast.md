@@ -13,5 +13,3 @@ aliases: []
 	* `reinterpret_cast<new_type>(expression)`
 * 예시
 	* `reinterpret_cast<char*>(&alpha_)`
-
-# B) References

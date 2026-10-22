@@ -27,5 +27,3 @@ aliases: ["Postgres", "포스트그레스"]
 [[Apache Spark]] 로 PostgreSQL 테이블을 읽을 때, 파티션을 지정하지 않으면 전체를 단일 연결로 가져와 한 executor 에 몰린다. 데이터가 크면 그 executor 에서 메모리 부족이 난다. 숫자형 열과 범위를 주어 여러 연결로 나눠 읽게 해야 한다.
 
 애초에 PostgreSQL 은 행 단위 저장이라 대량 스캔 집계에는 불리하다. 그런 작업이 주가 되면 [[data warehouse]] 나 [[columnar storage]] 기반 엔진으로 데이터를 옮겨 처리하는 편이 맞다.
-
-# E) References

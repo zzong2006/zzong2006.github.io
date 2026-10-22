@@ -36,5 +36,3 @@ container 는 기본적으로 stateless 로 다룬다. 안에서 쓴 파일은 c
 container 하나를 띄우는 것과 수십 대를 굴리는 것은 다른 문제다. 어느 노드에 배치할지, 죽으면 어떻게 되살릴지, 트래픽을 어떻게 나눌지는 [[Container and container orchestrator|orchestrator]] 가 맡고, 사실상의 표준이 Kubernetes 다.
 
 ML 서빙에서는 모델·프레임워크·CUDA 버전 조합이 제각각이라, 모델마다 이미지를 따로 만들어 배포하는 방식이 기본이 됐다.
-
-# E) References

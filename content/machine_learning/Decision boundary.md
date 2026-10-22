@@ -57,6 +57,3 @@ $h_\theta(x)\ge0.5$의 의미를 활용하면, 다음과 같은 Decision boundar
 $h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_2^2+\theta_4x_2^2)\ge0.5\Rightarrow-1+x_1^2+x_2^2\ge0$  
 $(\theta_0=-1,\theta_1=0,\theta_2=0,\theta_3=1,\theta_4=1)$
 ![[img-4a223650da.png|image-20200929003459783]]
-
-
-# References

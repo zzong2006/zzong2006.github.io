@@ -58,5 +58,3 @@ dropout 확률을 자동으로 조절하는 방식이다.
 Dropout 을 통해 학습하는 것은 확률적으로 units 을 죽이거나 살리므로, [[cost function]] 이 단조적으로 감소하지 않는다는 것을 의미한다. 결과적으로 dropout 을 적용한 모델의 [[cost function]] 을 iteration 마다 plot 하더라도, 해당 모델이 제대로 학습하고 있는지 알기가 모호해진다.
 
 이런 모델이 올바르게 학습하고 있는지 확인하기 위해서는 Dropout 을 제거하고, cost function 이 단조적으로 감소하는지 확인하여 버그가 없는지 체크후, dropout 을 이용해 학습하는 것을 추천한다.
-
-# G) References

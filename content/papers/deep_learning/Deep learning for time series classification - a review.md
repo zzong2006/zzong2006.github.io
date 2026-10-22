@@ -20,7 +20,3 @@ Recurrent Neural Network([[Recurrent Neural Network]]) 은 다음과 같은 이�
 time series (Pascanu et al., 2012);
 
 * (3) RNNs are considered hard to train and parallelize which led the researchers to avoid using them for computational reasons.
-
-# 2. Related
-
-# 3. References

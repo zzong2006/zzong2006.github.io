@@ -38,5 +38,3 @@ Transformers 모델은 단어 수준과 문자 수준 토큰화의 혼합인 서
 5. pad_token: batch 목적으로 array 들의 구분을 나타내는 토큰
 6. cls_token: 입력 (input) 의 클래스를 나타내는 토큰
 7. mask_token: [[Bidirectional Encoder Representations from Transformers|BERT]] 와 같은 [[masked language modeling]] 에서 사용하는 masked token
-
-# C) References

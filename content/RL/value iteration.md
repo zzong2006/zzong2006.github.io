@@ -21,5 +21,3 @@ policy iteration 과 마찬가지로 value iteration 도 정확히 $v_*$ 로 수
 ## Algorithm
 
 ![[img-56c508a4c9.png|image-20201022004354693]]
-
-# References

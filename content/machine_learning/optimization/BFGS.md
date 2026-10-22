@@ -38,5 +38,3 @@ conjugate gradients 와 비슷하게 BFGS 방식도 second-order 정보에 기�
 # B) L-BFGS
 
 L-BFGS 는 BFGS 의 Limited Memory 버전으로 inverse Hessian 근사값의 저장을 피하여 메모리 사용량을 줄인 방식이다. L-BFGS 는 BFGS 와 동일하게 $\boldsymbol{M}$ 의 근사를 계산하지만, update 과정에서 이전 matrix $\boldsymbol{M}^{(t-1)}$ 를 저장하지 않고 단순히 identity matrix 로 가정한다. Exact line search 를 원한다면 L-BFGS 의 방향은 올바르지 않겠지만, 근사를 계산한다는 관점에서는 잘 동작한다.
-
-# C) References

@@ -40,5 +40,3 @@ Strictly convex function 은 minimum point 가 unique 하게 존재하기 때문
 
 * [[gradient descent]]
 * [[Jensen's inequality]]
-
-# F) References

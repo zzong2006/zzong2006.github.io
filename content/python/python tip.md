@@ -22,5 +22,3 @@ a, *b = (1,2,3) # a = 1, b = [2, 3]
 2. `glob.glob(DIR)`: `DIR` 내 존재하는 모든 폴더의 절대 경로를 반환한다.
 
 `glob.glob` 의 경우 unix 스타일로 파일을 검색할 수 있다. 예를 들어, `glob.glob('*.gif')` 와 같은 검색이 가능하다.
-
-# References

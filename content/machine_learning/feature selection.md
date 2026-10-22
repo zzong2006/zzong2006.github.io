@@ -37,7 +37,3 @@ Filtering Method: Information value
 * 선택된 feature 의 해석이 쉬움
 * User selection 효과
 * 처리 시간이 짧다.
-
-# 3. Related
-
-# 4. References

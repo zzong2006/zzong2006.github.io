@@ -29,5 +29,3 @@ $$
 # B) Related
 
 * 
-
-# C) References

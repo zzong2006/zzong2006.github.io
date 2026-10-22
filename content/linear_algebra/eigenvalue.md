@@ -24,5 +24,3 @@ If your matrix $A$ has eigenvalue $λ$, then $I−A$ has eigenvalue $1−λ$
 # 3. Related
 
 * [[eigenvector]]
-
-# 4. References

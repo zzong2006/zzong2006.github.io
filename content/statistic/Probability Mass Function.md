@@ -44,5 +44,3 @@ p(x_1, \dots, x_k) = \frac{n!}{x_1!\cdots x_k!}\, \theta_1^{x_1}\cdots \theta_k^
 $$
 
 $X_i$ 가 결과 $i$ 의 발생 횟수, $\theta_i$ 가 한 번의 시행에서 결과 $i$ 가 나올 확률이다.
-
-# D) References

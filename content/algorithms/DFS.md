@@ -35,5 +35,3 @@ def dfs(graph, node, visited):
 - 트리 순회 — [[pre-order]], [[Inorder Search]], [[post-order]] 는 모두 DFS 의 방문 시점 차이다
 
 탐색 상태가 반복되는 문제에서는 DFS 로 상태 공간을 훑되 이미 계산한 상태의 결과를 저장해 두는 memoization 을 얹는다.
-
-# D) References

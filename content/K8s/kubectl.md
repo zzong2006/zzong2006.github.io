@@ -17,8 +17,6 @@ tags:
 
 **Refer**: [docker - Kubernetes pods hanging in Init state - Stack Overflow](https://stackoverflow.com/questions/50075422/kubernetes-pods-hanging-in-init-state)
 
-# 3. Related
-
 # 4. References
 
 * [Init Containers | Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)

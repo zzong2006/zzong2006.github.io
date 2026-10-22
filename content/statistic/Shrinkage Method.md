@@ -14,5 +14,3 @@ linear model 을 학습하는 방법 중 하나로, 계수 추정에 제약을 �
 
 * [[ridge regression]]
 * [[lasso regression]]
-
-# III. References

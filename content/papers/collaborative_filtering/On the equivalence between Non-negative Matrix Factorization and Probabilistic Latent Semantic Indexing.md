@@ -43,5 +43,3 @@ aliases: []
 		* Proposition 2. NMF 의 열 정규화 값은 probability factorization 과 동일하다.
 			* $\left(CH^{\mathrm{T}}\right)_{ij}=P\left(w_{i},d_{j}\right)$
 		* 각 Proposition 에 대한 증명은 생략함
-
-# B) References

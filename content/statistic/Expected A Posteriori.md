@@ -66,5 +66,3 @@ $$
 ---
 
 즉, 이 예시에서 EAP 추정치는 관측된 성공 횟수 $k$ 에 prior 의 파라미터 $\alpha$ 를 더하고, 시행 횟수 $n$ 에 prior 의 파라미터 $(\alpha + \beta)$ 를 더한 값으로 나타낼 수 있습니다.
-
-# B) References

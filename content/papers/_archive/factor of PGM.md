@@ -61,7 +61,3 @@ Scope: $\left\{X_{1},\ldots,X_{k}\right\}$
 	* [[Joint distribution of PGM]] 의 conditioning 와 비슷한 개념이다.
 	* 예시
 		* ![[img-d804ef7645.png]]
-
-# 4. Related
-
-# 5. References

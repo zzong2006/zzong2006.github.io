@@ -18,5 +18,3 @@ LRU(Least Recently Used)는 가장 오래 사용되지 않은 항목을 먼저 �
 # C) 실무에서 볼 점
 
 정확한 LRU는 접근 순서를 매번 갱신해야 하므로 구현 비용이 든다. 그래서 운영체제나 대규모 cache에서는 clock algorithm처럼 LRU를 근사하는 방식도 많이 쓴다.
-
-# References

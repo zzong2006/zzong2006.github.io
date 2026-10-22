@@ -226,5 +226,3 @@ NULL NULL       SCOTCH       11
 ## B.4) 정리
 
 ![[img-4e0b5b1df9.png|Image 8]]
-
-# C) References

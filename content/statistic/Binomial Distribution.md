@@ -34,5 +34,3 @@ $$
 
 * [[statistic/Beta distribution]]
 * [[Dirichlet distribution]]
-
-# 5. References

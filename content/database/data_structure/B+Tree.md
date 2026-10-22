@@ -31,7 +31,3 @@ aliases: []
 * $K$ 개의 search-key 가 존재할 경우, B+-Tree 의 최대 높이는 $\left\lceil\log_{\lceil(m+1)/2\rceil}(K)\right\rceil$ 이다.
 	* With 1 million search key values and $m=99$
 		* at most $log_{50}(1,000,000)=4$ nodes are accessed in a lookup.
-
-# 2. Related
-
-# 3. References

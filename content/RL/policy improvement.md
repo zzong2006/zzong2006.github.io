@@ -59,7 +59,3 @@ $$
 $$
 
 그런데, 위의 식은 그냥 [[Bellman optimality equation]] 이다. 즉, $v_\pi'$ 는 반드시 $v_*$ 가 된다.
-
-# 2. Related
-
-# 3. References

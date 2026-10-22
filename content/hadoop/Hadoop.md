@@ -22,5 +22,3 @@ Hadoop은 대규모 데이터를 분산 저장하고 처리하기 위한 오픈�
 # C) 지금도 중요한 이유
 
 실무에서는 순수 MapReduce를 직접 쓰는 일은 줄었지만, Hadoop 생태계의 file format, metastore, storage layout은 여전히 많이 남아 있다. [[hadoop/Apache Parquet|Apache Parquet]] 같은 columnar format도 Hadoop ecosystem에서 널리 쓰이는 분석용 저장 포맷이다.
-
-# References

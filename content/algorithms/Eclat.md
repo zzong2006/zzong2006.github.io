@@ -30,5 +30,3 @@ Eclat 알고리즘은 vertical layout 을 이용한다.
 3. 이후, 다시 minimum [[support]] 값 이상인 itemset 을 남겨두고, 같은 과정을 반복한다.
 
 ![[img-3347cbeb15.png|Image for post]]
-
-# D) References

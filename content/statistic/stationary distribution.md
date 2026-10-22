@@ -12,5 +12,3 @@ aliases: []
 
 * [[Markov Chain]]
 * [[Gibbs Sampling]]
-
-# 3. References

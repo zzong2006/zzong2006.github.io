@@ -33,5 +33,3 @@ $$
 [[symmetric matrix]]
 
 [[Moore-Penrose Pseudoinverse]]
-
-# E) References

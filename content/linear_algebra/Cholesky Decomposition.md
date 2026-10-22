@@ -31,5 +31,3 @@ $$
 0 & 0 & 3
 \end{array}\right)
 $$
-
-# C) References

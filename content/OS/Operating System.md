@@ -22,5 +22,3 @@ Operating System은 application과 hardware 사이에서 resource를 관리하�
 # C) 공부할 때의 축
 
 OS 개념은 보통 “resource를 어떻게 나누고, 보호하고, 빠르게 쓰게 할 것인가”로 읽으면 흐름이 잡힌다. [[OS/CPU Scheduling|CPU Scheduling]]은 시간 자원을 나누는 문제이고, page replacement는 memory 공간을 제한된 cache처럼 쓰는 문제다.
-
-# References

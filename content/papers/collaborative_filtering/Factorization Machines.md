@@ -13,5 +13,3 @@ aliases:
 # A) Factorization Machines ?
 
 combines the advantages of Support Vector Machines (SVM) with factorization models
-
-# B) References

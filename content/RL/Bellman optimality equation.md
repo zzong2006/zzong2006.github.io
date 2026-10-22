@@ -60,5 +60,3 @@ Bellman Optimality Equation 을 푸는 것은 optimal policy 를 찾는데 사�
 3. state 가 Markov property 를 따를 것
 
 예를 들어 벡가몬 게임의 경우 (1), (3) 은 만족하지만 (2) 의 경우 $10^{20}$ 에 대한 경우의 수를 처리해야 한다.
-
-# B) References

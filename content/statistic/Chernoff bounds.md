@@ -16,5 +16,3 @@ aliases: []
 
 * [[Chebyshev’s inequality]]
 * [[Markov's Inequality]]
-
-# C) References

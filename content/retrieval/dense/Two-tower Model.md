@@ -18,5 +18,3 @@ Item/document embedding을 offline으로 미리 계산해 index에 넣을 수 �
 # C) 주의할 점
 
 두 tower가 dot product 하나로 만나는 구조라 cross feature를 세밀하게 보기는 어렵다. 그래서 candidate generation에서는 빠르게 넓게 가져오고, 뒤의 ranking model에서 query-item interaction feature를 더 자세히 본다.
-
-# References

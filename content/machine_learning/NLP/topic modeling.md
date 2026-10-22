@@ -9,5 +9,3 @@ aliases: []
 * Tags
 	* [[coherence score]]
 * Related paper
-
-# References

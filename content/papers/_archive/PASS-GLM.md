@@ -19,5 +19,3 @@ aliases: []
 # B) Background
 
 ## B.1) Generalized Linear Models
-
-# C) References

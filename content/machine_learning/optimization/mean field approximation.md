@@ -21,5 +21,3 @@ $$
 $$
 \phi^{*}=\arg \min _{\phi} K L(g(\theta \mid \phi) \| p(\theta \mid x))
 $$
-
-# B) References

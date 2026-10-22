@@ -27,5 +27,3 @@ tags:
 
 * [[Recommendations as treatments - debiasing learning and evaluation]]
 * [[Doubly robust joint learning for recommendation on data missing not at random]]
-
-# References

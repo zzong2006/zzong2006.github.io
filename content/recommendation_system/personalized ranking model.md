@@ -17,5 +17,3 @@ tags: []
 	* listwise
 		* Listwise approaches approximate the ordering of the entire list of items, for example, direct optimizing the ranking measures such as Normalized Discounted Cumulative Gain ([[Normalized Discounted Cumulative Gain]]).
 		* pointwise 나 pairwise 방식보다 복잡하며 계산 비용이 높다.
-
-# B) References

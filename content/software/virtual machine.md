@@ -24,5 +24,3 @@ tags:
 운영체제 전체를 올리기 위한 VM 이다. hypervisor 가 CPU·메모리·디스크·네트워크를 쪼개서 각 guest OS 에게 독립된 기계처럼 보여준다. VMware, VirtualBox, 클라우드의 인스턴스가 이 방식이다.
 
 Docker 같은 container 와 자주 비교되는데, container 는 guest OS 를 따로 올리지 않고 host 커널을 공유한다. 그래서 기동이 빠르고 가볍지만 격리 수준은 System VM 보다 약하다.
-
-# D) References

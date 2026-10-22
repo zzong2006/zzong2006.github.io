@@ -27,5 +27,3 @@ precision $\gamma$ 은 [[variance]] 의 역이다: $\displaystyle\gamma=\frac{1}
 # B) Related
 
 [[precision]] 은 positive example 에 집중해서 평가를 진행하는 반면, [[machine_learning/metrics/accuracy|accuracy]] 는 positive 와 negative 한 example 모두를 고려한다는 점이다.
-
-# C) References

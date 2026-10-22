@@ -268,5 +268,3 @@ $$
 ### RBU
 
 ### EU
-
-# References

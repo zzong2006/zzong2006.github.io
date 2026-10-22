@@ -38,7 +38,3 @@ def doOpenClose():
 # 작업을 진행합니다...
 # 작업을 종료합니다.
 ```
-
-# 3. Related
-
-# 4. References

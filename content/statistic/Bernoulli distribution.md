@@ -68,5 +68,3 @@ $$
 $$
 \displaystyle\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
 $$
-
-# E) References

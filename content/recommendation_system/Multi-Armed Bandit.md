@@ -32,5 +32,3 @@ MAB 는 agent 가 취한 action 이 시스템 (또는 환경) 의 state 에 영�
 # D) Related
 
 * [[epsilon-greedy algorithm]]
-
-# E) References

@@ -24,5 +24,3 @@ $$
 $$
 \log(1-P) = -LOG(1 + E^{LOG(ODDS)})
 $$
-
-# B) References

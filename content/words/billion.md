@@ -11,5 +11,3 @@ aliases: []
 # B) Million 과 관계
 
 1 billion 은 1,000 million 이다.
-
-# C) References

@@ -25,7 +25,3 @@ $$
 # B) II. 특징
 
 * $f(-a)=1-f(a)$
-
-# C) III. Related
-
-# D) IV. References

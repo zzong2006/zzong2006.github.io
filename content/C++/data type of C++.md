@@ -13,5 +13,3 @@ aliases: []
 * `long (long int)`: a signed integer type with 32 bits
 * `int64_t`: a signed integer type with 64 bits
 * `vector`
-
-# B) References

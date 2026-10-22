@@ -21,5 +21,3 @@ The flexibility of the LLM method makes it very attractive for cases where you n
 * You don’t have dozens of labelled examples already
 * The classes might change
 * You want the output to be more elaborate than just the class name
-
-# C) References

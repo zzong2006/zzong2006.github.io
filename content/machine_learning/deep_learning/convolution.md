@@ -46,5 +46,3 @@ $$
 # D) 신호처리의 convolution 과의 차이
 
 수학에서 정의하는 convolution 은 filter 를 뒤집어서(flip) 곱한다. 딥러닝 프레임워크가 실제로 계산하는 것은 뒤집지 않는 cross-correlation 인데, filter 값 자체를 학습하므로 뒤집힌 형태를 학습하면 그만이라 결과에 차이가 없다. 관례상 그냥 convolution 이라고 부른다.
-
-# E) References

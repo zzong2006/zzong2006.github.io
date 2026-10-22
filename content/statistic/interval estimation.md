@@ -22,5 +22,3 @@ aliases: [구간 추정]
 표준편차 $\sigma$ 를 알고, 평균값 $\mu$ 를 모를 때, 관측값 $x$ 가 존재할 경우 $\mu$ 에 대한 범위를 95% [[confidence interval]] 으로 구해보자.
 
 $-1.96\le(x-\mu)/\sigma\le1.96$ 를 계산하면 된다.
-
-# D) References

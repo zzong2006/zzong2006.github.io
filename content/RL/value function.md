@@ -62,5 +62,3 @@ optimal action-value function
 $$
 \displaystyle q_{*}(s,a)\doteq\max_{\pi}q_{\pi}(s,a)
 $$
-
-# References

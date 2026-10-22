@@ -16,5 +16,3 @@ $$
 # B) Related
 
 [[expectation]]
-
-# C) References

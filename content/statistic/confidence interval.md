@@ -66,5 +66,3 @@ Coin flip 은 [[statistic/Bernoulli distribution]] 을 따른다. 이로 부터,
 
 * residual standard error
 * [[credible interval]]
-
-# 6. References

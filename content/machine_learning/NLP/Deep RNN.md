@@ -23,5 +23,3 @@ DRNN(Deep RNN) 은 [[Recurrent Neural Network|RNN]] 을 여러 층으로 쌓은 
 $$
 a^{[2]\langle3\rangle}=g(W_{a}^{[2]}[a^{[2]<2>},a^{[1]<3>}]+b_{a}^{[2]})
 $$
-
-# D) References

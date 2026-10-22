@@ -26,5 +26,3 @@ $$
 $$
 
 일반적으로 $m=\max_{c}a_{c}$
-
-# C) References

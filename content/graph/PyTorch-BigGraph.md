@@ -17,8 +17,6 @@ tags:
 * [TransE]()
 * [[Complex Embeddings for Simple Link Prediction|ComplEx]]
 
-# 3. Related
-
 # 4. References
 
 ## 4.1. Links

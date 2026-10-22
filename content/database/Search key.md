@@ -29,5 +29,3 @@ index entry:  [ search key 값 | 레코드 포인터 ]
 sparse index 가 성립하려면 데이터 파일이 search key 순으로 정렬돼 있어야 한다. 그래서 한 테이블에 sparse index 는 하나만 둘 수 있고, 나머지는 [[Secondary Indices]] 로 dense 하게 만든다.
 
 여러 속성을 묶어 search key 로 삼을 수도 있다(composite key). `(성, 이름)` 순서로 만든 인덱스는 성만으로 찾을 때도 쓸 수 있지만, 이름만으로 찾을 때는 쓸 수 없다. 정렬 순서가 앞쪽 속성부터 정해지기 때문이다.
-
-# D) References

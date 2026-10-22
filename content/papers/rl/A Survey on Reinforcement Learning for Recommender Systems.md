@@ -10,8 +10,6 @@ aliases:
 
 # A) Survey on Reinforcement Learning for Recommender Systems ?
 
-# B) Related
-
 # C) References
 
 * paper link: https://arxiv.org/pdf/2109.10665.pdf

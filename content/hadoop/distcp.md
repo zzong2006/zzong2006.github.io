@@ -30,8 +30,6 @@ $ hadoop distcp hdfs:///user/a hdfs:///user/b hdfs:///user/c
 hadoop distcp -m 10 hdfs://source-nn/dir hdfs://target-nn/dir
 ```
 
-# D) Related
-
 # E) References
 
 * [1-DistCp - 빅데이터 - 하둡, 하이브로 시작하기](https://wikidocs.net/25261)

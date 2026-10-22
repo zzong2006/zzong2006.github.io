@@ -38,5 +38,3 @@ aliases:
 SFT 와 RLHF 의 강점을 결합하여 강화 학습 없이 모든 피드백을 활용함으로써 두 방법의 한계를 극복합니다.
 
 우리의 접근 방식은 causual & decoder-only 인 기존 Transformer 모델 아키텍처를 사용합니다. 토큰으로 표현된 텍스트 $\mathbf{x}=\left[x_1, \cdots, x_n\right]$ 가 주어졌을 때, $\mathbf{x}$ 의 log [[likelihood]] 를 자동 회귀적으로 최대화하는 것입니다. CoH 에서는 여러 모델 출력과 피드백을 결합하여 $\mathbf{x}$ 를 구성합니다.
-
-# E) References

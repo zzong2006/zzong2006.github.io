@@ -41,5 +41,3 @@ The `request` object is always the first argument of your handler.
 		* MANY other frameworks allow you to have a return value like this: `return "Hello, world."` or this: `return {"foo": "bar"}`.
 		* But, in order to do this implicit calling, somewhere in the chain needs to spend valuable time trying to determine what you meant.
 		* So, at the expense of this ease, Sanic has decided to require an explicit call.
-
-# References

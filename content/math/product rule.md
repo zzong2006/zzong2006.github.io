@@ -22,5 +22,3 @@ $$
 # Related
 
 * [[sum rule]], [[joint probability]], [[conditional probability]], [[Bayes theorem]]
-
-# References

@@ -23,5 +23,3 @@ aliases: []
 * operator
 	* [[reinterpret_cast]]
 * [[Standard Template Library]]
-
-# C) References

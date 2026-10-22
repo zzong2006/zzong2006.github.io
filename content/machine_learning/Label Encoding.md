@@ -31,5 +31,3 @@ Numerical 데이터로 바꿀 때, 0 이상의 정수를 사용하는 방법을 
 ## Pros
 
 장점: [[machine_learning/NLP/One Hot Encoding]] 에 비해 저장 공간을 적게 필요로 한다.
-
-# C) References

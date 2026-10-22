@@ -19,5 +19,3 @@ orthonormal matrix is a real square matrix whose columns and rows are orthonorma
 # Related
 
 [[norm]]
-
-# References

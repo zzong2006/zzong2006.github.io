@@ -29,5 +29,3 @@ $$
 ## A.2) 단점
 
 policy improvement step 전에 항상 policy evaluation 을 수행해야하므로 높은 계산 비용이 요구된다. 이러한 이슈를 완화하기 위해 [[value iteration]] 알고리즘을 이용할 수 있다.
-
-# B) References

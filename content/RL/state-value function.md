@@ -46,5 +46,3 @@ q_{*}(s, a)=E\left[R_{t+1}+\gamma v_{*}\left(S_{t+1}\right) \mid S_{t}=s, A_{t}=
 $$
 
 ^8111ef
-
-# References

@@ -18,5 +18,3 @@ tags:
 
 1. shuffling
 2. last word(item) prediction
-
-# D) References

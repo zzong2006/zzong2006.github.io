@@ -24,5 +24,3 @@ This definition of entropy regularizer is derived as the differential entropy of
 # References
 
 * [[Contextual Combinatorial Bandit and its Application on Diversified Online Recommendation]]
-
-# References

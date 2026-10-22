@@ -60,5 +60,3 @@ Double Q-Learning 은 이러한 이슈를 해소하기 위한 방법으로, 평�
 # C) Related
 
 * [[value-based method]]
-
-# D) References

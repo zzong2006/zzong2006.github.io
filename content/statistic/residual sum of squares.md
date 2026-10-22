@@ -28,5 +28,3 @@ $$
 # B) Related
 
 [[residual standard error]]
-
-# C) References

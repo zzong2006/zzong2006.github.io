@@ -18,7 +18,3 @@ $$
 $$
 
 For continuous variables, $p(x)=\int p(x,y)dy$
-
-# 3. Related
-
-# 4. References

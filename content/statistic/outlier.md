@@ -37,5 +37,3 @@ These graphs use the interquartile method with fences to find outliers.
 ## B.3) Using Residual Plot
 
 * [[residual plot]]s can be used to identify outliers.
-
-# C) References

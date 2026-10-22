@@ -41,8 +41,6 @@ $$
 		* 해석: exponential 분포에서 random sampling 한 값이 특정 값 $x$ 보다 작은데, 그 확률이 25% 를 만족하는 $x$ 의 값은? $x=-\ln(3/4)/\lambda$
 	* median $(p=2/4)$: $-\ln(1/2)/\lambda$
 
-# 4. Related
-
 # 5. References
 
 * https://stats.stackexchange.com/questions/212813/help-me-understand-the-quantile-inverse-cdf-function

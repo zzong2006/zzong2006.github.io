@@ -41,8 +41,6 @@ This suggests large datasets of supervised examples are no longer necessary for 
 
 # 4. PEGASUS-X
 
-# 5. Related
-
 # 6. References
 
 * Tech Blog: [PEGASUS: A State-of-the-Art Model for Abstractive Text Summarization – Google Research Blog](https://ai.googleblog.com/2020/06/pegasus-state-of-art-model-for.html)

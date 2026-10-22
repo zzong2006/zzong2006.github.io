@@ -31,5 +31,3 @@ def insertionSort(arr):
 	return data
 
  ```
-
-# B) References

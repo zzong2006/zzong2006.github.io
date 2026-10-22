@@ -59,5 +59,3 @@ By default they are visible from other pods and services within the same kuberne
 	* Kubernetes Pods are mortal.
 		* Pods 은 생명 주기를 가지는데, worker node 가 죽으면 node 상에서 동작하는 pod 또한 종료된다.
 		* ReplicaSet 은 application 이 지속적으로 동작할 수 있도록 새로운 pod 를 생성하여 클러스터를 동적으로 미리 지정해 둔 상태로 되돌린다.
-
-# E) References

@@ -18,5 +18,3 @@ Autoregressive decoding은 token을 하나씩 생성한다. 매 step마다 전�
 # C) trade-off
 
 속도는 빨라지지만 sequence length와 batch size가 커질수록 GPU memory를 많이 쓴다. 그래서 vLLM의 PagedAttention처럼 KV Cache를 효율적으로 관리하는 기법이 LLM serving에서 중요해진다.
-
-# References

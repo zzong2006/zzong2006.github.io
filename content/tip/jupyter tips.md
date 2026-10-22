@@ -13,5 +13,3 @@ aliases: []
 %load_ext autoreload
 %autoreload 2
 ```
-
-# B) References
