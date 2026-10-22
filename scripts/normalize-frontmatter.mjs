@@ -72,6 +72,7 @@ function normalizeFrontmatter(text, fallbackTitle) {
   const aliases = []
   let title = null
   let draft = false
+  let tocDisabled = false
   const dates = {}
 
   for (let index = 0; index < fm.length; index += 1) {
@@ -109,6 +110,12 @@ function normalizeFrontmatter(text, fallbackTitle) {
       title = cleanValue(raw)
     }
 
+    // table-of-contents 플러그인이 읽는 키다. 대문처럼 h2 를 섹션 제목으로 쓰지만
+    // 목차가 필요 없는 페이지에서 끈다. 여기서 떨어뜨리면 목차가 다시 생긴다.
+    if (normalizedKey === "enableToc" && cleanValue(raw).toLowerCase() === "false") {
+      tocDisabled = true
+    }
+
     // remove-draft 플러그인이 읽는 키다. 여기서 떨어뜨리면 draft 노트가 그대로 발행된다.
     if (normalizedKey === "draft" && cleanValue(raw).toLowerCase() === "true") {
       draft = true
@@ -133,6 +140,9 @@ function normalizeFrontmatter(text, fallbackTitle) {
 
   if (draft) {
     next.push("draft: true")
+  }
+  if (tocDisabled) {
+    next.push("enableToc: false")
   }
   for (const [key, value] of Object.entries(dates)) {
     next.push(`${key}: ${yamlString(value)}`)
