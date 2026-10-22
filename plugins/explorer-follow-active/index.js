@@ -243,8 +243,11 @@ function buildScript(options) {
         badge.setAttribute("aria-hidden", "true");
         container.appendChild(badge);
       }
-      const text = String(li.querySelectorAll("a.nav-file-title").length);
+      // Resume 처럼 폴더 페이지 하나뿐인 폴더는 0 이 된다. 0 은 빈 폴더로 오해되므로 숨긴다.
+      const count = li.querySelectorAll("a.nav-file-title").length;
+      const text = count > 0 ? String(count) : "";
       if (badge.textContent !== text) badge.textContent = text;
+      badge.hidden = count === 0;
     }
   }
 
