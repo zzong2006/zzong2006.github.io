@@ -24,11 +24,9 @@ leverage post-click feedback (e.g. skips and completions) to improve the trainin
 * skips: 노래나 비디오가 끝나기 전에 건너뛰는 것 -> implicit negative feedback
 * complete: skip 과 반대로, 노래나 비디오 컨텐츠를 끝까지 consume -> implicit positive feedback
 
-# D) IV. Introduction
+# D) Related Work
 
-# E) Related Work
-
-## E.1) Learning from Negative Feedback
+## D.1) Learning from Negative Feedback
 
 * [[A study of methods for negative relevance feedback]]
 	* s

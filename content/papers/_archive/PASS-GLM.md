@@ -17,5 +17,3 @@ aliases: []
 실험적으로도 [[statistic/MCMC approximation|MCMC]] 나 [[stochastic gradient descent|SGD]] 그리고 [[Laplace approximation]] 보다 속도나 정확도 면에서 우위임을 보였다.
 
 # B) Background
-
-## B.1) Generalized Linear Models

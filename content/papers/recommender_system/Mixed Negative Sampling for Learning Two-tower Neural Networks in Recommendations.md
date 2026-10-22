@@ -19,8 +19,6 @@ NLP 에서 dual encoder 로 불리는 two-tower 신경망 framework 를 어떻�
 
 실험적으로 MNS 가 다른 sampling 전략보다 우수하다는 것을 보임
 
-# B) Modeling Framework
-
-# C) References
+# B) References
 
 * paper link: https://research.google/pubs/pub50257/

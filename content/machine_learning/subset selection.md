@@ -8,15 +8,11 @@ aliases: []
 
 $p$ 개의 변수들 (predictors) 중 일부를 고려한 예측 모델들의 집합을 만들어 놓고, 가장 좋은 모델을 선택하는 방법
 
-## A.1) Best Subset Selection
+## A.1) Stepwise Selection
 
-## A.2) Stepwise Selection
-
-### A.2.1) Forward Stepwise Selection
+### A.1.1) Forward Stepwise Selection
 
 Forward stepwise selection is a computationally eﬃcient alternative to best subset selection.
-
-### A.2.2) Backward Stepwise Selection
 
 # B) Choosing the Optimal Model
 

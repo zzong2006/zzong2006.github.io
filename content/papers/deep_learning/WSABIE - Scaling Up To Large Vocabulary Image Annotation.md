@@ -71,9 +71,7 @@ $L(k)=\sum_{j=1}^{k}\alpha_j$, 여기서 $\alpha_1 \geq \alpha_2 \geq … \geq 0
 
 WSABIE 는 이러한 구조를 통해 대규모 데이터에서도 효율적으로 작동하며, 특히 빠른 연산 속도와 적은 메모리 소모가 중요한 상황에서 유용한 솔루션입니다.
 
-# B) WSAB
-
-# C) Online WARP Loss Optimization
+# B) Online WARP Loss Optimization
 
 ![|500](https://i.imgur.com/yWyXjUB.png)
 
@@ -95,6 +93,6 @@ WSABIE 는 이러한 구조를 통해 대규모 데이터에서도 효율적으�
 		* 반대로 많은 sampling 끝에 violating example 을 찾았다면, small update 를 진행한다.
 			* 이 뜻은 학습하는 모델이 optimum 에 가까워졌기 때문에 low rate 로 update 되야 함을 의미하기 때문이다.
 
-# D) References
+# C) References
 
 * Paper link: http://www.thespermwhale.com/jaseweston/papers/wsabie-ijcai.pdf

@@ -62,9 +62,7 @@ Repeat {
 }
 ```
 
-# B) Bias Correction
-
-# C) Gradient Descent with Momentum
+# B) Gradient Descent with Momentum
 
 ![[img-3867199247.png|image-20201028235419492]]
 
@@ -74,7 +72,7 @@ Repeat {
   * $\beta=0$ 일 경우, 일반적인 gradient descent 와 같다 (no momentum).
 * $v_{dW} = 0, v_{db} =0$
 
-## C.1) 왜 Momentum 이 먹히는 걸까?
+## B.1) 왜 Momentum 이 먹히는 걸까?
 
 ![[img-a3c046ae79.png|image-20201029000002902]]
 
@@ -86,7 +84,7 @@ Momentum 은 최근 gradient 의 경향을 알고있다. 즉, 학습하면 할�
 
 간단히 생각하면, 업데이트 하려는 방향으로 관성 또는 가속도를 넣어주고 있는 것이라 생각하면 된다.
 
-# D) RMS(Root Mean Square)prop
+# C) RMS(Root Mean Square)prop
 
 $$
 \begin{array}{l}
@@ -112,7 +110,7 @@ momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가�
 
 <img src="https://i.loli.net/2020/10/29/1lSyaGKLZxrHdBV.gif" alt="image" style="zoom: 67%;" />
 
-# E) Adam
+# D) Adam
 
 지금까지 배운 모든것을 적용하는 학습 알고리즘이다. 이 학습 알고리즘은 매우 효율적이다.
 
@@ -123,7 +121,7 @@ momentum 은 gradient 를 통해 학습하려는 방향에 관성값을 추가�
 * 여기서 $m_t$ 는 momentum, $v_t$ 는 RMSprop 에 관련된 variable 이라는 것을 알 수 있다.
 * 일반적으로 $\beta_1$ 은 0.9, 그리고 $\beta_2$ 는 0.999, $\epsilon =10^{-8}$ 로 default 값을 가진다.
 
-# F) Learning Rate Decay
+# E) Learning Rate Decay
 
 학습을 수행하면서 epoch 가 증가할수록, 학습률 $\alpha$ 값을 낮추는 방법이 존재한다.
 
@@ -136,7 +134,7 @@ $$
 * $\gamma$ 는 decay rate 이고, $num$ 은 epoch 의 개수, 그리고 $\alpha_0$ 는 초기 학습률을 의미한다.
 * 학습을 반복할수록 $\alpha$ 값이 감소한다.
 
-## F.1) Exponential Decay
+## E.1) Exponential Decay
 
 수동적인 방법이다. 거의 사용하지 않는듯하다.
 
@@ -146,7 +144,7 @@ $$
 
 일반적으로 learning rate decay 는 거의 마지막에 고려되는 방법이라고 한다.
 
-# G) Local Optima in Neural Networks
+# F) Local Optima in Neural Networks
 
 ![[img-9981d3b099.png|image-20201029014248130]]
 

@@ -39,8 +39,6 @@ literal value 로 column 을 생성할 때 사용한다. dataframe 에 없고 �
 +--------+--------+
 ```
 
-## Coalesce
-
 ## Fillna
 
 결측치를 특정 값으로 채운다. `subset` 옵션을 통해 특정 column 에 동작하도록 설정할 수 있다.

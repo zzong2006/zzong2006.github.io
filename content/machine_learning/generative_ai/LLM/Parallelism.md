@@ -22,13 +22,11 @@ PipelineParallel 은 모델을 층 단위로 나누어 각 층 또는 몇 개의
 
 ZeRO 는 TensorParallel 과 유사하게 텐서를 샤딩 (sharding) 하지만, 차이점은 순방향 (forward) 또는 역방향 (backward) 계산 시 전체 텐서가 재구성된다는 점입니다. 따라서 모델 구조를 변경할 필요 없이 사용할 수 있습니다. 또한 제한된 GPU 메모리를 보완하기 위한 다양한 오프로드 (offloading) 기술도 지원합니다.
 
-# B) Data Parallelism
-
-# C) 병렬 처리
+# B) 병렬 처리
 
 대부분의 소수 GPU 를 사용하는 사용자들은 `DistributedDataParallel`(DDP) 방식에 익숙할 것입니다. 이 방법은 모델을 각 GPU 에 완전히 복제한 후, 매 반복 (iteration) 마다 모든 모델이 서로 상태를 동기화하는 방식입니다. 이를 통해 학습 속도를 높일 수 있지만, 이 방법은 모델이 단일 GPU 에 적합할 때만 효과적입니다.
 
-## C.1) ZeRO Data Parallelism
+## B.1) ZeRO Data Parallelism
 
 ZeRO-powered data parallelism (ZeRO-DP) is described on the following diagram from this [blog post](https://www.microsoft.com/en-us/research/blog/zero-deepspeed-new-system-optimizations-enable-training-models-with-over-100-billion-parameters/)[![[img-526c3a01f3.png|DeepSpeed-Image-1]]](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/parallelism-zero.png)
 
@@ -38,7 +36,7 @@ ZeRO-powered data parallelism (ZeRO-DP) is described on the following diagram fr
 
 이 기능은 DeepSpeed 에서 구현되었습니다.
 
-# D) [](https://huggingface.co/blog/bloom-megatron-deepspeed#tensor-parallelism)Tensor Parallelism
+# C) [](https://huggingface.co/blog/bloom-megatron-deepspeed#tensor-parallelism)Tensor Parallelism
 
 In Tensor Parallelism (TP) each GPU processes only a slice of a tensor and only aggregates the full tensor for operations that require the whole thing.
 
@@ -62,7 +60,7 @@ Special considerations: Due to the two all reduces per layer in both the forward
 
 This component is implemented by Megatron-LM. Megatron-LM has recently expanded tensor parallelism to include sequence parallelism that splits the operations that cannot be split as above, such as LayerNorm, along the sequence dimension. The paper [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/abs/2205.05198) provides details for this technique. Sequence parallelism was developed after BLOOM was trained so not used in the BLOOM training.
 
-# E) 파이프라인 병렬 처리 (Pipeline Parallelism)
+# D) 파이프라인 병렬 처리 (Pipeline Parallelism)
 
 Naive Pipeline Parallelism(naive PP) 은 모델의 여러 층을 여러 GPU 에 분산시키고, 데이터를 각 GPU 로 순차적으로 이동시키는 방식입니다. 마치 하나의 큰 GPU 처럼 작동하는 것처럼 보이죠. 이 메커니즘은 비교적 간단합니다. 원하는 층을 `.to()` 명령어를 사용해 특정 장치로 전환하면, 데이터가 해당 층을 통과할 때마다 자동으로 그 장치로 이동하게 됩니다. 나머지 부분은 수정하지 않아도 됩니다.
 
@@ -116,7 +114,7 @@ While both Megatron-LM and DeepSpeed have their own implementation of the PP pro
 
 One other important issue here is the size of the word embedding matrix. While normally a word embedding matrix consumes less memory than the transformer block, in our case with a huge 250k vocabulary, the embedding layer needed 7.2GB in bf16 weights and the transformer block is just 4.9GB. Therefore, we had to instruct Megatron-Deepspeed to consider the embedding layer as a transformer block. So we had a pipeline of 72 layers, 2 of which were dedicated to the embedding (first and last). This allowed to balance out the GPU memory consumption. If we didn’t do it, we would have had the first and the last stages consume most of the GPU memory, and 95% of GPUs would be using much less memory and thus the training would be far from being efficient.
 
-# F) [](https://huggingface.co/blog/bloom-megatron-deepspeed#dppp)DP+PP
+# E) [](https://huggingface.co/blog/bloom-megatron-deepspeed#dppp)DP+PP
 
 The following diagram from the DeepSpeed [pipeline tutorial](https://www.deepspeed.ai/tutorials/pipeline/) demonstrates how one combines DP with PP.
 
@@ -126,7 +124,7 @@ Here it’s important to see how DP rank 0 doesn’t see GPU2 and DP rank 1 does
 
 Since each dimension requires at least 2 GPUs, here you’d need at least 4 GPUs.
 
-# G) [](https://huggingface.co/blog/bloom-megatron-deepspeed#dppptp)DP+PP+TP
+# F) [](https://huggingface.co/blog/bloom-megatron-deepspeed#dppptp)DP+PP+TP
 
 To get an even more efficient training PP is combined with TP and DP which is called 3D parallelism. This can be seen in the following diagram.
 
@@ -136,7 +134,7 @@ This diagram is from a blog post [3D parallelism: Scaling to trillion-parameter
 
 Since each dimension requires at least 2 GPUs, here you’d need at least 8 GPUs for full 3D parallelism.
 
-# H) [](https://huggingface.co/blog/bloom-megatron-deepspeed#zero-dppptp)ZeRO DP+PP+TP
+# G) [](https://huggingface.co/blog/bloom-megatron-deepspeed#zero-dppptp)ZeRO DP+PP+TP
 
 One of the main features of DeepSpeed is ZeRO, which is a super-scalable extension of DP. It has already been discussed in [ZeRO Data Parallelism](https://huggingface.co/blog/bloom-megatron-deepspeed#zero-data-parallelism). Normally it’s a standalone feature that doesn’t require PP or TP. But it can be combined with PP and TP.
 
@@ -148,7 +146,7 @@ In addition, there are already fewer layers than normal due to PP and so the mem
 
 ZeRO stage 3 can also be used to train models at this scale, however, it requires more communication than the DeepSpeed 3D parallel implementation. After careful evaluation in our environment which happened a year ago we found Megatron-DeepSpeed 3D parallelism performed best. Since then ZeRO stage 3 performance has dramatically improved and if we were to evaluate it today perhaps we would have chosen stage 3 instead.
 
-# I) [](https://huggingface.co/blog/bloom-megatron-deepspeed#bf16optimizer)BF16Optimizer
+# H) [](https://huggingface.co/blog/bloom-megatron-deepspeed#bf16optimizer)BF16Optimizer
 
 Training huge LLM models in FP16 is a no-no.
 
@@ -176,7 +174,7 @@ Besides other improvements we believe that using BF16 mixed precision training t
 
 [![[img-4ffd37ffb1.png|176B-fail]]](https://huggingface.co/blog/assets/86_bloom_megatron_deepspeed/176b-lm-loss.png)
 
-# J) [](https://huggingface.co/blog/bloom-megatron-deepspeed#fused-cuda-kernels)Fused CUDA Kernels
+# I) [](https://huggingface.co/blog/bloom-megatron-deepspeed#fused-cuda-kernels)Fused CUDA Kernels
 
 The GPU performs two things. It can copy data to/from memory and perform computations on that data. While the GPU is busy copying the GPU’s computations units idle. If we want to efficiently utilize the GPU we want to minimize the idle time.
 
@@ -190,21 +188,21 @@ Fused kernels are just that. Primarily they replace multiple discrete computatio
 
 To train BLOOM fast and efficiently it was necessary to use several custom fused CUDA kernels provided by Megatron-LM. In particular there is an optimized kernel to perform LayerNorm as well as kernels to fuse various combinations of the scaling, masking, and softmax operations. The addition of a bias term is also fused with the GeLU operation using PyTorch’s JIT functionality. These operations are all memory bound, so it is important to fuse them to maximize the amount of computation done once a value has been retrieved from memory. So, for example, adding the bias term while already doing the memory bound GeLU operation adds no additional time. These kernels are all available in the [Megatron-LM repository](https://github.com/NVIDIA/Megatron-LM).
 
-# K) [](https://huggingface.co/blog/bloom-megatron-deepspeed#datasets)Datasets
+# J) [](https://huggingface.co/blog/bloom-megatron-deepspeed#datasets)Datasets
 
 Another important feature from Megatron-LM is the efficient data loader. During start up of the initial training each data set is split into samples of the requested sequence length (2048 for BLOOM) and index is created to number each sample. Based on the training parameters the number of epochs for a dataset is calculated and an ordering for that many epochs is created and then shuffled. For example, if a dataset has 10 samples and should be gone through twice, the system first lays out the samples indices in order `[0, …, 9, 0, …, 9]` and then shuffles that order to create the final global order for the dataset. Notice that this means that training will not simply go through the entire dataset and then repeat, it is possible to see the same sample twice before seeing another sample at all, but at the end of training the model will have seen each sample twice. This helps ensure a smooth training curve through the entire training process. These indices, including the offsets into the base dataset of each sample, are saved to a file to avoid recomputing them each time a training process is started. Several of these datasets can then be blended with varying weights into the final data seen by the training process.
 
-# L) [](https://huggingface.co/blog/bloom-megatron-deepspeed#embedding-layernorm)Embedding LayerNorm
+# K) [](https://huggingface.co/blog/bloom-megatron-deepspeed#embedding-layernorm)Embedding LayerNorm
 
 While we were fighting with trying to stop 104B from diverging we discovered that adding an additional LayerNorm right after the first word embedding made the training much more stable.
 
 This insight came from experimenting with [bitsandbytes](https://github.com/facebookresearch/bitsandbytes) which contains a `StableEmbedding` which is a normal Embedding with layernorm and it uses a uniform xavier initialization.
 
-# M) [](https://huggingface.co/blog/bloom-megatron-deepspeed#positional-encoding)Positional Encoding
+# L) [](https://huggingface.co/blog/bloom-megatron-deepspeed#positional-encoding)Positional Encoding
 
 We also replaced the usual positional embedding with an AliBi - based on the paper: [Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation](https://arxiv.org/abs/2108.12409), which allows to extrapolate for longer input sequences than the ones the model was trained on. So even though we train on sequences with length 2048 the model can also deal with much longer sequences during inference.
 
-# N) [](https://huggingface.co/blog/bloom-megatron-deepspeed#training-difficulties)Training Difficulties
+# M) [](https://huggingface.co/blog/bloom-megatron-deepspeed#training-difficulties)Training Difficulties
 
 With the architecture, hardware and software in place we were able to start training in early March 2022. However, it was not just smooth sailing from there. In this section we discuss some of the main hurdles we encountered.
 
@@ -220,7 +218,7 @@ One other issue was that SLURM wasn’t designed to be used by a team of people.
 
 As the training was happening 24/7 we needed someone to be on call - but since we had people both in Europe and West Coast Canada overall there was no need for someone to carry a pager, we would just overlap nicely. Of course, someone had to watch the training on the weekends as well. We automated most things, including recovery from hardware crashes, but sometimes a human intervention was needed as well.
 
-# O) [](https://huggingface.co/blog/bloom-megatron-deepspeed#conclusion)Conclusion
+# N) [](https://huggingface.co/blog/bloom-megatron-deepspeed#conclusion)Conclusion
 
 The most difficult and intense part of the training was the 2 months leading to the start of the training. We were under a lot of pressure to start training ASAP, since the resources allocation was limited in time and we didn’t have access to A100s until the very last moment. So it was a very difficult time, considering that the `BF16Optimizer` was written in the last moment and we needed to debug it and fix various bugs. And as explained in the previous section we discovered new problems that manifested themselves only once we started training on 48 nodes, and won’t appear at small scale.
 

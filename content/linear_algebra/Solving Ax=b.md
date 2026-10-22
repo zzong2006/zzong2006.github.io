@@ -41,5 +41,3 @@ $$
 $$
 
 보다시피 $A$ 의 nullspace 는 $\mathbb{R}^{4}$ 에 대한 2 차원 [[subspace]] 이다. 그리고 $A \mathbf{x}=\mathbf{b}$ 에 대한 모든 solution 들은 $x_{p}$ 를 통과하는 plane 에 평행한 plane 을 나타낸다.
-
-# 3. Complete Solution

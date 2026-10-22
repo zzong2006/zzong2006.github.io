@@ -23,8 +23,6 @@ Inverse transform sampling 는 어떤 확률 분포에서 해당 분포의 inver
 
 이 방법은 분포에 따라 실용성이 나뉘는데, [[exponential distribution]] 의 경우 쉽지만, [[Gaussian distribution]] 의 경우 inverse 함수를 구하기 어렵다.
 
-## B.2) 이산 분포
-
 # C) References
 
 * https://stephens999.github.io/fiveMinuteStats/inverse_transform_sampling.html

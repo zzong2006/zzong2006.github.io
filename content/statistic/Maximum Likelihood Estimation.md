@@ -76,8 +76,6 @@ $$
 \hat{\boldsymbol{w}}_{\mathrm{mle}}\triangleq\underset{\boldsymbol{w}}{\operatorname{argmin}}\operatorname{RSS}(\boldsymbol{w})=\left(\mathbf{X}^{\top}\mathbf{X}\right)^{-1}\mathbf{X}^{\top}\boldsymbol{y}
 $$
 
-## D.1) The variance of the MLE
-
 # E) Related
 
 [[Bayes theorem]]

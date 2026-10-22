@@ -23,8 +23,6 @@ $$
 
 * 읽다가 졸려서 못 읽겠어..
 
-## B.1. Joto Matthe
-
 # D. References
 
 * https://www.deeplearning.ai/ai-notes/initialization/

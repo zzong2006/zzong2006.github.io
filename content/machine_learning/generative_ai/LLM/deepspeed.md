@@ -46,13 +46,11 @@ ZeRO-2 는 기존 ZeRO-1 보다 더 큰 모델을 학습할 수 있도록 설계
 
 [[Megatron-LM]] 은 tensor-slicing model parallelism 를 사용한다. Megatron-LM 의 tensor-slicing model parallelism 에 DeepSpeed ZeRO-2 의 data parallelism 을 추가하면 DeepSpeed 가 Megatron-LM 보다 10x 더 빠르다.
 
-# F) ZeRO
-
-# G) Zero2
+# F) Zero2
 
 [zero2-bf16.yaml](https://github.com/CarperAI/trlx/blob/main/configs/accelerate/zero2-bf16.yaml)
 
-# H) DeepSpeed ZeRO: 메모리 최적화 기법
+# G) DeepSpeed ZeRO: 메모리 최적화 기법
 
 ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 상황에서 발생하는 메모리 중복을 제거**하여 각 GPU의 메모리 부담을 획기적으로 줄이는 기술입니다. 훈련에 필요한 구성요소(모델 파라미터, 그래디언트, 옵티마이저 상태)를 여러 GPU에 분산하여 저장하는 방식입니다.
 
@@ -64,7 +62,7 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 
 ---
 
-# I) 모델 병렬 처리 기법
+# H) 모델 병렬 처리 기법
 
 모델 병렬 처리는 **모델 자체가 너무 커서 단일 GPU에 올라가지 않을 때, 모델을 여러 GPU로 분할**하는 기술입니다.
 
@@ -80,7 +78,7 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 
 ---
 
-### I.1.1) 기술들의 조합: 어떻게 함께 사용되는가?
+### H.1.1) 기술들의 조합: 어떻게 함께 사용되는가?
 
 현대의 초거대 모델 훈련은 위 기술들을 복합적으로 사용합니다.
 
@@ -98,7 +96,7 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 
 결론적으로, 초거대 모델은 **데이터 병렬(DP) + 파이프라인 병렬(PP) + 텐서 병렬(TP) + 시퀀스 병렬(SP)** 을 모두 조합하고, 여기에 **ZeRO**를 더해 각 GPU의 메모리 효율을 극대화하는 방식으로 훈련됩니다. 이를 **3D Parallelism (+ZeRO)** 이라고도 부릅니다.
 
-## I.2) ZeRO-3 Vs 텐서 병렬(TP) 비교
+## H.2) ZeRO-3 Vs 텐서 병렬(TP) 비교
 
  **ZeRO-3와 TP는 같지 않습니다.**
 
@@ -119,7 +117,7 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 
 ---
 
-### I.2.1) 비유를 통한 이해
+### H.2.1) 비유를 통한 이해
 
 * **ZeRO-3**: **공용 창고와 개인 작업대**
 	
@@ -141,7 +139,7 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 		
 	* 핵심은 '하나의 일을 동시에 나눠서 처리'하는 것입니다.
 
-### I.2.2) 결론: 어떻게 함께 사용되는가?
+### H.2.2) 결론: 어떻게 함께 사용되는가?
 
 현대의 초거대 모델 훈련에서는 이 둘을 **함께 사용합니다.**
 
@@ -153,6 +151,6 @@ ZeRO(Zero Redundancy Optimizer)는 **데이터 병렬 처리(Data Parallelism) 
 
 즉, **TP로 모델의 '너비'를 줄이고, ZeRO-3로 '메모리 사용량'을 최적화**하는, 상호 보완적인 관계로 함께 활용됩니다.
 
-# J) References
+# I) References
 
 * [The Technology Behind BLOOM Training](https://huggingface.co/blog/bloom-megatron-deepspeed)

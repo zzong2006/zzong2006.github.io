@@ -52,11 +52,7 @@ aliases: []
 * 매우 challenging 하지만, 새로운 하드웨어가 나오는 이상 피할수 없다.
 	* new architecture will need to be optimized for common hardware, and hardware will need to support common architecture
 
-## A.4) Agent 를 더 유용하게
-
-## A.5) 사용자 선호도로 부터 학습하기
-
-## A.6) 비 영어권 LLM 모델 만들기
+## A.4) 비 영어권 LLM 모델 만들기
 
 * 영어 기반 LLM 모델에서 비 영어는 영어보다 성능과 속도 모두 취약하다.
 	* 예를 들어, ChatGPT 토크나이저에서는 평균적으로 한국어보다 약 2.2 배 정도 더 많은 토큰이 필요하다 ([All languages are NOT created (tokenized) equal](https://blog.yenniejun.com/p/all-languages-are-not-created-tokenized)).

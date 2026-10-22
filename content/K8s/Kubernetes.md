@@ -21,9 +21,7 @@ Containerization helps package software to serve these goals, enabling applicati
 * 따로 Internal API 가 존재하지 않고, 모든 API 가 열려있어서 개발자들이 이를 활용해 자동화할 수 있음
 	* OpenAI Spec 을 지원: `kubectl get --raw /openapi/v2` 를 통해서 OpenAPI spec 을 얻을 수있음
 
-# C) Lesson Learned
-
-# D) Related
+# C) Related
 
  * [[Kubernetes Master]]
  * [[cluster(Kubernetes)]]

@@ -34,8 +34,6 @@ awaitable object 는 세 개가 존재한다: coroutines, Tasks, 그리고 Futur
 
 tasks 는 코루틴을 동시에 스케쥴링하기 위해 사용된다.
 
-## Future
-
 # References
 
 https://docs.python.org/3.10/library/asyncio-task.html

@@ -13,8 +13,6 @@ Here are the commonly used floating point data types choice of which impacts bot
 * bf16 (`bfloat16`)
 * tf32 (CUDA internal data type)
 
-# 2. `fp16`
-
 # 4. References
 
 * [Performance and Scalability: How To Fit a Bigger Model and Train It Faster](https://huggingface.co/docs/transformers/v4.15.0/performance)

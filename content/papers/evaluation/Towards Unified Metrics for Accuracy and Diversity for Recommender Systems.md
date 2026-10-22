@@ -237,15 +237,11 @@ $$
 
 이상적인 ranking 상태에서 top 과 bottom 아이템을 swap 하는 경우 성능이 떨어진다. 점진적으로 swap 을 진행하는 경우, 성능이 더 떨어질 것이다. 제안한 metric 이 이렇게 swap 된 결과에서 성능 감소를 잘 감지할 수 있는지 여부를 확인한다.
 
-### 1-2) Swapping Items from Redundant Aspect
-
 ## 2) Discriminative Power
 
 좋은 metric 은 성능이 유의미하게 다른 정도를 검증을 통해 쉽게 찾아낼 수 있어야 한다.
 
 추천 결과에 distortion 을 주면, 통계적 검증을 통해 추천 결과의 하락 정도를 얼마나 유의미하게 검증할 수 있는지 metric 마다 확인.
-
-## 3) Robustness to Incompleteness
 
 # 대조군 Metrics
 
@@ -260,11 +256,3 @@ $$
 $$
 
 위 식에서 $d_i$ 는 document 를 의미하며, $n$ 은 가능한 전체 subtopics 을 의미한다.
-
-### S-RR
-
-### NRBP
-
-### RBU
-
-### EU

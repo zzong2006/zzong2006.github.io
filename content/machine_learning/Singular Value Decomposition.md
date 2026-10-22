@@ -122,8 +122,6 @@ $$
 
 왼쪽 $A$ 는 사용자 row 에 따른 영화 column 의 평가가 저장된 matrix 다. 이를 SVD 하게 되면, 오른쪽과 같은 matrices 들이 나오는데, 보다시피 $U$ 는 사용자에 대한 latent vector 를 의미하고, $V$ 는 영화에 대한 latent vector, 그리고 $\Sigma$ 는 latent vector 에 대한 정보량을 나타낸다고 볼 수 있다.
 
-# D) Asymmetric SVD
-
-# E) Related
+# D) Related
 
 [[Latent Semantic Analysis]]

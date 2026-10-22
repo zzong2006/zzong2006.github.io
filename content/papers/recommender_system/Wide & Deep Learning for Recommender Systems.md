@@ -9,19 +9,17 @@ tags:
   - recommendation_system
 ---
 
-# A) Abstract
-
-# B) Introduction
+# A) Introduction
 
 A wide linear model and a deep neural network are trained together to both memorize and generalize a recommendation systems.
 
-## B.1) The Spectrum of Wide & Deep Models
+## A.1) The Spectrum of Wide & Deep Models
 
 ![[img-153dc25dea.png]]
 
 * Wide linear model 은 cross-product feature 변환을 활용하여 이미 관찰한 상호작용의 feature 를 memorize 한다.
 * deep models 은 이전에 관찰하지 못한 상호작용에 대한 feature 를 저차원 임베딩을 통해 generalize 한다.
 
-# C) References
+# B) References
 
 * [paper link](https://arxiv.org/abs/1606.07792)

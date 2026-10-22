@@ -16,8 +16,6 @@ $$
 I(\boldsymbol{\theta})=\operatorname{Var}\left(\frac{\partial}{\partial \boldsymbol{\theta}} \ell(\boldsymbol{\theta} \mid \boldsymbol{y})\right)
 $$
 
-# B) 피셔 정보에서 Variance 의 의미
-
-# C) References
+# B) References
 
 * https://towardsdatascience.com/an-intuitive-look-at-fisher-information-2720c40867d8

@@ -17,5 +17,3 @@ $V$ 가 벡터 공간이고 $U \subseteq V$ 는 $V$ 의 [[subspace]] 라고 하�
 linear mapping 은 transformation matrix 에 의해 표현될 수 있으므로, projection matrices $\boldsymbol{P}_{\pi}$ 를 정의할 수 있다.
 
 이 행렬은 다음과 같은 특징을 지닌다: $\boldsymbol{P}_{\pi}^{2}=\boldsymbol{P}_{\pi}$
-
-# 1 차원 Subspaces 으로 Projection (Lines)

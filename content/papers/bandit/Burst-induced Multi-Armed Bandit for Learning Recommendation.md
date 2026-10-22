@@ -73,33 +73,31 @@ tags:
 
 		* 
 
-## C.2) Burst-induced Multi-Armed Bandit for Learning Recommendation
-
-## C.3) 초록 (ABSTRACT)
+## C.2) 초록 (ABSTRACT)
 
 본 논문에서 다루는 문제는 [[non-stationary]] 하고 context-free 한 [[Multi-Armed Bandit]] 문제입니다. 이는 유저나 아이템에 대한 어떠한 정보도 없는 상황을 가정합니다.
 
-## C.4) 서론 (Introduction)
+## C.3) 서론 (Introduction)
 
-### C.4.1) 사용자 행동 유형
+### C.3.1) 사용자 행동 유형
 
 사용자의 행동은 크게 두 가지 형태로 구분할 수 있습니다: loyal(충성적인) 과 curious(호기심 많은) 유형입니다.
 
-### C.4.2) 기존 연구와의 비교
+### C.3.2) 기존 연구와의 비교
 
 * **context-free** 방식은 관측된 보상만을 활용합니다.
 * **context-aware** 방식은 유저 또는 아이템의 특성을 필요로 합니다.
 * 기존 연구들은 보상의 분포에 영향을 미치는 audience(user) 의 curiosity 를 고려하지 않았습니다.
 * 본 논문에서는 추천 환경이 서로 다른 두 가지 상태 (loyal, curious) 로 나뉘어 있다고 가정하며, 이를 두 개의 [[Poisson point process]] mixture 로 모델링하여 상태를 표현합니다.
 
-#### C.4.2.1) 관련 연구 (Related Work)
+#### C.3.2.1) 관련 연구 (Related Work)
 
 * **non-stationary MAB**
 	* 대표적인 두 가지 클래스가 존재합니다: adversarial MAB 와 piece-wise stationary MAB
 		* *adversarial MAB*: 적대자가 payoff 생성을 제어하는 경우
 		* *piece-wise stationary MAB*: 특정 시간 구간 내에서 reward 생성이 stationary 인 경우
 
-#### C.4.2.2) 문제 정의 (Problem Formulation)
+#### C.3.2.2) 문제 정의 (Problem Formulation)
 
 * 두 개의 stochastic point process 를 혼합하여 모델링합니다.
 	* **homogeneous Poisson process (HPP)**: intensity $\lambda(t)=\lambda_{L}$
@@ -114,23 +112,23 @@ tags:
 	* $s(t)=1$: bursty
 	* 보다 정확하게는, $s(t)\equiv\max\left(i\mid m_i\leq t\right)\bmod2$
 
-### C.4.3) Burst-induced MAB
+### C.3.3) Burst-induced MAB
 
-#### C.4.3.1) [[Thompson sampling]]
+#### C.3.3.1) [[Thompson sampling]]
 
 * TS 알고리즘은 stationary stochastic MAB 문제에서 널리 사용되는 방법입니다.
 	* Remark 1: 탐색 (exploration) 을 확률적으로 해결합니다.
 	* Remark 2: arm $a$ 에 대한 beta 분포 파라미터가 $\alpha=\beta=1$ 일 때, $\theta\sim Uniform(0, 1)$ 분포를 따릅니다.
 
-#### C.4.3.2) BMAB (Burst-induced Multi-Armed Bandit) 알고리즘
+#### C.3.3.2) BMAB (Burst-induced Multi-Armed Bandit) 알고리즘
 
 * 각 arm($K$ 개) 에 대해 두 개의 상태 (loyal & curious) 에 각각 beta 분포 (prior & posterior) 를 따로 유지합니다.
 	* $\alpha_0,\ \beta_0 \in \mathbb{R}^K$, $\alpha_1,\ \beta_1 \in \mathbb{R}^K$
 * ![[img-86a22a014b.png]]
 
-#### C.4.3.3) 현실적인 상태 판별 (state detector)
+#### C.3.3.3) 현실적인 상태 판별 (state detector)
 
-##### C.4.3.3.1) Notation
+##### C.3.3.3.1) Notation
 
 * 타임스탬프 집합의 윈도우 크기:
   $\Delta_i = t_i - t_{i-\Delta+1}$
@@ -147,7 +145,7 @@ $$
    여기서 Gamma 분포 $X$는 shape이 $\mu$, scale이 $\rho$
    실험에서는 $\delta=0.95$로 설정함.
 
-##### C.4.3.3.2) 이벤트 State 판별을 위한 [[hypothesis test]]
+##### C.3.3.3.2) 이벤트 State 판별을 위한 [[hypothesis test]]
 특정 시점($t_i$)에 발생한 이벤트가 어떤 state인지 판단하기 위해서는 다음과 같은 검정을 수행합니다:
 
 타임스탬프 집합  

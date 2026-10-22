@@ -16,8 +16,6 @@ $$
 
 ![|600](https://i.imgur.com/donecPI.png)
 
-# Nonlinear Conjugate Gradients
-
 # References
 
 * [[deep learning book]] - 8.6.2 Conjugate Gradients

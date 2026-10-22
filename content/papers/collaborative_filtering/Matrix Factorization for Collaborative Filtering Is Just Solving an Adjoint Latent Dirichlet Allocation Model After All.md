@@ -7,8 +7,6 @@ tags:
   - recommendation_system
 ---
 
-# Abstract
-
 # Conclusion
 
 LDA4Rec model, which extends the traditional LDA by incorporating parameters for the popularity of items and conformity of users.
