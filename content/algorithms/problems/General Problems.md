@@ -263,3 +263,6 @@ https://www.acmicpc.net/problem/2422
 		* First we create a [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) (CDF for short)
 		* Get inverse of CDF ($y=x$)
 		* The resulting function can be applied to a random value between 0 and 1
+* [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
+	* 처음엔 전부 만들고 검사하려 했는데, 백트래킹으로 갈림길을 독립된 `if` 두 개로 쓰는 게 핵심이었다.
+	* 풀이 세 가지와 시행착오는 [[Generate Parentheses]] 에 정리했다.
