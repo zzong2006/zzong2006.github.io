@@ -104,4 +104,4 @@ enableToc: false
 > - [[data_engineering/Kafka|Kafka]]
 > - [[database/Redis|Redis]]
 >
-> [[server/index|서버]] · [[K8s/index|쿠버네티스]] · [[data_engineering/index|데이터 엔지니어링]] · [[database/index|데이터베이스]]
+> [[server/index|서버]] · [[K8s/index|K8s]] · [[data_engineering/index|데이터 엔지니어링]] · [[database/index|DB]]

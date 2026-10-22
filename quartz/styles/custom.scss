@@ -524,6 +524,21 @@ body[data-slug="index"] {
     border-top: 0;
   }
 
+  // 최근 노트는 본문(article) 밖이라 아래 칩 제거 규칙이 닿지 않는다. 따로 걷는다.
+  .recent-updated-notes__link {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .recent-updated-notes__list {
+    gap: 0;
+  }
+
+  .recent-updated-notes__item {
+    gap: 0.1rem;
+    padding: 0.55rem 0;
+  }
+
   article a.internal {
     background-color: transparent;
     padding: 0;
@@ -636,8 +651,25 @@ body[data-slug="index"] {
       font-size: 0.85rem;
     }
 
-    & > .callout-content > p:last-child a.internal::after {
+    // 링크가 하나뿐인 '전체 보기' 줄에만 화살표를 붙인다.
+    // 여러 폴더를 나열한 줄에 다 붙이면 화살표가 가운뎃점과 섞여 줄바꿈이 어색했다.
+    & > .callout-content > p:last-child a.internal:only-of-type::after {
       content: " →";
+    }
+  }
+
+  // 휴대폰에서는 카드가 한 줄에 하나라 세로로 길어진다. 예시 링크를 옆으로 흘려 높이를 줄인다.
+  @media all and (max-width: 800px) {
+    .callout[data-callout="topic"] ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.15rem 1rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .callout[data-callout="topic"] li {
+      margin: 0;
     }
   }
 
