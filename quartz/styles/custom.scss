@@ -201,7 +201,7 @@ code.mermaid svg foreignObject :is(div, span, p) {
 
 .page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul {
   display: grid;
-  gap: 0.08rem;
+  gap: 0.12rem;
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li {
@@ -220,11 +220,13 @@ code.mermaid svg foreignObject :is(div, span, p) {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  padding: 0.16rem 0.35rem;
+  padding: 0.2rem 0.4rem;
   color: var(--darkgray);
-  font-size: 0.82rem;
+  // 플러그인 기본값 opacity: 0.75 가 남아 있으면 회색 글씨가 한 번 더 흐려진다.
+  opacity: 1;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 1.32;
+  line-height: 1.4;
   // llm_as_classifier 처럼 공백 없는 긴 식별자가 목록을 밀지 않게 한다.
   overflow-wrap: anywhere;
 }
@@ -270,7 +272,7 @@ code.mermaid svg foreignObject :is(div, span, p) {
   display: block;
   overflow: hidden;
   color: var(--secondary);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 700;
   line-height: 1.35;
   text-overflow: ellipsis;
@@ -335,6 +337,36 @@ code.mermaid svg foreignObject :is(div, span, p) {
   font-weight: 700;
 }
 
+// 폴더 이름은 폴더명에서 밑줄만 공백으로 바꾼 것이라 "algorithms", "Graph", "data engineering"
+// 처럼 대소문자가 제각각이었다. 첫 글자만 대문자로 맞춘다. K8s, MLOps 같은 약어는 그대로다.
+.page > #quartz-body .sidebar.left :is(.folder-title, .explorer-crumb-link, .explorer-crumb-text, .explorer-crumb-current) {
+  text-transform: capitalize;
+}
+
+// 폴더 안 노트 수(explorer-follow-active 가 붙인다).
+.page > #quartz-body .sidebar.left .explorer-count {
+  flex-shrink: 0;
+  margin-left: 0.4rem;
+  padding-right: 0.3rem;
+  color: color-mix(in srgb, var(--darkgray) 55%, transparent);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// 탐색기 움직임을 모두 끈다. 폴더 펼치기 0.3초, 화살표 회전 0.3초, 휴대폰 메뉴 밀어 넣기
+// 0.2~0.3초가 있었는데, 목록을 훑는 동안 매번 기다리게 만들 뿐 얻는 게 없었다.
+// 플러그인 규칙이 :not(:has()) 로 특이도가 높아서 !important 로 덮는다.
+.page > #quartz-body .sidebar.left .explorer,
+.page > #quartz-body .sidebar.left .explorer * {
+  transition: none !important;
+}
+
+@media all and (max-width: 800px) {
+  .page > #quartz-body > * {
+    transition: none !important;
+  }
+}
+
 .page > #quartz-body .sidebar.left .folder-icon {
   width: 0.78rem;
   height: 0.78rem;
@@ -356,8 +388,8 @@ code.mermaid svg foreignObject :is(div, span, p) {
 
 @media all and (max-width: 800px) {
   .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title {
-    font-size: 0.9rem;
-    padding: 0.22rem 0.35rem;
+    font-size: 0.92rem;
+    padding: 0.28rem 0.4rem;
   }
 
   .page > #quartz-body .sidebar.left .folder-container div > button span,

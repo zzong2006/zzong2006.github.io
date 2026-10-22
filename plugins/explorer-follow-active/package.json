@@ -9,7 +9,7 @@
   "quartz": {
     "name": "explorer-follow-active",
     "displayName": "Explorer Follow Active",
-    "description": "Keeps the explorer focused on the current note and recent folders.",
+    "description": "Keeps the explorer focused on the current note, sorted by name with note counts.",
     "version": "1.0.0",
     "category": "transformer",
     "defaultEnabled": true,

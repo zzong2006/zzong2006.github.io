@@ -16,3 +16,6 @@ and to screen readers. Edit aliases in the source vault before syncing content.
 
 The current page has a background, bold label, left marker, and
 `aria-current="page"`. The marker follows navigation between notes.
+
+Folders come first, then everything is sorted by its explorer label. Each
+folder shows how many notes it holds (subfolders included) at the right edge.

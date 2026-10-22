@@ -94,31 +94,15 @@ function buildScript(options) {
     return (label?.textContent || "").trim();
   }
 
-  function slugForItem(item) {
-    const folder = item.querySelector(":scope > .folder-container");
-    if (folder?.dataset?.folderpath) {
-      return normalizeSlug(folder.dataset.folderpath);
-    }
-
-    const link = item.querySelector(":scope > a.nav-file-title");
-    if (link?.href) return normalizeUrlPath(link.href);
-    return "";
-  }
-
-  function latestForItem(item, dates) {
-    const folder = item.querySelector(":scope > .folder-container");
-    const slug = slugForItem(item);
-    if (!slug) return 0;
-    return Number(folder ? dates?.folders?.[slug] : dates?.files?.[slug]) || 0;
-  }
-
   function isFolderItem(item) {
     return Boolean(item.querySelector(":scope > .folder-container"));
   }
 
   function folderLabelOf(li) {
     const container = li.querySelector(":scope > .folder-container");
-    return container ? (container.textContent || "").trim() : "";
+    // 컨테이너 전체 텍스트에는 노트 수 배지(.explorer-count)가 섞이므로 이름 칸만 읽는다.
+    const name = container?.querySelector(":scope > div") || container;
+    return name ? (name.textContent || "").trim() : "";
   }
 
   // ── 현재 섹션만 보여주기 ─────────────────────────────────────────
@@ -246,7 +230,27 @@ function buildScript(options) {
     }
   }
 
-  function sortList(list, dates) {
+  // 폴더마다 안에 든 노트 수를 오른쪽에 붙인다. 펼치기 전에 크기를 가늠하게 한다.
+  // 트리는 처음부터 전부 DOM 에 있으므로(접힌 폴더도) 하위 폴더까지 센다.
+  function addFolderCounts(explorer) {
+    for (const container of explorer.querySelectorAll(".folder-container")) {
+      const li = container.parentElement;
+      if (!li) continue;
+      let badge = container.querySelector(":scope > .explorer-count");
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "explorer-count";
+        badge.setAttribute("aria-hidden", "true");
+        container.appendChild(badge);
+      }
+      const text = String(li.querySelectorAll("a.nav-file-title").length);
+      if (badge.textContent !== text) badge.textContent = text;
+    }
+  }
+
+  // 폴더 먼저, 그다음 이름순. 예전에는 최근 수정순이었는데, 동기화 한 번에 여러 폴더의
+  // 날짜가 같이 바뀌어서 앞쪽은 이름순, 뒤쪽은 뒤죽박죽으로 보였다. 최근 글은 대문에 있다.
+  function sortList(list) {
     const items = Array.from(list.children).filter((item) => !item.classList.contains("overflow-end"));
 
     // 정렬 결과는 목록이 바뀌지 않는 한 그대로다. sync 는 nav/render/load/재시도로
@@ -259,10 +263,6 @@ function buildScript(options) {
       const leftFolder = isFolderItem(left);
       const rightFolder = isFolderItem(right);
       if (leftFolder !== rightFolder) return leftFolder ? -1 : 1;
-
-      const leftLatest = latestForItem(left, dates);
-      const rightLatest = latestForItem(right, dates);
-      if (leftLatest !== rightLatest) return rightLatest - leftLatest;
 
       return labelOf(left).localeCompare(labelOf(right), undefined, {
         numeric: true,
@@ -279,9 +279,9 @@ function buildScript(options) {
     list.dataset.sortedFor = fingerprint;
   }
 
-  function sortExplorer(explorer, dates) {
+  function sortExplorer(explorer) {
     const lists = explorer.querySelectorAll("ul.explorer-ul, ul.content");
-    for (const list of lists) sortList(list, dates);
+    for (const list of lists) sortList(list);
   }
 
   function findActiveLink(explorer) {
@@ -333,7 +333,8 @@ function buildScript(options) {
         link.title = entry.title;
         link.setAttribute("aria-label", entry.label + " — " + entry.title);
       }
-      sortExplorer(explorer, dates);
+      sortExplorer(explorer);
+      addFolderCounts(explorer);
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
       // 남지 않도록 continue 하기 전에 먼저 지운다.
       clearSectionView(explorer);
@@ -382,7 +383,7 @@ function buildScript(options) {
 export const manifest = {
   name: "explorer-follow-active",
   displayName: "Explorer Follow Active",
-  description: "Keeps the explorer focused on the current note and recent folders.",
+  description: "Keeps the explorer focused on the current note, sorted by name with note counts.",
   version: "1.0.0",
   category: "transformer",
   defaultEnabled: true,
