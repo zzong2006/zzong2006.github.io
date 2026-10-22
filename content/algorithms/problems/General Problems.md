@@ -266,3 +266,6 @@ https://www.acmicpc.net/problem/2422
 * [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
 	* 처음엔 전부 만들고 검사하려 했는데, 백트래킹으로 갈림길을 독립된 `if` 두 개로 쓰는 게 핵심이었다.
 	* 풀이 세 가지와 시행착오는 [[Generate Parentheses]] 에 정리했다.
+* [Permutations](https://leetcode.com/problems/permutations/)
+	* 반복문 안에서 재귀 호출을 `return` 해서 답이 하나만 나왔다. 같이 쓰는 `is_used` 는 돌아온 뒤 되돌려야 한다.
+	* 풀이와 되돌리기가 필요한 이유는 [[Permutations]] 에 정리했다.

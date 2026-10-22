@@ -31,7 +31,7 @@ def dfs(graph, node, visited):
 대신 DFS 는 "끝까지 가본다" 는 성질 때문에 다음 쪽에 어울린다.
 
 - 사이클 검출, 위상 정렬, 연결 요소 찾기
-- 모든 경우를 만들어 보며 조건에 안 맞으면 되돌아오는 완전 탐색 (backtracking). 예: [[Generate Parentheses]]
+- 모든 경우를 만들어 보며 조건에 안 맞으면 되돌아오는 완전 탐색 (backtracking). 예: [[Generate Parentheses]], [[Permutations]]
 - 트리 순회 — [[pre-order]], [[Inorder Search]], [[post-order]] 는 모두 DFS 의 방문 시점 차이다
 
 탐색 상태가 반복되는 문제에서는 DFS 로 상태 공간을 훑되 이미 계산한 상태의 결과를 저장해 두는 memoization 을 얹는다.
