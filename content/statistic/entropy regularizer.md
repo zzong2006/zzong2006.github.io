@@ -4,8 +4,6 @@ tags:
 aliases: []
 ---
 
-# Entropy Regularizer ?
-
 # Definition
 
 $$

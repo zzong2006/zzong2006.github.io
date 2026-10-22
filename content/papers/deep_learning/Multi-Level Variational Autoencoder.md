@@ -6,9 +6,7 @@ tags:
   - paper_review
 ---
 
-# A) Multi-Level Variational Autoencoder (Multi-VAE) ?
-
-# B) Introduction
+# A) Introduction
 
 ![[img-7152d1fc3c.png]]
 
@@ -17,6 +15,6 @@ The [[machine_learning/deep_learning/Variational Autoencoder|VAE]] model assumes
 - In the case of grouped observations, this assumption is no longer true.
 - The VAE model takes no advantage of the knowledge of the grouping.
 
-# C) References
+# B) References
 
 - paper link: https://arxiv.org/pdf/1705.08841.pdf

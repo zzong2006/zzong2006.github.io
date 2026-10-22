@@ -5,8 +5,6 @@ tags:
   - Kubernetes
 ---
 
-# Persistent Volumes ?
-
 # Volumes (Background)
 
 콘테이너의 On-disk 파일들은 임시적이다. 이러한 특성은 콘테이너가 crash 되는 경우 파일의 손실을 발생시킨다. [[kubelet]] 이 콘테이너를 재시작해도 clean 한 상태로 진행된다. 추가적으로, 두 콘테이너가 파일을 공유하는 경우에는 pod 을 통해 공유해야되는 문제도 있다.

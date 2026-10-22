@@ -21,6 +21,6 @@ for i, value in enumerate(dynamic_values):
     setattr(i, 'attribute{}'.format(i), value)
 ```
 
-# 4. References
+# 3. References
 
 * https://stackoverflow.com/questions/19123707/why-use-setattr-and-getattr-built-ins

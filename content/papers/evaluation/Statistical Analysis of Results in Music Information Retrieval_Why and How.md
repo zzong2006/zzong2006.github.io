@@ -3,8 +3,5 @@ title: "Statistical Analysis of Results in Music Information Retrieval_Why and H
 tags: 
 aliases: 
 ---
-# Statistical Analysis of Results in Music Information Retrieval_Why and How ?
-
-
 # References
 * [paper link](https://julian-urbano.info/files/publications/067-statistical-analysis-results-music-information-retrieval-why-how.pdf)

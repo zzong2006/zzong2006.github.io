@@ -6,8 +6,6 @@ tags:
 aliases: ["KR-BERT"]
 ---
 
-# KoRean Based Bert Pre-trained ?
-
 # Tokenizer
 
 * [[Bidirectional Encoder Representations from Transformers|BERT]] 에서 사용하는 일반적인 [[WordPiece]] 방식을 사용하거나 양방향 WordPiece 방식을 사용하여 실험

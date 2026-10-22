@@ -8,9 +8,7 @@ tags:
 aliases: []
 ---
 
-# A) Buffalo ?
-
-# B) 지원 알고리즘
+# A) 지원 알고리즘
 
 * [[Word2Vec]]
 	* Mikolov, Tomas, et al. “[[Distributed representations of words and phrases and their compositionality]].” Advances in neural information processing systems. 2013.

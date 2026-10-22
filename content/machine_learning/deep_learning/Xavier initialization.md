@@ -23,6 +23,6 @@ $$
 
 * 읽다가 졸려서 못 읽겠어..
 
-# D. References
+# C. References
 
 * https://www.deeplearning.ai/ai-notes/initialization/

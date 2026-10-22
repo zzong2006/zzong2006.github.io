@@ -4,9 +4,7 @@ tags: machine_learning
 aliases: []
 ---
 
-# 1. Early Stopping ?
-
-# 2. Early Stopping 전략이란 무엇인가?
+# 1. Early Stopping 전략이란 무엇인가?
 
 Early Stopping 은 overfitting 현상을 완화하는 방법으로, 학습을 하다가 일정 기준에 의해 학습을 중간에 멈추는 방법을 의미한다.
 

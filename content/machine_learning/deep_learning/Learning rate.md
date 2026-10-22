@@ -8,9 +8,7 @@ aliases:
   - LR
 ---
 
-# A) Learning Rate ?
-
-# B) 학습률과 [[gradient descent]] 의 관계
+# A) 학습률과 [[gradient descent]] 의 관계
 
 비용 함수 $J(\theta_1)$ 에서, parameter $\theta_1$ 을 찾기 위해, 다음과 같은 gradient descent 를 반복한다고 가정하자.
 

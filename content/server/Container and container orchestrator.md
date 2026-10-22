@@ -4,8 +4,6 @@ tags: Kubernetes
 aliases: []
 ---
 
-# Container and Container Orchestrator ?
-
 # Virtual Machine 과 Container 의 차이점
 
 * VM 가상화는 일반적으로 linux kernel 위에 hypervisor 가 올라가고, 그 위에 guest OS 와 사용자 app 이 올라감

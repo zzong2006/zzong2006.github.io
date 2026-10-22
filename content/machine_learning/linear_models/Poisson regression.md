@@ -5,8 +5,6 @@ tags:
 aliases: []
 ---
 
-# A) Poisson Regression ?
-
-# B) References
+# A) References
 
 * https://en.wikipedia.org/wiki/Poisson_regression

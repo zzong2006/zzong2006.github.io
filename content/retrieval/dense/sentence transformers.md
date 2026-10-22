@@ -8,8 +8,6 @@ tags:
 aliases: []
 ---
 
-# Sentence Transformers ?
-
 # Code Reivew
 
 ## Encoding

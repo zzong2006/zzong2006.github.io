@@ -9,8 +9,6 @@ tags:
   - y2021
 ---
 
-# Top-K Contextual Bandits with Equity of Exposure ?
-
 # Abstract
 
 Probability Ranking Principle 에 의하면 top-K items 을 greedy 하게 rank 하는것이 optimal 함

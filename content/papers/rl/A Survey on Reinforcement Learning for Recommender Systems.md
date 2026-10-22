@@ -8,9 +8,7 @@ tags:
 aliases:
 ---
 
-# A) Survey on Reinforcement Learning for Recommender Systems ?
-
-# C) References
+# A) References
 
 * paper link: https://arxiv.org/pdf/2109.10665.pdf
 * [Reinforcement Learning based Recommender Systems: A Survey](https://arxiv.org/pdf/2101.06286.pdf)

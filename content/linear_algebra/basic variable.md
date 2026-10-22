@@ -4,8 +4,6 @@ tags: linear_algebra
 aliases: []
 ---
 
-# Basic Variable ?
-
 # 정의
 
 [[row-echelon form]] matrix 에서 [[pivot]] 에 해당되는 variable 을 basic variable 이라하고, 나머지를 [[free variable]] 이라 한다.

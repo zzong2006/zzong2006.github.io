@@ -17,9 +17,9 @@ tags:
 * [TransE]()
 * [[Complex Embeddings for Simple Link Prediction|ComplEx]]
 
-# 4. References
+# 3. References
 
-## 4.1. Links
+## 3.1. Links
 
 * paper: https://arxiv.org/pdf/1903.12287.pdf
 * github: https://github.com/facebookresearch/PyTorch-BigGraph

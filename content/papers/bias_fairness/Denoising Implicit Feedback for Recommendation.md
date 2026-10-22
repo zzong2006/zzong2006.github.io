@@ -10,8 +10,6 @@ tags:
   - y2021
 ---
 
-# Denoising Implicit Feedback for Recommendation ?
-
 # Abstract
 
 * [[implicit feedback]] 은 획득하기 쉬워서 data sparsity 를 완화하지만, 유저의 실제 만족도를 잘 반영하지 않는다: **noisy**

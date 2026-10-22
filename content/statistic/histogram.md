@@ -4,8 +4,6 @@ tags: statistic
 aliases: []
 ---
 
-# Histogram ?
-
 # Mean & Median 계산
 
 ## Mean

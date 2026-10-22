@@ -6,9 +6,7 @@ tags:
 aliases: []
 ---
 
-# A) C++ ?
-
-# B) 관련 노트들
+# A) 관련 노트들
 
 * [[macro]]
 * [[Eigen]]

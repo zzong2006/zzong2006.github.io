@@ -55,6 +55,6 @@ $$
 
 * $V$ 라는 벡터 공간에 존재하는 벡터 집합을 $S$ 라 하고, $S$ 벡터들의 모든 조합들을 $SS$ 라 할때, $S$ 의 [[span]] 은 subspace $SS$ 라고 할 수 있다.
 
-# 6. References
+# 5. References
 
 * [MIT Course - 5. Transposes, Permutations, Spaces R^n](youtube.com/watch?v=JibVXBElKL0)

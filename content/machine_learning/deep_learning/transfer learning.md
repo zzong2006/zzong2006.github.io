@@ -7,9 +7,7 @@ tags:
   - recommendation_system
 ---
 
-# A) Transfer Learning ?
-
-# B) In NLP
+# A) In NLP
 
 [[Natural Language Process|자연어처리]] 분야에서는 언어의 일반적인 이해를 신경망에 학습시키기 위해 다음과 같은 방식을 수행한다.
 
@@ -21,7 +19,7 @@ tags:
 
 Figure: Initial Pretraining Architecture (Untrained), Trained Language Network, Fine-Tuning Architecture
 
-# C) In RS
+# B) In RS
 
 [[Recommendation System|RS]] 에서 transfer learning 의 활용
 

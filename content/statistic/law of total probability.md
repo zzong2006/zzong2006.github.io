@@ -5,27 +5,25 @@ tags:
 aliases: []
 ---
 
-# A) Law of Total Probability ?
+# A) 정리 (다른 이름으로는 [[statistic/marginal distribution|marginalization]])
 
-# B) 정리 (다른 이름으로는 [[statistic/marginal distribution|marginalization]])
-
-## B.1) 이산형 경우
+## A.1) 이산형 경우
 
 * $P(A)=\sum_{n}P(A,B)=\sum_{n}P\left(A\mid B_{n}\right)P\left(B_{n}\right)$
 
-## B.2) 연속형 경우
+## A.2) 연속형 경우
 
 * $\displaystyle p(x)=\int_{y}p(x,y)dy=\int_{y}p(x\mid y)\cdotp(y)dy$
 
-# C) 응용 사례
+# B) 응용 사례
 
-## C.1) Joint Distribution $P(a,b,c,d)$ 에서 $P(b)$ 를 찾는 방법
+## B.1) Joint Distribution $P(a,b,c,d)$ 에서 $P(b)$ 를 찾는 방법
 
 $$
 P(b)=\sum_{a}\sum_{c}\sum_{d}P(a,b,c,d)
 $$
 
-## C.2) $P(c\mid b)$ 를 구하는 방법
+## B.2) $P(c\mid b)$ 를 구하는 방법
 
 $$
 P(c\mid b)=\sum_{a}\sum_{d}P(a,c,d\mid b)=\frac{1}{P(b)}\sum_{a}\sum_{d}P(a,c,d,b)
@@ -33,7 +31,7 @@ $$
 
 여기서, $1/\mathrm{P}(\mathrm{b})$ 는 [[normalizing constant]] 입니다.
 
-# D) 예시 설명
+# C) 예시 설명
 
 두 공장에서 전구를 생산합니다. X 공장에서 만든 전구는 99% 확률로 5,000 시간 이상 작동하고, Y 공장에서 만든 전구는 95% 확률로 5,000 시간 이상 작동합니다. X 공장은 전체 전구의 60%, Y 공장은 40% 를 공급한다고 가정할 때, 구입한 전구가 5,000 시간 이상 작동할 확률은 다음과 같습니다:
 
@@ -49,6 +47,6 @@ $$
 
 여기서 $P(B_n)$ 은 구입한 전구가 n 공장에서 생산될 확률을 의미하고, $P(A|B_n)$ 은 n 공장에서 생산된 전구가 5,000 시간 이상 작동할 확률을 의미합니다.
 
-# E) [[conditional probability]] 에 적용되는 Law of Total Probability
+# D) [[conditional probability]] 에 적용되는 Law of Total Probability
 
 * $P(A|C)=∑_n P(A|C∩B_n) P(B_n|C)$

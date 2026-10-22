@@ -5,12 +5,10 @@ tags:
 aliases: ["matrix determinant"]
 ---
 
-# 1. Determinant ?
-
-# 2. Properties
+# 1. Properties
 
 1. $\operatorname{det}(AB)=\operatorname{det}(A)\operatorname{det}(B)$
 
-# 4. References
+# 2. References
 
 * https://jjycjnmath.tistory.com/397

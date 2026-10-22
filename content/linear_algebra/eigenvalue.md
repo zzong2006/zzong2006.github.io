@@ -5,9 +5,7 @@ tags:
 aliases: ["고유값"]
 ---
 
-# 1. Eigenvalue ?
-
-# 2. Inverse Matrix 의 Eigenvalues
+# 1. Inverse Matrix 의 Eigenvalues
 
 > [[Inverse matrix]] 가 eigenvalues 를 갖기 위한 조건은 무엇일까?
 
@@ -21,6 +19,6 @@ $$
 
 If your matrix $A$ has eigenvalue $λ$, then $I−A$ has eigenvalue $1−λ$ and therefore $(I−A)^{−1}$ has eigenvalue $\frac{1}{1-\lambda}$ (출처: [stackoverflow](https://math.stackexchange.com/questions/237871/inverse-matrixs-eigenvalue)).
 
-# 3. Related
+# 2. Related
 
 * [[eigenvector]]

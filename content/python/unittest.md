@@ -4,9 +4,7 @@ tags:
 aliases: []
 ---
 
-# A) `unittest` ?
-
-# B) Mock
+# A) Mock
 
 ```python
 from unittest.mock import Mock, MagicMock, call
@@ -40,10 +38,10 @@ Exception: Oops!
 """
 ```
 
-# C) Related
+# B) Related
 
 [[pytest]]
 
-# D) References
+# C) References
 
 * mock: [\[파이썬\] 테스트 모킹 - unittest.mock | Engineering Blog by Dale Seo](https://www.daleseo.com/python-unittest-mock/)
