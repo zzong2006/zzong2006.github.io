@@ -275,9 +275,37 @@ function buildScript(options) {
     }
   }
 
-  // 폴더 먼저, 그다음 이름순. 예전에는 최근 수정순이었는데, 동기화 한 번에 여러 폴더의
-  // 날짜가 같이 바뀌어서 앞쪽은 이름순, 뒤쪽은 뒤죽박죽으로 보였다. 최근 글은 대문에 있다.
+  // ── 많이 링크되는 노트 고정 ──────────────────────────────────────
+  // explorer-dates-index 가 폴더마다 다른 노트가 많이 링크하는 노트를 골라 pins 로 넘긴다.
+  // 이름순 목록에서는 그 폴더의 중심 노트가 다른 노트 사이에 묻힌다. 몇 개만 맨 위에 올리고
+  // 나머지는 이름순으로 둬서, 이름으로 찾는 길도 그대로 남긴다.
+  function pinRankOf(item) {
+    const rank = Number(item.dataset.pin);
+    return rank > 0 ? rank : 0;
+  }
+
+  function markPin(link, pin) {
+    const li = link.closest("li");
+    if (!li) return;
+    if (pin) {
+      if (li.dataset.pin !== String(pin.rank)) li.dataset.pin = String(pin.rank);
+    } else if (li.dataset.pin !== undefined) {
+      delete li.dataset.pin;
+    }
+  }
+
+  // 고정 노트가 맨 위(링크 수 순위대로), 그다음 폴더, 그다음 이름순. 예전에는 최근 수정순이었는데,
+  // 동기화 한 번에 여러 폴더의 날짜가 같이 바뀌어서 앞쪽은 이름순, 뒤쪽은 뒤죽박죽으로 보였다.
+  // 최근 글은 대문에 있다.
   function compareItems(left, right) {
+    const leftPin = pinRankOf(left);
+    const rightPin = pinRankOf(right);
+    if (leftPin || rightPin) {
+      if (!leftPin) return 1;
+      if (!rightPin) return -1;
+      if (leftPin !== rightPin) return leftPin - rightPin;
+    }
+
     const leftFolder = isFolderItem(left);
     const rightFolder = isFolderItem(right);
     if (leftFolder !== rightFolder) return leftFolder ? -1 : 1;
@@ -293,8 +321,8 @@ function buildScript(options) {
 
     // 정렬 결과는 목록이 바뀌지 않는 한 그대로다. sync 는 nav/render/load/재시도로
     // 여러 번 도는데, 매번 1725개를 다시 붙이면 순수한 낭비다.
-    // 자식 수를 지문으로 삼아 바뀐 목록만 다시 정렬한다.
-    const fingerprint = String(items.length);
+    // 자식 수와 고정 노트 수를 지문으로 삼아 바뀐 목록만 다시 정렬한다.
+    const fingerprint = items.length + ":" + items.filter((item) => item.dataset.pin).length;
     if (list.dataset.sortedFor === fingerprint) return;
 
     items.sort(compareItems);
@@ -468,11 +496,16 @@ function buildScript(options) {
 
       tidyFolderLabels(explorer);
       for (const link of explorer.querySelectorAll("a.nav-file-title")) {
-        const entry = dates?.labels?.[normalizeUrlPath(link.href)];
-        if (!entry) continue;
-        if (link.textContent !== entry.label) link.textContent = entry.label;
-        link.title = entry.title;
-        link.setAttribute("aria-label", entry.label + " — " + entry.title);
+        const slug = normalizeUrlPath(link.href);
+        const entry = dates?.labels?.[slug];
+        const pin = dates?.pins?.[slug];
+        markPin(link, pin);
+        if (!entry && !pin) continue;
+        if (entry && link.textContent !== entry.label) link.textContent = entry.label;
+        const label = entry ? entry.label + " — " + entry.title : (link.textContent || "").trim();
+        const note = pin ? "다른 노트 " + pin.backlinks + "개가 링크" : "";
+        link.title = (entry ? entry.title : label) + (note ? " · " + note : "");
+        link.setAttribute("aria-label", label + (note ? ", " + note : ""));
       }
       sortExplorer(explorer);
       applyGroups(explorer);
@@ -532,7 +565,7 @@ function buildScript(options) {
 export const manifest = {
   name: "explorer-follow-active",
   displayName: "Explorer Follow Active",
-  description: "Keeps the explorer focused on the current note, sorted by name with note counts.",
+  description: "Keeps the explorer focused on the current note, sorted by name with pinned notes and note counts.",
   version: "1.0.0",
   category: "transformer",
   defaultEnabled: true,

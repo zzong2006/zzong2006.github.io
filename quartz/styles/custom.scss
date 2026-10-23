@@ -249,6 +249,39 @@ code.mermaid svg foreignObject :is(div, span, p) {
   opacity: 1;
 }
 
+// 폴더 목록 맨 위에 고정한 노트(explorer-follow-active 가 data-pin 을 붙인다). 왼쪽에 핀 표시를 두고,
+// 고정 묶음이 끝나는 자리에 선을 그어 그 아래 이름순 목록과 나눈다. 링크는 -webkit-box 라서
+// ::before 를 흐름에 넣으면 두 줄 말줄임이 깨진다. 절대 위치로 띄워 왼쪽 여백에 놓는다.
+.page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title {
+  position: relative;
+  padding-left: 1.3rem;
+}
+
+.page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title::before {
+  content: "";
+  position: absolute;
+  top: calc(0.2rem + 0.32em);
+  left: 0.42rem;
+  width: 0.68rem;
+  height: 0.68rem;
+  background: color-mix(in srgb, var(--secondary) 75%, transparent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+// 휴대폰에서는 링크 위 여백이 0.28rem 으로 커진다(아래 max-width: 800px 규칙).
+@media all and (max-width: 800px) {
+  .page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title::before {
+    top: calc(0.28rem + 0.32em);
+  }
+}
+
+.page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] + li:not([data-pin]) {
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  border-top: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
+}
+
 .page > #quartz-body .sidebar.left .folder-container {
   min-width: 0;
   min-height: 1.65rem;

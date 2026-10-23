@@ -121,6 +121,8 @@ plugins:
     enabled: true
     options:
       outputPath: static/explorerDates.json
+      pinsPerFolder: 5
+      pinMinBacklinks: 3
   - source: ./plugins/semantic-search-index
     enabled: true
     options:

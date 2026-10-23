@@ -17,8 +17,16 @@ and to screen readers. Edit aliases in the source vault before syncing content.
 The current page has a background, bold label, left marker, and
 `aria-current="page"`. The marker follows navigation between notes.
 
-Folders come first, then everything is sorted by its explorer label. Each
-folder shows how many notes it holds (subfolders included) at the right edge.
+Inside each folder, up to five notes that many other notes link to are pinned
+at the top with a pin marker, most-linked first, and a thin line separates them
+from the rest. `explorer-dates-index` picks them at build time (`pinsPerFolder`,
+default 5; `pinMinBacklinks`, default 3). It counts distinct linking notes,
+ignoring self links and links from folder pages. Notes directly under the root
+are not pinned. Hovering a pinned note shows how many notes link to it.
+
+Below the pins, folders come first, then everything is sorted by its explorer
+label. Each folder shows how many notes it holds (subfolders included) at the
+right edge.
 
 Top-level folders are grouped by topic and shown under Korean names, in the
 order set in `../shared/folder-names.js`. A folder missing there keeps its own name

@@ -4,17 +4,21 @@ import path from "node:path"
 export const manifest = {
   name: "explorer-dates-index",
   displayName: "Explorer Dates Index",
-  description: "Emits latest modified timestamps for explorer folder ordering.",
+  description: "Emits latest modified timestamps, explorer labels and pinned notes.",
   version: "1.0.0",
   category: "emitter",
   defaultEnabled: true,
   defaultOptions: {
     outputPath: "static/explorerDates.json",
+    pinsPerFolder: 5,
+    pinMinBacklinks: 3,
   },
 }
 
 const defaultOptions = {
   outputPath: "static/explorerDates.json",
+  pinsPerFolder: 5,
+  pinMinBacklinks: 3,
 }
 
 function dateValue(data) {
@@ -61,16 +65,72 @@ function parentFolderSlugs(slug) {
   return folders
 }
 
+// 링크 대상은 "a/b#절" 이나 "a/b/index" 로도 온다. 대소문자도 노트 slug 와 다를 수 있다.
+function linkKey(value) {
+  return String(value ?? "")
+    .replace(/#.*$/, "")
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/(^|\/)index$/, "")
+    .toLowerCase()
+}
+
+// 폴더마다 다른 노트가 많이 링크하는 노트를 고른다. 탐색기가 그 폴더 목록 맨 위에 고정한다.
+// 한 노트에서 같은 대상으로 건 링크는 한 번으로 센다. 자기 자신으로 가는 링크는 세지 않는다.
+// 폴더 페이지(index)는 그 안의 노트를 전부 나열하므로, 세면 모든 노트에 1씩 더해질 뿐이라 뺀다.
+// 루트 직속 노트는 탐색기에서 폴더 묶음이 순서를 정하므로 고르지 않는다.
+export function pickPins(notes, { pinsPerFolder, pinMinBacklinks }) {
+  const slugOf = new Map()
+  for (const note of notes) {
+    if (!isIndexSlug(note.slug)) slugOf.set(linkKey(note.slug), note.slug)
+  }
+
+  const sources = new Map()
+  for (const note of notes) {
+    if (isIndexSlug(note.slug)) continue
+    const self = linkKey(note.slug)
+    for (const link of new Set((note.links ?? []).map(linkKey))) {
+      if (link === self || !slugOf.has(link)) continue
+      if (!sources.has(link)) sources.set(link, new Set())
+      sources.get(link).add(self)
+    }
+  }
+
+  const byFolder = new Map()
+  for (const [key, from] of sources) {
+    if (from.size < pinMinBacklinks) continue
+    const slug = slugOf.get(key)
+    const folder = slug.split("/").slice(0, -1).join("/")
+    if (!folder) continue
+    if (!byFolder.has(folder)) byFolder.set(folder, [])
+    byFolder.get(folder).push({ slug, backlinks: from.size })
+  }
+
+  const pins = {}
+  for (const candidates of byFolder.values()) {
+    candidates.sort(
+      (left, right) =>
+        right.backlinks - left.backlinks ||
+        left.slug.localeCompare(right.slug, undefined, { numeric: true, sensitivity: "base" }),
+    )
+    candidates.slice(0, pinsPerFolder).forEach(({ slug, backlinks }, index) => {
+      pins[slug] = { rank: index + 1, backlinks }
+    })
+  }
+  return pins
+}
+
 async function emitExplorerDates(ctx, content, options) {
   const files = {}
   const folders = {}
   const labels = {}
+  const notes = []
 
   for (const [, file] of content) {
     const data = file.data ?? {}
     if (!isDisplayableMarkdown(data)) continue
 
     const slug = String(data.slug ?? "")
+    notes.push({ slug, links: Array.isArray(data.links) ? data.links : [] })
     const frontmatter = data.frontmatter ?? {}
     const title = String(frontmatter.title ?? "").trim()
     const rawAliases = frontmatter.aliases ?? frontmatter.alias
@@ -104,6 +164,7 @@ async function emitExplorerDates(ctx, content, options) {
       files,
       folders,
       labels,
+      pins: pickPins(notes, options),
     })}\n`,
     "utf8",
   )

@@ -9,7 +9,7 @@
   "quartz": {
     "name": "explorer-follow-active",
     "displayName": "Explorer Follow Active",
-    "description": "Keeps the explorer focused on the current note, sorted by name with note counts.",
+    "description": "Keeps the explorer focused on the current note, sorted by name with pinned notes and note counts.",
     "version": "1.0.0",
     "category": "transformer",
     "defaultEnabled": true,

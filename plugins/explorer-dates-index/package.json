@@ -9,12 +9,14 @@
   "quartz": {
     "name": "explorer-dates-index",
     "displayName": "Explorer Dates Index",
-    "description": "Emits latest modified timestamps for explorer folder ordering.",
+    "description": "Emits latest modified timestamps, explorer labels and pinned notes.",
     "version": "1.0.0",
     "category": "emitter",
     "defaultEnabled": true,
     "defaultOptions": {
-      "outputPath": "static/explorerDates.json"
+      "outputPath": "static/explorerDates.json",
+      "pinsPerFolder": 5,
+      "pinMinBacklinks": 3
     }
   }
 }
