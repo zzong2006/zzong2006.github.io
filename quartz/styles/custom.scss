@@ -261,6 +261,14 @@ code.mermaid svg foreignObject :is(div, span, p) {
   background: color-mix(in srgb, var(--highlight) 62%, transparent);
 }
 
+// 지금 보고 있는 폴더 페이지(explorer-follow-active 가 붙인다). 노트의 강조와 같은 모양이다.
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder,
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder:hover {
+  background: color-mix(in srgb, var(--secondary) 15%, var(--light));
+  box-shadow: inset 3px 0 0 var(--secondary);
+  border-radius: 4px;
+}
+
 .page > #quartz-body .sidebar.left .folder-container > div {
   min-width: 0;
   flex: 1;
@@ -549,6 +557,22 @@ body[data-slug$="/index"] .content-meta {
 
 .page-listing.folder-page-listing li.section-li > .section > .tags {
   margin-top: 0.22rem;
+}
+
+// 본문 아래 구분선은 하나만 둔다.
+// DefaultFrame 이 본문과 꼬리말(page-footer) 사이에 <hr> 를 넣는데, 꼬리말의 상자들
+// (링크된 언급, 함께 보면 좋은 글, 최근 수정한 노트)도 각자 윗선과 3rem 안팎의 위 여백을
+// 갖고 있다. 그래서 첫 상자 위로 선 두 줄이 빈 칸을 사이에 두고 그어졌다.
+// <hr> 를 그 선으로 삼고 첫 상자의 윗선과 위 여백을 뺀다. 상자끼리의 구분선은 그대로 둔다.
+.page > #quartz-body .center > .page-footer > :first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+// 꼬리말이 비면(태그 페이지, 이력서 등) 구분선만 페이지 맨 끝에 덩그러니 남는다.
+.page > #quartz-body .center > hr:has(+ .page-footer:empty) {
+  display: none;
 }
 
 // 대문(content/index.md).

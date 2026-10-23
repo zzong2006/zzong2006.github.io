@@ -405,6 +405,45 @@ function buildScript(options) {
     return active || explorer.querySelector("a.nav-file-title.active, a.nav-file-title.is-active");
   }
 
+  // ── 폴더 페이지에서 따라가기 ─────────────────────────────────────
+  // 노트 페이지는 탐색기에 그 노트 링크가 있어서 findActiveLink 로 찾지만, 폴더 페이지
+  // (논문, 생성형 AI 같은)는 링크가 아니라 폴더 줄이라 아무것도 표시되지 않았다. 그래서
+  // 예전에 펼쳐 둔 다른 폴더(머신러닝 등)가 그대로 열려 있고 지금 폴더는 접혀 있었다.
+  // 폴더 페이지에서는 전체 트리를 두고, 지금 폴더를 강조하고, 그 폴더까지 가는 길만 펼친다.
+  // (노트 페이지의 '현재 폴더만 보기'를 쓰지 않는 것은, 폴더 페이지 본문이 이미 그 폴더의
+  // 목록이라 탐색기까지 같은 목록을 보여 줄 필요가 없어서다. 탐색기는 위치를 보여 준다.)
+  function findActiveFolder(explorer) {
+    const current = normalizeUrlPath(location.href);
+    let found = null;
+    for (const container of explorer.querySelectorAll(".folder-container")) {
+      const key = normalizeSlug(container.dataset.folderpath || "").replace(/\\/index$/, "");
+      const isActive = key !== "" && key === current;
+      container.classList.toggle("is-active-folder", isActive);
+      if (isActive) {
+        container.setAttribute("aria-current", "page");
+        found = container;
+      } else {
+        container.removeAttribute("aria-current");
+      }
+    }
+    return found;
+  }
+
+  function focusFolder(explorer, container) {
+    const onPath = new Set();
+    let cursor = container.parentElement;
+    while (cursor && cursor.tagName === "LI") {
+      onPath.add(cursor);
+      cursor = cursor.parentElement?.closest("li");
+    }
+    for (const outer of explorer.querySelectorAll(".folder-outer")) {
+      outer.classList.toggle("open", onPath.has(outer.parentElement));
+    }
+    requestAnimationFrame(() => {
+      container.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+  }
+
   function openActiveAncestors(active) {
     let cursor = active?.closest("li");
     while (cursor) {
@@ -441,8 +480,15 @@ function buildScript(options) {
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
       // 남지 않도록 continue 하기 전에 먼저 지운다.
       clearSectionView(explorer);
+      const activeFolder = findActiveFolder(explorer);
       const active = findActiveLink(explorer);
-      if (!active) continue;
+      if (!active) {
+        if (activeFolder) {
+          foundActive = true;
+          focusFolder(explorer, activeFolder);
+        }
+        continue;
+      }
 
       foundActive = true;
       openActiveAncestors(active);

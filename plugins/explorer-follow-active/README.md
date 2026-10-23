@@ -24,3 +24,6 @@ Top-level folders are grouped by topic and shown under Korean names, in the
 order set in `../shared/folder-names.js`. A folder missing there keeps its own name
 and goes under the last group (기타). Folders and notes are not renamed; only
 the explorer's labels and order change.
+
+On a folder page (such as 논문), the explorer keeps the whole tree, highlights
+that folder, opens only the folders on the way to it, and scrolls it into view.
