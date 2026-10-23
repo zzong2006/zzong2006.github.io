@@ -337,11 +337,8 @@ code.mermaid svg foreignObject :is(div, span, p) {
   font-weight: 700;
 }
 
-// 폴더 이름은 폴더명에서 밑줄만 공백으로 바꾼 것이라 "algorithms", "Graph", "data engineering"
-// 처럼 대소문자가 제각각이었다. 첫 글자만 대문자로 맞춘다. K8s, MLOps 같은 약어는 그대로다.
-.page > #quartz-body .sidebar.left :is(.folder-title, .explorer-crumb-link, .explorer-crumb-text, .explorer-crumb-current) {
-  text-transform: capitalize;
-}
+// 폴더 이름의 대소문자는 plugins/shared/folder-names.js 가 정한다. 여기서 text-transform 으로
+// 바꾸면 폴더 페이지 제목·경로 줄과 글자가 달라진다("E-commerce" 대 "E-Commerce").
 
 // 폴더 안 노트 수(explorer-follow-active 가 붙인다).
 .page > #quartz-body .sidebar.left .explorer-count {

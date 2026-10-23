@@ -2,6 +2,7 @@ import path from "node:path"
 import { h } from "preact"
 import { getDate, isFolderPath, resolveRelative } from "@quartz-community/utils"
 import { htmlToJsx } from "@quartz-community/utils/jsx"
+import { folderDisplayName } from "../shared/folder-names.js"
 
 export const manifest = {
   name: "folder-page-clean",
@@ -50,25 +51,48 @@ function mostRecentDatesFromChildren(children) {
   )
 }
 
+// 하위 폴더 항목의 이름은 탐색기와 같은 규칙(shared/folder-names.js)으로 붙인다.
+// node.displayName 은 폴더 페이지 제목이 있으면 그것, 없으면 원래 폴더 이름이다.
 function pagesFromTrie(folder, showSubfolders) {
   return folder.children
     .map((node) => {
       const nodeData = node.data
+      if (node.isFolder) {
+        if (!showSubfolders || nodeData?.unlisted === true) return undefined
+        const title = folderDisplayName(folderKeyOf(node.slug), node.displayName)
+        if (nodeData) return { ...nodeData, frontmatter: { ...nodeData.frontmatter, title } }
+        return {
+          slug: node.slug,
+          dates: mostRecentDatesFromChildren(node.children),
+          frontmatter: { title, tags: [] },
+        }
+      }
+
       if (nodeData) {
         if (nodeData.unlisted === true) return undefined
         return nodeData
       }
-
-      if (node.isFolder && showSubfolders) {
-        return {
-          slug: node.slug,
-          dates: mostRecentDatesFromChildren(node.children),
-          frontmatter: { title: node.displayName, tags: [] },
-        }
-      }
       return undefined
     })
     .filter((page) => page !== undefined)
+}
+
+function folderKeyOf(slug) {
+  return String(slug ?? "").replace(/\/index$/, "").replace(/\/$/, "")
+}
+
+// 폴더 안(하위 폴더 포함)의 노트 수. 탐색기가 폴더 옆에 보여 주는 수와 같은 기준이다.
+// 폴더 페이지 자체(…/index)는 노트로 세지 않는다.
+function countNotesUnder(allFiles, folderSlug) {
+  const prefix = `${folderKeyOf(folderSlug)}/`
+  let count = 0
+  for (const file of allFiles ?? []) {
+    if (file.unlisted === true) continue
+    const slug = file.slug
+    if (!slug || !slug.startsWith(prefix) || slug.endsWith("/index")) continue
+    count += 1
+  }
+  return count
 }
 
 function pagesFromAllFiles(allFiles, folderSlug, showSubfolders) {
@@ -104,10 +128,11 @@ function pagesFromAllFiles(allFiles, folderSlug, showSubfolders) {
     const indexFile = files.find((f) => f.slug === `${folderPrefix}${subfolderName}/index`)
     if (indexFile) continue
 
+    const subfolderSlug = `${folderPrefix}${subfolderName}`
     directChildren.push({
-      slug: `${folderPrefix}${subfolderName}/index`,
+      slug: `${subfolderSlug}/index`,
       dates: mostRecentDatesFromEntries(files),
-      frontmatter: { title: subfolderName, tags: [] },
+      frontmatter: { title: folderDisplayName(subfolderSlug, subfolderName), tags: [] },
     })
   }
 
@@ -227,10 +252,18 @@ function FolderContent(opts = {}) {
       allPagesInFolder = pagesFromAllFiles(allFiles ?? [], slug, options.showSubfolders)
     }
 
+    // 예전에는 바로 아래 항목 수(폴더 포함)를 "12개의 글"로 보여 줘서, 같은 폴더를 탐색기는
+    // 168 로 셌다. 탐색기와 같은 기준의 노트 수와, 하위 폴더 수를 나눠 적는다.
+    const subfolderCount = allPagesInFolder.filter((page) => isFolderPath(page.slug ?? "")).length
+    const noteCount = countNotesUnder(allFiles, slug)
+    const countText = subfolderCount > 0
+      ? `폴더 ${subfolderCount}개 · 노트 ${noteCount}개`
+      : `노트 ${noteCount}개`
+
     return h("div", { class: "popover-hint folder-index" }, [
       h("div", { class: "page-listing folder-page-listing" }, [
         options.showFolderCount
-          ? h("p", { class: "folder-page-count" }, `${allPagesInFolder.length}개의 글`)
+          ? h("p", { class: "folder-page-count" }, countText)
           : null,
         h("div", null, [
           h(PageList, {
@@ -269,15 +302,17 @@ export const FolderPage = (opts = {}) => {
         const fileFolders = getFolders(slug).filter((f) => f !== "." && f !== "tags")
         for (const f of fileFolders) folders.add(f)
 
+        // 주소는 소문자라 LLM 이 llm 이 된다. 원래 폴더 이름을 폴더 경로별로 기억해 둔다.
+        // (예전에는 마지막 조각만 키로 써서 RL 과 papers/rl 처럼 이름이 같은 폴더가 섞였다.)
         const relativePath = file?.relativePath
         if (relativePath) {
           const slugParts = path.dirname(slug).split("/").filter(Boolean)
           const pathParts = path.dirname(relativePath).split("/").filter(Boolean)
           for (let i = 0; i < slugParts.length && i < pathParts.length; i++) {
-            const slugPart = slugParts[i]
+            const folderKey = slugParts.slice(0, i + 1).join("/")
             const pathPart = pathParts[i]
-            if (slugPart && pathPart && !folderDisplayNames.has(slugPart)) {
-              folderDisplayNames.set(slugPart, pathPart)
+            if (pathPart && !folderDisplayNames.has(folderKey)) {
+              folderDisplayNames.set(folderKey, pathPart)
             }
           }
         }
@@ -302,12 +337,12 @@ export const FolderPage = (opts = {}) => {
 
         const folder = slug.slice(0, -"/index".length)
         const slugSegment = folder.split("/").pop() ?? folder
-        const folderName = folderDisplayNames.get(slugSegment) ?? slugSegment
-        const pages = pagesFromAllFiles(allFiles, slug, opts?.showSubfolders ?? true)
-        const description = folderDescription(folderName, pages.length)
-        if (!frontmatter.title || frontmatter.title === "index") {
-          frontmatter.title = opts?.prefixFolders ? `Folder: ${folderName}` : folderName
-        }
+        const folderName = folderDisplayName(folder, folderDisplayNames.get(folder) ?? slugSegment)
+        const description = folderDescription(folderName, countNotesUnder(allFiles, slug))
+        // 폴더 노트(retrieval/Retrieval.md 처럼 폴더와 이름이 같은 노트)도 제목을 폴더 이름으로
+        // 맞춘다. 이 제목이 breadcrumb 에 쓰이므로, 여기서 "Retrieval" 로 두면 탐색기의
+        // "검색"과 경로 줄의 "Retrieval" 이 갈라진다.
+        frontmatter.title = opts?.prefixFolders ? `Folder: ${folderName}` : folderName
         frontmatter.description = description
         file.data.description = description
       }
@@ -318,10 +353,9 @@ export const FolderPage = (opts = {}) => {
 
         const slug = joinSegments(folder, "index")
         const slugSegment = folder.split("/").pop() ?? folder
-        const folderName = folderDisplayNames.get(slugSegment) ?? slugSegment
+        const folderName = folderDisplayName(folder, folderDisplayNames.get(folder) ?? slugSegment)
         const title = opts?.prefixFolders ? `Folder: ${folderName}` : folderName
-        const pages = pagesFromAllFiles(allFiles, slug, opts?.showSubfolders ?? true)
-        const description = folderDescription(folderName, pages.length)
+        const description = folderDescription(folderName, countNotesUnder(allFiles, slug))
 
         virtualPages.push({
           slug,

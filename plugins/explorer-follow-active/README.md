@@ -21,6 +21,6 @@ Folders come first, then everything is sorted by its explorer label. Each
 folder shows how many notes it holds (subfolders included) at the right edge.
 
 Top-level folders are grouped by topic and shown under Korean names, in the
-order set in `groups.js`. A folder missing from `groups.js` keeps its own name
+order set in `../shared/folder-names.js`. A folder missing there keeps its own name
 and goes under the last group (기타). Folders and notes are not renamed; only
 the explorer's labels and order change.

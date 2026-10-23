@@ -1,4 +1,9 @@
-import { FOLDER_GROUPS, OTHER_GROUP_TITLE } from "./groups.js"
+import {
+  FOLDER_GROUPS,
+  FOLDER_LABELS,
+  OTHER_GROUP_TITLE,
+  tidyFolderName,
+} from "../shared/folder-names.js"
 
 const defaultOptions = {
   datesPath: "",
@@ -8,12 +13,15 @@ function buildScript(options) {
   const config = JSON.stringify({
     datesPath: options.datesPath || "",
     groups: FOLDER_GROUPS,
+    labels: FOLDER_LABELS,
     otherGroupTitle: OTHER_GROUP_TITLE,
   })
 
   return `
 (() => {
   const config = ${config};
+  // 폴더 페이지(folder-page-clean)와 같은 이름 규칙을 쓰려고 함수 소스를 그대로 심는다.
+  ${tidyFolderName.toString()}
   const state = {
     datesPromise: null,
     basePrefix: null,
@@ -209,11 +217,23 @@ function buildScript(options) {
 
   // 밑줄은 저자에게는 경로지만 독자에게는 잡음이다. 공백으로만 바꾼다.
   // 대문자화는 LLM, DPO 같은 약어를 망치므로 하지 않는다.
+  // 폴더 이름은 shared/folder-names.js 규칙을 따른다. 폴더 페이지 제목·경로 줄과 같은 이름이 된다.
+  // 정해 둔 이름이 있으면 그것을, 없으면 원래 폴더 이름을 tidyFolderName 으로 다듬는다.
+  // 원래 이름은 처음 본 글자를 data-original 에 남겨 두고 쓴다. 다듬은 결과를 다시 다듬어도
+  // 같은 값이 나오지만, 원본을 기준으로 해야 규칙이 바뀌어도 결과가 꼬이지 않는다.
+  const fixedLabels = new Map(Object.entries(config.labels));
+  for (const group of config.groups) {
+    for (const [key, label] of group.folders) fixedLabels.set(key, label);
+  }
+
   function tidyFolderLabels(explorer) {
-    for (const label of explorer.querySelectorAll(".folder-title")) {
-      const text = label.textContent || "";
-      if (text.indexOf("_") === -1) continue; // 이미 처리됨 - 멱등
-      label.textContent = text.replace(/_+/g, " ");
+    for (const container of explorer.querySelectorAll(".folder-container")) {
+      const label = container.querySelector(".folder-title");
+      if (!label) continue;
+      if (label.dataset.original === undefined) label.dataset.original = label.textContent || "";
+      const key = normalizeSlug(container.dataset.folderpath || "").replace(/\\/index$/, "").toLowerCase();
+      const name = fixedLabels.get(key) ?? tidyFolderName(label.dataset.original);
+      if (label.textContent !== name) label.textContent = name;
     }
   }
 
@@ -295,16 +315,15 @@ function buildScript(options) {
   }
 
   // ── 맨 위 폴더 묶음 ───────────────────────────────────────────────
-  // groups.js 의 순서대로 묶음 제목(li.explorer-group)과 폴더를 놓고, 폴더 이름을 바꾼다.
+  // shared/folder-names.js 의 순서대로 묶음 제목(li.explorer-group)과 폴더를 놓는다.
+  // 폴더 이름은 그 전에 tidyFolderLabels 가 바꿔 둔다.
   // 묶음에 없는 폴더와 맨 위 노트는 '기타' 묶음 뒤쪽에 이름순으로 붙는다.
   const groupIndexOf = new Map();
   const rankOf = new Map();
-  const groupLabelOf = new Map();
   config.groups.forEach((group, groupIndex) => {
-    group.folders.forEach(([key, label], rank) => {
+    group.folders.forEach(([key], rank) => {
       groupIndexOf.set(key, groupIndex);
       rankOf.set(key, rank);
-      groupLabelOf.set(key, label);
     });
   });
 
@@ -335,10 +354,6 @@ function buildScript(options) {
       if (item.classList.contains("overflow-end") || item.classList.contains("explorer-group")) continue;
 
       const key = topFolderKey(item);
-      const label = groupLabelOf.get(key);
-      const title = item.querySelector(":scope > .folder-container .folder-title");
-      if (label && title && title.textContent !== label) title.textContent = label;
-
       const groupIndex = groupIndexOf.get(key);
       if (groupIndex === undefined) rest.push(item);
       else buckets[groupIndex].push(item);
