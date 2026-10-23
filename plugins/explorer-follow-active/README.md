@@ -14,24 +14,23 @@ aliases:
 This displays **GSPO** in the explorer, with the full title available on hover
 and to screen readers. Edit aliases in the source vault before syncing content.
 
-The current page has a background, bold label, left marker, and
-`aria-current="page"`. The marker follows navigation between notes.
+The current page (a note or a folder) has a bold label in the accent color, a
+short accent mark on the tree guide line, and `aria-current="page"`. On every
+page the explorer shows the whole tree, opens only the folders on the way to
+the current page, closes the rest, and scrolls the current row into view. The
+home page leaves the folders as the reader left them.
 
 Inside each folder, up to five notes that many other notes link to are pinned
-at the top with a pin marker, most-linked first, and a thin line separates them
-from the rest. `explorer-dates-index` picks them at build time (`pinsPerFolder`,
+at the top with a pin marker, most-linked first, with a small gap before the
+rest. `explorer-dates-index` picks them at build time (`pinsPerFolder`,
 default 5; `pinMinBacklinks`, default 3). It counts distinct linking notes,
 ignoring self links and links from folder pages. Notes directly under the root
 are not pinned. Hovering a pinned note shows how many notes link to it.
 
 Below the pins, folders come first, then everything is sorted by its explorer
-label. Each folder shows how many notes it holds (subfolders included) at the
-right edge.
+label.
 
 Top-level folders are grouped by topic and shown under Korean names, in the
 order set in `../shared/folder-names.js`. A folder missing there keeps its own name
 and goes under the last group (기타). Folders and notes are not renamed; only
 the explorer's labels and order change.
-
-On a folder page (such as 논문), the explorer keeps the whole tree, highlights
-that folder, opens only the folders on the way to it, and scrolls it into view.

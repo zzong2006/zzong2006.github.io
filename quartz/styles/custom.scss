@@ -162,19 +162,24 @@ code.mermaid svg foreignObject :is(div, span, p) {
 }
 
 // ── 탐색기 ──────────────────────────────────────────────────────────
-// 모든 줄(폴더, 노트)은 같은 틀을 쓴다: 왼쪽 안쪽 여백 → 아이콘 칸 하나 → 이름 → (폴더면) 노트 수.
-// 아이콘 칸에는 폴더면 화살표, 고정 노트면 핀, 보통 노트면 빈칸이 들어간다. 그래서 같은 폴더 안의
-// 이름은 종류와 상관없이 같은 세로선에서 시작한다. 예전에는 하위 폴더 이름(화살표 뒤), 고정 노트
-// (핀 뒤), 보통 노트(왼쪽 끝)가 세 군데서 시작했고, 현재 줄의 왼쪽 강조 막대가 화살표를 덮어
-// 체크 표시처럼 보였다. 강조는 배경과 글자색만으로 한다.
+// 문서 사이트들(VitePress, Docusaurus, Obsidian Publish, Tailwind)의 왼쪽 목록을 참고했다.
+// 공통점은 넷이다. 어느 페이지에서나 같은 모양, 굵은 글씨는 위쪽 한 단계에만, 숫자 없음,
+// 지금 페이지는 한 가지 방법으로만 표시. 여기도 그대로 따른다.
+//
+// 모든 줄(폴더, 노트)은 같은 틀이다: 왼쪽 안쪽 여백 → 아이콘 칸 하나 → 이름.
+// 아이콘 칸에는 폴더면 화살표, 고정 노트면 핀, 보통 노트면 빈칸이 들어가서, 같은 폴더 안의
+// 이름은 종류와 상관없이 같은 세로선에서 시작한다.
+// 굵기는 두 단계다. 맨 위 폴더(검색, 머신러닝 …)만 굵게, 하위 폴더와 노트는 보통 굵기.
+// 지금 페이지는 강조색 굵은 글씨 + 들여쓰기 안내선 위의 짧은 막대로만 표시한다. 배경 상자는
+// 회색 덩어리처럼 보였고, 줄 안쪽에 그린 막대는 화살표를 덮었다.
 .page > #quartz-body .sidebar.left .explorer {
   --row-pad-x: 0.4rem;
-  --row-pad-y: 0.26rem;
+  --row-pad-y: 0.17rem;
   --icon-size: 0.78rem;
   --icon-gap: 0.32rem;
   --text-start: calc(var(--row-pad-x) + var(--icon-size) + var(--icon-gap));
-  --row-active-bg: color-mix(in srgb, var(--secondary) 14%, transparent);
-  --row-hover-bg: color-mix(in srgb, var(--highlight) 75%, transparent);
+  // 하위 목록의 왼쪽 안쪽 여백. 안내선(목록의 border-left)에서 줄이 시작하는 곳까지의 거리다.
+  --guide-pad: calc(var(--icon-size) / 2 - var(--row-pad-x) / 2);
   gap: 0.45rem;
 }
 
@@ -218,7 +223,7 @@ code.mermaid svg foreignObject :is(div, span, p) {
 
 .page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul {
   display: grid;
-  gap: 0.12rem;
+  gap: 0;
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li {
@@ -251,12 +256,11 @@ code.mermaid svg foreignObject :is(div, span, p) {
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title:hover {
-  background: var(--row-hover-bg);
   color: var(--secondary);
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title.active {
-  background: var(--row-active-bg);
+  background: none;
   color: var(--secondary);
   font-weight: 700;
   opacity: 1;
@@ -273,13 +277,13 @@ code.mermaid svg foreignObject :is(div, span, p) {
   left: calc(var(--row-pad-x) + (var(--icon-size) - 0.68rem) / 2);
   width: 0.68rem;
   height: 0.68rem;
-  background: color-mix(in srgb, var(--secondary) 75%, transparent);
+  background: color-mix(in srgb, var(--darkgray) 45%, transparent);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] + li:not([data-pin]) {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
 }
 
 .page > #quartz-body .sidebar.left .folder-container {
@@ -289,19 +293,37 @@ code.mermaid svg foreignObject :is(div, span, p) {
   padding: var(--row-pad-y) var(--row-pad-x);
 }
 
-.page > #quartz-body .sidebar.left .folder-container:hover {
-  background: var(--row-hover-bg);
-}
-
 // 지금 보고 있는 폴더 페이지(explorer-follow-active 가 붙인다). 노트의 강조와 같은 모양이다.
-.page > #quartz-body .sidebar.left .folder-container.is-active-folder,
-.page > #quartz-body .sidebar.left .folder-container.is-active-folder:hover {
-  background: var(--row-active-bg);
+.page > #quartz-body .sidebar.left .folder-container:hover div > button span,
+.page > #quartz-body .sidebar.left .folder-container:hover div > a,
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder div > button span,
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder div > a {
+  color: var(--secondary);
 }
 
 .page > #quartz-body .sidebar.left .folder-container.is-active-folder div > button span,
 .page > #quartz-body .sidebar.left .folder-container.is-active-folder div > a {
-  color: var(--secondary);
+  font-weight: 700;
+}
+
+// 지금 줄 표시: 그 줄이 걸린 안내선 위에 강조색 짧은 막대. 안내선이 없는 맨 위 폴더는
+// 글자색만으로 충분하다. 노트 링크는 두 줄 말줄임 때문에 overflow: hidden 이라 링크 밖으로
+// 나가는 막대가 잘린다. 링크 대신 그 li 에 그린다(노트의 li 는 링크 한 줄 높이다).
+.page > #quartz-body .sidebar.left .explorer-content .folder-outer li:has(> a.nav-file-title.active),
+.page > #quartz-body .sidebar.left .explorer-content .folder-outer .folder-container.is-active-folder {
+  position: relative;
+}
+
+.page > #quartz-body .sidebar.left .explorer-content .folder-outer li:has(> a.nav-file-title.active)::after,
+.page > #quartz-body .sidebar.left .explorer-content .folder-outer .folder-container.is-active-folder::after {
+  content: "";
+  position: absolute;
+  top: 0.18rem;
+  bottom: 0.18rem;
+  left: calc(-1 * var(--guide-pad) - 1px);
+  width: 2px;
+  border-radius: 1px;
+  background: var(--secondary);
 }
 
 .page > #quartz-body .sidebar.left .folder-container > div {
@@ -314,95 +336,34 @@ code.mermaid svg foreignObject :is(div, span, p) {
   max-width: 100%;
 }
 
-// 폴더 이름은 굵은 본문색, 노트 이름은 보통 굵기의 회색. 예전처럼 폴더를 모두 파란 굵은 글씨로
-// 두면 목록 전체가 무거워지고, 현재 줄(파란 글씨)이 눈에 띄지 않는다.
+// 하위 폴더 이름은 본문색 보통 굵기, 노트 이름은 회색 보통 굵기. 굵은 글씨는 맨 위 폴더만 쓴다.
+// 예전에는 모든 폴더가 굵어서 "검색"과 그 아래 Chunking, Dense 가 같은 무게로 보였다.
 .page > #quartz-body .sidebar.left .folder-container div > button span,
 .page > #quartz-body .sidebar.left .folder-container div > a {
   display: block;
   overflow: hidden;
   color: var(--dark);
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.86rem;
+  font-weight: 400;
   line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// 현재 섹션만 보여주는 뷰. 조상 체인 밖의 가지를 숨기고, 조상 행 자체도 숨긴 뒤
-// 그 자리에 경로 한 줄(.explorer-crumb)을 넣는다. 활성 폴더의 목록만 남으므로
-// 들여쓰기와 안내선이 의미를 잃어 함께 걷어낸다.
-.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="hidden"] {
-  display: none;
-}
-
-.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="ancestor"] > .folder-container {
-  display: none;
-}
-
-.page > #quartz-body .sidebar.left .explorer[data-section-view] li[data-sv="ancestor"] > .folder-outer > ul {
-  margin-left: 0;
-  padding: 0;
-  border-left: 0;
-}
-
-.page > #quartz-body .sidebar.left .explorer-crumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.1rem 0.05rem;
-  margin: 0 0 0.4rem;
-  padding: 0 var(--row-pad-x) 0.45rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
-  font-size: 0.74rem;
-  line-height: 1.45;
-}
-
-.page > #quartz-body .sidebar.left .explorer-crumb-sep {
-  margin: 0 0.14rem;
-  color: var(--gray);
-}
-
-.page > #quartz-body .sidebar.left .explorer-crumb-link,
-.page > #quartz-body .sidebar.left .explorer-crumb-text {
-  display: inline;
-  overflow: visible;
-  padding: 0;
-  background: none;
-  color: var(--gray);
-  font-size: inherit;
-  font-weight: 500;
-  white-space: normal;
-  text-overflow: clip;
-}
-
-.page > #quartz-body .sidebar.left .explorer-crumb-link:hover {
-  color: var(--secondary);
-}
-
-// 마지막 항목이 현재 폴더다. 여기가 목록의 제목 역할을 한다.
-.page > #quartz-body .sidebar.left .explorer-crumb-current {
-  color: var(--dark);
-  font-size: 0.9rem;
+.page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul > li > .folder-container div > button span,
+.page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul > li > .folder-container div > a {
+  font-size: 0.88rem;
   font-weight: 700;
 }
 
 // 폴더 이름의 대소문자는 plugins/shared/folder-names.js 가 정한다. 여기서 text-transform 으로
 // 바꾸면 폴더 페이지 제목·경로 줄과 글자가 달라진다("E-commerce" 대 "E-Commerce").
 
-// 폴더 안 노트 수(explorer-follow-active 가 붙인다).
-.page > #quartz-body .sidebar.left .explorer-count {
-  flex-shrink: 0;
-  margin-left: 0.4rem;
-  color: color-mix(in srgb, var(--darkgray) 55%, transparent);
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-}
-
 // 맨 위 폴더 묶음 제목(explorer-follow-active/groups.js). 폴더 이름보다 작고 흐리게 해서
 // 클릭할 것과 구분한다. 첫 묶음은 '탐색기' 제목 바로 밑이라 위 여백을 줄인다.
 // 루트 목록의 첫 자식은 항상 비어 있는 li.overflow-end 다.
 .page > #quartz-body .sidebar.left .explorer-content li.explorer-group {
-  margin: 1.1rem 0 0.2rem;
+  margin: 1rem 0 0.2rem;
   padding: 0 var(--row-pad-x);
   color: color-mix(in srgb, var(--darkgray) 70%, transparent);
   font-size: 0.74rem;
@@ -449,15 +410,15 @@ code.mermaid svg foreignObject :is(div, span, p) {
 // 놓아서 어느 폴더의 자식인지 선 하나로 읽히게 한다. 4단까지 내려가도 3rem 남짓이다.
 .page > #quartz-body .sidebar.left .explorer-content .folder-outer > ul {
   display: grid;
-  gap: 0.06rem;
-  margin: 0.06rem 0 0.2rem calc(var(--row-pad-x) + var(--icon-size) / 2);
-  padding: 0 0 0 calc(var(--icon-size) / 2 - var(--row-pad-x) / 2);
+  gap: 0;
+  margin: 0.02rem 0 0.15rem calc(var(--row-pad-x) + var(--icon-size) / 2);
+  padding: 0 0 0 var(--guide-pad);
   border-left: 1px solid color-mix(in srgb, var(--lightgray) 74%, transparent);
 }
 
 @media all and (max-width: 800px) {
   .page > #quartz-body .sidebar.left .explorer {
-    --row-pad-y: 0.34rem;
+    --row-pad-y: 0.3rem;
   }
 
   .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title {
@@ -465,8 +426,10 @@ code.mermaid svg foreignObject :is(div, span, p) {
   }
 
   .page > #quartz-body .sidebar.left .folder-container div > button span,
-  .page > #quartz-body .sidebar.left .folder-container div > a {
-    font-size: 0.95rem;
+  .page > #quartz-body .sidebar.left .folder-container div > a,
+  .page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul > li > .folder-container div > button span,
+  .page > #quartz-body .sidebar.left .explorer-content ul.explorer-ul > li > .folder-container div > a {
+    font-size: 0.92rem;
   }
 }
 

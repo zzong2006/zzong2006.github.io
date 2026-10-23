@@ -110,111 +110,6 @@ function buildScript(options) {
     return Boolean(item.querySelector(":scope > .folder-container"));
   }
 
-  function folderLabelOf(li) {
-    const container = li.querySelector(":scope > .folder-container");
-    // 컨테이너 전체 텍스트에는 노트 수 배지(.explorer-count)가 섞이므로 이름 칸만 읽는다.
-    const name = container?.querySelector(":scope > div") || container;
-    return name ? (name.textContent || "").trim() : "";
-  }
-
-  // ── 현재 섹션만 보여주기 ─────────────────────────────────────────
-  // 이 vault 는 폴더 65개 중 자식이 하나뿐인 폴더가 0개다. machine_learning 의
-  // 직계 자식은 204개(폴더 5 + 파일 199)이고 root 는 34개다. 전체 트리를 펼쳐
-  // 보여주는 방식은 이 규모에서 조망 수단이 못 된다. 활성 노트가 속한 폴더의
-  // 형제만 남기고, 조상은 위에 경로 한 줄로 접는다.
-  //
-  // 조상 체인 "밖의" 가지만 숨긴다. 활성 폴더 안쪽은 건드리지 않으므로
-  // inference 같은 하위 폴더를 펼쳐도 정상으로 보인다.
-
-  function clearSectionView(explorer) {
-    for (const node of explorer.querySelectorAll("[data-sv]")) {
-      node.removeAttribute("data-sv");
-    }
-    explorer.removeAttribute("data-section-view");
-    const previous = explorer.querySelector(".explorer-crumb");
-    if (previous) previous.remove();
-  }
-
-  function ancestorChainOf(activeLi) {
-    const chain = [];
-    let list = activeLi.parentElement;
-    while (list) {
-      const outer = list.closest(".folder-outer");
-      if (!outer) break;
-      const li = outer.parentElement;
-      if (!li || li.tagName !== "LI") break;
-      chain.unshift(li);
-      list = li.parentElement;
-    }
-    return chain;
-  }
-
-  function buildCrumb(explorer, chain) {
-    const crumb = document.createElement("nav");
-    crumb.className = "explorer-crumb";
-    crumb.setAttribute("aria-label", "현재 위치");
-
-    for (let index = 0; index < chain.length; index += 1) {
-      if (index > 0) {
-        const separator = document.createElement("span");
-        separator.className = "explorer-crumb-sep";
-        separator.textContent = "/";
-        crumb.appendChild(separator);
-      }
-
-      const li = chain[index];
-      const isLast = index === chain.length - 1;
-      const container = li.querySelector(":scope > .folder-container");
-      const source = container
-        ? container.querySelector(":scope > div > a")
-        : null;
-
-      let node;
-      if (source && !isLast) {
-        // 폴더 페이지가 있으면 링크를 살린다. href 를 새로 만들지 않고 복제한다.
-        node = source.cloneNode(true);
-        node.className = "explorer-crumb-link";
-      } else {
-        node = document.createElement("span");
-        node.className = isLast ? "explorer-crumb-current" : "explorer-crumb-text";
-        node.textContent = folderLabelOf(li);
-      }
-      crumb.appendChild(node);
-    }
-
-    const content = explorer.querySelector(".explorer-content");
-    if (content) content.insertBefore(crumb, content.firstChild);
-  }
-
-  function applySectionView(explorer, activeLink) {
-    clearSectionView(explorer);
-
-    const root = explorer.querySelector("ul.explorer-ul");
-    if (!root || !activeLink) return; // 폴더 페이지 / 인덱스에서는 트리를 그대로 둔다
-
-    const activeLi = activeLink.closest("li");
-    if (!activeLi) return;
-
-    const chain = ancestorChainOf(activeLi);
-    if (chain.length === 0) return; // 루트 직속 노트면 접을 조상이 없다
-
-    let list = root;
-    for (const ancestor of chain) {
-      for (const li of Array.from(list.children)) {
-        if (li.classList.contains("overflow-end")) continue;
-        if (li !== ancestor) li.setAttribute("data-sv", "hidden");
-      }
-      ancestor.setAttribute("data-sv", "ancestor");
-
-      const outer = ancestor.querySelector(":scope > .folder-outer");
-      list = outer ? outer.querySelector(":scope > ul") : null;
-      if (!list) break;
-    }
-
-    explorer.setAttribute("data-section-view", "1");
-    buildCrumb(explorer, chain);
-  }
-
   // 밑줄은 저자에게는 경로지만 독자에게는 잡음이다. 공백으로만 바꾼다.
   // 대문자화는 LLM, DPO 같은 약어를 망치므로 하지 않는다.
   // 폴더 이름은 shared/folder-names.js 규칙을 따른다. 폴더 페이지 제목·경로 줄과 같은 이름이 된다.
@@ -251,27 +146,6 @@ function buildScript(options) {
         button.removeAttribute("tabindex");
         button.removeAttribute("aria-disabled");
       }
-    }
-  }
-
-  // 폴더마다 안에 든 노트 수를 오른쪽에 붙인다. 펼치기 전에 크기를 가늠하게 한다.
-  // 트리는 처음부터 전부 DOM 에 있으므로(접힌 폴더도) 하위 폴더까지 센다.
-  function addFolderCounts(explorer) {
-    for (const container of explorer.querySelectorAll(".folder-container")) {
-      const li = container.parentElement;
-      if (!li) continue;
-      let badge = container.querySelector(":scope > .explorer-count");
-      if (!badge) {
-        badge = document.createElement("span");
-        badge.className = "explorer-count";
-        badge.setAttribute("aria-hidden", "true");
-        container.appendChild(badge);
-      }
-      // Resume 처럼 폴더 페이지 하나뿐인 폴더는 0 이 된다. 0 은 빈 폴더로 오해되므로 숨긴다.
-      const count = li.querySelectorAll("a.nav-file-title").length;
-      const text = count > 0 ? String(count) : "";
-      if (badge.textContent !== text) badge.textContent = text;
-      badge.hidden = count === 0;
     }
   }
 
@@ -433,13 +307,13 @@ function buildScript(options) {
     return active || explorer.querySelector("a.nav-file-title.active, a.nav-file-title.is-active");
   }
 
-  // ── 폴더 페이지에서 따라가기 ─────────────────────────────────────
-  // 노트 페이지는 탐색기에 그 노트 링크가 있어서 findActiveLink 로 찾지만, 폴더 페이지
-  // (논문, 생성형 AI 같은)는 링크가 아니라 폴더 줄이라 아무것도 표시되지 않았다. 그래서
-  // 예전에 펼쳐 둔 다른 폴더(머신러닝 등)가 그대로 열려 있고 지금 폴더는 접혀 있었다.
-  // 폴더 페이지에서는 전체 트리를 두고, 지금 폴더를 강조하고, 그 폴더까지 가는 길만 펼친다.
-  // (노트 페이지의 '현재 폴더만 보기'를 쓰지 않는 것은, 폴더 페이지 본문이 이미 그 폴더의
-  // 목록이라 탐색기까지 같은 목록을 보여 줄 필요가 없어서다. 탐색기는 위치를 보여 준다.)
+  // ── 지금 페이지 따라가기 ─────────────────────────────────────────
+  // 노트 페이지든 폴더 페이지든 탐색기는 같은 모양이다. 전체 트리를 두고, 지금 페이지까지
+  // 가는 길의 폴더만 펼치고 나머지는 접은 뒤, 지금 줄로 스크롤한다.
+  // 예전에는 노트 페이지만 '현재 폴더만 보기'(경로 한 줄 + 그 폴더 목록)로 바뀌어서, 폴더
+  // 페이지의 전체 트리와 전혀 다른 화면이 됐다. 문서 사이트들(VitePress, Docusaurus,
+  // Obsidian Publish)도 페이지마다 목록 구조를 바꾸지 않고 위치만 표시한다.
+  // 폴더 페이지는 탐색기에 링크가 아니라 폴더 줄이라 findActiveLink 로는 찾지 못한다.
   function findActiveFolder(explorer) {
     const current = normalizeUrlPath(location.href);
     let found = null;
@@ -457,9 +331,11 @@ function buildScript(options) {
     return found;
   }
 
-  function focusFolder(explorer, container) {
+  // target: 지금 노트의 링크, 또는 지금 폴더의 .folder-container.
+  // 폴더면 그 폴더 자신도 펼친다(그 줄의 li 가 경로에 들어가므로).
+  function focusOn(explorer, target) {
     const onPath = new Set();
-    let cursor = container.parentElement;
+    let cursor = target.closest("li");
     while (cursor && cursor.tagName === "LI") {
       onPath.add(cursor);
       cursor = cursor.parentElement?.closest("li");
@@ -468,18 +344,8 @@ function buildScript(options) {
       outer.classList.toggle("open", onPath.has(outer.parentElement));
     }
     requestAnimationFrame(() => {
-      container.scrollIntoView({ block: "nearest", inline: "nearest" });
+      target.scrollIntoView({ block: "nearest", inline: "nearest" });
     });
-  }
-
-  function openActiveAncestors(active) {
-    let cursor = active?.closest("li");
-    while (cursor) {
-      const outer = cursor.parentElement?.closest(".folder-outer");
-      if (!outer) break;
-      outer.classList.add("open");
-      cursor = outer.closest("li");
-    }
   }
 
   function syncExplorer(dates) {
@@ -509,28 +375,14 @@ function buildScript(options) {
       }
       sortExplorer(explorer);
       applyGroups(explorer);
-      addFolderCounts(explorer);
-      // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
-      // 남지 않도록 continue 하기 전에 먼저 지운다.
-      clearSectionView(explorer);
+      // 둘 다 매번 부른다. 다른 페이지로 옮겨 가면 이전 강조를 지워야 하기 때문이다.
       const activeFolder = findActiveFolder(explorer);
       const active = findActiveLink(explorer);
-      if (!active) {
-        if (activeFolder) {
-          foundActive = true;
-          focusFolder(explorer, activeFolder);
-        }
-        continue;
-      }
+      const target = active || activeFolder;
+      if (!target) continue; // 대문: 독자가 펼쳐 둔 상태를 그대로 둔다
 
       foundActive = true;
-      openActiveAncestors(active);
-      // 조상이 열린 뒤에 접어야 한다. 매 실행마다 이전 표시를 지우고 다시 계산하므로
-      // SPA 로 다른 노트로 이동해도 섹션이 따라온다.
-      applySectionView(explorer, active);
-      requestAnimationFrame(() => {
-        active.scrollIntoView({ block: "nearest", inline: "nearest" });
-      });
+      focusOn(explorer, target);
     }
 
     return foundActive;
@@ -565,7 +417,7 @@ function buildScript(options) {
 export const manifest = {
   name: "explorer-follow-active",
   displayName: "Explorer Follow Active",
-  description: "Keeps the explorer focused on the current note, sorted by name with pinned notes and note counts.",
+  description: "Keeps the explorer focused on the current note, sorted by name with pinned notes.",
   version: "1.0.0",
   category: "transformer",
   defaultEnabled: true,
