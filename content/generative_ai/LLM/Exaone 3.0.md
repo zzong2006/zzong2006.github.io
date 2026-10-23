@@ -14,8 +14,8 @@ LG AI 연구소에서 개발한 대형 언어 모델 (LLM) 중 최초로 공개�
 
 * **최대 컨텍스트 길이**: 4,096 토큰
 * **기술적 요소**:
-  * Rotary Position Embeddings (RoPE)
-  * Grouped Query Attention (GQA)
+  * Rotary Position Embeddings ([[Rotary Positional Embedding|RoPE]])
+  * Grouped Query Attention ([[attention function|GQA]])
 
 ## A.2) 한국어 처리 방식
 

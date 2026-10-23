@@ -19,48 +19,11 @@ transformer 는 병렬로 시퀀스 데이터를 처리하기 때문에 훨씬 �
 
 # C) Core Idea of Transformer
 
-attention 에 CNN 스타일을 합친 네트워크 구조를 지닌 transformer 는 다음과 같은 두 가지 핵심 아이디어를 기반으로 한다.
+transformer 의 각 층은 두 부분으로 이뤄진다. 토큰들이 서로의 정보를 섞는 multi-head [[attention function|self-attention]] 과, 토큰마다 따로 적용하는 feed-forward 네트워크다.
 
-1. [[self-attention]]
-2. multi-head attention
+self-attention 은 각 토큰의 hidden vector 에서 query, key, value 세 벡터를 만들고, query 와 모든 key 의 내적을 softmax 로 정규화한 가중치로 value 들을 더해 그 토큰의 새 표현을 만든다. 예를 들어 "제인은 9 월에 아프리카를 방문했다" 에서 '아프리카' 의 표현에는 '방문했다' 의 정보가 많이 섞일 수 있다. multi-head attention 은 이 계산을 서로 다른 가중치로 $h$ 번 나란히 하고 결과를 이어 붙인다. 한 토큰이 여러 종류의 관계를 동시에 참고하게 하려는 것이다.
 
-## C.1) Self-attention
-
-주어진 문장의 토큰 (e.g. 단어) 들에 대한 attention value 를 구하는 방법을 의미한다. 이때 각 토큰의 attention value 는 해당 토큰과 다른 토큰 간 관계를 생각했을 때 얼마나 많은 정보를 담고 있는지를 나타낸다.
-
-각각의 토큰들은 attention 함수에 들어가는 query, key, value 벡터들로 구성되며, 각 벡터들은 weight matrix 를 통해 구해진다. 예를 들어, 세번째 토큰 $x^{<3>}$ 에 대한 query 는 $q^{<3>}=W^{Q} \cdot x^{<3>}$ 와 같이 계산될 수 있다.
-
-각 토큰의 attention value 를 구할때, 그 토큰의 query 와 다른 토큰의 key 에 대한 vector 간 내적값을 구한다. 이렇게 해서 주어진 토큰을 잘 설명할 수 있는 시퀀스 내 또 다른 토큰을 찾는다. 물론 자기 자신에 대한 내적값도 계산한다 (e.g. $q^{<3>} \cdot k^{<3>}$). 이후 내적값 (정확히는 [[softmax function|softmax]] 값) 에 토큰 별 value vector $v$ 를 곱한 뒤 모두 더하면, 해당 벡터가 attention value 를 표현하는 vector 가 된다.
-
-각 토큰의 attention vector 를 수식으로 표현하면 다음과 같다:  
-
-$$
-A(q, K, V)=\sum_{i} \frac{\exp \left(q \cdot k^{<i>}\right)}{\sum_{j} \exp \left(q \cdot k^{<j>}\right)} \cdot v^{<i>}
-$$
-
-### C.1.1) Self-attention 직관적 이해
-
-어떤 토큰을 잘 설명할 수 있는 토큰이란것이 어떤 의미인지 예시로 알아보자. 예를 들어, “ 제인은 9 월에 아프리카를 방문했다.” 라는 문장이 있는 경우, “ 아프리카 ” 라는 단어 (토큰) 를 가장 잘 설명해줄 수 있는 또 다른 단어는 “ 방문했다 ” 라는 동사일 것이다.
-
-## C.2) Multi-head Attention
-
-여러 head 마다 토큰의 query, key, value vector 를 따로 생성하여 self-attention 을 수행하는 방식을 의미한다. 즉, $n$ 개의 head 가 존재한다면, 각 토큰마다 총 $n$ 개의 query, key, value vector 가 존재하고, 이는 각 head 의 weight matrix 를 곱해서 구해진다 (e.g. $W_{i}^{Q} q^{<2>}, W_{i}^{K} k^{<2>}, W_{i}^{V} v^{<2>}$). 기존의 self-attention 에서 사용하는 vector 들을 구할 때도, 각 query, value, key 에 대한 weight matrix 를 곱했다면, 여기서 한번 더 head 의 weight matrix 를 곱해주는 것이다.
-
-각 head 에 대한 vector 들을 구했다면, 동일하게 각 head 에 대한 attention vector $head_0, head_1, …$ 를 구할 수 있다.  
-
-$$
-head_i = Attention\left(W_{i}^{Q} Q, W_{i}^{K} K, W_{i}^{V} V\right)
-$$
-
-그리고 그 벡터들을 concatenate 하여 긴 벡터를 만들고, 이를 output weight matrix 에 곱해서 최종적인 결과값을 얻을 수 있다:
-
-그리고 그 벡터들을 concatenate 하여 긴 벡터를 만들고, 이를 output weight matrix 에 곱해서 최종적인 결과값을 얻을 수 있다:
-
-$$
-MultiHead(Q, K, V) =\operatorname{concat}\left(head_{1}, head_{2} \ldots head_{n}\right)\cdot W_{o}
-$$ 
-
-그리고 그 벡터들을 concatenate 하여 긴 벡터를 만들고, 이를 output weight matrix 에 곱해서 최종적인 결과값을 얻을 수 있다:
+계산 과정의 식과 직접 따라가는 수치 예제, causal mask, 위치 정보, 시퀀스 길이에 따른 비용은 [[attention function|Attention]] 노트에 정리했다.
 
 # D) Transformer 구조
 

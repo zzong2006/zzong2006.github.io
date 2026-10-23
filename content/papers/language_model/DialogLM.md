@@ -37,7 +37,7 @@ A hybrid attention (sparse attention + global self-attention): 길어진 시퀀�
 
 ### B.1.1) Sinkhorn Attention
 
-Long sequence 를 다룰때 encoder 의 [[self-attention]] 이 가장 큰 오버헤드를 발생시킨다. 이에 대응하기 위해 Local attention 에 기반한 Sinkhorn attention 방식을 적용한다.
+Long sequence 를 다룰때 encoder 의 [[attention function|self-attention]] 이 가장 큰 오버헤드를 발생시킨다. 이에 대응하기 위해 Local attention 에 기반한 Sinkhorn attention 방식을 적용한다.
 
 Local attention 방식은 입력값을 여러개의 블록 기반의 attention 으로 나눠서, 각 단어들은 자신만의 블록에만 참가할 수 있도록 제한을 둔다. 이렇게 하면 컴퓨팅 비용은 크게 낮출 수 있지만, global 정보는 잃게 된다.
 

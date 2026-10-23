@@ -19,7 +19,7 @@ aliases:
 Google 에서 만든 language representation model. BERT 는 미리 학습된 (pre-trained) 언어 모델이다.  
 BERT is designed to pre-train deep bidirectional representations from unlabeled text([[unsupervised learning]]) by jointly conditioning on both left and right context in all layers.
 
-기존 방식들은 fine-tuning 을 잘 하지 못하기 때문에, pre-trained 표현이 잘 될 수 있는 부분을 억제하고 있다. 가장 문제가 되는 부분은 일반적인 language model 가 unidirectional 하다는 것이다. 예를 들어, OpenAI GPT 의 경우 left-to-right 구조를 택하고 있어서 [[transformer]] 의 [[self-attention]] layer 에 있는 모든 token 이 오직 이전 token 에만 붙을 수 (attend) 있다. 이런 방식은 양쪽 방향에 대한 context 가 모두 필요한 task 의 경우 불리할 수 있다 (i.e. question answering)
+기존 방식들은 fine-tuning 을 잘 하지 못하기 때문에, pre-trained 표현이 잘 될 수 있는 부분을 억제하고 있다. 가장 문제가 되는 부분은 일반적인 language model 가 unidirectional 하다는 것이다. 예를 들어, OpenAI GPT 의 경우 left-to-right 구조를 택하고 있어서 [[transformer]] 의 [[attention function|self-attention]] layer 에 있는 모든 token 이 오직 이전 token 에만 붙을 수 (attend) 있다. 이런 방식은 양쪽 방향에 대한 context 가 모두 필요한 task 의 경우 불리할 수 있다 (i.e. question answering)
 
 BERT 에서는 masked language model (MLM) 이라는 전략을 사용해서 기존의 한방향에 대한 제한을 완화한다. MLM 방식은 입력 token 들의 일부에 대해서 임의로 mask 를 씌우고 이를 예측하고도록 학습하는 방식을 의미한다. MLM 방식을 쓰면 양쪽 context 를 학습하여 representation 을 만드는것이 가능하다. 즉, 이것은 pre-trained deep bidirectional Transformer 을 의미한다. 추가로 MLM 모델 말고도 “ 다음 문장 예측 ” task 를 text-pair representation 과 함께 학습한다.
 

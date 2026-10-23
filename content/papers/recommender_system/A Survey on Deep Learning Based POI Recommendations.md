@@ -23,7 +23,7 @@ Earlier works in [[POI recommendation]] primarily focused on [[feature engineeri
 Deep learning methods like [[Convolution Neural Network]] or [[Recurrent Neural Network]] provide many advantage in terms of automatic feature extraction eliminating the difficulties in handcrafted feature design.
 
 * CNN 과 RNN 외에도 graph embedding 이나 attention network 를 활용하는 POI 추천 방식이 제안되기도 하였다.
-* 특히, state-of-the-art POI 추천 모델 중에서 [[self-attention]] 방식을 적용한 추천이 높은 성능을 내고 있다.
+* 특히, state-of-the-art POI 추천 모델 중에서 [[attention function|self-attention]] 방식을 적용한 추천이 높은 성능을 내고 있다.
 [[Long Short-Term Memory]] models
 
 * Since successful recommendation fundamentally depends on historical POI information, sequential models (i.e., [[Recurrent Neural Network]], [[Long Short-Term Memory]]) have been primarily used in recent POI recommendation models.

@@ -14,7 +14,7 @@ aliases: ["라마", "라마2", "Llama2"]
 
 * increased the size of the pretraining corpus by 40%
 * doubled the context length of the model to 4k
-* adopted grouped-query attention
+* adopted grouped-query attention ([[attention function|GQA]])
 
 ## A.2) 학습 방식
 
