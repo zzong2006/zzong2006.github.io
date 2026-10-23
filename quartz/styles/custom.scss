@@ -161,7 +161,20 @@ code.mermaid svg foreignObject :is(div, span, p) {
   font-family: var(--bodyFont) !important;
 }
 
+// ── 탐색기 ──────────────────────────────────────────────────────────
+// 모든 줄(폴더, 노트)은 같은 틀을 쓴다: 왼쪽 안쪽 여백 → 아이콘 칸 하나 → 이름 → (폴더면) 노트 수.
+// 아이콘 칸에는 폴더면 화살표, 고정 노트면 핀, 보통 노트면 빈칸이 들어간다. 그래서 같은 폴더 안의
+// 이름은 종류와 상관없이 같은 세로선에서 시작한다. 예전에는 하위 폴더 이름(화살표 뒤), 고정 노트
+// (핀 뒤), 보통 노트(왼쪽 끝)가 세 군데서 시작했고, 현재 줄의 왼쪽 강조 막대가 화살표를 덮어
+// 체크 표시처럼 보였다. 강조는 배경과 글자색만으로 한다.
 .page > #quartz-body .sidebar.left .explorer {
+  --row-pad-x: 0.4rem;
+  --row-pad-y: 0.26rem;
+  --icon-size: 0.78rem;
+  --icon-gap: 0.32rem;
+  --text-start: calc(var(--row-pad-x) + var(--icon-size) + var(--icon-gap));
+  --row-active-bg: color-mix(in srgb, var(--secondary) 14%, transparent);
+  --row-hover-bg: color-mix(in srgb, var(--highlight) 75%, transparent);
   gap: 0.45rem;
 }
 
@@ -224,44 +237,40 @@ code.mermaid svg foreignObject :is(div, span, p) {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  padding: 0.2rem 0.4rem;
+  position: relative;
+  padding: var(--row-pad-y) var(--row-pad-x) var(--row-pad-y) var(--text-start);
+  border-radius: 6px;
   color: var(--darkgray);
   // 플러그인 기본값 opacity: 0.75 가 남아 있으면 회색 글씨가 한 번 더 흐려진다.
   opacity: 1;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
   // llm_as_classifier 처럼 공백 없는 긴 식별자가 목록을 밀지 않게 한다.
   overflow-wrap: anywhere;
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title:hover {
-  background: var(--highlight);
+  background: var(--row-hover-bg);
   color: var(--secondary);
 }
 
 .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title.active {
-  background: color-mix(in srgb, var(--secondary) 15%, var(--light));
-  box-shadow: inset 3px 0 0 var(--secondary);
-  border-radius: 4px;
+  background: var(--row-active-bg);
   color: var(--secondary);
   font-weight: 700;
   opacity: 1;
 }
 
-// 폴더 목록 맨 위에 고정한 노트(explorer-follow-active 가 data-pin 을 붙인다). 왼쪽에 핀 표시를 두고,
-// 고정 묶음이 끝나는 자리에 선을 그어 그 아래 이름순 목록과 나눈다. 링크는 -webkit-box 라서
-// ::before 를 흐름에 넣으면 두 줄 말줄임이 깨진다. 절대 위치로 띄워 왼쪽 여백에 놓는다.
-.page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title {
-  position: relative;
-  padding-left: 1.3rem;
-}
-
+// 폴더 목록 맨 위에 고정한 노트(explorer-follow-active 가 data-pin 을 붙인다). 핀 표시는 폴더의
+// 화살표와 같은 아이콘 칸에 놓아서 이름이 다른 줄과 같은 자리에서 시작하게 한다. 링크는 -webkit-box
+// 라서 ::before 를 흐름에 넣으면 두 줄 말줄임이 깨진다. 절대 위치로 띄운다.
+// 고정 묶음과 이름순 목록 사이는 선 대신 틈으로 나눈다. 선은 들여쓰기 안내선·구분선과 겹쳐 보였다.
 .page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title::before {
   content: "";
   position: absolute;
-  top: calc(0.2rem + 0.32em);
-  left: 0.42rem;
+  top: calc(var(--row-pad-y) + 0.7em - 0.34rem);
+  left: calc(var(--row-pad-x) + (var(--icon-size) - 0.68rem) / 2);
   width: 0.68rem;
   height: 0.68rem;
   background: color-mix(in srgb, var(--secondary) 75%, transparent);
@@ -269,37 +278,30 @@ code.mermaid svg foreignObject :is(div, span, p) {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-// 휴대폰에서는 링크 위 여백이 0.28rem 으로 커진다(아래 max-width: 800px 규칙).
-@media all and (max-width: 800px) {
-  .page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] > a.nav-file-title::before {
-    top: calc(0.28rem + 0.32em);
-  }
-}
-
 .page > #quartz-body .sidebar.left .explorer-content ul li[data-pin] + li:not([data-pin]) {
-  margin-top: 0.2rem;
-  padding-top: 0.2rem;
-  border-top: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
+  margin-top: 0.45rem;
 }
 
 .page > #quartz-body .sidebar.left .folder-container {
   min-width: 0;
-  min-height: 1.65rem;
-  gap: 0.1rem;
+  gap: 0;
   border-radius: 6px;
-  padding: 0.06rem 0.25rem 0.06rem 0;
+  padding: var(--row-pad-y) var(--row-pad-x);
 }
 
 .page > #quartz-body .sidebar.left .folder-container:hover {
-  background: color-mix(in srgb, var(--highlight) 62%, transparent);
+  background: var(--row-hover-bg);
 }
 
 // 지금 보고 있는 폴더 페이지(explorer-follow-active 가 붙인다). 노트의 강조와 같은 모양이다.
 .page > #quartz-body .sidebar.left .folder-container.is-active-folder,
 .page > #quartz-body .sidebar.left .folder-container.is-active-folder:hover {
-  background: color-mix(in srgb, var(--secondary) 15%, var(--light));
-  box-shadow: inset 3px 0 0 var(--secondary);
-  border-radius: 4px;
+  background: var(--row-active-bg);
+}
+
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder div > button span,
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder div > a {
+  color: var(--secondary);
 }
 
 .page > #quartz-body .sidebar.left .folder-container > div {
@@ -312,14 +314,16 @@ code.mermaid svg foreignObject :is(div, span, p) {
   max-width: 100%;
 }
 
+// 폴더 이름은 굵은 본문색, 노트 이름은 보통 굵기의 회색. 예전처럼 폴더를 모두 파란 굵은 글씨로
+// 두면 목록 전체가 무거워지고, 현재 줄(파란 글씨)이 눈에 띄지 않는다.
 .page > #quartz-body .sidebar.left .folder-container div > button span,
 .page > #quartz-body .sidebar.left .folder-container div > a {
   display: block;
   overflow: hidden;
-  color: var(--secondary);
-  font-size: 0.9rem;
+  color: var(--dark);
+  font-size: 0.88rem;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -346,8 +350,8 @@ code.mermaid svg foreignObject :is(div, span, p) {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.1rem 0.05rem;
-  margin: 0 0 0.5rem;
-  padding: 0 0.35rem 0.45rem;
+  margin: 0 0 0.4rem;
+  padding: 0 var(--row-pad-x) 0.45rem;
   border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
   font-size: 0.74rem;
   line-height: 1.45;
@@ -377,7 +381,7 @@ code.mermaid svg foreignObject :is(div, span, p) {
 
 // 마지막 항목이 현재 폴더다. 여기가 목록의 제목 역할을 한다.
 .page > #quartz-body .sidebar.left .explorer-crumb-current {
-  color: var(--secondary);
+  color: var(--dark);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -389,7 +393,6 @@ code.mermaid svg foreignObject :is(div, span, p) {
 .page > #quartz-body .sidebar.left .explorer-count {
   flex-shrink: 0;
   margin-left: 0.4rem;
-  padding-right: 0.3rem;
   color: color-mix(in srgb, var(--darkgray) 55%, transparent);
   font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
@@ -399,8 +402,8 @@ code.mermaid svg foreignObject :is(div, span, p) {
 // 클릭할 것과 구분한다. 첫 묶음은 '탐색기' 제목 바로 밑이라 위 여백을 줄인다.
 // 루트 목록의 첫 자식은 항상 비어 있는 li.overflow-end 다.
 .page > #quartz-body .sidebar.left .explorer-content li.explorer-group {
-  margin: 0.95rem 0 0.1rem;
-  padding: 0 0.35rem;
+  margin: 1.1rem 0 0.2rem;
+  padding: 0 var(--row-pad-x);
   color: color-mix(in srgb, var(--darkgray) 70%, transparent);
   font-size: 0.74rem;
   font-weight: 700;
@@ -429,28 +432,36 @@ code.mermaid svg foreignObject :is(div, span, p) {
 }
 
 .page > #quartz-body .sidebar.left .folder-icon {
-  width: 0.78rem;
-  height: 0.78rem;
-  margin-right: 0.28rem;
-  color: var(--secondary);
-  opacity: 0.8;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: var(--icon-gap);
+  // var(--gray) 는 라이트에서 #b8b8b8, 다크에서 #646464 라 화살표가 배경에 묻힌다.
+  color: color-mix(in srgb, var(--darkgray) 60%, transparent);
+  opacity: 1;
 }
 
-// machine_learning > generative_ai > LLM > inference 처럼 4단까지 내려가는 경로가 있다.
-// 단계마다 margin 0.42rem + padding 0.72rem = 1.14rem 을 먹어서 4단이면 4.5rem,
-// 사이드바 안쪽 폭의 4분의 1이 들여쓰기로 사라졌다. 안내선은 남기고 폭만 줄인다.
+.page > #quartz-body .sidebar.left .folder-container:hover .folder-icon,
+.page > #quartz-body .sidebar.left .folder-container.is-active-folder .folder-icon {
+  color: var(--secondary);
+}
+
+// 하위 목록은 한 단계에 아이콘 칸 하나(0.78rem)만큼 들어간다. 안내선은 부모 화살표의 가운데에
+// 놓아서 어느 폴더의 자식인지 선 하나로 읽히게 한다. 4단까지 내려가도 3rem 남짓이다.
 .page > #quartz-body .sidebar.left .explorer-content .folder-outer > ul {
   display: grid;
-  gap: 0.04rem;
-  margin-left: 0;
-  padding: 0.08rem 0 0.22rem 0.5rem;
+  gap: 0.06rem;
+  margin: 0.06rem 0 0.2rem calc(var(--row-pad-x) + var(--icon-size) / 2);
+  padding: 0 0 0 calc(var(--icon-size) / 2 - var(--row-pad-x) / 2);
   border-left: 1px solid color-mix(in srgb, var(--lightgray) 74%, transparent);
 }
 
 @media all and (max-width: 800px) {
+  .page > #quartz-body .sidebar.left .explorer {
+    --row-pad-y: 0.34rem;
+  }
+
   .page > #quartz-body .sidebar.left .explorer-content ul li > a.nav-file-title {
     font-size: 0.92rem;
-    padding: 0.28rem 0.4rem;
   }
 
   .page > #quartz-body .sidebar.left .folder-container div > button span,
