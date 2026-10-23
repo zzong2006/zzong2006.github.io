@@ -3,7 +3,7 @@ import { promises as fs } from "node:fs"
 import path from "node:path"
 import YAML from "yaml"
 import { slugifyFilePath } from "@quartz-community/utils"
-import { snippetFromMarkdown } from "../plugins/related-notes/snippet.js"
+import { snippetFromMarkdown } from "../plugins/shared/snippet.js"
 
 const rootDir = process.cwd()
 const contentDir = path.join(rootDir, "content")
@@ -407,7 +407,7 @@ await writeJson(
     embeddedDocuments: embeddedCount,
     format: "slug-array",
     relatedBySlug,
-    // 요약문은 노트마다 하나라 relatedBySlug 와 따로 둔다. 조각 배열 형식은 plugins/related-notes/snippet.js 참고.
+    // 요약문은 노트마다 하나라 relatedBySlug 와 따로 둔다. 조각 배열 형식은 plugins/shared/snippet.js 참고.
     snippets: Object.fromEntries(docs.map((doc) => [doc.slug, doc.snippet])),
   },
   { pretty: true },

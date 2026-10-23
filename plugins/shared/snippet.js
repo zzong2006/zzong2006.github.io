@@ -1,5 +1,5 @@
-// 관련 노트 요약문. scripts/build-related-notes.mjs 가 노트 원문으로 만들어 캐시에 넣고,
-// components/index.js 가 그린다.
+// 노트 요약문. 관련 노트(scripts/build-related-notes.mjs 가 캐시에 넣고 related-notes 가 그린다)와
+// 의미 검색(semantic-search-index 가 색인에 넣고 semantic-search 가 그린다)이 같이 쓴다.
 //
 // 요약문은 문자열이 아니라 조각 배열이다. 짝수 칸은 글, 홀수 칸은 인라인 수식의 TeX 원문이다.
 // ["For ", "\\boldsymbol{A}", " the matrix ..."] 처럼 된다. 수식을 지우면 "For the matrix with

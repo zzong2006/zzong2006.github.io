@@ -1,5 +1,6 @@
 import fs from "node:fs/promises"
 import path from "node:path"
+import { clipParts, snippetFromMarkdown, snippetParts, snippetPlainText } from "../shared/snippet.js"
 
 export const manifest = {
   name: "semantic-search-index",
@@ -57,52 +58,55 @@ function tagsOf(data) {
   return []
 }
 
-function cleanSnippetText(value) {
-  return String(value ?? "")
-    .replace(/```[\s\S]*?```/g, " ")
-    .replace(/\$\$[\s\S]*?\$\$/g, " ")
-    .replace(/\\\[[\s\S]*?\\\]/g, " ")
-    .replace(/\$[^$\n]*\$/g, " ")
-    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(
-      /\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g,
-      (_, target, alias) => alias ?? target,
-    )
-    .replace(/<[^>]+>/g, " ")
-    .replace(/[`*_~>#]+/g, " ")
-    .replace(/-{2,}/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
+// Quartz 가 만든 설명(data.description)은 이미 HTML 이스케이프가 된 글이다. 카드가 한 번 더
+// 이스케이프하므로 "&amp;" 가 그대로 보였다. 먼저 되돌린다.
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" }
+
+function decodeEntities(value) {
+  return String(value ?? "").replace(/&(amp|lt|gt|quot|#39);/g, (_, name) => ENTITIES[name])
 }
 
-function clipSnippet(value, limit) {
-  const text = cleanSnippetText(value)
-  if (!text || text.length <= limit) return text
+const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\r?\n?/
 
-  const head = text.slice(0, Math.max(0, limit - 3)).trim()
-  const sentenceEnd = Math.max(
-    head.lastIndexOf(". "),
-    head.lastIndexOf("? "),
-    head.lastIndexOf("! "),
-  )
-  const spaceEnd = head.lastIndexOf(" ")
-  const boundary =
-    sentenceEnd >= limit * 0.45 ? sentenceEnd + 1 : spaceEnd >= limit * 0.6 ? spaceEnd : -1
-  const clipped = boundary > 0 ? head.slice(0, boundary).trim() : head
-  return `${clipped}...`
+// 노트 원문 위치. Quartz 버전에 따라 filePath 가 절대 경로이거나 작업 폴더 기준 경로다.
+function sourceCandidates(ctx, data) {
+  const candidates = []
+  if (data.filePath) candidates.push(path.resolve(String(data.filePath)))
+  if (data.relativePath) {
+    candidates.push(path.resolve(String(ctx.argv?.directory ?? "content"), String(data.relativePath)))
+  }
+  return candidates
 }
 
-function snippetOf(data, limit) {
-  const snippet = clipSnippet(
-    data.frontmatter?.description ??
-      data.frontmatter?.summary ??
-      data.description ??
-      data.text ??
-      "",
-    limit,
-  )
-  return snippet === titleOf(data) ? "" : snippet
+async function readBody(ctx, data) {
+  for (const file of sourceCandidates(ctx, data)) {
+    try {
+      return (await fs.readFile(file, "utf8")).replace(FRONTMATTER, "")
+    } catch {}
+  }
+  return null
+}
+
+// 요약문은 조각 배열이다(짝수 칸 글, 홀수 칸 인라인 수식). 형식은 ../shared/snippet.js 참고.
+// Quartz 설명은 수식을 LaTeX 원문 글자로 풀고 "_" 도 지워서, 원문을 못 읽을 때만 쓴다.
+async function snippetOf(ctx, data, limit) {
+  const body = await readBody(ctx, data)
+  const parts =
+    body !== null
+      ? snippetFromMarkdown(body, data.frontmatter ?? {}, limit)
+      : clipParts(
+          snippetParts(
+            decodeEntities(
+              data.frontmatter?.description ??
+                data.frontmatter?.summary ??
+                data.description ??
+                data.text ??
+                "",
+            ),
+          ),
+          limit,
+        )
+  return snippetPlainText(parts) === titleOf(data) ? [""] : parts
 }
 
 function normalizeVector(values) {
@@ -154,7 +158,7 @@ async function emitSemanticIndex(ctx, content, options) {
     entries.push({
       slug,
       title: titleOf(data),
-      snippet: snippetOf(data, options.snippetLength),
+      snippet: await snippetOf(ctx, data, options.snippetLength),
       tags: tagsOf(data),
       vector,
     })

@@ -1,4 +1,5 @@
 import { h } from "preact"
+import { katexClientSource } from "../../shared/katex.js"
 
 const defaultOptions = {
   endpoint: "",
@@ -10,6 +11,7 @@ const defaultOptions = {
 
 const script = `
 (() => {
+  ${katexClientSource}
   const cleanupFns = [];
   const state = {
     indexPromise: null,
@@ -176,6 +178,25 @@ const script = `
     results.appendChild(item);
   }
 
+  // 색인의 요약문은 조각 배열이다(짝수 칸 글, 홀수 칸 인라인 수식의 TeX 원문, plugins/shared/snippet.js).
+  // 외부 검색 서버(endpoint)는 글자 하나를 줄 수도 있어서 둘 다 받는다. 글은 textContent 로 넣으므로
+  // 따로 이스케이프하지 않는다.
+  function appendSnippet(target, snippet) {
+    const parts = Array.isArray(snippet) ? snippet : [String(snippet || "")];
+    parts.forEach((part, index) => {
+      if (!part) return;
+      if (index % 2 === 0) {
+        target.appendChild(document.createTextNode(String(part)));
+        return;
+      }
+      const math = document.createElement("span");
+      math.className = "semantic-snippet-math";
+      math.dataset.tex = String(part);
+      math.textContent = String(part);
+      target.appendChild(math);
+    });
+  }
+
   function renderResults(results, items) {
     results.innerHTML = "";
     for (const item of items) {
@@ -191,7 +212,7 @@ const script = `
 
       const snippet = document.createElement("p");
       snippet.className = "card-description";
-      snippet.innerHTML = escapeHTML(item.snippet || "");
+      appendSnippet(snippet, item.snippet);
       link.appendChild(snippet);
 
       if (Array.isArray(item.tags) && item.tags.length > 0) {
@@ -206,6 +227,8 @@ const script = `
 
       results.appendChild(link);
     }
+
+    renderTexNodes(results, ".semantic-snippet-math");
 
     const firstResult = results.querySelector(".result-card:not(.no-match)");
     if (firstResult) {

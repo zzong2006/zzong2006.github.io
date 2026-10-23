@@ -767,9 +767,11 @@ body[data-slug="index"] {
   }
 }
 
-// 관련 노트 요약문 속 수식(plugins/related-notes 가 KaTeX 로 그린다). KaTeX 기본 크기 1.21em 은
+// 관련 노트·의미 검색 요약문과 목차 속 수식(plugins/shared/katex.js, plugins/toc-math 가 그린다). KaTeX 기본 크기 1.21em 은
 // 작은 요약문 글씨 옆에서 튀어 보인다. 컴포넌트 CSS 는 Quartz 가 @layer quartz-base 안에 넣어서
 // layer 밖의 katex.min.css 를 이길 수 없으므로 여기(layer 밖)에 둔다.
-.related-notes__snippet .katex {
+.related-notes__snippet .katex,
+.semantic-result-card .card-description .katex,
+.toc .katex {
   font-size: 1em;
 }

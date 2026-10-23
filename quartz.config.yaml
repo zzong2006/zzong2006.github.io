@@ -79,6 +79,8 @@ plugins:
     layout:
       position: right
       priority: 30
+  - source: ./plugins/toc-math
+    enabled: true
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
