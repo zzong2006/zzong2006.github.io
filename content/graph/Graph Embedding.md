@@ -18,5 +18,5 @@ Graph Embedding 은 node, edge, subgraph, 전체 graph 를 vector 로 표현하�
 
 * [[Graph Neural Network]]
 * [[random walk]]
-* [[recommendation_system/LightGCN|LightGCN]]
+* [[papers/collaborative_filtering/LightGCN|LightGCN]]
 

@@ -1,7 +1,7 @@
 ---
 title: "Monte Carlo Method(RL)"
 tags: reinforcement_learning 
-aliases: []
+aliases: [first-visit MC, every-visit MC]
 ---
 
 # A) Monte Carlo Method
@@ -16,12 +16,20 @@ MC 방식은 [[Markov Decision Process|MDP]] 를 알 수 없는 상황에서 [[v
 
 state 의 값은 expected return $G$ 값이다 (expected cumulative future discount reward). experience 에서 state 값을 찾는 방법은 해당 state 를 방문 하고나서 측정된 returns 들의 평균을 구하는 것이다. 만약 많은 returns 들이 관찰된다면, 구해진 평균은 expected value 에 수렴할 것이다.
 
-* [[first-visit MC]]
-* [[every-visit MC]]
+## B.1) First-visit MC 와 Every-visit MC
 
-반면, 두 MC 방법은 모두 $s$ 에 대해 방문하는 횟수가 무한으로 증가할수록 $v_\pi(s)$ 가 수렴한다.
+한 episode 안에서 state $s$ 가 나타나면 이를 $s$ 에 대한 visit (방문) 이라고 한다. 같은 episode 안에서 $s$ 가 여러 번 방문될 수 있고, 그중 처음 방문한 것을 first-visit 라고 한다. 어떤 방문의 return 을 평균에 넣느냐에 따라 MC prediction 이 두 가지로 나뉜다.
 
-* [[큰 수의 법칙]] 에 의해 이러한 추정값은 [[expectation|기댓값]] 으로 수렴하게 된다.
+| 방법 | 평균에 넣는 return | $v_\pi(s)$ 계산 |
+| --- | --- | --- |
+| First-visit MC | 각 episode 에서 $s$ 를 처음 방문한 뒤의 return 하나 | episode 마다 return 하나씩 모아 평균 |
+| Every-visit MC | $s$ 를 방문할 때마다의 return 전부 | 방문마다 return 을 모아 평균 |
+
+![[img-40464e34ee.png|image-20201022142040163]]
+
+위 그림은 first-visit MC prediction 알고리즘이다. Every-visit MC 는 이 알고리즘에서 "$S_t$ 가 이 episode 의 앞쪽에서 이미 나왔는가" 를 검사하는 조건만 빼면 된다.
+
+First-visit MC 에서 모은 각 return 은 $v_\pi(s)$ 의 추정값이고, 서로 [[i.i.d.]] 이며 유한한 variance $\sigma^2$ 를 가진다. 그래서 [[큰 수의 법칙]] 에 의해 return 의 평균이 [[expectation|기댓값]] $v_\pi(s)$ 로 수렴한다. Every-visit MC 는 한 episode 안의 return 들이 서로 독립이 아니어서 이 논리를 그대로 쓰지는 못하지만, 역시 $s$ 의 방문 횟수가 무한으로 늘어나면 $v_\pi(s)$ 로 수렴한다.
 
 MC 는 평균 sample returns 값을 이용하여 강화 학습 문제를 해결한다. 여기서는 terminal state 가 있는 episodic task 만 고려한다.
 
@@ -66,7 +74,7 @@ $$
 $\stackrel{\mathrm{I}}{\longrightarrow}$ 는 complete [[policy improvement]] 이고, $\stackrel{\mathrm{E}}{\longrightarrow}$ 는 complete [[policy evaluation]] 이다.
 
 * [[policy evaluation]]
-	* [[policy evaluation]] 은 [[first-visit MC]] prediction 과 완전히 동일하게 수행된다.
+	* [[policy evaluation]] 은 앞 절의 first-visit MC prediction 과 완전히 동일하게 수행된다.
 * [[policy evaluation]] 의 문제는 근사한 action-value 를 찾기 위해서는 evaluation 를 거의 무한히 반복해야된다는 것이다.
 	* DP 는 value-iteration 처럼 한번만 평가하고 improvement 하던가, single state value 를 평가할 때마다 improvement 하는 in-place 형식으로 진행했다 (아니면 policy-iteration 에서 처럼 특정 threshold 미만이면 evaluation 을 멈추던가).
 * [[policy improvement]]  

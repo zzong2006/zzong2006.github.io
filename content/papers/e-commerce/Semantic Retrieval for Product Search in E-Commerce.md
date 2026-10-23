@@ -398,7 +398,7 @@ GPU memory footprint는 약 7.5GB이고, vLLM을 사용한다. 4B embedding mode
 
 co-click 기반 substitute는 추천 시스템에서 흔히 쓰는 신호지만, 이 논문은 그 신호를 retrieval model 학습에 적극적으로 가져온다. 특히 seller title이나 query text만으로 알 수 없는 대체 관계를 학습하는 데 유용하다.
 
-이는 [[retrieval/e-commerce/Multimodal Semantic Retrieval for Product Search]] 와도 연결된다. text만으로 부족한 상품 의미를 image, behavior, recommendation signal 같은 다른 modality나 interaction signal로 보완해야 한다는 흐름과 맞닿아 있다.
+이는 [[papers/e-commerce/Multimodal Semantic Retrieval for Product Search]] 와도 연결된다. text만으로 부족한 상품 의미를 image, behavior, recommendation signal 같은 다른 modality나 interaction signal로 보완해야 한다는 흐름과 맞닿아 있다.
 
 ## H.3) Long-tail query가 LLM embedding의 좋은 적용 지점이다
 
@@ -421,7 +421,7 @@ head query는 대부분 기존 lexical/semantic stack이 이미 잘 처리한다
 
 # J) GRAM과 비교
 
-[[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model]] 과 비교하면 둘 다 이커머스 검색에서 LLM을 쓰지만, 모델이 개입하는 지점이 다르다.
+[[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model]] 과 비교하면 둘 다 이커머스 검색에서 LLM을 쓰지만, 모델이 개입하는 지점이 다르다.
 
 | 논문 | 검색 방식 | LLM 사용 위치 | 핵심 문제 |
 |---|---|---|---|
@@ -440,5 +440,5 @@ GRAM은 LLM이 identifier를 생성하고 inverted-index-like retrieval로 후�
 - [Q-commerce growth: Flipkart, Amazon bet on large base](https://timesofindia.indiatimes.com/business/india-business/q-commerce-growth-flipkart-amazon-bet-on-large-base/articleshow/131949859.cms)
 - [NVIDIA Multi-Instance GPU User Guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/latest/)
 - [[retrieval/dense/Qwen3 Embedding]]
-- [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model]]
-- [[retrieval/e-commerce/Multimodal Semantic Retrieval for Product Search]]
+- [[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model]]
+- [[papers/e-commerce/Multimodal Semantic Retrieval for Product Search]]

@@ -315,7 +315,7 @@ OneSearch의 진짜 contribution은 transformer를 썼다는 점이 아니다. �
 
 `RQ-Kmeans`만 쓰면 비슷한 item이 같은 SID로 뭉쳐 fine-grained attribute를 잃기 쉽다. `OPQ`만 쓰면 hierarchy가 약해진다. OneSearch는 RQ로 semantic hierarchy를 만들고 OPQ로 residual uniqueness를 남긴다. 여기에 core keyword enhancement를 넣어 brand, color, model 같은 핵심 속성이 사라지지 않게 한다.
 
-이 구조는 [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model]]과도 연결된다. GRAM이 query와 product의 shared text identifier를 만들려는 시도라면, OneSearch는 더 serving-oriented하게 SID를 hierarchical quantization과 user behavior로 확장한 형태로 볼 수 있다.
+이 구조는 [[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model]]과도 연결된다. GRAM이 query와 product의 shared text identifier를 만들려는 시도라면, OneSearch는 더 serving-oriented하게 SID를 hierarchical quantization과 user behavior로 확장한 형태로 볼 수 있다.
 
 ## F.3) 기존 ranking model을 완전히 버린 것은 아니다
 

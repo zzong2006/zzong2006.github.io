@@ -226,7 +226,7 @@ NQ에서는 DPR과 거의 동등한 수준. Acc@20부터는 SEAL이 근소 우�
 # H) 한계점
 
 1. **추론 속도**: Constrained beam search가 dense retrieval보다 느림
-2. **이커머스 적용 한계**: n-gram이 문서 원문에서 추출되므로, query와 문서의 **어휘 불일치(vocabulary mismatch)** 문제 해결 불가 — 이것이 [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]]이 NER 기반 정규화된 코드를 제안한 이유
+2. **이커머스 적용 한계**: n-gram이 문서 원문에서 추출되므로, query와 문서의 **어휘 불일치(vocabulary mismatch)** 문제 해결 불가 — 이것이 [[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]]이 NER 기반 정규화된 코드를 제안한 이유
 3. **동적 corpus 미대응**: FM-Index 업데이트가 비효율적 → 상품이 수시로 추가/삭제되는 이커머스에 부적합
 4. **모델 크기 제한**: BART-large(406M)로만 실험 → 더 큰 모델에서의 성능은 미검증
 

@@ -269,7 +269,7 @@ flowchart TD
 
 - [[Query Rewriting]]
 - [[Preference Alignment]]
-- [[retrieval/ranking/Large Scale Deployment of BERT Based Cross Encoder Model for Re-Ranking in Walmart Search Engine|Walmart Cross Encoder]]
+- [[papers/e-commerce/Large Scale Deployment of BERT Based Cross Encoder Model for Re-Ranking in Walmart Search Engine|Walmart Cross Encoder]]
 
 # K) References
 

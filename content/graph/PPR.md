@@ -107,7 +107,7 @@ PPR은 출발 node마다 다른 score를 계산해야 하므로 정확히 계산
 
 # G) PageRank, PPR, LightGCN의 관계
 
-PPR과 [[recommendation_system/LightGCN|LightGCN]]은 모두 graph를 따라 user/item signal을 퍼뜨린다는 점에서 닮았다.
+PPR과 [[papers/collaborative_filtering/LightGCN|LightGCN]]은 모두 graph를 따라 user/item signal을 퍼뜨린다는 점에서 닮았다.
 
 차이는 학습 여부다. PPR은 이동 규칙과 restart 확률만으로 score를 계산하는 graph 알고리즘이다. LightGCN은 user/item embedding을 학습하고, 이웃 embedding을 여러 층에 걸쳐 섞는다.
 

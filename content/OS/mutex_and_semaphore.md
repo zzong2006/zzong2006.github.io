@@ -1,31 +1,32 @@
 ---
-layout: default
-title:  "Mutex and Semaphore"
-category: Operating System
-order: 1
+title: "Mutex and Semaphore"
+tags:
+  - operating_system
+  - concurrency
+aliases: [Mutex, Semaphore, mutex, semaphore, 뮤텍스, 세마포어]
 ---
 
 # A) 뮤텍스 (Mutex)
 
 공유된 자원의 데이터를 **여러 스레드가** 접근하는 것을 막는 것
 
-상호배제라고도 하며, Critical Section 을 가진 스레드의 Running time 이 서로 겹치지 않도록 각각 단독으로 실행하게 하는 기술이다.
+상호배제라고도 하며, [[Critical Section]] 을 가진 [[thread]] 의 Running time 이 서로 겹치지 않도록 각각 단독으로 실행하게 하는 기술이다.
 
-* Critical Section: 각 프로세스에서 공유 자원을 액세스하는 프로그램 코드 부분
+* [[Critical Section]]: 각 프로세스에서 공유 자원을 액세스하는 프로그램 코드 부분
 
-다중 프로세스들의 공유 리소스에 대한 접근을 조율하기 위해 synchronized 또는 lock 을 사용한다.
+다중 [[Process]] 들의 공유 리소스에 대한 접근을 조율하기 위해 synchronized 또는 lock 을 사용한다.
 
 * 즉, 뮤텍스 객체를 두 스레드가 동시에 사용할 수 없다.
 
 # B) 세마포어 (Semaphore)
 
-현재 공유 자원에 접근할 수 있는 스레드 또는 프로세스의 수를 나타내는 값을 설정하여 상호배제를 달성하는 기법
+현재 공유 자원에 접근할 수 있는 스레드 또는 프로세스의 수를 나타내는 값을 설정하여 [[Critical Section|mutual exclusion]] (상호배제) 를 달성하는 기법
 
-* 세마포어는 리소스 상태를 나타내는 간단한 카운터를 사용하며, 이는 OS 또는 Kernel 에서 지정된 값이다.
+* 세마포어는 리소스 상태를 나타내는 간단한 카운터를 사용하며, 이는 OS 또는 kernel 에서 지정된 값이다.
 
 일반적으로 비교적 긴 시간을 확보하는 리소스에 대해 이용한다.
 
-각 프로세스는 세마포어 값은 확인하고 변경할 수 있다.
+각 프로세스는 세마포어 값을 확인하고 변경할 수 있다.
 
 * 사용 중이지 않는 자원의 경우 그 프로세스가 즉시 자원을 사용할 수 있다.
 * 이미 다른 프로세스에 의해 사용 중이라는 사실을 알게 되면 재시도하기 전에 일정 시간을 기다려야 한다.

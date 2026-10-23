@@ -601,7 +601,7 @@ T-SNE 시각화: diversity 전략 없으면 3개 branch embedding이 뒤엉킴
 
 - [[Embedding-based Retrieval]]
 - [[Two-tower Model]]
-- [[retrieval/ranking/Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System|Pre-ranking 논문]]
+- [[papers/e-commerce/Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System|Pre-ranking 논문]]
 - [[Triplet Loss]]
 - [[InfoNCE]]
 

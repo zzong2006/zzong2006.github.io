@@ -179,9 +179,9 @@ INFO:my:Testing update. Ending value is 1
 
 # F) Lock 을 이용한 동기화
 
-[[mutex]] 개념을 가진 `lock` 을 활용하면, race condition 을 해결할 수 있다.
+[[mutex_and_semaphore|mutex]] 개념을 가진 `lock` 을 활용하면, race condition 을 해결할 수 있다.
 * mutex: 공유된 자원을 오직 하나의 스레드만 접근 가능하도록 제한
-* [[semaphore]]: 공유된 자원을 정의된 개수만큼의 스레드만 접근 가능하도록 제한 (변수 개념)
+* [[mutex_and_semaphore|semaphore]]: 공유된 자원을 정의된 개수만큼의 스레드만 접근 가능하도록 제한 (변수 개념)
 
 스레드는 `threading.Lock()` 의 `acquire` 함수를 실행시켜서 `lock` 을 획득하고, 작업을 마친 후 `release` 를 통해 `lock` 을 해제한다.
 * 물론 `lock` 이 해제되지 않는다면, 기다리는 스레드는 무한히 기다려야 할것이다.

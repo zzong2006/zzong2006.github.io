@@ -4,7 +4,7 @@ tags:
   - optimization
   - machine_learning
   - deep_learning
-aliases: ["GD"]
+aliases: ["GD", "BGD", "Batch Gradient Descent"]
 ---
 
 # A) Gradient Descent ?
@@ -13,7 +13,7 @@ ML 모델 $h$ 에 대한 적합한 ($\theta_i$ 와 같은) [[parameter]] 를 찾
 
 # B) Visualization of Gradient Descent
 
-아래는 parameter $\theta_0$ 와 $\theta_1$ 에 대한 [[cost function|loss function]] $J$ 의 등고선 그래프이다. 이 그래프의 사용 목적은 비용 함수 $J(\theta_0,\theta_1)$ 가 등고면 바닥에 닿을 수 있는 parameter 를 찾기 위함이다. 즉, 두 parameter 의 적절한 값을 찾기 위해 비용 함수를 미분하여 어느 방향으로 parameter 값을 조정해야 하는지 확인 해야한다.
+아래는 parameter $\theta_0$ 와 $\theta_1$ 에 대한 [[loss function]] $J$ 의 등고선 그래프이다. 이 그래프의 사용 목적은 비용 함수 $J(\theta_0,\theta_1)$ 가 등고면 바닥에 닿을 수 있는 parameter 를 찾기 위함이다. 즉, 두 parameter 의 적절한 값을 찾기 위해 비용 함수를 미분하여 어느 방향으로 parameter 값을 조정해야 하는지 확인 해야한다.
 
 ![[img-66d87320fe.png|img]]
 
@@ -80,6 +80,8 @@ $$
 
 # SGD
 
+위의 update 식처럼 매 iteration 마다 $m$ 개의 training example 을 전부 사용해서 gradient 를 계산하는 방식을 Batch Gradient Descent (BGD) 라고 부른다.
+
 전체 데이터에 대한 gradient를 한번에 계산(i.e. batch GD)하지 않고 일부 example만 batch로 샘플링하여 계산하는 방식을 [[stochastic gradient descent]]라 한다.
 
 이때 batch size $b=1$ 이면, 이를 online 또는 incremental learning이라고 부른다. 그리고 $m > b > 1$ 을 만족하는 경우는 mini-batch GD 라고 불리는데, 그냥 SGD로 혼용되어 불리기도 하는 것 같다.
@@ -95,4 +97,3 @@ Use $b$ examples in each iteration where $b<m$ is the mini-batch size (e.g. $b=1
 - 추가로, 모든 mini-batch 사이즈가 CPU 또는 GPU 메모리에 들어가도록 할 것
 # Related
 [[Newton-Raphson method]]
-[[Batch Gradient Descent]]

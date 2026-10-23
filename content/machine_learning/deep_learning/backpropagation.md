@@ -26,7 +26,7 @@ aliases: ["back-propagation"]
 
 신경망의 back-propagation 에는 총 4 가지 핵심 수식들이 존재한다. 역전파 알고리즘에 포함되어 있는 총 네가지 수식들을 정리해보자.
 
-(1) [[cost function]] $C$ 에 대해서 [[neural network]] 의 마지막 $L$ 번째 layer 의 error $\delta^L$ 은 다음과 같이 정의된다.  
+(1) [[loss function|cost function]] $C$ 에 대해서 [[neural network]] 의 마지막 $L$ 번째 layer 의 error $\delta^L$ 은 다음과 같이 정의된다.  
 
 $$
 \delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right)

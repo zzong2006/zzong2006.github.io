@@ -45,7 +45,7 @@ covariance matrix
 
 ## B.1) Multivariate Gaussian Distribution
 
-[[trace trick]] 을 활용하여 미분을 진행할 수 있음
+[[trace|trace trick]] 을 활용하여 미분을 진행할 수 있음
 
 # C) Sum of Normally Distributed Random Variables
 

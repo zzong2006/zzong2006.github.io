@@ -7,7 +7,7 @@ aliases: []
 
 # A) Logistic Loss ?
 
-[[logistic regression]] 에서 사용하는 [[cost function|loss function]] 을 의미한다.
+[[logistic regression]] 에서 사용하는 [[loss function]] 을 의미한다.
 
 ## A.1) Logistic Loss Function 정의
 

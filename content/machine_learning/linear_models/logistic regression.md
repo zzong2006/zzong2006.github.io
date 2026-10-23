@@ -3,7 +3,7 @@ title: "logistic regression"
 tags:
   - classification
   - machine_learning
-aliases: ["로지스틱 회귀"]
+aliases: ["로지스틱 회귀", "binary logistic regression"]
 ---
 
 # A) Logistic Regression
@@ -32,6 +32,14 @@ h_{\theta}(x)=P(y=1 \mid x ; \theta)=1-P(y=0 \mid x ; \theta) \\
 P(y=0 \mid x ; \theta)+P(y=1 \mid x ; \theta)=1
 \end{align}
 $$
+
+label 이 0 또는 1 인 binary logistic regression 은 같은 내용을 Bernoulli 분포로 한 줄에 쓰기도 한다.
+
+$$
+p(y\mid\boldsymbol{x};\boldsymbol{\theta})=\operatorname{Ber}\left(y\mid\sigma\left(\boldsymbol{w}^{\top}\boldsymbol{x}+b\right)\right)
+$$
+
+여기서 $\operatorname{Ber}(y\mid p)$ 는 $y=1$ 일 확률이 $p$ 인 Bernoulli 분포, $\sigma$ 는 위의 sigmoid $g$ 와 같은 함수다. $\boldsymbol{w}$ 와 $b$ 는 앞 식의 $\theta$ 를 weight 와 bias 로 나눠 쓴 것으로, $\boldsymbol{\theta}=(b,\boldsymbol{w})$ 이다.
 
 # B) Loss Function
 
@@ -67,5 +75,4 @@ $$
 
 # E) Related
 
- * [[Sequential logistic regression]], [[Decision boundary]], [[odds ratio]],
- * [[binary logistic regression]]
+ * [[Sequential logistic regression]], [[Decision boundary]], [[odds ratio]]

@@ -62,7 +62,7 @@ flowchart TD
 |------|----------|------|------|
 | **Sparse Retrieval** | [[BM25]], TF-IDF | 빠름, 역인덱스 활용 | 동의어/문맥 뉘앙스 약함 |
 | **Dense Retrieval** | [[DPR]], [[retrieval/multi_vector/ColBERT]] | 의미론적 매칭 | query-product 간 깊은 상호작용 부족, 메모리 多 |
-| **Generative Retrieval** | [[retrieval/SEAL]], LC-Rec, TIGER | end-to-end, 유연성 | ID 체계를 처음부터 학습 필요, LLM 지식 미활용 |
+| **Generative Retrieval** | [[papers/retrieval/SEAL]], LC-Rec, TIGER | end-to-end, 유연성 | ID 체계를 처음부터 학습 필요, LLM 지식 미활용 |
 
 ## C.2) Generative Retrieval이란?
 
@@ -292,7 +292,7 @@ JD.com 실제 클릭 로그에서 수집한 2개 대규모 데이터셋:
 | [[BM25]]    | Sparse                   | TF-IDF 기반 용어 가중치           |
 | DocT5Query         | Sparse (augmented)       | T5로 pseudo-query 생성 후 BM25 |
 | [[DPR]]            | Dense                    | BERT 인코더 + 배치 내 음성 샘플      |
-| [[retrieval/SEAL]] | Generative (n-gram)      | 모든 n-gram을 식별자로 사용         |
+| [[papers/retrieval/SEAL]] | Generative (n-gram)      | 모든 n-gram을 식별자로 사용         |
 | LC-Rec             | Generative (semantic ID) | RQ-VAE로 의미론적 ID 생성         |
 
 # G) 실험 결과

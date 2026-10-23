@@ -1,6 +1,6 @@
 ---
 title: "trace"
-aliases: []
+aliases: [trace trick]
 tags:
   - linear_algebra
 ---
@@ -29,3 +29,23 @@ $$
 $$
 
 여기서 $\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{n}$ 이다.
+
+# C) Trace Trick
+
+Trace trick 은 scalar 를 trace 로 감싼 뒤 cyclic property 로 행렬 곱의 순서를 바꾸는 기법이다. Scalar $c$ 는 $1\times 1$ 행렬로 볼 수 있으므로 $c=\operatorname{tr}(c)$ 이고, 이 등식 덕분에 이차형식 (quadratic form) 을 다음처럼 바꿔 쓸 수 있다.
+
+$$
+\boldsymbol{x}^{\top}\boldsymbol{A}\boldsymbol{x}=\operatorname{tr}\left(\boldsymbol{x}^{\top}\boldsymbol{A}\boldsymbol{x}\right)=\operatorname{tr}\left(\boldsymbol{A}\boldsymbol{x}\boldsymbol{x}^{\top}\right)
+$$
+
+여기서 $\boldsymbol{x}\in\mathbb{R}^{n}$ 은 벡터, $\boldsymbol{A}\in\mathbb{R}^{n\times n}$ 은 행렬이다. 오른쪽 식에서는 $\boldsymbol{A}$ 가 맨 앞으로 나와 있어서, $\boldsymbol{A}$ 에 대해 미분할 때 아래 공식을 바로 쓸 수 있다.
+
+$$
+\frac{\partial}{\partial\boldsymbol{A}}\operatorname{tr}(\boldsymbol{A}\boldsymbol{B})=\frac{\partial}{\partial\boldsymbol{A}}\operatorname{tr}(\boldsymbol{B}\boldsymbol{A})=\boldsymbol{B}^{\top}
+$$
+
+$$
+\frac{\partial}{\partial\boldsymbol{A}}\log|\boldsymbol{A}|=\boldsymbol{A}^{-\top}
+$$
+
+$|\boldsymbol{A}|$ 는 $\boldsymbol{A}$ 의 determinant 다. [[Gaussian distribution|multivariate Gaussian]] 의 log-likelihood 는 $\log|\boldsymbol{\Sigma}|$ 항과 $(\boldsymbol{x}-\boldsymbol{\mu})^{\top}\boldsymbol{\Sigma}^{-1}(\boldsymbol{x}-\boldsymbol{\mu})$ 항으로 이루어져 있어서, covariance matrix $\boldsymbol{\Sigma}$ 의 maximum likelihood 추정값을 유도할 때 이 두 공식을 함께 쓴다.

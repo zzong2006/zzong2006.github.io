@@ -47,7 +47,7 @@ aliases: [NER]
 | QUANTITY | 수량 | 100만 개, 270mm |
 | MONEY | 금액 | 99,000원, $999 |
 
-도메인에 따라 커스텀 태그셋을 정의하기도 한다. 예를 들어 이커머스에서는 브랜드, 카테고리, 색상, 재질 등 **상품 속성 기반 태그셋**을 사용 (→ [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]]에서 16개 속성 정의).
+도메인에 따라 커스텀 태그셋을 정의하기도 한다. 예를 들어 이커머스에서는 브랜드, 카테고리, 색상, 재질 등 **상품 속성 기반 태그셋**을 사용 (→ [[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]]에서 16개 속성 정의).
 
 ## A.3) NER 방법론
 
@@ -123,5 +123,5 @@ Product: "나이키 에어맥스 90 블랙 메쉬 러닝화 270mm"
 
 # B) Related
 
-- [[retrieval/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]] — NER 속성 기반 코드를 generative retrieval에 활용
+- [[papers/e-commerce/GRAM - Generative Retrieval and Alignment Model|GRAM]] — NER 속성 기반 코드를 generative retrieval에 활용
 - [[machine_learning/NLP/BART|BERT]] — NER에 가장 많이 사용되는 base model
