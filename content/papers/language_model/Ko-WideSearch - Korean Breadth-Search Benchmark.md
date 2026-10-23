@@ -73,7 +73,7 @@ flowchart TD
 
 ## C.1) Depth Search와 Breadth Search
 
-Ko-WideSearch를 이해하려면 먼저 "search가 어렵다"는 말을 둘로 나눠야 한다. 기존 web-agent benchmark는 대체로 **depth search** 를 본다. BrowseComp, K-BrowseComp류 task는 여러 조건을 따라가며 하나의 어려운 답을 찾는 문제에 가깝다.
+Ko-WideSearch를 이해하려면 먼저 "search가 어렵다"는 말을 둘로 나눠야 한다. 기존 web-agent benchmark는 대체로 **depth search** 를 본다. [[BrowseComp]], K-BrowseComp류 task는 여러 조건을 따라가며 하나의 어려운 답을 찾는 문제에 가깝다.
 
 ```text
 depth search:
