@@ -288,7 +288,7 @@ export const FolderPage = (opts = {}) => {
     name: "FolderPage",
     priority: 10,
     match: folderMatcher,
-    generate({ content, cfg }) {
+    generate({ content, cfg, ctx }) {
       const allFiles = content
         .map((c) => c[1].data)
         .filter((d) => d?.unlisted !== true)
@@ -318,6 +318,13 @@ export const FolderPage = (opts = {}) => {
         }
       }
 
+      // breadcrumb 은 ctx.trie 의 폴더 이름을 쓴다. 이 trie 는 generate 보다 먼저 만들어져서
+      // 아래에서 바꾸는 제목이 반영되지 않는다(경로 줄만 "papers" 로 남았다). 노드 이름을 직접 바꾼다.
+      const renameInTrie = (folder, name) => {
+        const node = ctx?.trie?.findNode(folder.split("/"))
+        if (node) node.displayName = name
+      }
+
       const foldersWithIndex = new Set()
       for (const [, file] of content) {
         const data = file.data
@@ -343,6 +350,7 @@ export const FolderPage = (opts = {}) => {
         // 맞춘다. 이 제목이 breadcrumb 에 쓰이므로, 여기서 "Retrieval" 로 두면 탐색기의
         // "검색"과 경로 줄의 "Retrieval" 이 갈라진다.
         frontmatter.title = opts?.prefixFolders ? `Folder: ${folderName}` : folderName
+        renameInTrie(folder, folderName)
         frontmatter.description = description
         file.data.description = description
       }
@@ -356,6 +364,7 @@ export const FolderPage = (opts = {}) => {
         const folderName = folderDisplayName(folder, folderDisplayNames.get(folder) ?? slugSegment)
         const title = opts?.prefixFolders ? `Folder: ${folderName}` : folderName
         const description = folderDescription(folderName, countNotesUnder(allFiles, slug))
+        renameInTrie(folder, folderName)
 
         virtualPages.push({
           slug,
