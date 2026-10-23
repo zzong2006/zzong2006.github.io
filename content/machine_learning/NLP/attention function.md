@@ -81,6 +81,10 @@ $$
 
 토큰 1 의 출력은 $0.401 \times [1, 0] + 0.198 \times [0, 2] + 0.401 \times [3, 3] = [1.604, 1.599]$ 다. 토큰 1 의 query 와 내적이 큰 토큰 1, 3 의 value 가 40% 씩, 내적이 0 인 토큰 2 의 value 가 20% 섞였다. 토큰 3 은 자기 key 와의 내적이 2 로 가장 커서 자기 value 를 절반 가까이(0.503) 가져온다.
 
+![[img-eab0541d86.png]]
+
+같은 계산을 value 벡터가 놓인 평면에 그리면 위와 같다. 보라색 점 세 개가 value $v_1, v_2, v_3$ 이고, 가중치는 0 이상이며 합이 1 이므로 출력은 항상 세 점이 만드는 삼각형 안에 놓인다. 빨간 선은 토큰 1 의 출력에서 각 value 로 이은 선이고, 선 위의 숫자가 그 value 에 준 가중치다. 토큰 1 의 출력은 $v_1$ 과 $v_3$ 쪽으로 같은 비율(0.401)로 끌려가고 $v_2$ 쪽으로는 덜(0.198) 끌려간다. 토큰 3 의 출력은 가중치 0.503 을 준 $v_3$ 에 가장 가깝다. attention 이 하는 일은 query 마다 이 삼각형 안의 한 점을 고르는 것이고, 어느 점을 고를지를 query 와 key 의 내적이 정한다.
+
 ## A.4) $\sqrt{d_k}$ 로 나누는 이유
 
 벡터가 길어질수록 내적값의 폭이 커진다. Vaswani et al. (2017, 3.2.1절 각주) 은 query 와 key 의 각 원소가 평균 0, 분산 1 인 독립 확률변수라면 내적 $q \cdot k = \sum_{i=1}^{d_k} q_i k_i$ 는 평균 0, 분산 $d_k$ 를 갖는다고 설명한다. 표준편차가 $\sqrt{d_k}$ 로 커진다는 뜻이다. 표준정규분포에서 뽑은 벡터 쌍 10,000 개로 직접 확인하면 아래와 같다.
@@ -130,11 +134,14 @@ A = \operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + M\right), \qquad
 M_{ij} = \begin{cases} 0 & j \le i \\ -\infty & j > i \end{cases}
 $$
 
-$M$ 은 $L \times L$ 마스크 행렬이고 $e^{-\infty} = 0$ 이므로 가려진 칸의 가중치는 정확히 0 이 된다. 앞의 토큰 세 개 예에 마스크를 씌우면 다음과 같다.
+$M$ 은 $L \times L$ 마스크 행렬이고 $e^{-\infty} = 0$ 이므로 가려진 칸의 가중치는 정확히 0 이 된다. 앞의 토큰 세 개 예에 마스크를 씌우면 가중치 행렬이 아래 오른쪽처럼 바뀐다.
+
+![[img-e481315063.png]]
+
+행 하나가 query 하나의 가중치 분포다. 왼쪽은 마스크 없이 계산한 앞의 가중치이고, 오른쪽은 대각선 위쪽(자기보다 뒤의 key)을 빗금으로 가린 결과다. 가린 칸을 빼고 행마다 softmax 를 다시 하므로 남은 칸이 합 1 을 나눠 갖는다. 그래서 query 1 은 자기 자신에게 1.000 을 준다. 출력은 다음과 같다.
 
 $$
-A_{\text{causal}} = \begin{bmatrix} 1 & 0 & 0 \\ 0.330 & 0.670 & 0 \\ 0.248 & 0.248 & 0.503 \end{bmatrix}, \qquad
-O_{\text{causal}} = \begin{bmatrix} 1 & 0 \\ 0.330 & 1.340 \\ 1.759 & 2.007 \end{bmatrix}
+O_{\text{causal}} = A_{\text{causal}} V = \begin{bmatrix} 1 & 0 \\ 0.330 & 1.340 \\ 1.759 & 2.007 \end{bmatrix}
 $$
 
 1. 토큰 1 은 자기 자신만 볼 수 있어서 출력이 자기 value $[1, 0]$ 그대로다.
@@ -197,6 +204,10 @@ $$
 | $\text{FLOPs}_{\text{attn}}$ | head 마다 $QK^\top$ 와 $AV$ 를 계산하는 연산량의 합. $h \cdot d_h = d_{\text{model}}$ 을 썼다 |
 
 projection 은 $L$ 에 비례하고 attention 행렬 계산은 $L^2$ 에 비례한다. 둘의 비는 $L / (2 d_{\text{model}})$ 이다. $d_{\text{model}} = 4096$ 인 모델이라면 $L = 8{,}192$ 에서 둘이 같아지고, $L = 131{,}072$(128K) 에서는 attention 행렬 계산이 projection 의 16 배다. causal mask 를 쓰면 절반의 칸은 계산할 필요가 없지만 여전히 $L^2$ 에 비례한다. (key·value head 를 줄인 GQA 모델은 $K, V$ projection 이 작아서 위 식이 근사다.)
+
+![[img-4a60496d83.png]]
+
+위 그래프는 두 식에 $d_{\text{model}} = 4096$ 을 넣어 계산한 값이다. 두 축이 모두 로그라서 $L$ 에 비례하는 projection 은 기울기 1, $L^2$ 에 비례하는 attention 행렬 계산은 기울기 2 의 직선이 된다. 짧은 시퀀스에서는 projection 이 대부분이고, 8K 에서 두 선이 만난 뒤로는 attention 행렬 쪽이 빠르게 커진다.
 
 메모리도 같다. 식을 그대로 구현하면 $S$ 와 $A$ 를 GPU 메모리에 통째로 만든다. head 32 개, $L = 8{,}192$, 원소당 2 바이트면 한 층의 $S$ 하나만 해도 $8192^2 \times 32 \times 2$ 바이트 = 4 GiB 다. 학습 때는 역전파를 위해 이것을 보관해야 한다. FlashAttention 은 이 행렬을 메모리에 만들지 않는 방법이다.
 
@@ -270,7 +281,11 @@ HBM(high bandwidth memory)은 GPU 의 주 메모리로, 모델 가중치와 KV c
 
 ## D.1) Key·value head 를 나눠 쓰거나 압축한다: MQA, GQA, MLA
 
-decode 의 attention 은 캐시를 읽는 속도에 묶여 있고, 캐시 크기는 key·value head 수에 비례한다. 그렇다면 query head 는 그대로 두고 key·value head 만 줄이면 된다는 생각이 MQA 와 GQA 다.
+decode 의 attention 은 캐시를 읽는 속도에 묶여 있고, 캐시 크기는 key·value head 수에 비례한다. 그렇다면 query head 는 그대로 두고 key·value head 만 줄이면 된다는 생각이 MQA 와 GQA 다. MLA 는 head 수 대신 저장하는 벡터를 압축한다.
+
+![[img-97ea966f8a.png]]
+
+그림은 query head 8 개짜리 층 하나에서 네 방식이 key·value 를 어떻게 나눠 쓰는지 그린 것이다. 빨간 칸이 query head, 주황 칸이 캐시에 저장하는 key·value head, 초록 칸이 MLA 가 저장하는 latent 벡터다. 위에서 아래로 갈수록 캐시에 남는 것이 줄어든다. MHA 는 8 벌, GQA(그룹 2)는 2 벌, MQA 는 1 벌을 저장한다. MLA 는 head 별 key·value 대신 짧은 latent 하나를 저장하고, 계산할 때 head 별 key·value 로 복원한다(점선). 실제 모델은 head 가 훨씬 많다. Llama 3 8B 는 query head 32 개에 key·value head 8 개, DeepSeek-V3 는 query head 128 개에 latent 하나다.
 
 **MQA (multi-query attention).** Shazeer (2019) 는 모든 query head 가 key·value head 하나를 함께 쓰게 했다. query 와 출력 projection 은 head 마다 그대로 둔다. WMT14 영어–독일어 번역 모델(6 층, $h = 8$, $d_h = 128$)에서 TPUv2 로 잰 디코더의 토큰당 시간은 46 µs 에서 3.8 µs 로 약 12 배 줄었다 (Table 2, 배치 1024, 원문·번역문 길이 128). 품질은 dev BLEU 가 26.7 에서 26.5 로 0.2 떨어졌다 (Table 1). 파라미터 수를 맞추려고 feed-forward 층을 4096 에서 5440 으로 넓힌 비교다.
 
@@ -307,6 +322,10 @@ attention 식을 그대로 구현하면 점수 행렬 $S$ 와 softmax 결과 $P$
 1. **tiling.** $Q, K, V$ 를 SRAM 에 들어가는 크기의 블록으로 잘라 불러오고, 한 블록의 점수 계산·softmax·value 곱을 SRAM 안에서 끝낸 뒤 출력만 HBM 에 쓴다. 이 과정 전체를 CUDA kernel 하나로 합친다(kernel fusion).
 2. **online softmax.** softmax 는 행 전체의 최댓값과 지수 합이 있어야 계산되는데, 블록 단위로는 행의 일부만 보인다. 그래서 행마다 지금까지의 최댓값 $m$ 과 지수 합 $\ell$ 을 들고 다니다가, 새 블록에서 더 큰 값이 나오면 이전 누적값을 $e^{m_{\text{old}} - m_{\text{new}}}$ 배로 줄여 맞춘다.
 
+![[img-d18bb6b354.png]]
+
+두 그림 모두 가로가 key 위치, 세로가 query 위치인 점수 행렬이다. 왼쪽 표준 구현은 행렬 전체(빨강)를 HBM 에 만든다. 오른쪽 FlashAttention 은 query 블록 하나를 SRAM 에 올려 둔 채 key·value 블록을 왼쪽부터 하나씩 불러온다. 진한 초록 타일이 지금 계산 중인 것이고, 연한 초록은 이미 계산해서 $m$, $\ell$ 과 출력 누적값에 반영한 뒤 버린 것이다. 흰 칸은 아직 계산하지 않았거나 다른 query 블록의 몫이다. 어느 순간에도 SRAM 에는 타일 하나 분량만 있고, $L \times L$ 행렬 전체는 어디에도 저장되지 않는다.
+
 online softmax 를 앞의 토큰 세 개 예에서 토큰 3 으로 따라가 본다. 스케일링한 점수는 $[0.707, 0.707, 1.414]$ 이고, key·value 를 {토큰 1, 2} 와 {토큰 3} 두 블록으로 나눈다. 정규화하지 않은 출력 누적값을 $\mathbf{o}$ 라 한다.
 
 | 단계 | $m$ | $\ell$ | $\mathbf{o}$ |
@@ -341,6 +360,10 @@ FlashAttention 계열은 연산량을 줄이지 않는다. $L^2$ 칸을 모두 �
 ## D.4) 보는 토큰 수를 줄인다: sliding window, NSA, DSA
 
 앞의 기법들은 모든 토큰을 보는 attention 을 더 싸게 계산했다. 이 절의 기법들은 query 하나가 보는 토큰 수 자체를 $L$ 보다 작게 만든다. 연산량과 decode 의 캐시 읽기가 함께 준다. 대신 모델 구조가 달라지므로 그렇게 학습해야 한다.
+
+![[img-3d67aa2daf.png]]
+
+세 그림은 32 토큰 시퀀스에서 query 마다 어떤 key 를 보는지 색칠한 것이다. 크기는 설명용으로 줄였다. 왼쪽 causal attention 은 대각선 아래를 모두 칠하므로 마지막 query 가 key 32 개를 전부 본다. 가운데 sliding window 는 대각선을 따라 폭 $W = 8$ 인 띠만 남는다. 오른쪽은 아래에서 볼 NSA 를 단순화한 모양이다. 최근 4 토큰 창(빨강)에 더해 4 토큰 블록 몇 개(주황)를 query 마다 골라 본다. 고르는 블록이 query 마다 달라서 줄무늬 모양이 된다. 실제 NSA 는 64 토큰 블록 16 개와 최근 512 토큰을 보고, DSA 는 블록이 아니라 토큰 2048 개를 하나씩 고른다.
 
 **Sliding window attention.** 각 토큰이 바로 앞 $W$ 개 토큰만 본다. Mistral 7B 는 $W = 4096$ 을 쓴다 (Jiang et al., 2023, 2절). 한 층에서는 $W$ 칸 밖을 못 보지만, 층을 하나 지날 때마다 정보가 $W$ 칸씩 더 전달되므로 $k$ 번째 층은 최대 $W \times k$ 칸 앞의 정보까지 받을 수 있다. 32 층이면 이론상 약 131K 토큰이다. 캐시도 층마다 최근 $W$ 개만 있으면 되므로 고정 크기 버퍼에 돌려 가며 덮어쓴다(rolling buffer). 32K 토큰 시퀀스에서 캐시 메모리가 8 배 줄었다.
 
