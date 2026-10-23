@@ -193,7 +193,7 @@ $$
 
 정답 label과 전체 예측 확률이 있고 Brier loss를 직접 계산할 수 있다면, 그 loss를 바로 미분할 수 있다. REINFORCE로 같은 목표를 학습하려면 기대 보상이 그 목표와 대응하도록 샘플링과 보상을 설계해야 한다. 단순히 loss 이름을 reward로 바꾸는 것으로는 충분하지 않다.
 
-[[machine_learning/generative_ai/LLM/Jev|Jev와 RLCD]] 노트의 Laya 예시는 선택지 label 하나 대신 **noise를 더한 logit 벡터를 샘플로 취급** 한다. 그 결과 만들어진 확률 분포를 채점하고, 좋은 점수를 얻은 logit 벡터가 더 잘 나오도록 업데이트한다. 이때 policy-gradient 항의 로그는 정답 선택지 확률의 로그가 아니라 **해당 noisy logit을 샘플링한 분포의 log density** 에 해당한다. 공개 notebook은 이 항과 cross-entropy를 함께 사용한다. [Laya 학습 코드](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
+[[generative_ai/LLM/Jev|Jev와 RLCD]] 노트의 Laya 예시는 선택지 label 하나 대신 **noise를 더한 logit 벡터를 샘플로 취급** 한다. 그 결과 만들어진 확률 분포를 채점하고, 좋은 점수를 얻은 logit 벡터가 더 잘 나오도록 업데이트한다. 이때 policy-gradient 항의 로그는 정답 선택지 확률의 로그가 아니라 **해당 noisy logit을 샘플링한 분포의 log density** 에 해당한다. 공개 notebook은 이 항과 cross-entropy를 함께 사용한다. [Laya 학습 코드](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
 
 NanoJev의 독립 실험은 선택지 label을 여러 번 뽑고, 정답 일치 보상과 샘플 간 일치 페널티를 조합해 기대 Brier 목표와 연결한다. 샘플들이 보상을 함께 결정하므로, 독립적인 개별 보상을 가정한 그룹 평균 예제를 그대로 대입해서는 안 된다. [NanoJev의 목적함수와 조건](https://github.com/TianyuCodings/NanoJev/blob/main/docs/RLCD_EXPERIMENT.md)
 

@@ -119,7 +119,7 @@ flowchart TD
 
 이 선택은 query와 product를 같은 embedding space에 강하게 묶는다. query 전용 encoder와 product 전용 encoder를 따로 두는 것보다 유연성은 줄 수 있지만, first-stage retrieval에서는 두 embedding을 바로 dot product나 cosine similarity로 비교해야 하므로 같은 기준으로 표현된다는 장점이 크다. 논문은 decoder-only embedding model을 encoder처럼 사용하며, sequence embedding은 마지막 토큰의 hidden state를 pooling해서 만든다.
 
-학습은 [[machine_learning/generative_ai/LLM/LoRA]]로 수행한다.
+학습은 [[generative_ai/training/LoRA|LoRA]]로 수행한다.
 
 | 항목 | 설정 |
 |---|---|

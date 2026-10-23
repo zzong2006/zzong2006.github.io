@@ -322,7 +322,7 @@ OpenJev는 선택지마다 문자를 배정하고 첫 출력 위치에서 그 �
 
 # H) 평가자로 사용할 때의 의미
 
-[[machine_learning/generative_ai/evaluation/MT-bench|MT-Bench]] 같은 평가에서는 judge가 답변 품질을 판정한다. Jev를 평가에 활용한다면, 예를 들어 응답과 근거 문서를 state로 주고 ‘주장이 근거에 의해 뒷받침되는가’를 Noul로 물을 수 있다. 이는 사용 예시이며 MT-Bench의 기존 judge와 동등한 평가 성능을 보장하는 구성은 아니다.
+[[generative_ai/evaluation/MT-bench|MT-Bench]] 같은 평가에서는 judge가 답변 품질을 판정한다. Jev를 평가에 활용한다면, 예를 들어 응답과 근거 문서를 state로 주고 ‘주장이 근거에 의해 뒷받침되는가’를 Noul로 물을 수 있다. 이는 사용 예시이며 MT-Bench의 기존 judge와 동등한 평가 성능을 보장하는 구성은 아니다.
 
 실제 도입에서는 정답 label과의 일치도, 확률 calibration, 판단을 보류했을 때의 오류율을 함께 측정해야 한다. ‘calibrated’라는 학습 목표만으로 모든 도메인에서 동일한 threshold를 쓸 수는 없다.
 

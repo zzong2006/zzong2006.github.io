@@ -15,7 +15,7 @@ enableToc: false
 > 단어로 찾는 방법과 뜻으로 찾는 방법이 어떻게 다른지부터 짚고, 나머지 검색 노트로 이어 줍니다.
 
 > [!start] LLM 학습이 궁금하다면
-> [[machine_learning/generative_ai/LLM/LLM Post-Training for Natural Korean|자연스러운 한국어를 위한 LLM Post-Training]]
+> [[generative_ai/post_training/LLM Post-Training for Natural Korean|자연스러운 한국어를 위한 LLM Post-Training]]
 >
 > 이미 학습된 언어 모델이 한국어를 자연스럽게 말하도록 추가로 학습시키는 순서를 정리했습니다.
 
@@ -49,12 +49,12 @@ enableToc: false
 > [!topic] LLM
 > 대형 언어 모델을 학습시키고, 사람이 원하는 대로 답하게 다듬고, 가볍게 만들어 서비스하는 방법.
 >
-> - [[machine_learning/generative_ai/LLM/Large Language Model|Large Language Model]]
-> - [[machine_learning/generative_ai/LLM/LoRA|LoRA]]
-> - [[machine_learning/generative_ai/LLM/DPO|DPO]]
-> - [[machine_learning/generative_ai/LLM/Quantization|Quantization]]
+> - [[generative_ai/LLM/Large Language Model|Large Language Model]]
+> - [[generative_ai/training/LoRA|LoRA]]
+> - [[generative_ai/post_training/DPO|DPO]]
+> - [[generative_ai/inference/Quantization|Quantization]]
 >
-> [[machine_learning/generative_ai/LLM/index|LLM 노트 전체]]
+> [[generative_ai/index|생성형 AI 노트 전체]]
 
 > [!topic] 머신러닝 기초
 > 모델이 데이터에서 배우는 원리와, 배운 모델이 처음 보는 데이터에서도 잘 맞게 만드는 기본기.

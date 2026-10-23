@@ -26,7 +26,7 @@ RLHF나 DPO 같은 preference optimization을 바로 적용하기 전에 SFT를 
 
 # C) Alignment에서의 위치
 
-SFT는 보통 [[machine_learning/generative_ai/alignment tax|alignment]] pipeline의 초반에 온다. 이후 preference data를 쓰는 [[RLHF]], DPO, rejection sampling 같은 방법이 붙을 수 있지만, SFT가 기본적인 instruction following 형식을 먼저 잡아준다.
+SFT는 보통 [[generative_ai/post_training/alignment tax|alignment]] pipeline의 초반에 온다. 이후 preference data를 쓰는 [[RLHF]], DPO, rejection sampling 같은 방법이 붙을 수 있지만, SFT가 기본적인 instruction following 형식을 먼저 잡아준다.
 
 # D) 주의할 점
 
