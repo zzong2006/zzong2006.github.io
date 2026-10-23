@@ -343,9 +343,28 @@ function buildScript(options) {
     for (const outer of explorer.querySelectorAll(".folder-outer")) {
       outer.classList.toggle("open", onPath.has(outer.parentElement));
     }
-    requestAnimationFrame(() => {
-      target.scrollIntoView({ block: "nearest", inline: "nearest" });
-    });
+    requestAnimationFrame(() => revealInList(explorer, target));
+  }
+
+  // 탐색기 목록만 스크롤한다. scrollIntoView 는 페이지 전체까지 움직일 수 있고, "nearest" 로는
+  // 지금 줄이 목록 맨 위에 붙어 그 위의 폴더 줄(어느 폴더 안인지)이 가려졌다.
+  // 지금 줄이 이미 보이면 건드리지 않는다. 같은 폴더 안에서 옆 노트로 옮길 때 목록이 튀지 않게.
+  function revealInList(explorer, target) {
+    let box = null;
+    for (let node = target.parentElement; node && node !== explorer.parentElement; node = node.parentElement) {
+      const overflowY = getComputedStyle(node).overflowY;
+      if ((overflowY === "auto" || overflowY === "scroll") && node.scrollHeight > node.clientHeight) {
+        box = node;
+        break;
+      }
+    }
+    if (!box) return;
+
+    const top = target.getBoundingClientRect().top - box.getBoundingClientRect().top;
+    const bottom = top + target.getBoundingClientRect().height;
+    if (top >= 0 && bottom <= box.clientHeight) return;
+    // 목록 높이의 3분의 1 지점에 둔다.
+    box.scrollTop += top - box.clientHeight / 3;
   }
 
   function syncExplorer(dates) {
