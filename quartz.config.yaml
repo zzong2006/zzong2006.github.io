@@ -4,7 +4,9 @@ configuration:
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
-  analytics: null
+  analytics:
+    provider: goatcounter
+    websiteId: zzong2006
   locale: ko-KR
   baseUrl: zzong2006.github.io
   ignorePatterns:
@@ -234,6 +236,12 @@ plugins:
       position: left
       priority: 35
       group: toolbar
+  # GoatCounter site-wide visit count; reads the site code from configuration.analytics.
+  - source: ./plugins/site-visits
+    enabled: true
+    layout:
+      position: left
+      priority: 40
   - source: github:quartz-community/breadcrumbs
     enabled: true
     layout:

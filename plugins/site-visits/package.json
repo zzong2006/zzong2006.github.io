@@ -1,0 +1,34 @@
+{
+  "name": "site-visits",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./index.js"
+  },
+  "scripts": {
+    "build": "node -e \"\""
+  },
+  "quartz": {
+    "name": "site-visits",
+    "displayName": "Site visits",
+    "description": "Public site-wide visit count from GoatCounter",
+    "version": "1.0.0",
+    "category": "component",
+    "defaultEnabled": false,
+    "defaultOptions": {
+      "label": "방문"
+    },
+    "components": {
+      "SiteVisits": {
+        "name": "SiteVisits",
+        "displayName": "Site visits",
+        "description": "Public site-wide visit count from GoatCounter",
+        "version": "1.0.0",
+        "defaultPosition": "left",
+        "defaultPriority": 40
+      }
+    }
+  }
+}
