@@ -49,7 +49,7 @@ $$
 
 * 분수 형태로 바뀐 이유는 [[Bayes theorem]] 을 적용했기 때문
 
-# C) Training GMM: [[machine_learning/EM algorithm]]
+# C) Training GMM: [[machine_learning/probabilistic_models/EM algorithm]]
 
 ## C.1) Expectation Step: the Assignment Probability
 

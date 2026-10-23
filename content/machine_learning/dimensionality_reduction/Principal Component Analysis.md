@@ -77,7 +77,7 @@ $\Lambda$ 는 [[diagonal matrix]] with elements $\left\{\lambda_{1},\lambda_{2},
 
 # C) Relation with Singular Value Decomposition
 
-[[machine_learning/Singular Value Decomposition|SVD]] 와 PCA 는 동일한 방법이지만 좀 더 유연한 방법이다.
+[[machine_learning/dimensionality_reduction/Singular Value Decomposition|SVD]] 와 PCA 는 동일한 방법이지만 좀 더 유연한 방법이다.
 
 왜 동일한지 설명하기 위해, 모든 데이터가 zero mean 으로 전처리 되었다 ($\mathbf{x}_{n}-\mu$) 는 가정 하에 얘기하자면 다음과 같다.
 

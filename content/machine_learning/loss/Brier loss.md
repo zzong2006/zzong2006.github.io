@@ -10,7 +10,7 @@ aliases:
 
 # A) 확률 예측에 적용한 제곱오차
 
-Brier loss는 **예측 확률과 실제 정답 사이의 제곱오차** 다. MSE를 확률 예측에 적용한다고 생각하면 된다. 정답 label만 맞혔는지 보는 accuracy와 달리, 정답에 얼마만큼 확률을 줬는지도 평가한다. [[machine_learning/probability calibration|확률 calibration]]을 살펴볼 때 쓰지만, calibration만을 따로 측정하는 지표는 아니다.
+Brier loss는 **예측 확률과 실제 정답 사이의 제곱오차** 다. MSE를 확률 예측에 적용한다고 생각하면 된다. 정답 label만 맞혔는지 보는 accuracy와 달리, 정답에 얼마만큼 확률을 줬는지도 평가한다. [[machine_learning/classification/probability calibration|확률 calibration]]을 살펴볼 때 쓰지만, calibration만을 따로 측정하는 지표는 아니다.
 
 환불 요청 여부를 예측한다고 하자. 모델은 ‘환불 요청일 확률’을 내놓고, 실제 정답은 요청이면 1, 아니면 0으로 기록한다. 이진 문제의 사례 하나에 대한 계산은 다음과 같다.
 

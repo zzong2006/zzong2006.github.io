@@ -11,9 +11,9 @@ tags:
 t-Stochastic Nearest Embedding 는 vector visualization 을 위하여 자주 이용되는 차원 축소 알고리즘이다.
 ![[img-9302b7dc43.png||500]]
 
-차원 축소에 관련된 알고리즘은 [[autoencoder]], [[machine_learning/Principal Component Analysis]] 등 다양하게 존재한다.
+차원 축소에 관련된 알고리즘은 [[autoencoder]], [[machine_learning/dimensionality_reduction/Principal Component Analysis]] 등 다양하게 존재한다.
 
-하지만, t-SNE 는 [[Transductive]] 학습 모델이고, 나머지 [[autoencoder]] 와 [[machine_learning/Principal Component Analysis]] 는 [[machine_learning/Inductive]] 학습 모델이라는 특징을 지니고있다.
+하지만, t-SNE 는 [[Transductive]] 학습 모델이고, 나머지 [[autoencoder]] 와 [[machine_learning/dimensionality_reduction/Principal Component Analysis]] 는 [[machine_learning/learning_paradigms/Inductive]] 학습 모델이라는 특징을 지니고있다.
 t-SNE 는 [[Locally Linear Embedding]]) 라는 차원 축소 방법과 비슷하다.
 
 # B) t-SNE 내 정의된 두 유사도
@@ -54,7 +54,7 @@ $$
 
 t-SNE 는 데이터의 특징을 추출하거나 시각화할 때 매우 강력한 알고리즘입니다. 특히 기존의 선형 변환 방식인 PCA(주성분 분석) 와 비교했을 때, 몇 가지 중요한 이점이 있습니다.
 
-* **데이터 뭉개짐 문제 해결**: [[machine_learning/Principal Component Analysis|PCA]] 와 같은 선형 변환 방법은 데이터를 저차원으로 임베딩할 때 정보가 겹쳐져서 뭉개지는 현상이 발생할 수 있습니다. 그러나 t-SNE 는 비선형적인 방식으로 데이터를 처리하여 이러한 문제를 해결합니다.
+* **데이터 뭉개짐 문제 해결**: [[machine_learning/dimensionality_reduction/Principal Component Analysis|PCA]] 와 같은 선형 변환 방법은 데이터를 저차원으로 임베딩할 때 정보가 겹쳐져서 뭉개지는 현상이 발생할 수 있습니다. 그러나 t-SNE 는 비선형적인 방식으로 데이터를 처리하여 이러한 문제를 해결합니다.
 * **crowding 문제 해결**: 기존 SNE 방법에서는 저차원 임베딩에서 정규분포 (가우스 분포) 를 사용했기 때문에 특정 거리 이상부터 학습에 반영되지 않는 문제가 있었습니다. 하지만 t-SNE 는 저차원 임베딩을 t 분포 기반으로 하기 때문에 이러한 crowding 문제를 효과적으로 해소합니다.
 * **Hyperparameter 에 덜 민감함**: 다른 차원 축소 알고리즘과 비교했을 때, t-SNE 는 hyperparameter 설정에 크게 영향을 받지 않으며, 이상치 (outlier) 에 둔감하다는 장점이 있습니다.
 

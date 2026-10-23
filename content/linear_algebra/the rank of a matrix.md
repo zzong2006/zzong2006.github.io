@@ -27,7 +27,7 @@ $$
 
 rank $k$ 인 matrix $A$ 는 rank 가 $1$ 인 $k$ 개의 행렬들의 합으로 나타낼 수 있다. 그리고 $k-1$ rank 인 행렬이나 $k$ 개 보다 작은 수의 rank $1$ 행렬의 합으로는 나타낼 수 없다.
 
-위와 같은 행렬 분해 특징을 이용해 [[machine_learning/Singular Value Decomposition|SVD]] 에 대한 직관을 얻을 수 있다.
+위와 같은 행렬 분해 특징을 이용해 [[machine_learning/dimensionality_reduction/Singular Value Decomposition|SVD]] 에 대한 직관을 얻을 수 있다.
 
 # C) Full Rank
 

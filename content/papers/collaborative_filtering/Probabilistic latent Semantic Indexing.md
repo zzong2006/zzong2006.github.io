@@ -62,7 +62,7 @@ $$
 
 # C) 방식
 
-[[machine_learning/EM algorithm|EM]] 알고리즘으로 학습한다.
+[[machine_learning/probabilistic_models/EM algorithm|EM]] 알고리즘으로 학습한다.
 
 - E-step: Posterior probability of latent variables (concepts)
 	- $\displaystyle p(z\mid d,w)=\frac{P(z)P(d\mid z)P(w\mid z)}{\sum_{z^{\prime}\in Z}P\left(z^{\prime}\right)P\left(d\mid z^{\prime}\right)P\left(w\mid z^{\prime}\right)}$

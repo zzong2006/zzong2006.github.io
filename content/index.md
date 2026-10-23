@@ -60,8 +60,8 @@ enableToc: false
 > 모델이 데이터에서 배우는 원리와, 배운 모델이 처음 보는 데이터에서도 잘 맞게 만드는 기본기.
 >
 > - [[machine_learning/Rules of ML|Rules of ML]]
-> - [[machine_learning/Bias-variance tradeoff|Bias-variance tradeoff]]
-> - [[machine_learning/regularization|regularization]]
+> - [[machine_learning/generalization/Bias-variance tradeoff|Bias-variance tradeoff]]
+> - [[machine_learning/generalization/regularization|regularization]]
 > - [[machine_learning/deep_learning/backpropagation|backpropagation]]
 >
 > [[machine_learning/index|머신러닝 노트 전체]]

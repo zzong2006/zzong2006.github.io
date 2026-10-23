@@ -15,7 +15,7 @@ tags:
 	* 필요한 자원과 시간을 추정하기
 * Data: 데이터 모으기
 	* 데이터 labeling 이 일관성 있는지 확인
-	* [[machine_learning/Normalization]] 을 어떻게 진행할지?
+	* [[machine_learning/feature_engineering/Normalization]] 을 어떻게 진행할지?
 * Modeling: 모델 학습 및 평가
 	* Code (algorithm / model)
 	* Hyperparameters

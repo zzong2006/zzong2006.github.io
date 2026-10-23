@@ -26,7 +26,7 @@ $q(z)=\prod_{i}q\left(z_{i}\right)$ 임을 가정하자. 그러면, [[Evidence L
 
 # B) Related
 
-[[machine_learning/EM algorithm]], [[variational inference]]
+[[machine_learning/probabilistic_models/EM algorithm]], [[variational inference]]
 
 # C) References
 

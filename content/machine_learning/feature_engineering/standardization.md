@@ -19,7 +19,7 @@ $$
 
 # B) Normalization 과 구분
 
-Normalization 은 문맥에 따라 넓게 쓰이는 말이라 혼동이 자주 생긴다. feature scaling 문맥에서는 보통 [[machine_learning/min-max scaling|min-max scaling]] 처럼 값을 특정 범위로 맞추는 방법을 가리키고, 통계 문맥에서는 standardization 을 z-score normalization 이라고 부르기도 한다.
+Normalization 은 문맥에 따라 넓게 쓰이는 말이라 혼동이 자주 생긴다. feature scaling 문맥에서는 보통 [[machine_learning/feature_engineering/min-max scaling|min-max scaling]] 처럼 값을 특정 범위로 맞추는 방법을 가리키고, 통계 문맥에서는 standardization 을 z-score normalization 이라고 부르기도 한다.
 
 | 구분 | 변환 | 결과 범위 | 언제 유용한가 |
 | --- | --- | --- | --- |
@@ -37,7 +37,7 @@ Normalization 은 문맥에 따라 넓게 쓰이는 말이라 혼동이 자주 �
 
 # D) 해석할 때 주의할 점
 
-Standardization 은 outlier 에 완전히 강한 방법은 아니다. 평균과 표준편차 자체가 outlier 의 영향을 받기 때문이다. 다만 [[machine_learning/min-max scaling|min-max scaling]] 처럼 최솟값과 최댓값에 직접 묶이는 방법보다는 outlier 하나가 전체 범위를 압축하는 문제가 덜하다.
+Standardization 은 outlier 에 완전히 강한 방법은 아니다. 평균과 표준편차 자체가 outlier 의 영향을 받기 때문이다. 다만 [[machine_learning/feature_engineering/min-max scaling|min-max scaling]] 처럼 최솟값과 최댓값에 직접 묶이는 방법보다는 outlier 하나가 전체 범위를 압축하는 문제가 덜하다.
 
 Train/test split 이 있다면 평균과 표준편차는 train set 에서만 추정하고, 같은 값으로 validation/test set 을 변환해야 한다. 전체 데이터에서 미리 계산하면 data leakage 가 생긴다.
 

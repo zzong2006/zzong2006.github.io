@@ -13,7 +13,7 @@ aliases:
 
 Jev는 TypeSafe AI가 2026년 9월 공개한 **구조화된 판단 모델** 이다. 자유로운 답변 문장 대신, 입력 상황과 질문에 대해 선택지·점수·확률을 반환한다. TypeSafe는 이런 모델을 System One이라고 부르며, 학습 방식은 **RLCD(Reinforcement Learning for Calibrated Decisions)** 라고 소개한다. [공식 발표](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
 
-RLCD의 공개된 목표는 판단의 정확도뿐 아니라 [[machine_learning/probability calibration|확률의 calibration]]까지 맞추는 것이다. 반면 일반적인 [[machine_learning/contrastive learning|contrastive learning]]은 positive와 negative를 구별하는 표현을 학습한다. 두 방법의 차이를 이해하려면 먼저 **무엇을 예측하는지**, 그다음 **어떤 loss와 절차로 학습하는지**를 나누어 봐야 한다.
+RLCD의 공개된 목표는 판단의 정확도뿐 아니라 [[machine_learning/classification/probability calibration|확률의 calibration]]까지 맞추는 것이다. 반면 일반적인 [[machine_learning/learning_paradigms/contrastive learning|contrastive learning]]은 positive와 negative를 구별하는 표현을 학습한다. 두 방법의 차이를 이해하려면 먼저 **무엇을 예측하는지**, 그다음 **어떤 loss와 절차로 학습하는지**를 나누어 봐야 한다.
 
 2026년 10월 2일 확인한 TypeSafe 공식 자료에는 RLCD의 목적은 나오지만, 재현할 수 있는 loss 수식·reward 정의·업데이트 알고리즘은 제시되어 있지 않다. 반면 Laya, Kev, NanoJev 같은 독립적인 오픈 모델은 학습 방식도 공개한다. **원본 Jev에서 알려진 것과 오픈 모델이 선택한 구현을 구분** 하면, 같은 판단 인터페이스를 지도학습과 RL로 각각 어떻게 만드는지 비교할 수 있다. 아래의 log loss와 Brier loss도 Jev의 확인된 수식이 아니라 이 비교를 위한 출발점이다.
 
@@ -237,7 +237,7 @@ Logit은 softmax로 확률을 만들기 전의 선택지별 점수다. 환불 �
 
 시험 A는 덜 확신하고, 시험 B는 더 확신한다. **Noise를 넣는다고 항상 확률이 평평해지지는 않는다.** 평균 0인 Gaussian noise는 양수와 음수 방향으로 흔들되 특정 방향의 변화만 지속해서 더하지 않는다는 뜻이다. 공개 코드는 각 질문의 유효 선택지에 더한 noise의 평균도 빼 준다. 모든 logit에 같은 값을 더하면 softmax가 바뀌지 않으므로, 선택지 사이의 상대적인 차이를 흔드는 것이다. [Laya fine-tuning 코드](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb)
 
-[[machine_learning/label smoothing|Label smoothing]]은 바꾸는 대상부터 다르다. 실제 정답이 yes일 때 학습용 정답표 `[1, 0]`을 예를 들어 `[0.95, 0.05]`로 바꾼다. 이를 통해 one-hot 정답을 끝까지 확신하도록 학습하는 압력을 줄인다. 위 noise 예시는 정답표를 바꾸지 않는다.
+[[machine_learning/deep_learning/label smoothing|Label smoothing]]은 바꾸는 대상부터 다르다. 실제 정답이 yes일 때 학습용 정답표 `[1, 0]`을 예를 들어 `[0.95, 0.05]`로 바꾼다. 이를 통해 one-hot 정답을 끝까지 확신하도록 학습하는 압력을 줄인다. 위 noise 예시는 정답표를 바꾸지 않는다.
 
 | 방법 | 바꾸는 대상 | 여기서의 역할 |
 | --- | --- | --- |

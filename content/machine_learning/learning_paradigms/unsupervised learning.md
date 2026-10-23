@@ -10,7 +10,7 @@ tags:
 	* One-class [[support vector machine]]
 	* Isolation Forest
 * dimensionality reduction
-	* [[machine_learning/Principal Component Analysis]]
+	* [[machine_learning/dimensionality_reduction/Principal Component Analysis]]
 	* Kernel PCA
 	* [[Locally Linear Embedding]]
 	* [[t-Stochastic Nearest Embedding]]

@@ -22,7 +22,7 @@ tag: [deep_learning, machine_learning, supervised_learning]
 # C) AE 의 장점
 
 * 신경망에 non-linear [[activation function]] 을 사용하기 때문에, non-linear 한 데이터에 대한 차원 압축을 원활히 진행할 수 있다.
-	* [[machine_learning/Principal Component Analysis]] 는 주성분 벡터를 이용해 기존 데이터를 변형하므로, 선형 변환만 가능하다.
+	* [[machine_learning/dimensionality_reduction/Principal Component Analysis]] 는 주성분 벡터를 이용해 기존 데이터를 변형하므로, 선형 변환만 가능하다.
 * 차원 변환 외에도 활용 가능성이 높다.
 	* Data denoising & Restoration
 

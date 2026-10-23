@@ -15,7 +15,7 @@ tags:
 
 UMAP 적용할 때 parameter 설정 중 눈에 띄는 것들
 
-* `init`: 초기화 방법에 [[machine_learning/Principal Component Analysis|PCA]] 적용이 있다. PCA -> UMAP 의 형태로 이중으로 차원 축소를 먹이는 방법이다. 기본은 `spectrum` 이라는 옵션인데, 이게 시간이랑 메모리를 많이 잡아먹어서 `random` 으로 바꾸는게 도움이 된다고 한다.
+* `init`: 초기화 방법에 [[machine_learning/dimensionality_reduction/Principal Component Analysis|PCA]] 적용이 있다. PCA -> UMAP 의 형태로 이중으로 차원 축소를 먹이는 방법이다. 기본은 `spectrum` 이라는 옵션인데, 이게 시간이랑 메모리를 많이 잡아먹어서 `random` 으로 바꾸는게 도움이 된다고 한다.
 * `low_memory`: 메모리 절약할때 키는 옵션으로, 기본으로 켜져있다. 근데도 메모리를 엄청 먹는다.
 
 가장 중요한 parameters

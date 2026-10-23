@@ -22,4 +22,4 @@ tags:
 
 # 3. Related
 
-* [[machine_learning/Singular Value Decomposition]]
+* [[machine_learning/dimensionality_reduction/Singular Value Decomposition]]

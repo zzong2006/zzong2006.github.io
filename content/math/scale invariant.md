@@ -28,7 +28,7 @@ L0-regularization regression 의 경우는 scale invariant 하다.
 
 ## PCA
 
-[[machine_learning/Principal Component Analysis|PCA]] 는 scale invariant 하지 않다.
+[[machine_learning/dimensionality_reduction/Principal Component Analysis|PCA]] 는 scale invariant 하지 않다.
 
 # References
 

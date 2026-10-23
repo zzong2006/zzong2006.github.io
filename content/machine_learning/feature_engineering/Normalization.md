@@ -10,7 +10,7 @@ aliases: [normalization, scaling]
 
 Normalization 은 데이터의 scale 을 맞추는 전처리를 넓게 부르는 말이다. 문맥에 따라 의미가 조금 달라서, 실제로 어떤 변환을 말하는지 확인해야 한다.
 
-Feature scaling 문맥에서 normalization 이라고 하면 보통 값을 특정 범위로 맞추는 [[machine_learning/min-max scaling|min-max scaling]] 을 가리키는 경우가 많다.
+Feature scaling 문맥에서 normalization 이라고 하면 보통 값을 특정 범위로 맞추는 [[machine_learning/feature_engineering/min-max scaling|min-max scaling]] 을 가리키는 경우가 많다.
 
 # B) Standardization 과 구분
 
@@ -29,7 +29,7 @@ $$
 | 구분 | 중심 아이디어 | 결과 |
 | --- | --- | --- |
 | [[standardization]] | 평균과 표준편차 기준으로 재표현 | 평균 0, 표준편차 1 |
-| [[machine_learning/min-max scaling]] | 최솟값과 최댓값 기준으로 재표현 | 보통 0~1 |
+| [[machine_learning/feature_engineering/min-max scaling]] | 최솟값과 최댓값 기준으로 재표현 | 보통 0~1 |
 | unit norm normalization | vector 길이를 1로 맞춤 | cosine 비교에 유리 |
 
 # C) 언제 중요한가

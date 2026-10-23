@@ -29,7 +29,7 @@ CoFactor 는 [[Alternating Least Squares|ALS]] 에서 사용한 coordinate updat
 
 ## SPPMI
 
-[[negative sampling]] 을 통해 학습한 [[skip-gram]] 은 $\log{k}$ 만큼 shift 된 [[pointwise mutual information|PMI]] matrix SPPMI 를 implicit factorization(e.g. [[machine_learning/Singular Value Decomposition]]) 한것과 동일하다고 한다. 이 방식은 최적화 과정이 없기때문에 유용하다.
+[[negative sampling]] 을 통해 학습한 [[skip-gram]] 은 $\log{k}$ 만큼 shift 된 [[pointwise mutual information|PMI]] matrix SPPMI 를 implicit factorization(e.g. [[machine_learning/dimensionality_reduction/Singular Value Decomposition]]) 한것과 동일하다고 한다. 이 방식은 최적화 과정이 없기때문에 유용하다.
 
 PMI matrix 의 원소는 다음과 같이 계산된다.
 

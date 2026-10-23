@@ -12,7 +12,7 @@ aliases: []
 
 # A) 방법론
 
-본 논문에서 제안하는 검색 랭킹 모델은 [[machine_learning/Learning-to-Rank|Learning-to-Rank]] framework 기반으로 학습합니다. 모델의 최적화는 Walmart.com의 실제 검색 데이터를 활용하며, 다양한 사용자 행동 로그를 반영합니다. 랭킹 성능 향상을 위해서는 고품질 특성(feature)뿐만 아니라, 목적에 맞게 설계된 라벨(label)이 중요합니다. 본 연구에서는 LLM을 이용해 라벨과 특성을 효과적으로 생성·활용하는 방법에 집중하였습니다.
+본 논문에서 제안하는 검색 랭킹 모델은 [[machine_learning/learning_to_rank/Learning-to-Rank|Learning-to-Rank]] framework 기반으로 학습합니다. 모델의 최적화는 Walmart.com의 실제 검색 데이터를 활용하며, 다양한 사용자 행동 로그를 반영합니다. 랭킹 성능 향상을 위해서는 고품질 특성(feature)뿐만 아니라, 목적에 맞게 설계된 라벨(label)이 중요합니다. 본 연구에서는 LLM을 이용해 라벨과 특성을 효과적으로 생성·활용하는 방법에 집중하였습니다.
 
 ## A.1) 라벨 설계
 

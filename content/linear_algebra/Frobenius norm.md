@@ -42,7 +42,7 @@ $$
 
 ## A.5) 활용
 
-- 행렬 근사 오차 측정 (e.g., [[machine_learning/Singular Value Decomposition|SVD]] truncation)
+- 행렬 근사 오차 측정 (e.g., [[machine_learning/dimensionality_reduction/Singular Value Decomposition|SVD]] truncation)
 - [[Regularization]]: $\|W\|_F^2$ (weight decay)
 - 행렬 간 유사도 비교
 
@@ -50,4 +50,4 @@ $$
 
 - [[norm]]
 - [[matrix]]
-- [[machine_learning/Singular Value Decomposition|SVD]]
+- [[machine_learning/dimensionality_reduction/Singular Value Decomposition|SVD]]

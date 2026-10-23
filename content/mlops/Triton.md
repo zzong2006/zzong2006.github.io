@@ -10,7 +10,7 @@ aliases:
 
 # A) Triton ?
 
-Triton Inference Server 는 딥러닝 모델을 높은 성능으로 서빙을 할 수 있는 오픈소스 추론서버입니다. [[machine_learning/Open Neural Network Exchange|ONNX]], TensorFlow, PyTorch, TensorRT 와 같은 다양한 딥러닝 프레임워크를 지원하며 다양한 모델 실행과 효율적인 배치 전략을 통해 하드웨어 활용도를 극대화할 수 있도록 최적화 설계되었습니다 (C++ base).
+Triton Inference Server 는 딥러닝 모델을 높은 성능으로 서빙을 할 수 있는 오픈소스 추론서버입니다. [[mlops/Open Neural Network Exchange|ONNX]], TensorFlow, PyTorch, TensorRT 와 같은 다양한 딥러닝 프레임워크를 지원하며 다양한 모델 실행과 효율적인 배치 전략을 통해 하드웨어 활용도를 극대화할 수 있도록 최적화 설계되었습니다 (C++ base).
 
 # B) Repository
 

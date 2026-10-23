@@ -13,7 +13,7 @@ title: "Interview Questions"
 * [[Linear independence]]
 * [[determinant]][]()
 * [[eigenvalue]] and Eigenvectors
-* [[machine_learning/Singular Value Decomposition|SVD]]
+* [[machine_learning/dimensionality_reduction/Singular Value Decomposition|SVD]]
 * The [[norm]] of a vector
 * Independent random variables
 * Expectation and variance
