@@ -455,6 +455,15 @@ export const ExplorerFollowActive = (userOpts = {}) => {
       return {
         js: [
           {
+            // Quartz 탐색기는 저장된 목록 위치(sessionStorage.explorerScrollTop)가 없으면, 즉
+            // 세션의 첫 페이지에서 지금 노트에 scrollIntoView 를 부른다. 그 호출은 창 전체도
+            // 스크롤해서, 큰 폴더 깊숙한 노트로 들어오면 본문이 중간부터 보였다. 탐색기가
+            // 그리기 전에 0 을 넣어 두면 그 호출을 건너뛴다. 목록 위치는 아래 스크립트가 맞춘다.
+            contentType: "inline",
+            loadTime: "beforeDOMReady",
+            script: `try { if (sessionStorage.getItem("explorerScrollTop") === null) sessionStorage.setItem("explorerScrollTop", "0") } catch {}`,
+          },
+          {
             contentType: "inline",
             loadTime: "afterDOMReady",
             script: buildScript(options),
