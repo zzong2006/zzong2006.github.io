@@ -1,3 +1,5 @@
+import { FOLDER_GROUPS, OTHER_GROUP_TITLE } from "./groups.js"
+
 const defaultOptions = {
   datesPath: "",
 }
@@ -5,6 +7,8 @@ const defaultOptions = {
 function buildScript(options) {
   const config = JSON.stringify({
     datesPath: options.datesPath || "",
+    groups: FOLDER_GROUPS,
+    otherGroupTitle: OTHER_GROUP_TITLE,
   })
 
   return `
@@ -253,6 +257,17 @@ function buildScript(options) {
 
   // 폴더 먼저, 그다음 이름순. 예전에는 최근 수정순이었는데, 동기화 한 번에 여러 폴더의
   // 날짜가 같이 바뀌어서 앞쪽은 이름순, 뒤쪽은 뒤죽박죽으로 보였다. 최근 글은 대문에 있다.
+  function compareItems(left, right) {
+    const leftFolder = isFolderItem(left);
+    const rightFolder = isFolderItem(right);
+    if (leftFolder !== rightFolder) return leftFolder ? -1 : 1;
+
+    return labelOf(left).localeCompare(labelOf(right), undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
+  }
+
   function sortList(list) {
     const items = Array.from(list.children).filter((item) => !item.classList.contains("overflow-end"));
 
@@ -262,16 +277,7 @@ function buildScript(options) {
     const fingerprint = String(items.length);
     if (list.dataset.sortedFor === fingerprint) return;
 
-    items.sort((left, right) => {
-      const leftFolder = isFolderItem(left);
-      const rightFolder = isFolderItem(right);
-      if (leftFolder !== rightFolder) return leftFolder ? -1 : 1;
-
-      return labelOf(left).localeCompare(labelOf(right), undefined, {
-        numeric: true,
-        sensitivity: "base",
-      });
-    });
+    items.sort(compareItems);
 
     // 항목마다 appendChild 하면 목록 하나에 DOM 이동이 항목 수만큼 일어난다.
     // fragment 에 모아 한 번에 넣으면 삽입이 1회로 끝난다.
@@ -283,8 +289,86 @@ function buildScript(options) {
   }
 
   function sortExplorer(explorer) {
-    const lists = explorer.querySelectorAll("ul.explorer-ul, ul.content");
-    for (const list of lists) sortList(list);
+    // 맨 위 목록은 묶음이 있으면 applyGroups 가 순서를 정한다.
+    const selector = config.groups.length > 0 ? "ul.content" : "ul.explorer-ul, ul.content";
+    for (const list of explorer.querySelectorAll(selector)) sortList(list);
+  }
+
+  // ── 맨 위 폴더 묶음 ───────────────────────────────────────────────
+  // groups.js 의 순서대로 묶음 제목(li.explorer-group)과 폴더를 놓고, 폴더 이름을 바꾼다.
+  // 묶음에 없는 폴더와 맨 위 노트는 '기타' 묶음 뒤쪽에 이름순으로 붙는다.
+  const groupIndexOf = new Map();
+  const rankOf = new Map();
+  const groupLabelOf = new Map();
+  config.groups.forEach((group, groupIndex) => {
+    group.folders.forEach(([key, label], rank) => {
+      groupIndexOf.set(key, groupIndex);
+      rankOf.set(key, rank);
+      groupLabelOf.set(key, label);
+    });
+  });
+
+  function topFolderKey(item) {
+    const folder = item.querySelector(":scope > .folder-container");
+    if (!folder?.dataset?.folderpath) return "";
+    return normalizeSlug(folder.dataset.folderpath).replace(/\\/index$/, "").toLowerCase();
+  }
+
+  function groupHeader(root, title) {
+    for (const node of root.children) {
+      if (node.classList.contains("explorer-group") && node.dataset.group === title) return node;
+    }
+    const header = document.createElement("li");
+    header.className = "explorer-group";
+    header.dataset.group = title;
+    header.textContent = title;
+    return header;
+  }
+
+  function applyGroups(explorer) {
+    const root = explorer.querySelector("ul.explorer-ul");
+    if (!root || config.groups.length === 0) return;
+
+    const buckets = config.groups.map(() => []);
+    const rest = [];
+    for (const item of Array.from(root.children)) {
+      if (item.classList.contains("overflow-end") || item.classList.contains("explorer-group")) continue;
+
+      const key = topFolderKey(item);
+      const label = groupLabelOf.get(key);
+      const title = item.querySelector(":scope > .folder-container .folder-title");
+      if (label && title && title.textContent !== label) title.textContent = label;
+
+      const groupIndex = groupIndexOf.get(key);
+      if (groupIndex === undefined) rest.push(item);
+      else buckets[groupIndex].push(item);
+    }
+
+    const order = [];
+    let otherHeader = null;
+    buckets.forEach((bucket, groupIndex) => {
+      if (bucket.length === 0) return;
+      bucket.sort((left, right) => rankOf.get(topFolderKey(left)) - rankOf.get(topFolderKey(right)));
+      const header = groupHeader(root, config.groups[groupIndex].title);
+      if (config.groups[groupIndex].title === config.otherGroupTitle) otherHeader = header;
+      order.push(header, ...bucket);
+    });
+    if (rest.length > 0) {
+      rest.sort(compareItems);
+      if (!otherHeader) order.push(groupHeader(root, config.otherGroupTitle));
+      order.push(...rest);
+    }
+
+    // 이미 그 순서면 건드리지 않는다. sync 가 여러 번 돌 때 DOM 이동을 피한다.
+    const current = Array.from(root.children).filter((item) => !item.classList.contains("overflow-end"));
+    if (current.length === order.length && current.every((item, index) => item === order[index])) return;
+
+    const fragment = document.createDocumentFragment();
+    for (const item of order) fragment.appendChild(item);
+    for (const stale of current) {
+      if (!order.includes(stale)) stale.remove();
+    }
+    root.appendChild(fragment);
   }
 
   function findActiveLink(explorer) {
@@ -337,6 +421,7 @@ function buildScript(options) {
         link.setAttribute("aria-label", entry.label + " — " + entry.title);
       }
       sortExplorer(explorer);
+      applyGroups(explorer);
       addFolderCounts(explorer);
       // 폴더 페이지나 인덱스로 이동하면 활성 링크가 없다. 그때 이전 섹션 표시가
       // 남지 않도록 continue 하기 전에 먼저 지운다.
