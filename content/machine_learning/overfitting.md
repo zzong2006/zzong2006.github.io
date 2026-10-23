@@ -123,7 +123,22 @@ overfitting 한 모델은 학습 데이터를 조금만 바꿔도 예측이 크�
 
 9 차 다항식의 예측은 평균으로 보면 참값과 거의 같다. 하지만 표준편차가 1.99 라서, 한 번 학습한 모델의 예측은 참값에서 2 가까이 벗어나기 일쑤다. 1 차 직선은 반대다. 어떤 표본으로 학습해도 비슷한 값을 내놓지만, 그 값의 평균이 참값에서 0.3 만큼 벗어나 있다.
 
-예측값들의 평균이 참값에서 벗어난 정도를 [[bias]], 예측값들이 그 평균 주위로 흩어진 정도를 [[variance]] 라고 한다. 새 데이터에서의 기대 제곱 오차는 bias 의 제곱, variance, 잡음의 분산을 더한 값으로 나뉜다 ([[Bias-variance tradeoff]]). underfitting 은 bias 가 큰 상태이고, overfitting 은 variance 가 큰 상태다.
+예측값들의 평균이 참값에서 벗어난 정도를 [[bias]], 예측값들이 그 평균 주위로 흩어진 정도를 [[variance]] 라고 한다. 새 데이터에서의 기대 제곱 오차는 bias 의 제곱, variance, 잡음의 분산을 더한 값으로 나뉜다 ([[Bias-variance tradeoff]]).
+
+$$
+\mathbb{E}\Big[\big(y - \hat f_D(x)\big)^2\Big] = \underbrace{\big(\mathbb{E}_D[\hat f_D(x)] - f(x)\big)^2}_{\text{bias}^2} + \underbrace{\mathbb{E}_D\Big[\big(\hat f_D(x) - \mathbb{E}_D[\hat f_D(x)]\big)^2\Big]}_{\text{variance}} + \sigma_\varepsilon^2
+$$
+
+| 기호 | 뜻 |
+| --- | --- |
+| $f(x)$ | 참 함수. 이 예제에서는 $\sin(2\pi x)$ |
+| $y$ | $x$ 에서 관측한 값. $f(x)$ 에 잡음이 더해진 것 |
+| $D$ | 학습 데이터 10 개. 새로 뽑을 때마다 달라진다 |
+| $\hat f_D(x)$ | $D$ 로 맞춘 다항식의 $x$ 에서의 예측 |
+| $\mathbb{E}_D[\cdot]$ | 학습 데이터를 새로 뽑아 가며 낸 평균. 위 표에서는 1,000 번의 평균으로 대신했다 |
+| $\sigma_\varepsilon^2$ | 잡음의 분산. 이 예제에서는 $0.3^2 = 0.09$ |
+
+위 표로 $x = 0.95$ 에서 계산하면, 9 차 다항식은 bias² 가 $(-0.30 + 0.31)^2 \approx 0.0001$ 이고 variance 가 $1.99^2 \approx 3.96$ 이다. 1 차 직선은 bias² 가 $(-0.61 + 0.31)^2 = 0.09$ 이고 variance 가 $0.16^2 \approx 0.03$ 이다. underfitting 은 bias 가 큰 상태이고, overfitting 은 variance 가 큰 상태다.
 
 # D) 완화하는 방법
 
