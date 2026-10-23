@@ -4,7 +4,7 @@ tags:
   - LLM
   - inference
   - transformer
-aliases: [Key-Value Cache, KV 캐시]
+aliases: [Key-Value Cache]
 ---
 
 # A) KV cache 는 이미 계산한 key·value 를 저장해 두는 캐시다

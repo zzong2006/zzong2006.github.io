@@ -5,7 +5,7 @@ tags:
   - deep_learning
   - LLM
   - transformer
-aliases: ["attention", "어텐션", "self-attention", "self attention", "셀프 어텐션"]
+aliases: ["attention", "self-attention", "self attention"]
 ---
 
 # A) Attention 은 문맥에 맞춰 다른 토큰의 정보를 섞는 가중 평균이다
