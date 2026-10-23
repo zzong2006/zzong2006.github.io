@@ -23,6 +23,7 @@ export const FOLDER_GROUPS = [
     title: "머신러닝·LLM",
     folders: [
       ["machine_learning", "머신러닝"],
+      ["generative_ai", "생성형 AI"],
       ["rl", "강화학습"],
       ["graph", "그래프"],
       ["papers", "논문"],
@@ -79,7 +80,6 @@ export const OTHER_GROUP_TITLE = "기타"
 
 // 아래 규칙으로 만들면 어색해지는 하위 폴더만 이름을 정해 둔다. 키는 FOLDER_GROUPS 와 같다.
 export const FOLDER_LABELS = {
-  "machine_learning/generative_ai": "Generative AI",
   "papers/rl": "RL",
   "retrieval/rag": "RAG",
 }
