@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { h } from "preact"
 import { resolveRelative } from "@quartz-community/utils"
+import { clipParts, snippetParts, snippetPlainText } from "../snippet.js"
 
 const defaultOptions = {
   title: "함께 보면 좋은 글",
@@ -48,44 +49,45 @@ function titleOf(page) {
   return String(page.frontmatter?.title ?? fallback)
 }
 
-function cleanSnippetText(value) {
-  return String(value ?? "")
-    .replace(/```[\s\S]*?```/g, " ")
-    .replace(/\$\$[\s\S]*?\$\$/g, " ")
-    .replace(/\\\[[\s\S]*?\\\]/g, " ")
-    .replace(/\$[^$\n]*\$/g, " ")
-    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias ?? target)
-    .replace(/<[^>]+>/g, " ")
-    .replace(/[`*_~>#]+/g, " ")
-    .replace(/-{2,}/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
+// Quartz 가 만든 설명(page.description)은 이미 HTML 이스케이프가 된 글이다. preact 가 한 번 더
+// 이스케이프하므로 화면에 "&amp;" 가 그대로 보였다. 먼저 되돌린다.
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" }
+
+function decodeEntities(value) {
+  return String(value ?? "").replace(/&(amp|lt|gt|quot|#39);/g, (_, name) => ENTITIES[name])
 }
 
-function clipSnippet(value, limit) {
-  const text = cleanSnippetText(value)
-  if (!text || text.length <= limit) return text
-
-  const head = text.slice(0, Math.max(0, limit - 3)).trim()
-  const sentenceEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "))
-  const spaceEnd = head.lastIndexOf(" ")
-  const boundary = sentenceEnd >= limit * 0.45 ? sentenceEnd + 1 : spaceEnd >= limit * 0.6 ? spaceEnd : -1
-  const clipped = boundary > 0 ? head.slice(0, boundary).trim() : head
-  return `${clipped}...`
+// 요약문은 조각 배열이다(짝수 칸 글, 홀수 칸 수식). 형식은 ../snippet.js 참고.
+// 빌드 스크립트가 노트 원문으로 만든 캐시를 먼저 쓴다. Quartz 설명은 수식을 LaTeX 원문 글자로
+// 풀어 두고 "_" 도 지워서(b_{ij} → b {ij}) 캐시가 없을 때만 쓴다.
+function snippetOf(page, cache, options) {
+  const cached = cache?.snippets?.[page.slug]
+  const parts =
+    Array.isArray(cached) && cached.length % 2 === 1
+      ? cached.map(String)
+      : clipParts(
+          snippetParts(
+            decodeEntities(
+              page.frontmatter?.description ??
+                page.frontmatter?.summary ??
+                page.description ??
+                page.text ??
+                "",
+            ),
+          ),
+          options.snippetLength,
+        )
+  return snippetPlainText(parts) === titleOf(page) ? [""] : parts
 }
 
-function snippetOf(entry, page, options) {
-  const source =
-    entry?.snippet ??
-    page.frontmatter?.description ??
-    page.frontmatter?.summary ??
-    page.description ??
-    page.text ??
-    ""
-  const snippet = clipSnippet(source, options.snippetLength)
-  return snippet === titleOf(page) ? "" : snippet
+// 수식 칸은 TeX 원문을 글자로 넣어 두고, 브라우저에서 KaTeX 가 그 자리에 그린다(아래 script).
+// KaTeX 를 못 불러와도 원문은 읽을 수 있게 남는다.
+function renderSnippet(parts) {
+  return parts
+    .map((part, index) =>
+      index % 2 ? h("span", { class: "related-notes__math", "data-tex": part }, part) : part,
+    )
+    .filter((part) => part !== "")
 }
 
 function folderOf(slug) {
@@ -217,6 +219,56 @@ function reasonLabel(reason) {
   }
 }
 
+// 본문 수식은 빌드할 때 그려지지만, KaTeX 라이브러리는 Quartz latex 플러그인 안에만 설치되어
+// 있어서 이 플러그인에서는 불러올 수 없다. 그래서 요약문에 수식이 있는 페이지에서만 CDN 에서
+// 받아 그린다. 버전은 모든 페이지가 이미 쓰는 katex.min.css 와 맞춘다.
+const katexScript = `
+(() => {
+  const src = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js";
+  const integrity = "sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg";
+  let loading = null;
+
+  function loadKatex() {
+    if (window.katex) return Promise.resolve(window.katex);
+    if (!loading) {
+      loading = new Promise((resolve, reject) => {
+        const el = document.createElement("script");
+        el.src = src;
+        el.integrity = integrity;
+        el.crossOrigin = "anonymous";
+        el.async = true;
+        el.onload = () => (window.katex ? resolve(window.katex) : reject(new Error("katex missing")));
+        el.onerror = () => {
+          loading = null;
+          reject(new Error("katex load failed"));
+        };
+        document.head.appendChild(el);
+      });
+    }
+    return loading;
+  }
+
+  function renderSnippetMath() {
+    const nodes = Array.from(document.querySelectorAll(".related-notes__math:not([data-rendered])"));
+    if (nodes.length === 0) return;
+    loadKatex()
+      .then((katex) => {
+        for (const node of nodes) {
+          if (!node.isConnected || node.dataset.rendered) continue;
+          try {
+            katex.render(node.dataset.tex || "", node, { throwOnError: false, displayMode: false });
+            node.dataset.rendered = "1";
+          } catch {}
+        }
+      })
+      .catch(() => {});
+  }
+
+  document.addEventListener("nav", renderSnippetMath);
+  renderSnippetMath();
+})();
+`
+
 export const RelatedNotes = (opts = {}) => {
   const options = { ...defaultOptions, ...opts }
 
@@ -226,6 +278,7 @@ export const RelatedNotes = (opts = {}) => {
 
     const entries = getRelatedEntries(fileData, allFiles ?? [], options)
     if (options.hideWhenEmpty && entries.length === 0) return null
+    const cache = readRelatedCache(options.cachePath)
 
     return h(
       "section",
@@ -238,7 +291,7 @@ export const RelatedNotes = (opts = {}) => {
             { class: "related-notes__list" },
             entries.map((entry) => {
               const { page, reasons = [] } = entry
-              const snippet = options.showSnippets ? snippetOf(entry, page, options) : ""
+              const snippet = options.showSnippets ? snippetOf(page, cache, options) : [""]
 
               return h("article", { class: "related-notes__item" }, [
                 h(
@@ -253,7 +306,9 @@ export const RelatedNotes = (opts = {}) => {
                     titleOf(page),
                   ),
                 ),
-                snippet ? h("p", { class: "related-notes__snippet" }, snippet) : null,
+                snippetPlainText(snippet)
+                  ? h("p", { class: "related-notes__snippet" }, renderSnippet(snippet))
+                  : null,
                 options.showReasons && reasons.length > 0
                   ? h(
                       "div",
@@ -361,6 +416,8 @@ export const RelatedNotes = (opts = {}) => {
   color: var(--gray);
 }
 `
+
+  Component.afterDOMLoaded = katexScript
 
   return Component
 }

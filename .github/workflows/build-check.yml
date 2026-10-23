@@ -59,7 +59,7 @@ jobs:
       # deploy.yml 과 같은 플러그인 테스트다. main 에 올리기 전에 브랜치에서 먼저 돈다.
       # node 가 없는 개발 머신에서는 여기서만 돌려 볼 수 있다.
       - name: Test local plugins
-        run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js
+        run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js plugins/related-notes/snippet.test.js
 
       - name: Install Quartz plugins
         run: node quartz/bootstrap-cli.mjs plugin install --from-config

@@ -3,6 +3,7 @@ import { promises as fs } from "node:fs"
 import path from "node:path"
 import YAML from "yaml"
 import { slugifyFilePath } from "@quartz-community/utils"
+import { snippetFromMarkdown } from "../plugins/related-notes/snippet.js"
 
 const rootDir = process.cwd()
 const contentDir = path.join(rootDir, "content")
@@ -99,78 +100,6 @@ function cleanText(value) {
     .trim()
 }
 
-function clipText(value, limit) {
-  const text = String(value ?? "").replace(/\s+/g, " ").trim()
-  if (!text || text.length <= limit) return text
-
-  const head = text.slice(0, Math.max(0, limit - 3)).trim()
-  const sentenceEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "))
-  const spaceEnd = head.lastIndexOf(" ")
-  const boundary = sentenceEnd >= limit * 0.45 ? sentenceEnd + 1 : spaceEnd >= limit * 0.6 ? spaceEnd : -1
-  const clipped = boundary > 0 ? head.slice(0, boundary).trim() : head
-  return `${clipped}...`
-}
-
-function snippetBlocks(markdown) {
-  const blocks = []
-  let current = []
-  let inCode = false
-  let inMath = false
-
-  const flush = () => {
-    if (current.length > 0) {
-      blocks.push(current.join(" "))
-      current = []
-    }
-  }
-
-  for (const line of String(markdown ?? "").split(/\r?\n/)) {
-    const trimmed = line.trim()
-
-    if (trimmed.startsWith("```")) {
-      inCode = !inCode
-      flush()
-      continue
-    }
-    if (trimmed === "$$") {
-      inMath = !inMath
-      flush()
-      continue
-    }
-    if (inCode || inMath) continue
-
-    if (
-      !trimmed ||
-      /^#{1,6}\s/.test(trimmed) ||
-      /^-{3,}$/.test(trimmed) ||
-      /^\|/.test(trimmed) ||
-      /^!\[/.test(trimmed)
-    ) {
-      flush()
-      continue
-    }
-
-    current.push(trimmed)
-  }
-  flush()
-
-  return blocks
-}
-
-function snippetFromBody(body, frontmatter) {
-  const summary = frontmatter.description ?? frontmatter.summary
-  const summaryText = cleanText(summary)
-  if (summaryText) return clipText(summaryText, snippetLength)
-
-  const snippet =
-    snippetBlocks(body)
-      .map(cleanText)
-      .filter((block) => block.length >= 16)
-      .find((block) => !/^references?$/i.test(block)) ?? ""
-
-  return clipText(snippet, snippetLength)
-}
-
 function slugFromRelativePath(relativePath) {
   return String(slugifyFilePath(relativePath.replaceAll(path.sep, "/")))
 }
@@ -256,7 +185,7 @@ async function loadDocuments() {
     const tags = arrayFromValue(frontmatter.tags)
     const aliases = arrayFromValue(frontmatter.aliases)
     const cleaned = cleanText(body)
-    const snippet = snippetFromBody(body, frontmatter)
+    const snippet = snippetFromMarkdown(body, frontmatter, snippetLength)
     const embeddingInput = `title: ${title} | text: ${[...aliases, ...tags, cleaned]
       .filter(Boolean)
       .join("\n")
@@ -478,6 +407,8 @@ await writeJson(
     embeddedDocuments: embeddedCount,
     format: "slug-array",
     relatedBySlug,
+    // 요약문은 노트마다 하나라 relatedBySlug 와 따로 둔다. 조각 배열 형식은 plugins/related-notes/snippet.js 참고.
+    snippets: Object.fromEntries(docs.map((doc) => [doc.slug, doc.snippet])),
   },
   { pretty: true },
 )
