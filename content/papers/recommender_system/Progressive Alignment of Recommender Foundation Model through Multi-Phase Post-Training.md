@@ -127,6 +127,18 @@ Reference 구현을 보면 두 head 는 FM 이 만든 사용자 표현을 받기
 
 **Discriminative learning rate** 는 같은 모델 안에서 부위별로 학습률을 다르게 주는 기법이다. 여기서는 FM backbone 에 downstream 모듈보다 10배 작은 학습률을 준다.
 
+여기서 downstream 모듈은 head 만이 아니라 FM 위에 새로 붙인 부분 전체를 말한다. LLM 에 빗대면 LM head 는 아래 표의 head 세 개에 해당하고, downstream 모듈은 그보다 넓다.
+
+| 구성 요소 | 하는 일 | 속하는 쪽 |
+| --- | --- | --- |
+| FM sequence encoder | 행동 시퀀스를 사용자 표현으로 바꾼다 | FM |
+| 작품 임베딩 | 작품 id 를 벡터로 바꾼다. downstream encoder 도 같은 것을 쓴다 | FM |
+| pooling query | FM 출력 시퀀스를 벡터 하나로 줄인다 | downstream |
+| downstream encoder | 사용자가 본 작품 목록과 회차 소비 통계를 화면 전용 표현으로 만든다 | downstream |
+| head 세 개 (추천, 채점, propensity) | 작품마다 점수를 낸다 | downstream |
+
+FFT 에서는 FM 쪽에 $10^{-5}$, downstream 쪽에 $10^{-4}$ 를 준다. 구분은 reference 구현의 `get_param_groups()` 기준이다.
+
 ## C.3) Ordinal Regression
 
 순서는 있지만 간격은 정의되지 않은 라벨(노출 < 클릭 < 첫 화 감상 < …)을 예측하는 방법이다. $L$ 단계 라벨을 $L-1$ 개의 cutpoint 로 나누고, cutpoint 마다 "이 단계를 넘었는가" 를 binary classification 으로 푼다. 6단계 funnel 이면 cutpoint 5개, binary 문제 5개가 된다.
