@@ -6,29 +6,42 @@ aliases: ["Progressive Alignment of Recommender Foundation Model", "LP-FFT-RFT",
 
 # A) 한줄 요약
 
-NAVER WEBTOON 이 사전학습된 추천 Foundation Model(FM)을 실제 서비스 화면에 붙이면서 쓴 **3단계 post-training** 방법이다. 먼저 FM 을 얼린 채 새 head 만 학습하고(**Linear Probing, LP**), 그다음 전체를 풀어 학습하고(**Full Fine-Tuning, FFT**), 마지막으로 reward model 을 기준으로 강화학습을 한다(**Reinforcement Fine-Tuning, RFT**).
+NAVER WEBTOON 이 이미 사전학습해 둔 추천 Foundation Model(FM)을 웹툰의 "새 작품 발견" 추천 화면에 붙이면서 쓴 **3단계 post-training** 방법이다. FM 을 새로 학습하는 논문이 아니다. 학습 대상은 FM 위에 붙이는 화면 전용 모듈과 head 이고, FM 은 단계에 따라 얼리거나 조금씩만 고친다. 먼저 FM 을 얼린 채 새 head 만 학습하고(**Linear Probing, LP**), 그다음 전체를 풀어 학습하고(**Full Fine-Tuning, FFT**), 마지막으로 reward model 을 기준으로 강화학습을 한다(**Reinforcement Fine-Tuning, RFT**).
 
 이 논문의 중심 주장은 "비즈니스 지표는 serving 모델이 아니라 reward model 이 배워야 한다" 는 것이다. 결제·완독처럼 드물게 관측되는 신호로 serving 모델을 직접 학습하면 랭킹 변별력이 약하다. 그래서 serving policy 는 클릭처럼 풍부한 신호로 학습하고, 비즈니스 지표는 reward model 에만 학습시킨 뒤 RFT 로 policy 쪽에 옮긴다. 오프라인에서는 GRPO + reward model 조합이 클릭 랭킹(Rank NDCG 0.437 → 0.463)과 깊은 소비 랭킹(Funnel NDCG 0.625 → 0.637)을 함께 올렸고, 한 달 온라인 A/B 에서도 기존 CTR×CVR 모델 대비 유료 회차 끝까지 보기(LastPaid/Imp)가 +13.4%p 올랐다.
 
 - **저자**: Oseong Choi\*, Hoeinn Kim\*, Jihoon Lee, Byungsoo Kang, Taeyeong Jang (NAVER WEBTOON, \*공동 1저자)
 - **발표**: RecSys '26 (arXiv 2608.06792, 2026-08-07)
 - **베이스 모델**: HSTU encoder 기반 sequential FM, 약 7M parameters
-- **도메인**: 한국 웹툰 플랫폼의 "새 작품 발견(discovery)" 추천 화면
+- **풀려는 문제**: 한국 웹툰 플랫폼의 "새 작품 발견(discovery)" 화면에서 사용자가 아직 안 본 작품을 추천하되, 클릭보다 깊은 소비(무료 회차 완독, 유료 회차 진입)를 늘리는 것
+- **serving 모델의 형태**: 카탈로그 전체 작품을 클래스로 두는 다중 분류(softmax). 입력은 사용자뿐이다
 - **코드**: [webtoon/rec-fm-progressive-alignment](https://github.com/webtoon/rec-fm-progressive-alignment) (합성 데이터로 도는 reference 구현, Apache-2.0)
 
 # B) 전체 구조
 
-추천 FM 은 대규모 사용자 행동 로그로 next-item prediction 을 사전학습한 sequence encoder 다. 회사는 이 FM 하나를 여러 serving 화면(홈, 발견 탭 등)에 붙여 쓰는데, 화면마다 목표가 달라 그때마다 head 를 새로 달아 fine-tuning 한다. 이 논문이 다루는 것은 그 붙이는 과정, 즉 **post-training 레시피** 다.
+## B.1) FM 과 이 논문이 학습하는 것
 
-모델은 세 개의 head 를 가진다.
+추천 FM 은 대규모 사용자 행동 로그로 다음 행동을 예측하도록 사전학습한(autoregressive multi-task) sequence encoder 다. 입력은 사용자가 시간순으로 본 작품, 콘텐츠 유형, 행동 유형, 행동 사이 시간 간격이고, 출력은 예측값이 아니라 **사용자 표현(embedding)** 이다. FM 의 내부 구조와 사전학습 목표의 세부는 논문과 reference 구현 모두 공개하지 않았다.
 
-| head | 예측하는 것 | 학습 신호 | 역할 |
+"Foundation model" 이라는 이름과 GRPO·DPO 는 LLM 에서 빌려 왔지만, 이 모델은 자연어를 다루지 않는다. 입력은 텍스트가 아니라 작품 id·행동 유형 같은 ID 시퀀스이고, 사용자 표현도 최종 목적이 아니라 중간 산물이다. 최종 출력은 작품마다 매긴 점수이고, 화면에는 그 점수 순으로 고른 상위 작품 목록이 나간다. LLM 에서 action 이 다음 토큰이라면 여기서는 추천할 작품 하나다.
+
+회사는 이 FM 하나를 여러 serving 화면에 붙여 쓴다. 화면마다 목표가 달라 그때마다 화면 전용 모듈과 head 를 새로 달아 학습한다. 이 논문이 다루는 것은 그 붙이는 과정, 즉 **post-training 레시피** 다. 실험한 화면은 사용자가 아직 안 본 작품을 추천하는 discovery 화면이다.
+
+## B.2) 세 개의 head
+
+모델은 FM 위에 세 개의 head 를 가진다. 셋 다 작품 하나하나에 대해 점수를 내는 카탈로그 크기의 출력을 낸다.
+
+| head | 문제 형태 | 정답 | 역할 |
 | --- | --- | --- | --- |
-| Serving policy $\pi_\theta$ | 노출 뒤 클릭할 작품 | 클릭 (dense) | 실제 랭킹에 쓰는 점수 |
-| Reward model $R_\phi$ | 작품을 어디까지 소비하는가 (funnel 깊이) | 6단계 funnel (sparse) | RFT 의 보상 |
-| Propensity $P_\psi$ | 이 사용자에게 이 작품이 노출될 확률 | 노출 여부 | reward 학습의 편향 보정 |
+| Serving policy $\pi_\theta$ | 카탈로그 전체 작품 중 하나를 고르는 다중 분류 (softmax) | 세션에서 클릭한 작품 (dense) | 실제 랭킹에 쓰는 점수 |
+| Reward model $R_\phi$ | 작품마다 ordinal regression (이진 분류 5개) | 그 작품에서 도달한 funnel 단계 (sparse) | RFT 의 보상 |
+| Propensity $P_\psi$ | 작품마다 이진 분류 (multi-label) | 노출됐는지 여부 | reward 학습의 편향 보정 |
+
+실제 서비스에 쓰는 serving policy 는 흔한 CTR 이진 분류가 아니다. 입력은 사용자뿐이고, 작품은 입력이 아니라 **출력 클래스** 다. 작품 수만큼 클래스가 있는 분류 문제로, YouTube DNN 의 후보 생성 모델과 같은 형태다. 반대로 비교 대상인 기존 production 모델(CTRL)은 (사용자, 작품) 쌍마다 클릭 확률과 전환 확률을 따로 내서 곱하는 이진 분류 두 개다.
 
 ![[img-962970b6b3.png|Foundation–expert 구조 (논문 Figure 1)]]
+
+## B.3) 학습 단계
 
 FM 이 만든 사용자 표현 $h_\text{fm}$ 과 화면 전용 downstream encoder 가 만든 $h_\text{ds}$ 를 이어 붙여(concat) 세 head 에 넘긴다. 학습은 아래 세 단계로 진행한다.
 
@@ -65,7 +78,11 @@ flowchart TD
 
 ## C.2) Linear Probing 과 LP-FT
 
-[[linear probing]] 은 사전학습 모델을 얼리고 새로 붙인 head 만 학습하는 방식이고, [[fine tuning|full fine-tuning]] 은 전체 파라미터를 학습하는 방식이다. Kumar et al. (2022) 는 랜덤 초기화된 head 를 단 채 처음부터 전체를 fine-tuning 하면 사전학습 feature 가 망가진다는 것을 보였다. 학습 초반 head 가 엉터리 gradient 를 내고, 그 gradient 가 backbone 까지 흘러 들어가기 때문이다. 그래서 LP 로 head 를 먼저 쓸 만한 상태로 만든 뒤 FT 하는 **LP-FT** 순서가 더 낫다.
+[[linear probing]] 은 사전학습 모델(backbone)을 얼리고 그 위에 붙인 head 만 학습하는 방식이다. 원래는 표현을 **평가하는** 방법이었다. "probe" 는 탐침이라는 뜻으로, 얼린 표현 위에 선형 분류기 하나만 올려 그 표현에 정보가 얼마나 담겨 있는지 잰다. SimCLR·MAE 같은 self-supervised 논문이 보고하는 "linear probe accuracy" 가 이것이다. 엄밀히는 head 가 선형층 하나여야 하고, MLP 를 올리면 보통 MLP probe 라고 따로 부른다.
+
+이 논문의 LP 는 그보다 넓은 뜻이다. FM 만 얼리고, downstream encoder(Transformer)와 MLP head 세 개를 함께 학습한다. 정확히는 "backbone 을 얼린 채 하는 학습" 이고, 이름은 아래 LP-FT 의 관례를 따랐다.
+
+[[fine tuning|Full fine-tuning]] 은 전체 파라미터를 학습하는 방식이다. Kumar et al. (2022) 는 랜덤 초기화된 head 를 단 채 처음부터 전체를 fine-tuning 하면 사전학습 feature 가 망가진다는 것을 보였다. 학습 초반 head 가 엉터리 gradient 를 내고, 그 gradient 가 backbone 까지 흘러 들어가기 때문이다. 그래서 LP 로 head 를 먼저 쓸 만한 상태로 만든 뒤 FT 하는 **LP-FT** 순서가 더 낫다.
 
 **Discriminative learning rate** 는 같은 모델 안에서 부위별로 학습률을 다르게 주는 기법이다. 여기서는 FM backbone 에 downstream 모듈보다 10배 작은 학습률을 준다.
 
@@ -127,7 +144,7 @@ $$
 
 Downstream encoder 는 무료 회차 소비량, 유료 회차 소비량, 연재 이어보기 같은 장기 행동 통계를 입력으로 받는다. Reference 구현에서는 사용자가 소비한 작품 목록을 FM 과 **같은 item embedding** 으로 임베딩하고, 작품별 행동 통계를 projection 해 `v * (1 + c)` 꼴로 곱한 뒤 CLS 토큰을 붙인 Transformer 로 인코딩한다. 논문 Figure 1 에도 downstream 쪽에 FM item embedding matrix 가 공유돼 있다.
 
-세 head 는 모두 카탈로그 크기의 출력을 낸다. 즉 작품 하나하나에 대해 점수를 내는 구조이고, serving policy 는 이 점수에 softmax 를 씌운 카탈로그 위의 확률분포다(reference 구현 기준).
+Serving policy 는 이 $h$ 를 MLP 에 넣어 카탈로그 크기의 logit 을 내고, softmax 를 씌워 작품 위의 확률분포 $\pi_\theta(\cdot \mid u)$ 로 쓴다(reference 구현 기준). RFT 의 확률 비율과 KL 은 모두 이 분포 위에서 계산한다.
 
 ### Reward model: funnel 깊이를 ordinal regression 으로
 
