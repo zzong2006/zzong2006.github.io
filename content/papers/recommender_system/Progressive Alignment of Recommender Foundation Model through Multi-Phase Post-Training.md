@@ -6,9 +6,40 @@ aliases: ["Progressive Alignment of Recommender Foundation Model", "LP-FFT-RFT",
 
 # A) 한줄 요약
 
-NAVER WEBTOON 이 이미 사전학습해 둔 추천 Foundation Model(FM)을 웹툰의 "새 작품 발견" 추천 화면에 붙이면서 쓴 **3단계 post-training** 방법이다. FM 을 새로 학습하는 논문이 아니다. 학습 대상은 FM 위에 붙이는 화면 전용 모듈과 head 이고, FM 은 단계에 따라 얼리거나 조금씩만 고친다. 먼저 FM 을 얼린 채 새 head 만 학습하고(**Linear Probing, LP**), 그다음 전체를 풀어 학습하고(**Full Fine-Tuning, FFT**), 마지막으로 reward model 을 기준으로 강화학습을 한다(**Reinforcement Fine-Tuning, RFT**).
+웹툰 추천 화면이 **클릭만 많이 받는 작품이 아니라, 사용자가 끝까지 보고 결제까지 이어지는 작품** 을 위에 올리도록 학습하는 방법이다. NAVER WEBTOON 이 이미 사전학습해 둔 추천 Foundation Model(FM)을 "새 작품 발견" 화면에 붙이면서 썼다. FM 을 새로 학습하는 논문은 아니다.
 
-이 논문의 중심 주장은 "비즈니스 지표는 serving 모델이 아니라 reward model 이 배워야 한다" 는 것이다. 결제·완독처럼 드물게 관측되는 신호로 serving 모델을 직접 학습하면 랭킹 변별력이 약하다. 그래서 serving policy 는 클릭처럼 풍부한 신호로 학습하고, 비즈니스 지표는 reward model 에만 학습시킨 뒤 RFT 로 policy 쪽에 옮긴다. 오프라인에서는 GRPO + reward model 조합이 클릭 랭킹(Rank NDCG 0.437 → 0.463)과 깊은 소비 랭킹(Funnel NDCG 0.625 → 0.637)을 함께 올렸고, 한 달 온라인 A/B 에서도 기존 CTR×CVR 모델 대비 유료 회차 끝까지 보기(LastPaid/Imp)가 +13.4%p 올랐다.
+## A.1) 문제
+
+목표는 "작품을 끝까지 보는가" 인데, 이 신호는 드물다. 작품을 클릭하는 사람은 많아도 무료 회차를 다 보고 유료 회차까지 넘어가는 사람은 훨씬 적다.
+
+- 이 드문 신호만으로 추천 모델을 학습하면 수천 개 작품의 순서를 세밀하게 정하지 못한다.
+- 반대로 클릭으로만 학습하면 순서는 잘 정하지만, 클릭만 받고 금방 이탈하는 작품도 위로 올라간다.
+
+## A.2) 해법
+
+모델 두 개에 역할을 나눈다.
+
+| 모델 | 하는 일 | 학습 데이터 | 화면에 쓰는가 |
+| --- | --- | --- | --- |
+| 추천 모델 (serving policy) | 화면에 보여 줄 작품 순서를 정한다 | 클릭 (많음) | 쓴다 |
+| 채점 모델 (reward model) | 이 사용자가 이 작품을 어디까지 볼지 점수를 매긴다 | 클릭, 첫 회차, 무료 완독, 유료 진입, 유료 완독 단계 (드묾) | 안 쓴다 |
+
+학습은 세 단계로 한다.
+
+1. **Linear Probing (LP)**: FM 은 얼리고 새로 붙인 부분만 학습한다.
+2. **Full Fine-Tuning (FFT)**: FM 까지 풀어 함께 학습한다. 여기까지가 클릭으로 추천 모델을 만들고, 채점 모델도 같이 학습해 두는 단계다.
+3. **Reinforcement Fine-Tuning (RFT)**: 추천 모델이 고른 상위 작품에 채점 모델이 점수를 매기고, 점수가 높은 작품의 순위를 올리도록 추천 모델을 다시 학습한다.
+
+결과적으로 추천 모델은 "클릭할 것 같은 작품" 중에서 "끝까지 볼 것 같은 작품" 을 더 위로 올리게 된다.
+
+## A.3) 결과
+
+- **오프라인에서는 클릭 순서와 소비 깊이 순서가 함께 좋아졌다** (Rank NDCG 0.437 → 0.463, Funnel NDCG 0.625 → 0.637).
+	- Rank NDCG 는 클릭한 작품을 전체 작품 중 얼마나 위에 올렸는지, Funnel NDCG 는 노출된 작품을 깊이 본 순서대로 줄 세웠는지를 잰다.
+- **채점 모델을 그대로 추천에 쓰면 클릭 순서가 가장 나빴다** (Rank NDCG 0.394).
+	- 깊이 순서는 잘 맞히지만 수천 개 작품을 줄 세우지는 못한다. 그래서 채점 모델은 추천 모델을 가르치는 데만 쓴다.
+- **한 달 온라인 A/B 테스트에서 유료 회차 끝까지 가는 비율이 기존 추천 모델보다 13.4%p 더 올랐다** (LastPaid/Imp).
+	- 추천을 한 번 보여 줄 때마다 같은 세션에서 마지막 유료 회차까지 간 비율이다. 실험 시작 전부터 있던 두 모델의 차이는 뺀 값이다.
 
 - **저자**: Oseong Choi\*, Hoeinn Kim\*, Jihoon Lee, Byungsoo Kang, Taeyeong Jang (NAVER WEBTOON, \*공동 1저자)
 - **발표**: RecSys '26 (arXiv 2608.06792, 2026-08-07)
@@ -24,6 +55,14 @@ NAVER WEBTOON 이 이미 사전학습해 둔 추천 Foundation Model(FM)을 웹�
 추천 FM 은 대규모 사용자 행동 로그로 다음 행동을 예측하도록 사전학습한(autoregressive multi-task) sequence encoder 다. 입력은 사용자가 시간순으로 본 작품, 콘텐츠 유형, 행동 유형, 행동 사이 시간 간격이고, 출력은 예측값이 아니라 **사용자 표현(embedding)** 이다. FM 의 내부 구조와 사전학습 목표의 세부는 논문과 reference 구현 모두 공개하지 않았다.
 
 "Foundation model" 이라는 이름과 GRPO·DPO 는 LLM 에서 빌려 왔지만, 이 모델은 자연어를 다루지 않는다. 입력은 텍스트가 아니라 작품 id·행동 유형 같은 ID 시퀀스이고, 사용자 표현도 최종 목적이 아니라 중간 산물이다. 최종 출력은 작품마다 매긴 점수이고, 화면에는 그 점수 순으로 고른 상위 작품 목록이 나간다. LLM 에서 action 이 다음 토큰이라면 여기서는 추천할 작품 하나다.
+
+구조로 보면 SASRec 계열의 sequential recommender 와 가깝다. SASRec 은 사용자가 본 작품 id 시퀀스를 왼쪽에서 오른쪽으로만 보는(causal) Transformer 로 읽고 다음 작품을 맞히도록 학습한다. 이 논문의 FM 도 causal Transformer 이고 다음 행동을 예측하도록 사전학습했다. 양방향으로 보고 가려 둔 작품을 맞히는 [[BERT4Rec - Sequential Recommendation with Bidirectional Encoder Representations from Transformer|BERT4Rec]] 보다는 SASRec 쪽이다. 차이는 세 가지다.
+
+| 항목 | SASRec | 이 논문 |
+| --- | --- | --- |
+| 입력 | 작품 id 시퀀스 | 작품 id 에 콘텐츠 유형, 행동 유형, 시간 간격을 더한 시퀀스 (HSTU 방식) |
+| 점수를 내는 법 | 마지막 위치 표현과 작품 임베딩의 내적 | FM 표현과 화면 전용 표현을 이어 붙여 MLP head 가 작품별 logit 을 낸다 |
+| 학습 | 다음 작품 맞히기 한 번 | 사전학습한 FM 위에서 클릭으로 다시 학습하고, 채점 모델 점수로 강화학습까지 한다 |
 
 회사는 이 FM 하나를 여러 serving 화면에 붙여 쓴다. 화면마다 목표가 달라 그때마다 화면 전용 모듈과 head 를 새로 달아 학습한다. 이 논문이 다루는 것은 그 붙이는 과정, 즉 **post-training 레시피** 다. 실험한 화면은 사용자가 아직 안 본 작품을 추천하는 discovery 화면이다.
 
@@ -68,7 +107,9 @@ flowchart TD
 
 ![[img-5500deb686.png|3단계 post-training 파이프라인 (논문 Figure 2). 실선은 gradient 가 흐르는 경로, 점선은 고정되거나 detach 된 경로]]
 
-그림의 점선은 gradient 가 막힌 경로다. Phase 1 에서는 FM encoder 가 점선, 즉 고정이다. Phase 1·2 모두에서 reward 와 propensity head 로 가는 화살표도 점선이다. Reference 구현을 보면 이 두 head 는 `h.detach()` 를 입력으로 받는다. 비즈니스 지표 신호가 공유 표현을 바꾸지 않고 head 만 학습시킨다는 뜻이다. 공유 표현을 움직이는 것은 SFT 단계에서는 클릭 loss 뿐이고, 비즈니스 지표는 Phase 3 의 RFT 를 통해서만 policy 에 들어간다.
+그림의 점선은 학습 신호(gradient)가 지나가지 않는 경로다. Phase 1 에서는 FM 이 점선, 즉 얼려 둔 상태다. Phase 1·2 에서 채점 모델(reward)과 propensity head 로 가는 화살표도 점선이다.
+
+Reference 구현을 보면 두 head 는 FM 이 만든 사용자 표현을 받기만 하고, 학습 신호를 FM 쪽으로 되돌려 보내지 않는다(`h.detach()`). 그래서 Phase 1·2 동안 FM 을 바꾸는 것은 클릭 학습뿐이다. 결제·완독 같은 신호는 Phase 3 에서 채점 모델 점수를 거쳐서만 추천 모델에 반영된다.
 
 # C) 배경 지식
 
