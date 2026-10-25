@@ -145,7 +145,28 @@ FFT 에서는 FM 쪽에 $10^{-5}$, downstream 쪽에 $10^{-4}$ 를 준다. 구�
 
 ## C.4) IPS 와 SNIPS
 
-로그 데이터는 과거 추천 정책이 노출시킨 작품에 대해서만 반응이 남는다([[exposure bias]]). 자주 노출된 작품의 데이터가 학습을 지배하므로, 노출 확률(propensity)의 역수로 가중치를 주어 이 편향을 되돌린다([[inverse propensity scoring weighting, IPW|IPS]]). 노출 확률이 아주 작으면 가중치가 폭발하므로 상한 $\tau_\text{IPS}$ 로 자른다(clipping). **SNIPS**(self-normalized IPS)는 그 가중치를 전체 합으로 나눠 합이 1이 되게 정규화한 것으로, 분산을 줄이는 대신 약간의 편향을 받아들인다.
+로그 데이터에는 과거 추천 정책이 노출시킨 작품의 반응만 남는다([[exposure bias]]). 많이 노출된 인기 작품은 데이터가 많고 드물게 노출된 작품은 적어서, 그대로 학습하면 인기 작품이 학습을 지배한다. [[inverse propensity scoring weighting, IPW|IPS]] 는 각 샘플에 노출 확률(propensity) $p$ 의 역수 $1/p$ 를 가중치로 곱해 이 불균형을 되돌린다. 노출 확률이 10배 낮은 작품은 10배 무겁게 친다.
+
+IPS 계열 세 방식은 편향과 분산이 서로 반대로 움직인다. 여기서 편향은 "학습을 여러 번 반복했을 때 평균적으로 맞는 값에서 비켜나는 정도", 분산은 "어떤 샘플이 뽑혔느냐에 따라 값이 출렁이는 정도" 다.
+
+| 방식 | 가중 평균을 내는 법 | 편향 | 분산 |
+| --- | --- | --- | --- |
+| IPS | 샘플마다 $1/p$ 를 곱하고 샘플 수로 나눈다 | 없음 | 크다 |
+| Clipped IPS | 가중치를 상한에서 자른 뒤 IPS 와 같게 | 생긴다 | 줄어든다 |
+| SNIPS | 샘플 수 대신 가중치 합으로 나눈다 | 생긴다 (샘플이 많으면 사라진다) | 줄어든다 |
+
+**IPS 는 평균적으로는 정확하지만 batch 마다 크게 출렁인다.** 설명용 가상 batch 두 개로 보면 다음과 같다.
+
+- batch 1: 인기 작품 샘플 4개 ($p = 0.5$, $w = 2$). 가중치 합 8, 평균 가중치 2
+- batch 2: 인기 작품 3개 + 드문 작품 1개 ($p = 0.05$, $w = 20$). 가중치 합 26, 평균 가중치 6.5
+
+IPS 는 $N$ 으로 나누므로 드문 작품이 끼었느냐에 따라 loss 크기가 3배 넘게 달라진다. 드문 작품 샘플 하나가 batch 2 가중치의 77% 를 차지한다. 많은 batch 를 평균하면 각 작품이 노출 확률과 상관없이 고르게 반영되므로 편향은 없지만, batch 하나하나는 우연히 뽑힌 드문 샘플에 크게 휘둘린다. 이것이 분산이다.
+
+**Clipping 은 가중치 상한을 둬서 출렁임을 줄이고, 그 대가로 편향이 생긴다.** 상한이 10이면 드문 작품의 가중치는 20 대신 10이 된다. 출렁임은 줄지만 드문 작품은 이제 덜 보정되므로, 평균을 내도 인기 작품 쪽으로 약간 기운다.
+
+**SNIPS 는 $N$ 대신 가중치 합으로 나눠 가중치 합을 항상 1로 맞춘다.** 그러면 loss 가 언제나 샘플 loss 들의 가중 평균이 되고, batch 구성이 바뀌어도 loss 크기가 개별 샘플 loss 범위 안에 머문다. 대신 분모인 가중치 합도 batch 마다 달라지는 값이라, 분자의 평균을 분모의 평균으로 나눈 값과 정확히 같아지지 않는다. 이 차이가 편향이다. 샘플이 많아지면 가중치 합이 안정돼 편향은 0으로 줄어든다.
+
+이 논문은 clipping 과 self-normalization 을 둘 다 쓰고, 목적을 "학습 중 loss 크기를 안정시키기 위해서" 라고 밝혔다. 식은 부록의 「IPS 와 SNIPS 식」 에 있다.
 
 ## C.5) GRPO 와 DPO
 
@@ -172,34 +193,13 @@ FFT 에서는 FM 쪽에 $10^{-5}$, downstream 쪽에 $10^{-4}$ 를 준다. 구�
 
 ## E.1) 모델 구조
 
-### FM 표현과 downstream 표현의 결합
+FM 이 사용자 행동 시퀀스를 읽어 위치마다 표현을 낸다. 시퀀스 길이가 사용자마다 달라서, 학습 가능한 query 벡터 하나로 attention pooling 해 고정 길이 벡터 하나로 줄인다. 옆에서는 downstream encoder 가 무료·유료 회차 소비량, 연재 이어보기 같은 장기 통계를 읽어 화면 전용 표현을 만든다. 둘을 이어 붙인 벡터가 세 head 로 들어간다.
 
-사용자 행동 시퀀스 $s$ 를 FM 의 sequence encoder 에 넣어 임베딩 시퀀스 $E$ 를 얻고, 학습 가능한 query 벡터 $q$ 로 cross-attention pooling 해 고정 길이 벡터로 줄인다 (논문 3.1.1).
+Downstream encoder 는 사용자가 본 작품 목록을 FM 과 같은 작품 임베딩으로 읽는다(논문 Figure 1). 추천 head 는 이 벡터를 MLP 에 넣어 작품마다 logit 을 내고, softmax 를 씌워 작품 위의 확률분포로 쓴다(reference 구현 기준). 뒤의 RFT 도 이 분포를 직접 바꾼다.
 
-$$
-E = \text{SequenceEncoder}(s), \quad \alpha = \text{softmax}\left(\frac{qE^\top}{\sqrt{d}}\right), \quad h_\text{fm} = \alpha E
-$$
+FM 은 약 7M parameters 로 작은 편이다. HSTU 원 논문(Actions Speak Louder than Words)이 수조 파라미터 규모까지 키운 것과 비교하면, 이 논문은 FM 의 규모보다 post-training 절차에 무게를 둔 실험이다.
 
-$$
-h = [h_\text{fm} ; h_\text{ds}]
-$$
-
-여기서:
-
-| 기호 | 의미 |
-| --- | --- |
-| $s$ | 사용자의 시간순 행동 시퀀스 (작품 id, 콘텐츠 유형, 행동 유형, 시간 간격) |
-| $E$ | FM encoder 출력, 시퀀스 길이 × $d$ |
-| $q$ | 학습 가능한 pooling query, $d$ 차원 |
-| $h_\text{fm}$ | FM 쪽 사용자 표현 |
-| $h_\text{ds}$ | downstream encoder 가 만든 화면 전용 표현 |
-| $h$ | 세 head 에 들어가는 최종 사용자 표현, $2d$ 차원 |
-
-Downstream encoder 는 무료 회차 소비량, 유료 회차 소비량, 연재 이어보기 같은 장기 행동 통계를 입력으로 받는다. Reference 구현에서는 사용자가 소비한 작품 목록을 FM 과 **같은 item embedding** 으로 임베딩하고, 작품별 행동 통계를 projection 해 `v * (1 + c)` 꼴로 곱한 뒤 CLS 토큰을 붙인 Transformer 로 인코딩한다. 논문 Figure 1 에도 downstream 쪽에 FM item embedding matrix 가 공유돼 있다.
-
-Serving policy 는 이 $h$ 를 MLP 에 넣어 카탈로그 크기의 logit 을 내고, softmax 를 씌워 작품 위의 확률분포 $\pi_\theta(\cdot \mid u)$ 로 쓴다(reference 구현 기준). RFT 의 확률 비율과 KL 은 모두 이 분포 위에서 계산한다.
-
-### Reward model: funnel 깊이를 ordinal regression 으로
+## E.2) 채점 모델: 어디까지 볼지를 점수로
 
 웹툰 소비는 단계가 깊어지는 funnel 이다. 논문은 이를 6단계로 정의한다.
 
@@ -210,131 +210,56 @@ Serving policy 는 이 $h$ 를 MLP 에 넣어 카탈로그 크기의 logit 을 �
 5. 유료 회차 진입
 6. 유료 콘텐츠 완독
 
-사용자–작품 쌍 $(u, v)$ 에 대해 도달한 가장 깊은 단계를 $f$ 라 하고, cutpoint $C = 5$ 개에 대해 ordinal target 을 만든다.
+채점 모델은 이 단계를 ordinal regression 으로 예측한다. "클릭까지 갔나", "첫 회차까지 갔나" 처럼 단계 경계마다 하나씩, 이진 질문 5개에 각각 확률을 낸다. 최종 점수는 이 5개 확률의 합이다. 넘을 것으로 기대되는 경계의 개수이므로, 기대 funnel 단계에서 1을 뺀 값으로 읽을 수 있다.
 
-$$
-t_{u,v,c} = \mathbb{I}(f > c), \quad c = 1, \dots, C
-$$
+예를 들어 경계별 확률이 $0.95, 0.6, 0.4, 0.2, 0.05$ 로 나왔다면(설명용 가상 수치) 점수는 2.2 다. 평균적으로 3단계(첫 회차 감상)와 4단계(무료 회차 완독) 사이까지 갈 것으로 보는 셈이다. "봤다 / 안 봤다" 하나가 아니라 깊이에 비례하는 연속 점수가 나오므로, 뒤에서 GRPO 가 점수의 크기 차이까지 쓸 수 있다.
 
-노출 편향을 보정하려고 propensity head 가 노출 확률 $\hat{p}_{u,v} = \sigma(\hat{z}_{\text{imp},u,v})$ 를 예측하고, 이를 clipped IPS 후 self-normalize 한 가중치로 바꿔 ordinal loss 에 곱한다.
+로그는 과거에 노출된 작품에만 남으므로, 채점 모델을 학습할 때는 propensity head 가 예측한 노출 확률로 샘플마다 가중치를 준다. 앞의 「IPS 와 SNIPS」 에서 본 clipping 과 self-normalization 을 둘 다 적용한다.
 
-$$
-s_{u,v} = \min\left(\frac{1}{\hat{p}_{u,v}}, \tau_\text{IPS}\right), \quad \tilde{w}_{u,v} = \frac{s_{u,v}}{\sum_{(u',v') \in D_r} s_{u',v'}}
-$$
+## E.3) Phase 1–2: Supervised Fine-Tuning
 
-$$
-L_\text{reward} = \sum_{(u,v) \in D_r} \tilde{w}_{u,v} \sum_{c=1}^{C} \text{BCE}(\hat{z}_{u,v,c}, t_{u,v,c})
-$$
+두 단계 모두 같은 loss 를 쓰고, 어떤 파라미터를 움직이느냐만 다르다. Loss 는 세 head 의 loss 를 그대로 더한 것이다.
 
-추론 때는 cutpoint 별 확률을 더해 연속값 reward 하나로 만든다.
+- **추천 head**: 클릭한 작품을 작품 전체 중에서 맞히는 cross-entropy
+- **채점 모델**: 노출 확률로 가중치를 준 funnel 단계 예측
+- **propensity head**: 각 작품이 노출됐는지 맞히는 이진 분류
 
-$$
-R_\phi(u, v) = \sum_{c=1}^{C} \sigma(\hat{z}_{u,v,c})
-$$
+**Phase 1 (LP)** 에서는 FM 을 얼리고 downstream encoder 와 세 head 만 학습한다. 랜덤으로 초기화된 부분이 고정된 FM 표현에 먼저 맞춰지므로, 초반의 들쭉날쭉한 학습 신호가 FM 을 망가뜨리지 않는다.
 
-여기서:
+**Phase 2 (FFT)** 에서는 FM 까지 풀어 함께 학습한다. Downstream 쪽이 이미 안정된 상태라 최적화가 덜 흔들린다. FM 학습률은 downstream 의 0.1배로 둬서, FM 은 조금씩 고치고 화면 전용 부분은 빠르게 맞춘다.
 
-| 기호 | 의미 |
-| --- | --- |
-| $f$ | 사용자 $u$ 가 작품 $v$ 에서 도달한 가장 깊은 funnel 단계 (1–6) |
-| $\hat{z}_{u,v,c}$ | cutpoint $c$ 를 넘을지에 대한 logit |
-| $\hat{p}_{u,v}$ | propensity head 가 예측한 노출 확률 |
-| $\tau_\text{IPS}$ | IPS 가중치 상한 (논문에 값 미공개) |
-| $D_r$ | reward 학습에 쓰는 노출 로그 |
-| $R_\phi$ | 최종 reward, 0–5 범위의 연속값 |
+## E.4) Phase 3: Reinforcement Fine-Tuning
 
-$R_\phi$ 는 "넘을 것으로 기대되는 cutpoint 개수" 이므로 기대 funnel 깊이에서 1을 뺀 값으로 읽을 수 있다. 예를 들어 cutpoint 별 확률이 $0.95, 0.6, 0.4, 0.2, 0.05$ 로 나왔다면(설명용 가상 수치) $R_\phi = 2.2$ 이고, 평균적으로 3단계(첫 회차 감상)와 4단계(무료 회차 완독) 사이까지 갈 것으로 보는 셈이다. Binary 지표 하나가 아니라 깊이에 비례하는 연속 점수가 나오므로, 뒤에서 GRPO 가 reward 의 크기 차이까지 쓸 수 있게 된다.
-
-## E.2) Phase 1–2: Supervised Fine-Tuning
-
-두 단계 모두 같은 목적함수를 쓴다. 바뀌는 것은 어떤 파라미터를 움직이느냐다.
-
-$$
-L_\text{SFT} = L_\text{policy} + L_\text{reward} + L_\text{propensity}
-$$
-
-- $L_\text{policy}$: 클릭한 작품에 대한 cross-entropy (카탈로그 전체 softmax)
-- $L_\text{reward}$: 위의 SNIPS 가중 ordinal BCE
-- $L_\text{propensity}$: 각 작품이 노출됐는지에 대한 BCE
-
-**Phase 1 (LP)** 에서는 FM backbone 을 얼리고 downstream encoder 와 세 head 만 학습한다. 랜덤 초기화된 모듈이 고정된 FM 표현 공간에 먼저 맞춰지므로, 분산 큰 gradient 가 FM 을 망가뜨릴 일이 없다.
-
-**Phase 2 (FFT)** 에서는 FM 까지 풀어 함께 학습한다. Downstream 쪽이 이미 안정된 상태라 최적화가 덜 흔들린다. 여기에 FM 학습률을 downstream 의 0.1배로 주어 FM 은 보수적으로, 화면 전용 모듈은 빠르게 적응하게 한다.
-
-## E.3) Phase 3: Reinforcement Fine-Tuning
-
-FFT 가 끝난 모델의 snapshot 을 고정해 reference policy $\pi_\text{ref}$ 로 둔다. RFT 동안에는 policy head 와 FM backbone 만 학습하고 reward·propensity head 는 고정한다.
+FFT 가 끝난 모델을 복사해 고정하고 reference policy 로 둔다. RFT 동안에는 추천 head 와 FM 만 학습하고, 채점 모델과 propensity head 는 고정한다.
 
 ### GRPO
 
-사용자 상태 하나에 대해 현재 policy 가 고른 후보 작품 $K$ 개를 group 으로 묶고, reward model 점수를 group 안에서 정규화해 advantage 로 쓴다.
+사용자마다 다음을 반복한다.
 
-$$
-A_k = \frac{R_\phi(a_k) - \bar{R}}{\sigma_R}, \quad \bar{R} = \frac{1}{K}\sum_{k=1}^{K} R_\phi(a_k), \quad \sigma_R = \text{std}(R_\phi(a_k))
-$$
+1. 지금의 추천 모델이 점수가 가장 높은 작품 32개를 고른다. 화면에 실제로 보여 주는 개수에 맞춘 값이다.
+2. 채점 모델이 32개 작품에 각각 점수를 매긴다.
+3. 32개의 평균을 빼고 표준편차로 나눠 advantage 를 만든다. 평균보다 깊이 볼 작품은 양수, 아닌 작품은 음수다.
+4. advantage 가 양수인 작품의 확률은 올리고 음수인 작품은 내린다.
+5. 이때 reference policy 에서 너무 멀어지지 않게 확률 비율을 0.9–1.1 범위로 자르고(clipping), KL penalty 를 작게(0.001) 건다.
 
-$$
-\rho_k(\theta) = \frac{\pi_\theta(a_k)}{\pi_\text{ref}(a_k)}, \quad L_k(\theta) = \min\left(\rho_k(\theta) A_k, \ \text{clip}(\rho_k(\theta), 1-\epsilon, 1+\epsilon) A_k\right)
-$$
-
-$$
-L(\theta) = -\mathbb{E}_k[L_k(\theta)] + \beta \cdot D_\text{KL}\left(\pi_\theta(\cdot \mid s) \,\|\, \pi_\text{ref}(\cdot \mid s)\right)
-$$
-
-(논문 Eq 1)
-
-| 기호 | 의미 |
-| --- | --- |
-| $a_k$ | group 안의 $k$ 번째 후보 작품. 현재 policy 의 상위 $K$ 개를 greedy 하게 고른다 |
-| $K$ | group 크기, 실험에서는 32 (serving 추천 개수에 맞춤) |
-| $A_k$ | group 안에서 정규화한 advantage |
-| $\rho_k$ | reference 대비 현재 policy 의 확률 비율 |
-| $\epsilon$ | clipping 범위, 0.1 |
-| $\beta$ | [[KL-Divergence]] penalty 계수, 0.001 |
-
-작은 예로 보면 동작이 분명해진다. 상위 4개 후보의 reward 가 $[3.0, 2.0, 1.0, 2.0]$ 이라면 평균 2.0, 표준편차 약 0.82 이므로 advantage 는 $[+1.22, 0, -1.22, 0]$ 이 된다. 첫 번째 작품의 확률은 올리고 세 번째는 내린다. 네 작품 모두 클릭 확률로는 상위권이지만, 그중 더 깊이 소비될 작품 쪽으로 확률을 옮기는 것이다.
+작은 예로 보면 상위 4개 후보의 점수가 $[3.0, 2.0, 1.0, 2.0]$ 일 때 평균 2.0, 표준편차 약 0.82 이므로 advantage 는 $[+1.22, 0, -1.22, 0]$ 이 된다. 첫 번째 작품의 확률은 올리고 세 번째는 내린다. 네 작품 모두 클릭 확률로는 상위권이지만, 그중 더 깊이 볼 작품 쪽으로 확률을 옮기는 것이다.
 
 LLM 의 GRPO 와는 몇 가지가 다르다. Reference 구현과 Algorithm 1 을 기준으로 정리하면 다음과 같다.
 
 | 항목 | LLM 의 GRPO | 이 논문의 GRPO |
 | --- | --- | --- |
-| group 을 만드는 법 | 같은 프롬프트로 출력을 여러 번 sampling | 현재 policy 상위 $K$ 개 작품을 deterministic 하게 선택 |
+| group 을 만드는 법 | 같은 프롬프트로 출력을 여러 번 sampling | 지금 추천 모델의 상위 32개 작품을 그대로 선택 |
 | action | 토큰 시퀀스 | 작품 하나 |
-| 확률 비율의 분모 | 직전 policy $\pi_\text{old}$ | FFT 끝 시점의 고정된 $\pi_\text{ref}$ |
-| reward | 정답 검증기 또는 reward model | 고정된 funnel reward model |
+| 확률 비율을 재는 기준 | 직전 update 의 policy | FFT 직후 고정한 reference policy |
+| reward | 정답 검증기 또는 reward model | 고정된 채점 모델 |
 
-분모가 고정된 $\pi_\text{ref}$ 라는 점은 해석이 필요하다. Clipping 이 "한 번의 update 크기" 가 아니라 "SFT policy 로부터 얼마나 멀어질 수 있는가" 를 제한하는 역할을 하게 된다. KL 계수가 0.001 로 작은데도 학습이 안정적인 이유 중 하나로 보인다(논문이 직접 밝힌 내용은 아니고, 코드 구조에서 읽은 해석이다).
+기준이 고정된 reference policy 라는 점은 해석이 필요하다. Clipping 이 "한 번의 update 크기" 가 아니라 "SFT 직후 모델에서 얼마나 멀어질 수 있는가" 를 제한하게 된다. KL 계수가 0.001 로 작은데도 학습이 안정적인 이유 중 하나로 보인다(논문이 직접 밝힌 내용은 아니고, 코드 구조에서 읽은 해석이다).
 
 ### DPO
 
-같은 group 안에서 reward 가 더 높은 작품을 선호 쌍으로 만든다. Reward model 점수로 쌍을 만들면 **DPO w/ RM**, 실제 관측된 funnel 깊이로 만들면 **DPO w/o RM** 이다.
+같은 후보 묶음 안에서 점수가 더 높은 작품과 낮은 작품을 짝지어 선호 쌍을 만들고, 높은 쪽의 확률이 상대적으로 더 오르도록 학습한다. 채점 모델 점수로 쌍을 만들면 **DPO w/ RM**, 실제 관측된 funnel 단계로 만들면 **DPO w/o RM** 이다.
 
-$$
-\mathcal{P} = \{(a_i, a_j) \mid R_\phi(a_i) > R_\phi(a_j)\}, \quad \Delta_k = \log \pi_\theta(a_k) - \log \pi_\text{ref}(a_k)
-$$
-
-$$
-L_\text{DPO}(\theta) = -\mathbb{E}_{(a_i, a_j) \in \mathcal{P}} \log \sigma\left(\beta(\Delta_i - \Delta_j)\right)
-$$
-
-GRPO 는 reward 의 크기 차이를 advantage 에 그대로 담지만, DPO 는 "누가 더 높은가" 만 남긴다. 3.01 과 3.00 의 차이와 5.0 과 0.5 의 차이가 같은 하나의 쌍으로 취급된다. 이 차이는 뒤의 실험에서 GRPO 와 DPO 가 서로 다른 지표를 올리는 이유로 이어진다.
-
-## E.4) Implementation Details
-
-| 항목 | 값 |
-| --- | --- |
-| FM | HSTU encoder, 약 7M parameters |
-| 1-phase SFT | 100 epochs |
-| 2-phase SFT | LP 50 epochs + FFT 50 epochs (총 예산을 1-phase 와 맞춤) |
-| 학습률 (LP / FFT) | $10^{-3}$ / $10^{-4}$ |
-| FM 학습률 (FFT, LR control 적용 시) | $10^{-5}$ |
-| RFT | 2-phase SFT checkpoint 에서 시작, 추가 50 epochs |
-| 학습률 (RFT, policy / FM) | $10^{-5}$ / $10^{-6}$ |
-| 후보 group 크기 $K$ | 32 (GRPO, DPO 공통) |
-| GRPO clipping $\epsilon$ / KL $\beta$ | 0.1 / 0.001 |
-| 미공개 | batch size, embedding 차원, $\tau_\text{IPS}$, DPO $\beta$, GPU·학습 시간, 데이터 규모 |
-
-FM 이 7M 으로 작은 편이다. HSTU 원 논문(Actions Speak Louder than Words)이 수조 파라미터 규모까지 키운 것과 비교하면, 이 논문은 FM 의 규모보다 post-training 절차 쪽에 무게를 둔 실험이다.
+GRPO 는 점수 차이의 크기를 advantage 에 그대로 담지만, DPO 는 "누가 더 높은가" 만 남긴다. 3.01 과 3.00 의 차이와 5.0 과 0.5 의 차이가 똑같이 쌍 하나로 취급된다. 이 차이가 뒤의 실험에서 GRPO 와 DPO 가 서로 다른 지표를 올리는 이유로 이어진다.
 
 # F) 데이터셋과 평가
 
@@ -424,7 +349,132 @@ CTRL 대비 DiD 추정치(실험 전후 lift 차이, %p)를 옮기면 다음과 
 - Reward model 이 Funnel NDCG 에서 높게 나오는 것은 같은 funnel 라벨로 학습했기 때문이기도 하다. GRPO w/ RM 이 그 수치를 따라잡았다는 결과도 같은 라벨을 보는 reward model 을 보상으로 썼다는 점을 감안해야 한다.
 - RFT 는 고정된 reward model 을 최대화하므로 reward hacking 여지가 있다. 이 논문은 clipping 과 작은 KL 로 이를 막고, 온라인 실험에서 실제 지표가 오르는 것으로 확인했다. Reward model 의 예측 오차가 커지는 구간(신작, 롱테일 작품)에서 어떻게 동작하는지는 보고하지 않았다.
 
-# H) References
+# H) 부록: 수식과 구현 세부
+
+## H.1) 사용자 표현 (논문 3.1.1)
+
+$$
+E = \text{SequenceEncoder}(s), \quad \alpha = \text{softmax}\left(\frac{qE^\top}{\sqrt{d}}\right), \quad h_\text{fm} = \alpha E
+$$
+
+$$
+h = [h_\text{fm} ; h_\text{ds}]
+$$
+
+| 기호 | 의미 |
+| --- | --- |
+| $s$ | 사용자의 시간순 행동 시퀀스 (작품 id, 콘텐츠 유형, 행동 유형, 시간 간격) |
+| $E$ | FM encoder 출력, 시퀀스 길이 × $d$ |
+| $q$ | 학습 가능한 pooling query, $d$ 차원 |
+| $h_\text{fm}$ | FM 쪽 사용자 표현 |
+| $h_\text{ds}$ | downstream encoder 가 만든 화면 전용 표현 |
+| $h$ | 세 head 에 들어가는 최종 사용자 표현, $2d$ 차원 |
+
+Reference 구현의 downstream encoder 는 사용자가 본 작품을 FM 작품 임베딩 $v$ 로 바꾸고, 작품별 행동 통계를 projection 한 $c$ 로 `v * (1 + c)` 처럼 조절한 뒤, CLS 토큰을 앞에 붙인 Transformer 의 CLS 출력을 $h_\text{ds}$ 로 쓴다. 추천 head 의 출력은 $\pi_\theta(\cdot \mid u) = \text{softmax}(\text{MLP}(h))$ 다.
+
+## H.2) 채점 모델 (논문 3.1.2)
+
+$$
+t_{u,v,c} = \mathbb{I}(f > c), \quad c = 1, \dots, C
+$$
+
+$$
+L_\text{reward} = \sum_{(u,v) \in D_r} \tilde{w}_{u,v} \sum_{c=1}^{C} \text{BCE}(\hat{z}_{u,v,c}, t_{u,v,c})
+$$
+
+$$
+R_\phi(u, v) = \sum_{c=1}^{C} \sigma(\hat{z}_{u,v,c})
+$$
+
+| 기호 | 의미 |
+| --- | --- |
+| $f$ | 사용자 $u$ 가 작품 $v$ 에서 도달한 가장 깊은 funnel 단계 (1–6) |
+| $C$ | 단계 경계(cutpoint) 개수, 5 |
+| $t_{u,v,c}$ | 경계 $c$ 를 넘었는지 (0 또는 1) |
+| $\hat{z}_{u,v,c}$ | 경계 $c$ 를 넘을지에 대한 logit |
+| $\tilde{w}_{u,v}$ | 아래 H.3 의 SNIPS 가중치 |
+| $D_r$ | reward 학습에 쓰는 노출 로그 |
+| $R_\phi$ | 최종 reward, 0–5 범위의 연속값 |
+
+## H.3) IPS 와 SNIPS 식
+
+Propensity head 가 노출 확률 $\hat{p}_{u,v} = \sigma(\hat{z}_{\text{imp},u,v})$ 를 예측하고, 이를 clipped IPS 후 self-normalize 한다.
+
+$$
+s_{u,v} = \min\left(\frac{1}{\hat{p}_{u,v}}, \tau_\text{IPS}\right), \quad \tilde{w}_{u,v} = \frac{s_{u,v}}{\sum_{(u',v') \in D_r} s_{u',v'}}
+$$
+
+세 방식을 일반형으로 쓰면 다음과 같다. $\ell_i$ 는 샘플 $i$ 의 loss, $N$ 은 샘플 수다.
+
+| 방식 | 식 |
+| --- | --- |
+| IPS | $\frac{1}{N}\sum_i w_i \ell_i$, $w_i = 1/p_i$ |
+| Clipped IPS | 위 식에서 $w_i = \min(1/p_i, \tau_\text{IPS})$ |
+| SNIPS | $\sum_i w_i \ell_i \, / \sum_i w_i$ |
+
+논문 식은 $D_r$ 전체의 가중치 합으로 나누지만, reference 구현은 batch 안의 가중치 합으로 나눈다. $\tau_\text{IPS}$ 값은 공개하지 않았다.
+
+## H.4) SFT 목적함수
+
+$$
+L_\text{SFT} = L_\text{policy} + L_\text{reward} + L_\text{propensity}
+$$
+
+- $L_\text{policy}$: 클릭한 작품에 대한 cross-entropy (카탈로그 전체 softmax)
+- $L_\text{reward}$: H.2 의 SNIPS 가중 ordinal BCE
+- $L_\text{propensity}$: 각 작품이 노출됐는지에 대한 BCE
+
+## H.5) GRPO (논문 Eq 1)
+
+$$
+A_k = \frac{R_\phi(a_k) - \bar{R}}{\sigma_R}, \quad \bar{R} = \frac{1}{K}\sum_{k=1}^{K} R_\phi(a_k), \quad \sigma_R = \text{std}(R_\phi(a_k))
+$$
+
+$$
+\rho_k(\theta) = \frac{\pi_\theta(a_k)}{\pi_\text{ref}(a_k)}, \quad L_k(\theta) = \min\left(\rho_k(\theta) A_k, \ \text{clip}(\rho_k(\theta), 1-\epsilon, 1+\epsilon) A_k\right)
+$$
+
+$$
+L(\theta) = -\mathbb{E}_k[L_k(\theta)] + \beta \cdot D_\text{KL}\left(\pi_\theta(\cdot \mid s) \,\|\, \pi_\text{ref}(\cdot \mid s)\right)
+$$
+
+| 기호 | 의미 |
+| --- | --- |
+| $a_k$ | group 안의 $k$ 번째 후보 작품. 현재 policy 의 상위 $K$ 개를 greedy 하게 고른다 |
+| $K$ | group 크기, 32 |
+| $A_k$ | group 안에서 정규화한 advantage |
+| $\rho_k$ | reference 대비 현재 policy 의 확률 비율 |
+| $\epsilon$ | clipping 범위, 0.1 |
+| $\beta$ | [[KL-Divergence]] penalty 계수, 0.001 |
+
+## H.6) DPO
+
+$$
+\mathcal{P} = \{(a_i, a_j) \mid R_\phi(a_i) > R_\phi(a_j)\}, \quad \Delta_k = \log \pi_\theta(a_k) - \log \pi_\text{ref}(a_k)
+$$
+
+$$
+L_\text{DPO}(\theta) = -\mathbb{E}_{(a_i, a_j) \in \mathcal{P}} \log \sigma\left(\beta(\Delta_i - \Delta_j)\right)
+$$
+
+DPO w/o RM 은 $R_\phi$ 대신 관측된 funnel 단계 $f$ 로 $\mathcal{P}$ 를 만든다.
+
+## H.7) 구현 하이퍼파라미터
+
+| 항목 | 값 |
+| --- | --- |
+| FM | HSTU encoder, 약 7M parameters |
+| 1-phase SFT | 100 epochs |
+| 2-phase SFT | LP 50 epochs + FFT 50 epochs (총 예산을 1-phase 와 맞춤) |
+| 학습률 (LP / FFT) | $10^{-3}$ / $10^{-4}$ |
+| FM 학습률 (FFT, LR control 적용 시) | $10^{-5}$ |
+| RFT | 2-phase SFT checkpoint 에서 시작, 추가 50 epochs |
+| 학습률 (RFT, policy / FM) | $10^{-5}$ / $10^{-6}$ |
+| 후보 group 크기 $K$ | 32 (GRPO, DPO 공통) |
+| GRPO clipping $\epsilon$ / KL $\beta$ | 0.1 / 0.001 |
+| 미공개 | batch size, embedding 차원, $\tau_\text{IPS}$, DPO $\beta$, GPU·학습 시간, 데이터 규모 |
+
+# I) References
 
 - [arXiv 2608.06792](https://arxiv.org/abs/2608.06792) — Choi, Kim, et al. "Progressive Alignment of Recommender Foundation Model through Multi-Phase Post-Training." RecSys '26.
 - [DOI 10.1145/3773078.3831870](https://doi.org/10.1145/3773078.3831870)
