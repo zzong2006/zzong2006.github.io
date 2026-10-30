@@ -1,7 +1,7 @@
 import { h } from "preact"
 import { resolveRelative } from "@quartz-community/utils"
 
-function getDate(page) {
+export function getDate(page) {
   const dateType = page.defaultDateType ?? "modified"
   const dates = page.dates ?? {}
   const rawDate = dates[dateType] ?? dates.modified ?? dates.created ?? dates.published
@@ -38,8 +38,11 @@ function isDisplayableNote(page) {
   )
 }
 
-function formatDate(date, locale) {
+// 노트 상단 날짜(note-meta)와 같은 서울 시각으로 적는다. 빼면 빌드 머신(UTC) 기준이라
+// 저녁에 고친 노트가 하루 앞 날짜로 나온다.
+export function formatDate(date, locale) {
   return date.toLocaleDateString(locale ?? "ko-KR", {
+    timeZone: "Asia/Seoul",
     year: "numeric",
     month: "short",
     day: "2-digit",
@@ -54,7 +57,7 @@ export function recentNotes(allFiles, limit) {
   return limit > 0 ? notes.slice(0, limit) : notes
 }
 
-export function RecentNotesList({ notes, fileData, cfg, showPaths }) {
+export function RecentNotesList({ notes, fileData, cfg, showPaths, showDates = true }) {
   const locale = cfg.locale ?? "ko-KR"
 
   return h(
@@ -79,7 +82,7 @@ export function RecentNotesList({ notes, fileData, cfg, showPaths }) {
         h(
           "div",
           { class: "recent-updated-notes__meta" },
-          h("time", { datetime: date.toISOString() }, formatDate(date, locale)),
+          showDates && h("time", { datetime: date.toISOString() }, formatDate(date, locale)),
           showPaths && h("span", { class: "recent-updated-notes__path" }, pathLabel),
         ),
       )

@@ -1,9 +1,25 @@
 import { h } from "preact"
 import {
   RecentNotesList,
+  formatDate,
+  getDate,
   recentNotes,
   recentNotesCss,
 } from "../recent-updated-notes/components/index.js"
+
+// 같은 날 수정한 노트를 한 묶음으로 모은다. 목록이 이미 최신순이라 이어지는 것끼리 묶으면 된다.
+// 묶는 기준은 화면에 보이는 날짜 문자열이라 머리글과 묶음이 어긋나지 않는다.
+function groupByDay(notes, locale) {
+  const groups = []
+  for (const page of notes) {
+    const date = getDate(page)
+    const label = formatDate(date, locale)
+    const last = groups[groups.length - 1]
+    if (last && last.label === label) last.notes.push(page)
+    else groups.push({ label, date, notes: [page] })
+  }
+  return groups
+}
 
 export const manifest = {
   name: "recent-notes-page",
@@ -31,9 +47,25 @@ function RecentNotesContent(opts) {
         ? `전체 노트 ${all.length}개 중 최근 ${notes.length}개`
         : `노트 ${all.length}개`
 
+    const groups = groupByDay(notes, cfg.locale ?? "ko-KR")
+
     return h("div", { class: "popover-hint recent-updated-notes recent-notes-page" }, [
       h("p", { class: "recent-notes-page__count" }, countText),
-      h(RecentNotesList, { notes, fileData, cfg, showPaths: opts.showPaths }),
+      ...groups.map((group) =>
+        h("section", { class: "recent-notes-page__day" }, [
+          h("h2", { class: "recent-notes-page__day-header" }, [
+            h("time", { datetime: group.date.toISOString() }, group.label),
+            h("span", { class: "recent-notes-page__day-count" }, `${group.notes.length}개`),
+          ]),
+          h(RecentNotesList, {
+            notes: group.notes,
+            fileData,
+            cfg,
+            showPaths: opts.showPaths,
+            showDates: false,
+          }),
+        ]),
+      ),
     ])
   }
 
