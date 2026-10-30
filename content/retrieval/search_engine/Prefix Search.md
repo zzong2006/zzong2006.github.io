@@ -43,7 +43,9 @@ edge n-gram 은 단어의 **앞에서 시작하는** 부분 문자열만 뽑는 
         }
       },
       "analyzer": {
-        "prefix_index": { "type": "custom", "tokenizer": "prefix_tok" }
+        "prefix_index": {
+          "type": "custom", "tokenizer": "prefix_tok", "filter": ["lowercase"]
+        }
       }
     }
   },
@@ -59,7 +61,7 @@ edge n-gram 은 단어의 **앞에서 시작하는** 부분 문자열만 뽑는 
 }
 ```
 
-`token_chars` 를 지정해야 공백에서 단어가 나뉜다. 지정하지 않으면 "삼성 전자" 전체가 한 덩어리로 취급되어 "전자" 로 시작하는 입력은 맞지 않는다.
+검색 쪽 `standard` analyzer 는 영문을 소문자로 바꾸므로, 색인 쪽에도 `lowercase` 필터를 넣어 대소문자를 맞춘다. `token_chars` 를 지정해야 공백에서 단어가 나뉜다. 지정하지 않으면 "삼성 전자" 전체가 한 덩어리로 취급되어 "전자" 로 시작하는 입력은 맞지 않는다.
 
 ## B.2) 대가는 색인 크기다
 
