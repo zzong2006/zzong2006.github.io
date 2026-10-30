@@ -27,6 +27,8 @@ feature 간 상호작용 (feature conjunctions 이라고도 불림) 은 분류 �
 # D) Related
 
 * [[BarsCTR - Open Benchmarking for Click-Through Rate Prediction]]: 일반적인 CTR Prediction 에 대한 overview 확인할 수 있다.
+* [[Entire Space Multi-Task Model - An Effective Approach for Estimating Post-Click Conversion Rate|ESMM]]: 클릭 확률과 클릭 후 전환 확률을 곱하는 구조로 전환율을 노출 전체에서 학습한다.
+* [[probability calibration]]: 입찰가와 곱하려면 pCTR 의 순서뿐 아니라 값이 맞아야 한다.
 
 # E) References
 
