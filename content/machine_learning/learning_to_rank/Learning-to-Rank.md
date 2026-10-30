@@ -8,14 +8,14 @@ tags:
 
 # A) Learning-to-Rank ?
 
-Learning-to-rank(LTR) 은 기계학습 알고리즘을 통해 주어진 아이템들에 대한 optimal ordering 을 찾는 방식
+Learning-to-rank(LTR) 은 검색어 하나에 딸린 문서들처럼, 주어진 아이템 목록의 가장 좋은 순서를 기계학습으로 찾는 방법이다.
 
 ## A.1) LTR Methods
 
-LTR 에는 두가지 방법이 있다.
+순위를 만드는 방법은 라벨을 쓰는지에 따라 둘로 나뉜다.
 
-1. Supervised methods: 이미 정해진 순서를 학습하는 방법으로, 관련 알고리즘으로는 RankNet, LambdaRank, LambdaMART 가 있다.
-2. unsupervised methods: 정해지지 않은 순서를 학습하는 방법으로, 관련 알고리즘은 [[Reciprocal Rank Fusion]] (RRF), Condorcet, CombMNZ 가 있다.
+1. **라벨로 학습한다**: 관련도 라벨이나 클릭 로그로 점수 함수를 학습한다. RankNet, LambdaRank, LambdaMART 가 여기에 속한다.
+2. **라벨 없이 여러 순위를 합친다**: BM25 결과와 벡터 검색 결과처럼 이미 있는 순위 목록 여러 개를 정해진 규칙으로 합친다. [[Reciprocal Rank Fusion]] (RRF), Condorcet, CombMNZ 가 있다. 엄밀히는 학습이 아니라 rank fusion 이다.
 
 # B) Evaluation
 
@@ -27,9 +27,9 @@ LTR 에는 두가지 방법이 있다.
 
 # C) MAB 와 비교
 
-LTR 은 combinatorial 학습 문제로 볼 수 있는데, 이는 a set of actions 이 주어졌을 때 reward 를 최대화할 수 있는 ordered subset 을 선택한다.
+LTR 을 [[Multi-Armed Bandit|MAB]] 처럼 보면 조합(combinatorial) 문제가 된다. 행동(문서) 집합에서 보상을 가장 크게 하는 순서 있는 부분집합(목록)을 고르는 문제다.
 
-일반적인 bandit feedback(불완전한 피드백) 이 포함된 combinatorial 문제는 선택된 actions 의 subset 당 하나의 feedback(e.g., click/no-click) 만 존재한다.
+bandit 설정에서는 고른 목록 하나에 피드백(클릭 여부 등)이 하나만 돌아온다. 목록의 어느 문서 때문에 클릭이 났는지 따로 알 수 없으므로, 문서마다 라벨이 붙은 일반 LTR 보다 학습 신호가 적다.
 
 # D) Machine Learning Models for LTR
 
@@ -52,8 +52,8 @@ LTR 방법을 pointwise · pairwise · listwise 로 나누는 기준은 **모델
 | 방식 | loss 한 항이 보는 것 | 필요한 라벨 | 대표 알고리즘 |
 | --- | --- | --- | --- |
 | Pointwise | 문서 하나의 $(s_i, y_i)$ | 문서별 절대 점수나 클릭 여부 | 회귀, 이진 분류 (CTR 모델) |
-| Pairwise | 문서 쌍의 점수 차 $s_i - s_j$ | "어느 쪽이 더 관련 있는가" 라는 상대 정보 | [[RankNet]], [[LambdaRank]] |
-| Listwise | 한 쿼리의 점수 목록 전체 | 쿼리별 관련도 목록 | ListNet, ListMLE, [[LambdaMART]] |
+| Pairwise | 문서 쌍의 점수 차 $s_i - s_j$ | "어느 쪽이 더 관련 있는가" 라는 상대 정보 | [[RankNet]], [[LambdaRank]], [[LambdaMART]] |
+| Listwise | 한 쿼리의 점수 목록 전체 | 쿼리별 관련도 목록 | ListNet, ListMLE |
 
 [[Re-ranking]] 에서도 point-wise · list-wise 라는 말을 쓰지만 그쪽은 **추론할 때 모델에 무엇을 넣는가** 를 가리킨다. cross-encoder 에 문서를 하나씩 넣으면 point-wise, LLM 프롬프트에 후보 목록을 통째로 넣으면 list-wise 다. 같은 단어가 학습 loss 와 추론 입력이라는 서로 다른 축에 쓰인다.
 

@@ -11,7 +11,7 @@ aliases: [Two-tower, Dual Encoder]
 
 Two-tower model은 query/user tower와 item/document tower를 분리해서 embedding을 만든 뒤, 두 embedding의 similarity로 match score를 계산하는 구조다. retrieval과 recommendation candidate generation에서 자주 쓰인다.
 
-# B) 왜 tower를 나누나
+# B) tower 를 나누는 이유
 
 Item/document embedding을 offline으로 미리 계산해 index에 넣을 수 있기 때문이다. Online에서는 query 또는 user embedding만 빠르게 만들고, ANN search로 가까운 item을 찾는다.
 

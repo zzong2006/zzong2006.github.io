@@ -8,7 +8,7 @@ aliases: []
 
 [[Learning-to-Rank]] 알고리즘으로, [[RankNet]] 의 gradient 에 순위 지표의 변화량을 곱해서 "지표를 많이 움직이는 쌍" 에 학습을 집중시키는 방법이다. 손실 함수를 정의하지 않고 gradient 만 직접 정의한 것이 특징이라, 이 gradient 를 $\lambda$ 라고 부르는 데서 이름이 왔다.
 
-# B) 왜 손실 함수 대신 gradient 인가
+# B) 손실 함수 대신 gradient 를 정의하는 이유
 
 순위 품질은 [[Normalized Discounted Cumulative Gain|NDCG]] 같은 지표로 잰다. 그런데 이런 지표는 문서의 순위 위치에만 의존하므로, 모델 점수를 아주 조금 바꿔도 순위가 안 바뀌면 지표는 그대로다. 순위가 바뀌는 순간에만 값이 계단처럼 튄다. 미분값이 거의 모든 곳에서 0 이라 경사하강으로 직접 최적화할 수 없다.
 
@@ -24,14 +24,14 @@ $$
 | --- | --- |
 | $s_i$ | 모델이 문서 $i$ 에 준 점수 |
 | $\sigma$ | 점수 차이를 확률로 바꿀 때의 기울기 상수 |
-| 앞부분 | RankNet 의 gradient. 두 문서 순서가 틀릴수록 커진다 |
+| 앞의 분수 | RankNet 의 gradient. 두 문서 순서가 틀릴수록 커진다 |
 | $\lvert \Delta \text{NDCG}_{ij} \rvert$ | $i$ 와 $j$ 의 위치를 바꿨을 때 NDCG 변화량 |
 
 쌍은 관련도가 다른 문서끼리만 만든다. 관련도가 같은 두 문서는 서로 순서가 바뀌어도 NDCG 가 그대로라서 $\lvert \Delta \text{NDCG} \rvert = 0$ 이다.
 
 문서 하나가 받는 gradient 는 그 문서가 들어간 쌍의 $\lambda_{ij}$ 를 모두 모은 값이다. 문서 $i$ 가 상대보다 위에 와야 하는 쌍에서는 점수를 올리는 쪽으로, 아래에 와야 하는 쌍에서는 내리는 쪽으로 더해진다. 그래서 $\lambda_i$ 는 "문서 $i$ 의 점수를 어느 방향으로 얼마나 밀어야 하는가" 를 하나의 숫자로 말해 준다.
 
-이 곱셈이 실제로 NDCG 를 개선한다는 것은 경험적으로 확인됐고, 이후 어떤 손실 함수의 gradient 에 해당하는지도 밝혀졌다.
+처음에는 이 곱셈이 NDCG 를 개선한다는 것을 실험으로만 확인했다. 나중에 LambdaLoss(Wang et al., CIKM 2018)가 LambdaRank 도 NDCG 에서 유도한 손실 함수를 최적화하고 있음을 보였다.
 
 # C) ΔNDCG 계산 예
 
@@ -106,6 +106,7 @@ $\lambda$ 는 모델 구조와 무관하게 "각 문서 점수를 어느 방향�
 # F) References
 
 * [\[MSR-TR-2010-82\] From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
+* [The LambdaLoss Framework for Ranking Metric Optimization (Wang et al., CIKM 2018)](https://research.google/pubs/the-lambdaloss-framework-for-ranking-metric-optimization/)
 * [LambdaRank in LightGBM (Frank Fineis)](https://ffineis.github.io/blog/2021/05/01/lambdarank-lightgbm.html)
 * [LightGBM Parameters](https://lightgbm.readthedocs.io/en/latest/Parameters.html)
 * [LightGBM rank_objective.hpp](https://github.com/microsoft/LightGBM/blob/master/src/objective/rank_objective.hpp)
