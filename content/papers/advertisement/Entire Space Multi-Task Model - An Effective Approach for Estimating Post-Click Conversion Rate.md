@@ -79,7 +79,7 @@ $$
 
 두 loss 모두 노출 전체에서 계산한다. 클릭하지 않은 노출도 두 번째 loss 에 라벨 0 으로 들어간다. pCVR 에 직접 걸린 loss 는 없다. pCVR 은 pCTCVR 을 맞추기 위한 중간값으로만 학습되고, 곱셈을 거쳐 두 번째 loss 의 gradient 를 받는다.
 
-이렇게 하면 pCVR 이 노출 전체에서 정의된다. 서빙할 때는 CVR 타워의 출력(sigmoid 라서 0 과 1 사이)을 그대로 꺼내 쓴다. 곱셈 구조라서 pCTCVR 은 항상 pCTR 보다 작거나 같고, DIVISION 처럼 pCVR 이 1 을 넘는 일이 없다.
+이렇게 하면 pCVR 이 노출 전체에서 정의된다. 서빙할 때는 CVR 타워의 출력을 그대로 꺼내 쓴다. 이 출력은 sigmoid 를 거치므로 DIVISION 과 달리 1 을 넘지 않는다. pCTCVR 은 pCTR 에 1 이하의 값을 곱한 것이라, pCTCVR ≤ pCTR 이라는 관계도 저절로 지켜진다.
 
 ## E.2) 임베딩을 공유한다
 
@@ -117,7 +117,7 @@ Public Dataset 결과다 (논문 Table 2, AUC %).
 
 결과에서 읽을 수 있는 것은 셋이다.
 
-- **노출 전체로 학습하는 것이 가장 크다**: DIVISION, ESMM-NS, ESMM 셋 다 BASE 보다 좋다. 셋 다 pCVR 을 노출 전체에서 정의하는 방식이다.
+- **노출 전체로 학습한 효과가 가장 크다**: DIVISION, ESMM-NS, ESMM 셋 다 BASE 보다 좋다. 셋 다 pCVR 을 노출 전체에서 정의하는 방식이다.
 - **곱셈이 나눗셈보다 낫다**: 같은 아이디어인데 ESMM-NS 가 DIVISION 보다 좋다. 논문은 작은 pCTR 로 나눌 때의 수치 불안정을 이유로 든다.
 - **임베딩 공유가 더한다**: ESMM 이 ESMM-NS 보다 CTCVR 과제에서 0.88 높다.
 

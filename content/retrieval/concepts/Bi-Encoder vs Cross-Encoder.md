@@ -23,7 +23,7 @@ aliases: []
 | 질의 하나의 비용 | 질의 인코딩 1 번 + ANN 검색 | 후보 수만큼 인코더 forward |
 | 다룰 수 있는 후보 수 | 수백만에서 수십억 (ANN 색인) | 수십에서 수백 |
 | 정확도 | 벡터 하나에 문서를 압축하므로 낮다 | 토큰 단위로 비교하므로 높다 |
-| 대표 모델 | [[DPR]], [[sentence transformers]], [[Two-tower Model]] | BERT 기반 reranker, monoBERT |
+| 대표 모델 | [[DPR]], [[sentence transformers]], [[Two-tower Model]] | monoBERT, bge-reranker 같은 reranker |
 
 # B) 두 단계로 같이 쓴다
 
