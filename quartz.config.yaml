@@ -141,6 +141,14 @@ plugins:
     enabled: true
   - source: ./plugins/folder-page-clean
     enabled: true
+  # "최근 수정한 노트" 목록의 "더 보기" 페이지. slug 는 recent-updated-notes 의 moreSlug 와 맞춘다.
+  - source: ./plugins/recent-notes-page
+    enabled: true
+    options:
+      slug: recent
+      title: 최근 수정한 노트
+      limit: 200
+      showPaths: true
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
@@ -266,6 +274,8 @@ plugins:
       title: 최근 수정한 노트
       limit: 8
       showPaths: true
+      moreSlug: recent
+      moreLabel: 더 보기
     layout:
       position: afterBody
       priority: 50
@@ -339,6 +349,11 @@ layout:
       positions:
         right: []
     tag:
+      exclude:
+        - reader-mode
+      positions:
+        right: []
+    recent:
       exclude:
         - reader-mode
       positions:

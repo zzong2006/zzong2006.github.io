@@ -1,0 +1,25 @@
+{
+  "name": "recent-notes-page",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "build": "node -e \"\""
+  },
+  "quartz": {
+    "name": "recent-notes-page",
+    "displayName": "Recent Notes Page",
+    "description": "Generates a page listing recently modified notes, linked from the home list.",
+    "version": "1.0.0",
+    "category": "pageType",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "slug": "recent",
+      "title": "최근 수정한 노트",
+      "limit": 200,
+      "showPaths": true
+    }
+  }
+}
