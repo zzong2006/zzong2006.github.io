@@ -7,37 +7,67 @@ tags:
 
 # A) LightGBM ?
 
-LightGBM uses a histogram-based method for selecting the best split.
+Microsoft 가 만든 [[Gradient Boosting Machine|gradient boosting decision tree]](GBDT) 라이브러리다 (Ke et al., NeurIPS 2017). 결정 트리를 하나씩 더해 가며 앞 트리들이 남긴 오차(gradient)를 줄이는 방식은 다른 GBDT 와 같다. 차이는 트리 하나를 세우는 비용을 줄이는 기법들에 있다. 논문은 기존 GBDT 대비 학습을 최대 20 배 넘게 빠르게 하면서 정확도는 거의 같다고 보고했다.
 
-# B) Why LightGBM?
+# B) XGBoost 보다 빠른 이유
 
-[link](https://lightgbm.readthedocs.io/en/latest/Features.html)
+GBDT 학습에서 가장 비싼 일은 **분할 지점 찾기** 다. 트리의 노드마다 "어느 feature 의 어느 값에서 나누면 loss 가 가장 많이 줄어드는가" 를 찾아야 한다. 비용은 대략 (데이터 행 수) × (feature 수) × (분할 후보 수) 에 비례한다. LightGBM 의 네 기법은 각각 이 곱의 한 항을 줄인다.
 
-1. Faster training speed (higher efficiency)
-   대용량 데이터와 호환성: 대용량 데이터에 대해서도 다른 GBM 알고리즘에 비해 학습 시간을 크게 줄일 수 있다.
-2. 적은 메모리 사용량
-   continuous value 를 discrete bins 으로 대체하여 사용하기 때문에 다른 GBM 방식보다 메모리를 적게 사용한다.
-   위 특징이 Kaggle 에서 자주 사용되는 이유 중 하나이다.
-3. 병렬 학습 가능
+![[img-ebfc6376cb.png]]
+
+| 기법 | 줄이는 것 | 관련 파라미터 |
+| --- | --- | --- |
+| Histogram | 분할 후보 수 | `max_bin` (기본 255) |
+| Leaf-wise 성장 | 같은 정확도에 필요한 분할 수 | `num_leaves` (기본 31), `max_depth` |
+| GOSS | 분할 계산에 쓰는 행 수 | `data_sample_strategy="goss"`, `top_rate`, `other_rate` |
+| EFB | feature 수 | `enable_bundle` (기본 true) |
+
+## B.1) Histogram: 값 대신 bin 경계에서만 자른다
+
+XGBoost 의 exact 방식(초기 버전에서 작은 데이터에 기본으로 쓰였다)은 feature 값을 정렬해 두고, 서로 다른 값 사이를 모두 분할 후보로 본다. 값이 백만 종류면 후보도 백만 개다.
+
+LightGBM 은 학습 전에 각 feature 를 최대 `max_bin` 개 구간(bin)으로 나누고, 값 대신 bin 번호를 저장한다. 노드마다 bin 별로 gradient 합을 모은 히스토그램을 만들고, 분할 후보는 bin 경계(기본 설정이면 최대 254 개)만 본다. 값을 1 바이트 bin 번호로 저장하므로 메모리도 줄어든다.
+
+히스토그램에는 계산을 한 번 더 아끼는 성질이 있다. 부모 노드의 히스토그램에서 한쪽 자식의 히스토그램을 빼면 다른 쪽 자식의 히스토그램이 된다. 그래서 데이터가 적은 자식 쪽만 직접 세고, 큰 쪽은 뺄셈으로 얻는다.
+
+## B.2) Leaf-wise: loss 가 가장 많이 줄어드는 잎만 나눈다
+
+XGBoost 의 기본 성장 방식(level-wise)은 깊이를 한 층씩 늘리며 그 층의 모든 노드를 나눈다. 이미 충분히 잘 맞는 노드도 같이 나눈다.
+
+LightGBM 은 지금 있는 잎 중 나눴을 때 loss 가 가장 많이 줄어드는 잎 하나만 나눈다. 같은 잎 수라면 loss 를 더 많이 줄이므로, 같은 정확도에 트리 수나 분할 수가 덜 든다. 대신 한쪽으로만 깊게 자라 데이터가 적으면 과적합하기 쉽다. 그래서 `num_leaves` 로 잎 수를 제한하고, 필요하면 `max_depth` 와 `min_data_in_leaf` 를 함께 건다.
+
+## B.3) GOSS: gradient 가 작은 행을 덜 본다
+
+[[Gradient-based One-Side Sampling|GOSS]] 는 분할 지점을 계산할 때 행 일부만 쓴다. gradient 가 작은 행은 이미 잘 맞고 있어 분할 이득 계산에 기여가 작다는 점을 이용한다. gradient 가 큰 상위 행은 모두 남기고, 나머지는 일부만 무작위로 남긴 뒤 가중치를 키워 원래 분포를 맞춘다.
+
+## B.4) EFB: 서로 겹치지 않는 sparse feature 를 묶는다
+
+one-hot 인코딩처럼 대부분 0 인 feature 가 많으면, 서로 동시에 0 이 아닌 행이 거의 없는 feature 쌍이 많다. EFB(Exclusive Feature Bundling)는 이런 feature 들을 하나로 합친다. 합칠 때 두 번째 feature 의 값에 오프셋을 더해 bin 범위가 겹치지 않게 하므로, 합친 뒤에도 원래 값이 어느 feature 의 것인지 구분된다.
+
+어떤 feature 끼리 묶어야 묶음 수가 최소가 되는지 찾는 문제는 NP-hard 라서, 논문은 greedy 방식으로 근사한다. feature 가 수만 개인 sparse 데이터에서 효과가 크고, dense feature 만 있는 데이터에서는 묶을 것이 거의 없다.
+
+## B.5) 지금은 차이가 줄었다
+
+위 기법 중 일부는 XGBoost 에도 들어갔다. XGBoost 는 `tree_method="hist"` 로 히스토그램 방식을 지원하고, 2.0 부터는 기본값 `auto` 가 `hist` 와 같은 방식을 쓴다. `grow_policy="lossguide"` 를 주면 leaf-wise 로도 자란다. 그래서 같은 설정으로 맞추면 속도 차이는 예전보다 작고, 데이터와 파라미터에 따라 결과가 달라진다. EFB 는 LightGBM 에만 있다. XGBoost 에도 gradient 기반 행 샘플링(`sampling_method="gradient_based"`)이 있지만, GOSS 와 다른 MVS 방식이고 GPU 에서만 쓸 수 있다.
 
 # C) 특징
 
-다른 GBM 방식보다 높은 accuracy 를 보이지만, 그만큼 [[overfitting]] 에 취약한 편이다.
+leaf-wise 로 자라기 때문에 데이터가 적으면 [[overfitting]] 에 취약한 편이다. LightGBM 문서도 작은 데이터에서는 `num_leaves` 를 줄이고 `min_data_in_leaf` 를 키우라고 권한다.
 
-자식 노드 중 더 loss 가 높은 노드가 split 대상으로 선택된다.
-
-* The trees in LightGBM have a  [leaf-wise](https://lightgbm.readthedocs.io/en/latest/Features.html#leaf-wise-best-first-tree-growth) growth, rather than a level-wise growth. Leaf-wise method allows the trees to converge faster but the chance of over-fitting increases.
-* 작은 데이터에서는 잘 동작하지 않으며, 대용량 데이터에서 적합하다. You should be aware that for small datasets (<10000 records) lightGBM may not be the best choice. Tuning lightgbm parameters may not help you there. 
+학습이 빠르고 메모리를 적게 써서 행이 수백만 이상인 표 데이터에서 자주 쓴다. 순위 학습용 목적 함수(`lambdarank`)도 기본으로 들어 있다 ([[LambdaRank]]).
 
 # D) Vs. XGBoost
 
-1. Runtime: LightGBM 은 histogram 기반 최적화를 사용하기 때문에 XGBoost 보다 빠르다. 왜냐하면 이를 통해 각 트리를 세우는데 필요한 데이터가 적게 필요하기 때문이다. 이러한 특징 때문에 어떤 경우는 학습 시간이 몇배 차이나기도 한다.
-2. Scalability: LightGBM 은 매우 큰 데이터셋에서 확장성이 좋다 (millions of examples 수준). 또한 communication overhead 없이 클러스터에서 분산 학습이 가능하다.
-3. Performance: LightGBM 은 노드를 나눌때 greedy 방식을 사용하기 때문에 성능이 좋다.
+| 비교 항목 | LightGBM | XGBoost |
+| --- | --- | --- |
+| 분할 후보 | histogram (bin) | 2.0 부터 기본 histogram. exact 도 선택 가능 |
+| 트리 성장 | leaf-wise | 기본 level-wise. `lossguide` 로 leaf-wise 가능 |
+| 행 샘플링 | GOSS 선택 가능 | 무작위 subsample. GPU 에서는 gradient 기반(MVS)도 가능 |
+| sparse feature | EFB 로 묶음 | sparsity-aware split 으로 결측 · 0 을 따로 처리 |
 
 # E) Boosting Methods
 
-크게 GBDT, DART, 그리고 GOSS 가 있다.
+`boosting` 파라미터로 GBDT(기본), DART, random forest 를 고른다. 예전에는 GOSS 도 `boosting="goss"` 로 골랐지만, 4.0 부터는 행 샘플링 방식으로 분리되어 `data_sample_strategy="goss"` 로 지정한다.
 
 # F) Lesson Learned
 
@@ -184,4 +214,8 @@ LightGBM은 두 가지 주요 피처 중요도 유형을 제공하며, 기본값
 
 # K) References
 
+* [LightGBM: A Highly Efficient Gradient Boosting Decision Tree (Ke et al., NeurIPS 2017)](https://papers.nips.cc/paper_files/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html)
+* [LightGBM Features](https://lightgbm.readthedocs.io/en/latest/Features.html)
+* [LightGBM Parameters](https://lightgbm.readthedocs.io/en/latest/Parameters.html)
+* [XGBoost - Tree Methods](https://xgboost.readthedocs.io/en/stable/treemethod.html)
 * [Understanding LightGBM Parameters (and How to Tune Them) - neptune.ai](https://neptune.ai/blog/lightgbm-parameters-guide)
