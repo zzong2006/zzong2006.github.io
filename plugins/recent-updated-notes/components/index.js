@@ -46,61 +46,48 @@ function formatDate(date, locale) {
   })
 }
 
-export const RecentUpdatedNotes = (userOpts = {}) => {
-  const opts = {
-    title: "최근 수정한 노트",
-    limit: 8,
-    showPaths: true,
-    ...userOpts,
-  }
+// 홈 목록과 "더 보기" 페이지가 같은 기준으로 고르고 정렬한다.
+export function recentNotes(allFiles, limit) {
+  const notes = [...allFiles]
+    .filter(isDisplayableNote)
+    .sort((a, b) => getDate(b).getTime() - getDate(a).getTime())
+  return limit > 0 ? notes.slice(0, limit) : notes
+}
 
-  const Component = ({ allFiles, fileData, cfg, displayClass }) => {
-    if (String(fileData.slug ?? "") !== "index") return null
+export function RecentNotesList({ notes, fileData, cfg, showPaths }) {
+  const locale = cfg.locale ?? "ko-KR"
 
-    const locale = cfg.locale ?? "ko-KR"
-    const notes = [...allFiles]
-      .filter(isDisplayableNote)
-      .sort((a, b) => getDate(b).getTime() - getDate(a).getTime())
-      .slice(0, opts.limit)
+  return h(
+    "ol",
+    { class: "recent-updated-notes__list" },
+    notes.map((page) => {
+      const date = getDate(page)
+      const title = page.frontmatter?.title ?? notePath(page)
+      const pathLabel = notePath(page)
 
-    if (notes.length === 0) return null
+      return h(
+        "li",
+        { class: "recent-updated-notes__item" },
+        h(
+          "a",
+          {
+            class: "internal recent-updated-notes__link",
+            href: resolveRelative(fileData.slug, page.slug),
+          },
+          title,
+        ),
+        h(
+          "div",
+          { class: "recent-updated-notes__meta" },
+          h("time", { datetime: date.toISOString() }, formatDate(date, locale)),
+          showPaths && h("span", { class: "recent-updated-notes__path" }, pathLabel),
+        ),
+      )
+    }),
+  )
+}
 
-    return h(
-      "section",
-      { class: ["recent-updated-notes", displayClass].filter(Boolean).join(" ") },
-      h("div", { class: "recent-updated-notes__header" }, h("h2", null, opts.title)),
-      h(
-        "ol",
-        { class: "recent-updated-notes__list" },
-        notes.map((page) => {
-          const date = getDate(page)
-          const title = page.frontmatter?.title ?? notePath(page)
-          const pathLabel = notePath(page)
-
-          return h(
-            "li",
-            { class: "recent-updated-notes__item" },
-            h(
-              "a",
-              {
-                class: "internal recent-updated-notes__link",
-                href: resolveRelative(fileData.slug, page.slug),
-              },
-              title,
-            ),
-            h(
-              "div",
-              { class: "recent-updated-notes__meta" },
-              h("time", { datetime: date.toISOString() }, formatDate(date, locale)),
-              opts.showPaths && h("span", { class: "recent-updated-notes__path" }, pathLabel),
-            ),
-          )
-        }),
-      ),
-    )
-  }
-
-  Component.css = `
+export const recentNotesCss = `
 .recent-updated-notes {
   margin-top: 3rem;
   padding-top: 1.5rem;
@@ -154,7 +141,50 @@ export const RecentUpdatedNotes = (userOpts = {}) => {
 .recent-updated-notes__path {
   overflow-wrap: anywhere;
 }
+
+.recent-updated-notes__more {
+  white-space: nowrap;
+}
 `
+
+export const RecentUpdatedNotes = (userOpts = {}) => {
+  const opts = {
+    title: "최근 수정한 노트",
+    limit: 8,
+    showPaths: true,
+    moreSlug: "recent",
+    moreLabel: "더 보기",
+    ...userOpts,
+  }
+
+  const Component = ({ allFiles, fileData, cfg, displayClass }) => {
+    if (String(fileData.slug ?? "") !== "index") return null
+
+    const notes = recentNotes(allFiles, opts.limit)
+    if (notes.length === 0) return null
+
+    return h(
+      "section",
+      { class: ["recent-updated-notes", displayClass].filter(Boolean).join(" ") },
+      h(
+        "div",
+        { class: "recent-updated-notes__header" },
+        h("h2", null, opts.title),
+        opts.moreSlug &&
+          h(
+            "a",
+            {
+              class: "internal recent-updated-notes__more",
+              href: resolveRelative(fileData.slug, opts.moreSlug),
+            },
+            opts.moreLabel,
+          ),
+      ),
+      h(RecentNotesList, { notes, fileData, cfg, showPaths: opts.showPaths }),
+    )
+  }
+
+  Component.css = recentNotesCss
 
   return Component
 }

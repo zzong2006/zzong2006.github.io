@@ -622,6 +622,17 @@ body[data-slug="index"] {
     padding: 0.55rem 0;
   }
 
+  // 전체 목록(/recent)으로 가는 링크. 주제 카드의 '전체 보기 →' 줄과 같은 모양으로 맞춘다.
+  .recent-updated-notes__more {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.85rem;
+
+    &::after {
+      content: " →";
+    }
+  }
+
   article a.internal {
     background-color: transparent;
     padding: 0;
@@ -764,6 +775,24 @@ body[data-slug="index"] {
     article > .markdown-rendered > .callout[data-callout="topic"] {
       grid-column: auto;
     }
+  }
+}
+
+// 최근 수정한 노트 전체 목록(plugins/recent-notes-page). 대문의 최근 노트 목록과 같은 모양이다.
+// 이 페이지는 목록이 본문(.center) 안에 있어 기본 링크 칩이 붙는다. 대문처럼 걷는다.
+body[data-slug="recent"] {
+  .recent-updated-notes__link {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .recent-updated-notes__list {
+    gap: 0;
+  }
+
+  .recent-updated-notes__item {
+    gap: 0.1rem;
+    padding: 0.55rem 0;
   }
 }
 
