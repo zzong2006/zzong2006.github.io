@@ -48,7 +48,7 @@ one-hot 인코딩처럼 대부분 0 인 feature 가 많으면, 서로 동시에 
 
 ## B.5) 지금은 차이가 줄었다
 
-위 기법 중 일부는 XGBoost 에도 들어갔다. XGBoost 는 `tree_method="hist"` 로 히스토그램 방식을 지원하고, 2.0 부터는 기본값 `auto` 가 `hist` 와 같은 방식을 쓴다. `grow_policy="lossguide"` 를 주면 leaf-wise 로도 자란다. 그래서 같은 설정으로 맞추면 속도 차이는 예전보다 작고, 데이터와 파라미터에 따라 결과가 달라진다. GOSS 와 EFB 는 여전히 LightGBM 쪽에만 있는 기법이다.
+위 기법 중 일부는 XGBoost 에도 들어갔다. XGBoost 는 `tree_method="hist"` 로 히스토그램 방식을 지원하고, 2.0 부터는 기본값 `auto` 가 `hist` 와 같은 방식을 쓴다. `grow_policy="lossguide"` 를 주면 leaf-wise 로도 자란다. 그래서 같은 설정으로 맞추면 속도 차이는 예전보다 작고, 데이터와 파라미터에 따라 결과가 달라진다. EFB 는 LightGBM 에만 있다. XGBoost 에도 gradient 기반 행 샘플링(`sampling_method="gradient_based"`)이 있지만, GOSS 와 다른 MVS 방식이고 GPU 에서만 쓸 수 있다.
 
 # C) 특징
 
@@ -62,7 +62,7 @@ leaf-wise 로 자라기 때문에 데이터가 적으면 [[overfitting]] 에 취
 | --- | --- | --- |
 | 분할 후보 | histogram (bin) | 2.0 부터 기본 histogram. exact 도 선택 가능 |
 | 트리 성장 | leaf-wise | 기본 level-wise. `lossguide` 로 leaf-wise 가능 |
-| 행 샘플링 | GOSS 선택 가능 | 무작위 subsample |
+| 행 샘플링 | GOSS 선택 가능 | 무작위 subsample. GPU 에서는 gradient 기반(MVS)도 가능 |
 | sparse feature | EFB 로 묶음 | sparsity-aware split 으로 결측 · 0 을 따로 처리 |
 
 # E) Boosting Methods
