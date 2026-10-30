@@ -35,7 +35,7 @@ FST:
 
 여기서 출력 값은 상황에 따라 다르다. Lucene에서는 term dictionary의 block 위치, term metadata, file pointer 같은 값을 찾는 데 사용할 수 있다.
 
-# C) 왜 쓰는가
+# C) 쓰는 이유
 
 FST는 많은 문자열이 prefix나 suffix를 공유할 때 메모리를 아낄 수 있다.
 

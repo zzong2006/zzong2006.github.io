@@ -8,7 +8,7 @@ aliases: []
 
 [[Learning-to-Rank]] 알고리즘으로, [[RankNet]] 의 gradient 에 순위 지표의 변화량을 곱해서 "지표를 많이 움직이는 쌍" 에 학습을 집중시키는 방법이다. 손실 함수를 정의하지 않고 gradient 만 직접 정의한 것이 특징이라, 이 gradient 를 $\lambda$ 라고 부르는 데서 이름이 왔다.
 
-# B) 왜 손실 함수 대신 gradient 인가
+# B) 손실 함수 대신 gradient 를 정의하는 이유
 
 순위 품질은 [[Normalized Discounted Cumulative Gain|NDCG]] 같은 지표로 잰다. 그런데 이런 지표는 문서의 순위 위치에만 의존하므로, 모델 점수를 아주 조금 바꿔도 순위가 안 바뀌면 지표는 그대로다. 순위가 바뀌는 순간에만 값이 계단처럼 튄다. 미분값이 거의 모든 곳에서 0 이라 경사하강으로 직접 최적화할 수 없다.
 

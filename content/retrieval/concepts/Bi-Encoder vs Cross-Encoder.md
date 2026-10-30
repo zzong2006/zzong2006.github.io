@@ -25,7 +25,7 @@ aliases: []
 | 정확도 | 벡터 하나에 문서를 압축하므로 낮다 | 토큰 단위로 비교하므로 높다 |
 | 대표 모델 | [[DPR]], [[sentence transformers]], [[Two-tower Model]] | monoBERT, bge-reranker 같은 reranker |
 
-# B) 두 단계로 같이 쓴다
+# B) 두 단계 구성
 
 두 구조는 서로 대체하지 않고 역할을 나눈다. bi-encoder 가 전체 문서에서 후보 수백 개를 빠르게 꺼내고, cross-encoder 가 그 후보만 다시 매겨 순서를 정한다. 첫 단계는 정답을 놓치지 않는 것(recall)이, 두 번째 단계는 위쪽 순서를 맞히는 것(precision)이 목표다. 이 구성이 [[Re-ranking]] 이고, 단계를 더 늘린 것이 [[Cascade Ranking System]] 이다.
 
@@ -33,17 +33,17 @@ aliases: []
 
 # C) 학습 방법
 
-## C.1) Bi-encoder 는 contrastive 로 학습한다
+## C.1) Bi-encoder 학습: contrastive
 
 bi-encoder 는 질의 벡터가 정답 문서 벡터와는 가깝고 다른 문서와는 멀어지도록 학습한다. 보통 [[InfoNCE]] loss 를 쓰고, 같은 batch 에 있는 다른 질의의 정답 문서를 negative 로 재활용한다(in-batch negative). batch 크기만큼 negative 를 공짜로 얻는 방법이다.
 
 in-batch negative 는 대부분 질의와 무관한 문서라 학습 초반이 지나면 쉽게 구분된다. 그래서 질의와 비슷하지만 정답이 아닌 [[hard negative]] 를 섞는다. hard negative 를 상위 후보에서 뽑을수록 실제로는 정답인 문서(false negative)가 섞이는 문제가 생긴다.
 
-## C.2) Cross-encoder 는 분류로 학습한다
+## C.2) Cross-encoder 학습: 분류
 
 cross-encoder 는 `(질의, 문서)` 쌍에 관련 여부나 등급을 붙여 분류 · 회귀로 학습한다. 입력 하나가 쌍 하나라서 in-batch negative 같은 재활용은 없고, negative 쌍을 따로 만들어 넣는다.
 
-## C.3) Cross-encoder 로 bi-encoder 를 가르친다
+## C.3) Cross-encoder 를 선생으로 쓰는 학습
 
 cross-encoder 는 정확하지만 느리고, bi-encoder 는 빠르지만 덜 정확하다. 그래서 학습할 때 cross-encoder 를 bi-encoder 의 선생으로 쓴다. 쓰는 방식은 두 가지다.
 

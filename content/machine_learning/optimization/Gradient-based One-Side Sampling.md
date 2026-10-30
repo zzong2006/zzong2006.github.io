@@ -8,7 +8,7 @@ aliases: ["GOSS"]
 
 [[LightGBM]] 이 트리의 분할 지점을 찾을 때 데이터 행을 일부만 쓰는 샘플링 방법이다. gradient 가 큰 행은 모두 남기고, gradient 가 작은 행만 무작위로 줄인다. 한쪽(작은 쪽)만 샘플링해서 one-side sampling 이라고 부른다.
 
-# B) 왜 gradient 로 고르나
+# B) gradient 로 고르는 이유
 
 gradient boosting 에서 행마다의 gradient 는 "지금까지의 트리들이 이 행을 얼마나 틀리고 있는가" 다. gradient 가 작은 행은 이미 잘 맞고 있어서, 새 트리가 어디서 나누든 loss 가 크게 달라지지 않는다. 분할 이득을 계산할 때 기여가 작다.
 

@@ -22,7 +22,7 @@ GBDT 학습에서 가장 비싼 일은 **분할 지점 찾기** 다. 트리의 �
 | GOSS | 분할 계산에 쓰는 행 수 | `data_sample_strategy="goss"`, `top_rate`, `other_rate` |
 | EFB | feature 수 | `enable_bundle` (기본 true) |
 
-## B.1) Histogram: 값 대신 bin 경계에서만 자른다
+## B.1) Histogram: bin 경계에서만 분할
 
 XGBoost 의 exact 방식(초기 버전에서 작은 데이터에 기본으로 쓰였다)은 feature 값을 정렬해 두고, 서로 다른 값 사이를 모두 분할 후보로 본다. 값이 백만 종류면 후보도 백만 개다.
 
@@ -30,17 +30,17 @@ LightGBM 은 학습 전에 각 feature 를 최대 `max_bin` 개 구간(bin)으�
 
 히스토그램에는 계산을 한 번 더 아끼는 성질이 있다. 부모 노드의 히스토그램에서 한쪽 자식의 히스토그램을 빼면 다른 쪽 자식의 히스토그램이 된다. 그래서 데이터가 적은 자식 쪽만 직접 세고, 큰 쪽은 뺄셈으로 얻는다.
 
-## B.2) Leaf-wise: loss 가 가장 많이 줄어드는 잎만 나눈다
+## B.2) Leaf-wise: loss 감소가 가장 큰 잎만 분할
 
 XGBoost 의 기본 성장 방식(level-wise)은 깊이를 한 층씩 늘리며 그 층의 모든 노드를 나눈다. 이미 충분히 잘 맞는 노드도 같이 나눈다.
 
 LightGBM 은 지금 있는 잎 중 나눴을 때 loss 가 가장 많이 줄어드는 잎 하나만 나눈다. 같은 잎 수라면 loss 를 더 많이 줄이므로, 같은 정확도에 트리 수나 분할 수가 덜 든다. 대신 한쪽으로만 깊게 자라 데이터가 적으면 [[overfitting|과적합]] 하기 쉽다. 그래서 `num_leaves` 로 잎 수를 제한하고, 필요하면 `max_depth` 와 `min_data_in_leaf` 를 함께 건다.
 
-## B.3) GOSS: gradient 가 작은 행을 덜 본다
+## B.3) GOSS: gradient 가 작은 행 샘플링
 
 [[Gradient-based One-Side Sampling|GOSS]] 는 분할 지점을 계산할 때 행 일부만 쓴다. gradient 가 작은 행은 이미 잘 맞고 있어 분할 이득 계산에 기여가 작다는 점을 이용한다. gradient 가 큰 상위 행은 모두 남기고, 나머지는 일부만 무작위로 남긴 뒤 가중치를 키워 원래 분포를 맞춘다.
 
-## B.4) EFB: 서로 겹치지 않는 sparse feature 를 묶는다
+## B.4) EFB: 겹치지 않는 sparse feature 묶기
 
 one-hot 인코딩처럼 대부분 0 인 feature 가 많으면, 서로 동시에 0 이 아닌 행이 거의 없는 feature 쌍이 많다. EFB(Exclusive Feature Bundling)는 이런 feature 들을 하나로 합친다. 합칠 때 두 번째 feature 의 값에 오프셋을 더해 bin 범위가 겹치지 않게 하므로, 합친 뒤에도 원래 값이 어느 feature 의 것인지 구분된다.
 
@@ -83,7 +83,7 @@ leaf-wise 성장 때문에 데이터가 적으면 과적합하기 쉽다. LightG
 
 `boosting` 파라미터로 GBDT(기본), DART, random forest 를 고른다. 예전에는 GOSS 도 `boosting="goss"` 로 골랐지만, 4.0 부터는 행 샘플링 방식으로 분리되어 `data_sample_strategy="goss"` 로 지정한다. 순위 학습용 목적 함수(`objective="lambdarank"`)도 기본으로 들어 있다 ([[LambdaRank]]).
 
-# D) ID 사이의 관계를 학습하지 못한다
+# D) 한계: ID 사이의 관계 학습
 
 사용자 ID · 상품 ID 처럼 값이 수백만 종류인 feature 를 넣어도, 트리 모델은 "어떤 ID 끼리 비슷한가" 를 배우지 못한다. 트리의 분할은 언제나 feature 하나의 값으로 데이터를 나누는 질문이기 때문이다. "user_A 와 user_B 가 얼마나 비슷한가" 는 분할로 표현할 수 없다.
 
