@@ -11,4 +11,4 @@ UNET 은 U 자 모양의 인코더와 디코더를 가지는 구조로 이루어
 
 fully convolutional neural network
 
-![](https://i.imgur.com/AjZkTT1.png)
+![[img-6f9a3faad4.png]]

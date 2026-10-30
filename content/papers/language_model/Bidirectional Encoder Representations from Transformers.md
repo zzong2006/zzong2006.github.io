@@ -45,7 +45,7 @@ BERT 프레임워크는 크게 두 가지로, pre-training 과 fine-tuning 으�
 pre-training 과정에서는 서로 다른 pre-training tasks 로 부터 학습하는데, 학습하는 데이터로 unlabeled 데이터를 사용한다. 그리고 fine-tuning 에서는 BERT 모델이 pre-training 된 parameter 로 처음 초기화된다. 이후 downstream task 로부터 labeled 데이터를 이용해서 모든 parameter 들을 fine-tuning 하게 된다. 각 downstream task 에 대한 각 모델은 서로 동일하게 초기화하여 시작했지만, 이후에는 개별적인 튜닝 모델을 가지게 된다.
 
 예를 들면 아래처럼 표현된다.  
-![](https://i.imgur.com/dofGzch.png)
+![[img-139c953a23.png]]
 
 ## C.1) 모델 구조
 
@@ -53,7 +53,7 @@ BERT 는 양 방향 학습이 가능한 멀티 레이어 형태의 transformer �
 
 transformer 인코더를 쌓아놓은 형태다.
 
-![](https://i.imgur.com/5x1Q43z.png)
+![[img-bceedec820.png]]
 
 # D) References
 

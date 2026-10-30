@@ -16,7 +16,7 @@ $c=8$ 인 경우: a glass of orange `_____` to go along with
 
 ## A.1) CBOW Figure
 
-![|350](https://i.imgur.com/DYWHBRy.png)
+![[img-82e1398442.png|350]]
 
 $\mathbf{W}_{V\times N}$ 은 Embedding matrix, $x$ 는 $V$ 차원의 one-hot vector, $N$ 은 embedding vector 의 크기다.
 

@@ -73,7 +73,7 @@ WSABIE 는 이러한 구조를 통해 대규모 데이터에서도 효율적으�
 
 # B) Online WARP Loss Optimization
 
-![|500](https://i.imgur.com/yWyXjUB.png)
+![[img-bc248f32cd.png|500]]
 
 여기서 constraints (2), (3) 은 regularization 을 의미
 

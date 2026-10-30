@@ -25,7 +25,7 @@ aliases: ["프록시"]
 
 아래는 포워드 프록시를 설명하는 그림이다.
 
-![|500](https://i.imgur.com/n2b6umM.png)
+![[img-5fbf38eb30.png|500]]
 
 ## C.2) Reverse Proxy
 

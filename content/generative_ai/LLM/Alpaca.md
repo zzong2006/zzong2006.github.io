@@ -67,7 +67,7 @@ Finetuning 학습 비용
 
 서빙 비용 가성비
 
-![](https://i.imgur.com/ztyKIMY.png)
+![[img-8d83c4b12c.png]]
 
 얼마나 빠른 응답이 필요한지?
 

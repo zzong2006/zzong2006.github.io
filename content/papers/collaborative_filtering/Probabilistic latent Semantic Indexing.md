@@ -30,7 +30,7 @@ pLSI(Probabilistic Latent Semantic Indexing)는 LSA를 확률 모델로 발전�
 
 ## A.1) 예시 (및 그림)
 
-![[img-e0e15543d6.png|| 400]]
+![[img-e0e15543d6.png| 400]]
 
 Notation
 
@@ -42,7 +42,7 @@ Documents 에서 위에서 네번째 문서는 TRADE 라는 특정 토픽으로 
 
 ## B.1) 간략한 과정
 
-![](https://i.imgur.com/Ul6E7cZ.png)
+![[img-f58c1fdebc.png]]
 
 - pLSA 는 위 그림의 **(b)** 의 방향으로 학습한다.
 	- (a): 우선 문서 ($d$) 를 뽑습니다. 그 다음 이 문서의 주제 ($z$) 를 뽑습니다. 마지막으로 해당 주제별로 단어 ($w\mid z$) 를 뽑습니다.

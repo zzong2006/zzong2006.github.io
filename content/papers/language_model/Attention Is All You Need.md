@@ -21,7 +21,7 @@ aliases: []
 # C) Model Architecture
 
 **Model Figure**
-![|400](https://i.imgur.com/mKjTVRJ.png)
+![[img-3b49107982.png|400]]
 
 ## C.1) Encoder and Decoder Stacks
 

@@ -203,7 +203,7 @@ SimHash 는 공간을 무작위로 가로지르는 초평면(hyperplane) 여러 
 
 # D) 실험 결과
 
-![](https://i.imgur.com/vcmszcK.png)
+![[img-1f44b8c05c.png]]
 
 MUVERA 는 [[BEIR]] 정보 검색 benchmark 로 평가했고, 이전 최고 성능 시스템인 [[PLAID]] 보다 좋은 결과를 냈다.
 

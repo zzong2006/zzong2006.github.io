@@ -9,4 +9,4 @@ tags:
 
 # A) Directed Acyclic Graph ?
 
-![|400](https://i.imgur.com/GhIE8FZ.png)
+![[img-900eee8789.png|400]]

@@ -9,7 +9,7 @@ tags:
 
 해시함수를 돌리기 전에 원문에 임의의 문자열을 덧붙이는 것. 단어 뜻 그대로 원문에 임의의 문자열을 붙인다는 의미라, 소금친다 라고 해석할 수 있다.
 
-![](https://i.imgur.com/6H8T5HK.png)
+![[img-284d5ef07a.png]]
 
 ## A.1) 필요한 이유
 
@@ -19,7 +19,7 @@ salt 방식 외에도 key stretching 이 있다. Key stretching 이란, 브루�
 
 단방향 해시 함수는 다음 그림과 같다.
 
-![](https://i.imgur.com/JCOJLV0.png)
+![[img-385066f6b4.png]]
 
 # B) 단방향 해시 함수의 단점
 

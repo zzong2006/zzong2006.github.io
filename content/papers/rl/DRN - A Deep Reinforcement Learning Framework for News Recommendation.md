@@ -31,7 +31,7 @@ exploration 을 위해서 [[Interactively Optimizing Information Retrieval Syste
 
 해당 논문에서 제안한 방식인 딥러닝 기반의 강화학습을 추천시스템에서 활용할때, 그 과정을 간략히 설명한다.
 
-![|500](https://i.imgur.com/eU3KyIZ.png)
+![[img-35e4d8b902.png|500]]
 
 * environment: user & news pool
 * agent: recommendation algorithm

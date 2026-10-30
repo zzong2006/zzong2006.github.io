@@ -14,7 +14,7 @@ tags:
 
 Figure: two-tower DNN model for learning query and candidate representations
 
-![|500](https://i.imgur.com/XNeqcqf.png)
+![[img-d7a6111e83.png|500]]
 
 # 1. References
 

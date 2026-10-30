@@ -18,7 +18,7 @@ Q-Q plot 은 두 확률 분포를 비교하는 시각적 방법으로, 확률 �
 비교하려는 각 분포에 대해서 1 ~ 100% quantile 에 해당하는 point 를 구한다. 그리고 서로 동일한 quantile 에 해당하는 값을 각각 x, y 축에 놓는다.
 만약 동일한 % 에 해당하는 quantile point 값이 같다면, 이는 $y=x$ 꼴을 보일 것이다.
 
-![|400](https://i.imgur.com/sAmqd8L.png)
+![[img-6fdc194fc4.png|400]]
 
 # 3. Notes
 

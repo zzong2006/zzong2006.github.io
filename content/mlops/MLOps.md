@@ -18,7 +18,7 @@ MLOps (Machine Learning Operations) is an emerging discipline, and comprises a s
    offline 에서 학습한 데이터 외 예상치 못한 데이터가 발생할 수 있다.
 2. POC to Production Gap
    POC 를 위해 작성한 ML 코드보다 production 을 위해 작성한 코드가 훨씬 많이 필요하다: [[Hidden Technical Debt in Machine Learning Systems]] 를 참조하라.
-   ![|650](https://i.imgur.com/mdji73e.png)
+   ![[img-4cbde0e8bd.png|650]]
 
 # C) Vs. [[LLMOps]]
 

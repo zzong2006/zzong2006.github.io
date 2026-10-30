@@ -27,7 +27,7 @@ $$
 이를 벡터장으로 확인할 수 있는데, 벡터장의 각 벡터마다 그래프 꼭대기로 가장 빨리가는 방향을 알려주고 있는 것을 볼 수 있다.  
 예시로, $f(x, y)=-\left(\cos ^{2} x+\cos ^{2} y\right)^{2}$ 에 대한 vector field 는 다음과 같다.
 
-![|400](https://i.imgur.com/YrPneKP.png)  
+![[img-37947caa0c.png|400]]  
 (화살표가 짧을수록 경사가 완만하다는 의미다.)
 
 ## C.1) Gradient with Contour Maps

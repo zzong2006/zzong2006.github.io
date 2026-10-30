@@ -10,7 +10,7 @@ WSGI is the Web Server Gateway Interface. It is a specification that describes h
 
 파이썬 웹 애플리케이션과 웹 서버 간의 인터페이스로서 사용.
 
-![](https://i.imgur.com/w9HLZ6K.png)
+![[img-f88840fe1b.png]]
 
 # B) References
 

@@ -14,7 +14,7 @@ $$
 \boldsymbol{d}_{t}=\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta})+\beta_{t} \boldsymbol{d}_{t-1}
 $$
 
-![|600](https://i.imgur.com/donecPI.png)
+![[img-404bdc1ba6.png|600]]
 
 # References
 

@@ -15,7 +15,7 @@ tags:
 2. 특정 작업에 특화된 입/출력 레이어로 교체한다.
 3. 약간의 에폭시로 특정 작업을 위한 새로운 신경망을 학습한다.
 
-![](https://i.imgur.com/tMzTvgn.png)
+![[img-f79926b38e.png]]
 
 Figure: Initial Pretraining Architecture (Untrained), Trained Language Network, Fine-Tuning Architecture
 

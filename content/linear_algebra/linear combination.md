@@ -20,7 +20,7 @@ $$
 
 2 차원 벡터 기준으로, 벡터 개수에 따른 모든 선형 결합은 다음을 만족한다.
 
-![](https://i.imgur.com/z988Oi1.png)
+![[img-8606160748.png]]
 
 * single vector, $\boldsymbol{u}$: line
 * double vector, $u$, and $v$: plane

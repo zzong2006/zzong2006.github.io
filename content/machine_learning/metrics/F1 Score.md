@@ -24,7 +24,7 @@ Recall 과 precision 의 불균형을 해결하기 위해 조화 평균 값인 F
 
 # C) 기하학적으로 해석하는 F1 Score
 
-![Crossed ladders. h is half the harmonic mean of A and B| 500](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/CrossedLadders.png/440px-CrossedLadders.png)  
+![[img-5399b495f8.png|Crossed ladders. h is half the harmonic mean of A and B| 500]]  
 여기서 A는 Recall, B는 Precision이고, 그림의 h는 두 값의 조화평균의 절반이다. 따라서 F1 Score는 2h다.
 
 * 한 값을 고정하면 다른 값이 커질수록 h와 F1도 커진다.

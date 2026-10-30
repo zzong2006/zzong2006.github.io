@@ -18,7 +18,7 @@ tags:
 
 입력과 출력의 크기가 examples 마다 길이가 다를 수 있는데, DNN 은 이를 처리하지 못한다. 반면, RNN 은 이를 time step 형식으로 쪼개서 처리할 수 있다.
 
-![500](https://i.imgur.com/fhJcCGW.png)
+![[img-d496fb6454.png|500]]
 
 아래는 RNN diagram 을 단순화 한 것이다.
 
@@ -51,9 +51,9 @@ $$
 
 왜 이렇게 축소될까? 각 weights $W_{aa}$ 와 $W_{ax}$ 를 행렬 내부에서 이어붙였기 때문이다 ($W_a$ 로 통일).
 
- ![[img-c9f91a6f05.png||500]]
+ ![[img-c9f91a6f05.png|500]]
 
-![[img-7e3f3acaf3.png||600]]
+![[img-7e3f3acaf3.png|600]]
 
 # B) RNN 의 단점
 

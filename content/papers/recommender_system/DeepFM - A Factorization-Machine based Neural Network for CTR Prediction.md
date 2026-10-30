@@ -8,7 +8,7 @@ tags:
 
 # 모델 구조
 
-![](https://i.imgur.com/wAUHUCp.png)
+![[img-9b7d64c934.png]]
 
 # References
 

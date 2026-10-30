@@ -23,7 +23,7 @@ $$
 
 # B) MRR 계산 예시
 
-![|450](https://i.imgur.com/QO19V17.png)
+![[img-fde4c37ac9.png|450]]
 
 # C) 장점 및 단점
 

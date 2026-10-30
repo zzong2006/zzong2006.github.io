@@ -16,7 +16,7 @@ tags:
 
 주어진 표본에서 추가적으로 표본을 복원 (with replacement) 추출하고, 각 표본에 대한 통계량을 계산하거나 모델을 구성한다 (=a statistical procedure that resamples a single dataset to create many simulated samples).
 
-![](https://i.imgur.com/Z6gwVmj.png)
+![[img-8a2a02199f.png]]
 
 Bootstrap methods are alternative approaches to traditional hypothesis testing and are notable for being easier to understand and valid for more conditions.
 

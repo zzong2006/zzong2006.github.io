@@ -10,7 +10,7 @@ aliases: ["특성 교차"]
 
 (예시)  
 어느 사람이 바나나를 샀고, 요리책을 샀다면 믹서기를 살 확률이 높다. 이때, 바나나를 샀다는 feature 와 요리책을 샀다는 feature 의 조합을 feature cross 라고 부른다.  
-![](https://i.imgur.com/bvnjo5p.png)
+![[img-f7f0a3378a.png]]
 
 # B) 문제점
 

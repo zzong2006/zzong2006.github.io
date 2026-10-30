@@ -8,7 +8,7 @@ tags:
 
 # A) Steps of an ML Project
 
-![](https://i.imgur.com/eoz0tsz.png)
+![[img-88d835d1b1.png]]
 
 * Scoping: 프로젝트를 정의 (what is the X -> Y ?)
 	* Key metrics 에 대한 결정이 필요함 (e.g. accuracy, latentcy)

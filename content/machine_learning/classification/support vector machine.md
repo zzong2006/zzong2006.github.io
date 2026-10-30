@@ -52,7 +52,7 @@ $$
 y_{n}\left(\left\langle\boldsymbol{w}, \boldsymbol{x}_{n}\right\rangle+b\right) \geqslant 0
 $$
 
-![|600](https://tva1.sinaimg.cn/large/e6c9d24egy1h06h6u3wfhj211u0fot9t.jpg)
+![[img-a598f4c947.jpg|600]]
 _Equation of a separating hyperplane_
 
 ## A.2) Primal SVM

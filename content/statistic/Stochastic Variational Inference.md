@@ -15,7 +15,7 @@ tags:
 
 다만, 이렇게 만들어진 분포는 true posterior 분포 $p_{\theta}(\mathbf{z}\mid\mathbf{x})$ 와는 조금 거리가 있다.
 
-![|500](https://i.imgur.com/zoCENtD.png)
+![[img-877cf725e3.png|500]]
 
 # B) Related
 

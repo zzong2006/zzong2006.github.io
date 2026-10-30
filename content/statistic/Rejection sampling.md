@@ -20,27 +20,27 @@ Rejection sampling 의 기본적인 동작은 쉽게 샘플을 생성할 수 있
 
 제안 분포는 uniform distribution, normal distribution 등이 이용될 수 있으며, 가능하면 $p$ 와 비슷한 형태의 확률 분포를 사용하는 것이 좋다. 제안 분포 $q$ 를 설정한 다음에는 상수 $M$ 을 설정한다. 이때 $M$ 은 아래 그림과 같이 모든 $x$ 에 대해 $p(x)≤Mq(x)$ 가 되도록 설정해야 한다.
 
-![|450](https://i.imgur.com/KuavFc9.png)  
+![[img-ec9d43bb75.png|450]]  
 위 그림처럼 제안 분포가 target 분포를 감싸는 모양을 envelope 한다고 표현한다.
 
 # C) Rejection Sampling 과정
 
 ## C.1) Sampling 알고리즘
 
-![|500](https://i.imgur.com/1Vbn90B.png)
+![[img-e75f86313a.png|500]]
 
 ## C.2) Step by Steps
 
 Rejection sampling 의 첫 번째 단계는 다음 그림과 같이 $q$ 에서 샘플 $x_0$ 를 생성하는 것이다.  
 
-![|450](https://i.imgur.com/lnSZZ46.png)
+![[img-1ce368d888.png|450]]
 
 그다음, $[0, Mq(x_0)]$ 사이의 uniform distribution 에서 $u$ 를 생성하여 $u$ 가 아래 그림의 A 영역에 존재한다면 $x_0$ 를 기각 (rejection) 하고, B 영역에 존재한다면 (i.e. $\displaystyle u<\frac{p\left(x_{0}\right)}{Mq\left(x_{0}\right)}$) $x_0$ 를 샘플로 이용한다. 이 과정을 통해 $q$ 에서 생성된 샘플들은 $p$ 를 따르게 된다.  
 
-![|450](https://i.imgur.com/nx1CgQQ.png)
+![[img-ae69785948.png|450]]
 
 $q$ 에서 샘플을 생성하여 [0, $Mq(x0)$] 사이의 난수에 따라 샘플을 기각 - 수용하는 과정을 무한히 반복하면, Rejection sampling 을 통해 얻은 샘플들은 결국 아래 그림과 같이 $p$ 에서 생성된 샘플처럼 보이게 된다.  
-![|450](https://i.imgur.com/sqcPLzv.png)
+![[img-3a12020f6b.png|450]]
 
 # D) 채택률과 M 값의 설정
 

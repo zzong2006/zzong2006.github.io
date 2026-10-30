@@ -11,7 +11,7 @@ tags:
 
 학습 과정에서는 ground truth $\boldsymbol{y}^{(t)}$ 를 $\boldsymbol{h}^{(t+1)}$ 의 입력값으로 넣어준다. 테스트 과정에서는 $\boldsymbol{y}^{(t)}$ 대신 $\boldsymbol{o}^{(t)}$ 값을 넣어준다.
 
-![|400](https://i.imgur.com/YcXNBQl.png)
+![[img-80b148dd00.png|400]]
 
 # B) Pros and Cons
 

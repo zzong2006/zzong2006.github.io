@@ -14,7 +14,7 @@ aliases: []
 
 layer norm 방식은 크게 두가지가 있는데, post layer norm 또는 pre layer norm 방식이 존재한다.
 
-![|500](https://i.imgur.com/nR1mFvc.png)
+![[img-07d75b42c6.png|500]]
 
 ## (1) Post Layer Normalization
 

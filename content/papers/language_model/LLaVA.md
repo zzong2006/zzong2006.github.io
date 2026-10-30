@@ -80,7 +80,7 @@ GPT-4 (text-only)를 활용하여 COCO 데이터셋 확장:
 
 ## C.2) 아키텍처
 
-![LLaVA Architecture](https://i.imgur.com/8sEKiXd.png)
+![[img-20ec9ff0fd.png|LLaVA Architecture]]
 
 ## C.3) Response Formatting 문제
 
@@ -133,7 +133,7 @@ $$\{2 \times 2, 1 \times \{2,3,4\}, \{2,3,4\} \times 1\}$$
 
 이미지 비율에 따라 동적으로 그리드 선택 (가로로 긴 이미지 → 1×3 등)
 
-![Dynamic Resolution](https://i.imgur.com/6QRGo1n.png)
+![[img-e3667d39d2.png|Dynamic Resolution]]
 
 ## D.2) Data Mixture 개선
 

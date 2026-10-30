@@ -31,7 +31,7 @@ $$
 where $a>b>0$
 	- $u_i$는 사용자의 latent vector를 의미
 # The Graphical Representation
-![|500](https://i.imgur.com/4pAt0LB.png)
+![[img-91933e9217.png|500]]
 
 # Related
 ## Papers

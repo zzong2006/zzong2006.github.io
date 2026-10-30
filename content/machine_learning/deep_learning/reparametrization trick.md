@@ -32,7 +32,7 @@ ELBO 에서 $\mathbb{E}_{q_{\phi}(z \mid x(i))}\left[\log p_{\theta}\left(x^{(i)
 
 하지만 reparameterization trick 을 활용하면 다음과 같이 sampling 을 위해 고른 분포 (e.g. [[Gaussian distribution]]: $\mu, \Sigma$) 의 parameter 에 대해 미분을 수행할 수 있다.
 
-![](https://i.imgur.com/aLV5LPJ.png)
+![[img-6e8b7b76d2.png]]
 
 # 예시) VAE
 

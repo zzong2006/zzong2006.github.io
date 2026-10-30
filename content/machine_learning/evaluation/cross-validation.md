@@ -36,7 +36,7 @@ validation 데이터에 대해서 가장 낮은 error 를 보이는 모델을 �
 
 여기서 $k$ 는 [[hyperparameter]] 이고, 나눠진 validation subset 을 data fold set 이라고 부른다.
 
-![](https://i.imgur.com/GbSAPii.png)
+![[img-97856d20dc.png]]
 
 이후 $k$ 개의 평가 지표를 aggregate (e.g.평균) 해서 최종적으로 모델의 성능을 평가하게 된다.  
 

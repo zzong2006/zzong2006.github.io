@@ -27,7 +27,7 @@ $$
 
 알고리즘의 핵심은 [[value iteration]] update 인 [[Bellman Equation]] 에 있는데, 식은 아래와 같다 ([[Incremental Implementation]] 참조).
 
-![](https://i.imgur.com/oqH1cHJ.png)
+![[img-5bb975456f.png]]
 
 위 식을 풀었을 때, $Q^{n e w}\left(s_{t}, a_{t}\right)$ 값은 세 요소에 대한 합으로 생각할 수 있다.
 
@@ -55,7 +55,7 @@ Double Q-Learning 은 이러한 이슈를 해소하기 위한 방법으로, 평�
 
 두 policy $Q^{A}$ 와 $Q^{B}$ 를 학습하는 방법은 아래와 같다. 식을 보면 $Q^{A}$ 의 입장에서 봤을때 행동 선택은 $Q^{A}$ 의 값을 기반으로 진행하고 ($a' \doteq \arg \underset{a}{\max } Q_{t}^{A}\left(s_{t+1}, a\right)$), 그 행동에 따른 value 평가는 $Q^{B}$ 에서 수행하여 ($Q_{t}^{B}\left(s_{t+1}, a' \right)$), $Q^{A}$ 업데이트 식에 활용하게 된다.
 
-![](https://i.imgur.com/Vw0Q9aV.png)
+![[img-a59a16e0ff.png]]
 
 # C) Related
 

@@ -16,7 +16,7 @@ We form hypotheses, gather empirical data, including from experiments, that prov
 
 # B) 과학적 방법의 과정
 
-![|450](https://i.imgur.com/qgmmvIx.png)
+![[img-e1f0132418.png|450]]
 
 1. 문제를 정의하기
 2. 정보와 자료를 모으기 (관찰)

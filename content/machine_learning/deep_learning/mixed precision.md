@@ -8,7 +8,7 @@ aliases: []
 
 mixed precision 은 모델 학습시 FP16, FP32 `부동 소수점` 유형을 상황에 따라 유연하게 사용하여 학습을 더 빠르게 실행하고 메모리를 적게 사용하는 방법이다. Forward, Backward Propagation 은 모두 FP16 으로 연산하고, weight 를 업데이트 할 때에는 다시 FP32 로 변환하여 계산한다.
 
-![](https://i.imgur.com/fTr4I8z.png)
+![[img-7d24ef36a2.png]]
 
 # B) 장점
 

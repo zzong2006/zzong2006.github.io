@@ -56,4 +56,4 @@ solution 개수에 대하여 간단히 생각하면 이렇다.
 * free variable 이 존재한다면, 솔루션이 무한할 수 있다.
 * 솔루션이 unique 한 조건을 만족하려면, full column rank 를 만족해야 한다.
 
-![](https://i.imgur.com/TSOa3HU.png)
+![[img-f770437349.png]]

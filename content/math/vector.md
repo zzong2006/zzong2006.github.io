@@ -24,4 +24,4 @@ velocity (속도) -> vector
 3. Audio signals
 4. Elements of $\mathbb{R}^{n}$
 
-![|600](https://i.imgur.com/3ySjdsw.png)
+![[img-ab3eee0978.png|600]]

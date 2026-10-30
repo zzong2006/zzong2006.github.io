@@ -12,4 +12,4 @@ $$
 \operatorname{probit}(p)=\Phi^{-1}(p) \quad \text { for } \quad p \in(0,1)
 $$
 
-![](https://i.imgur.com/FRIBESy.png)
+![[img-7e5add1640.png]]

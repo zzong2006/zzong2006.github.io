@@ -25,7 +25,7 @@ LLM2Vec 은 두 모델의 장점을 결합해, LLM 의 확장성과 표현력을
 
 LLM2Vec 은 간단한 세 단계로 이뤄져 있다.
 
-![](https://i.imgur.com/AhvePF0.png)
+![[img-3f1d5f86b3.png]]
 
 ### A.2.1) 1단계: 양방향 어텐션 활성화 (Enabling Bidirectional Attention)
 

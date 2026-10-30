@@ -19,7 +19,7 @@ aliases: ["SSP"]
 
 # SSP 에코시스템
 
-![|500](https://i.imgur.com/upcDxNQ.png)
+![[img-3b8e439102.png|500]]
 
 SSP 는 대외적으로는 Adfit, 내부적으로는 XMAS(eXtensible Mediation Ad Server) 로 많이 부른다. 그 이유는 ADFit 은 어드민 전용 관리 도구이고, XMAS 는 SSP 와 AD Exchange(ADX) 를 담당하고 있기 때문이다.
 

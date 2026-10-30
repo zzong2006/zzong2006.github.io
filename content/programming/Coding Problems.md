@@ -68,7 +68,7 @@ def solution(S):
 
 ## A.2) (2) 번
 
-![](https://i.imgur.com/5y6UXak.png)
+![[img-de138382a0.png]]
 
 ```python
 def solution(S):
@@ -98,7 +98,7 @@ def solution(S):
 
 ## A.3) (3) 번
 
-![](https://i.imgur.com/G7qAKxI.png)
+![[img-e69757ea8e.png]]
 
 ```python
 def solution(S):

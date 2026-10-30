@@ -19,13 +19,13 @@ target word 를 중심으로 window 를 구성해서 context words 를 정하고
 
 Training sample 은 (targate word, sampled word) 의 형태로 구성된다.
 
-![600](https://i.imgur.com/2OwumN5.png)
+![[img-f428ece506.png|600]]
 
 마치 window 내 context word 에 대해서 한꺼번에 계산되어 학습하는 것 같지만, 단어 쌍 (pair) 으로 따로 따로 학습한다. 그래서 각 단어에 대하여 한번만 학습하는 CBOW 와 달리 중심 단어를 기준으로 여러번 학습하기 때문에 Skip Gram 의 성능이 더 좋은 편이다.
 
 # C) 구조
 
-![|400](https://i.imgur.com/5edaoPv.png)
+![[img-981969dfe9.png|400]]
 
 최종적으로 학습이 완료되면 hidden layer 의 weight 를 embedding matrix 로 활용한다. 그래서 위 그림에서 $N$-dim 이 embedding vector 의 크기가 된다.
 

@@ -67,7 +67,7 @@ Isolation level (격리 수준): 동시에 여러 transaction 이 수행될 때,
   * Dirty Read: 커밋하지 않은 데이터를 읽는 것
   * Dirty Read 의 발생 가능성이 있는 상황: A transaction 에서 어떤 테이블의 데이터를 생성 후 커밋하지 않았는데, B transaction 에서 해당 테이블의 데이터를 읽으려고 하는 경우
 
-![A beginne](https://vladmihalcea.com/wp-content/uploads/2018/05/DirtyRead.png)
+![[img-e79c94195c.png|A beginne]]
 
 ## E.2) Read Committed
 
@@ -77,7 +77,7 @@ Isolation level (격리 수준): 동시에 여러 transaction 이 수행될 때,
 
 * 테이블의 한 row 를 조회하고, 이후에 다시 해당 row 를 조회했을 때, 이전의 조화 결과와 동일하다는 것을 보장하지 않음 (왜냐하면 다른 transaction 에서 해당 row 를 갱신하였기 때문에)
 
-![Non-Repeatable Read](https://vladmihalcea.com/wp-content/uploads/2018/06/NonRepeatableRead-1024x646.png)
+![[img-567aae4de4.png|Non-Repeatable Read]]
 
 ## E.3) Repeatable Read
 
@@ -90,7 +90,7 @@ Isolation level (격리 수준): 동시에 여러 transaction 이 수행될 때,
 * 한 transaction 안에서 일정 범위의 레코드를 두번 이상 읽을 때, 첫번째 쿼리에서 없던 레코드가 두번째 쿼리에서 나타나는 현상
 * Non-repeatable read 와의 차이점: phantom read 는 (INSERT 등으로 인해) transaction 에 따라 얻어진 rows 의 collection 에서 차이가 발생하는 것이고, non-repeatable read 는 (UPDATE 등으로 인해) 하나의 row 에서 차이가 발생하는 것이다.
 
-![](https://i.stack.imgur.com/aCtew.png)
+![[img-8d8966c91c.png]]
 
 ## E.4) Serializable
 

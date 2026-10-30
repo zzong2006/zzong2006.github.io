@@ -9,7 +9,7 @@ aliases: ["DBGD", "Dueling Bandit Gradient Descent"]
 
 # A) Dueling Bandit Gradient Descent ?
 
-![|560](https://i.imgur.com/D1AtaZj.png)
+![[img-1f7659b7bb.png|560]]
 
 # B) Related
 

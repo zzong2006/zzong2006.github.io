@@ -20,7 +20,7 @@ $$
 F^{-1}(p)=x
 $$
 
-![|500](https://i.stack.imgur.com/SNViH.png)
+![[img-852434a5c3.png|500]]
 
 # 2. Use-case
 

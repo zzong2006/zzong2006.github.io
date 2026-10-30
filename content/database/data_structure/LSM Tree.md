@@ -10,7 +10,7 @@ LSM Tree 는 Bitcask, [[MongoDB]], Bigtable, Cassandra, InfluxDB 및 SQLite4 와
 
 LSM tree 도 다른 search tree 처럼 key-value 쌍을 유지한다. LSM tree 는 두개 혹은 그 이상의 구조에 데이터를 담고 있으며, 각 구조는 저장되어 있는 storage medium 하에 최적화된다.
 
-![](https://i.imgur.com/T4ppYtW.png)
+![[img-6dbf39e62e.png]]
 
 # B) Time Complexity
 

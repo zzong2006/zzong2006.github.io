@@ -10,7 +10,7 @@ aliases: ["상자 수염 그림", "Box-and-Whisker Plot"]
 
 다섯 수치 요약 (five number summary) 을 가지고 그리는 그래프
 
-![|250](https://i.imgur.com/L1IYnb2.png)
+![[img-0cc37dfc8f.png|250]]
 
 ## A.1) 다섯 수치 요약 이란 무슨뜻?
 
@@ -24,7 +24,7 @@ aliases: ["상자 수염 그림", "Box-and-Whisker Plot"]
 
 # B) Boxplot 과 Outlier
 
-![|500](https://i.imgur.com/9J4IXLs.png)
+![[img-7d819491f2.png|500]]
 
 [[standardization|z-score]] 의 3$\sigma$ 보다 약간 낮은 값을 outlier 로 정한다.
 

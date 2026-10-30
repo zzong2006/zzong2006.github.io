@@ -31,7 +31,7 @@ aliases:
 
 # C) 제안 방법: CoH
 
-![CoH](https://i.imgur.com/ZSV9oNx.png)
+![[img-ca905798c7.png|CoH]]
 
 SFT 와 RLHF 의 강점을 결합하여 강화 학습 없이 모든 피드백을 활용함으로써 두 방법의 한계를 극복합니다.
 

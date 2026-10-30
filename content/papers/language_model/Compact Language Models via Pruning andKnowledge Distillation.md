@@ -44,7 +44,7 @@ Knowledge distillation 에는 두 가지 주요 방식이 있습니다:
 
 학생 모델 (축소된 모델) 은 $N$ 개의 레이어를 가지고 있으며, 이는 원본 모델 (축소되지 않은 모델) 인 교사 모델의 M 개의 레이어에서 지식을 전달받아 학습합니다. 학생 모델은 임베딩 출력 손실, 로짓 손실, 그리고 학생 블록 S 와 교사 블록 T 간에 매핑된 transformer encoder 관련 손실을 최소화하는 방식으로 학습을 진행합니다.
 
-![](https://i.imgur.com/iwXEH5X.png)
+![[img-53e22f2638.png]]
 
 # D) Pruning 및 Knowledge Distillation 을 통한 압축 기법
 

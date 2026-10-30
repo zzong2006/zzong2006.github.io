@@ -20,7 +20,7 @@ ZeRO(Zero Redundancy Optimizer)는 데이터 병렬(data parallelism) 학습에�
 
 # B) ZeRO 최적화 단계
 
-![](https://i.imgur.com/1nyXR8B.png)
+![[img-01c4dbcfaa.png]]
 
 | 구분 | ZeRO-1 | ZeRO-2 | ZeRO-3 |
 | --- | --- | --- | --- |

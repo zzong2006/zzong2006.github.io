@@ -13,7 +13,7 @@ aliases: []
 
 # B) Algorithm: MP-TS for Binary Rewards
 
-![](https://i.imgur.com/hlzmxgL.png)
+![[img-8268aa556a.png]]
 
 * Improvement of MP-TS based on the empirical means
 	* In the theoretical analysis of the MP-MAB problem, we observed that an extra loss arises when multiple suboptimal arms are drawn at the same round.

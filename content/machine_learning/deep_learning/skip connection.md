@@ -18,7 +18,7 @@ $$
 
 $F$ 가 층이 수행하는 변환이고, $x$ 가 건너뛰어 더해지는 입력이다. residual connection 이라고도 부르는데, 층이 $y$ 전체가 아니라 $y - x$ 라는 잔차 (residual) 만 학습하면 된다는 관점에서 붙은 이름이다. 두 용어는 같은 것을 가리킨다.
 
-![](https://i.stack.imgur.com/gSxcB.png)
+![[img-f4231a6737.png]]
 
 # B) 왜 필요한가
 
