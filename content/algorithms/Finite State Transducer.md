@@ -43,6 +43,8 @@ FST는 많은 문자열이 prefix나 suffix를 공유할 때 메모리를 아낄
 
 검색 엔진에서는 term 수가 매우 많기 때문에, term dictionary를 메모리에 효율적으로 올리고 빠르게 lookup하는 것이 중요하다. FST는 이 지점에서 유용하다.
 
+출력값을 단어의 가중치로 쓰면 자동완성에도 쓸 수 있다. Elasticsearch 의 completion suggester 는 단어마다 인기도 같은 가중치를 붙인 FST 를 메모리에 올려 두고, 입력한 앞부분을 따라 내려가 가중치가 큰 후보부터 꺼낸다. 역색인에 앞부분을 펼쳐 넣는 edge n-gram 방식과의 비교는 [[Prefix Search]] 에 있다.
+
 # D) Lucene에서의 역할
 
 [[Lucene]]에서 FST는 posting list 자체라기보다는, **term을 빠르게 찾기 위한 dictionary/index 쪽 구조** 로 이해하는 게 좋다.
