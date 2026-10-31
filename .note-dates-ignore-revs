@@ -1,0 +1,22 @@
+# 노트 수정일 계산에서 빼는 커밋 (plugins/note-dates).
+# 노트 내용을 쓰지 않고 여러 노트를 한꺼번에 손본 정리 작업만 적는다.
+# 형식은 .git-blame-ignore-revs 와 같다. 한 줄에 전체 커밋 해시 하나, # 뒤는 주석.
+
+# chore: remove empty References/Related sections from notes (602 files)
+b6bf90a9936d7f5e0c9cb765b3239be8cfd23270
+
+# chore: remove empty placeholder sections from notes (34 files)
+6aa5b13fe868ca9a3332f109f2319d875dc5bd0b
+
+# chore: remove empty title headings and close numbering gaps (81 files)
+37d623577d1098e13b353e20d1c3d23bfbd15d54
+
+# Move generative AI notes to a top-level generative_ai/ section (links to moved notes)
+6d628f9c0fa8ecd68180cca98f7cd834c6cc9af8
+
+# Sort machine learning root notes into subfolders (links to moved notes)
+# tau-bench 도 이 커밋에서 고쳤지만 바로 다음 커밋 ed2943c5a 에서 다시 고쳐 수정일이 남는다.
+be13fd962c623cda1af3a698f3c7b2d49144ddb5
+
+# content: self-host external images still hotlinked from notes (#37, 141 notes)
+ef8cfd0f52f9705c722cd321691aab7ecd773fc8

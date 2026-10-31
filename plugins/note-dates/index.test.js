@@ -5,7 +5,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "nod
 import { tmpdir } from "node:os"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { parseHistory, resolveDates } from "./index.js"
+import { parseHistory, parseIgnoreRevs, resolveDates } from "./index.js"
 
 test("Git creation survives edits and renames, deletion and recreation reset it", () => {
   const log = [
@@ -42,6 +42,31 @@ test("a move that also edits the note still counts as a modification", () => {
     "content/dir/old.md",
   ].join("\0")
   assert.equal(parseHistory(log).get("content/dir/old.md").modified, "2022-01-01T00:00:00Z")
+})
+
+test("listed cleanup commits keep the date of the last real edit", () => {
+  const cleanup = "b".repeat(40)
+  const log = [
+    `DATE:2020-01-01T00:00:00Z ${"a".repeat(40)}`,
+    "\nA",
+    "content/note.md",
+    `DATE:2022-01-01T00:00:00Z ${cleanup}`,
+    "\nM",
+    "content/note.md",
+    "R087",
+    "content/old.md",
+    "content/moved.md",
+    "A",
+    "content/new.md",
+  ].join("\0")
+  const ignored = parseIgnoreRevs(`# comment\n${cleanup}  # trailing\nnot-a-hash\n`)
+  assert.deepEqual([...ignored], [cleanup])
+  const dates = parseHistory(log, ignored)
+  assert.equal(dates.get("content/note.md").modified, "2020-01-01T00:00:00Z")
+  // 정리 커밋에서 처음 생긴 노트는 이어받을 날짜가 없으니 그 커밋 시각을 쓴다.
+  assert.equal(dates.get("content/new.md").modified, "2022-01-01T00:00:00Z")
+  assert.equal(dates.get("content/moved.md").modified, "2022-01-01T00:00:00Z")
+  assert.equal(parseHistory(log).get("content/note.md").modified, "2022-01-01T00:00:00Z")
 })
 
 test("explicit dates win; invalid and missing dates never become build time", () => {
