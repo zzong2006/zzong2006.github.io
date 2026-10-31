@@ -326,6 +326,18 @@ describe("pageResources", () => {
     )
   })
 
+  test("requests the explorer index before the search index, at a higher priority", () => {
+    const result = pageResources("." as FullSlug, emptyResources)
+    const inlineJs = result.js.find((j) => j.contentType === "inline" && "script" in j)
+    assert.ok(inlineJs && "script" in inlineJs)
+    const script = inlineJs.script
+    const explorerAt = script.indexOf("static/explorerIndex.json")
+    const contentAt = script.indexOf("static/contentIndex.json")
+    assert.ok(explorerAt >= 0 && contentAt > explorerAt, script)
+    assert.match(script, /explorerIndex\.json", \{ priority: "high" \}/)
+    assert.match(script, /contentIndex\.json", \{ priority: "low" \}/)
+  })
+
   test("links an extracted script shared by several inline scripts only once", () => {
     const ctx = {
       extractedInlineResources: new Map([

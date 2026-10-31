@@ -45,7 +45,8 @@ function buildScript(options) {
     const scripts = document.querySelectorAll("script");
     for (const scriptEl of scripts) {
       const text = scriptEl.textContent || "";
-      const match = text.match(/fetch\\(["']([^"']*static\\/contentIndex\\.json)["']\\)/);
+      // renderPage 가 fetch 에 우선순위 인자를 넘기므로 URL 뒤에 "," 가 올 수 있다.
+      const match = text.match(/fetch\\(["']([^"']*static\\/contentIndex\\.json)["']\\s*[,)]/);
       if (match) return match[1];
     }
     return "";
