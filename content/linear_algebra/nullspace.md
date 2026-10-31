@@ -43,27 +43,20 @@ $$
 
 1. $U$ 찾기
 
-   $$
-   A=\left[\begin{array}{rrrr}1 & 2 & 2 & 2 \\ 2 & 4 & 6 & 8 \\ 3 & 6 & 8 & 10\end{array}\right] \longrightarrow\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 2 & 4\end{array}\right] \longrightarrow\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right]=U
-
-
 $$
-2. $R$
- 찾기
-
-   
+A=\left[\begin{array}{rrrr}1 & 2 & 2 & 2 \\ 2 & 4 & 6 & 8 \\ 3 & 6 & 8 & 10\end{array}\right] \longrightarrow\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 2 & 4\end{array}\right] \longrightarrow\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right]=U
 $$
 
-   U=\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right] \rightarrow\left[\begin{array}{rrrr}1 & 2 & 0 & -2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right] \rightarrow\left[\begin{array}{rrrr}1 & 2 & 0 & -2 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0\end{array}\right]=R
+2. $R$ 찾기
 
 $$
+U=\left[\begin{array}{llll}1 & 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right] \rightarrow\left[\begin{array}{rrrr}1 & 2 & 0 & -2 \\ 0 & 0 & 2 & 4 \\ 0 & 0 & 0 & 0\end{array}\right] \rightarrow\left[\begin{array}{rrrr}1 & 2 & 0 & -2 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0\end{array}\right]=R
+$$
+
 3. $N$ 찾기
 
-   
 $$
-
-   N = \left[\begin{array}{rr}-2 & 2 \\ 0 & -2 \\ 1 & 0 \\ 0 & 1\end{array}\right]
-
+N = \left[\begin{array}{rr}-2 & 2 \\ 0 & -2 \\ 1 & 0 \\ 0 & 1\end{array}\right]
 $$
 
 # 4. Some Properties

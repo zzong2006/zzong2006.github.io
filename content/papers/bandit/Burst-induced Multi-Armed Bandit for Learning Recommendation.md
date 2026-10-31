@@ -133,13 +133,10 @@ tags:
   ($i<\Delta$ 라면, $\Delta_i = t_i$)
 * 신뢰도 파라미터 (confidence parameter) $\delta\in(0,1)$ 을 사용하는 [[Gamma distribution]] 의 [[quantile function]] 정의:
 
-  $$
-
-
-
-\mathbb{P}\left(X \leq q_\delta(\mu,\rho)\right) = 1-\delta
-
 $$
+\mathbb{P}\left(X \leq q_\delta(\mu,\rho)\right) = 1-\delta
+$$
+
    여기서 Gamma 분포 $X$는 shape이 $\mu$, scale이 $\rho$
    실험에서는 $\delta=0.95$로 설정함.
 

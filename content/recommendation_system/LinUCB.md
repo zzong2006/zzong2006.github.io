@@ -19,38 +19,8 @@ LinUCB 에서 사용하는 [[ridge regression]] 은 다음과 같은 가정을 �
 
 * 샘플 $\left(x_{t,a},r_{t,a_{t}}\right)$ 들이 서로 독립적일 때, ridge regression 을 통해 $\theta^{*}$ 의 closed-form 추정치를 얻을 수 있습니다:
 
-  $$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$$
 \hat{\theta}_{t}=\left(D_{t}^{\top}D_{t}+\lambda\mathrm{I}_{d}\right)^{-1}D_{t}^{\top}c_{t}
-
 $$
 
 그러나 LinUCB 알고리즘은 이전 라운드에서 수집된 샘플들을 사용하여 $\theta^*$를 추정하고, 이를 바탕으로 현재 라운드의 샘플을 선택합니다. 따라서 샘플들이 서로 독립적이지 않다는 문제가 발생합니다.
@@ -132,15 +102,11 @@ $$\theta_a = A_a^{-1} b_a$$
 왜 매번 $D_a$와 $c_a$를 처음부터 다시 만들어 $A_a$와 $b_a$를 계산하지 않고, 아래와 같이 단순한 덧셈으로만 업데이트할까요?
 
 $$
-
 A_a \leftarrow A_a + x_t x_t^T
-
 $$
 
 $$
-
 b_a \leftarrow b_a + r_t x_t
-
 $$
 
 **여기에 바로 효율성의 비밀이 숨어 있습니다.**
@@ -206,37 +172,29 @@ $$b_a(t) = D_a(t)^T c_a(t)$$
 1. **손실 함수(Loss Function)**  
    각 데이터 포인트 $(x_t, r_t)$에 대해 손실 함수는 예측 오차의 제곱으로 정의할 수 있습니다.
 
-   $$
-
-   \text{Loss} = (r_t - x_t^\top \theta_a)^2
-
-   $$
+$$
+\text{Loss} = (r_t - x_t^\top \theta_a)^2
+$$
 
 2. **그래디언트 계산**  
    이 손실 함수를 $\theta_a$에 대해 미분하여 그래디언트(기울기)를 계산합니다.
 
-   $$
-
-   \nabla_{\theta_a} \text{Loss} = \frac{\partial\,\text{Loss}}{\partial\,\theta_a} = -2 (r_t - x_t^\top \theta_a)\, x_t
-
-   $$
+$$
+\nabla_{\theta_a} \text{Loss} = \frac{\partial\,\text{Loss}}{\partial\,\theta_a} = -2 (r_t - x_t^\top \theta_a)\, x_t
+$$
 
 3. **파라미터 업데이트**  
    계산된 그래디언트의 반대 방향으로 $\theta_a$를 아주 조금 업데이트합니다. 여기서 $\eta$는 학습률(learning rate)입니다.
 
-   $$
+$$
+\theta_a \leftarrow \theta_a - \eta\,\nabla_{\theta_a}\,\text{Loss}
+$$
 
-   \theta_a \leftarrow \theta_a - \eta\,\nabla_{\theta_a}\,\text{Loss}
+즉,
 
-   $$
-
-   즉,
-
-   $$
-
-   \theta_a \leftarrow \theta_a + 2\,\eta\, (r_t - x_t^\top \theta_a)\, x_t
-
-   $$
+$$
+\theta_a \leftarrow \theta_a + 2\,\eta\, (r_t - x_t^\top \theta_a)\, x_t
+$$
 
 SGD 방식을 사용하면 구현이 더 직관적일 수 있습니다. 그러나 적절한 학습률 $\eta$를 선택해야 하며, 표준 방식과 비교해 수렴이 불안정할 수 있다는 단점이 있습니다.
 ### A.2.1) 비교 요약
