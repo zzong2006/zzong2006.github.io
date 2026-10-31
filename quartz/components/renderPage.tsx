@@ -80,7 +80,15 @@ export function pageResources(
   }
 
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
-  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
+  // The explorer reads the light static/explorerIndex.json (emitted by plugins/explorer-dates-index,
+  // read through scripts/patch-explorer-plugin.mjs) instead of contentIndex.json, which only search
+  // needs but loads on every page (1.3 MB gzipped). Request the light one first at high priority
+  // so the search index does not hold it up; the explorer falls back to fetchData without it.
+  const explorerIndexPath = joinSegments(baseDir, "static/explorerIndex.json")
+  const contentIndexScript = [
+    `window.__explorerIndex = fetch("${explorerIndexPath}", { priority: "high" }).then(r => r.ok ? r.json() : fetchData).catch(() => fetchData)`,
+    `const fetchData = fetch("${contentIndexPath}", { priority: "low" }).then(data => data.json())`,
+  ].join("\n")
 
   const resources: StaticResources = {
     css: [
