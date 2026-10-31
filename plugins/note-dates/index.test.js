@@ -22,13 +22,26 @@ test("Git creation survives edits and renames, deletion and recreation reset it"
   ].join("\0")
   assert.deepEqual(parseHistory(log).get("content/new.md"), {
     created: "2020-01-01T00:00:00Z",
-    modified: "2022-01-01T00:00:00Z",
+    modified: "2021-01-01T00:00:00Z",
   })
   assert.equal(parseHistory(log).has("content/한 글.md"), false)
   const recreated = parseHistory(
     log + "\0DATE:2023-01-01T00:00:00Z\0D\0content/new.md\0A\0content/new.md",
   )
   assert.equal(recreated.get("content/new.md").created, "2023-01-01T00:00:00Z")
+})
+
+test("a move that also edits the note still counts as a modification", () => {
+  const log = [
+    "DATE:2020-01-01T00:00:00Z",
+    "\nA",
+    "content/old.md",
+    "DATE:2022-01-01T00:00:00Z",
+    "\nR087",
+    "content/old.md",
+    "content/dir/old.md",
+  ].join("\0")
+  assert.equal(parseHistory(log).get("content/dir/old.md").modified, "2022-01-01T00:00:00Z")
 })
 
 test("explicit dates win; invalid and missing dates never become build time", () => {
