@@ -13,7 +13,7 @@
   "quartz": {
     "name": "site-visits",
     "displayName": "Site visits",
-    "description": "Public site-wide visit count from GoatCounter",
+    "description": "Site-wide visit count from GoatCounter, one per visitor session",
     "version": "1.0.0",
     "category": "component",
     "defaultEnabled": false,
@@ -24,7 +24,7 @@
       "SiteVisits": {
         "name": "SiteVisits",
         "displayName": "Site visits",
-        "description": "Public site-wide visit count from GoatCounter",
+        "description": "Site-wide visit count from GoatCounter, one per visitor session",
         "version": "1.0.0",
         "defaultPosition": "left",
         "defaultPriority": 40
