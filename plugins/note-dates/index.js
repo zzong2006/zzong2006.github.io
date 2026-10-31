@@ -28,8 +28,10 @@ export function parseHistory(log) {
       const previous = dates.get(source)
       const created =
         token === "A" || token.startsWith("C") ? timestamp : (previous?.created ?? timestamp)
+      // 내용이 그대로인 이동(R100)은 글을 고친 것이 아니라 수정일을 이어받는다.
+      const modified = token === "R100" ? (previous?.modified ?? timestamp) : timestamp
       if (token.startsWith("R")) dates.delete(source)
-      dates.set(target, { created, modified: timestamp })
+      dates.set(target, { created, modified })
     }
   }
   return dates

@@ -55,6 +55,8 @@ function RecentNotesContent(opts) {
         h("section", { class: "recent-notes-page__day" }, [
           h("h2", { class: "recent-notes-page__day-header" }, [
             h("time", { datetime: group.date.toISOString() }, group.label),
+            // 스타일이 안 먹은 채로 떠도(배포 전에 연 탭에서 넘어올 때) 날짜와 개수가 붙지 않게 띄운다.
+            " ",
             h("span", { class: "recent-notes-page__day-count" }, `${group.notes.length}개`),
           ]),
           h(RecentNotesList, {
