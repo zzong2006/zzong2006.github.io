@@ -58,18 +58,26 @@ export function pageResources(
     return { content: joinSegments(baseDir, filename) }
   })
 
-  const resolvedJs: JSResource[] = staticResources.js.map((resource) => {
-    if (resource.contentType !== "inline" || !extracted) return resource
-    const filename = extracted.get(resource.script)
-    if (!filename) return resource
-    return {
+  // Several inline scripts can share one extracted file (see ComponentResources); link it once.
+  const linkedScripts = new Set<string>()
+  const resolvedJs: JSResource[] = []
+  for (const resource of staticResources.js) {
+    const filename =
+      resource.contentType === "inline" && extracted ? extracted.get(resource.script) : undefined
+    if (!filename) {
+      resolvedJs.push(resource)
+      continue
+    }
+    if (linkedScripts.has(filename)) continue
+    linkedScripts.add(filename)
+    resolvedJs.push({
       src: joinSegments(baseDir, filename),
       loadTime: resource.loadTime,
       contentType: "external" as const,
       moduleType: resource.moduleType,
       spaPreserve: resource.spaPreserve,
-    }
-  })
+    })
+  }
 
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`

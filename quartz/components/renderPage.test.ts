@@ -6,6 +6,7 @@ import { FullSlug } from "../util/path"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzComponentProps } from "./types"
 import { StaticResources } from "../util/resources"
+import { BuildCtx } from "../util/ctx"
 
 function makeTranscludeBlockquote(targetSlug: string, block?: string): Element {
   return {
@@ -323,5 +324,33 @@ describe("pageResources", () => {
       !inlineJsServe.script.includes("/quartz/static/contentIndex.json"),
       `expected contentIndex fetch without /quartz/ prefix in serve mode, got: ${inlineJsServe.script}`,
     )
+  })
+
+  test("links an extracted script shared by several inline scripts only once", () => {
+    const ctx = {
+      extractedInlineResources: new Map([
+        ["a()", "static/resource-after-shared.js"],
+        ["b()", "static/resource-after-shared.js"],
+        ["m()", "static/resource-after-module.js"],
+      ]),
+    } as unknown as BuildCtx
+    const resources: StaticResources = {
+      css: [],
+      js: [
+        { loadTime: "afterDOMReady", contentType: "inline", script: "a()" },
+        { loadTime: "afterDOMReady", contentType: "inline", script: "m()", moduleType: "module" },
+        { loadTime: "afterDOMReady", contentType: "inline", script: "b()" },
+        { loadTime: "afterDOMReady", contentType: "inline", script: "not extracted" },
+      ],
+      additionalHead: [],
+    }
+    const srcs = pageResources("." as FullSlug, resources, ctx).js.map((j) =>
+      "src" in j ? j.src : j.script,
+    )
+    assert.deepStrictEqual(srcs.slice(2, -1), [
+      "./static/resource-after-shared.js",
+      "./static/resource-after-module.js",
+      "not extracted",
+    ])
   })
 })
