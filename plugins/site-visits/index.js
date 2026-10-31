@@ -35,7 +35,7 @@ const script = `
 (() => {
   const SENT_KEY = "site-visits:sent";
   let countPromise = null;
-  let waiting = false;
+  let started = false;
   function loadCount(endpoint) {
     if (!countPromise) {
       countPromise = fetch(endpoint)
@@ -46,7 +46,9 @@ const script = `
     return countPromise;
   }
   // 탭마다 한 번만 보낸다. 새 탭에서 다시 보내도 GoatCounter 가 같은 세션으로 걸러 낸다.
+  // sessionStorage 를 못 쓰는 브라우저도 started 로 페이지 안에서는 한 번만 보낸다.
   function recordVisit(event) {
+    if (started) return;
     try {
       if (sessionStorage.getItem(SENT_KEY)) return;
     } catch {}
@@ -56,12 +58,14 @@ const script = `
         sessionStorage.setItem(SENT_KEY, "1");
       } catch {}
     };
-    if (typeof window.goatcounter?.count === "function") return send();
-    // count.js 가 받아지기 전에 페이지를 여러 번 넘겨도 대기는 하나만 건다.
-    if (waiting) return;
+    if (typeof window.goatcounter?.count === "function") {
+      started = true;
+      return send();
+    }
+    // count.js 가 아직 안 받아졌으면 로더의 load 를 기다린다.
     const loader = document.querySelector("script[data-goatcounter]");
     if (!loader) return;
-    waiting = true;
+    started = true;
     loader.addEventListener("load", send, { once: true });
   }
   document.addEventListener("nav", async () => {
