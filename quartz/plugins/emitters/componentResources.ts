@@ -70,8 +70,11 @@ function getComponentResources(ctx: BuildCtx): ComponentResources {
 }
 
 async function joinScripts(scripts: string[]): Promise<string> {
-  // wrap with iife to prevent scope collision
-  const script = scripts.map((script) => `(function () {${script}})();`).join("\n")
+  // wrap with iife to prevent scope collision.
+  // try/catch keeps one failing script from stopping the ones after it (the SPA router is last).
+  const script = scripts
+    .map((script) => `try { (function () {${script}})(); } catch (e) { console.error(e) }`)
+    .join("\n")
 
   // minify with esbuild
   const res = await transpile(script, {
@@ -348,45 +351,11 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
 
       const prescript = await joinScripts(componentResources.beforeDOMLoaded)
 
-      let postscript: string
-      if (!useHashing) {
-        // Serve mode: monolithic IIFE bundle for fast rebuilds
-        postscript = await joinScripts(componentResources.afterDOMLoaded)
-      } else {
-        // Production: emit each afterDOMLoaded script as an individual cached file,
-        // then generate an orchestrator that imports them with correct ordering.
-        // The last script is always the SPA router (pushed last by addGlobalPageResources),
-        // which must execute after all other scripts register their nav listeners.
-        const scripts = componentResources.afterDOMLoaded
-        const scriptFilenames: string[] = []
-
-        for (let i = 0; i < scripts.length; i++) {
-          const hash = hashContent(scripts[i])
-          const slug = `static/scripts/script-${i}-${hash}`
-          const filename = `${slug}.js`
-          scriptFilenames.push(filename)
-
-          yield write({
-            ctx,
-            slug: slug as FullSlug,
-            ext: ".js",
-            content: scripts[i],
-          })
-        }
-
-        // Generate orchestrator: import all component scripts in parallel,
-        // then import SPA router last (it dispatches the initial nav event)
-        const componentImports = scriptFilenames
-          .slice(0, -1)
-          .map((f) => `import("./${f}")`)
-          .join(",\n  ")
-
-        const spaImport = `await import("./${scriptFilenames[scriptFilenames.length - 1]}");`
-
-        postscript = [`await Promise.all([\n  ${componentImports}\n]);`, spaImport]
-          .filter(Boolean)
-          .join("\n")
-      }
+      // Every page loads every afterDOMLoaded script, so bundle them into the single postscript
+      // file, in order, with the SPA router (pushed last by addGlobalPageResources) at the end.
+      // Upstream emits one file per script in production. That costs a request each (about 10),
+      // fetched in turn after the page is parsed, and the explorer waited on all of them.
+      const postscript = await joinScripts(componentResources.afterDOMLoaded)
 
       const lightningTargets = {
         safari: (15 << 16) | (6 << 8), // 15.6
@@ -396,7 +365,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         chrome: 109 << 16,
       }
 
-      const cssContent = transform({
+      const baseCssContent = transform({
         filename: "index.css",
         code: Buffer.from(stylesheet),
         minify: true,
@@ -404,9 +373,15 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         include: Features.MediaQueries,
       }).code.toString()
 
-      const cssStringToFilename = new Map<string, string>()
+      // Every page links every component stylesheet (see pageResources), so append them to
+      // index.css in the same order instead of emitting one file each. Upstream's ~20 tiny
+      // render-blocking files cost a request each before the page could paint. The cascade is
+      // unchanged: each block stays in the quartz-base layer, which index.css declares first.
+      const componentCss: string[] = []
+      const seenComponentCss = new Set<string>()
       for (const cssString of componentResources.componentCssStrings) {
-        if (cssStringToFilename.has(cssString)) continue
+        if (seenComponentCss.has(cssString)) continue
+        seenComponentCss.add(cssString)
 
         const wrapped = `@layer quartz-base {\n${cssString}\n}`
         const minified = transform({
@@ -417,20 +392,11 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
           include: Features.MediaQueries,
         }).code.toString()
 
-        const hash = hashContent(minified)
-        const slug = `component-${hash}`
-        const filename = `${slug}.css`
-        cssStringToFilename.set(cssString, filename)
-
-        yield write({
-          ctx,
-          slug: slug as FullSlug,
-          ext: ".css",
-          content: minified,
-        })
+        componentCss.push(minified)
       }
+      const cssContent = [baseCssContent, ...componentCss].join("\n")
 
-      ctx.componentCssMap = cssStringToFilename
+      ctx.componentCssMap = new Map()
 
       // Extract inline CSS/JS from plugin externalResources() into external files.
       // This prevents large inline payloads (e.g. theme CSS) from being duplicated
@@ -465,8 +431,40 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         })
       }
 
+      // Inline after-DOM classic scripts from plugins are small, independent and parser-blocking
+      // when external, so they share one file instead of one request each. Module scripts keep
+      // their own file because they run deferred with module semantics.
+      const sharedAfterScripts = resources.js.filter(
+        (js) =>
+          js.contentType === "inline" &&
+          js.loadTime !== "beforeDOMReady" &&
+          js.moduleType !== "module",
+      )
+      if (sharedAfterScripts.length > 0) {
+        const parts: string[] = []
+        for (const jsResource of sharedAfterScripts) {
+          if (jsResource.contentType !== "inline") continue
+          parts.push(await joinScripts([jsResource.script]))
+        }
+        const content = parts.join("\n")
+        const slug = `static/resource-after-${hashContent(content)}`
+        const filename = `${slug}.js`
+        for (const jsResource of sharedAfterScripts) {
+          if (jsResource.contentType !== "inline") continue
+          extractedInlineResources.set(jsResource.script, filename)
+        }
+
+        yield write({
+          ctx,
+          slug: slug as FullSlug,
+          ext: ".js",
+          content,
+        })
+      }
+
       for (const jsResource of resources.js) {
         if (jsResource.contentType !== "inline") continue
+        if (sharedAfterScripts.includes(jsResource)) continue
 
         const minified = await joinScripts([jsResource.script])
         const hash = hashContent(minified)
