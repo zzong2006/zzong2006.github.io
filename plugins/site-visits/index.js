@@ -35,6 +35,7 @@ const script = `
 (() => {
   const SENT_KEY = "site-visits:sent";
   let countPromise = null;
+  let waiting = false;
   function loadCount(endpoint) {
     if (!countPromise) {
       countPromise = fetch(endpoint)
@@ -56,7 +57,12 @@ const script = `
       } catch {}
     };
     if (typeof window.goatcounter?.count === "function") return send();
-    document.querySelector("script[data-goatcounter]")?.addEventListener("load", send, { once: true });
+    // count.js 가 받아지기 전에 페이지를 여러 번 넘겨도 대기는 하나만 건다.
+    if (waiting) return;
+    const loader = document.querySelector("script[data-goatcounter]");
+    if (!loader) return;
+    waiting = true;
+    loader.addEventListener("load", send, { once: true });
   }
   document.addEventListener("nav", async () => {
     for (const el of document.querySelectorAll(".site-visits[data-endpoint]")) {
