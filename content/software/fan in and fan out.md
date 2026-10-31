@@ -20,4 +20,4 @@ aliases: []
 
 # B) 예시
 
-![|600](https://i.imgur.com/QW2dXye.png)
+![[img-52c04ad804.png|600]]

@@ -40,7 +40,7 @@ GRPO는 이 부분을 단순화한다. "이 답변이 절대적으로 몇 점짜
 
 group 평균 reward는 `0.5`다. A와 C는 평균보다 좋으므로 positive advantage를 받고, B와 D는 평균보다 나쁘므로 negative advantage를 받는다. value model 없이도 "이 prompt에서 어떤 답변이 상대적으로 나았는가"를 만들 수 있다.
 
-![](https://i.imgur.com/jiyj3x2.png)
+![[img-7dc0782691.png]]
 
 # C) 동작 흐름
 

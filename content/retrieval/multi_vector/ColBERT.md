@@ -106,7 +106,7 @@ ColBERT 논문의 **Figure 5 (Ablation results)** 에 이 비교가 나온다.
 * **비교 대상**: `BERT [CLS]-based dot-product` 모델이 전형적인 **Bi-Encoder** 다.
 	* BERT 의 `[CLS]` 토큰으로 질의와 문서의 단일 벡터를 만들고, 두 벡터의 내적(dot-product)으로 점수를 계산한다.
 
-![](https://i.imgur.com/SnlRPSU.png)
+![[img-f47b198d56.png]]
 
 * **결과**: 위 그래프에서 Bi-Encoder 방식인 **[A] 모델은 ColBERT([D], [E])보다 MRR@10 이 현저하게 낮다.**
 

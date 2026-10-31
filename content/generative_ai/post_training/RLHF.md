@@ -8,7 +8,7 @@ aliases: ["Reinforcement Learning from Human Feedback"]
 
 # A) RLHF ?
 
-![|650](https://i.imgur.com/DgCL1q5.jpg)
+![[img-2b253657f0.jpg|650]]
 
 단순한 next token prediction loss 와 같은 [[loss function]] 은 좋은 언어 모델을 학습하는데 제한적이다. 이를 보완하기 위해서 사용자의 선호도를 직접 모델에 알려줄 수 있는 [[Reinforcement Learning|강화 학습]] 방식을 적용할 수 있다.
 
@@ -22,7 +22,7 @@ RLHF 는 크게 3 개의 단계로 나눠진다.
 
 ## B.1) Pretraining Language Models
 
-![|400](https://i.imgur.com/0OvSfJG.png)
+![[img-91e7d61e0c.png|400]]
 
 RLHF 시작 지점으로, [[masked language modeling|MLM]] 과 같이 전통적인 사전 학습 objective 를 이용해서 학습된 언어 모델을 사용한다.
 
@@ -32,7 +32,7 @@ RLHF 시작 지점으로, [[masked language modeling|MLM]] 과 같이 전통적�
 
 ## B.2) Reward Model Training
 
-![|600](https://i.imgur.com/Fk8gK8z.png)
+![[img-c25fe095b9.png|600]]
 
 get a model or system that takes in a sequence of text, and returns a scalar reward which should numerically represent the human preference. 특히 scalar 형태로 리워드 값을 내보내는 것이 중요하다.
 
@@ -42,7 +42,7 @@ Human annotators are used to rank the generated text outputs from the LM
 
 ## B.3) Fine-tuning with RL
 
-![|700](https://i.imgur.com/w388LyL.png)
+![[img-5ade236399.png|700]]
 
 초기 LM 모델의 파라매터 일부 또는 전체를 [[Proximal Policy Optimization]] 라는 policy-gradient 강화 학습 알고리즘을 이용하여 학습시킨다.
 

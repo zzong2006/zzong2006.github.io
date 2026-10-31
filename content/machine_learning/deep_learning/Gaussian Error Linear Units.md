@@ -32,7 +32,7 @@ GELU 는 아래처럼 생겼는데 x 축이 음에 가까울수록 출력이 fla
 
 2024 년 기준으로는 요즘엔 exact 버전과 별 차이가 없다고 한다.
 
-![](https://i.imgur.com/6m3Oe3J.png)
+![[img-e843d8fa87.png]]
 
 # D) Questions
 

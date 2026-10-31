@@ -17,7 +17,7 @@ column space 가 중요한 이유는 $Ax=b$ 를 풀기 위해서는 **$b$ 를 $A
 
 다시 말하면, $Ax=b$ 에서 $A$ 의 열은 $C(A)$ 라는 column space (plane) 에 존재하고, $b$ 가 $C(A)$ 에 존재할 경우 $Ax=b$ 가 풀린다.
 
-![](https://i.imgur.com/Lzhu702.png)
+![[img-c7b5c974b1.png]]
 
 # 3. 특징
 

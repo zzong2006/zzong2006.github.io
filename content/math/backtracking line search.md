@@ -13,7 +13,7 @@ aliases: []
 
 다음 그림은 backtracking line search 로 다음 step 을 결정하는 방식을 보여준다.  
 
-![|600](https://i.imgur.com/epjbGYS.png)
+![[img-f28bc90daf.png|600]]
 
 # 2. References
 

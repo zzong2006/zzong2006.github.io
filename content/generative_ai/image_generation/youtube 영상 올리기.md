@@ -32,11 +32,11 @@ img2vid - [https://gist.github.com/Jonseed/d2630cc9598055bfff482ae99c2e3fb9](ht
 
 ## D.1) (망한) 예시
 
-![|280](https://i.imgur.com/2g2N6Ju.png)
+![[img-9241eda0b8.png|280]]
 
 이런 이미지가 영상으로 바꿨더니 아래처럼 변했다.
 
-![|280](https://i.imgur.com/jpnz1Pw.jpeg)
+![[img-58af12d716.jpg|280]]
 
 # E) ComfyUI
 
@@ -131,7 +131,7 @@ embedded_guidance_scale: 6
 
 아래는 시도 가능한 셋팅인데, 여기서 YouTube short 비율에 적합한 960:544 로 설정했다.
 
-![](https://i.imgur.com/oy8Q54p.png)
+![[img-131155fa37.png]]
 
 Gpu 6 개로 만들게 시키니까 대략 4 분 정도 걸리는데, GPU 나머지 2 개가 놀고 있는것 같아서, 그냥 4 개 짜리로 시도하는것이 좋겠다.
 

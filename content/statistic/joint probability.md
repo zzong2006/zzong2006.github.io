@@ -28,7 +28,7 @@ $$
 
 ### A.1.1) 예시
 
-![](https://i.imgur.com/MvR5UHu.png)
+![[img-2a4be40269.png]]
 
 * $P(A=\text{true}, B=\text{true})$: A 도 참이고, B 도 참일 때의 결합 확률을 의미합니다.
 

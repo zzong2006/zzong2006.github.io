@@ -10,7 +10,7 @@ aliases: ["LOOCV"]
 
 [[cross-validation]] 방법 중 하나로, NN(샘플 수 만큼) 번의 model 을 만들고, 각 모델을 만들 때에 하나의 샘플만 제외하면서 그 제외한 샘플로 test set performance 를 계산하여 N 개의 performance 에 대해서 평균을 내는 방법입니다.
 
-![](https://i.imgur.com/reNqqXc.png)
+![[img-5d58d63812.png]]
 
 ## A.1) 장점
 

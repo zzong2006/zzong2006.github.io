@@ -10,7 +10,7 @@ tags:
 
 그래프와 접하는 평면을 의미한다.
 
-![|400](https://i.imgur.com/L1YhKRi.png)
+![[img-43092ace17.png|400]]
 
 # Tagent Plane 찾기
 

@@ -12,7 +12,7 @@ tags:
 
 # A) Variational Autoencoders for Collaborative Filtering ?
 
-![](https://i.imgur.com/INAWZqJ.png)
+![[img-e602600b53.png]]
 
 With Mult-VAE, the authors introduce a generative model with multinomial likelihood, propose a different regularization parameter for the learning objective, and use Bayesian inference for parameter estimation.
 

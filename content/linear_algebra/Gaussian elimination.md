@@ -16,7 +16,7 @@ $$
 
 위 식에서 첫번째 식에 $3$ 을 곱해서 두번째 식에 뺀다.
 
-![|500](https://i.imgur.com/jSMFfKJ.png)
+![[img-678e7e55f1.png|500]]
 
 여기서 첫번째 식에 곱해줘야할 값 $3$ 을 multiplier 라고 한고, 첫번째 식에 있는 값 $1$ 을 (first) pivot 이라 한다.
 

@@ -8,7 +8,7 @@ aliases: [PSI]
 
 # A) Population Stability Index (PSI)
 
-![](https://i.imgur.com/VJ0Gmvm.png)
+![[img-e6e07be3b8.png]]
 
 **Population Stability Index (PSI) 는 모델 모니터링 지표로, 연속형 반응 변수 (the distribution of a continuous [[statistic/response variable|response variable]]) 의 분포가 두 샘플 간에 얼마나 변화했는지를 정량화하는 데 사용됩니다. 이 두 샘플은 일반적으로 서로 다른 시점에서 수집된 데이터입니다.
 
@@ -47,7 +47,7 @@ In the above equation, `Expected %` corresponds to the first reference distribut
 ## C.1) PSI Calculation Table
 
 **(예시 1)**
-![](https://i.imgur.com/klHrdrl.png)
+![[img-9ec76e0e18.png]]
 
 **(예시 2)**
 [![[img-6ee4ac762b.png|Population stability Index Calculation]]](https://www.machinelearningplus.com/wp-content/uploads/2022/08/Population-Stability-Index-calculation-table.png)
@@ -56,7 +56,7 @@ PSI 값이 클수록 두 분포 간의 차이가 더 뚜렷해집니다.
 
 예를 들어, 파란색이 예상된 값이고 빨간색이 실제 값이라고 가정해 봅시다. 변수를 분포로 나타내면, PSI 가 큰 경우에는 실제 값과 예상된 값 사이의 차이가 더 크게 나타납니다.
 
-![](https://i.imgur.com/Z6wB0ST.png)
+![[img-8957d13d37.png]]
 
 또한, 각 구간별로 히스토그램을 만들어 분포 변화를 시각화할 수 있습니다. 이렇게 하면 실제 값과 예상된 값 간의 차이가 명확하게 드러나며, 어느 범위에서 data drift 가 더 두드러지는지 쉽게 파악할 수 있습니다.
 

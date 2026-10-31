@@ -17,7 +17,7 @@ $$
 
 ## 1.1. 식 유도
 
-![|500](https://i.imgur.com/3AC7QfW.png)
+![[img-2d4e799174.png|500]]
 
 Newton 방법은 실제로 생각해보면, 해를 구하려는 함수에 대해 접선을 가질 수 있는 해를 구하는것과 같다. 즉, 위 그림에서의 line 은 $y=f^{\prime}\left(x_{n}\right)\left(x-x_{n}\right)+f\left(x_{n}\right)$ 가 되며, $y=0$ 이고 $x=x_{n+1}$ 일 때 식을 풀면 $x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)}$ 가 나온다.
 
@@ -65,7 +65,7 @@ $$
 * $\boldsymbol{H}^{-1}$ 는 [[gradient]] 로 해석된다.
 
 아래는 Newton’s method 를 적용하는 알고리즘을 나타낸다.  
-![](https://i.imgur.com/76JP7sb.png)
+![[img-d6f6f89311.png]]
 
 ## 3.3. For Deep Learning
 

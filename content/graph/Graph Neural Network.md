@@ -26,7 +26,7 @@ Graph Neural Network 는 graph 의 사전 지식이 필요없으며, 이 신경�
 ## B.2) Spatial Convolutional Network
 
 [[Convolution Neural Network]] 의 아이디어를 활용한 GNN
-![|500](https://i.imgur.com/SCBUagv.png)
+![[img-6bfafa3432.png|500]]
 
 * Spectral Convolutional Network
 * [[Temporal Graph Network]]

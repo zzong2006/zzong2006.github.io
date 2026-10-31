@@ -202,7 +202,7 @@ Thinking Machines Lab이 2025년 10월 공개한 실험이 이 기법이 회자�
 
 같은 70%에 도달하는 비용이 SFT 데이터가 이미 있는 경우 **9배**, GPU 시간 기준으로는 18배, 교사 샘플링 비용까지 포함하면 **약 30배** 저렴하게 나왔다.
 
-![on-policy distillation과 SFT의 AIME 2024 학습 곡선 비교](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-on-policy-distillation-loras.svg)
+![[img-8ec765567a.svg|on-policy distillation과 SFT의 AIME 2024 학습 곡선 비교]]
 
 가로축이 추가로 투입한 training FLOPs, 세로축이 AIME 2024 점수다. 같은 연산을 넣었을 때 on-policy distillation 곡선이 SFT보다 확연히 위에 있고, 격차는 [[LoRA]]처럼 용량이 제한된 설정에서 더 벌어진다. rank 32 LoRA는 SFT만 하면 full finetuning에 13% 뒤지지만 on-policy distillation 뒤에는 6% 차이로 좁혀진다.
 
@@ -226,7 +226,7 @@ RL 대비 GPU 시간 10분의 1로 더 높은 점수가 나왔다.
 
 교사와 학생이 같은 모델의 후/전 버전이라 self-distillation이라 부른다. 크기도 구조도 출발점도 같고 목표 지점까지 같으니, 두 경로에서 다른 건 학습 신호뿐이다. sparse한 reward로 혼자 찾아가느냐, 완성본의 토큰별 분포를 받아 베끼느냐.
 
-![on-policy distillation과 RL의 gradient step 대비 AIME 점수](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-self-distillation.svg)
+![[img-1b37b89c90.svg|on-policy distillation과 RL의 gradient step 대비 AIME 점수]]
 
 RL이 70 스텝 걸린 지점을 on-policy distillation은 10 스텝 안에 통과한다. reverse KL이 0 근처로 떨어지면서 AIME 점수가 같이 회복되고, gradient step 기준 7–10배, 연산 기준으로는 50–100배 차이가 난다.
 
@@ -238,7 +238,7 @@ RL이 70 스텝 걸린 지점을 on-policy distillation은 10 스텝 안에 통�
 
 IF-eval은 "세 문장으로 답하라", "JSON으로만 출력하라" 같은 지시를 모델이 실제로 지키는지 재는 벤치마크다.
 
-![mid-training 중 데이터 배합별 IF-eval 점수 하락 곡선](https://thinkingmachines.ai/blog/on-policy-distillation/svgs/experiment-midtrain-if-eval.svg)
+![[img-49db5465cc.svg|mid-training 중 데이터 배합별 IF-eval 점수 하락 곡선]]
 
 문서와 chat 데이터를 어떤 비율로 섞든 IF-eval은 떨어진다. learning rate가 감쇠하면서 하락이 완만해지고 조금 회복되기는 하지만 원래 수준으로는 끝내 돌아오지 않는다. 배합비 조정만으로는 못 막는다는 뜻이다.
 

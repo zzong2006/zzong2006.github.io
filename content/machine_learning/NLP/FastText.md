@@ -26,7 +26,7 @@ tags:
 만약 “This is a visual comparison” 과 같은 문장에서, This 단어를 통해 visual 이라는 단어를 추론하도록 모델을 학습시키고 싶다면, 아래와 같이 this 를 n-gram 으로 분해하고 visual 을 추론하도록 한다.
 이때 각 임베딩을 합치는 것은 [[CBOW]] 방식과 유사하다.
 
-![|500](https://i.imgur.com/1a7buNy.png)
+![[img-79f4354943.png|500]]
 
 # D) Tips
 

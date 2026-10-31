@@ -9,7 +9,7 @@ tags:
 # 1. Markov Chain ?
 
 Markov chain 은 일련의 이벤트를 통해 state 간의 전이 확률을 나타낸 확률적 모델 (stochastic model) 이다.
-![](https://i.imgur.com/xoRfgRb.png)
+![[img-53ced28070.png]]
 
 Markov Chain 은 transition Matrix 을 이용해 표현된다.
 
@@ -37,7 +37,7 @@ state $s$ 에서 $s'$ 로 단방향 접근만 가능할 경우 transient state �
 
 어떤 state $s$ 에서 출발하여 $k>1$ steps 이후 다시 $s$ 로 돌아올 수 있는 경우, state 가 periodic 하다고 표현한다. recurrent state 는 aperiodic 한데, 이는 $k=1$ 인 경우를 의미한다.
 
-![|320](https://i.imgur.com/SV5hVQV.png)
+![[img-988aafa279.png|320]]
 
 ## 2.6. Ergodicity
 

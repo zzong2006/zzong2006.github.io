@@ -31,7 +31,7 @@ Discriminator $D$ 는 [[RL/value function]] 을 최대화 시켜야 한다.
 만약 $D$ 가 아주 잘 분류한다면, $D(x)=1,D(G(z))=0$ 을 만족할 것이고, [[RL/value function]] 은 $0$ 이 될 것이다.  
 근데 $0$ 이 [[RL/value function]] 에서 최댓값인 이유는 log 함수를 그려보면 알 수 있다.  
 
-![Logarithm - Wikipedia| 400](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Binary_logarithm_plot_with_ticks.svg/300px-Binary_logarithm_plot_with_ticks.svg.png)  
+![[img-6a1d8c33d0.png|Logarithm - Wikipedia| 400]]  
 
 * $D$ 는 확률을 예측하기 때문에 반드시 0 에서 1 사이의 값을 출력한다 ([[sigmoid function]]).  
 * 1 보다 낮은 값을 log 로 계산하게 되면 음의 값이 나오므로, $0$ 이 [[RL/value function]] 에서 가능한 최댓값이다.  

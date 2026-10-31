@@ -121,7 +121,7 @@ $$= \frac{2(n+1)(2n+1) - 3(n+1)^2}{12} = \frac{(n+1)(n-1)}{12} = \frac{n^2-1}{12
 
 ## C.1) 선형 조건 비교
 
-![|400](https://i.imgur.com/rJRxR3n.png)
+![[img-7d4da02e60.png|400]]
 
 - 완벽한 선형 관계: Pearson = Spearman = 1
 - 비선형 단조 관계: Pearson < Spearman

@@ -11,7 +11,7 @@ tags:
 
 # B) Cluster Diagram
 
-![](https://i.imgur.com/uX9aqpq.png)
+![[img-de5851445d.png]]
 
 * A Kubernetes cluster consists of two types of resources
 	* [[Kubernetes Master]]: The **Control Plane**(또는 master 라 불림) coordinates the cluster

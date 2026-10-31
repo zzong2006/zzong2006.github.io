@@ -36,7 +36,7 @@ $$
 
 한 데이터에 대해서 맞춰야 하는 label 의 개수가 2 개 이상인 분류 문제를 의미한다.
 
-![|600](https://i.imgur.com/ehTDNls.png)
+![[img-37208fdac5.png|600]]
 
 각 class 에 대한 binary cross-entropy 들의 합을 loss function 으로 사용한다.
 

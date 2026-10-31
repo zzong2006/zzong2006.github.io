@@ -25,4 +25,4 @@ Monolithic Architecture 는 소프트웨어의 모든 구성 요소가 한 프�
 * 서비스 일부만 scale-out 하기 어렵다.
 * 일부의 장애가 전체 서비스 장애로 이어지는 경우가 생긴다.
 
-![](https://i.imgur.com/Ybtq5b0.png)
+![[img-9249da3c93.png]]

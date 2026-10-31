@@ -10,7 +10,7 @@ aliases: []
 
 GPU 는 Kernel 단위로 연산이 이루어 지게 됩니다. 예를 들어 우리가 두개의 텐서를 서로 MatMul 후에 Add 하는 연산을 수행할 때, Matmul Kernel, Add Kernel 이렇게 두개의 커널을 실행하게 됩니다. 이때 두개의 커널을 실행하는 대신 두개의 커널을 MatmulAdd 라는 하나의 커널로 합쳐 실행하는 것을 Kernel Fusion 이라고 합니다.
 
-![](https://i.imgur.com/5DGOTtY.png)
+![[img-d159588601.png]]
 
 # B) Why We Need Kernel Fusion?
 

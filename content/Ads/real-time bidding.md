@@ -14,7 +14,7 @@ aliases: ["RTB"]
 
 ## A.1) 과정 도식화
 
-![](https://i.imgur.com/GgFVWyJ.png)
+![[img-3c320c325a.png]]
 
 1. AD Exchange 가 DSP 로 광고 제공 요청을 보냄 (SSP 가 빈 지면을 AD Exchange 에 보냄): BidRequest
 2. 지면을 제공하는 매체, 유저 데이터를 이용해 해당 지면에 적절한 광고 매체를 선정

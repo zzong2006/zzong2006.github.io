@@ -11,7 +11,7 @@ Interpolation(인터폴레이션, 보간) 이란 알려진 지점의 값 사이 
 
 예를 들어, 어떤 사람이 20 살일때 키와 40 살에서의 키를 보고 30 살에서의 키를 추측하는 것이다.
 
-![|500](https://i.imgur.com/lTUkb6V.png)
+![[img-30911c155b.png|500]]
 
 # B) 1D Linear Interpolation
 
@@ -25,7 +25,7 @@ $$
 
 여기서 $d_1$ 은 $x$ 에서 $x_1$ 까지의 거리, $d_2$ 는 $x$ 에서 $x_2$ 까지의 거리를 의미한다.
 
-![|300](https://i.imgur.com/bkT1TjD.png)
+![[img-ffe9f2bf08.png|300]]
 
 # C) References
 

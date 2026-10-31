@@ -9,7 +9,7 @@ aliases:
 
 # A) DistributedDataParallel ?
 
-![|600](https://i.imgur.com/q9FkFgE.png)
+![[img-53eedd7c50.png|600]]
 
 a batch is sent to each GPU worker which has its own copy of the model. There the gradients are computed and then aggregated to update the model on each worker.
 

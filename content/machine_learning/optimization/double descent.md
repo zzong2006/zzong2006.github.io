@@ -8,7 +8,7 @@ aliases: []
 
 모델이 무거울수록 오래 학습할수록 성능이 좋아진다.
 
-![](https://i.imgur.com/rnwKWer.png)
+![[img-d6c2f08d5b.png]]
 
 “We increase model size, performance first gets worse and then gets better. Moreover, we show that double descent occurs not just as a function of model size, but also as a function of the number of training epochs.”
 

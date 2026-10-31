@@ -97,7 +97,7 @@ $\hat{P}$ 나 $B$ 를 구하려는 수식을 보면 item-item 행렬인 [[Gram m
 
 입력값이 $X$ 가 아니라 $G=X^{\top} X$ 을 입력으로 받는다. 그래서 대용량 데이터의 경우도 전처리를 통해서 계산 비용을 아낄 수 있다 (입력 데이터 사이즈가 $|\mathcal{I}| \times|\mathcal{I}|$ 이므로).
 
-![|560](https://i.imgur.com/UX6Ze4y.png)
+![[img-d781f94f1c.png|560]]
 
 ## (4) 계산 비용
 

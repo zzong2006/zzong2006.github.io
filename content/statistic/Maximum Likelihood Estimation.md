@@ -9,7 +9,7 @@ tag: bayesian, statistic
 모수적인 데이터 밀도 추정 방법으로써, 파라미터 $\theta=\left(\theta_{1},\cdots,\theta_{m}\right)$ 으로 구성된 어떤 확률밀도함수 $P(x\mid\theta)$ 에서 관측된 표본 데이터 집합을 $x=\left(x_{1},x_{2},\cdots,x_{n}\right)$ 이라 할 때, 이 표본들에서 파라미터 $\theta=\left(\theta_{1},\cdots,\theta_{m}\right)$ 를 추정하는 방법이다.
 
 여기서 [[likelihood]] (가능도) 란, 지금 얻은 데이터 $x$ 가 $\theta$ 라는 parameter 로 구성된 분포로부터 나왔을 확률 $p(\theta \mid x)$ 을 의미한다.  
-![](https://i.imgur.com/WvkXgxb.png)
+![[img-c6d478b345.png]]
 
 수치적으로 [[likelihood]] 를 계산하기 위해서는 **각 데이터 샘플에서 후보 분포에 대한 높이 (즉, likelihood 기여도) 를 계산해서 다 곱한 것**을 이용할 수 있을 것이다.
 

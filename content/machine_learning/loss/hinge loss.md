@@ -39,4 +39,4 @@ $t$ 와 $y$ 가 동일한 sign 을 가지고 $|y|\geq1$ 라면, $\ell(y)=0$ 이�
 # B) Hinge Loss Figure
 
 for $t=1$ classification  
-![|500](https://i.imgur.com/saWcRi1.png)
+![[img-5db49fb61c.png|500]]

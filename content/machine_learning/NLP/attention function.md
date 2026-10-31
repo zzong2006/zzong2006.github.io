@@ -119,7 +119,7 @@ $$
 | $W^Q, W^K$ | query·key 를 만드는 학습 가중치 | $d_{\text{model}} \times d_k$ |
 | $W^V$ | value 를 만드는 학습 가중치 | $d_{\text{model}} \times d_v$ |
 
-![|340](https://i.imgur.com/r2CvmXa.png)
+![[img-c76cafc344.png|340]]
 
 "The animal didn't cross the street because it was too tired" 에서 'it' 이 무엇을 가리키는지는 문장 안의 다른 단어를 봐야 알 수 있다. 위 그림은 학습된 transformer 의 한 층에서 'it'(오른쪽)의 query 가 각 단어(왼쪽)에 준 attention 가중치를 선과 색의 진하기로 그린 것이다. 'animal' 이 가장 진하고 'street' 가 그다음이다. 이 층을 지난 'it' 의 표현에는 'animal' 의 value 가 가장 많이 섞인다.
 

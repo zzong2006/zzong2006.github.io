@@ -22,7 +22,7 @@ Image Input
 * 이 사이에 fixed-length sequences of image features 가 들어간다.
 
 **Qwen-VL (2023) 학습 방법**
-![](https://i.imgur.com/aT4iF5s.png)
+![[img-4a933238e1.png]]
 
 # B) 질문
 

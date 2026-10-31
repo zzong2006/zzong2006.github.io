@@ -28,7 +28,7 @@ DialogLM은 긴 대화를 이해하고 요약하기 위해 사전 학습된 인�
 
 UNILMv2 모델에 기반한 sequence-to-sequence 구조로 구성되어 있다.
 
-![|550](https://i.imgur.com/Pilfjs4.png)
+![[img-b191527603.png|550]]
 
 A hybrid attention (sparse attention + global self-attention): 길어진 시퀀스와 학습 시간 감소를 위해
 
@@ -47,7 +47,7 @@ Sinkhorn attention 는 이러한 한계를 극복하기 위해 **정렬 (sorting
 
 # C) Pre-train Task: Window-based Denoising
 
-![](https://i.imgur.com/GxHrbL4.png)
+![[img-f8df4c24e3.png]]
 
 1. 연속적은 multiple consecutive turns 들이 포함되어 있는 window 를 선택
 2. window 에 masking 같은 노이즈 (arbitrary dialogue-related noise) 를 삽입
@@ -71,7 +71,7 @@ How do we generate a noisy window?
 2. Turn Splitting: 한 사람이 여러번 말하는 경우가 있는데, 가장 많은 문장을 가진 케이스를 나눔
 3. Turn Merging, (4) Text Inﬁlling and (5) Turn Permutation.
 
-![](https://i.imgur.com/hwcI0BK.png)
+![[img-e53356d8d8.png]]
 
 # E) 실험
 

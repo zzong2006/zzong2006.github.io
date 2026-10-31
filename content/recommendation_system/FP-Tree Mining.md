@@ -9,7 +9,7 @@ tags:
 
 ![[img-70b9e6f191.jpg]]
 
-![](https://i.imgur.com/JemZrWP.png)
+![[img-c1a718e903.png]]
 
 각 table 의 item 에 해당하는 subtree 만 구성하여 frequency 를 만족하는 item 을 찾는다.
 

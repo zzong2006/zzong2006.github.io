@@ -17,6 +17,6 @@ adjacency matrix 는 정방 행렬로, 유한한 그래프를 표현하기 위�
 ### I.A.A. Undirected Graphs
 
 undirected graph 는 다음과 같이 생겼다.  
-![|200](https://i.imgur.com/JiLNpoW.png)  
+![[img-31036d95c2.png|200]]  
 그리고 이에 따른 adjacency matrix 는 다음과 같다.  
-![|180](https://i.imgur.com/f7pGae5.png)
+![[img-fc916bf97e.png|180]]

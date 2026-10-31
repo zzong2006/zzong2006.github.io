@@ -50,7 +50,7 @@ ML 프로젝트를 정의하는 과정
 
 MLE metrics 과 Biz metrics 의 균형을 맞추는게 중요하다. 서로 comfort zone 에서 벗어나야 한다.
 
-![](https://i.imgur.com/3134e65.png)
+![[img-5f1e546e1b.png]]
 
 # D) Ethical Considerations
 

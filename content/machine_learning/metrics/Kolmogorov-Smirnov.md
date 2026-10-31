@@ -15,7 +15,7 @@ aliases:
 
 특히 Banking, Financial services and Insurance (BFSI) 도메인에서 자주 사용됩니다.
 
-![](https://i.imgur.com/Y3YhXHL.png)
+![[img-64159246dc.png]]
 
 > K-S 통계량은 우량 집단과 불량집단의 누적 분포 ([[Cumulative Distribution Function|CDF]]) 의 차이를 나타내는 지표로 신용평가모형의 변별력 평가 시 주요 판별 통계량으로 활용됩니다.
 

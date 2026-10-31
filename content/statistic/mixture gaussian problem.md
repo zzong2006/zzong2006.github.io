@@ -8,7 +8,7 @@ aliases: []
 
 # Mixture Gaussian Problem ?
 
-![|500](https://i.imgur.com/WMjvlHI.png)
+![[img-62488a529a.png|500]]
 
 데이터 $\left(x_{1},x_{2},\ldots,x_{n}\right)$ 가 주어졌을 때, 주어진 데이터들이 단일 가우시안이 아닌 여러개의 [[Gaussian distribution]] ([[Gaussian Mixture Model]]) 에서 온것이라고 가정하자.
 

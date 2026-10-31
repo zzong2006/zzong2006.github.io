@@ -18,7 +18,7 @@ tags:
 
 # B) 예시
 
-![|550](https://i.imgur.com/aojNNaG.png)
+![[img-e967ede01a.png|550]]
 
 # C) Block-wise 와 Channel-wise 의 차이
 

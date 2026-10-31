@@ -22,7 +22,7 @@ content 와 preference 정보를 모두 input 으로 사용한다. 이 경우, p
 
 # B) DropoutNet 구조 다이아그램
 
-![](https://i.imgur.com/FFObhW3.png)
+![[img-fd93a5f9eb.png]]
 
 유저 선호도와 content 는 각각 DNN 을 통해 $f_{\mathbf{U}}$ 그리고 $f_{\boldsymbol{\Phi}^{\mathcal{U}}}$ 를 생성한다. 이후 둘은 concatenate 되어 fine-tuning network $f_{\mathcal{U}}$ 를 통과하여 유저의 latent representation $\hat{\mathbf{U}}_{u}$ 을 출력한다. 아이템 역시 동일한 방식으로 동작한다.
 

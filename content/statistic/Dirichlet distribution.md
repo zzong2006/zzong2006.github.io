@@ -34,7 +34,7 @@ $K=2$ 인 경우 [[statistic/Beta distribution]] 이다.
 
 : (a) $α_1=α_2=α_3=1$, (b) $α_1=α_2=α_3=10$, (c) $α_1=1,α_2=10,α_3=5$, (d) $α_1=α_2=α_3=0.2$
 
-![Four different samples from Dirichlet distributions. In %28a%29 the values are "uniformly" scattered all over the space, in %28b%29 they are clustered around the center, in %28c%29 they are clustered around one side %28alpha_2%29, and slightly shifted towards another %28alpha_3%29, in %28d%29 the values are drifting away from the center, towards the borders.](https://i.stack.imgur.com/7ZiDs.png)
+![[img-696e02231c.png|Four different samples from Dirichlet distributions. In %28a%29 the values are "uniformly" scattered all over the space, in %28b%29 they are clustered around the center, in %28c%29 they are clustered around one side %28alpha_2%29, and slightly shifted towards another %28alpha_3%29, in %28d%29 the values are drifting away from the center, towards the borders.]]
 
 * 특징
 	* the Dirichlet distribution 는 [[multinomial distribution]] 그리고 categorical distributions 와 [[conjugate prior]] 관계이다. 그래서 Dirichlet 분포는 prior 분포로 사용할 수 있다.

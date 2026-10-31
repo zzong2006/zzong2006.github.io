@@ -12,7 +12,7 @@ tags:
 
 아래는 [[CatBoost]], [[LightGBM]], [[Extreme Gradient Boosting|XGBoost]] 이 세개의 알고리즘을 비교한 테이블이다.
 
-![](https://i.imgur.com/343lgVm.png)
+![[img-ae7054a4fd.png]]
 
 # 2. Charateristics
 
@@ -25,7 +25,7 @@ boosting 알고리즘이 가지는 특징들에 대해 말해보자.
 
 LightGBM 과 XGBoost 는 서로 다른 비대칭 트리를 가진다. LightGBM 은 leaf-wise 방향 (vertical) 으로 성장하고, XGBoost 는 level-wise 방향 (horizontal) 으로 성장한다.
 
-![](https://i.imgur.com/fjizFzB.png)
+![[img-d88a13ce5b.png]]
 
 ## 2.2. Splitting Method
 

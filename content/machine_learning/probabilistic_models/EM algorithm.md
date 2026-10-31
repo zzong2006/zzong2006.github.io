@@ -77,7 +77,7 @@ $$
 
 # E) Visualization of EM Steps
 
-![|400](https://i.imgur.com/VxXjW3F.png)
+![[img-9bbc270647.png|400]]
 
 # F) Monotonicity of EM Algorithm
 
@@ -89,7 +89,7 @@ $$
 
 EM algorithm will make the log-likelihood get bigger and bigger as the iterations go on.
 
-![|600](https://i.imgur.com/TuKYblI.png)
+![[img-3ca4d2b764.png|600]]
 
 E-step 에서 $q^{k+1}$ 를 찾는다면, 이는 반드시 $\mathcal{L}\left(\theta^{k},q^{k+1}\right)=\log p\left(X\mid\theta^{k}\right)$ 를 만족한다 ($\theta^k$ 지점에서).
 

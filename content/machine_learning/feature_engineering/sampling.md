@@ -33,7 +33,7 @@ positive 데이터가 negative 데이터보다 훨씬 부족한 데이터로 예
 
 ## A.3) Figure (under Vs over sampling)
 
-![](https://i.imgur.com/oQNa31s.png)
+![[img-32a4c47b7b.png]]
 
 # B) References
 

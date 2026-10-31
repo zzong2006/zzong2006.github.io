@@ -133,7 +133,7 @@ $$
 
 예시 ($B=3$)
 
-![](https://i.imgur.com/37DF5sY.png)
+![[img-31d62e3866.png]]
 
 step 1 에서는 in, jane, september 이렇게 3 개를 선택
 

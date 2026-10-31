@@ -31,6 +31,6 @@ $$
 
 # 5. 베이지안 네트워크
 
-![](https://i.imgur.com/YPlb0DC.png)
+![[img-2553b191df.png]]
 
-![](https://i.imgur.com/Z1dc4pw.png)
+![[img-c0904c510a.png]]

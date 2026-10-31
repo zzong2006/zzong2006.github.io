@@ -10,7 +10,7 @@ aliases: ["A Lite BERT for Self-supervised Learning of Language Representations"
 
 [[Bidirectional Encoder Representations from Transformers|BERT]] 모델의 크기는 줄이고 성능은 높임.
 
-![](https://i.imgur.com/f9OZOOQ.png)
+![[img-edc9e621dc.png]]
 
 # 학습 방식
 

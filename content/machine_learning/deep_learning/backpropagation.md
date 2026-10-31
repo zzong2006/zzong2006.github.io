@@ -120,7 +120,7 @@ $$
 \Delta C \approx\frac{\partial C}{\partial w_{j k}^{l}}=\sum_{m n p \ldots q} \frac{\partial C}{\partial a_{m}^{L}} \frac{\partial a_{m}^{L}}{\partial a_{n}^{L-1}} \frac{\partial a_{n}^{L-1}}{\partial a_{p}^{L-2}} \ldots \frac{\partial a_{q}^{l+1}}{\partial a_{j}^{l}} \frac{\partial a_{j}^{l}}{\partial w_{j k}^{l}}
 $$
 
-![](https://i.imgur.com/C6CAYNQ.png)
+![[img-c56910ad14.png]]
 
 # D) Related
 

@@ -20,11 +20,11 @@ AdaBoost 는 [[greedy algorithm|greedy]] 한 접근 방식을 사용한다.
 
 아래와 같이 stump 들은 올바르게 데이터를 분류할 수 없다. 분류가 잘못된 데이터 포인트들은 가중치를 높게 받는다.
 
-![|300](https://i.imgur.com/mWUbsew.png)
+![[img-ff28352bff.png|300]]
 
 hws 각 stump 들의 weighted vote 를 기반으로 올바른 분류를 수행할 수 있다.
 
-![|300](https://i.imgur.com/GV2VxgT.png)
+![[img-75de895eab.png|300]]
 
 # C) 평가
 

@@ -26,7 +26,7 @@ Self-Rewarding Language Models, where the language model itself is used via LLM-
 
 Self-rewarding 방식을 거듭할수록 보다 seed model 대비해서 명령을 따르는 능력 뿐만 아니라 보상 능력까지 향상되는 효과를 확인했다고 주장한다.
 
-![](https://i.imgur.com/b4zkCB3.png)
+![[img-f458f72d6e.png]]
 
 제안한 방식은 이미 학습된 base 언어 모델 + 작은 양의 human-annotated seed data 가 있다는 가정하에 진행된다.
 

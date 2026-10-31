@@ -32,7 +32,7 @@ row 를 다시 생각해보면 CF 가 아닌 여러개의 column(=family:qualifi
 
 ## C.1) 예시
 
-![](https://i.imgur.com/QfrBVTE.png)
+![[img-2b718e9569.png]]
 
 1. 이 테이블은 `Customer` 와 `Sales` 두 개의 컬럼 패밀리를 가지고 있다.
 2. `Customer` 컬럼 패밀리는 `Name` 과 `City` 두 개의 column qualifier 를 가지고 있다.

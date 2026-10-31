@@ -335,7 +335,7 @@ CSFT 학습 후 나타나는 핵심 현상:
 
 ## G.3) CoT Visibility 실험 (Figure 4)
 
-![](https://i.imgur.com/L5dILdQ.png)
+![[img-5ca9ef4446.png]]
 
 Confidence를 CoT **이전** 에 뽑든 **이후** 에 뽑든 reliability curve가 유사 → 모델의 confidence는 CoT 내용이 아니라 **내부 uncertainty** 에 기반.
 

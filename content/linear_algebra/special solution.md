@@ -15,7 +15,7 @@ special solution 의 총 개수는 free variable 의 개수와 동일하다.
 
 ## 예시
 
-![](https://i.imgur.com/W7sCuD6.png)
+![[img-3050e99a8c.png]]
 
 # 특징
 
@@ -40,11 +40,11 @@ $m\times n$ matrix $A$ 는 $Ax=0$ 에서 nonzero solution 을 가진다는 전�
 
 $Cs = \mathbf{0}$ 를 풀어보자.
 
-![](https://i.imgur.com/ON5T6fT.png)
+![[img-0ca6512cc5.png]]
 
 $U$ 에서 $R$ 에서 가는 방법: 두번째 행을 이용해 첫번째 행에 뺀 뒤에, 두번째 행을 $1/2$ 로 나누면 $I$ 를 찾을 수 있다.
 
-![](https://i.imgur.com/Gf0o8oH.png)
+![[img-15ee3e8306.png]]
 
 그러면 세번째와 네번째 free variables $x_3,x_4$ 들은 하나를 $1$ 나머지는 $0$ 으로 설정하고, $x_1,x_2$ 에서 $Rx=0$ 를 풀면 된다. 즉, 가능한 special solution 들은 $s_{1}=(-2,0,1,0)$ 또는 $s_{2}=(0,-2,0,1)$ 이다.
 

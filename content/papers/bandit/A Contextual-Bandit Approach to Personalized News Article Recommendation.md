@@ -55,7 +55,7 @@ This paper shows that a confidence interval can be computed __efficiently in clo
 
 ## C.1) LinUCB with Disjoint Linear Models
 
-![|500](https://i.imgur.com/qcu1hD9.png)
+![[img-daf0afaca1.png|500]]
 we assume the expected payoff of an arm $a$ is linear in its $d$-dimensional feature $\mathbf{x}_{t,a}$ with some unknown coefficient vector $\boldsymbol{\theta}_{a}^{*}$; namely, for all $t$,
 Equation (2): $\mathbf{E}\left[r_{t,a}\mid\mathbf{x}_{t,a}\right]=\mathbf{x}_{t,a}^{\top}\boldsymbol{\theta}_{a}^{*}$
 This model is called *disjoint* since the parameters are not shared among different arms.
@@ -110,7 +110,7 @@ First, its computational complexity is linear in the number of arms and at most 
 
 ## D.1) Proposed Policy Evaluator
 
-![[img-6687f1ec5b.png||600]]
+![[img-6687f1ec5b.png|600]]
 * The method takes as input a policy $\pi$ and a desired number of “good” events $T$ on which to base the evaluation.
 * If, given the current history $h_{t-1}$, it happens that the policy $π$ chooses the same arm $a$ as the one that was selected by the logging policy, then the event is retained, that is, added to the history, and the total payoff $R_t$ updated.
 * Otherwise, if the policy $π$ selects a different arm from the one that was taken by the logging policy, then the event is entirely ignored, and the algorithm proceeds to the next event without any other change in its state.
@@ -118,7 +118,7 @@ First, its computational complexity is linear in the number of arms and at most 
 * This means that the events which are retained have the same distribution as if they were selected by $D$.
 * As a result, we can prove that two processes are equivalent: the first is evaluating the policy against $T$ real-world events from $D$, and the second is evaluating the policy using the policy evaluator on a stream of logged events.
 THEOREM 1. For all distributions $D$ of contexts, all policies $π$, all $T$ , and all sequences of events $h_T$ ,
-![[img-7eb181b680.png||400]]
+![[img-7eb181b680.png|400]]
 where $S$ is a stream of events drawn i.i.d. from a uniform random logging policy and $D$.
 Furthermore, the expected number of events obtained from the stream to gather a history $h_T$ of length $T$ is $KT$.
 

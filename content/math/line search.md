@@ -9,4 +9,4 @@ tags:
 
 optimization 방식을 의미
 
-![|300](https://i.imgur.com/qBAbL7F.png)
+![[img-ea324e3d7d.png|300]]
