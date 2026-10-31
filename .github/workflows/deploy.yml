@@ -68,6 +68,9 @@ jobs:
       - name: Patch search tokenizer
         run: npm run patch-search
 
+      - name: Patch explorer to read the light page index
+        run: npm run patch-explorer
+
       - name: Validate note dates
         run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js plugins/related-notes/snippet.test.js
 

@@ -4,12 +4,14 @@ import path from "node:path"
 export const manifest = {
   name: "explorer-dates-index",
   displayName: "Explorer Dates Index",
-  description: "Emits latest modified timestamps, explorer labels and pinned notes.",
+  description:
+    "Emits the explorer's light page index, latest modified timestamps, labels and pinned notes.",
   version: "1.0.0",
   category: "emitter",
   defaultEnabled: true,
   defaultOptions: {
     outputPath: "static/explorerDates.json",
+    indexPath: "static/explorerIndex.json",
     pinsPerFolder: 5,
     pinMinBacklinks: 3,
   },
@@ -17,6 +19,7 @@ export const manifest = {
 
 const defaultOptions = {
   outputPath: "static/explorerDates.json",
+  indexPath: "static/explorerIndex.json",
   pinsPerFolder: 5,
   pinMinBacklinks: 3,
 }
@@ -119,14 +122,38 @@ export function pickPins(notes, { pinsPerFolder, pinMinBacklinks }) {
   return pins
 }
 
+// 탐색기는 slug·title·filePath 만 쓴다. 그런데 기본으로는 검색용 본문까지 든 contentIndex.json
+// (4MB)을 다 받아야 그려진다. 같은 항목에서 세 필드만 떼어 따로 내보낸다.
+// 항목 고르는 규칙은 content-index 플러그인과 같게 둔다: unlisted 만 빼고 전부.
+function explorerIndexEntry(data) {
+  if (data.unlisted === true || !data.slug) return undefined
+  return {
+    slug: data.slug,
+    filePath: data.relativePath,
+    title: data.frontmatter?.title ?? "",
+  }
+}
+
+function outputFile(ctx, filePath) {
+  return path.isAbsolute(filePath) ? filePath : path.join(ctx.argv.output, filePath)
+}
+
+async function writeJson(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true })
+  await fs.writeFile(filePath, `${JSON.stringify(value)}\n`, "utf8")
+}
+
 async function emitExplorerDates(ctx, content, options) {
   const files = {}
   const folders = {}
   const labels = {}
   const notes = []
+  const pages = {}
 
   for (const [, file] of content) {
     const data = file.data ?? {}
+    const entry = explorerIndexEntry(data)
+    if (entry) pages[entry.slug] = entry
     if (!isDisplayableMarkdown(data)) continue
 
     const slug = String(data.slug ?? "")
@@ -151,25 +178,20 @@ async function emitExplorerDates(ctx, content, options) {
     }
   }
 
-  const outputPath = path.isAbsolute(options.outputPath)
-    ? options.outputPath
-    : path.join(ctx.argv.output, options.outputPath)
+  const outputPath = outputFile(ctx, options.outputPath)
+  await writeJson(outputPath, {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    files,
+    folders,
+    labels,
+    pins: pickPins(notes, options),
+  })
 
-  await fs.mkdir(path.dirname(outputPath), { recursive: true })
-  await fs.writeFile(
-    outputPath,
-    `${JSON.stringify({
-      version: 1,
-      generatedAt: new Date().toISOString(),
-      files,
-      folders,
-      labels,
-      pins: pickPins(notes, options),
-    })}\n`,
-    "utf8",
-  )
+  const indexPath = outputFile(ctx, options.indexPath)
+  await writeJson(indexPath, pages)
 
-  return [outputPath]
+  return [outputPath, indexPath]
 }
 
 export const ExplorerDatesIndex = (userOpts = {}) => {
