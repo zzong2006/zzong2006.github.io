@@ -201,11 +201,19 @@ $\mathbf{A}_{a}=\mathbf{D}_{a}^{\top}\mathbf{D}_{a}+\mathbf{I}_{d}$ 로 두면 �
 
 | 값 | 계산 | 결과 |
 | --- | --- | --- |
-| $\mathbf{A}_{B}$ | $\mathbf{I}_2 + 9 \cdot (1,0)^{\top}(1,0)$ | $\begin{pmatrix}10 & 0\\ 0 & 1\end{pmatrix}$ |
-| $\hat{\boldsymbol{\theta}}_{B}$ | $\mathbf{A}_{B}^{-1}\,(1, 0)^{\top}$ | $(0.1,\ 0)$ |
+| $\mathbf{D}_{B}$ ($9\times 2$) | 보여 준 9번의 context $(1,0)$ 을 행으로 쌓음 | $\begin{pmatrix}1 & 0\\ \vdots & \vdots\\ 1 & 0\end{pmatrix}$ |
+| $\mathbf{c}_{B}$ (9 차원) | 9번의 클릭 여부 | $(1, 0, \dots, 0)$ |
+| $\mathbf{D}_{B}^{\top}\mathbf{D}_{B}$ ($2\times 2$) | 행마다 $(1,0)^{\top}(1,0)$ 을 9번 더함 | $\begin{pmatrix}9 & 0\\ 0 & 0\end{pmatrix}$ |
+| $\mathbf{A}_{B}$ | $\mathbf{D}_{B}^{\top}\mathbf{D}_{B} + \mathbf{I}_2$ | $\begin{pmatrix}10 & 0\\ 0 & 1\end{pmatrix}$ |
+| $\mathbf{b}_{B}$ | $\mathbf{D}_{B}^{\top}\mathbf{c}_{B}$ (클릭한 행의 context 합) | $(1,\ 0)$ |
+| $\hat{\boldsymbol{\theta}}_{B}$ | $\mathbf{A}_{B}^{-1}\,\mathbf{b}_{B}$ | $(0.1,\ 0)$ |
 | 스포츠 관심 사용자의 점수 | 예측 $0.1$ + 보너스 $\sqrt{1/10}$ | $0.1 + 0.32 = 0.42$ |
 | 정치 관심 사용자의 점수 | 예측 $0$ + 보너스 $\sqrt{1}$ | $0 + 1.0 = 1.0$ |
 
+- **이 예시에서 $\mathbf{A}_{B}$ 의 대각 원소는 그 방향으로 몇 번 봤는지에 1 을 더한 값이다.**
+  - context 가 $(1,0)$ · $(0,1)$ 처럼 0 과 1 로만 돼 있어서 그렇다.
+  - 스포츠 칸의 10 은 9번 본 것에 $\mathbf{I}_2$ 의 1 이 더해진 값이다.
+  - 정치 칸의 1 은 본 적이 없어 $\mathbf{I}_2$ 만 남은 값이다.
 - **정치 관심 사용자에게는 B 의 예측이 0 이지만 보너스가 크다.**
   - 정치 관심 사용자에게 B 를 보여 준 적이 한 번도 없어서다.
   - 그래서 B 를 정치 관심 사용자에게 보여 줄 이유가 생기고, 실제 클릭률 9% 를 곧 배운다.
