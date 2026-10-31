@@ -314,7 +314,7 @@ LightGBM 은 feature 중요도를 두 가지로 낸다.
 | 분할 기준 | 불순도(Gini, entropy) 감소 | gradient 로 계산한 오차 감소 |
 | 중요도 분포 | 트리마다 feature 를 무작위로 골라 여러 feature 에 퍼지는 편 | 오차를 가장 잘 줄이는 소수 feature 에 몰리는 편 |
 
-두 방식 모두 값 종류가 많은 feature(ID 등)를 실제보다 중요하게 보는 경향이 있다. 자를 수 있는 곳이 많아서, 우연히 오차를 크게 줄이는 자리도 찾기 쉽기 때문이다. feature 의 실제 기여를 보려면 permutation importance 나 SHAP 을 함께 본다.
+두 방식 모두 값 종류가 많은 feature(ID 등)를 실제보다 중요하게 보는 경향이 있다. 자를 수 있는 곳이 많아서, 우연히 오차를 크게 줄이는 자리도 찾기 쉽기 때문이다. feature 의 실제 기여를 보려면 [[permutation importance]] 나 [[shapley additive explanations|SHAP]] 을 함께 본다.
 
 # G) 부록: 식과 설정
 
