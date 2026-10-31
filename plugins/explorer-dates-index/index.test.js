@@ -80,3 +80,38 @@ test("pins are emitted next to labels", async () => {
     await rm(output, { recursive: true, force: true })
   }
 })
+
+test("explorer index keeps only slug, title and filePath, and skips unlisted notes", async () => {
+  // 탐색기가 검색용 본문(contentIndex.json)을 기다리지 않도록 가벼운 인덱스를 따로 낸다.
+  // 항목은 content-index 와 같게 unlisted 만 뺀다. 폴더 페이지와 제목 없는 노트도 들어가야 트리가 같다.
+  const output = await mkdtemp(path.join(tmpdir(), "explorer-index-"))
+  const note = (slug, frontmatter, extra = {}) => [
+    null,
+    {
+      data: { slug, relativePath: `${slug}.md`, frontmatter, text: "body", links: ["x"], ...extra },
+    },
+  ]
+  try {
+    const content = [
+      note("papers/bandit/linucb", { title: "LinUCB", tags: ["bandit"] }),
+      note("papers/index", { title: "Papers" }),
+      note("untitled", {}),
+      note("hidden", { title: "Hidden" }, { unlisted: true }),
+    ]
+    const emitted = await ExplorerDatesIndex().emit({ argv: { output } }, content)
+    const indexPath = path.join(output, "static/explorerIndex.json")
+    assert.ok(emitted.includes(indexPath))
+    const index = JSON.parse(await readFile(indexPath, "utf8"))
+    assert.deepEqual(index, {
+      "papers/bandit/linucb": {
+        slug: "papers/bandit/linucb",
+        filePath: "papers/bandit/linucb.md",
+        title: "LinUCB",
+      },
+      "papers/index": { slug: "papers/index", filePath: "papers/index.md", title: "Papers" },
+      untitled: { slug: "untitled", filePath: "untitled.md", title: "" },
+    })
+  } finally {
+    await rm(output, { recursive: true, force: true })
+  }
+})

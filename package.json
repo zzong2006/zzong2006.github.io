@@ -17,6 +17,7 @@
     "build-related-notes": "node scripts/build-related-notes.mjs",
     "normalize-frontmatter": "node scripts/normalize-frontmatter.mjs",
     "patch-search": "node scripts/patch-search-plugin.mjs",
+    "patch-explorer": "node scripts/patch-explorer-plugin.mjs",
     "preview": "node scripts/serve-public.mjs",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
