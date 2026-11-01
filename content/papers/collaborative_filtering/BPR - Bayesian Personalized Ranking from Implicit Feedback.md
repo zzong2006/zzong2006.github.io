@@ -47,7 +47,7 @@ $$
 
 * $(u,i,j)\in D_{S}$ 의 의미는 $u$ 는 $i$ 를 $j$ 보다 선호한다는 의미를 가짐
 
-## D.1) $S$ -> $D_{S}$ Figure
+## D.1) S → D_S Figure
 
 ![[img-946376ea41.png||400]]
 이렇게 하면, 단순히 특정 유저가 implicit feedback (click) 이 없다고 해서 전체가 모두 negative feedback 로 처리되는 것을 막을 수 있음

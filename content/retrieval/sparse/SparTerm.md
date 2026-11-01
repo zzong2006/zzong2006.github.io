@@ -27,7 +27,7 @@ $$p' = F(p) \odot G(p)$$
 - $F(p)$: Importance Predictor (dense 벡터)
 - $G(p)$: Gating Controller (binary sparse 벡터)
 
-## B.1) Importance Predictor $F(p)$
+## B.1) Importance Predictor F(p)
 
 각 입력 토큰 $i$에 대해, BERT MLM Head와 유사한 구조로 **전체 vocabulary에 대한 중요도 분포** 를 생성한다:
 
@@ -44,7 +44,7 @@ $$I = \sum_{i=0}^{L} \text{ReLU}(I_i)$$
 
 이 벡터의 각 원소는 "해당 vocab 토큰이 이 문서에서 얼마나 중요한가"를 나타낸다.
 
-## B.2) Gating Controller $G(p)$
+## B.2) Gating Controller G(p)
 
 Importance Predictor가 모든 vocab 토큰에 대한 점수를 매기지만, 실제로 sparse vector에 포함시킬 토큰을 **선별** 하는 역할을 한다. 두 가지 방식이 있다:
 
