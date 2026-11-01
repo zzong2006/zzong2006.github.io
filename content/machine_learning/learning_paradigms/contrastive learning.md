@@ -126,7 +126,7 @@ $$
 - 네 개를 다 넣은 InfoNCE 는 0.128 이다. n1 하나만 넣었을 때(0.127)와 거의 같다.
 - 후보가 많을수록 그 안에 hard negative 가 들어 있을 가능성이 커지고, softmax 가 그 negative 에 힘을 몰아준다.
 
-그래서 Triplet Loss 는 학습할 negative 를 따로 고르는 일(mining)이 필수다.
+Triplet Loss 는 triplet 마다 negative 를 하나씩만 보므로, 학습할 negative 를 따로 고르는 일(mining)이 필수다.
 
 - FaceNet 은 약 1,800 개짜리 미니배치 안에서 positive 보다는 멀지만 margin 안쪽에 있는 negative(semi-hard)를 골라 학습했다.
 - SimCLR 논문은 같은 조건에서 손실만 바꿔 ImageNet linear evaluation 정확도를 비교했다 (margin 50.9% → semi-hard mining 을 더한 margin 57.5% → InfoNCE 계열 NT-Xent 63.9%).
