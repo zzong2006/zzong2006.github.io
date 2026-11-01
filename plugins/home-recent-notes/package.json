@@ -1,0 +1,27 @@
+{
+  "name": "home-recent-notes",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "build": "node -e \"\""
+  },
+  "quartz": {
+    "name": "home-recent-notes",
+    "displayName": "Home Recent Notes",
+    "description": "Lists newly written and recently updated notes inside the home page body.",
+    "version": "1.0.0",
+    "category": "pageType",
+    "defaultEnabled": true,
+    "defaultOptions": {
+      "newTitle": "Recent Posts",
+      "newLimit": 5,
+      "updatedTitle": "최근 수정한 글",
+      "updatedLimit": 5,
+      "moreSlug": "recent",
+      "moreLabel": "더 보기"
+    }
+  }
+}
