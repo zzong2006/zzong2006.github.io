@@ -2,7 +2,9 @@ import { resolveRelative } from "@quartz-community/utils"
 import {
   formatDate,
   isDisplayableNote,
+  newNotes,
   notePath,
+  noteDate,
   recentNotesCss,
 } from "../recent-updated-notes/components/index.js"
 
@@ -15,6 +17,7 @@ export const manifest = {
   defaultOptions: {
     newTitle: "Recent Posts",
     newLimit: 5,
+    newMoreSlug: "new",
     updatedTitle: "최근 수정한 글",
     updatedLimit: 5,
     moreSlug: "recent",
@@ -22,25 +25,17 @@ export const manifest = {
   },
 }
 
-const time = (page, key) => {
-  const raw = page.dates?.[key]
-  const date = raw instanceof Date ? raw : raw ? new Date(raw) : undefined
-  return date && !Number.isNaN(date.getTime()) ? date : undefined
-}
-
 // 새 글은 작성일 순으로, 수정한 글은 수정일 순으로 고른다.
 // 수정한 글에는 새 글 목록에 이미 나온 것과, 처음 쓴 뒤로 고친 적 없는 것을 뺀다.
+// 수정한 글은 한꺼번에 옮겨 온 노트도 대상이라 newNotes 가 아니라 전체에서 고른다.
 export function homeLists(allFiles, { newLimit, updatedLimit }) {
-  const notes = allFiles.filter(
-    (page) => isDisplayableNote(page) && time(page, "created") && time(page, "modified"),
-  )
-  const newest = [...notes]
-    .sort((a, b) => time(b, "created") - time(a, "created"))
-    .slice(0, newLimit)
+  const newest = newNotes(allFiles).slice(0, newLimit)
   const shown = new Set(newest.map((page) => page.slug))
-  const updated = notes
-    .filter((page) => !shown.has(page.slug) && time(page, "modified") > time(page, "created"))
-    .sort((a, b) => time(b, "modified") - time(a, "modified"))
+  const updated = allFiles
+    .filter((page) => noteDate(page, "created") && noteDate(page, "modified"))
+    .filter((page) => isDisplayableNote(page) && !shown.has(page.slug))
+    .filter((page) => noteDate(page, "modified") > noteDate(page, "created"))
+    .sort((a, b) => noteDate(b, "modified") - noteDate(a, "modified"))
     .slice(0, updatedLimit)
   return { newest, updated }
 }
@@ -67,7 +62,7 @@ function section({ id, title, notes, dateKey, more, locale }) {
       ]),
   ])
   const items = notes.map((page) => {
-    const date = time(page, dateKey)
+    const date = noteDate(page, dateKey)
     return el("li", { className: ["recent-updated-notes__item"] }, [
       el(
         "a",
@@ -102,7 +97,17 @@ export const HomeRecentNotes = (userOpts = {}) => {
     const locale = cfg.locale ?? "ko-KR"
     const sections = [
       newest.length > 0 &&
-        section({ id: "recent-posts", title: opts.newTitle, notes: newest, dateKey: "created", locale }),
+        section({
+          id: "recent-posts",
+          title: opts.newTitle,
+          notes: newest,
+          dateKey: "created",
+          locale,
+          more: opts.newMoreSlug && {
+            href: resolveRelative("index", opts.newMoreSlug),
+            label: opts.moreLabel,
+          },
+        }),
       updated.length > 0 &&
         section({
           id: "recently-updated",
