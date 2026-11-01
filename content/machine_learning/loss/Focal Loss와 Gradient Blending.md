@@ -10,7 +10,7 @@ tags:
 
 - **Focal loss 는 샘플마다 비중을 바꾼다.** loss 는 cross-entropy 하나뿐이고, 여러 loss 를 섞지 않는다.
 - **Gradient Blending 은 loss 마다 비중을 바꾼다.** 멀티모달 모델에서 모달리티별 loss 와 합친(fusion) loss 를 섞을 때 쓴다.
-- 그래서 "여러 loss 를 섞을 때 한 loss 가 과하게 반영되지 않게 비중을 조절한다"는 설명은 Gradient Blending 에만 맞는다.
+- 그래서 Focal loss 는 클래스 불균형과 어려운 샘플 문제에, Gradient Blending 은 여러 loss 의 비중을 정하는 문제(multi-task, 멀티모달)에 속한다.
 
 | 구분 | Focal Loss | Gradient Blending |
 | --- | --- | --- |
