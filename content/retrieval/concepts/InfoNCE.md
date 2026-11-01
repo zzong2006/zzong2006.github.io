@@ -72,7 +72,7 @@ temperature 0.1 로 계산한다.
 - SimCLR 는 배치 4,096 에서 temperature 만 바꿔 ImageNet linear evaluation 정확도를 비교했다 (0.05 59.7% → 0.1 64.4% → 0.5 60.7% → 1 58.0%).
 - 너무 작으면 가장 가까운 negative 하나에만 반응한다. 그 negative 가 사실 정답(false negative)이어도 그대로 밀어낸다.
 
-자주 쓰는 값은 0.05 ~ 0.1 근처다.
+자주 쓰는 값은 0.05 에서 0.1 사이다.
 
 - MoCo 는 0.07 로 고정했다.
 - CLIP 은 temperature 를 학습되는 값으로 두고 0.07 에서 시작했다.
