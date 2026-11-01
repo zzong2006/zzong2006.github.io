@@ -11,7 +11,7 @@ collaborative filtering 추천은 사용자들의 콘텐츠 사용 패턴을 분
 
 * 콘텐츠 사용 패턴이 비슷한 사람들은 비슷한 선호를 가지고 있다고 가정하에 수행하는 방법이다.
 * [[matrix factorization]]
-	* [Alternative Least Square](https://www.notion.so/Alternative-Least-Square-46ed46182ab94ed982094a704b510436)
+	* [[Alternating Least Squares]]
 * Other CF methods
 	* [[Word2Vec]] (스트림 데이터)
 	* Personalized PageRank ([[PPR]], 그래프 데이터)

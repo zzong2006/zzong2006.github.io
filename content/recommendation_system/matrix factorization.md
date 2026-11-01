@@ -1,12 +1,8 @@
 ---
 title: "matrix factorization"
-aliases: []
-tags: 
----
-ㅔ
----
-tags: collaborative_filtering
 aliases: [MF]
+tags:
+  - collaborative_filtering
 ---
 
 * Tags

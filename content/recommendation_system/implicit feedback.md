@@ -10,7 +10,7 @@ tags:
 * 정의
 	* impression, viewable impression
 * Related papers
-	* [[Collaborative Filtering for Implicit Feedback Datasets]]: Also
+	* [[Collaborative Filtering for Implicit Feedback Datasets]]: Weighted [[Alternating Least Squares|ALS]]
 	* [[BPR - Bayesian Personalized Ranking from Implicit Feedback]]
 	* [[An Improved Sampler for Bayesian Personalized Ranking by Leveraging View Data]]
 	* [[Modeling impression discounting in large-scale recommender systems]]
