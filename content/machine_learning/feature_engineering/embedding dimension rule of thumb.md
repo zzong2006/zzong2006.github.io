@@ -81,7 +81,7 @@ embedding_dimensions = number_of_categories ** 0.25   # 81 ** 0.25 = 3
 **Wide & Deep 과 DLRM 은 모든 필드에 같은 차원을 줬다.**
 
 - Wide & Deep (Cheng et al., 2016) 은 Google Play 앱 추천에서 모든 범주형 feature 에 32 차원을 썼다. 논문은 임베딩 차원이 "보통 O(10) 에서 O(100)" 이라고 적었다.
-- Meta 의 DLRM (Naumov et al., 2019) 은 모든 범주형 feature 를 같은 차원으로 둔다고 설계에 못 박았다. Criteo 광고 데이터 실험에서는 16 차원을, 성능 측정 예시에서는 64 차원을 썼다.
+- Facebook(현 Meta) 의 DLRM (Naumov et al., 2019) 은 모든 범주형 feature 를 같은 차원으로 둔다고 설계에 못 박았다. Criteo 광고 데이터 실험에서는 16 차원을, 성능 측정 예시에서는 64 차원을 썼다.
 
 세 필드로 나란히 놓으면 다음과 같다.
 
