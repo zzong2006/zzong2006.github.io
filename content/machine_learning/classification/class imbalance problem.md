@@ -15,4 +15,4 @@ class 분류 문제에서 class 당 instance 수의 균형이 맞지 않는 문�
 # 3. Solutions
 
 1. Negative down sampling
-2. [[Focal Loss와 Gradient Blending|Focal loss]]: 이미 잘 맞히는 다수 클래스 샘플의 loss 비중을 줄여, 수가 적은 어려운 샘플에 학습이 집중되게 한다.
+2. [[Focal Loss와 Gradient Blending|Focal loss]]: 이미 잘 맞히는 쉬운 샘플(대개 다수 클래스)의 loss 비중을 줄여, 수가 적은 어려운 샘플에 학습이 집중되게 한다.
