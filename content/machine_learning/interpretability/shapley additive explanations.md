@@ -7,7 +7,13 @@ aliases: ["SHAP"]
 
 집값 예측 모델이 어떤 집을 3.7 억으로 예측했다. 이 모델이 내놓는 예측의 평균은 3.0 억이다. **이 집은 왜 평균보다 0.7 억 비싸게 나왔을까?**
 
-SHAP(SHapley Additive exPlanations)은 이 0.7 억을 feature 별 몫으로 나눠 준다. 예를 들어 "넓어서 +0.45 억, 역세권이라 +0.25 억" 처럼 나누고, 몫을 모두 더하면 정확히 0.7 억이 된다.
+**SHAP(SHapley Additive exPlanations)은 이 0.7 억을 feature 들에게 공정하게 나눠 주는 방법이다.**
+
+- 결과는 이런 모양이다: 이 집 3.7 억 = 평균 3.0 억 + 넓어서 +0.45 억 + 역세권이라 +0.25 억.
+- 무엇이 공정한지는 게임 이론의 Shapley value 로 정한다. feature 를 하나씩 알려 주는 모든 순서에서, 그 feature 가 예측을 움직인 양을 평균한다.
+- 나눈 몫을 모두 더하면 정확히 0.7 억이 된다. 이름의 Additive(더해서 맞아떨어진다)가 여기서 왔다.
+
+**"이 모델에서는 넓은지가 가장 중요하다" 같은 feature 전체 중요도는 SHAP 의 핵심이 아니라 부산물이다.** 집마다 나눈 몫을 모아 평균한 것이다.
 
 # A) 몫을 나누는 방법
 
@@ -41,25 +47,66 @@ SHAP(SHapley Additive exPlanations)은 이 0.7 억을 feature 별 몫으로 나�
 - 역세권은 0.3 억과 0.2 억의 평균인 0.25 억을 받는다.
 - 둘을 더하면 0.7 억으로, 이 집의 예측 3.7 억과 평균 3.0 억의 차이와 정확히 같다.
 
-이렇게 나눈 몫을 게임 이론에서 Shapley value 라 부른다. 여러 사람이 함께 번 돈을, 각자 들어온 순서에 상관없이 공평하게 나누는 방법이다. SHAP 은 feature 를 사람으로, 예측값을 번 돈으로 본다.
+이렇게 나눈 몫을 게임 이론에서 Shapley value 라 부른다. 여러 사람이 함께 번 돈을, 각자 들어온 순서에 상관없이 공평하게 나누는 방법이다. SHAP 은 feature 를 사람으로, 평균 예측과의 차이를 번 돈으로 본다.
 
 # B) 집마다 다른 몫
 
-집 두 채의 몫을 그리면 다음과 같다. 평균 예측 3.0 억에서 출발해 feature 몫만큼 오르내리고, 끝이 그 집의 예측값이다. 주황은 값을 올린 몫, 파랑은 내린 몫이다.
+**같은 계산을 집마다 따로 한다.** 그래서 집마다 자기만의 덧셈식이 하나씩 나온다.
+
+집 두 채의 덧셈식을 그리면 다음과 같다. 평균 예측 3.0 억에서 출발해 feature 몫만큼 오르내리고, 끝이 그 집의 예측값이다. 주황은 값을 올린 몫, 파랑은 내린 몫이다.
 
 ![[img-39b62599e2.png]]
 
-- 넓고 역세권인 집은 두 몫이 모두 양수라 3.7 억이 된다.
-- 좁고 역세권이 아닌 집은 좁아서 −0.35 억, 역세권이 아니라서 −0.15 억이 붙어 2.5 억이 된다.
+- 넓고 역세권인 집: 3.7 억 = 3.0 억 + 넓어서 0.45 억 + 역세권이라 0.25 억.
+- 좁고 역세권이 아닌 집: 2.5 억 = 3.0 억 − 좁아서 0.35 억 − 역세권이 아니라서 0.15 억.
 - 몫이 음수라는 것은 그 feature 때문에 평균보다 싸게 예측됐다는 뜻이다.
 
-**집마다 몫의 크기를 평균하면 feature 전체의 중요도가 된다.**
+**같은 feature 라도 집마다 몫의 크기가 다르다.**
 
-- 네 종류 집에서 부호를 뗀 몫을 평균하면 넓다는 0.4 억, 역세권은 0.2 억이다.
-- 이 모델에서는 넓은지가 역세권인지보다 두 배 중요하다.
-- [[permutation importance]] 는 모델 전체에 대해 feature 마다 숫자 하나를 준다. SHAP 은 집 한 채마다 "왜 이 값인지" 를 설명하고, 평균하면 전체 중요도도 준다.
+- 넓고 역세권인 집에서 넓다는 +0.45 억을 받는다.
+- 넓지만 역세권이 아닌 집(3.1 억)에서 넓다는 +0.35 억만 받는다.
+- 넓은 집이 역세권일 때 더 비싸지는 효과는 넓고 역세권인 집에만 있기 때문이다.
 
-# C) 쓸 때 주의할 점
+그래서 SHAP 값은 feature 마다 하나가 아니라 집과 feature 의 짝마다 하나씩 나온다. 이 집의 값이 왜 이렇게 나왔는지를 이 집의 feature 값으로 계산한 몫으로 보여 준다.
+
+# C) 전체 중요도는 집마다 구한 몫의 평균
+
+네 종류 집의 몫을 모두 구하면 집 × feature 모양의 표가 된다. SHAP 이 내놓는 결과물은 원래 이 표다.
+
+| 집 | 예측 | 넓다의 몫 | 역세권의 몫 |
+| --- | --- | --- | --- |
+| 좁고 역세권 아님 | 2.5 억 | −0.35 억 | −0.15 억 |
+| 좁고 역세권 | 2.7 억 | −0.45 억 | +0.15 억 |
+| 넓고 역세권 아님 | 3.1 억 | +0.35 억 | −0.25 억 |
+| 넓고 역세권 | 3.7 억 | +0.45 억 | +0.25 억 |
+
+**feature 하나의 전체 중요도는 이 표에서 그 열의 크기를 평균한 것이다.**
+
+- 몫을 부호 그대로 평균하면 두 feature 모두 0 이 된다. 몫은 평균 예측에서 벗어난 만큼을 나눈 것이라, 데이터 전체로 보면 오른 집과 내린 집이 상쇄된다.
+- 그래서 부호를 떼고 평균한다 (mean |SHAP|). 넓다는 0.4 억, 역세권은 0.2 억이다.
+- 이 모델에서 넓은지는 역세권인지보다 예측을 평균적으로 두 배 크게 움직인다.
+
+**이 숫자는 따로 계산한 것이 아니라 집마다 구한 몫을 모은 것이다.** 집 한 채의 덧셈식이 SHAP 의 본체이고, 전체 중요도는 그 덧셈식들을 요약한 값이다.
+
+# D) permutation importance 와 비교
+
+[[permutation importance]] 도 feature 중요도를 준다. 둘은 재는 대상부터 다르다.
+
+| 비교 축 | SHAP | permutation importance |
+| --- | --- | --- |
+| 설명 대상 | 예측 하나 (집 한 채) | 모델 전체 |
+| 방향(부호) | 있다. 값을 올렸으면 +, 내렸으면 − | 없다. 더 틀리게 된 정도만 잰다 |
+| 무엇을 바꿔서 재나 | feature 를 알려 주거나 평균으로 가리고 예측값이 얼마나 움직이는지 | feature 열을 집끼리 섞고 오차가 얼마나 느는지 |
+| 실제 가격(정답) | 필요 없다 | 필요하다 |
+| 결과물 | 집 × feature 표 | feature 마다 숫자 하나 |
+
+**둘 다 feature 마다 숫자 하나로 줄일 수 있지만 뜻이 다르다.**
+
+- SHAP 의 mean |SHAP| 는 "모델의 예측을 얼마나 흔드는가" 다.
+- permutation importance 는 "이 feature 를 망가뜨리면 얼마나 더 틀리는가" 다.
+- 모델이 학습 데이터의 우연한 패턴(예: 빨간 현관문 집이 비쌌다)을 외웠다면, 현관문 색은 예측을 흔들므로 mean |SHAP| 가 0 보다 크다. 검증 데이터의 permutation importance 는 0 근처로 나온다.
+
+# E) 쓸 때 주의할 점
 
 **SHAP 값은 원인이 아니라 모델의 계산을 나눈 것이다.** "넓어서 +0.45 억" 은 모델이 그렇게 계산했다는 뜻이다. 실제로 집을 넓히면 0.45 억 오른다는 뜻은 아니다.
 
@@ -75,36 +122,53 @@ SHAP(SHapley Additive exPlanations)은 이 0.7 억을 feature 별 몫으로 나�
 - 모르는 feature 를 평균으로 채울 때 "20 평인데 115 ㎡" 같은 실제로 없는 집이 섞이기도 한다.
 - 실제로는 모르는 feature 를 채우는 방법이 몇 가지 있고, 방법에 따라 몫이 조금씩 다르다.
 
-# D) 부록: 식과 코드
+# F) 부록: 식과 코드
 
-## D.1) Shapley value
+## F.1) 덧셈식 (Additive)
+
+집 $x$ 의 예측 $f(x)$ 를 평균 예측 $\phi_0$ 와 feature 별 몫 $\phi_i$ 의 합으로 쓴다.
+
+$$
+f(x) = \phi_0 + \sum_{i=1}^{M} \phi_i, \qquad \phi_0 = \mathbb{E}[f(X)]
+$$
+
+- 본문 예에서 $3.7 = 3.0 + 0.45 + 0.25$ 다.
+- 논문은 이렇게 몫의 합으로 예측을 설명하는 방법을 additive feature attribution 이라 부른다. 몫을 더하면 예측과 정확히 맞는 성질은 local accuracy 다.
+- 논문의 주 결과는 local accuracy · missingness · consistency 세 성질을 모두 만족하는 몫이 Shapley value 하나뿐이라는 것이다. "공정하게" 나눈다는 말의 근거가 이것이다.
+
+## F.2) Shapley value
 
 feature 전체 집합을 $N$, feature 집합 $S$ 만 알 때의 예측을 $v(S)$ 라 하면, feature $i$ 의 몫은 다음과 같다.
 
-$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \dfrac{|S|!\,(|N|-|S|-1)!}{|N|!}\,\big(v(S \cup \{i\}) - v(S)\big)$
+$$
+\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!\,(|N|-|S|-1)!}{|N|!}\,\big(v(S \cup \{i\}) - v(S)\big)
+$$
 
 - 「$i$ 를 넣기 직전까지 알려 준 feature 가 $S$ 인 순서」 의 비율로 가중 평균한 것이다.
 - 본문 예에서 넓다의 몫은 $\frac{1}{2}(3.4 - 3.0) + \frac{1}{2}(3.7 - 3.2) = 0.45$ 다.
 - 몫을 모두 더하면 $v(N) - v(\varnothing)$, 곧 그 집의 예측과 평균 예측의 차이가 된다.
 
-## D.2) 코드
+## F.3) 코드
 
 ```python
+import numpy as np
 import shap
 
 explainer = shap.TreeExplainer(model)   # LightGBM · XGBoost 같은 트리 모델
-sv = explainer(X)                       # 집마다 feature 별 몫
-shap.plots.waterfall(sv[0])             # 집 한 채의 몫 (본문 그림과 같은 모양)
-shap.plots.bar(sv)                      # 부호를 뗀 몫의 평균 = 전체 중요도
+sv = explainer(X)                       # sv.values: 집 × feature 몫 표
+shap.plots.waterfall(sv[0])             # 집 한 채의 덧셈식 (본문 그림과 같은 모양)
+
+np.abs(sv.values).mean(axis=0)          # 부호를 뗀 몫의 평균 = 전체 중요도
+shap.plots.bar(sv)                      # 위 값을 막대로 그린다
 ```
 
 - LightGBM 은 shap 없이도 `model.predict(X, pred_contrib=True)` 로 같은 몫을 준다. 마지막 열이 평균 예측(기준값)이다.
 
-# E) Related
+# G) Related
 
 [[permutation importance]], [[LightGBM]]
 
-# F) References
+# H) References
 
 * [A Unified Approach to Interpreting Model Predictions (Lundberg & Lee, NeurIPS 2017)](https://papers.nips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html)
 * [From local explanations to global understanding with explainable AI for trees (Lundberg et al., Nature Machine Intelligence 2020)](https://www.nature.com/articles/s42256-019-0138-9)
