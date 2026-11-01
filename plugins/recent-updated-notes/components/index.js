@@ -19,12 +19,12 @@ function isFolderIndex(slug) {
   return slug === "index" || slug.endsWith("/index")
 }
 
-function notePath(page) {
+export function notePath(page) {
   const relativePath = String(page.relativePath ?? "")
   return relativePath.replace(/\.md$/i, "")
 }
 
-function isDisplayableNote(page) {
+export function isDisplayableNote(page) {
   const slug = String(page.slug ?? "")
   const relativePath = String(page.relativePath ?? "")
 

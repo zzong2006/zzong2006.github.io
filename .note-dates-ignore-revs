@@ -20,3 +20,6 @@ be13fd962c623cda1af3a698f3c7b2d49144ddb5
 
 # content: self-host external images still hotlinked from notes (#37, 141 notes)
 ef8cfd0f52f9705c722cd321691aab7ecd773fc8
+
+# Restore original casing and acronyms in 607 note titles (#64, frontmatter title only)
+59fabf0e0e87126b10d3539de2ed271733717311

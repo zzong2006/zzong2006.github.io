@@ -44,6 +44,42 @@ test("a move that also edits the note still counts as a modification", () => {
   assert.equal(parseHistory(log).get("content/dir/old.md").modified, "2022-01-01T00:00:00Z")
 })
 
+test("a move git records as delete + add keeps the creation date", () => {
+  const cleanup = "b".repeat(40)
+  const log = [
+    "DATE:2020-01-01T00:00:00Z",
+    "\nA",
+    "content/ml/PCA.md",
+    "A",
+    "content/ml/AUC.md",
+    "DATE:2021-01-01T00:00:00Z",
+    "\nM",
+    "content/ml/PCA.md",
+    // 이동 + 큰 수정이라 git 이 R 로 못 묶었다. 경로 순서상 A 가 D 보다 먼저 나오기도 한다.
+    "DATE:2022-01-01T00:00:00Z",
+    "\nA",
+    "content/ml/metrics/AUC.md",
+    "D",
+    "content/ml/AUC.md",
+    `DATE:2023-01-01T00:00:00Z ${cleanup}`,
+    "\nD",
+    "content/ml/PCA.md",
+    "A",
+    "content/ml/reduction/PCA.md",
+  ].join("\0")
+  const dates = parseHistory(log, new Set([cleanup]))
+  assert.deepEqual(dates.get("content/ml/metrics/AUC.md"), {
+    created: "2020-01-01T00:00:00Z",
+    modified: "2022-01-01T00:00:00Z",
+  })
+  // 정리 작업 커밋의 이동은 수정일도 이어받는다.
+  assert.deepEqual(dates.get("content/ml/reduction/PCA.md"), {
+    created: "2020-01-01T00:00:00Z",
+    modified: "2021-01-01T00:00:00Z",
+  })
+  assert.equal(dates.has("content/ml/AUC.md"), false)
+})
+
 test("listed cleanup commits keep the date of the last real edit", () => {
   const cleanup = "b".repeat(40)
   const log = [
