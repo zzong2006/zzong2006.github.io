@@ -93,6 +93,9 @@ const initDist =
 for (const file of distFiles) {
   const text = await fs.readFile(file, "utf8")
   const init = text.match(initDist)?.[1]
+  // 압축된 이름에 $ 가 들어갈 수 있다(예: $t). 정규식과 치환 문자열에서 글자 그대로 쓰이게 한다.
+  const initRe = init?.replace(/\$/g, "\\$")
+  const initOut = init?.replace(/\$/g, "$$$$")
   if (!init && !text.includes(readyMarker)) {
     missingReady.push(`${file}: ${initDist}`)
     continue
@@ -104,13 +107,13 @@ for (const file of distFiles) {
     ],
     [
       new RegExp(
-        `async function ([A-Za-z_$][\\w$]*)\\(\\)\\{([A-Za-z_$][\\w$]*)\\(\\),await ${init}\\(\\),await ([A-Za-z_$][\\w$]*)\\(\\),([A-Za-z_$][\\w$]*)\\(\\)\\}`,
+        `async function ([A-Za-z_$][\\w$]*)\\(\\)\\{([A-Za-z_$][\\w$]*)\\(\\),await ${initRe}\\(\\),await ([A-Za-z_$][\\w$]*)\\(\\),([A-Za-z_$][\\w$]*)\\(\\)\\}`,
       ),
-      `async function $1(){$2(),await $3(),$4(),${init}().catch(console.error)}`,
+      `async function $1(){$2(),await $3(),$4(),${initOut}().catch(console.error)}`,
     ],
     [
       /(\.classList\.toggle\("display-results",[A-Za-z_$][\w$]*\),[^;]*;return\})let ([A-Za-z_$][\w$]*);/,
-      `$1await ${init}();let $2;`,
+      `$1await ${initOut}();let $2;`,
     ],
   ])
 }
