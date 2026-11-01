@@ -15,7 +15,7 @@ $$
 \mathcal{L} = \sum_{k} w_k \mathcal{L}_k
 $$
 
-$w_k$ 는 작업 $k$ 의 가중치로, 작업마다 손실의 크기와 수렴 속도가 다르기 때문에 이 값을 어떻게 두느냐가 결과를 크게 좌우한다.
+$w_k$ 는 작업 $k$ 의 가중치로, 작업마다 손실의 크기와 수렴 속도가 다르기 때문에 이 값을 어떻게 두느냐가 결과를 크게 좌우한다. 가중치를 정하는 방법으로는 Gradient Blending, GradNorm, uncertainty weighting 등이 있다 ([[Focal Loss와 Gradient Blending]]).
 
 # B) 왜 같이 학습시키나
 
