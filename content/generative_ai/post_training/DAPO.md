@@ -113,7 +113,7 @@ $$
 
 이제 어느 답변에 속했든 token 하나의 무게가 같다. 답변이 길수록 그 답변의 총 기여가 커진다.
 
-이 지점은 [[GSPO]]와 정반대 방향이라는 점에서 재미있다. GSPO는 답변 하나를 하나의 단위로 묶어 token 개수를 아예 보지 않는 쪽으로 갔고, DAPO는 token을 균등하게 세는 쪽으로 갔다. 그리고 GSPO의 후속인 LUSPO가 다시 loss에 $\lvert y_i \rvert$를 곱해 긴 답변의 기여를 되살리는데, 도달하는 곳은 DAPO의 token-level 평균과 같다.
+이 지점은 [[GSPO]]와 정반대 방향이라는 점에서 재미있다. GSPO는 답변마다 총 무게를 같게 두는 GRPO의 평균 방식을 그대로 두었고(긴 답변의 token 하나는 무게가 작다), DAPO는 token을 균등하게 세는 쪽으로 갔다. 그리고 GSPO의 후속인 LUSPO가 다시 loss에 $\lvert y_i \rvert$를 곱해 긴 답변의 기여를 되살리는데, 도달하는 곳은 DAPO의 token-level 평균과 같다.
 
 ## C.4) Overlong Reward Shaping: 잘린 답변의 reward를 손본다
 
