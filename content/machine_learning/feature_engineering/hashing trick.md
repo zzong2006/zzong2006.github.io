@@ -18,7 +18,7 @@ tags:
   - 흔한 값은 칸을 나눠도 그 칸을 거의 혼자 학습하고, 손해는 드문 값에 몰린다.
 - **충돌을 더 줄이려면 값 하나에 칸을 여러 개 준다.**
   - Hash Embeddings, double hashing, quotient-remainder trick 이 대표적이다.
-- **칸 수는 테이블의 행 수다.** 값 하나에 숫자 몇 개를 줄지(열 수)는 [[embedding dimension rule of thumb|임베딩 차원 경험칙]] 에서 다룬다.
+- **칸 수는 테이블의 행 수다.** 값 하나에 숫자 몇 개를 줄지(열 수)는 [[embedding dimension rule of thumb|임베딩 차원 경험 법칙]] 에서 다룬다.
 
 # A) Hashing Trick ?
 
@@ -135,7 +135,7 @@ vecs = embedding(ids)                          # shape (2, 1, 64)
 2. 허용할 충돌 비율 $r$ 을 정하고 $m = n / r$ 로 잡는다. Bernardi (2018) 는 종류가 많고 계속 늘어나는 필드에 $r = 5\%$, 즉 $m = 20n$ 을 권했다.
 3. $m \times d \times 4$ 바이트가 메모리 안에 드는지 본다.
 4. 값이 수백, 수천 개뿐이고 잘 바뀌지 않는 필드는 해시 대신 사전을 쓴다.
-5. 가능하면 $m$ 을 두세 가지로 바꿔 validation log loss 나 AUC 를 비교한다. 충돌이 성능에 주는 영향은 데이터마다 다르다.
+5. 가능하면 $m$ 을 두세 가지로 바꿔 validation [[cross-entropy|log loss]] 나 [[Area Under Curve|AUC]] 를 비교한다. 충돌이 성능에 주는 영향은 데이터마다 다르다.
 
 # F) 대안과 비교
 
