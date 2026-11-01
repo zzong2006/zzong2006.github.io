@@ -23,3 +23,6 @@ ef8cfd0f52f9705c722cd321691aab7ecd773fc8
 
 # Restore original casing and acronyms in 607 note titles (#64, frontmatter title only)
 59fabf0e0e87126b10d3539de2ed271733717311
+
+# 제목의 인라인 수식을 평문으로 (#65, 19 notes, 헤딩의 TeX 표기만 바꿈)
+999d97f46532a32fa3de2f013433fa664cc30ce7
