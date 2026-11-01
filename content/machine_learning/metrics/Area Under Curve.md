@@ -1,66 +1,237 @@
 ---
-title: "Area Under Curve"
-aliases: ["AUC", "AUROC", "Area Under the ROC Curve"]
+title: "ROC 곡선과 AUC"
+aliases: ["AUC", "AUROC", "ROC-AUC", "Area Under the ROC Curve", "ROC", "ROC Curve"]
 tags:
   - classification
   - metrics
   - machine_learning
 ---
 
-# A) AUC
+스팸 필터를 만든다고 하자. 모델은 메일마다 스팸일 것 같은 정도를 0 과 1 사이 점수로 준다. 점수가 기준값 (threshold) 이상이면 스팸함으로 보낸다.
 
-AUC 는 [[ROC Curve|ROC]] 곡선 아래의 면적이다. ROC 곡선이 임계값을 0 에서 1 까지 훑으면서 그려지는 곡선이므로, 그 아래 면적은 "임계값을 어디에 두든 평균적으로 얼마나 잘 구분하는가" 를 한 숫자로 요약한 값이 된다. 임계값을 하나 고정해야 하는 [[accuracy]] 나 [[precision]] 과 달리 임계값 선택에서 자유롭다는 것이 AUC 의 성격이다.
+- 기준값을 0.9 로 높이면 확실한 스팸만 걸러 낸다. 애매한 스팸은 받은편지함에 남는다.
+- 기준값을 0.1 로 낮추면 스팸은 거의 다 잡는다. 대신 정상 메일까지 스팸함으로 간다.
 
-ROC 곡선에 대한 면적임을 명시할 때는 AUROC (Area Under the Receiver Operating Characteristic Curve) 라고 쓴다. AUC 만 쓰면 [[precision]]-[[Recall]] 곡선의 면적 (AUPRC) 과 헷갈릴 수 있어서, 논문에서는 AUROC 로 적는 경우가 많다.
+모델 두 개 중 어느 쪽이 나은지 비교하고 싶은데, 기준값을 어디 두느냐에 따라 승자가 바뀔 수 있다.
+
+**ROC 곡선은 기준값을 처음부터 끝까지 바꿔 가며 모델의 판정을 전부 그린 그림이고, AUC 는 그 그림을 숫자 하나로 줄인 값이다.** 기준값을 정하지 않고도 모델끼리 비교할 수 있다.
+
+# A) 기준값을 내리며 ROC 곡선 그리기
+
+메일 4 통으로 해 보자. 모델이 준 점수는 다음과 같다.
+
+- A: 실제 스팸, 점수 0.9
+- B: 실제 정상, 점수 0.8
+- C: 실제 스팸, 점수 0.7
+- D: 실제 정상, 점수 0.1
+
+기준값을 1 보다 높은 곳에서 시작해 조금씩 내린다. 기준값이 어떤 메일의 점수 밑으로 내려가면 그 메일이 스팸 판정에 들어온다. 그래서 점수 순서대로 A → B → C → D 가 하나씩 들어온다.
+
+메일이 하나 들어올 때마다 비율 두 개를 센다.
+
+- **TPR (True Positive Rate)**: 실제 스팸 중 스팸으로 찾아낸 비율이다.
+  - [[Recall]] 과 같은 값이다.
+  - 스팸이 2 통이라 하나 찾을 때마다 0.5 씩 오른다.
+- **FPR (False Positive Rate)**: 실제 정상 메일 중 스팸으로 잘못 보낸 비율이다.
+  - [[statistic/False Positive Rate|FPR]] 은 1 − [[Specificity]] 와 같다.
+  - 정상 메일도 2 통이라 하나 잘못 보낼 때마다 0.5 씩 오른다.
+
+| 기준값 | 스팸 판정 | TPR | FPR |
+| --- | --- | --- | --- |
+| 0.9 보다 큼 | 없음 | 0 | 0 |
+| 0.9 | A | 0.5 | 0 |
+| 0.8 | A, B | 0.5 | 0.5 |
+| 0.7 | A, B, C | 1 | 0.5 |
+| 0.1 | A, B, C, D | 1 | 1 |
+
+가로축에 FPR, 세로축에 TPR 을 두고 이 점들을 이으면 ROC 곡선 (Receiver Operating Characteristic curve) 이다.
+
+- 실제 스팸이 들어오면 위로 올라간다.
+- 정상 메일이 들어오면 오른쪽으로 간다.
+
+아래 그림 왼쪽은 메일 4 통의 점수이고, 오른쪽은 그 순서대로 그린 ROC 곡선이다. 파란 칠은 곡선 아래 면적이다.
+
+![[img-8ec24f4f80.png]]
+
+곡선은 항상 왼쪽 아래 (0, 0) 에서 시작해 오른쪽 위 (1, 1) 에서 끝난다. 아무 메일도 스팸으로 보내지 않으면 두 비율이 모두 0 이고, 전부 보내면 모두 1 이다.
+
+**좋은 모델의 곡선은 왼쪽 위 모서리에 붙는다.**
+
+- 스팸이 점수 위쪽에 몰려 있으면 오른쪽으로 가기 전에 위로 먼저 다 올라간다.
+- 스팸과 정상 메일이 점수에서 뒤섞여 있으면 위와 오른쪽을 번갈아 가서, 곡선이 회색 점선 대각선에 가까워진다.
+
+실제로는 메일이 수천 통이라 계단이 아주 잘아져서 매끄러운 곡선처럼 보인다. 점수가 똑같은 스팸과 정상 메일이 있으면 둘이 동시에 들어오므로 곡선이 대각선 방향으로 움직인다.
+
+# B) 곡선 아래 면적 AUC
+
+AUC (Area Under the Curve) 는 ROC 곡선 아래 면적이다. PR 곡선 아래 면적과 구분하려고 AUROC 또는 ROC-AUC 라고도 쓴다.
+
+메일 4 통의 곡선 아래는 직사각형 두 개로 나뉜다.
+
+- B 가 들어오며 오른쪽으로 간 구간: 폭 0.5, 높이 0.5 라서 면적 0.25
+- D 가 들어오며 오른쪽으로 간 구간: 폭 0.5, 높이 1 이라서 면적 0.5
+- 위로 올라가는 구간은 폭이 0 이라 면적을 더하지 않는다.
+
+둘을 더하면 AUC 는 0.75 다.
+
+값은 양 끝 두 경우를 기억하면 읽힌다.
+
+- **AUC 1**: 모든 스팸이 모든 정상 메일보다 높은 점수를 받았다. 곡선이 위로 끝까지 올라간 뒤 오른쪽으로 간다.
+- **AUC 0.5**: 점수가 스팸과 정상 메일을 전혀 구분하지 못한다. 곡선이 대각선을 따라간다. 동전을 던져 점수를 매긴 것과 같다.
+
+아래 그림은 실제 스팸과 실제 정상 메일의 점수 분포가 멀어지고 겹칠 때 ROC 곡선이 어떻게 변하는지 보여 준다. 두 분포가 멀어질수록 곡선이 왼쪽 위로 붙고, 완전히 겹치면 대각선이 된다.
 
 ![[img-22d80b9cf0.gif]]
 
-값의 해석은 두 기준점만 기억하면 된다.
+AUC 가 0.5 보다 낮으면 모델이 거꾸로 매기고 있다는 뜻이다. 점수 방향이 반대인지, 어느 클래스를 positive 로 지정했는지부터 확인한다. 점수를 뒤집으면 AUC 는 1 − AUC 가 된다.
 
-| AUC | 의미 |
-| --- | --- |
-| 1.0 | 모든 positive 를 모든 negative 보다 높게 점수 매긴 완벽한 분류 |
-| 0.5 | 두 class 의 점수 분포가 완전히 겹친 상태. 무작위 추측과 같다 |
+# C) 스팸을 정상 메일보다 높게 매길 확률
 
-위 그림에서 두 class 분포가 완전히 겹치면 ROC 곡선이 대각선이 되면서 AUC 가 0.5 가 되고, 이때 모델은 이진 분류기로서의 판별력을 잃은 것이다. 분포가 떨어질수록 곡선이 좌상단으로 붕 뜨면서 AUC 가 1 에 가까워진다.
+AUC 는 확률로도 읽을 수 있다. **스팸 하나와 정상 메일 하나를 무작위로 골랐을 때, 모델이 스팸에 더 높은 점수를 줄 확률이 AUC 다.**
 
-AUC 에는 확률적 해석이 하나 더 있다. positive 샘플 하나와 negative 샘플 하나를 무작위로 뽑았을 때, 모델이 positive 쪽에 더 높은 점수를 줄 확률이 곧 AUC 다. 그래서 AUC 는 예측 확률의 절대값이 아니라 **순위** 만 본다. 확률값 자체가 맞아야 하는 상황이라면 [[probability calibration]] 을 따로 확인해야 한다.
+메일 4 통에서 스팸 하나와 정상 메일 하나를 짝지으면 4 쌍이 나온다.
 
-# B) 임계값의 의미
+- A (0.9) 와 B (0.8): 스팸이 높다. 맞음
+- A (0.9) 와 D (0.1): 스팸이 높다. 맞음
+- C (0.7) 와 B (0.8): 정상 메일이 높다. 틀림
+- C (0.7) 와 D (0.1): 스팸이 높다. 맞음
 
-AUC 를 이해하려면 그 아래 깔린 임계값 개념이 먼저 필요하다.
+4 쌍 중 3 쌍이 맞아서 0.75 다. 곡선 아래 면적과 같다.
 
-대부분의 분류 모델은 0 과 1 사이의 확률값을 출력한다. 임계값은 이 확률을 positive / negative 로 가르는 기준점이다. 임계값이 0.5 라면 출력 0.7 은 positive, 0.3 은 negative 로 분류된다.
+두 값이 같은 이유는 그림의 직사각형 높이에 있다.
 
-임계값을 움직이면 두 지표가 같은 방향으로 함께 움직인다.
+- 첫 직사각형은 정상 메일 B 가 들어올 때 생긴다. 높이 0.5 는 B 보다 점수가 높은 스팸의 비율이다. 스팸 A, C 중 A 하나만 B 를 이겼다.
+- 두 번째 직사각형은 정상 메일 D 가 들어올 때 생긴다. 높이 1 은 D 보다 점수가 높은 스팸의 비율이다. A, C 모두 D 를 이겼다.
 
-- 임계값을 올리면 (예: 0.7) positive 판정이 엄격해져 [[False Positive]] 가 줄어들지만 [[Recall|True Positive]] 도 같이 줄어든다.
-- 임계값을 내리면 (예: 0.3) positive 판정이 관대해져 True Positive 가 늘어나지만 False Positive 도 같이 늘어난다.
+직사각형 하나가 정상 메일 하나에 대응하고, 그 높이는 그 정상 메일을 이긴 스팸의 비율이다. 폭이 모두 같으므로 면적은 이 비율의 평균이 되고, 그 평균은 모든 쌍 중 스팸이 이긴 쌍의 비율이다.
 
-ROC 곡선은 이 trade-off 를 임계값 전 구간에 대해 그린 그림이고, AUC 는 그 그림을 한 숫자로 줄인 것이다. 곡선을 직접 보면 실제 응용에서 쓸 임계값을 어디로 잡을지 판단할 수 있다.
+이 해석에서 두 가지가 따라 나온다.
 
-## B.1) TPR 과 FPR
+**AUC 는 점수의 순서만 본다.**
 
-ROC 곡선의 두 축은 다음과 같다.
+- 모든 점수를 제곱해도 순서가 그대로라 AUC 도 그대로다.
+- 그래서 AUC 가 높아도 점수 0.8 이 스팸일 확률 80% 라는 보장은 없다. 점수를 확률로 쓰려면 [[probability calibration]] 을 따로 본다.
 
-- **TPR** (True Positive Rate, 민감도 = [[Recall]]): 실제 positive 중 모델이 positive 로 맞춘 비율
-- **FPR** (False Positive Rate, 1 − [[Specificity]]): 실제 negative 중 모델이 positive 로 잘못 판정한 비율
+**AUC 0.75 는 메일의 75% 를 맞게 분류했다는 뜻이 아니다.**
 
-# C) 한계
+- 같은 메일 4 통에서 기준값을 0.5 로 두면 4 통 중 3 통을 맞히고, 0.95 로 두면 2 통만 맞힌다.
+- 기준값이 바뀌어도 AUC 는 0.75 그대로다. AUC 는 맞게 분류한 메일의 비율이 아니라 순서를 맞게 매긴 쌍의 비율이다.
 
-AUC 는 오분류의 실제 비용을 반영하지 않는다. False Positive 한 건과 False Negative 한 건이 사업적으로 전혀 다른 손실을 낼 때도 AUC 는 둘을 같은 무게로 센다.
+# D) AUC 가 담지 못하는 것
 
-class 비율이 심하게 치우친 경우에도 해석이 어려워진다. positive 가 100 개 중 2 개뿐이면 예측 하나가 바뀌는 것만으로 TPR 이 50% 움직여서 곡선 자체가 불안정해진다. 이런 [[class imbalance problem]] 상황에서는 AUPRC 를 함께 본다.
+AUC 는 모든 기준값을 한 숫자로 뭉친 값이다. 하지만 실제 서비스는 기준값 하나를 골라 운영한다.
 
-# D) Multi-class 와 Multi-label
+**실제로 쓸 기준값 근처의 성능은 따로 봐야 한다.**
 
-원래 AUC 는 이진 분류용 지표라서, class 가 셋 이상이면 이진 문제로 쪼개서 계산한다.
+- 정상 메일이 스팸함에 가는 일이 거의 없어야 한다면 곡선의 왼쪽 끝, 예를 들어 FPR 1% 근처만 중요하다.
+- AUC 가 같은 두 모델도 이 구간에서는 차이가 클 수 있다. 이럴 때는 FPR 1% 에서 TPR 이 얼마인지처럼 운영할 지점을 직접 본다.
 
-**Multi-class** — `[1, 0, 2]` 처럼 정답 class 가 하나지만 종류가 여러 개인 경우다. 각 class 를 차례로 positive 로 두고 나머지 전부를 negative 로 묶어 AUC 를 구한 뒤 평균한다. one-vs-rest 방식이다. torchmetrics 는 one-vs-one 방식을 지원하지 않고, 기본값이 전체 class 평균이며 `average` 인자로 바꿀 수 있다.
+**두 가지 실수의 비용 차이를 반영하지 않는다.**
 
-**Multi-label** — `[1, 0, 1]` 처럼 한 샘플에 positive label 이 여러 개 붙는 경우다. label 별로 독립적인 이진 문제로 보고 각각 AUC 를 구한다.
+- 스팸 하나를 놓치는 것보다 중요한 메일 하나가 스팸함에 가는 쪽이 훨씬 비쌀 수 있다.
+- AUC 는 두 실수를 같은 무게로 센다. 비용으로 기준값을 고르는 법은 [[분류 모델의 학습과 평가]] 에 있다.
 
-# E) References
+# E) 스팸이 드물 때 PR 곡선과의 비교
 
-* [AUROC — PyTorch-Metrics documentation](https://lightning.ai/docs/torchmetrics/stable/classification/auroc.html)
-* [분류: ROC 및 AUC | Machine Learning | Google for Developers](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
+실제 메일함에는 정상 메일이 스팸보다 훨씬 많다. 한 클래스가 이렇게 드문 상태를 [[class imbalance problem|클래스 불균형]] 이라고 한다. 이때 ROC 곡선은 모델을 실제보다 좋아 보이게 할 수 있다.
+
+메일 4 통에서 정상 메일만 10 배로 늘려 보자.
+
+- B 와 같은 점수 0.8 인 정상 메일 10 통
+- D 와 같은 점수 0.1 인 정상 메일 10 통
+- 스팸은 그대로 A, C 2 통
+
+모델이 매기는 순서는 바뀌지 않았다. 바뀐 것은 정상 메일의 수뿐이다.
+
+이번에는 ROC 곡선 옆에 PR 곡선 (Precision–Recall curve) 을 함께 그린다.
+
+- PR 곡선은 가로축에 Recall (= TPR), 세로축에 [[precision|Precision]] 을 둔다.
+- Precision 은 스팸이라고 판정한 메일 중 진짜 스팸의 비율이다.
+- PR 곡선 아래 면적을 요약한 값을 AP (Average Precision) 라고 부른다.
+
+아래 그림에서 파란 실선은 원래 4 통, 주황 점선은 정상 메일을 10 배로 늘린 22 통이다.
+
+![[img-3b1967c631.png]]
+
+**ROC 는 그대로인데 PR 은 크게 나빠진다.**
+
+- ROC-AUC 는 0.75 그대로다. 정상 메일이 10 배가 돼도 FPR 은 비율이라서 똑같이 0.5 씩 오른다.
+- AP 는 0.83 에서 0.58 로 떨어진다. C 를 찾으려면 기준값을 0.7 까지 내려야 하는데, 그 사이 점수 0.8 인 정상 메일 10 통이 함께 스팸함에 들어간다.
+
+사용자가 체감하는 것은 PR 쪽이다. 스팸함 12 통을 열었는데 10 통이 정상 메일이면 이 필터를 믿기 어렵다.
+
+FPR 의 분모는 정상 메일 전체다. 정상 메일이 아주 많으면 오탐이 많이 늘어도 FPR 은 거의 움직이지 않는다. 그래서 사기 탐지, 희귀 질환 진단, 클릭 예측처럼 positive 가 드문 문제에서는 ROC-AUC 와 함께 PR 곡선이나 AP 를 본다.
+
+**무작위 점수의 기준선도 다르다.**
+
+- ROC-AUC 는 데이터와 상관없이 0.5 다.
+- AP 는 positive 비율 근처다. 4 통이면 0.5, 22 통이면 2/22, 약 0.09 다.
+- 그래서 AP 는 positive 비율이 다른 데이터끼리 숫자만 놓고 비교하면 안 된다.
+
+AP 를 PR-AUC 라고 부르기도 하지만, PR 곡선을 사다리꼴로 이어 잰 면적과는 값이 조금 다르다. 논문이나 코드에서 PR-AUC 를 보면 어느 쪽인지 확인한다.
+
+# F) 클래스가 셋 이상일 때
+
+ROC 곡선은 positive 와 negative 두 클래스로 그린다. 메일을 스팸, 광고, 정상 셋으로 나누면 이진 문제로 쪼개서 AUC 를 구한다.
+
+- **One-vs-Rest (OvR)**: 스팸 대 나머지, 광고 대 나머지, 정상 대 나머지로 AUC 를 세 번 구해 평균한다.
+- **One-vs-One (OvO)**: 스팸 대 광고처럼 두 클래스씩 짝지어 AUC 를 구해 평균한다.
+
+평균은 클래스마다 같은 비중으로 내거나 (macro), 클래스별 샘플 수로 가중해서 낸다 (weighted). macro 는 드문 클래스도 같은 비중으로 반영하고, weighted 는 흔한 클래스 쪽에 끌려간다.
+
+한 메일에 레이블이 여러 개 붙을 수 있는 multi-label 이면 레이블마다 따로 이진 문제로 보고 AUC 를 구한다.
+
+# 부록: 식과 설정
+
+## 확률 해석의 식
+
+$$
+\mathrm{AUC}=\Pr(s^+>s^-)+\tfrac{1}{2}\Pr(s^+=s^-)
+$$
+
+- $s^+$ 는 무작위로 고른 positive 의 점수, $s^-$ 는 negative 의 점수다.
+- 동점인 쌍은 절반만 맞은 것으로 센다.
+- 이 값은 Mann–Whitney U 통계량을 positive 수 × negative 수로 나눈 값과 같다. 메일 4 통이면 $U=3$, 쌍의 수 $2\times2=4$ 라서 $3/4=0.75$ 다.
+
+## TPR, FPR, Precision
+
+$$
+\mathrm{TPR}=\frac{TP}{TP+FN},\qquad
+\mathrm{FPR}=\frac{FP}{FP+TN},\qquad
+\mathrm{Precision}=\frac{TP}{TP+FP}
+$$
+
+정상 메일을 10 배로 늘린 22 통에서 기준값 0.7 이면 $TP=2$, $FN=0$, $FP=10$, $TN=10$ 이다. 그래서 $\mathrm{TPR}=1$, $\mathrm{FPR}=0.5$, $\mathrm{Precision}=2/12$ 다.
+
+Positive 비율을 $\pi$ 라 하면 Precision 은 TPR, FPR 과 다음처럼 이어진다.
+
+$$
+\mathrm{Precision}=\frac{\pi\,\mathrm{TPR}}{\pi\,\mathrm{TPR}+(1-\pi)\,\mathrm{FPR}}
+$$
+
+TPR 과 FPR 이 그대로여도 $\pi$ 가 작아지면 Precision 이 떨어진다. 22 통 예시로 검산하면 $\pi=2/22$ 일 때 $\dfrac{(2/22)\cdot1}{(2/22)\cdot1+(20/22)\cdot0.5}=\dfrac{2}{12}$ 다.
+
+## AP
+
+$$
+\mathrm{AP}=\sum_k\left(R_k-R_{k-1}\right)P_k
+$$
+
+- $R_k$, $P_k$ 는 Recall 이 늘어나는 $k$ 번째 지점의 Recall 과 Precision 이고, $R_0=0$ 이다.
+- 원래 4 통: $0.5\times1+0.5\times\tfrac{2}{3}=\tfrac{5}{6}\approx0.83$
+- 정상 메일 10 배: $0.5\times1+0.5\times\tfrac{2}{12}=\tfrac{7}{12}\approx0.58$
+
+## 라이브러리 설정
+
+- scikit-learn `roc_auc_score(y_true, y_score)`
+  - `y_score` 에는 0/1 판정이 아니라 점수를 넣는다. 판정을 넣으면 기준값이 사실상 하나뿐이라 곡선이 꺾이는 점도 하나가 된다.
+  - 다중 클래스는 `multi_class="ovr"` 또는 `"ovo"`, 평균은 `average="macro"` 또는 `"weighted"` 로 정한다.
+- scikit-learn `average_precision_score` 는 위 AP 식을 쓴다. `auc(recall, precision)` 은 사다리꼴 면적이라 값이 다르다.
+- torchmetrics `AUROC(task="multiclass")` 는 OvR 방식만 지원한다.
+
+# References
+
+- [분류: ROC 및 AUC | Machine Learning | Google for Developers](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
+- [scikit-learn: roc_auc_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html)
+- [scikit-learn: average_precision_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)
+- [AUROC — PyTorch-Metrics documentation](https://lightning.ai/docs/torchmetrics/stable/classification/auroc.html)
