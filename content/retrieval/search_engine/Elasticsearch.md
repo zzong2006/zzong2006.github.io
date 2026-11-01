@@ -13,6 +13,8 @@ aliases: [ES]
 
 [[Lucene|Apache Lucene]] 기반의 분산 검색/분석 엔진이다. JSON 문서를 색인하고, 풀텍스트 검색, 집계, 벡터 검색 등을 지원한다.
 
+키워드 검색에서 문서를 넣고 찾는 전체 흐름(analyzer, 역색인, BM25, shard·segment·refresh)은 [[Elasticsearch 검색 과정]] 에 있다.
+
 # B) 메모리 구조
 
 ## B.1) Lucene의 Mmap 방식
