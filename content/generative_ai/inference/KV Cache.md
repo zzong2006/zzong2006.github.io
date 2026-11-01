@@ -53,7 +53,7 @@ LLM 이 「오늘」 다음에 올 말을 만든다고 하자. 모델은 답을 
 - **Prefill 은 프롬프트 전체를 한 번에 넣어 캐시를 채운다.** 「오늘 날씨가 정말」 세 토큰의 K·V 를 모든 층에서 한꺼번에 계산해 캐시에 쓰고, 첫 출력 「좋다」 를 낸다.
   - 토큰이 수천 개면 가중치를 한 번 읽어 와 많은 토큰에 곱하는 큰 행렬곱이 된다. 그래서 GPU 의 연산 속도가 병목이다.
 - **Decode 는 직전 출력 한 토큰을 넣어 캐시에 한 칸 붙이고, 캐시 전체를 읽는다.** 답변이 끝날 때까지 반복한다.
-  - 토큰 하나 때문에 가중치 전체와 캐시 전체를 메모리에서 읽지만 계산할 양은 적다. 그래서 메모리 대역폭이 병목이다.
+  - 토큰 하나 때문에 가중치 전체와 캐시 전체를 메모리에서 읽지만 계산할 양은 적다. 그래서 메모리 대역폭이 병목이다 (Sarathi-Serve 1장·3.1절, DistServe 2.1절).
   - 실제로는 decode 의 attention 이 메모리에서 읽는 원소 수가 연산 수보다 많아서, 캐시를 읽는 속도만큼만 빨라질 수 있다 (DistServe 부록 A).
 
 **캐시가 클수록 decode 가 느려진다.** decode 한 스텝마다 캐시 전체를 읽기 때문이다. 두 단계의 연산 특성은 [[Prefill]] 노트에, 첫 토큰까지의 시간(TTFT)과 토큰 사이 간격(TPOT) 같은 지표는 [[vllm]] 노트에 있다.
@@ -70,6 +70,7 @@ $$
 - $b$ 는 숫자 하나의 바이트 수다. BF16·FP16 은 2, FP8 은 1 이다.
 - $T$ 는 시퀀스의 토큰 수(프롬프트 + 지금까지 만든 답변), $B$ 는 동시에 처리하는 요청 수다.
 - 앞의 다섯 항을 곱하면 토큰 하나의 크기가 되고, 뒤의 두 항은 그런 토큰이 몇 개인지다.
+- MHA 에서는 key·value head 수가 query head 수와 같다. NVIDIA 의 추론 최적화 글은 이 MHA 형태로 식을 적었다.
 
 key·value head 수가 query head 수와 같은 원래 방식(MHA)과, 줄인 방식(GQA)을 실제 모델 둘로 비교한다. 두 모델 모두 32 층에 query head 32 개, head 길이 128 로 같고 key·value head 수만 다르다.
 
@@ -94,7 +95,7 @@ Llama 3 8B 의 설정(Hugging Face `config.json`)은 층 32 개(`num_hidden_laye
 | 문맥 길이 | 8,192 | 1 GiB (요청 1 개) |
 | 동시 요청 수 | 16 | 16 GiB |
 
-마지막 줄의 16 GiB 는 모델 가중치와 맞먹는다. 가중치는 약 80 억 개 × 2 바이트 ≈ 16 GB 다. 같은 계산을 Llama 2 7B 에 하면 토큰 하나에 512 KiB 라서, 최대 문맥 4,096 토큰짜리 요청 하나가 2 GiB 다.
+마지막 줄의 16 GiB 는 모델 가중치와 맞먹는다. 가중치는 약 80 억 개 × 2 바이트 ≈ 16 GB 다. 같은 계산을 Llama 2 7B 에 하면 토큰 하나에 512 KiB 라서, 최대 문맥 4,096 토큰짜리 요청 하나가 2 GiB 다. Llama 3 70B 는 80 층에 key·value head 8 개라 토큰 하나에 320 KiB 이고, MHA 였다면 8 배인 2.5 MiB 다 (Llama 3 논문 Table 3).
 
 캐시는 토큰 수에 정비례하므로 직선으로 커진다.
 
@@ -125,6 +126,7 @@ Llama 3 8B 의 설정(Hugging Face `config.json`)은 층 32 개(`num_hidden_laye
   - 근사이므로 품질 변화를 따로 확인해야 한다. 2 비트까지 내린 방법(KIVI)도 있다. 일반적인 내용은 [[Quantization]] 노트에 있다.
 - **PagedAttention 은 토큰 하나의 크기가 아니라 빈자리를 줄인다.** 답변이 얼마나 길어질지 모르니, 기존 서빙 시스템은 요청마다 최대 길이만큼 메모리를 미리 잡았다.
   - Kwon et al. (2023, Figure 2) 의 측정에서 기존 시스템은 캐시용 메모리의 20.4–38.2% 에만 실제 key·value 를 담았고, 16 토큰 블록을 필요할 때 할당하는 vLLM 은 96.3% 를 담았다.
+  - 같은 프롬프트로 답변을 여러 개 뽑을 때는 공통 앞부분의 블록을 함께 쓴다.
   - 같은 GPU 에 요청을 더 많이 담을 수 있게 된다. 자세한 내용은 [[vllm]] 노트에 있다.
 
 **캐시 크기가 그대로인 방법도 decode 를 빠르게 할 수 있다.** FlashAttention·Flash-Decoding 은 캐시를 읽는 커널을 빠르게 하고, NSA·DSA 는 한 스텝에 읽는 토큰을 골라 줄인다. 이 방법들도 [[attention function|Attention]] 노트에 있다.
@@ -164,7 +166,7 @@ DeepSeek-V3 의 attention 크기(층 61 개, query head 128 개, head 길이 128
 | sliding window | 토큰 수를 층마다 W 로 제한 | Mistral 7B 는 W = 4096, 32K 시퀀스에서 8 배 감소 (Jiang et al., 2023, 2절) |
 | hybrid (Mamba·linear attention 층 + attention 층) | 층 수를 attention 층 수로 | Jamba(8 층 중 1 층만 attention) 는 256K 문맥에서 4 GB, Mixtral 은 32 GB (Lieber et al., 2024, Table 1) |
 | PagedAttention | 없음 (빈자리를 줄임) | 토큰당 크기는 그대로, 같은 메모리에 요청을 더 담는다 |
-| NSA, DSA | 없음 | 줄지 않는다. decode 한 스텝에 읽는 양이 준다 |
+| NSA, DSA | 없음 | 줄지 않는다 (DSA 는 indexer 의 key 가 더 붙는다). decode 한 스텝에 읽는 양이 준다 |
 | FlashAttention, Flash-Decoding | 없음 | 그대로. 캐시를 읽는 커널이 빨라진다 |
 
 # References
