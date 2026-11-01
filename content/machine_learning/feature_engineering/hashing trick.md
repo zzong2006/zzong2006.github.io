@@ -8,6 +8,18 @@ tags:
   - feature_engineering
 ---
 
+# 핵심 요약
+
+- **Hashing trick 은 큰 ID 공간을 해시 함수로 고정된 수의 칸(버킷)에 보내, 임베딩 테이블의 행 수를 미리 정한 크기로 묶는다.**
+  - 값과 번호를 짝지은 사전이 없어도 되고, 처음 보는 값도 계산만으로 칸을 얻는다.
+- **대가는 충돌이다.** 서로 다른 값이 같은 칸에 떨어지면 같은 파라미터를 나눠 쓴다.
+  - 칸을 값의 수만큼 잡아도 값의 63% 가 다른 값과 칸을 나눈다.
+- **성능 손실은 충돌 비율보다 훨씬 작다.**
+  - 흔한 값은 칸을 나눠도 그 칸을 거의 혼자 학습하고, 손해는 드문 값에 몰린다.
+- **충돌을 더 줄이려면 값 하나에 칸을 여러 개 준다.**
+  - Hash Embeddings, double hashing, quotient-remainder trick 이 대표적이다.
+- **칸 수는 테이블의 행 수다.** 값 하나에 숫자 몇 개를 줄지(열 수)는 [[embedding dimension rule of thumb|임베딩 차원 경험칙]] 에서 다룬다.
+
 # A) Hashing Trick ?
 
 Hashing trick(feature hashing)은 [[categorical feature|범주형 값]]을 정수 인덱스로 바꿀 때, 값과 번호를 짝지어 둔 사전(vocabulary) 대신 [[Hash|해시 함수]]를 쓰는 방법이다. 해시 함수의 출력을 칸 수로 나눈 나머지가 그 값의 인덱스가 된다.
@@ -137,13 +149,41 @@ vecs = embedding(ids)                          # shape (2, 1, 64)
 | 충돌 없는 동적 해시 테이블 (Monolith) | 키를 저장하는 Cuckoo 해시맵에 새 ID 를 삽입 | 삽입해서 새 행을 받음 | 없음 | 저장한 ID 수만큼. 빈도 필터와 만료로 줄임 |
 
 - **빈도 기반 사전 + OOV 버킷** 은 흔한 값에는 충돌 없는 번호를 주고, 충돌은 드문 값끼리만 남긴다. Keras `StringLookup` 에 `max_tokens` 와 `num_oov_indices` 를 주면 이렇게 된다. 사전이 남으므로 사전을 다시 만드는 주기만큼 새 값이 OOV 칸에 머문다.
-- **다중 해시** 는 사전 없이 충돌만 줄인다. $m = n$ 이어도 $k = 2$ 면 완전히 같은 표현을 갖는 쌍이 거의 사라진다.
-- **quotient-remainder trick**(Shi et al., KDD 2020)은 사전을 없애는 방법이 아니라 메모리를 줄이는 방법이다. 논문은 같은 파라미터 수에서 hashing trick 보다 loss 가 낮았다고 보고했다.
+- **다중 해시** 와 **quotient-remainder trick** 은 아래 "해시를 여러 개 쓰는 변형" 에서 다룬다.
 - **Monolith**(Liu et al., 2022)는 키를 함께 저장해 충돌을 아예 없애고, 일정 횟수 이상 나타난 ID 만 넣는 빈도 필터와 오래 안 쓰인 ID 를 지우는 만료로 메모리를 묶는다. 사전 대신 키를 실시간으로 넣고 빼는 테이블을 운영하는 비용을 치른다.
 
-# G) 부록
+# G) 해시를 여러 개 쓰는 변형
 
-## G.1) 충돌 확률 계산
+해시를 하나만 쓰면 같은 칸에 든 두 값은 완전히 같은 벡터를 쓴다. 아래 변형은 값 하나에 칸을 여러 개 준다. 국가 코드 예시에서 KR 과 US 가 첫 번째 해시로는 같은 칸에 들어도, 두 번째 해시로 다른 칸에 들면 두 나라의 최종 벡터는 달라진다.
+
+**Hash Embeddings (Svenstrup, Hansen, Winther, NIPS 2017)**
+
+- 값마다 독립 해시 $k$ 개로 공유 벡터 $B$ 개 중 $k$ 개를 고르고, 값마다 따로 학습하는 가중치 $k$ 개로 가중합한다.
+  - 가중치 표도 값 수만큼 다 두지 않고 해시로 줄여 쓸 수 있다. 사전 없이 돌린 실험(5.3절)은 가중치 표 1,000만 행, 공유 벡터 100만 개, $k = 2$ 를 썼다.
+- 같은 벡터를 고른 두 값도 가중치가 다르면 최종 벡터가 달라진다.
+- 논문 예시: 어휘 1억 개, 공유 벡터 100만 개일 때 $k = 1$ 이면 어떤 단어가 다른 단어와 완전히 겹칠 확률이 거의 1 이다. $k = 2$ 면 약 0.01% 로 준다.
+
+**Double hashing (Zhang et al., Twitter, RecSys 2020)**
+
+- 독립 해시 두 개로 행 두 개를 뽑아 원소별로 더하거나 이어 붙인다.
+  - 칸이 $B$ 개인 해시 두 개가 $B^2$ 칸짜리 해시 하나처럼 동작한다. 메모리는 $2B$ 행만 든다.
+- 해시를 두 번 계산하는 비용은 빈도로 줄였다(frequency hashing).
+  - 빈도 상위 값에는 사전으로 충돌 없는 행을 주고, 나머지 드문 값에만 double hashing 을 쓴다.
+- 두 제품 화면 실험에서 모델 크기를 약 90% 줄이면서 성능을 기존과 같게 유지했다.
+
+**Quotient-remainder trick (Shi, Mudigere, Naumov, Yang, KDD 2020)**
+
+- 엄밀히는 해시가 아니라, 정수 번호를 두 함수로 나눠 행 두 개를 꺼낸다.
+  - 번호 $i$ 를 $m$ 으로 나눈 나머지($i \bmod m$)와 몫($\lfloor i / m \rfloor$)으로 두 테이블에서 행을 하나씩 꺼내 원소별로 곱한다.
+- 상품 100만 개에 $m = 1000$ 이면 번호 123456 은 나머지 456 과 몫 123 을 받는다. 테이블은 100만 행 대신 1,000 행 두 개다.
+- 나머지와 몫이 둘 다 같은 번호는 없으므로 서로 다른 값은 반드시 다른 벡터를 받는다.
+- 사전을 없애는 방법이 아니라 메모리를 줄이는 방법이다. 논문은 같은 파라미터 수에서 hashing trick 보다 loss 가 낮았다고 보고했다.
+
+X 의 추천 모델이 다중 해시를 실제로 어떻게 구현했는지는 [[hash-based embedding]] 에 있다.
+
+# H) 부록
+
+## H.1) 충돌 확률 계산
 
 해시 함수가 각 값을 $m$ 칸 중 하나에 균등하고 독립적으로 보낸다고 가정하면, 충돌은 생일 문제와 같은 계산이 된다.
 
@@ -190,7 +230,7 @@ $$
 
 Bernardi (2018) 는 범주가 1,000 개 미만인 필드에 $m = n^2$ 을 권했지만, 이 크기에서도 충돌이 하나 이상 남을 확률이 40% 쯤이다.
 
-## G.2) 부호 해시가 없애는 편향과 남는 분산
+## H.2) 부호 해시가 없애는 편향과 남는 분산
 
 Weinberger et al. (2009) 의 부호 해시는 칸을 정하는 해시 $h$ 와 독립인 두 번째 해시 $\xi$ 로 부호를 정해 곱한다(원문 Definition 1, Eq. 2).
 
@@ -228,13 +268,13 @@ $$
 
 부호가 없으면 평균이 실제 내적 6 보다 편향 항만큼 크고, 부호를 붙이면 6 근처로 돌아온다. 표준편차는 두 경우가 같고 $m$ 을 4배로 늘릴 때마다 절반이 된다. 부호 해시는 평균의 쏠림만 고치고, 충돌 자체를 없애지는 않는다. KR 과 US 의 부호가 다르면 같은 가중치 $w$ 를 KR 은 $+w$, US 는 $-w$ 로 읽을 뿐 두 효과의 크기는 묶여 있다. 같은 구성을 밀집 벡터의 차원 축소에 쓰는 것이 [[Count Sketch]] 다.
 
-## G.3) 보고된 실험 결과
+## H.3) 보고된 실험 결과
 
 1. **Weinberger et al. (2009), 스팸 필터.** 사용자 433,167 명의 이메일 320만 통(고유 단어 약 4,000만 개). 기준선은 단어를 $2^{26}$ 칸에 해시한 공통 분류기다. 공통 분류기는 $m = 2^{22}$ 에서 성능이 더 오르지 않았고, 원문은 이 크기에서 충돌이 분류 오차에 영향을 주지 않았다고 썼다(원문 5절, Figure 2). 사용자 ID 와 단어의 개인화 feature 까지 $2^{22}$ 칸에 넣으면 놓친 스팸이 기준선보다 최대 30% 줄었다.
 2. **Bernardi (2018), Booking.com.** Vowpal Wabbit 의 [[logistic regression]] 을 Booking.com 내부 데이터(feature 약 20만 개, 예시 약 2.5억 개), Criteo(feature 약 3,000만 개, 예시 약 4,000만 개), Avazu(feature 약 4,000만 개, 예시 약 4,000만 개)에서 칸 수를 바꿔 학습했다. feature 의 50% 가 충돌해도 held-out log loss 증가가 0.5% 보다 훨씬 작았다. 같은 50% 에서 Booking.com 데이터의 log loss 증가는 Criteo 의 두 배를 넘었다.
 3. **Liu et al. (2022), Monolith.** MovieLens 에서 DeepFM 을 학습하며 ID 를 MD5 로 해시하자 고유 user ID 가 162,541 개에서 149,970 개로(7.73%), movie ID 가 59,047 개에서 57,361 개로(2.86%) 줄었다(원문 Table 1). 충돌 없는 테이블을 쓴 모델이 첫 epoch 부터 AUC 가 꾸준히 높았다. 차이는 그림으로만 나와 있다(원문 3.2.1절).
 
-## G.4) 빈도가 치우친 분포에서의 충돌 영향
+## H.4) 빈도가 치우친 분포에서의 충돌 영향
 
 충돌 비율에 비해 성능이 조금만 떨어지는 이유를 가상 분포로 확인했다. 고유값 100만 개의 등장 확률을 Zipf 분포로 두었다. Zipf 분포는 $i$ 번째로 흔한 값의 등장 확률이 $1/i^s$ 에 비례하는 분포로, $s$ 가 클수록 상위 값에 쏠린다. 등장 확률은 학습 예시 중 그 값이 나오는 예시의 비율로 읽으면 된다. $s = 1.0$ 이면 상위 1% 값이 전체 등장의 68% 를, $s = 1.2$ 이면 91% 를 차지한다.
 
@@ -260,6 +300,8 @@ $s = 1.0$, $m = n$ 에서 고유값의 63% 가 칸을 나누지만, 다른 값�
 - [Weinberger, Dasgupta, Attenberg, Langford, Smola. Feature Hashing for Large Scale Multitask Learning (ICML 2009, arXiv:0902.2206)](https://arxiv.org/abs/0902.2206) — Definition 1, Lemma 2, 5절 스팸 필터 실험
 - [Lucas Bernardi. Don't be tricked by the Hashing Trick (Booking.com Data Science, 2018)](https://booking.ai/dont-be-tricked-by-the-hashing-trick-192a6aae3087) — 충돌 기댓값 식, 세 데이터셋 실험, 칸 수 기준
 - [Shi, Mudigere, Naumov, Yang. Compositional Embeddings Using Complementary Partitions for Memory-Efficient Recommendation Systems (KDD 2020, arXiv:1909.02107)](https://arxiv.org/abs/1909.02107) — quotient-remainder trick
+- [Svenstrup, Hansen, Winther. Hash Embeddings for Efficient Word Representations (NIPS 2017, arXiv:1709.03933)](https://arxiv.org/abs/1709.03933) — 3절 구조, 4절 충돌 확률 예시
+- [Zhang et al. Model Size Reduction Using Frequency Based Double Hashing for Recommender Systems (RecSys 2020, arXiv:2007.14523)](https://arxiv.org/abs/2007.14523) — 3.2절 double hashing, 3.3절 frequency hashing
 - [Liu et al. Monolith: Real Time Recommendation System With Collisionless Embedding Table (ORSUM@RecSys 2022, arXiv:2209.07663)](https://arxiv.org/abs/2209.07663) — Table 1, 2.1절, 3.2.1절
 - [scikit-learn FeatureHasher](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.FeatureHasher.html)
 - [Keras Hashing layer](https://keras.io/api/layers/preprocessing_layers/categorical/hashing/), [StringLookup layer](https://keras.io/api/layers/preprocessing_layers/categorical/string_lookup/), [HashedCrossing layer](https://keras.io/api/layers/preprocessing_layers/categorical/hashed_crossing/)
