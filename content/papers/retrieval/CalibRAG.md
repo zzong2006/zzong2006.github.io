@@ -112,7 +112,7 @@ $$\Pr\big(y = U(x, z, f(t,q,d)) = \beta \mid f(t,q,d) = \beta\big) = \beta, \qua
 
 # E) 제안 방법: CalibRAG
 
-## E.1) Forecasting Function $f(t,q,d)$
+## E.1) Forecasting Function f(t,q,d)
 
 **핵심 아이디어**: query $q$와 document $d$, 그리고 사용자의 행동 특성 $t$ (temperature)만으로 "이 문서로 올바른 의사결정을 내릴 확률"을 예측.
 
@@ -312,7 +312,7 @@ $$\mathcal{L} = -\frac{1}{|\mathcal{S}|}\sum_{(t,q,d,b) \in \mathcal{S}} \big[b 
 
 CalibRAG†(Stage 3 포함)는 모든 retriever-dataset 조합에서 일관된 개선. 다만 추가 검색 비용 발생.
 
-### G.4.4) Threshold $\epsilon$ 분석 (Table 4, BioASQ)
+### G.4.4) Threshold ε 분석 (Table 4, BioASQ)
 
 | $\epsilon$ | AUROC | ACC | ECE | BS |
 |------------|-------|-----|-----|----|
@@ -360,7 +360,7 @@ CalibRAG†(Stage 3 포함)는 모든 retriever-dataset 조합에서 일관된 �
 
 # H) 핵심 인사이트
 
-## H.1) 왜 $f(t,q,d)$만으로 가능한가?
+## H.1) 왜 f(t,q,d)만으로 가능한가?
 
 $q$는 task $x$에서 파생, $d$는 retriever가 $q$에 대해 선택, guidance $z$는 $M(q,d)$로 결정. 따라서 $(q,d)$쌍이 downstream decision에 필요한 정보를 **간접적으로** 포함. LLM의 hidden state가 이를 충분히 인코딩할 수 있다.
 

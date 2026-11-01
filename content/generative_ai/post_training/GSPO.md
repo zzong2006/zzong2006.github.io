@@ -117,7 +117,7 @@ $$
 
 그룹 평균보다 잘 푼 답변은 양수($\widehat{A}_i > 0$), 못 푼 답변은 음수($\widehat{A}_i < 0$)를 받는다. 여기까지는 GRPO와 동일하다.
 
-## C.2) Sequence-level Importance Ratio $s_i(\theta)$
+## C.2) Sequence-level Importance Ratio s_i(θ)
 
 차이는 확률 비율을 정의하는 지점에서 나타난다. GRPO는 토큰별 비율 $w_{i,t}(\theta)$를 사용했다.
 
@@ -203,7 +203,7 @@ $$
 
 문장 레벨의 비율 $s_i(\theta)$가 허용 범위 $[1-\varepsilon, 1+\varepsilon]$를 벗어나면 클리핑되어 추가적인 이득이 제한된다.
 
-## D.2) $\varepsilon$이 0.2에서 0.0003으로 3자리나 작아진 이유
+## D.2) ε이 0.2에서 0.0003으로 3자리나 작아진 이유
 
 실무에서 GRPO에서 GSPO로 전환할 때 가장 많이 혼동하는 부분이 하이퍼파라미터 $\varepsilon$의 크기다.
 

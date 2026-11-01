@@ -338,7 +338,7 @@ Branch들이 달라야:
   → 각각 다른 관점에서 상품 retrieve → 다양성 확보!
 ```
 
-### E.4.2) $s_{ik}$가 뭔가?
+### E.4.2) s_ik가 뭔가?
 
 **같은 query에 대해** branch i와 k가 출력한 embedding 간의 cosine similarity:
 
@@ -416,7 +416,7 @@ $$\mathcal{L}_{\text{Info}} = -\frac{1}{N}\sum_{k=1}^{N}\log\left[\frac{\exp(\ma
 - $\gamma$: triplet margin
 - $\tau$: temperature
 
-### E.5.2) $\mathcal{L}_{\text{pos}}$가 왜 필요한가?
+### E.5.2) L_pos가 왜 필요한가?
 
 [[Triplet Loss]]/[[InfoNCE]]는 **상대적 순서**만 학습. positive > negative면 OK인데, 둘 다 score가 0.1, 0.05여도 조건 만족함.
 

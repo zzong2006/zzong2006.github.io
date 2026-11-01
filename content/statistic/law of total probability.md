@@ -17,13 +17,13 @@ aliases: []
 
 # B) 응용 사례
 
-## B.1) Joint Distribution $P(a,b,c,d)$ 에서 $P(b)$ 를 찾는 방법
+## B.1) Joint Distribution P(a,b,c,d) 에서 P(b) 를 찾는 방법
 
 $$
 P(b)=\sum_{a}\sum_{c}\sum_{d}P(a,b,c,d)
 $$
 
-## B.2) $P(c\mid b)$ 를 구하는 방법
+## B.2) P(c|b) 를 구하는 방법
 
 $$
 P(c\mid b)=\sum_{a}\sum_{d}P(a,c,d\mid b)=\frac{1}{P(b)}\sum_{a}\sum_{d}P(a,c,d,b)

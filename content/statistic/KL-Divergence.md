@@ -65,7 +65,7 @@ $$
 
 A섹션에서 말한 "비대칭이 실전에서 중요하다"가 여기다. 목표 분포를 $P$, 우리가 학습하는 분포를 $Q$라 하자. $P$는 봉우리(mode)가 여러 개인데 $Q$는 용량이 부족해 전부 정교하게 표현할 수 없는 상황이 문제의 핵심이다. 어느 방향을 최소화하느냐에 따라 $Q$의 행동이 달라진다.
 
-## C.1) Forward KL — $D_{KL}(P\|Q)$: mode-covering
+## C.1) Forward KL — D_KL(P‖Q): mode-covering
 
 $$
 D_{KL}(P\|Q)=\mathbb{E}_{x\sim P}\left[\log\frac{P(x)}{Q(x)}\right]
@@ -77,7 +77,7 @@ $$
 
 MLE(최대우도추정)가 정확히 forward KL 최소화다. 데이터 분포 위에서 모델의 log-likelihood를 평가하기 때문. 유도는 [[#KL과 MLE의 관계|D섹션]] 참고.
 
-## C.2) Reverse KL — $D_{KL}(Q\|P)$: mode-seeking
+## C.2) Reverse KL — D_KL(Q‖P): mode-seeking
 
 $$
 D_{KL}(Q\|P)=\mathbb{E}_{x\sim Q}\left[\log\frac{Q(x)}{P(x)}\right]

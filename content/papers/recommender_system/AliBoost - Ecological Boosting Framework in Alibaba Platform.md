@@ -285,7 +285,7 @@ $$\text{Deliver}_{u,i,t} = \begin{cases} 1, & \text{if } \text{Bid}_{u,i} > \tex
 
 직관적으로: CTR 예측이 높은 (user, item) 쌍에만 노출하되, 예산 소비 속도와 유저 상태를 고려해 가격을 동적 조절.
 
-### E.4.2) Boosting Speed Factor ($S_{i,t}$)
+### E.4.2) Boosting Speed Factor (S_i,t)
 
 예산 소비 속도를 목표에 맞추기 위한 PID 스타일 제어:
 
@@ -297,7 +297,7 @@ $$S_{i,t} = \delta_p \cdot E_{i,t} + \delta_q \cdot E_{i,t-1} + \delta_d \cdot E
 - 예산이 남으면 ($E < 1$) → Price 내려서 노출 늘림
 - $\delta_p, \delta_q, \delta_d$로 현재/과거 에러를 가중 평균 → 급격한 변동 방지
 
-### E.4.3) User Preference Factor ($U_u$)
+### E.4.3) User Preference Factor (U_u)
 
 유저의 "피로도"와 "활성도"를 결합:
 

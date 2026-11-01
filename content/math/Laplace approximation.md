@@ -61,7 +61,7 @@ $$
 \displaystyle q(z)=\left(\frac{A}{2\pi}\right)^{1/2}\exp\left\{-\frac{A}{2}\left(z-z_{0}\right)^{2}\right\}
 $$
 
-## B.1) 방법 ($M$-dimension 의 경우)
+## B.1) 방법 (M-dimension 의 경우)
 
 $$
 \ln f(\mathbf{z})\simeq\ln f\left(\mathbf{z}_{0}\right)-\frac{1}{2}\left(\mathbf{z}-\mathbf{z}_{0}\right)^{\mathrm{T}}\mathbf{A}\left(\mathbf{z}-\mathbf{z}_{0}\right)
