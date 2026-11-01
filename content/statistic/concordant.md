@@ -1,5 +1,5 @@
 ---
-title: "concordant"
+title: "Concordant"
 tags: statistic 
 aliases: []
 ---

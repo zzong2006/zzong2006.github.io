@@ -1,5 +1,5 @@
 ---
-title: "exponential distribution"
+title: "Exponential Distribution"
 tags: probability_distribution 
 aliases: []
 ---

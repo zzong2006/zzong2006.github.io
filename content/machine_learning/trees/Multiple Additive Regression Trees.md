@@ -1,5 +1,5 @@
 ---
-title: "Multiple Additive Regression Trees"
+title: "Multiple Additive Regression Trees (MART)"
 aliases: ["MART"]
 tags:
   - ensemble

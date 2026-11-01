@@ -1,5 +1,5 @@
 ---
-title: "shell script"
+title: "Shell Script"
 tags: language 
 aliases: []
 ---

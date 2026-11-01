@@ -1,5 +1,5 @@
 ---
-title: "correlation"
+title: "Correlation"
 aliases: ["상관"]
 tags:
   - metrics

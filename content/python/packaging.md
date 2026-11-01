@@ -1,5 +1,5 @@
 ---
-title: "packaging"
+title: "Packaging"
 tags: python 
 aliases: []
 ---

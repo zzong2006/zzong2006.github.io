@@ -1,5 +1,5 @@
 ---
-title: "sample space"
+title: "Sample Space"
 aliases: []
 tags:
   - statistic

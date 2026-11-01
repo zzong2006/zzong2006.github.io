@@ -1,5 +1,5 @@
 ---
-title: "closure"
+title: "Closure"
 aliases: ["클로저", "클로져"]
 tags:
   - python

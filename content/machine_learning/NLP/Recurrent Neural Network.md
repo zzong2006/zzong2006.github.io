@@ -1,5 +1,5 @@
 ---
-title: "Recurrent Neural Network"
+title: "Recurrent Neural Network (RNN)"
 aliases: ["RNN"]
 tags:
   - NLP

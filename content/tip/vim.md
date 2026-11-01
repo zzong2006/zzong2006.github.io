@@ -1,5 +1,5 @@
 ---
-title: "vim"
+title: "Vim"
 tags: 
 aliases: []
 ---

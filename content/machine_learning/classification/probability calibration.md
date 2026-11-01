@@ -1,5 +1,5 @@
 ---
-title: "probability calibration"
+title: "Probability Calibration"
 aliases: ["calibration", "확률 보정"]
 tags:
   - machine_learning

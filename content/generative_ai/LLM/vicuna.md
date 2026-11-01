@@ -1,5 +1,5 @@
 ---
-title: "vicuna"
+title: "Vicuna"
 tags:
   - LLM
 aliases:

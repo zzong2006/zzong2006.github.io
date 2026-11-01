@@ -1,5 +1,5 @@
 ---
-title: "Gradient Boosting Machine"
+title: "Gradient Boosting Machine (GBM)"
 tags:
   - ensemble
   - machine_learning

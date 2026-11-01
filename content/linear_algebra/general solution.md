@@ -1,5 +1,5 @@
 ---
-title: "general solution"
+title: "General Solution"
 tags:
   - linear_algebra
 ---

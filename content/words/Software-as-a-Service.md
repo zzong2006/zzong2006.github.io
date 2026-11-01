@@ -1,5 +1,5 @@
 ---
-title: "Software-as-a-Service"
+title: "Software-as-a-Service (SaaS)"
 tags: cloud
 aliases: ["SaaS"]
 ---

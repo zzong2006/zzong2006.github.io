@@ -1,5 +1,5 @@
 ---
-title: "boxplot"
+title: "Boxplot"
 tags:
   - statistic
   - visualization

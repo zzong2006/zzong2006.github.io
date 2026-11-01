@@ -1,5 +1,5 @@
 ---
-title: "PPR"
+title: "Personalized PageRank (PPR)"
 tags:
   - graph
   - recommendation_system

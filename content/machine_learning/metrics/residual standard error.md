@@ -1,5 +1,5 @@
 ---
-title: "residual standard error"
+title: "Residual Standard Error (RSE)"
 aliases: ["RSE"]
 tags:
   - metrics

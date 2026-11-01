@@ -1,5 +1,5 @@
 ---
-title: "conditional entropy"
+title: "Conditional Entropy"
 tags:
   - information_theory
   - statistic

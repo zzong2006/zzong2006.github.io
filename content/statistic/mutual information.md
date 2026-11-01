@@ -1,5 +1,5 @@
 ---
-title: "mutual information"
+title: "Mutual Information (MI)"
 tags:
   - information_theory
   - statistic

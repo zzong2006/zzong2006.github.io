@@ -1,5 +1,5 @@
 ---
-title: "Probability Density Function"
+title: "Probability Density Function (PDF)"
 aliases: ["pdf", "PDF", "확률 밀도 함수"]
 tags:
   - probability_distribution

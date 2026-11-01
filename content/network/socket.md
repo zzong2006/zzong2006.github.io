@@ -1,5 +1,5 @@
 ---
-title: "socket"
+title: "Socket"
 tags: network 
 aliases: []
 ---

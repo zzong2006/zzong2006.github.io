@@ -1,5 +1,5 @@
 ---
-title: "bag of words"
+title: "Bag of Words (BoW)"
 tags:
   - NLP
   - word2vec

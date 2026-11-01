@@ -1,5 +1,5 @@
 ---
-title: "backpropagation"
+title: "Backpropagation"
 tags:
   - machine_learning
   - math

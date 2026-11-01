@@ -1,5 +1,5 @@
 ---
-title: "heterogeneous"
+title: "Heterogeneous"
 tags: word 
 aliases: []
 ---

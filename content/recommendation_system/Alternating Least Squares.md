@@ -1,5 +1,5 @@
 ---
-title: "Alternating Least Squares"
+title: "Alternating Least Squares (ALS)"
 tags:
   - machine_learning
   - matrix_factorization

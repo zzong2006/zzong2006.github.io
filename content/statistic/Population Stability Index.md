@@ -1,5 +1,5 @@
 ---
-title: "Population Stability Index"
+title: "Population Stability Index (PSI)"
 tags:
   - metrics
   - machine_learning

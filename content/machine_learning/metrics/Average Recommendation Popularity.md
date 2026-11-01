@@ -1,5 +1,5 @@
 ---
-title: "Average Recommendation Popularity"
+title: "Average Recommendation Popularity (ARP)"
 aliases: ["ARP"]
 tags:
   - bias

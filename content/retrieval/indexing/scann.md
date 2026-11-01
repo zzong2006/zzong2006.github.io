@@ -1,5 +1,5 @@
 ---
-title: "scann"
+title: "ScaNN"
 tags:
   - ANN
   - vector_search

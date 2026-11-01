@@ -1,5 +1,5 @@
 ---
-title: "Memory Management Unit"
+title: "Memory Management Unit (MMU)"
 aliases: ["MMU"]
 tags:
   - operating_system

@@ -1,5 +1,5 @@
 ---
-title: "quantile function"
+title: "Quantile Function"
 tags: statistic 
 aliases: []
 ---

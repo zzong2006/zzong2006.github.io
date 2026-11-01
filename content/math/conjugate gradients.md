@@ -1,5 +1,5 @@
 ---
-title: "conjugate gradients"
+title: "Conjugate Gradients"
 tags:
   - optimization
   - numerical_method

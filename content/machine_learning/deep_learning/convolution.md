@@ -1,5 +1,5 @@
 ---
-title: "convolution"
+title: "Convolution"
 aliases: ["합성곱"]
 tags:
   - deep_learning

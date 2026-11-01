@@ -1,5 +1,5 @@
 ---
-title: "regression"
+title: "Regression"
 aliases: []
 tags:
   - linear_regression

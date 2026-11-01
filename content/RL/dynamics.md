@@ -1,5 +1,5 @@
 ---
-title: "dynamics"
+title: "Dynamics"
 tags: reinforcement_learning 
 aliases: []
 ---

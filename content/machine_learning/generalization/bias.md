@@ -1,5 +1,5 @@
 ---
-title: "bias"
+title: "Bias"
 aliases: []
 tags:
   - machine_learning

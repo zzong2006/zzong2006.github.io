@@ -1,5 +1,5 @@
 ---
-title: "One Hot Encoding"
+title: "One-Hot Encoding (OHE)"
 tags:
   - word2vec
   - machine_learning

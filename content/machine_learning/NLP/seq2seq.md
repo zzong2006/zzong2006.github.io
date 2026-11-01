@@ -1,5 +1,5 @@
 ---
-title: "seq2seq"
+title: "Seq2Seq"
 aliases: []
 tags:
   - RNN

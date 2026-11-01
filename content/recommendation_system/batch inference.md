@@ -1,5 +1,5 @@
 ---
-title: "batch inference"
+title: "Batch Inference"
 tags:
   - machine_learning
 aliases: []

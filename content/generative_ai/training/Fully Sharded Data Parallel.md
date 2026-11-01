@@ -1,5 +1,5 @@
 ---
-title: "Fully Sharded Data Parallel"
+title: "Fully Sharded Data Parallel (FSDP)"
 aliases: ["FSDP"]
 tags:
   - huggingface

@@ -1,5 +1,5 @@
 ---
-title: "mean field approximation"
+title: "Mean Field Approximation"
 tags:
   - bayesian_inference
   - optimization

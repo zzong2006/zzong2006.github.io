@@ -1,5 +1,5 @@
 ---
-title: "offline evaluation"
+title: "Offline Evaluation"
 aliases: []
 tags:
   - machine_learning

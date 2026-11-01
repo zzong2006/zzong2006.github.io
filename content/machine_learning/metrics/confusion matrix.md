@@ -1,5 +1,5 @@
 ---
-title: "confusion matrix"
+title: "Confusion Matrix"
 ---
 
 # A) Confusion Matrix

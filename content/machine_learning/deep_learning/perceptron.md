@@ -1,5 +1,5 @@
 ---
-title: "perceptron"
+title: "Perceptron"
 aliases: ["퍼셉트론"]
 tags:
   - deep_learning

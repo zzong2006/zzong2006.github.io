@@ -1,5 +1,5 @@
 ---
-title: "statistic"
+title: "Statistic"
 ---
 [[maximum a posteriori probability]]
 

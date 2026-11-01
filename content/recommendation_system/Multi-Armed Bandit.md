@@ -1,5 +1,5 @@
 ---
-title: "Multi-Armed Bandit"
+title: "Multi-Armed Bandit (MAB)"
 aliases: [MAB]
 tags:
   - MAB

@@ -1,5 +1,5 @@
 ---
-title: "logging"
+title: "Logging"
 tags:
   - python
 aliases: []

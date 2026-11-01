@@ -1,5 +1,5 @@
 ---
-title: "sequential recommendation"
+title: "Sequential Recommendation"
 aliases: ["SRS"]
 tags:
   - recommendation_system

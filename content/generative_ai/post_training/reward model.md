@@ -1,5 +1,5 @@
 ---
-title: "reward model"
+title: "Reward Model"
 tags: 
 aliases: []
 ---

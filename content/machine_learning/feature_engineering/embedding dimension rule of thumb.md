@@ -1,5 +1,5 @@
 ---
-title: "embedding dimension rule of thumb"
+title: "Embedding Dimension Rule of Thumb"
 aliases:
   - 임베딩 차원 경험칙
   - 4제곱근 규칙

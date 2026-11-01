@@ -1,5 +1,5 @@
 ---
-title: "variance inflation factor"
+title: "Variance Inflation Factor (VIF)"
 tags: statistic
 aliases: ["VIF"]
 ---

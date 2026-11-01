@@ -1,5 +1,5 @@
 ---
-title: "random walk"
+title: "Random Walk"
 tags:
   - graph
   - probability

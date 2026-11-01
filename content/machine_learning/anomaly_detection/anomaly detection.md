@@ -1,5 +1,5 @@
 ---
-title: "anomaly detection"
+title: "Anomaly Detection"
 tags: machine_learning 
 aliases: []
 ---

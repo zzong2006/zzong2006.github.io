@@ -1,5 +1,5 @@
 ---
-title: "inscrutable"
+title: "Inscrutable"
 tags:
   - word
 aliases: []

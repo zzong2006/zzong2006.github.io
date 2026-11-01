@@ -1,5 +1,5 @@
 ---
-title: "negative sampling"
+title: "Negative Sampling"
 tags:
   - supervised_learning
   - word2vec

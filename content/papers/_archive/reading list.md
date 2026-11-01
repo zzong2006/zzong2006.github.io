@@ -1,5 +1,5 @@
 ---
-title: "reading list"
+title: "Reading List"
 tags:
   - paper_review
   - todo

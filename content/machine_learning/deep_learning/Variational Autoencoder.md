@@ -1,5 +1,5 @@
 ---
-title: "Variational Autoencoder"
+title: "Variational Autoencoder (VAE)"
 tags:
   - deep_learning
   - generative_model

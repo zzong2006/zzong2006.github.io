@@ -1,5 +1,5 @@
 ---
-title: "generative model"
+title: "Generative Model"
 aliases: []
 tags: 
 ---

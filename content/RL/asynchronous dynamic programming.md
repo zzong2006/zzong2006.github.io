@@ -1,5 +1,5 @@
 ---
-title: "asynchronous dynamic programming"
+title: "Asynchronous Dynamic Programming (ADP)"
 tags:
   - reinforcement_learning
   - DP

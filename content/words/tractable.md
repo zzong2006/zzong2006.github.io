@@ -1,5 +1,5 @@
 ---
-title: "tractable"
+title: "Tractable"
 tags:
   - word
 aliases: ["계산 가능한"]

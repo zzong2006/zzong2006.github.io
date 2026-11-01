@@ -1,5 +1,5 @@
 ---
-title: "sequential model"
+title: "Sequential Model"
 aliases: []
 tags:
   - recommendation_system

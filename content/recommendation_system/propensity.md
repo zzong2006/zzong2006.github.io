@@ -1,5 +1,5 @@
 ---
-title: "propensity"
+title: "Propensity"
 aliases: []
 tags:
   - bias

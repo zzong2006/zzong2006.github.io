@@ -1,5 +1,5 @@
 ---
-title: "residual sum of squares"
+title: "Residual Sum of Squares (RSS)"
 aliases: ["RSS"]
 tags:
   - statistic

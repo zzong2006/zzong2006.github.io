@@ -1,5 +1,5 @@
 ---
-title: "milvus"
+title: "Milvus"
 tags:
   - vector_database
   - ANN

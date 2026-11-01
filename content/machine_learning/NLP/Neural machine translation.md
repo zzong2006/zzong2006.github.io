@@ -1,5 +1,5 @@
 ---
-title: "Neural machine translation"
+title: "Neural Machine Translation (NMT)"
 tags: NLP
 aliases: ["NMT", "신경망 기계번역"]
 ---

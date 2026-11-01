@@ -1,5 +1,5 @@
 ---
-title: "Named Entity Recognition"
+title: "Named Entity Recognition (NER)"
 tags:
   - NLP
   - machine_learning

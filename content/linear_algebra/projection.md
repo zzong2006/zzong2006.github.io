@@ -1,5 +1,5 @@
 ---
-title: "projection"
+title: "Projection"
 tags:
   - machine_learning
   - linear_algebra

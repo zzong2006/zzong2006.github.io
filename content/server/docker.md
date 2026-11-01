@@ -1,5 +1,5 @@
 ---
-title: "docker"
+title: "Docker"
 aliases: ["Docker", "도커"]
 tags: server
 ---

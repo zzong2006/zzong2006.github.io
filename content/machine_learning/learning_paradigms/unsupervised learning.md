@@ -1,5 +1,5 @@
 ---
-title: "unsupervised learning"
+title: "Unsupervised Learning"
 aliases: []
 tags: 
 ---

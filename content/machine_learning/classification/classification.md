@@ -1,5 +1,5 @@
 ---
-title: "classification"
+title: "Classification"
 tags:
   - classification
 aliases: [분류]

@@ -1,5 +1,5 @@
 ---
-title: "Natural Language Process"
+title: "Natural Language Processing (NLP)"
 aliases: ["자연어처리", "NLP", "Natural Language Processing"]
 tags:
   - NLP

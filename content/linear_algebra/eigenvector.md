@@ -1,5 +1,5 @@
 ---
-title: "eigenvector"
+title: "Eigenvector"
 tags: linear_algebra 
 aliases: []
 ---

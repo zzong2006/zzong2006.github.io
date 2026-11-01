@@ -1,5 +1,5 @@
 ---
-title: "Byte-Pair Encoding Tokenization"
+title: "Byte-Pair Encoding Tokenization (BPE)"
 tags: tokenization 
 aliases: ["BPE", "byte-level BPE", "BBPE"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "matrix"
+title: "Matrix"
 tags:
   - linear_algebra
   - math

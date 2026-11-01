@@ -1,5 +1,5 @@
 ---
-title: "sum rule"
+title: "Sum Rule"
 tags:
   - statistic
 aliases: ["marginalization property"]

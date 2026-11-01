@@ -1,5 +1,5 @@
 ---
-title: "multimodal"
+title: "Multimodal"
 tags:
   - machine_learning
   - multimodal

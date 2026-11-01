@@ -1,5 +1,5 @@
 ---
-title: "policy evaluation"
+title: "Policy Evaluation"
 tags: reinforcement_learning 
 aliases: []
 ---

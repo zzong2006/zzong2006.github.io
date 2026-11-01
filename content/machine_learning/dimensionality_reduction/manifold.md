@@ -1,5 +1,5 @@
 ---
-title: "manifold"
+title: "Manifold"
 tags:
   - machine_learning
   - feature_engineering

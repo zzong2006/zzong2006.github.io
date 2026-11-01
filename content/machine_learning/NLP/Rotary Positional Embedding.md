@@ -1,5 +1,5 @@
 ---
-title: "Rotary Positional Embedding"
+title: "Rotary Positional Embedding (RoPE)"
 tags:
   - NLP
   - LLM

@@ -1,5 +1,5 @@
 ---
-title: "tanh function"
+title: "Tanh Function"
 tags:
   - machine_learning
   - deep_learning

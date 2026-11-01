@@ -1,5 +1,5 @@
 ---
-title: "proxy"
+title: "Proxy"
 tags:
   - network
 aliases: ["프록시"]

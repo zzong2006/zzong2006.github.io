@@ -1,5 +1,5 @@
 ---
-title: "variational inference"
+title: "Variational Inference (VI)"
 tags:
   - bayesian_inference
 aliases: [varitional approximation, VI, 변분 추론]

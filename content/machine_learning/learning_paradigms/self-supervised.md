@@ -1,5 +1,5 @@
 ---
-title: "self-supervised"
+title: "Self-Supervised"
 aliases: ["self supervised", "self-supervised learning", "자기지도학습"]
 tags:
   - deep_learning

@@ -1,5 +1,5 @@
 ---
-title: "pre-order"
+title: "Pre-Order"
 tags:
   - algorithm
   - tree

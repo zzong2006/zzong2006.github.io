@@ -1,5 +1,5 @@
 ---
-title: "hypothesis test"
+title: "Hypothesis Test"
 tags:
   - hypothesis_test
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "Finite State Transducer"
+title: "Finite State Transducer (FST)"
 tags:
   - algorithm
   - data_structure

@@ -1,5 +1,5 @@
 ---
-title: "probe(k8s)"
+title: "Probe (K8s)"
 tags: Kubernetes 
 aliases: []
 ---

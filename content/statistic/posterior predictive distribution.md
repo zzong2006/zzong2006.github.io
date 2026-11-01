@@ -1,5 +1,5 @@
 ---
-title: "posterior predictive distribution"
+title: "Posterior Predictive Distribution (PPD)"
 tags:
   - probability_distribution
   - statistic

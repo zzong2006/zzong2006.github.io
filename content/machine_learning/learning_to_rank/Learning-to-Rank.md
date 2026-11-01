@@ -1,5 +1,5 @@
 ---
-title: "Learning-to-Rank"
+title: "Learning-to-Rank (LTR)"
 aliases: ["LTR"]
 tags:
   - learning_to_rank

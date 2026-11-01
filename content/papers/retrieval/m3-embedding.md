@@ -1,5 +1,5 @@
 ---
-title: "m3-embedding"
+title: "M3-Embedding"
 tags:
   - embedding
   - dense_retrieval

@@ -1,5 +1,5 @@
 ---
-title: "linear probing"
+title: "Linear Probing"
 tags: deep_learning 
 aliases: []
 ---

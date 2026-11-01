@@ -1,5 +1,5 @@
 ---
-title: "rule of probabilities"
+title: "Rule of Probabilities"
 tags:
   - statistic
   - probability

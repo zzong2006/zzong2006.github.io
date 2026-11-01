@@ -1,5 +1,5 @@
 ---
-title: "machine learning"
+title: "Machine Learning (ML)"
 tags:
   - machine_learning
 aliases: ["ML"]

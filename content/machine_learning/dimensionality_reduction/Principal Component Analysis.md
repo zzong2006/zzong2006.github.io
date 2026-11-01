@@ -1,5 +1,5 @@
 ---
-title: "Principal Component Analysis"
+title: "Principal Component Analysis (PCA)"
 aliases:
   - PCA
 tags:

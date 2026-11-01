@@ -1,5 +1,5 @@
 ---
-title: "Quadratic Programming"
+title: "Quadratic Programming (QP)"
 aliases: ["QP", "이차계획법"]
 tags:
   - optimization

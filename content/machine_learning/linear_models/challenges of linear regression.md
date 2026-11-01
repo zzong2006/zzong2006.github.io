@@ -1,5 +1,5 @@
 ---
-title: "challenges of linear regression"
+title: "Challenges of Linear Regression"
 tags: linear_regression 
 aliases: []
 ---

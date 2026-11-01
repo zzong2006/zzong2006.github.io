@@ -1,5 +1,5 @@
 ---
-title: Decoupled Clip and Dynamic sAmpling Policy Optimization
+title: "Decoupled Clip and Dynamic sAmpling Policy Optimization (DAPO)"
 tags:
   - LLM
   - reinforcement_learning

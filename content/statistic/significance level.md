@@ -1,5 +1,5 @@
 ---
-title: "significance level"
+title: "Significance Level"
 tags: hypothesis_test 
 aliases: ["유의 수준"]
 ---

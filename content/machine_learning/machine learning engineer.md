@@ -1,5 +1,5 @@
 ---
-title: "machine learning engineer"
+title: "Machine Learning Engineer"
 aliases: []
 tags:
   - machine_learning

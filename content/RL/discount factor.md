@@ -1,5 +1,5 @@
 ---
-title: "discount factor"
+title: "Discount Factor"
 aliases: ["감가율", "discount rate"]
 tags:
   - reinforcement_learning

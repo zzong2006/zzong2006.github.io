@@ -1,5 +1,5 @@
 ---
-title: "pointwise mutual information"
+title: "Pointwise Mutual Information (PMI)"
 aliases: ["PMI", "NPMI"]
 tags:
   - information_theory

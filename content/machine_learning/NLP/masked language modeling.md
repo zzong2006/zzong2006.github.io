@@ -1,5 +1,5 @@
 ---
-title: "masked language modeling"
+title: "Masked Language Modeling (MLM)"
 aliases: ["MLM"]
 tags:
   - NLP

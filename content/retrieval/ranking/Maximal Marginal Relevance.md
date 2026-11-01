@@ -1,5 +1,5 @@
 ---
-title: "Maximal Marginal Relevance"
+title: "Maximal Marginal Relevance (MMR)"
 tags:
   - retrieval
   - ranking

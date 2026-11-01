@@ -1,5 +1,5 @@
 ---
-title: "fine tuning"
+title: "Fine-Tuning"
 tags:
   - deep_learning
   - machine_learning

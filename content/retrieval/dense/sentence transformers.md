@@ -1,5 +1,5 @@
 ---
-title: "sentence transformers"
+title: "Sentence Transformers"
 tags:
   - embedding
   - dense_retrieval

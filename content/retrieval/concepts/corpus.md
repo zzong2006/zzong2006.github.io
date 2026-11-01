@@ -1,5 +1,5 @@
 ---
-title: "corpus"
+title: "Corpus"
 tags:
   - NLP
 aliases: []

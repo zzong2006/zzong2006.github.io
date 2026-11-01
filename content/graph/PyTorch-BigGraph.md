@@ -1,5 +1,5 @@
 ---
-title: "PyTorch-BigGraph"
+title: "PyTorch-BigGraph (PBG)"
 aliases: ["PBG"]
 tags:
   - PyTorch

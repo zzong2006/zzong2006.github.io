@@ -1,5 +1,5 @@
 ---
-title: "amortized analysis"
+title: "Amortized Analysis"
 aliases: []
 tags:
   - algorithm

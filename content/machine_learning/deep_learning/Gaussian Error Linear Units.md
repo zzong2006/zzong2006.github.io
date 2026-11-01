@@ -1,5 +1,5 @@
 ---
-title: "Gaussian Error Linear Units"
+title: "Gaussian Error Linear Units (GELU)"
 aliases:
   - GELU
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "Bayesian Optimization"
+title: "Bayesian Optimization (BO)"
 aliases: ["베이지안 최적화", "BO"]
 tags:
   - machine_learning

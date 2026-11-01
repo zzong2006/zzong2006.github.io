@@ -1,5 +1,5 @@
 ---
-title: "quorum"
+title: "Quorum"
 aliases: ["쿼럼"]
 tags:
   - kafka

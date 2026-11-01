@@ -1,5 +1,5 @@
 ---
-title: "covariance"
+title: "Covariance"
 aliases: ["covariance matrix", "공분산"]
 tags:
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "hashing trick"
+title: "Hashing Trick"
 aliases:
   - feature hashing
   - 해싱 트릭

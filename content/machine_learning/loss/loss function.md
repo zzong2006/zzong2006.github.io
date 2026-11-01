@@ -1,5 +1,5 @@
 ---
-title: "loss function"
+title: "Loss Function"
 tags:
   - machine_learning
   - optimization

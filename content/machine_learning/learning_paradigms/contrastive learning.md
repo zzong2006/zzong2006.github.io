@@ -1,5 +1,5 @@
 ---
-title: "contrastive learning"
+title: "Contrastive Learning"
 tags:
   - machine_learning
   - representation_learning

@@ -1,5 +1,5 @@
 ---
-title: "row based storage"
+title: "Row-Based Storage"
 tags: database 
 aliases: []
 ---

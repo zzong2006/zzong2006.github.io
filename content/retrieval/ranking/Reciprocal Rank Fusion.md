@@ -1,5 +1,5 @@
 ---
-title: "Reciprocal Rank Fusion"
+title: "Reciprocal Rank Fusion (RRF)"
 tags:
   - retrieval
   - ranking

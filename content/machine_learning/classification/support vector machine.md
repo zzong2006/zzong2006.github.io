@@ -1,5 +1,5 @@
 ---
-title: "support vector machine"
+title: "Support Vector Machine (SVM)"
 aliases: ["SVM"]
 tags:
   - machine_learning

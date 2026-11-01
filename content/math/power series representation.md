@@ -1,5 +1,5 @@
 ---
-title: "power series representation"
+title: "Power Series Representation"
 tags:
   - math
 aliases: []

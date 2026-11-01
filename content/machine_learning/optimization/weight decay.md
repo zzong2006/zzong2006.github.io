@@ -1,5 +1,5 @@
 ---
-title: "weight decay"
+title: "Weight Decay"
 tags: deep_learning 
 aliases: []
 ---

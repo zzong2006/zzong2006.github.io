@@ -1,5 +1,5 @@
 ---
-title: "inverse tranform sampling"
+title: "Inverse Transform Sampling"
 aliases: []
 tags:
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "github for recommender system"
+title: "GitHub for Recommender System"
 aliases: []
 tags:
   - recommendation_system

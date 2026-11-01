@@ -1,5 +1,5 @@
 ---
-title: "linear combination"
+title: "Linear Combination"
 tags: linear_algebra 
 aliases: ["선형 결합"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "information bottleneck"
+title: "Information Bottleneck"
 aliases: []
 tags: 
 ---

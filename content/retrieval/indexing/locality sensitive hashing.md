@@ -1,5 +1,5 @@
 ---
-title: "locality sensitive hashing"
+title: "Locality Sensitive Hashing (LSH)"
 aliases: ["LSH"]
 tags:
   - ANN

@@ -1,5 +1,5 @@
 ---
-title: "lasso regression"
+title: "Lasso Regression"
 tags:
   - linear_regression
   - machine_learning

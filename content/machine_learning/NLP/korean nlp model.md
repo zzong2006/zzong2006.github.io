@@ -1,5 +1,5 @@
 ---
-title: "korean nlp model"
+title: "Korean NLP Model"
 tags: NLP
 aliases: []
 ---

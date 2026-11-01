@@ -1,5 +1,5 @@
 ---
-title: "maximum inner product search"
+title: "Maximum Inner Product Search (MIPS)"
 tags:
   - retrieval
   - IR

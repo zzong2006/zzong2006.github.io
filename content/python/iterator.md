@@ -1,5 +1,5 @@
 ---
-title: "iterator"
+title: "Iterator"
 aliases: ["반복자"]
 tags:
   - python

@@ -1,5 +1,5 @@
 ---
-title: "catastrophic forgetting"
+title: "Catastrophic Forgetting"
 aliases:
   - 재앙적 망각
 tags:

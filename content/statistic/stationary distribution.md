@@ -1,5 +1,5 @@
 ---
-title: "stationary distribution"
+title: "Stationary Distribution"
 tags: 
 aliases: []
 ---

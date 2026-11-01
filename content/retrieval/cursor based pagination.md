@@ -1,5 +1,5 @@
 ---
-title: "cursor based pagination"
+title: "Cursor-Based Pagination"
 tags:
   - database
   - pagination

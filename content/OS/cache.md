@@ -1,5 +1,5 @@
 ---
-title: "cache"
+title: "Cache"
 tags:
   - operating_system
   - computer_architecture

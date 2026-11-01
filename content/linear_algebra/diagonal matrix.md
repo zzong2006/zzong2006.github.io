@@ -1,5 +1,5 @@
 ---
-title: "diagonal matrix"
+title: "Diagonal Matrix"
 tags: linear_algebra 
 aliases: ["대각 행렬"]
 ---

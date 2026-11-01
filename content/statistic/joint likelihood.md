@@ -1,5 +1,5 @@
 ---
-title: "joint likelihood"
+title: "Joint Likelihood"
 aliases: []
 tags:
   - statistic

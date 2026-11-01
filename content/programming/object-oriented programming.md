@@ -1,5 +1,5 @@
 ---
-title: "object-oriented programming"
+title: "Object-Oriented Programming (OOP)"
 tags:
   - python
   - Cpp

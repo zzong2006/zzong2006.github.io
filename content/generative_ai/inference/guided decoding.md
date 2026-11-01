@@ -1,5 +1,5 @@
 ---
-title: "guided decoding"
+title: "Guided Decoding"
 aliases: []
 tags:
   - vllm

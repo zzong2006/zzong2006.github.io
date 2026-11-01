@@ -1,5 +1,5 @@
 ---
-title: "topic modeling"
+title: "Topic Modeling"
 tags: 
 aliases: []
 ---

@@ -1,5 +1,5 @@
 ---
-title: "deductive reasoning"
+title: "Deductive Reasoning"
 aliases: []
 tags:
   - word

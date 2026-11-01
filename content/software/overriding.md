@@ -1,5 +1,5 @@
 ---
-title: "overriding"
+title: "Overriding"
 tags:
   - programming
 aliases: []

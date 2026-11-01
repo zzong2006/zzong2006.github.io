@@ -1,5 +1,5 @@
 ---
-title: "linear mapping"
+title: "Linear Mapping"
 tags:
   - linear_algebra
 aliases: ["linear map"]

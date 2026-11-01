@@ -1,5 +1,5 @@
 ---
-title: "cross-domain recommendation"
+title: "Cross-Domain Recommendation"
 aliases: []
 tags:
   - recommendation_system

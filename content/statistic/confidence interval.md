@@ -1,5 +1,5 @@
 ---
-title: "confidence interval"
+title: "Confidence Interval (CI)"
 tags:
   - statistic
 aliases: ["CI", "신뢰 구간"]

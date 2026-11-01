@@ -1,5 +1,5 @@
 ---
-title: "matrix factorization"
+title: "Matrix Factorization (MF)"
 aliases: [MF]
 tags:
   - collaborative_filtering

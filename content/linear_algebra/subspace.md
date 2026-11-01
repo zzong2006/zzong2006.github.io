@@ -1,5 +1,5 @@
 ---
-title: "subspace"
+title: "Subspace"
 tags:
   - linear_algebra
 aliases: []

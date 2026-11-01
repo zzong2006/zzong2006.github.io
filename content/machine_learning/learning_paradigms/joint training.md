@@ -1,5 +1,5 @@
 ---
-title: "joint training"
+title: "Joint Training"
 tags:
   - machine_learning
   - recommendation_system

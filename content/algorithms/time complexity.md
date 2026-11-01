@@ -1,5 +1,5 @@
 ---
-title: "time complexity"
+title: "Time Complexity"
 aliases: ["시간복잡도"]
 tags:
   - algorithm

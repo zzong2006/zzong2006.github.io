@@ -1,5 +1,5 @@
 ---
-title: "gamma function"
+title: "Gamma Function"
 tags:
   - statistic
   - math

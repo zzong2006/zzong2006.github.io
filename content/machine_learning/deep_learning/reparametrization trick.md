@@ -1,5 +1,5 @@
 ---
-title: "reparametrization trick"
+title: "Reparametrization Trick"
 tags: optimization 
 aliases: []
 ---

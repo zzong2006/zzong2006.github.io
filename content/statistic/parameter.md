@@ -1,5 +1,5 @@
 ---
-title: "parameter"
+title: "Parameter"
 aliases: ["parameters"]
 tags:
   - machine_learning

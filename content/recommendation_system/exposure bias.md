@@ -1,5 +1,5 @@
 ---
-title: "exposure bias"
+title: "Exposure Bias"
 tags:
   - recommendation_system
   - bias

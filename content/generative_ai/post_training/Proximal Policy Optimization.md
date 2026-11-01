@@ -1,5 +1,5 @@
 ---
-title: "Proximal Policy Optimization"
+title: "Proximal Policy Optimization (PPO)"
 tags:
   - reinforcement_learning
   - LLM

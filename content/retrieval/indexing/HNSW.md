@@ -1,5 +1,5 @@
 ---
-title: "HNSW"
+title: "Hierarchical Navigable Small World (HNSW)"
 tags:
   - ANN
   - vector_search

@@ -1,5 +1,5 @@
 ---
-title: "click(python library)"
+title: "Click (Python Library)"
 aliases: []
 tags:
   - python

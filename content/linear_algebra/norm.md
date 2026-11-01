@@ -1,5 +1,5 @@
 ---
-title: "norm"
+title: "Norm"
 aliases: []
 tags:
   - math

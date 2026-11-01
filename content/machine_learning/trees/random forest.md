@@ -1,5 +1,5 @@
 ---
-title: "random forest"
+title: "Random Forest (RF)"
 aliases: ["RF"]
 tags:
   - ensemble

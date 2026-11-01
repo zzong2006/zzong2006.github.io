@@ -1,5 +1,5 @@
 ---
-title: "collaborative filtering"
+title: "Collaborative Filtering (CF)"
 aliases: ["CF"]
 tags:
   - recommendation_system

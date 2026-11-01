@@ -1,5 +1,5 @@
 ---
-title: "partially observable Markov decision process"
+title: "Partially Observable Markov Decision Process (POMDP)"
 tags: reinforcement_learning 
 aliases: ["POMDP"]
 ---

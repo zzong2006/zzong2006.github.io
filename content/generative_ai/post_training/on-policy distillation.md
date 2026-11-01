@@ -1,5 +1,5 @@
 ---
-title: On-Policy Distillation
+title: "On-Policy Distillation (OPD)"
 tags:
   - LLM
   - distillation

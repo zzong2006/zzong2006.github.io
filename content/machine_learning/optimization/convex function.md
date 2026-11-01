@@ -1,5 +1,5 @@
 ---
-title: "convex function"
+title: "Convex Function"
 tags:
   - optimization
 aliases: ["convex", "concave"]

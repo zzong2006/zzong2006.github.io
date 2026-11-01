@@ -1,5 +1,5 @@
 ---
-title: "PLSI"
+title: "Probabilistic Latent Semantic Indexing (PLSI)"
 tags:
   - machine_learning
   - NLP

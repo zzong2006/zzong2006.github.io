@@ -1,5 +1,5 @@
 ---
-title: "adversarial learning"
+title: "Adversarial Learning"
 tags:
   - recommendation_system
   - bias

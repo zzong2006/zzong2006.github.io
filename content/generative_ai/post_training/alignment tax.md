@@ -1,5 +1,5 @@
 ---
-title: "alignment tax"
+title: "Alignment Tax"
 tags:
   - generative_model
 aliases: []

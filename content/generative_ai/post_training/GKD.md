@@ -1,5 +1,5 @@
 ---
-title: Generalized Knowledge Distillation
+title: "Generalized Knowledge Distillation (GKD)"
 tags:
   - LLM
   - distillation

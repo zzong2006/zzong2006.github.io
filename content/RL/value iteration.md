@@ -1,5 +1,5 @@
 ---
-title: "value iteration"
+title: "Value Iteration"
 aliases: []
 tags:
   - reinforcement_learning

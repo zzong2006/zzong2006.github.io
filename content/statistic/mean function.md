@@ -1,5 +1,5 @@
 ---
-title: "mean function"
+title: "Mean Function"
 tags: statistic 
 aliases: []
 ---
