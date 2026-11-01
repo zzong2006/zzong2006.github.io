@@ -1,5 +1,5 @@
 ---
-title: "property decorator"
+title: "Property Decorator"
 tags:
   - python
 aliases: []

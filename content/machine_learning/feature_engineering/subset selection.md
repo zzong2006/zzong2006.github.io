@@ -1,5 +1,5 @@
 ---
-title: "subset selection"
+title: "Subset Selection"
 tags: 
 aliases: []
 ---

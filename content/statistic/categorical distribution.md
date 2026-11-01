@@ -1,5 +1,5 @@
 ---
-title: "categorical distribution"
+title: "Categorical Distribution"
 aliases: ["범주형 분포", "generalized Bernoulli"]
 tags:
   - statistic

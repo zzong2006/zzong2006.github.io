@@ -1,5 +1,5 @@
 ---
-title: "free variable"
+title: "Free Variable"
 tags:
   - linear_algebra
   - programming

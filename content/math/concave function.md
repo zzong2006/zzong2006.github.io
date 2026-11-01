@@ -1,5 +1,5 @@
 ---
-title: "concave function"
+title: "Concave Function"
 tags:
   - math
   - numerical_method

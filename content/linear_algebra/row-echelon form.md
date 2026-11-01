@@ -1,5 +1,5 @@
 ---
-title: "row-echelon form"
+title: "Row-Echelon Form (REF)"
 tags:
   - linear_algebra
 aliases: ["REF"]

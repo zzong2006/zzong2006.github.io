@@ -1,5 +1,5 @@
 ---
-title: "supervised fine-tuning"
+title: "Supervised Fine-Tuning (SFT)"
 tags:
   - deep_learning
   - LLM

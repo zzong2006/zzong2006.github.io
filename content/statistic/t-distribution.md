@@ -1,5 +1,5 @@
 ---
-title: "t-distribution"
+title: "t-Distribution"
 tags: statistic 
 aliases: ["t-분포"]
 ---

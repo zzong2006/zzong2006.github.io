@@ -1,5 +1,5 @@
 ---
-title: "exponential moving average"
+title: "Exponential Moving Average (EMA)"
 tags: 
 aliases: ["EMA"]
 ---

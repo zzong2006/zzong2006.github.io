@@ -1,5 +1,5 @@
 ---
-title: "False Positive Rate"
+title: "False Positive Rate (FPR)"
 tags:
   - metrics
   - machine_learning

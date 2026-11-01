@@ -1,5 +1,5 @@
 ---
-title: "perplexity"
+title: "Perplexity (PPL)"
 aliases: ["PPL"]
 tags:
   - metrics

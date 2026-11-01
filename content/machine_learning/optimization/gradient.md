@@ -1,5 +1,5 @@
 ---
-title: "gradient"
+title: "Gradient"
 tags:
   - calculus
   - differentitation

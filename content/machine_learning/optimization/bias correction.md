@@ -1,5 +1,5 @@
 ---
-title: "bias correction"
+title: "Bias Correction"
 tags: optimization 
 aliases: []
 ---

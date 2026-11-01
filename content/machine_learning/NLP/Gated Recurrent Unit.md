@@ -1,5 +1,5 @@
 ---
-title: "Gated Recurrent Unit"
+title: "Gated Recurrent Unit (GRU)"
 aliases: ["GRU"]
 tag: RNN
 ---

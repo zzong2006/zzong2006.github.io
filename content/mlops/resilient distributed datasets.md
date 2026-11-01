@@ -1,5 +1,5 @@
 ---
-title: "resilient distributed datasets"
+title: "Resilient Distributed Datasets (RDD)"
 tags: Spark
 aliases: ["RDD"]
 ---

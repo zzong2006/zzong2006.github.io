@@ -1,5 +1,5 @@
 ---
-title: "swap 영역"
+title: "Swap 영역"
 tags: operating_system 
 aliases: []
 ---

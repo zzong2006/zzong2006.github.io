@@ -1,5 +1,5 @@
 ---
-title: "Monte Carlo Method"
+title: "Monte Carlo Method (MC)"
 aliases: ["Monte Carlo", "MC"]
 tags:
   - sampling

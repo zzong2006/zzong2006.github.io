@@ -1,5 +1,5 @@
 ---
-title: "init container"
+title: "Init Container"
 tags: Kubernetes
 aliases: []
 ---

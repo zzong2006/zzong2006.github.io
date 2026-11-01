@@ -1,5 +1,5 @@
 ---
-title: "paper review"
+title: "Paper Review"
 aliases: []
 tags:
   - paper_review

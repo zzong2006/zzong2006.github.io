@@ -1,5 +1,5 @@
 ---
-title: "stochastic gradient descent"
+title: "Stochastic Gradient Descent (SGD)"
 tags:
   - machine_learning
   - optimization

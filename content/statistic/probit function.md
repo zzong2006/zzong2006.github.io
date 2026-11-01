@@ -1,5 +1,5 @@
 ---
-title: "probit function"
+title: "Probit Function"
 tags: statistic 
 aliases: []
 ---

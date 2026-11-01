@@ -1,5 +1,5 @@
 ---
-title: "silhouette score"
+title: "Silhouette Score"
 aliases: ["실루엣 점수"]
 tags:
   - clustering

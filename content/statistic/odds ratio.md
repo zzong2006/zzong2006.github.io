@@ -1,5 +1,5 @@
 ---
-title: "odds ratio"
+title: "Odds Ratio"
 tags: statistic 
 aliases: ["odds"]
 ---

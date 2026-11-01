@@ -1,5 +1,5 @@
 ---
-title: "determinant"
+title: "Determinant"
 tags:
   - linear_algebra
 aliases: ["matrix determinant"]

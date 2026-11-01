@@ -1,5 +1,5 @@
 ---
-title: "violin plot"
+title: "Violin Plot"
 tags:
   - statistic
   - visualization

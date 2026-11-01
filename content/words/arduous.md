@@ -1,5 +1,5 @@
 ---
-title: "arduous"
+title: "Arduous"
 tags:
   - word
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "fan in and fan out"
+title: "Fan-In and Fan-Out"
 tags: software_design 
 aliases: []
 ---

@@ -1,5 +1,5 @@
 ---
-title: "missing not at random"
+title: "Missing Not at Random (MNAR)"
 aliases: ["MNAR"]
 tags:
   - recommendation_system

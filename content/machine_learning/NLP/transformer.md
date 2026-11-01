@@ -1,5 +1,5 @@
 ---
-title: "transformer"
+title: "Transformer"
 tags:
   - NLP
 aliases: ["트랜스포머"]

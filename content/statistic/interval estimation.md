@@ -1,5 +1,5 @@
 ---
-title: "interval estimation"
+title: "Interval Estimation"
 tags:
   - statistic
 aliases: [구간 추정]

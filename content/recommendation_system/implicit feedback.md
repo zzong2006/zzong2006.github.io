@@ -1,5 +1,5 @@
 ---
-title: "implicit feedback"
+title: "Implicit Feedback"
 aliases: []
 tags:
   - recommendation_system

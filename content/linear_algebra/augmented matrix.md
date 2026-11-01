@@ -1,5 +1,5 @@
 ---
-title: "augmented matrix"
+title: "Augmented Matrix"
 tags:
   - linear_algebra
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "end-to-end"
+title: "End-to-End"
 tags: word
 aliases: ["end to end"]
 ---

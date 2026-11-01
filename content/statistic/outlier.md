@@ -1,5 +1,5 @@
 ---
-title: "outlier"
+title: "Outlier"
 tags:
   - statistic
   - machine_learning

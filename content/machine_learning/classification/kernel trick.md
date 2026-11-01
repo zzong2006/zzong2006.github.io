@@ -1,5 +1,5 @@
 ---
-title: "kernel trick"
+title: "Kernel Trick"
 tags:
   - machine_learning
   - kernel_method

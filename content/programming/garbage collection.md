@@ -1,5 +1,5 @@
 ---
-title: "garbage collection"
+title: "Garbage Collection"
 tags:
   - language
   - python

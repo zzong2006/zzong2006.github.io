@@ -1,5 +1,5 @@
 ---
-title: "Semantic Textual Similarity"
+title: "Semantic Textual Similarity (STS)"
 tags:
   - NLP
 aliases: [STS]

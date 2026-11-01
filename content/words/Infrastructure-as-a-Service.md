@@ -1,5 +1,5 @@
 ---
-title: "Infrastructure-as-a-Service"
+title: "Infrastructure-as-a-Service (IaaS)"
 tags:
   - word
   - server

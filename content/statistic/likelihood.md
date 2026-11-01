@@ -1,5 +1,5 @@
 ---
-title: "likelihood"
+title: "Likelihood"
 tags: statistic 
 aliases: []
 ---

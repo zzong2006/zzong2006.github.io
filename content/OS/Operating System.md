@@ -1,5 +1,5 @@
 ---
-title: "Operating System"
+title: "Operating System (OS)"
 tags:
   - OS
 aliases: [OS]

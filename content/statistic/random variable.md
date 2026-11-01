@@ -1,5 +1,5 @@
 ---
-title: "random variable"
+title: "Random Variable"
 aliases: []
 tags: []
 ---

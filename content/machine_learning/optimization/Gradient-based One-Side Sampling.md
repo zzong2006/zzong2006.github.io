@@ -1,5 +1,5 @@
 ---
-title: "Gradient-based One-Side Sampling"
+title: "Gradient-based One-Side Sampling (GOSS)"
 tags: optimization
 aliases: ["GOSS"]
 ---

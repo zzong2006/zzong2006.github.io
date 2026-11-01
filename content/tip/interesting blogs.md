@@ -1,5 +1,5 @@
 ---
-title: "interesting blogs"
+title: "Interesting Blogs"
 ---
 여
 ---

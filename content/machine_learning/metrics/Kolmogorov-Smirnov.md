@@ -1,5 +1,5 @@
 ---
-title: "Kolmogorov-Smirnov"
+title: "Kolmogorov-Smirnov (KS)"
 tags:
   - metrics
   - activation_function

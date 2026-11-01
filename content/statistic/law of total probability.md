@@ -1,5 +1,5 @@
 ---
-title: "law of total probability"
+title: "Law of Total Probability"
 tags:
   - statistic
 aliases: []

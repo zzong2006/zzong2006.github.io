@@ -1,5 +1,5 @@
 ---
-title: "trace"
+title: "Trace"
 aliases: [trace trick]
 tags:
   - linear_algebra

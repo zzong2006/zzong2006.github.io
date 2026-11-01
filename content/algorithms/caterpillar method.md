@@ -1,5 +1,5 @@
 ---
-title: "caterpillar method"
+title: "Caterpillar Method"
 aliases: ["two pointers", "투 포인터", "sliding window"]
 tags:
   - algorithm

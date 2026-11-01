@@ -1,5 +1,5 @@
 ---
-title: "sqlite"
+title: "SQLite"
 tags: database 
 aliases: []
 ---

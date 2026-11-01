@@ -1,5 +1,5 @@
 ---
-title: "overfitting"
+title: "Overfitting"
 tags:
   - machine_learning
 aliases:

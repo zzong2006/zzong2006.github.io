@@ -1,5 +1,5 @@
 ---
-title: "polynomial regression"
+title: "Polynomial Regression"
 tags:
   - linear_regression
 aliases: []

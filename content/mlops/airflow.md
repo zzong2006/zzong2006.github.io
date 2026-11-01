@@ -1,5 +1,5 @@
 ---
-title: "airflow"
+title: "Airflow"
 aliases: []
 tags:
   - MLOps

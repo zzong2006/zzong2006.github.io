@@ -1,5 +1,5 @@
 ---
-title: "mode"
+title: "Mode"
 aliases: []
 tags:
   - statistic

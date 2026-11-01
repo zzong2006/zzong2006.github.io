@@ -1,5 +1,5 @@
 ---
-title: "token pooling"
+title: "Token Pooling"
 tags:
   - ColBERT
   - IR

@@ -1,5 +1,5 @@
 ---
-title: "min-max scaling"
+title: "Min-Max Scaling"
 tags: feature_scaling
 aliases: []
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Web Server Gateway Interface"
+title: "Web Server Gateway Interface (WSGI)"
 tags: server 
 aliases: ["WSGI"]
 ---

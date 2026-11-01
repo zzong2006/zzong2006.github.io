@@ -1,5 +1,5 @@
 ---
-title: "poetry"
+title: "Poetry"
 tags:
   - python
 aliases: []

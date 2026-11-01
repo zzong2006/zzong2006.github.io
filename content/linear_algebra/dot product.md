@@ -1,5 +1,5 @@
 ---
-title: "dot product"
+title: "Dot Product"
 tags:
   - linear_algebra
   - math

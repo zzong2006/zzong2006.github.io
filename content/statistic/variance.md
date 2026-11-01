@@ -1,5 +1,5 @@
 ---
-title: "variance"
+title: "Variance"
 aliases: ["분산"]
 tags:
   - statistic

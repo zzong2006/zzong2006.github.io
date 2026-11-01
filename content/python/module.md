@@ -1,5 +1,5 @@
 ---
-title: "module"
+title: "Module"
 aliases: []
 tags:
   - python

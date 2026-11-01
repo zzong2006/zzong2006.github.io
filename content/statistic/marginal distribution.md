@@ -1,5 +1,5 @@
 ---
-title: "marginal distribution"
+title: "Marginal Distribution"
 aliases: ["marginal", "marginalization"]
 tags:
   - statistic

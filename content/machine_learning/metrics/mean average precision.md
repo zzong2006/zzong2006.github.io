@@ -1,5 +1,5 @@
 ---
-title: "mean average precision"
+title: "Mean Average Precision (MAP)"
 tags:
   - metrics
   - recommendation_system

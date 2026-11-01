@@ -1,5 +1,5 @@
 ---
-title: "partial derivatives"
+title: "Partial Derivatives"
 tags:
   - differentitation
   - calculus

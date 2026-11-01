@@ -1,5 +1,5 @@
 ---
-title: "display ad"
+title: "Display Ad (DA)"
 tags: advertisement 
 aliases: ["DA"]
 ---

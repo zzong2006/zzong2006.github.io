@@ -1,5 +1,5 @@
 ---
-title: "swap out"
+title: "Swap Out"
 aliases: []
 tags: 
 ---

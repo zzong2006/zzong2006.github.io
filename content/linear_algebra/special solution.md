@@ -1,5 +1,5 @@
 ---
-title: "special solution"
+title: "Special Solution"
 tags:
   - linear_algebra
 aliases: ["particular solution"]

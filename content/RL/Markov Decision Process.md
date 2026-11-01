@@ -1,5 +1,5 @@
 ---
-title: "Markov Decision Process"
+title: "Markov Decision Process (MDP)"
 aliases: ["MDP"]
 tags:
   - reinforcement_learning

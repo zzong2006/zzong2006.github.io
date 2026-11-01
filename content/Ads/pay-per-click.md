@@ -1,5 +1,5 @@
 ---
-title: "pay-per-click"
+title: "Pay-per-Click (PPC)"
 aliases: ["PPC"]
 tags:
   - advertisement

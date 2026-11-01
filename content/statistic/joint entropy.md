@@ -1,5 +1,5 @@
 ---
-title: "joint entropy"
+title: "Joint Entropy"
 tags:
   - statistic
   - information_theory

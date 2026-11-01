@@ -1,5 +1,5 @@
 ---
-title: "logistic loss"
+title: "Logistic Loss"
 tags:
   - machine_learning
 aliases: []

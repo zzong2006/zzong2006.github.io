@@ -1,5 +1,5 @@
 ---
-title: "buffer"
+title: "Buffer"
 tags: operating_system 
 aliases: ["버퍼"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "bloom filter"
+title: "Bloom Filter"
 tags:
   - data_structure
   - database

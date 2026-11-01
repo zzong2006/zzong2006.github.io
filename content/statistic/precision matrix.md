@@ -1,5 +1,5 @@
 ---
-title: "precision matrix"
+title: "Precision Matrix"
 aliases: []
 tags:
   - statistic

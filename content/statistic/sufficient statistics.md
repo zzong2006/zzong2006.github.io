@@ -1,5 +1,5 @@
 ---
-title: "sufficient statistics"
+title: "Sufficient Statistics"
 tags: 
 aliases: []
 ---

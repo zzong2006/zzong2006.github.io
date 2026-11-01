@@ -1,5 +1,5 @@
 ---
-title: "stopword"
+title: "Stopword"
 tags:
   - NLP
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "collinearity"
+title: "Collinearity"
 aliases: ["공선성", "다중공선성"]
 tags:
   - machine_learning

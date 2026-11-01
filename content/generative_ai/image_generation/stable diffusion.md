@@ -1,5 +1,5 @@
 ---
-title: "stable diffusion"
+title: "Stable Diffusion"
 tags:
   - generative_model
   - diffusion

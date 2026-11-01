@@ -1,5 +1,5 @@
 ---
-title: "faiss"
+title: "Faiss"
 tags:
   - ANN
   - vector_search

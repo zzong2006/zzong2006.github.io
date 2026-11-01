@@ -1,5 +1,5 @@
 ---
-title: "stack"
+title: "Stack"
 aliases: []
 tags:
   - algorithm

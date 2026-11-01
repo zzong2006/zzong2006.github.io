@@ -1,5 +1,5 @@
 ---
-title: "constrained optimization problem"
+title: "Constrained Optimization Problem"
 tags: optimization 
 aliases: []
 ---

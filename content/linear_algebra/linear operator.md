@@ -1,5 +1,5 @@
 ---
-title: "linear operator"
+title: "Linear Operator"
 tags: linear_algebra 
 aliases: []
 ---

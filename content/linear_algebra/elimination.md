@@ -1,5 +1,5 @@
 ---
-title: "elimination"
+title: "Elimination"
 tags: linear_algebra 
 aliases: ["elimination matrix"]
 ---

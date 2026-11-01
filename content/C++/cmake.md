@@ -1,5 +1,5 @@
 ---
-title: "cmake"
+title: "CMake"
 tags:
   - compile
   - Cpp

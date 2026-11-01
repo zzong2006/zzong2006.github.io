@@ -1,5 +1,5 @@
 ---
-title: "independence (probability)"
+title: "Independence (Probability)"
 tags:
   - statistic
 aliases: []

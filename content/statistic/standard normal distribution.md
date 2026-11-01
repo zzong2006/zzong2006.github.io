@@ -1,5 +1,5 @@
 ---
-title: "standard normal distribution"
+title: "Standard Normal Distribution"
 tags:
   - probability_distribution
   - statistic

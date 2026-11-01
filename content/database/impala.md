@@ -1,5 +1,5 @@
 ---
-title: "impala"
+title: "Impala"
 tags:
   - SQL
   - open_source

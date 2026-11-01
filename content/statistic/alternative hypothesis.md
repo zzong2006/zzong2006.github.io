@@ -1,5 +1,5 @@
 ---
-title: "alternative hypothesis"
+title: "Alternative Hypothesis"
 aliases: ["대립가설"]
 tags: 
 ---

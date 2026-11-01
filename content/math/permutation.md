@@ -1,5 +1,5 @@
 ---
-title: "permutation"
+title: "Permutation"
 tags: math 
 aliases: []
 ---

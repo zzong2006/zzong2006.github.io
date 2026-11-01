@@ -1,5 +1,5 @@
 ---
-title: "residual"
+title: "Residual"
 aliases: []
 tags:
   - statistic

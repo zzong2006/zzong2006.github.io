@@ -1,5 +1,5 @@
 ---
-title: "stride"
+title: "Stride"
 aliases: ["스트라이드"]
 tags:
   - deep_learning

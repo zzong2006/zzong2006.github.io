@@ -1,5 +1,5 @@
 ---
-title: "trends"
+title: "Trends"
 tags:
   - retrieval
   - IR

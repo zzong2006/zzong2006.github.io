@@ -1,5 +1,5 @@
 ---
-title: "sampling"
+title: "Sampling"
 aliases: []
 tags:
   - machine_learning

@@ -1,5 +1,5 @@
 ---
-title: "voting"
+title: "Voting"
 tags: ensemble 
 aliases: []
 ---

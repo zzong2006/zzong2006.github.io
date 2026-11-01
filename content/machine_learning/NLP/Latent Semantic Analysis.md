@@ -1,5 +1,5 @@
 ---
-title: "Latent Semantic Analysis"
+title: "Latent Semantic Analysis (LSA)"
 aliases:
   - LSA
 tags:

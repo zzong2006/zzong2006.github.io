@@ -1,5 +1,5 @@
 ---
-title: "hinge loss"
+title: "Hinge Loss"
 tags:
   - machine_learning
   - classification

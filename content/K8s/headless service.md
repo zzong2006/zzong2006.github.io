@@ -1,5 +1,5 @@
 ---
-title: "headless service"
+title: "Headless Service"
 aliases: []
 tags: []
 ---

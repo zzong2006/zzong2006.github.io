@@ -1,5 +1,5 @@
 ---
-title: "process control block"
+title: "Process Control Block (PCB)"
 aliases: ["PCB"]
 tags:
   - operating_system

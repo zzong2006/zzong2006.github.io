@@ -1,5 +1,5 @@
 ---
-title: "affine"
+title: "Affine"
 aliases: ["아핀"]
 tags:
   - linear_algebra

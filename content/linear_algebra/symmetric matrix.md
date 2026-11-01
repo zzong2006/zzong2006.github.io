@@ -1,5 +1,5 @@
 ---
-title: "symmetric matrix"
+title: "Symmetric Matrix"
 tags:
   - linear_algebra
 aliases: ["정방 행렬"]

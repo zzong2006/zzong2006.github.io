@@ -1,5 +1,5 @@
 ---
-title: "t-statistic"
+title: "t-Statistic"
 tags: statistic 
 aliases: []
 ---

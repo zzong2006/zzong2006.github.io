@@ -1,5 +1,5 @@
 ---
-title: "Open Neural Network Exchange"
+title: "Open Neural Network Exchange (ONNX)"
 aliases: ["ONNX"]
 tags:
   - deep_learning

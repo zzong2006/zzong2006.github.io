@@ -1,5 +1,5 @@
 ---
-title: "information gain"
+title: "Information Gain"
 aliases: []
 tags:
   - statistic

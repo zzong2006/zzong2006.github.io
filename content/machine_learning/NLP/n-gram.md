@@ -1,5 +1,5 @@
 ---
-title: "n-gram"
+title: "N-gram"
 tags: NLP
 aliases: []
 ---

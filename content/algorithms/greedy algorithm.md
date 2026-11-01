@@ -1,5 +1,5 @@
 ---
-title: "greedy algorithm"
+title: "Greedy Algorithm"
 aliases: ["greedy", "탐욕 알고리즘"]
 tags:
   - algorithm

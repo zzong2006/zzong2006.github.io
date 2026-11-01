@@ -1,5 +1,5 @@
 ---
-title: "transfer learning"
+title: "Transfer Learning"
 aliases: []
 tags:
   - deep_learning

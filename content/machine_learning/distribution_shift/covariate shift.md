@@ -1,5 +1,5 @@
 ---
-title: "covariate shift"
+title: "Covariate Shift"
 tags: machine_learning 
 aliases: []
 ---

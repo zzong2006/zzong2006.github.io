@@ -1,5 +1,5 @@
 ---
-title: "marginal likelihood"
+title: "Marginal Likelihood"
 aliases: ["evidence"]
 tags:
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "maximum a posteriori probability"
+title: "Maximum a Posteriori Probability (MAP)"
 tags:
   - statistic
   - bayesian_inference

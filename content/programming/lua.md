@@ -1,5 +1,5 @@
 ---
-title: "lua"
+title: "Lua"
 tags:
   - programming
   - language

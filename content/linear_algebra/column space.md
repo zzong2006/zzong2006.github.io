@@ -1,5 +1,5 @@
 ---
-title: "column space"
+title: "Column Space"
 tags:
   - linear_algebra
 aliases: ["range"]

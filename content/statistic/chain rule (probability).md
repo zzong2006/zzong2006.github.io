@@ -1,5 +1,5 @@
 ---
-title: "chain rule (probability)"
+title: "Chain Rule (Probability)"
 tags: statistic 
 aliases: ["chain rule"]
 ---

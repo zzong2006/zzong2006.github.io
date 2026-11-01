@@ -1,5 +1,5 @@
 ---
-title: "law of conditional probability"
+title: "Law of Conditional Probability"
 tags: statistic 
 aliases: []
 ---

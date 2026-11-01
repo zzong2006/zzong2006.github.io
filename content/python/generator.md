@@ -1,5 +1,5 @@
 ---
-title: "generator"
+title: "Generator"
 tags:
   - python
 aliases: ["생성자"]

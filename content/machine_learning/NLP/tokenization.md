@@ -1,5 +1,5 @@
 ---
-title: "tokenization"
+title: "Tokenization"
 tags: NLP 
 aliases: ["토크나이저", "토큰화"]
 ---

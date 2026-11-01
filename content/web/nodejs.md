@@ -1,5 +1,5 @@
 ---
-title: "nodejs"
+title: "Node.js"
 ---
 * 우분투
 	* 설치: `apt-get install -y nodejs`

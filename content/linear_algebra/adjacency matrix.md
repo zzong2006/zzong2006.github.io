@@ -1,5 +1,5 @@
 ---
-title: "adjacency matrix"
+title: "Adjacency Matrix"
 tags:
   - linear_algebra
   - graph

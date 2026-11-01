@@ -1,5 +1,5 @@
 ---
-title: "hyperparameter"
+title: "Hyperparameter"
 tags: machine_learning 
 aliases: ["하이퍼파라매터"]
 ---

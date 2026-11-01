@@ -1,5 +1,5 @@
 ---
-title: "matrix calculus"
+title: "Matrix Calculus"
 aliases: []
 tags:
   - differentitation

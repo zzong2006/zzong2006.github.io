@@ -1,5 +1,5 @@
 ---
-title: "permuted language modeling"
+title: "Permuted Language Modeling (PLM)"
 aliases: ["PLM"]
 tags:
   - NLP

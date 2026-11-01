@@ -1,5 +1,5 @@
 ---
-title: "Reinforcement Learning"
+title: "Reinforcement Learning (RL)"
 aliases: ["RL", "강화 학습"]
 tags:
   - reinforcement_learning

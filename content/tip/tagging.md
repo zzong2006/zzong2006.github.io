@@ -1,5 +1,5 @@
 ---
-title: "tagging"
+title: "Tagging"
 tags: github 
 aliases: []
 ---

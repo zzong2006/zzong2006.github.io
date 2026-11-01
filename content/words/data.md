@@ -1,5 +1,5 @@
 ---
-title: "data"
+title: "Data"
 aliases: []
 tags:
   - statistic

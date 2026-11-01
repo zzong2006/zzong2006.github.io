@@ -1,5 +1,5 @@
 ---
-title: "First In First Out"
+title: "First In First Out (FIFO)"
 aliases: ["FIFO", "선입선출"]
 tags:
   - algorithm

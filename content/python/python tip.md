@@ -1,5 +1,5 @@
 ---
-title: "python tip"
+title: "Python Tip"
 tags:
   - python
   - programming

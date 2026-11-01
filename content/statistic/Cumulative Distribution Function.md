@@ -1,5 +1,5 @@
 ---
-title: "Cumulative Distribution Function"
+title: "Cumulative Distribution Function (CDF)"
 tags: statistic 
 aliases: ["CDF"]
 ---

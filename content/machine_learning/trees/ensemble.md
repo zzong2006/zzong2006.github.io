@@ -1,5 +1,5 @@
 ---
-title: "ensemble"
+title: "Ensemble"
 tags:
   - machine_learning
   - recommendation_system

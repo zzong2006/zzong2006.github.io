@@ -1,5 +1,5 @@
 ---
-title: "central limit theorem"
+title: "Central Limit Theorem"
 aliases: ["중심 극한 정리"]
 tags:
   - statistic

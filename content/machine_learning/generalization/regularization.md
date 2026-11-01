@@ -1,5 +1,5 @@
 ---
-title: "regularization"
+title: "Regularization"
 aliases: []
 tags:
   - machine_learning

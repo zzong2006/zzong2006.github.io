@@ -1,5 +1,5 @@
 ---
-title: "filter bubble"
+title: "Filter Bubble"
 aliases: []
 tags:
   - recommendation_system

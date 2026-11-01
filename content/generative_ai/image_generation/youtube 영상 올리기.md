@@ -1,5 +1,5 @@
 ---
-title: "youtube 영상 올리기"
+title: "YouTube 영상 올리기"
 ---
 # A) History
 

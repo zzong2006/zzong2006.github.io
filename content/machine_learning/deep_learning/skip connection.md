@@ -1,5 +1,5 @@
 ---
-title: "skip connection"
+title: "Skip Connection"
 aliases: ["shortcut connection", "residual connection", "Residual Connection"]
 tags:
   - deep_learning

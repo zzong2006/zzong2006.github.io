@@ -1,5 +1,5 @@
 ---
-title: "feature selection"
+title: "Feature Selection"
 tags:
   - machine_learning
   - feature_engineering

@@ -1,5 +1,5 @@
 ---
-title: "Synthetic Minority Over-sampling Technique"
+title: "Synthetic Minority Over-sampling Technique (SMOTE)"
 tags:
   - sampling
   - machine_learning

@@ -1,5 +1,5 @@
 ---
-title: "computational graph"
+title: "Computational Graph"
 tags:
   - machine_learning
 aliases: []

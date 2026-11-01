@@ -1,5 +1,5 @@
 ---
-title: "credible interval"
+title: "Credible Interval"
 tags: bayesian_inference 
 aliases: []
 ---

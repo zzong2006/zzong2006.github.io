@@ -1,5 +1,5 @@
 ---
-title: "curse of dimensionality"
+title: "Curse of Dimensionality"
 tags:
   - machine_learning
   - feature_engineering

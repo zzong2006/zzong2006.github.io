@@ -1,5 +1,5 @@
 ---
-title: "dependency injection"
+title: "Dependency Injection (DI)"
 tags: software_design
 aliases: ["의존성 주입", "DI"]
 ---

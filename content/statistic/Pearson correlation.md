@@ -1,5 +1,5 @@
 ---
-title: "Pearson correlation"
+title: "Pearson correlation (PCC)"
 tags:
   - statistic
 aliases:

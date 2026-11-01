@@ -1,5 +1,5 @@
 ---
-title: "non-stationary"
+title: "Non-Stationary"
 aliases: ["비정상", "non-stationarity"]
 tags:
   - machine_learning

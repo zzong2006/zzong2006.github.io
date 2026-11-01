@@ -1,5 +1,5 @@
 ---
-title: "vector"
+title: "Vector"
 tags:
   - linear_algebra
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "Latent Dirichlet Allocation"
+title: "Latent Dirichlet Allocation (LDA)"
 aliases:
   - LDA
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "joint probability"
+title: "Joint Probability"
 tags:
   - law_of_total_probability
   - statistic

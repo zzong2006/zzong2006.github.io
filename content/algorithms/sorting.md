@@ -1,5 +1,5 @@
 ---
-title: "sorting"
+title: "Sorting"
 aliases: []
 tags:
   - algorithm

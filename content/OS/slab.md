@@ -1,5 +1,5 @@
 ---
-title: "slab"
+title: "Slab"
 aliases: []
 tags:
   - linux

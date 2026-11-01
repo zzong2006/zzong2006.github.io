@@ -1,5 +1,5 @@
 ---
-title: "Convolution Neural Network"
+title: "Convolutional Neural Network (CNN)"
 tags: 
 aliases: [CNN]
 Tags: deep_learning, machine_learning, 

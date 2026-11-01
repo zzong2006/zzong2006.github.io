@@ -1,5 +1,5 @@
 ---
-title: "policy improvement"
+title: "Policy Improvement"
 tags: reinforcement_learning 
 aliases: []
 ---

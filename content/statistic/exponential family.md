@@ -1,5 +1,5 @@
 ---
-title: "exponential family"
+title: "Exponential Family"
 aliases: []
 tags:
   - statistic

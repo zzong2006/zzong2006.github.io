@@ -1,5 +1,5 @@
 ---
-title: "Probabilistic Matrix Factorization"
+title: "Probabilistic Matrix Factorization (PMF)"
 aliases: ["PMF"]
 tags:
   - NIPS

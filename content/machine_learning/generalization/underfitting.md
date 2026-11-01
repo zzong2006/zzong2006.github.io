@@ -1,5 +1,5 @@
 ---
-title: "underfitting"
+title: "Underfitting"
 aliases: ["과소적합"]
 tags:
   - machine_learning

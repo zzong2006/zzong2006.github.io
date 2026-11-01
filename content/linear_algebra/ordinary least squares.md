@@ -1,5 +1,5 @@
 ---
-title: "ordinary least squares"
+title: "Ordinary Least Squares (OLS)"
 tags:
   - linear_algebra
   - linear_regression

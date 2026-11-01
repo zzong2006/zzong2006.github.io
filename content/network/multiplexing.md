@@ -1,5 +1,5 @@
 ---
-title: "multiplexing"
+title: "Multiplexing"
 tags: network
 aliases: ["멀티플렉싱"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "bound optimization"
+title: "Bound Optimization"
 tags:
   - optimization
 aliases: []

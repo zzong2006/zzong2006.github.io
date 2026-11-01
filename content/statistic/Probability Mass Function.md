@@ -1,5 +1,5 @@
 ---
-title: "Probability Mass Function"
+title: "Probability Mass Function (PMF)"
 aliases: ["PMF", "확률질량함수"]
 tags:
   - statistic

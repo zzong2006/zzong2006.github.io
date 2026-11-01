@@ -1,5 +1,5 @@
 ---
-title: "ancestral sampling"
+title: "Ancestral Sampling"
 aliases: []
 tags:
   - sampling

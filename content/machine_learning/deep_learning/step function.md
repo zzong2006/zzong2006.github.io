@@ -1,5 +1,5 @@
 ---
-title: "step function"
+title: "Step Function"
 tags:
   - activation_function
   - deep_learning

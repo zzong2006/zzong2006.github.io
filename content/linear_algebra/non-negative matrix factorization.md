@@ -1,5 +1,5 @@
 ---
-title: "non-negative matrix factorization"
+title: "Non-Negative Matrix Factorization"
 aliases: []
 tags:
   - linear_algebra

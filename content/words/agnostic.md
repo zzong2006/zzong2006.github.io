@@ -1,5 +1,5 @@
 ---
-title: "agnostic"
+title: "Agnostic"
 aliases: []
 tags:
   - word

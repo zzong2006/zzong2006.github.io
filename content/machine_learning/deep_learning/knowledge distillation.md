@@ -1,5 +1,5 @@
 ---
-title: "knowledge distillation"
+title: "Knowledge Distillation"
 tags:
   - machine_learning
 aliases: []

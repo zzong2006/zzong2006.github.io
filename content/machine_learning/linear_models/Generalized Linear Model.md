@@ -1,5 +1,5 @@
 ---
-title: "Generalized Linear Model"
+title: "Generalized Linear Model (GLM)"
 tags:
   - linear_regression
   - machine_learning
