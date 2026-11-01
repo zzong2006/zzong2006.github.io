@@ -97,14 +97,72 @@ X 가 공개한 For You 피드 알고리즘(`xai-org/x-algorithm`)의 Phoenix �
 
 - 해시는 의미를 보존하지 않는다. ID 해시만으로는 "비슷한 글이니 비슷하게 다룬다" 를 배울 수 없다.
 
-**Phoenix 는 semantic ID 로 이 빈틈을 메운다.**
+Phoenix 는 이 빈틈을 semantic ID 로 메운다.
 
-- semantic ID 는 게시물의 텍스트와 이미지를 함께 인코딩한 벡터([[CLIP]] 계열)를 코드 6 개로 바꾼 것이다. 각 코드는 256 개 중 하나다.
-- 바꾸는 방법은 residual quantization 이다. 벡터를 가장 가까운 코드로 근사하고, 남은 오차를 다음 단계 코드로 다시 근사하기를 6 번 반복한다.
-- 앞쪽 코드는 큰 주제를, 뒤쪽 코드는 세부를 잡는다. 그래서 주제가 같은 글은 코드의 앞부분이 같다.
-- 처음 보는 글도 이미 학습된 코드들의 조합으로 표현되므로, [[cold-start]] 상황에서도 의미 있는 벡터가 나온다.
+# E) semantic ID: 내용으로 만든 ID
 
-두 표현이 맡는 일은 다음과 같이 나뉜다.
+**semantic ID 는 게시물 내용을 담은 벡터를 짧은 코드 몇 개로 바꾼 것이다.**
+
+- 입력은 게시물의 텍스트와 이미지를 함께 인코딩한 벡터다([[CLIP]] 계열).
+- Phoenix 는 이 벡터를 코드 6 개로 바꾼다. 각 코드는 1 부터 256 사이의 번호다. 0 은 값이 없을 때 쓴다.
+- 해시와 달리, 내용이 비슷한 게시물은 비슷한 코드를 받는다.
+
+## E.1) 코드 생성 방식: residual quantization
+
+**한 단계에서 벡터와 가장 가까운 대표 벡터를 고르고, 다음 단계에서 남은 차이를 다시 근사한다.**
+
+- 단계마다 대표 벡터 목록이 하나씩 있다. 이 목록을 코드북(codebook)이라 하고, 목록 안의 번호가 코드다.
+- 1단계 코드북은 게시물 벡터 전체를 큰 묶음으로 나눈 대표점이다. 뒤 단계 코드북은 남은 작은 차이를 나눈 대표점이다.
+
+2차원 벡터에 단계마다 코드 4 개인 작은 예시로 보자. 1단계 코드북은 (−5, 5), (5, 5), (−5, −5), (5, −5) 이고, 2단계 코드북은 (0, 1), (1, 0), (0, −1), (−1, 0) 이다. 게시물은 축구 (5.9, 5.2), 농구 (4.8, 6.1), 파스타 (−4.1, −5.3) 세 개다. 숫자는 설명을 위해 정한 값이다.
+
+![[img-aecf9e7d14.png]]
+
+축구 게시물을 따라가 보면 다음과 같다.
+
+1. 1단계: 가장 가까운 코드는 2번 (5, 5) 다. 남은 차이(잔차)는 (5.9, 5.2) − (5, 5) = (0.9, 0.2) 다.
+2. 2단계: 잔차 (0.9, 0.2) 와 가장 가까운 코드는 2번 (1, 0) 이다. 이제 남은 차이는 (−0.1, 0.2) 로 작다.
+3. 축구의 semantic ID 는 (2, 2) 다. 두 코드의 벡터를 더한 (6, 5) 가 원래 벡터 (5.9, 5.2) 에 가깝다.
+
+세 게시물의 결과는 축구 (2, 2), 농구 (2, 1), 파스타 (3, 2) 다.
+
+- **벡터가 가까운 게시물은 앞쪽 코드를 공유한다.**
+  - 축구와 농구는 1단계 코드가 2 로 같다.
+- **뒤쪽 코드는 앞쪽 코드 안에서의 세부 위치만 뜻한다.**
+  - 파스타는 2단계 코드가 축구와 같은 2 지만, 1단계가 달라 전혀 다른 곳에 있다.
+
+식으로 쓰면 다음과 같다.
+
+$$
+\mathbf{r}_0 = \mathbf{x}, \qquad c_l = \arg\min_{k} \lVert \mathbf{r}_{l-1} - \mathbf{C}_l[k] \rVert, \qquad \mathbf{r}_l = \mathbf{r}_{l-1} - \mathbf{C}_l[c_l]
+$$
+
+- $\mathbf{x}$ 는 게시물 벡터, $\mathbf{C}_l[k]$ 는 $l$ 단계 코드북의 $k$ 번 코드 벡터다.
+- $c_l$ 은 $l$ 단계에서 고른 코드이고, $\mathbf{r}_l$ 은 $l$ 단계 뒤에 남은 차이다.
+- 6 단계를 마치면 semantic ID 는 $(c_1, \ldots, c_6)$ 이고, 원래 벡터는 코드 벡터의 합 $\mathbf{C}_1[c_1] + \cdots + \mathbf{C}_6[c_6]$ 으로 근사된다.
+- 코드북을 만드는 학습 코드도 공개돼 있다(`phoenix/reference/sid_codebook.py`). 단계마다 k-means 로 대표점을 정하는 RQ-KMeans 와, 신경망과 함께 학습하는 RQ-VAE 를 지원한다. 운영에서 어느 쪽을 쓰는지는 확인 필요.
+
+## E.2) 모델 입력 방식
+
+**코드 번호마다 학습되는 벡터를 하나씩 두고, 6 단계에서 꺼낸 벡터를 합친다.**
+
+- 단계마다 행 257 개(코드 256 개와 값 없음 0번)짜리 임베딩 표가 따로 있다.
+- 축구 (2, 2) 라면 1단계 표의 2번 벡터와 2단계 표의 2번 벡터를 꺼내 더한다.
+
+$$
+\mathbf{e}_{\text{sid}} = \mathbf{T}_1[c_1] + \mathbf{T}_2[c_2] + \cdots + \mathbf{T}_6[c_6]
+$$
+
+- $\mathbf{T}_l$ 은 $l$ 단계의 임베딩 표다. 코드를 정할 때 쓴 코드북 $\mathbf{C}_l$ 과 달리, 클릭 예측을 학습하면서 같이 고쳐진다.
+- 실제로는 기본 설정(`sid_cross_attn=True`)에서 단계별 벡터끼리 attention 을 한 번 거친 결과와 원래 벡터를 각각 평균내 더한다. 그다음 모델 폭에 맞게 projection 을 곱한다.
+
+**그래서 처음 보는 게시물도 의미 있는 벡터를 받는다.**
+
+- 새 축구 게시물이 (2, 3) 을 받았다면, 1단계 표의 2번 벡터는 이미 축구·농구 같은 글로 학습돼 있다.
+- ID 해시로 받은 칸이 아직 아무것도 배우지 않은 벡터라는 점과 다르다.
+- 그래서 [[cold-start]] 상황에서 도움이 된다.
+
+## E.3) ID 해시와 semantic ID 비교
 
 | 구분 | ID 해시 | semantic ID |
 | --- | --- | --- |
@@ -115,7 +173,7 @@ X 가 공개한 For You 피드 알고리즘(`xai-org/x-algorithm`)의 Phoenix �
 
 그래서 [[Two-tower Model|two-tower]] retrieval 의 후보 쪽은 게시물을 게시물 ID 해시가 아니라 semantic ID 와 작성자 해시로 나타낸다. 후보가 1천만 개 넘게 계속 바뀌는 상황에서 게시물 구분보다 내용 일반화를 택한 것이다.
 
-# E) 도입할 때 정할 것
+# F) 도입할 때 정할 것
 
 **칸 수는 학습 전에 정해야 하고, 곧 테이블 크기가 된다.**
 
@@ -138,9 +196,9 @@ X 가 공개한 For You 피드 알고리즘(`xai-org/x-algorithm`)의 Phoenix �
 - 피드, 광고([[CTR prediction]]), 커머스 검색처럼 아이템이 하루에도 여러 번 바뀌는 곳이 여기 해당한다.
 - 아이템이 고정돼 있고 수십만 개 수준이면 사전을 두는 편이 충돌을 감수하는 것보다 싸다.
 
-# F) 부록
+# G) 부록
 
-## F.1) 완전 충돌 확률
+## G.1) 완전 충돌 확률
 
 서로 독립인 해시 함수 $k$ 개로 ID 마다 칸 $k$ 개를 뽑아, 해시마다 따로 둔 변환을 곱한 뒤 더한다.
 
@@ -166,7 +224,7 @@ $$
 | 2 | $10^{-16}$ | 약 0.5쌍 |
 | 3 | $10^{-24}$ | 사실상 0 |
 
-## F.2) Phoenix 구현 세부
+## G.2) Phoenix 구현 세부
 
 **해시 함수.** `xrex/models/recsys_embedding.py` 의 `HashTable` 클래스가 universal hashing 계열의 단순한 식을 쓴다.
 
@@ -215,4 +273,6 @@ for i in range(num_user_hashes):
 - [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) — X For You 피드 알고리즘
 - [phoenix/README.md](https://github.com/xai-org/x-algorithm/blob/main/phoenix/README.md) — Key Design Decisions, Model Architecture Configs
 - [xrex/models/recsys_embedding.py](https://github.com/xai-org/x-algorithm/blob/main/phoenix/xrex/models/recsys_embedding.py) — `HashTable`, `_hash_ids_batch`
-- [xrex/models/recsys_feature_prep.py](https://github.com/xai-org/x-algorithm/blob/main/phoenix/xrex/models/recsys_feature_prep.py) — `_project_hash`, semantic ID 임베딩
+- [xrex/models/recsys_feature_prep.py](https://github.com/xai-org/x-algorithm/blob/main/phoenix/xrex/models/recsys_feature_prep.py) — `_project_hash`, `_embed_entity_sid_scaled`(semantic ID 임베딩)
+- [xrex/models/recsys_sid.py](https://github.com/xai-org/x-algorithm/blob/main/phoenix/xrex/models/recsys_sid.py) — 코드북 벡터 합으로 복원하는 `_run_sid_decoder`
+- [reference/sid_codebook.py](https://github.com/xai-org/x-algorithm/blob/main/phoenix/reference/sid_codebook.py) — RQ-KMeans · RQ-VAE 코드북 학습
