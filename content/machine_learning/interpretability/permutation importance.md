@@ -60,7 +60,7 @@ tags:
 
 - **트리 모델의 기본 중요도(split · gain)**: 학습 중에 그 feature 로 몇 번, 얼마나 나눴는지 센다. 값 종류가 많은 feature 를 실제보다 중요하게 보기 쉽다 ([[LightGBM]] 의 Feature Importance 절).
 - **permutation importance**: 섞었을 때 예측 오차가 실제로 얼마나 느는지 잰다. 모델 전체에 대해 feature 마다 숫자 하나를 준다.
-- **[[shapley additive explanations|SHAP]]**: 집 한 채의 예측값을 feature 별 몫으로 나눈다. 집마다 값이 나오고, 이를 평균하면 전체 중요도도 된다.
+- **[[shapley additive explanations|SHAP]]**: 집 한 채의 예측이 평균 예측과 다른 만큼을 feature 별 몫으로 나눈다 (예: 3.7 억 = 평균 3.0 억 + 넓어서 0.45 억 + 역세권이라 0.25 억). 모든 집의 몫을 부호를 떼고 평균하면 feature 별 전체 중요도가 된다.
 
 # D) 부록: 코드
 
