@@ -73,7 +73,7 @@ tip       → doc4
 방향을 뒤집었다(invert)고 해서 inverted index, 역색인이라 부른다. 책 뒤의 찾아보기가 정확히 이 모양이다.
 
 - 왼쪽 단어를 term 이라 부른다.
-	- 원문 단어 그대로가 아니라 검색하기 좋게 다듬은 단어다 (`Foxes` 가 `fox` 가 됐다). 다듬는 법은 다음 절에서 본다.
+	- 원문 단어 그대로가 아니라 검색하기 좋게 다듬은 단어다 (`Foxes` 가 `fox` 가 됐다).
 - 오른쪽 문서 목록을 posting list 라 부른다.
 - term 들을 정렬해 모아 둔 사전을 term dictionary 라 부른다.
 
@@ -81,7 +81,7 @@ tip       → doc4
 
 - 그 문서에서 term 이 몇 번 나왔는지 (term frequency, TF): doc4 의 `quick` 은 2 번이다.
 	- 나중에 점수를 매길 때 쓴다.
-- term 이 문서의 몇 번째 단어인지 (position): doc1 에서 `quick` 은 0 번째, `brown` 은 1 번째다.
+- term 이 문서의 몇 번째 단어인지 (position): doc1 에서 `brown` 은 `quick` 바로 다음 자리다.
 	- `"quick brown"` 처럼 붙어 있는 구절을 찾는 phrase 검색에 쓴다.
 
 실제로는 term dictionary 를 [[Finite State Transducer|FST]] 로 압축하고, posting list 의 문서 ID 도 정렬해서 압축해 둔다. 그래서 수억 문서의 역색인도 디스크와 메모리에 들어간다.
@@ -181,9 +181,9 @@ fox   → doc1, doc2
 이제 두 목록을 합친다.
 
 - OR (합집합): doc1, doc2, doc3, doc4
-	- 단어 하나라도 들어 있으면 결과에 넣는다. `match` 쿼리의 기본값이다.
+	- 단어 하나라도 들어 있으면 결과에 넣는 `match` 쿼리의 기본값이다.
 - AND (교집합): doc1
-	- 단어가 전부 들어 있어야 결과에 넣는다. `match` 에 `"operator": "and"` 를 주면 이쪽이다.
+	- `match` 에 `"operator": "and"` 를 주면 단어가 전부 들어 있는 문서만 남는다.
 
 **posting list 는 문서 ID 순으로 정렬돼 있어서 합치는 데 한 번만 훑으면 된다.** 두 목록의 맨 앞을 비교하며 작은 쪽을 한 칸씩 넘기면, 병합 정렬의 병합 단계처럼 합집합과 교집합이 동시에 나온다.
 
@@ -211,13 +211,14 @@ OR 로 네 글이 다 걸렸다. 이제 어느 글을 먼저 보여 줄지 점�
 	- IDF(inverse document frequency)는 그 단어가 든 문서가 적을수록 커지는 값이다.
 - doc2 는 `fox` 한 번(0.307)으로, `quick` 을 두 번 가진 doc4(0.219)를 이긴다.
 - 반대로 네 글 모두에 나오는 단어라면 IDF 가 0.11 로 거의 무게가 없다.
-	- 어느 글을 찾는지 알려 주지 못하는 단어라서다. 불용어를 빼는 이유와 같다.
+	- 어느 글을 찾는지 알려 주지 못하는 단어라서다 (불용어를 빼는 이유와 같다).
 
 **자주 나올수록 점수가 오르지만, 점점 덜 오른다 (TF 포화).**
 
 - doc4 는 `quick` 이 두 번, doc3 은 한 번 나온다.
 - 그런데 점수는 두 배가 아니라 1.4 배다 (0.219 대 0.158).
-- 횟수에 비례해 점수를 주면 같은 단어를 백 번 써 넣은 글이 1 등을 한다. BM25 는 몇 번을 나오든 넘지 못하는 상한을 둔다.
+- 횟수에 비례해 점수를 주면 같은 단어를 백 번 써 넣은 글이 1 등을 한다.
+- BM25 는 몇 번을 나오든 넘지 못하는 상한을 둔다.
 
 **짧은 문서에서 나온 단어일수록 점수가 크다 (문서 길이 보정).**
 
@@ -240,12 +241,12 @@ $$
 
 - $\operatorname{IDF}(t)$: 드문 단어일수록 커지는 무게다.
 - $f(t, D)$: 문서 $D$ 에서 $t$ 가 나온 횟수다.
-	- 분자와 분모에 함께 있어서 횟수가 늘어도 분수가 상한 근처에 머문다. 이것이 TF 포화다.
-- $k_1$: 얼마나 빨리 포화될지 정한다. Elasticsearch 기본값은 1.2 다.
+	- 분자와 분모에 함께 있어서 횟수가 늘어도 분수가 상한 근처에 머문다 (TF 포화).
+- $k_1$: 얼마나 빨리 포화될지 정하는 값으로, Elasticsearch 기본값은 1.2 다.
 	- 작을수록 한두 번 나온 뒤로는 점수가 거의 안 오른다.
 - $|D| / \text{avgdl}$: 문서 길이를 전체 평균 길이로 나눈 비율이다.
-	- 평균보다 길면 분모가 커져 점수가 줄어든다. 이것이 문서 길이 보정이다.
-- $b$: 길이 보정을 얼마나 세게 할지 정한다. 기본값은 0.75 다.
+	- 평균보다 길면 분모가 커져 점수가 줄어든다 (문서 길이 보정).
+- $b$: 길이 보정을 얼마나 세게 할지 정하는 값으로, 기본값은 0.75 다.
 	- 0 이면 길이를 아예 보지 않는다.
 
 실제로는 Lucene 이 분자의 $(k_1+1)$ 을 빼고 계산한다. 모든 문서에 똑같이 곱해지는 상수라 순위는 그대로이고, 위 표의 점수도 이 방식으로 낸 값이다 (식과 검산은 부록).
@@ -267,12 +268,12 @@ Elasticsearch index "posts"
     └── segment C
 ```
 
-- index: 문서를 모아 두는 이름이다. 관계형 DB 의 테이블과 비슷하다.
+- index: 문서를 모아 두는 단위로, 관계형 DB 의 테이블과 비슷하다.
 - shard: index 를 여러 조각으로 나눈 것이다.
 	- 조각 하나하나가 독립된 [[Lucene]] index 다.
 	- 문서 하나는 primary shard 하나에만 들어가고, replica shard 는 그 복사본이다.
 	- primary shard 수는 index 를 만들 때 정하면 바꿀 수 없다.
-- segment: shard 안에 쌓이는 작은 역색인 묶음이다. 자세한 구조는 [[Lucene Segment]].
+- segment: shard 안에 쌓이는 작은 역색인 묶음이다 ([[Lucene Segment]]).
 
 검색 요청은 모든 shard 로 퍼진다. shard 마다 자기 segment 들을 검색해 상위 문서를 내면, 요청을 받은 노드가 그것을 모아 최종 상위 문서를 고른다.
 
@@ -281,14 +282,14 @@ Elasticsearch index "posts"
 - 장점: 여러 검색이 잠금 없이 동시에 읽을 수 있고, 운영체제 파일 캐시에 그대로 올려 둘 수 있다.
 - 대가: 문서를 고치거나 지울 때 기존 segment 를 손대지 못한다.
 	- 삭제는 "지웠음" 표시만 남기고, 수정은 옛 문서에 삭제 표시를 한 뒤 새 문서를 새 segment 에 쓴다.
-- segment 가 계속 쌓이면 검색할 곳이 늘어난다. 그래서 뒤에서 작은 segment 들을 큰 segment 하나로 합친다 (merge).
+- segment 가 계속 쌓이면 검색할 곳이 늘어나서, 뒤에서 작은 segment 들을 큰 segment 하나로 합친다 (merge).
 	- 삭제 표시된 문서는 이때 실제로 사라진다.
 
 ## E.2) refresh 와 near real-time
 
 **색인 요청이 성공해도 바로 검색되지는 않는다.**
 
-- 새 문서는 먼저 메모리 버퍼에 쌓인다. 이때는 아직 역색인이 아니라 검색에 안 걸린다.
+- 새 문서는 먼저 메모리 버퍼에 쌓이고, 이때는 아직 역색인이 아니라 검색에 안 걸린다.
 - refresh 가 버퍼를 새 segment 로 만들어 열면 그때부터 검색된다.
 	- 새 segment 는 디스크에 바로 쓰지 않고 파일시스템 캐시에 먼저 써서, 디스크 커밋보다 훨씬 가볍다.
 - Elasticsearch 는 기본으로 1 초마다 refresh 한다.
@@ -306,18 +307,18 @@ Elasticsearch index "posts"
 
 같은 문자열 `The Quick Brown Fox` 를 두 필드 타입으로 저장하면 역색인에 들어가는 term 이 다르다.
 
-- text: analyzer 를 거친다. term 은 quick, brown, fox 세 개다.
+- text: analyzer 를 거쳐 quick, brown, fox 세 term 으로 저장된다.
 	- 본문·제목처럼 단어로 찾는 글에 쓴다.
-- keyword: analyzer 를 거치지 않는다. term 은 `The Quick Brown Fox` 한 개다.
+- keyword: analyzer 를 거치지 않고 `The Quick Brown Fox` 한 term 으로 저장된다.
 	- ID·태그·상태 코드·이메일처럼 값이 통째로 같아야 하는 데 쓴다.
-	- 정렬과 집계(aggregation)도 keyword 로 한다. text 필드는 정렬에 쓰지 않는다.
+	- 정렬과 집계(aggregation)는 text 가 아니라 keyword 로 한다.
 
 둘 다 필요하면 한 필드에 두 타입을 함께 건다 (multi-field). 매핑을 지정하지 않고 문자열을 넣으면 Elasticsearch 가 알아서 `title`(text) 과 `title.keyword`(keyword) 를 함께 만든다.
 
 ## F.2) match 와 term 쿼리
 
 - match: 검색어를 필드의 analyzer 에 넣어 term 으로 바꾼 뒤 찾는다.
-- term: 검색어를 그대로 term 하나로 보고 posting list 를 찾는다. analyzer 를 거치지 않는다.
+- term: analyzer 를 거치지 않고 검색어를 그대로 term 하나로 보고 찾는다.
 
 doc1 을 text 와 keyword 로 함께 저장했을 때 결과다.
 
