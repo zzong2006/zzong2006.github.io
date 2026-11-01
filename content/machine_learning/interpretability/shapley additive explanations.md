@@ -13,7 +13,7 @@ aliases: ["SHAP"]
 - 무엇이 공정한지는 게임 이론의 Shapley value 로 정한다. feature 를 하나씩 알려 주는 모든 순서에서, 그 feature 가 예측을 움직인 양을 평균한다.
 - 나눈 몫을 모두 더하면 정확히 0.7 억이 된다. 이름의 Additive(더해서 맞아떨어진다)가 여기서 왔다.
 
-**"이 모델에서는 넓은지가 가장 중요하다" 같은 feature 전체 중요도는 SHAP 의 핵심이 아니라 부산물이다.** 집마다 나눈 몫을 모아 평균한 것이다.
+**"이 모델에서는 넓은지가 가장 중요하다" 같은 feature 전체 중요도는 SHAP 의 핵심이 아니라 부산물이다.** 집마다 나눈 몫을 모아 평균한 것이고, "모델이 무엇에 기대어 예측하나" 에 대한 답이다.
 
 # A) 몫을 나누는 방법
 
@@ -88,9 +88,15 @@ aliases: ["SHAP"]
 
 **이 숫자는 따로 계산한 것이 아니라 집마다 구한 몫을 모은 것이다.** 집 한 채의 덧셈식이 SHAP 의 본체이고, 전체 중요도는 그 덧셈식들을 요약한 값이다.
 
-# D) permutation importance 와 비교
+**숫자 하나로 줄이면 몫이 집마다 어떻게 퍼져 있었는지가 사라진다.**
 
-[[permutation importance]] 도 feature 중요도를 준다. 둘은 재는 대상부터 다르다.
+- 넓다의 0.4 억은 네 집 모두 몫의 크기가 0.35 억에서 0.45 억 사이라서 나온 값이다.
+- 절반의 집에서 0.8 억이고 나머지 집에서 0 인 feature 도 평균은 똑같이 0.4 억이다.
+- 그래서 실제로는 막대 하나 대신 집마다 몫을 점으로 찍은 그림(beeswarm)도 함께 본다.
+
+# D) 중요도 숫자가 답하는 질문
+
+[[permutation importance]] 도 feature 마다 중요도를 준다. 둘은 재는 대상부터 다르다.
 
 | 비교 축 | SHAP | permutation importance |
 | --- | --- | --- |
@@ -100,15 +106,33 @@ aliases: ["SHAP"]
 | 실제 가격(정답) | 필요 없다 | 필요하다 |
 | 결과물 | 집 × feature 표 | feature 마다 숫자 하나 |
 
-**둘 다 feature 마다 숫자 하나로 줄일 수 있지만 뜻이 다르다.**
+**mean |SHAP| 는 "이 모델은 예측할 때 어떤 feature 에 얼마나 기대나" 에 대한 답이다.** 부산물이라고 참고용에 그치는 숫자가 아니라, 이 질문에는 그대로 답이 된다.
 
-- SHAP 의 mean |SHAP| 는 "모델의 예측을 얼마나 흔드는가" 다.
-- permutation importance 는 "이 feature 를 망가뜨리면 얼마나 더 틀리는가" 다.
-- 모델이 학습 데이터의 우연한 패턴(예: 빨간 현관문 집이 비쌌다)을 외웠다면, 현관문 색은 예측을 흔들므로 mean |SHAP| 가 0 보다 크다. 검증 데이터의 permutation importance 는 0 근처로 나온다.
+- 트리 모델의 기본 중요도(split 횟수 · gain)보다 믿을 만하다.
+- 모델이 어떤 feature 에 더 기대도록 바뀌면, 그 feature 의 SHAP 값은 줄지 않는다. 이 성질을 consistency 라 부른다.
+- 트리 모델의 흔한 중요도 계산은 이 성질이 깨질 수 있어서, 더 기대게 된 feature 가 오히려 덜 중요하게 나오기도 한다.
+
+**알고 싶은 것이 다르면 쓸 숫자도 다르다.**
+
+- 모델이 무엇에 기대나: mean |SHAP| 를 쓴다.
+- 이 feature 가 성능에 도움이 되나, 빼도 되나: 검증 데이터의 permutation importance 를 쓴다. 확실히 하려면 그 feature 를 빼고 다시 학습해 비교한다.
+- 실제로 값을 바꾸면 결과가 바뀌나: 둘 다 답하지 못한다. A/B 실험이나 인과 추론이 필요하다.
+  - "넓어서 +0.45 억" 은 모델이 그렇게 계산했다는 뜻이다. 실제로 집을 넓히면 0.45 억 오른다는 뜻은 아니다.
+
+**잡음을 외운 feature 에서 두 숫자가 다르게 나온다.**
+
+- 모델이 학습 데이터의 우연한 패턴(빨간 현관문 집이 비쌌다)을 외웠다고 하자.
+- 현관문 색은 예측을 흔드므로 mean |SHAP| 가 0 보다 크다.
+- 검증 데이터에는 그 패턴이 없어서 현관문 색을 섞어도 오차가 늘지 않는다. permutation importance 는 0 근처다.
+- 모델이 기대고 있지만 성능에는 도움이 안 되는 feature 라는 뜻이다.
+
+**SHAP 으로 성능 기여를 보려면 예측값 대신 오차를 나눈다.**
+
+- 집마다의 오차(loss)를 feature 별 몫으로 나누면 "이 feature 가 이 집의 오차를 얼마나 늘리거나 줄였나" 가 나온다.
+- 오차를 구해야 하므로 실제 정답이 필요하다.
+- 실제로는 shap 이 분류 모델의 log loss 에 이 기능을 준다 (코드는 부록).
 
 # E) 쓸 때 주의할 점
-
-**SHAP 값은 원인이 아니라 모델의 계산을 나눈 것이다.** "넓어서 +0.45 억" 은 모델이 그렇게 계산했다는 뜻이다. 실제로 집을 넓히면 0.45 억 오른다는 뜻은 아니다.
 
 **feature 가 많으면 순서가 너무 많다.**
 
@@ -116,11 +140,18 @@ aliases: ["SHAP"]
 - 실제로는 트리 모델이면 TreeSHAP 이 순서를 다 돌지 않고도 정확한 값을 빠르게 구한다.
 - 다른 모델은 일부 순서만 뽑아 근사한다 (KernelSHAP).
 
-**서로 닮은 feature 가 있으면 몫이 예상과 다르게 나뉠 수 있다.**
+**서로 닮은 feature 는 몫을 더해서 본다.**
 
 - 면적을 평과 ㎡ 로 두 번 넣었다고 하자. 면적의 몫이 둘에게 나뉘어, 둘 다 실제보다 작아 보일 수 있다.
+- 몫끼리 더해도 덧셈식은 그대로 맞으므로, 집마다 평의 몫과 ㎡ 의 몫을 더해 면적의 몫으로 보면 된다.
+- permutation importance 는 이렇게 더할 수 없다. 두 열을 함께 섞어서 다시 재야 한다.
 - 모르는 feature 를 평균으로 채울 때 "20 평인데 115 ㎡" 같은 실제로 없는 집이 섞이기도 한다.
 - 실제로는 모르는 feature 를 채우는 방법이 몇 가지 있고, 방법에 따라 몫이 조금씩 다르다.
+
+**몫은 넣은 데이터의 집마다 구한 값이다.**
+
+- 평균 예측(기준값)도, 전체 중요도도 어떤 집들로 구했는지에 따라 달라진다.
+- 모델이 실제로 예측할 집과 비슷한 데이터로 구한다.
 
 # F) 부록: 식과 코드
 
@@ -160,9 +191,21 @@ shap.plots.waterfall(sv[0])             # 집 한 채의 덧셈식 (본문 그�
 
 np.abs(sv.values).mean(axis=0)          # 부호를 뗀 몫의 평균 = 전체 중요도
 shap.plots.bar(sv)                      # 위 값을 막대로 그린다
+shap.plots.beeswarm(sv)                 # 집마다 몫을 점으로 찍어 퍼진 모양을 본다
 ```
 
 - LightGBM 은 shap 없이도 `model.predict(X, pred_contrib=True)` 로 같은 몫을 준다. 마지막 열이 평균 예측(기준값)이다.
+
+분류 모델에서 예측값 대신 샘플마다의 log loss 를 나누려면 기준 데이터와 정답을 함께 넘긴다.
+
+```python
+loss_explainer = shap.TreeExplainer(
+    model, X_background,                     # 기준 데이터가 필요하다
+    model_output="log_loss",
+    feature_perturbation="interventional",   # log_loss 는 이 방식에서만 된다
+)
+loss_sv = loss_explainer.shap_values(X, y)   # y: 실제 정답
+```
 
 # G) Related
 
@@ -171,5 +214,6 @@ shap.plots.bar(sv)                      # 위 값을 막대로 그린다
 # H) References
 
 * [A Unified Approach to Interpreting Model Predictions (Lundberg & Lee, NeurIPS 2017)](https://papers.nips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html)
+* [Consistent Individualized Feature Attribution for Tree Ensembles (Lundberg, Erion & Lee, 2018)](https://arxiv.org/abs/1802.03888)
 * [From local explanations to global understanding with explainable AI for trees (Lundberg et al., Nature Machine Intelligence 2020)](https://www.nature.com/articles/s42256-019-0138-9)
 * [SHAP documentation](https://shap.readthedocs.io/en/latest/)
