@@ -9,15 +9,16 @@ aliases: [Information Retrieval, Search]
 
 # A) Retrieval
 
-Retrieval은 사용자의 query에 대해 큰 corpus에서 후보 문서나 item을 빠르게 가져오는 단계다. 전통적인 lexical retrieval은 [[BM25]]와 [[Inverted Index]]를 중심으로 동작하고, semantic retrieval은 [[DPR]] 같은 dense retriever와 [[HNSW]], [[faiss]], [[Vamana]] 같은 ANN index를 함께 사용한다.
+Retrieval은 사용자의 query에 대해 큰 corpus에서 후보 문서나 item을 빠르게 가져오는 단계다. 전통적인 lexical retrieval은 [[BM25]]와 [[Inverted Index]]를 중심으로 동작하고, semantic retrieval은 [[DPR]] 같은 dense retriever와 [[HNSW]], [[faiss]], [[Vamana]] 같은 ANN index를 함께 사용한다. 검색어는 그 전에 [[Query Understanding]] 에서 오타 교정·의도 분류·속성 추출을 거치고, 결과 품질은 [[Search Relevance Evaluation]] 의 지표(NDCG, Defect Rate 등)로 판정한다.
 
 # B) 큰 지도
 
 ```mermaid
 flowchart TD
-    Q["Query"] --> SPARSE["Sparse Retrieval"]
-    Q --> DENSE["Dense Retrieval"]
-    Q --> MULTI["Multi-vector Retrieval"]
+    Q["Query"] --> QU["Query Understanding"]
+    QU --> SPARSE["Sparse Retrieval"]
+    QU --> DENSE["Dense Retrieval"]
+    QU --> MULTI["Multi-vector Retrieval"]
     SPARSE --> BM25["BM25 / SPLADE"]
     DENSE --> ANN["ANN Index"]
     MULTI --> COLBERT["ColBERT / PLAID / MUVERA"]
