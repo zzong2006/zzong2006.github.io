@@ -77,7 +77,7 @@ SFT: 모든 정답 토큰을 그냥 따라 해
 DFT: 지금 모델 상태에서 너무 안 맞는 토큰은 조금 덜 세게 밀어줌
 ```
 
-이 점에서 DFT는 Focal Loss와 방향이 반대다. Focal Loss는 어려운 샘플을 더 세게 보지만, DFT는 LLM SFT에서는 너무 낮은 확률 토큰을 무리하게 밀어붙이는 것이 generalization을 해칠 수 있다고 본다.
+이 점에서 DFT는 [[Focal Loss와 Gradient Blending|Focal Loss]]와 방향이 반대다. Focal Loss는 어려운 샘플을 더 세게 보지만, DFT는 LLM SFT에서는 너무 낮은 확률 토큰을 무리하게 밀어붙이는 것이 generalization을 해칠 수 있다고 본다.
 
 ## D.3) CADFT
 
