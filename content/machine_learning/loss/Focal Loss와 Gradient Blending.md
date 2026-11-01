@@ -72,7 +72,7 @@ $\gamma = 2$ 로 두 샘플을 계산해 보자.
 
 **Focal loss 는 쉬운 샘플을 버리지 않고 비중만 줄인다.** 쉬운 샘플을 빼고 어려운 것만 골라 학습하는 OHEM(online hard example mining)과 다르다. 논문은 같은 검출기에서 focal loss 가 OHEM 보다 높은 성능을 냈다고 보고했다.
 
-## A.4) 클래스 가중치 $\alpha$
+## A.4) 클래스 가중치 α
 
 실제 focal loss 에는 클래스 가중치 $\alpha_t$ 가 하나 더 붙는다.
 
