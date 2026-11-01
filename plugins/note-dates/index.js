@@ -28,32 +28,50 @@ export function parseIgnoreRevs(text) {
 export function parseHistory(log, ignoredRevs = new Set()) {
   const dates = new Map()
   const tokens = log.split("\0")
-  let timestamp
-  let ignored = false
+  let commit
+  const flush = () => {
+    if (commit) applyCommit(dates, commit)
+  }
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i].trim()
     if (token.startsWith("DATE:")) {
+      flush()
       const [date, hash] = token.slice(5).split(" ")
-      timestamp = date
-      ignored = ignoredRevs.has(hash)
+      commit = { timestamp: date, ignored: ignoredRevs.has(hash), changes: [] }
     } else if (/^[AMDTCR]\d*$/.test(token)) {
       const source = tokens[++i]
       const target = /^[RC]/.test(token) ? tokens[++i] : source
-      if (token === "D") {
-        dates.delete(source)
-        continue
-      }
-      const previous = dates.get(source)
-      const added = token === "A" || token.startsWith("C")
-      const created = added ? timestamp : (previous?.created ?? timestamp)
-      // 내용이 그대로인 이동(R100)과 정리 작업 커밋은 글을 고친 것이 아니라 수정일을 이어받는다.
-      const keep = !added && previous && (token === "R100" || ignored)
-      const modified = keep ? previous.modified : timestamp
-      if (token.startsWith("R")) dates.delete(source)
-      dates.set(target, { created, modified })
+      commit?.changes.push({ status: token, source, target })
     }
   }
+  flush()
   return dates
+}
+
+const baseName = (file) => file.slice(file.lastIndexOf("/") + 1)
+
+function applyCommit(dates, { timestamp, ignored, changes }) {
+  // 노트를 옮기면서 내용도 많이 고치면 git 이 이동으로 못 알아보고 삭제 + 추가로 적는다.
+  // 같은 커밋에서 같은 파일명이 다른 폴더로 사라졌다 생기면 이동으로 보고 작성일을 이어받는다.
+  const removed = new Map()
+  for (const { status, source } of changes) {
+    if (status !== "D") continue
+    const name = baseName(source)
+    removed.set(name, removed.has(name) ? null : { path: source, ...dates.get(source) })
+    dates.delete(source)
+  }
+  for (const { status, source, target } of changes) {
+    if (status === "D") continue
+    const moved = status === "A" ? removed.get(baseName(target)) : undefined
+    const previous = moved?.path !== target && moved?.created ? moved : dates.get(source)
+    const added = (status === "A" && previous !== moved) || status.startsWith("C")
+    const created = added || !previous ? timestamp : previous.created
+    // 내용이 그대로인 이동(R100)과 정리 작업 커밋은 글을 고친 것이 아니라 수정일을 이어받는다.
+    const keep = !added && previous && (status === "R100" || ignored)
+    const modified = keep ? previous.modified : timestamp
+    if (status.startsWith("R")) dates.delete(source)
+    dates.set(target, { created, modified })
+  }
 }
 
 export function asDate(value) {
