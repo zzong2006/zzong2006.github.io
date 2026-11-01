@@ -21,7 +21,7 @@ Alias: [BPR]
 
 # B) Introduction
 
-BPR-Opt 를 최적화 하는것은 [[ROC Curve]] 의 넓이를 최대화 하는것과 같다.
+BPR-Opt 를 최적화 하는것은 [[machine_learning/metrics/Area Under Curve|ROC 곡선]] 아래 넓이를 최대화 하는것과 같다.
 
 LearnBPR 알고리즘 제시: bootstrap sampling (of training triples) 을 이용한 [[stochastic gradient descent]] 기반의 방법
 
