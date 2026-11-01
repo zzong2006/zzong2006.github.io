@@ -18,6 +18,7 @@ CLIP(Contrastive Language-Image Pre-training)은 image encoder 와 text encoder 
 # C) Related
 
 * [[contrastive learning]]
+* [[VLM 임베딩 추출 방법]]
 * [[multimodal]]
 * [[retrieval]]
 
