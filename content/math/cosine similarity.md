@@ -1,5 +1,5 @@
 ---
-title: "cosine similarity"
+title: "Cosine Similarity"
 tags:
   - math
   - metrics

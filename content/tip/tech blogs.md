@@ -1,5 +1,5 @@
 ---
-title: "tech blogs"
+title: "Tech Blogs"
 aliases: []
 tags:
   - tech_blog

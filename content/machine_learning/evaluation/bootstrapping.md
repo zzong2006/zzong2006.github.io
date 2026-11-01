@@ -1,5 +1,5 @@
 ---
-title: "bootstrapping"
+title: "Bootstrapping"
 aliases: ["bootstrapped", "bootstrap", "부트스트랩", "부트스트래핑"]
 tags:
   - ensemble

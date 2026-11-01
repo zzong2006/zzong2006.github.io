@@ -1,5 +1,5 @@
 ---
-title: "simplex"
+title: "Simplex"
 tags:
   - math
 aliases: []

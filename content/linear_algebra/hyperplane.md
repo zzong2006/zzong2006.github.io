@@ -1,5 +1,5 @@
 ---
-title: "hyperplane"
+title: "Hyperplane"
 tags:
   - linear_algebra
 aliases: []

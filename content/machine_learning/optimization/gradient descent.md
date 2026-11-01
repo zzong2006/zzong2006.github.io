@@ -1,5 +1,5 @@
 ---
-title: "gradient descent"
+title: "Gradient Descent (GD)"
 tags:
   - optimization
   - machine_learning

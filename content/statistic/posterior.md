@@ -1,5 +1,5 @@
 ---
-title: "posterior"
+title: "Posterior"
 tags:
   - statistic
   - bayesian_inference

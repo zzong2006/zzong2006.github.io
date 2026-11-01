@@ -1,5 +1,5 @@
 ---
-title: "singular"
+title: "Singular"
 tags:
   - linear_algebra
 aliases: ["noninvertible"]

@@ -1,5 +1,5 @@
 ---
-title: "Long Short-Term Memory"
+title: "Long Short-Term Memory (LSTM)"
 tags: NLP 
 aliases: ["LSTM"]
 ---

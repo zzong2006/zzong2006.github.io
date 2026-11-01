@@ -1,5 +1,5 @@
 ---
-title: "eigenvalue"
+title: "Eigenvalue"
 tags:
   - linear_algebra
 aliases: ["고유값"]

@@ -1,5 +1,5 @@
 ---
-title: "jupyter tips"
+title: "Jupyter Tips"
 tags:
   - tip
   - python

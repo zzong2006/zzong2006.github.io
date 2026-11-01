@@ -1,5 +1,5 @@
 ---
-title: "prior"
+title: "Prior"
 aliases: ["prior distribution", "사전분포"]
 tags:
   - statistic

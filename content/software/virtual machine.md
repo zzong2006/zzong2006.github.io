@@ -1,5 +1,5 @@
 ---
-title: "virtual machine"
+title: "Virtual Machine (VM)"
 aliases: ["가상 머신", "VM"]
 tags:
   - software

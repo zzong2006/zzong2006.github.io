@@ -1,5 +1,5 @@
 ---
-title: "scientific method"
+title: "Scientific Method"
 tags: hypothesis_test 
 aliases: []
 ---

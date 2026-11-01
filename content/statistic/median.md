@@ -1,5 +1,5 @@
 ---
-title: "median"
+title: "Median"
 tags:
   - statistic
 aliases: []

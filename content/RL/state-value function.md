@@ -1,5 +1,5 @@
 ---
-title: "state-value function"
+title: "State-Value Function"
 tags:
   - reinforcement_learning
 aliases: []

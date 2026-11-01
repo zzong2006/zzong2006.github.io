@@ -1,5 +1,5 @@
 ---
-title: "least squares estimation"
+title: "Least Squares Estimation"
 tags:
 aliases: []
   - machine_learning

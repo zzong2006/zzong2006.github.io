@@ -1,5 +1,5 @@
 ---
-title: "policy iteration"
+title: "Policy Iteration"
 tags:
   - reinforcement_learning
   - DP

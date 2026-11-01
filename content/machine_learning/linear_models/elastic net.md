@@ -1,5 +1,5 @@
 ---
-title: "elastic net"
+title: "Elastic Net"
 aliases: []
 tags:
   - linear_regression

@@ -1,5 +1,5 @@
 ---
-title: "out-of-vocabulary"
+title: "Out-of-Vocabulary (OOV)"
 aliases: ["OOV", "미등록 단어"]
 tags:
   - NLP

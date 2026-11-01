@@ -1,5 +1,5 @@
 ---
-title: "event"
+title: "Event"
 tags:
   - statistic
   - probability

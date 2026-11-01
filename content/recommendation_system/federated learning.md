@@ -1,5 +1,5 @@
 ---
-title: "federated learning"
+title: "Federated Learning"
 tags:
   - machine_learning
   - recommendation_system

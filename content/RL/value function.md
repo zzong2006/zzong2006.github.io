@@ -1,5 +1,5 @@
 ---
-title: "value function"
+title: "Value Function"
 aliases: []
 tags:
   - reinforcement_learning

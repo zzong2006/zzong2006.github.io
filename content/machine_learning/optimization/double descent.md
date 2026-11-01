@@ -1,5 +1,5 @@
 ---
-title: "double descent"
+title: "Double Descent"
 tags: deep_learning 
 aliases: []
 ---

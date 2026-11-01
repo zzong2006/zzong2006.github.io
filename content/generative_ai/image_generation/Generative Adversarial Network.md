@@ -1,5 +1,5 @@
 ---
-title: "Generative Adversarial Network"
+title: "Generative Adversarial Network (GAN)"
 tags:
   - deep_learning
   - generative_model

@@ -1,5 +1,5 @@
 ---
-title: "Graph Neural Network"
+title: "Graph Neural Network (GNN)"
 aliases: ["GNN"]
 tags:
   - graph

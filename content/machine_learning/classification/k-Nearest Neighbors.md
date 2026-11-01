@@ -1,5 +1,5 @@
 ---
-title: "k-Nearest Neighbors"
+title: "k-Nearest Neighbors (KNN)"
 tags:
   - machine_learning
   - clustering

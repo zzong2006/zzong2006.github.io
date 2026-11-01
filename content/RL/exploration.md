@@ -1,5 +1,5 @@
 ---
-title: "exploration"
+title: "Exploration"
 tags: reinforcement_learning 
 aliases: []
 ---

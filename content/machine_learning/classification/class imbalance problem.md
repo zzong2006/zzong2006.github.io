@@ -1,5 +1,5 @@
 ---
-title: "class imbalance problem"
+title: "Class Imbalance Problem"
 tags: classification 
 aliases: []
 ---

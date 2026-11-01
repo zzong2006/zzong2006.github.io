@@ -1,5 +1,5 @@
 ---
-title: "teacher forcing"
+title: "Teacher Forcing"
 aliases: []
 tags:
   - deep_learning

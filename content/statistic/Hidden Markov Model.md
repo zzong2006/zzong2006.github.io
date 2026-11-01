@@ -1,5 +1,5 @@
 ---
-title: "Hidden Markov Model"
+title: "Hidden Markov Model (HMM)"
 tags:
   - statistics
   - machine_learning

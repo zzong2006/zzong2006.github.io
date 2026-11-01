@@ -1,5 +1,5 @@
 ---
-title: "gradient checkpoint"
+title: "Gradient Checkpoint"
 tags: 
 aliases: []
 ---

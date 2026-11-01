@@ -1,5 +1,5 @@
 ---
-title: "weaviate"
+title: "Weaviate"
 tags:
   - vector_database
   - ANN

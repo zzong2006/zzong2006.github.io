@@ -1,5 +1,5 @@
 ---
-title: "salt (hash)"
+title: "Salt (Hash)"
 aliases: []
 tags:
   - info_sec

@@ -1,5 +1,5 @@
 ---
-title: "mean reciprocal rank"
+title: "Mean Reciprocal Rank (MRR)"
 aliases: ["MRR"]
 tags:
   - learning_to_rank

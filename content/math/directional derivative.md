@@ -1,5 +1,5 @@
 ---
-title: "directional derivative"
+title: "Directional Derivative"
 tags:
   - calculus
   - differentitation

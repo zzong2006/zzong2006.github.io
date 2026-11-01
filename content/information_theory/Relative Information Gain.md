@@ -1,5 +1,5 @@
 ---
-title: "Relative Information Gain"
+title: "Relative Information Gain (RIG)"
 aliases: ["RIG"]
 tags:
   - metrics

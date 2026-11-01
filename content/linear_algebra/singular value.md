@@ -1,5 +1,5 @@
 ---
-title: "singular value"
+title: "Singular Value"
 tags: linear_algebra
 aliases: ["특이값"]
 ---

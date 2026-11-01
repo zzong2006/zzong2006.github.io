@@ -1,5 +1,5 @@
 ---
-title: "clickbait"
+title: "Clickbait"
 aliases: []
 tags:
   - recommendation_system

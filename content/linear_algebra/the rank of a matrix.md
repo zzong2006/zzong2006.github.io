@@ -1,5 +1,5 @@
 ---
-title: "the rank of a matrix"
+title: "The Rank of a Matrix"
 tags:
   - linear_algebra
 aliases: ["rank"]

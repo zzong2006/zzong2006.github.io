@@ -1,5 +1,5 @@
 ---
-title: "value-based method"
+title: "Value-Based Method"
 aliases: []
 tags:
   - reinforcement_learning

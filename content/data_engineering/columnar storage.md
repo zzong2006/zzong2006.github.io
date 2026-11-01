@@ -1,5 +1,5 @@
 ---
-title: "columnar storage"
+title: "Columnar Storage"
 aliases: ["column oriented DB"]
 tags:
   - database

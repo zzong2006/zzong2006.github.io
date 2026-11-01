@@ -1,5 +1,5 @@
 ---
-title: "matrix multiplication"
+title: "Matrix Multiplication"
 aliases: []
 tags:
   - linear_algebra

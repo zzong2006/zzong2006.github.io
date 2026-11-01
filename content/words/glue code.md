@@ -1,5 +1,5 @@
 ---
-title: "glue code"
+title: "Glue Code"
 tags:
   - word
   - programming

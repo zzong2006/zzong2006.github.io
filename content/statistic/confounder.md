@@ -1,5 +1,5 @@
 ---
-title: "confounder"
+title: "Confounder"
 tags:
   - statistic
   - linear_regression

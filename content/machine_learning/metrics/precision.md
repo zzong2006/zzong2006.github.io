@@ -1,5 +1,5 @@
 ---
-title: "precision"
+title: "Precision"
 tags:
   - metrics
   - statistic

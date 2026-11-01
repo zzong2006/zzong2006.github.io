@@ -1,5 +1,5 @@
 ---
-title: "sharding"
+title: "Sharding"
 tags: database 
 aliases: ["샤딩", "shard"]
 ---

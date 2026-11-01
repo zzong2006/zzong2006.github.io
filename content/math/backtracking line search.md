@@ -1,5 +1,5 @@
 ---
-title: "backtracking line search"
+title: "Backtracking Line Search"
 tags:
   - optimization
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "Standard Template Library"
+title: "Standard Template Library (STL)"
 tags:
   - Cpp
 aliases: [STL]

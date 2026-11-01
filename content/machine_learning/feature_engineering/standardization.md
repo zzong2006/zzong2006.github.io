@@ -1,5 +1,5 @@
 ---
-title: "standardization"
+title: "Standardization"
 tags:
   - machine_learning
   - statistic

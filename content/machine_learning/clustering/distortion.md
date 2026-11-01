@@ -1,5 +1,5 @@
 ---
-title: "distortion"
+title: "Distortion"
 tags:
   - machine_learning
   - clustering

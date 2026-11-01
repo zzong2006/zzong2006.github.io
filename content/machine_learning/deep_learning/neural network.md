@@ -1,5 +1,5 @@
 ---
-title: "neural network"
+title: "Neural Network (NN)"
 tags:
   - deep_learning
 aliases: ["NN", "신경망"]

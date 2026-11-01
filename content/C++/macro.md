@@ -1,5 +1,5 @@
 ---
-title: "macro"
+title: "Macro"
 aliases: []
 tags:
   - Cpp

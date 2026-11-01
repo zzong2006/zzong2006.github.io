@@ -1,5 +1,5 @@
 ---
-title: "basic variable"
+title: "Basic Variable"
 tags: linear_algebra 
 aliases: []
 ---

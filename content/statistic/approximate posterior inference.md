@@ -1,5 +1,5 @@
 ---
-title: "approximate posterior inference"
+title: "Approximate Posterior Inference"
 aliases: []
 tags:
   - bayesian_inference

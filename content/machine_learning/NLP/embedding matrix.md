@@ -1,5 +1,5 @@
 ---
-title: "embedding matrix"
+title: "Embedding Matrix"
 tags:
   - embedding
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "semi-supervised learning"
+title: "Semi-Supervised Learning"
 tags:
   - machine_learning
 aliases: [Semi-Supervised Learning]

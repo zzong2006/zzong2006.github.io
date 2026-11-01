@@ -1,5 +1,5 @@
 ---
-title: "link function"
+title: "Link Function"
 tags:
   - activation_function
 aliases: []

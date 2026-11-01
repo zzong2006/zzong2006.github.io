@@ -1,5 +1,5 @@
 ---
-title: "Neural Collaborative Filtering"
+title: "Neural Collaborative Filtering (NCF)"
 tags:
   - recommendation_system
   - implicit_feedback

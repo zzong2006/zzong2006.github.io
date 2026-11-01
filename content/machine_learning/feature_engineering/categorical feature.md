@@ -1,5 +1,5 @@
 ---
-title: "categorical feature"
+title: "Categorical Feature"
 tags:
   - classification
   - feature_engineering
@@ -15,6 +15,8 @@ aliases: [category feature, 범주형 변수]
 `sklearn.compose.ColumnTransformer` 를 쓰면 열마다 다른 변환을 지정할 수 있다. 한 열은 `OneHotEncoder` 로 펼치고 나머지는 `passthrough` 로 그대로 통과시키는 식이다.
 
 범주 수가 많으면 one-hot 은 차원이 폭발하므로 [[hashing trick]] 이나 embedding 으로 넘어간다. TensorFlow 계열에서는 feature column 이 이 선택(one-hot / hashing / embedding)을 한 인터페이스로 묶어 제공했다.
+
+embedding 을 쓰면 값 하나에 숫자 몇 개를 줄지(임베딩 차원)를 정해야 한다. 흔히 인용되는 "카디널리티의 4제곱근" 경험칙과 실제 추천 모델이 쓰는 차원은 [[embedding dimension rule of thumb|임베딩 차원 경험칙]] 에 있다.
 
 # C) References
 

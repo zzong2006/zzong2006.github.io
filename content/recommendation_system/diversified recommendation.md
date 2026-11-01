@@ -1,5 +1,5 @@
 ---
-title: "diversified recommendation"
+title: "Diversified Recommendation"
 aliases: []
 tags: 
 Tag: [recommendation_system, diversity]

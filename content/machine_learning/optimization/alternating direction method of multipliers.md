@@ -1,5 +1,5 @@
 ---
-title: "alternating direction method of multipliers"
+title: "Alternating Direction Method of Multipliers (ADMM)"
 tags:
   - statistic
   - optimization

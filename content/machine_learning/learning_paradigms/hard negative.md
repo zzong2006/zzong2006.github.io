@@ -1,5 +1,5 @@
 ---
-title: "hard negative"
+title: "Hard Negative"
 tags: machine_learning 
 aliases: []
 ---

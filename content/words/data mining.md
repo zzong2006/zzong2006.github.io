@@ -1,5 +1,5 @@
 ---
-title: "data mining"
+title: "Data Mining"
 tags:
   - machine_learning
   - word

@@ -1,5 +1,5 @@
 ---
-title: "polyglot"
+title: "Polyglot"
 tags:
   - LLM
   - korean

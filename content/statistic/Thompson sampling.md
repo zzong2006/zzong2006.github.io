@@ -1,5 +1,5 @@
 ---
-title: "Thompson sampling"
+title: "Thompson sampling (TS)"
 aliases: ["TS", "Posterior Sampling", "톰슨 샘플링"]
 tag: [MAB, posterior, thompson_sampling, machine_learning, reinforcement_learning, ]
 ---

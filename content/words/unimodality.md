@@ -1,5 +1,5 @@
 ---
-title: "unimodality"
+title: "Unimodality"
 ---
 # A) Unimodality ?
 

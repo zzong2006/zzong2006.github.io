@@ -1,5 +1,5 @@
 ---
-title: "Bidirectional Encoder Representations from Transformers"
+title: "Bidirectional Encoder Representations from Transformers (BERT)"
 tags:
   - language_model
   - -

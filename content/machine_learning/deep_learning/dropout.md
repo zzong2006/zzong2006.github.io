@@ -1,5 +1,5 @@
 ---
-title: "dropout"
+title: "Dropout"
 tags:
   - deep_learning
 aliases: []

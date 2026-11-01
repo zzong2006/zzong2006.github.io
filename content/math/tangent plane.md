@@ -1,5 +1,5 @@
 ---
-title: "tangent plane"
+title: "Tangent Plane"
 aliases: ["접평면"]
 tags:
   - differentitation

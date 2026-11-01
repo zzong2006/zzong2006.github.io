@@ -1,5 +1,5 @@
 ---
-title: "over-smoothing"
+title: "Over-Smoothing"
 aliases: []
 tags:
   - graph

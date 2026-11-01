@@ -1,5 +1,5 @@
 ---
-title: "permutation importance"
+title: "Permutation Importance"
 aliases: []
 tags:
   - feature_engineering

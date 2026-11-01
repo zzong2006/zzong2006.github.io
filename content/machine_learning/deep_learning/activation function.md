@@ -1,5 +1,5 @@
 ---
-title: "activation function"
+title: "Activation Function"
 tags:
   - machine_learning
   - deep_learning

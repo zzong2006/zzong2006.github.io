@@ -1,5 +1,5 @@
 ---
-title: "square root law"
+title: "Square Root Law"
 tags:
   - math
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "Locally Linear Embedding"
+title: "Locally Linear Embedding (LLE)"
 aliases: ["LLE"]
 tags:
   - machine_learning

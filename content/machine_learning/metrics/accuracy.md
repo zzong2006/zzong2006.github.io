@@ -1,5 +1,5 @@
 ---
-title: "accuracy"
+title: "Accuracy"
 tag: metrics, machine_learning, 
 ---
 

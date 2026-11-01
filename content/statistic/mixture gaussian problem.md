@@ -1,5 +1,5 @@
 ---
-title: "mixture gaussian problem"
+title: "Mixture Gaussian Problem"
 tags:
   - statistic
   - bayesian_inference

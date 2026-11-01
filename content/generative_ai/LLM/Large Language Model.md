@@ -1,5 +1,5 @@
 ---
-title: "Large Language Model"
+title: "Large Language Model (LLM)"
 tags:
   - NLP
   - LLM

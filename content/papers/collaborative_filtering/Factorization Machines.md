@@ -1,5 +1,5 @@
 ---
-title: "Factorization Machines"
+title: "Factorization Machines (FM)"
 tags:
   - -
   - collaborative_filtering

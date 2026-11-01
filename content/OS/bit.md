@@ -1,5 +1,5 @@
 ---
-title: "bit"
+title: "Bit"
 tags: operating_system 
 aliases: []
 ---

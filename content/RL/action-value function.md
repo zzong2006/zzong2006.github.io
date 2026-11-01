@@ -1,5 +1,5 @@
 ---
-title: "action-value function"
+title: "Action-Value Function"
 tags:
   - reinforcement_learning
 aliases: ["q-value function", "q-value"]

@@ -1,5 +1,5 @@
 ---
-title: "combination"
+title: "Combination"
 aliases: []
 tags:
   - probability

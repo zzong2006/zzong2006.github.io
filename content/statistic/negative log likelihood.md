@@ -1,5 +1,5 @@
 ---
-title: negative log likelihood
+title: "Negative Log-Likelihood (NLL)"
 tags:
   - statistic
   - machine_learning

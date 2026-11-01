@@ -1,5 +1,5 @@
 ---
-title: "ridge regression"
+title: "Ridge Regression"
 aliases: ["ridge", "L2 regularization regression", "능형회귀"]
 tags:
   - machine_learning

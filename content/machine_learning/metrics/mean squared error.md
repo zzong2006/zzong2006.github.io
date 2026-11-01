@@ -1,5 +1,5 @@
 ---
-title: "mean squared error"
+title: "Mean Squared Error (MSE)"
 tags:
   - machine_learning
   - linear_regression

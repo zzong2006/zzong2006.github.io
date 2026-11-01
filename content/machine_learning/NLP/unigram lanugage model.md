@@ -1,5 +1,5 @@
 ---
-title: "unigram lanugage model"
+title: "Unigram Language Model"
 tags: tokenization 
 aliases: ["unigram"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Stacked autoencoder"
+title: "Stacked autoencoder (SAE)"
 tags: machine_learning 
 aliases: ["SAE"]
 ---

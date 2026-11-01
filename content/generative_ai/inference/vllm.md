@@ -1,5 +1,5 @@
 ---
-title: "vllm"
+title: "vLLM"
 tags:
   - LLM
 aliases: []

@@ -1,5 +1,5 @@
 ---
-title: "empirical risk minimization"
+title: "Empirical Risk Minimization (ERM)"
 tags: 
 aliases: ["ERM"]
 ---

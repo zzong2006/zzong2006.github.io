@@ -1,5 +1,5 @@
 ---
-title: "studentized residuals"
+title: "Studentized Residuals"
 tags: statistic 
 aliases: []
 ---

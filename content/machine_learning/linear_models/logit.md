@@ -1,5 +1,5 @@
 ---
-title: "logit"
+title: "Logit"
 aliases: ["로짓"]
 tags:
   - machine_learning

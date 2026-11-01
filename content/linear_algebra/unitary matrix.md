@@ -1,5 +1,5 @@
 ---
-title: "unitary matrix"
+title: "Unitary Matrix"
 tags:
   - linear_algebra
 aliases: [Unitary Matrix]

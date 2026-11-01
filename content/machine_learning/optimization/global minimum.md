@@ -1,5 +1,5 @@
 ---
-title: "global minimum"
+title: "Global Minimum"
 tags:
   - optimization
   - machine_learning

@@ -1,5 +1,5 @@
 ---
-title: "git"
+title: "Git"
 aliases: []
 tags:
   - tip

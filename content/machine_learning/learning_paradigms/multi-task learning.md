@@ -1,5 +1,5 @@
 ---
-title: "multi-task learning"
+title: "Multi-Task Learning (MTL)"
 aliases: ["MTL", "다중 작업 학습"]
 tags:
   - machine_learning

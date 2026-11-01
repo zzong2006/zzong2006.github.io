@@ -1,5 +1,5 @@
 ---
-title: "free column"
+title: "Free Column"
 tags: linear_algebra 
 aliases: []
 ---

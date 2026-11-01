@@ -1,5 +1,5 @@
 ---
-title: "Singular Value Decomposition"
+title: "Singular Value Decomposition (SVD)"
 tags:
   - linear_algebra
   - matrix_factorization

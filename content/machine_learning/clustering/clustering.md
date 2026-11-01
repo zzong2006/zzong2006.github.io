@@ -1,5 +1,5 @@
 ---
-title: "clustering"
+title: "Clustering"
 tags:
   - machine_learning
   - clustering

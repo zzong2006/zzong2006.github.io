@@ -1,5 +1,5 @@
 ---
-title: "popularity bias"
+title: "Popularity Bias"
 aliases: []
 tags:
   - bias

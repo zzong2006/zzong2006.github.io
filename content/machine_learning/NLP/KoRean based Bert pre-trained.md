@@ -1,5 +1,5 @@
 ---
-title: "KoRean based Bert pre-trained"
+title: "KoRean based BERT pre-trained (KR-BERT)"
 tags:
   - NLP
   - y2020

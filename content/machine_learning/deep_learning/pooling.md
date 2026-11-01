@@ -1,5 +1,5 @@
 ---
-title: "pooling"
+title: "Pooling"
 tags:
   - deep_learning
   - computer_vision

@@ -1,5 +1,5 @@
 ---
-title: "prediction interval"
+title: "Prediction Interval"
 aliases: ["예측구간"]
 tags:
   - statistic

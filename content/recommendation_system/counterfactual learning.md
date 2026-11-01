@@ -1,5 +1,5 @@
 ---
-title: "counterfactual learning"
+title: "Counterfactual Learning"
 aliases: []
 tags:
   - machine_learning

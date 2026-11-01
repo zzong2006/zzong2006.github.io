@@ -1,5 +1,5 @@
 ---
-title: "epsilon-greedy algorithm"
+title: "Epsilon-Greedy Algorithm"
 tags:
   - reinforcement_learning
   - algorithm

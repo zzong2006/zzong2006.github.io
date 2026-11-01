@@ -1,5 +1,5 @@
 ---
-title: "post-order"
+title: "Post-Order"
 tags:
   - algorithm
   - tree

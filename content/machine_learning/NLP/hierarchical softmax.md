@@ -1,5 +1,5 @@
 ---
-title: "hierarchical softmax"
+title: "Hierarchical Softmax"
 tags:
   - word2vec
 aliases: []

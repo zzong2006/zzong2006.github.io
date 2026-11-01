@@ -1,5 +1,5 @@
 ---
-title: "selection bias"
+title: "Selection Bias"
 tags:
   - bias
 aliases: []

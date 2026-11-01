@@ -1,5 +1,5 @@
 ---
-title: "histogram"
+title: "Histogram"
 tags: statistic 
 aliases: []
 ---

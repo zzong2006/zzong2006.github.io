@@ -1,5 +1,5 @@
 ---
-title: "session-based recommendations"
+title: "Session-Based Recommendations (SBRS)"
 aliases: ["세션 기반 추천", "SBRS"]
 tags:
   - SBRS

@@ -1,5 +1,5 @@
 ---
-title: "Learning rate"
+title: "Learning rate (LR)"
 tags:
   - machine_learning
   - deep_learning

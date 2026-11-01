@@ -1,5 +1,5 @@
 ---
-title: "django"
+title: "Django"
 aliases: []
 tags:
   - server

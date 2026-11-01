@@ -1,5 +1,5 @@
 ---
-title: "Evidence Lower Bound"
+title: "Evidence Lower Bound (ELBO)"
 tags: bayesian_inference 
 aliases: ["ELBO"]
 ---

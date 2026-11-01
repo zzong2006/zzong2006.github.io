@@ -1,5 +1,5 @@
 ---
-title: "conditional expectation"
+title: "Conditional Expectation"
 tags:
   - statistics
   - probability

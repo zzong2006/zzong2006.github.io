@@ -1,5 +1,5 @@
 ---
-title: "label smoothing"
+title: "Label Smoothing"
 tags: machine_learning
 aliases: ["라벨 스무딩"]
 ---

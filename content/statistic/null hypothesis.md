@@ -1,5 +1,5 @@
 ---
-title: "null hypothesis"
+title: "Null Hypothesis"
 tags:
   - statistic
   - hypothesis_test

@@ -1,5 +1,5 @@
 ---
-title: "DistributedDataParallel"
+title: "DistributedDataParallel (DDP)"
 tags:
   - deep_learning
   - LLM

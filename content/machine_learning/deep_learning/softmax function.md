@@ -1,5 +1,5 @@
 ---
-title: "softmax function"
+title: "Softmax Function"
 tags:
   - activation_function
   - classification

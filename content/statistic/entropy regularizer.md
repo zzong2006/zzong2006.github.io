@@ -1,5 +1,5 @@
 ---
-title: "entropy regularizer"
+title: "Entropy Regularizer"
 tags: 
 aliases: []
 ---

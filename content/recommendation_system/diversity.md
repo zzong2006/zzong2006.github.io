@@ -1,5 +1,5 @@
 ---
-title: "diversity"
+title: "Diversity"
 aliases: ["다양성"]
 tags:
   - recommendation_system

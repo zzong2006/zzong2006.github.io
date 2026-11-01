@@ -1,5 +1,5 @@
 ---
-title: "latent variable"
+title: "Latent Variable"
 aliases: ["잠재변수"]
 tags:
   - machine_learning

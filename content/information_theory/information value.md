@@ -1,5 +1,5 @@
 ---
-title: "information value"
+title: "Information Value"
 tags: feature_engineering 
 aliases: []
 ---

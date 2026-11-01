@@ -1,5 +1,5 @@
 ---
-title: "Maximum Likelihood Estimation"
+title: "Maximum Likelihood Estimation (MLE)"
 aliases: ["MLE"]
 tag: bayesian, statistic
 ---

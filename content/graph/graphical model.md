@@ -1,5 +1,5 @@
 ---
-title: "graphical model"
+title: "Graphical Model"
 aliases: [PGM, Probabilistic Graphical Model]
 tags:
   - graph

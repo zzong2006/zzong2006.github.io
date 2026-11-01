@@ -1,5 +1,5 @@
 ---
-title: "supply side platform"
+title: "Supply-Side Platform (SSP)"
 tags: advertisement 
 aliases: ["SSP"]
 ---

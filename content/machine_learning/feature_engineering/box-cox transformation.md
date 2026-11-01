@@ -1,5 +1,5 @@
 ---
-title: "box-cox transformation"
+title: "Box-Cox Transformation"
 tags:
   - feature_engineering
 aliases: ["Power Transformation"]

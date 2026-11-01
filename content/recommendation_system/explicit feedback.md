@@ -1,5 +1,5 @@
 ---
-title: "explicit feedback"
+title: "Explicit Feedback"
 aliases: ["명시적 피드백"]
 tags:
   - recommendation_system

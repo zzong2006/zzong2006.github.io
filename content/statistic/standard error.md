@@ -1,5 +1,5 @@
 ---
-title: "standard error"
+title: "Standard Error (SE)"
 tags:
   - metrics
   - machine_learning

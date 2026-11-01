@@ -1,5 +1,5 @@
 ---
-title: "consumer group"
+title: "Consumer Group"
 tags: kafka 
 aliases: ["컨슈머 그룹"]
 ---

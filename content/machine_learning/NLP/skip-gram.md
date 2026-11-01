@@ -1,5 +1,5 @@
 ---
-title: "skip-gram"
+title: "Skip-Gram"
 tags:
   - word2vec
   - NLP

@@ -1,5 +1,5 @@
 ---
-title: "multinomial distribution"
+title: "Multinomial Distribution"
 aliases: []
 tags:
   - probability_distribution

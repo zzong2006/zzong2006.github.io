@@ -1,5 +1,5 @@
 ---
-title: "personalized ranking model"
+title: "Personalized Ranking Model"
 aliases: []
 tags: []
 ---

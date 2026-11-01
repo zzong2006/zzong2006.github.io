@@ -1,5 +1,5 @@
 ---
-title: "cross-validation"
+title: "Cross-Validation (CV)"
 tags:
   - machine_learning
 aliases: ["교차타당성검사", "k-fold cross-validation", "CV"]

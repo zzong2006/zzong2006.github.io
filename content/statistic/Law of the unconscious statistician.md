@@ -1,5 +1,5 @@
 ---
-title: "Law of the unconscious statistician"
+title: "Law of the unconscious statistician (LOTUS)"
 tags: 
 aliases: ["LOTUS"]
 ---

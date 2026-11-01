@@ -1,5 +1,5 @@
 ---
-title: "pointer"
+title: "Pointer"
 aliases: []
 tags:
   - Cpp

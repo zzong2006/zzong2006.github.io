@@ -1,5 +1,5 @@
 ---
-title: "span"
+title: "Span"
 tags:
   - linear_algebra
 aliases: []

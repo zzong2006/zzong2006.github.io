@@ -1,5 +1,5 @@
 ---
-title: "eigen-decomposition"
+title: "Eigendecomposition"
 aliases: []
 tags:
   - linear_algebra

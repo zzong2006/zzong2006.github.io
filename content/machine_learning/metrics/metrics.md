@@ -1,5 +1,5 @@
 ---
-title: "metrics"
+title: "Metrics"
 tags:
   - machine_learning
   - metrics

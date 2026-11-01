@@ -1,5 +1,5 @@
 ---
-title: "entropy"
+title: "Entropy"
 tags:
   - statistic
   - information_theory

@@ -1,5 +1,5 @@
 ---
-title: "dimension reduction"
+title: "Dimension Reduction"
 tags: feature_engineering
 aliases: []
 ---

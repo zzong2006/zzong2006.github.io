@@ -1,5 +1,5 @@
 ---
-title: "permutation matrix"
+title: "Permutation Matrix"
 tags:
   - linear_algebra
 aliases: []

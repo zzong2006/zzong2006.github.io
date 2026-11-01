@@ -1,5 +1,5 @@
 ---
-title: "data warehouse"
+title: "Data Warehouse (DWH)"
 aliases: ["DWH", "데이터 웨어하우스"]
 tags:
   - data_engineering

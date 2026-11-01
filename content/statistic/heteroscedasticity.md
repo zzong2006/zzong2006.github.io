@@ -1,5 +1,5 @@
 ---
-title: "heteroscedasticity"
+title: "Heteroscedasticity"
 tags:
   - statistic
   - regression

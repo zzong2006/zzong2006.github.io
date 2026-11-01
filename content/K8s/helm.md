@@ -1,5 +1,5 @@
 ---
-title: "helm"
+title: "Helm"
 aliases: ["헬름"]
 tags:
   - Kubernetes

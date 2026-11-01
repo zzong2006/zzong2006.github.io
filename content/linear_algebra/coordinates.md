@@ -1,5 +1,5 @@
 ---
-title: "coordinates"
+title: "Coordinates"
 tags:
   - linear_algebra
 aliases: []

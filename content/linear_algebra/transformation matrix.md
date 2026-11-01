@@ -1,5 +1,5 @@
 ---
-title: "transformation matrix"
+title: "Transformation Matrix"
 tags:
   - linear_algebra
 aliases: ["변환 행렬"]

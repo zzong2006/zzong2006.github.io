@@ -1,5 +1,5 @@
 ---
-title: "leave-one-out"
+title: "Leave-One-Out Cross-Validation (LOOCV)"
 tags:
   - machine_learning
   - offline_evaluation

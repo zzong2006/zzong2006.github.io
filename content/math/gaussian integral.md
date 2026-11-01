@@ -1,5 +1,5 @@
 ---
-title: "gaussian integral"
+title: "Gaussian Integral"
 tags: math 
 aliases: []
 ---

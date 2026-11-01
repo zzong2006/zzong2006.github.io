@@ -1,5 +1,5 @@
 ---
-title: "effect size"
+title: "Effect Size"
 tags:
   - statistic
   - experiments

@@ -1,5 +1,5 @@
 ---
-title: "multivariate Gaussian distribution"
+title: "Multivariate Gaussian Distribution (MVN)"
 aliases: ["multivariate normal distribution", "MVN"]
 tags:
   - probability_distribution

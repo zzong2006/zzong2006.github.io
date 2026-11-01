@@ -1,5 +1,5 @@
 ---
-title: "conditional probability"
+title: "Conditional Probability"
 aliases: []
 tags:
   - statistic

@@ -1,5 +1,5 @@
 ---
-title: "downsampling"
+title: "Downsampling"
 aliases: []
 tags:
   - machine_learning

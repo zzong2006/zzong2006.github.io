@@ -1,5 +1,5 @@
 ---
-title: "distcp"
+title: "DistCp"
 aliases: []
 tags:
   - hadoop

@@ -1,5 +1,5 @@
 ---
-title: "boosting"
+title: "Boosting"
 tags: ensemble
 aliases: []
 ---

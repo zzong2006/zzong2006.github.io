@@ -1,5 +1,5 @@
 ---
-title: "log function"
+title: "Log Function"
 tags: math
 aliases: ["log", "로그함수", "logarithm"]
 ---

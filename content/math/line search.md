@@ -1,5 +1,5 @@
 ---
-title: "line search"
+title: "Line Search"
 aliases: []
 tags:
   - optimization

@@ -1,5 +1,5 @@
 ---
-title: "t-Stochastic Nearest Embedding"
+title: "t-distributed Stochastic Neighbor Embedding (t-SNE)"
 aliases: ["t-SNE"]
 tags:
   - word2vec

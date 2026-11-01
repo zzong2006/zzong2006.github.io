@@ -1,5 +1,5 @@
 ---
-title: "experiment"
+title: "Experiment"
 aliases: []
 tags:
   - word

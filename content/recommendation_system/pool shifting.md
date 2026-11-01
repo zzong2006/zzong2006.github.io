@@ -1,5 +1,5 @@
 ---
-title: "pool shifting"
+title: "Pool Shifting"
 aliases: []
 tags: 
 ---

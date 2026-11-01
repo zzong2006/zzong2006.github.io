@@ -1,5 +1,5 @@
 ---
-title: "conversational recommender system"
+title: "Conversational Recommender System (CRS)"
 aliases: ["CRS"]
 tags:
   - recommendation_system

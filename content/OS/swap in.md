@@ -1,5 +1,5 @@
 ---
-title: "swap in"
+title: "Swap In"
 aliases: []
 tags:
   - operating_system

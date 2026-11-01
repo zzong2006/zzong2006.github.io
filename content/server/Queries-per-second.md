@@ -1,5 +1,5 @@
 ---
-title: "Queries-per-second"
+title: "Queries per Second (QPS)"
 tags:
   - metrics
 aliases: [QPS, Queries per second]

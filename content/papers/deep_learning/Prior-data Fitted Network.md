@@ -1,5 +1,5 @@
 ---
-title: "Prior-data Fitted Network"
+title: "Prior-data Fitted Network (PFN)"
 tags: paper_review deep_learning ICLR y2022
 aliases: ["PFN"]
 ---

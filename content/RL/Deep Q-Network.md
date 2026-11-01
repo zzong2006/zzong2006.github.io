@@ -1,5 +1,5 @@
 ---
-title: "Deep Q-Network"
+title: "Deep Q-Network (DQN)"
 aliases: ["DQN"]
 tags:
   - reinforcement_learning

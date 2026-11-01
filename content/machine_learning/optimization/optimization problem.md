@@ -1,5 +1,5 @@
 ---
-title: "optimization problem"
+title: "Optimization Problem"
 aliases: []
 tags:
   - optimization

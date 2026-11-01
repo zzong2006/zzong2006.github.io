@@ -1,5 +1,5 @@
 ---
-title: "stateless"
+title: "Stateless"
 tags: server
 aliases: ["무상태"]
 ---

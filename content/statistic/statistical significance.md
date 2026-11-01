@@ -1,5 +1,5 @@
 ---
-title: "statistical significance"
+title: "Statistical Significance"
 tags:
   - statistic
   - hypothesis_test

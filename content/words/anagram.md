@@ -1,5 +1,5 @@
 ---
-title: "anagram"
+title: "Anagram"
 tags:
   - algorithm
   - string

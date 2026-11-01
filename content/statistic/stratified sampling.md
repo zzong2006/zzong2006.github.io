@@ -1,5 +1,5 @@
 ---
-title: "stratified sampling"
+title: "Stratified Sampling"
 tags: statistic  
 aliases: ["층화추출법"]
 ---

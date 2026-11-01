@@ -1,5 +1,5 @@
 ---
-title: "advantage function"
+title: "Advantage Function"
 tags: reinforcement_learning 
 aliases: []
 ---

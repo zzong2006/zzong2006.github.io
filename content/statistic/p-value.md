@@ -1,5 +1,5 @@
 ---
-title: "p-value"
+title: "p-Value"
 aliases: []
 tags:
   - statistic

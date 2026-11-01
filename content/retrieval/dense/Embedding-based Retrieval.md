@@ -1,5 +1,5 @@
 ---
-title: "Embedding-based Retrieval"
+title: "Embedding-based Retrieval (EBR)"
 tags:
   - retrieval
   - dense_retrieval

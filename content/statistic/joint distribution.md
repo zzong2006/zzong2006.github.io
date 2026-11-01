@@ -1,5 +1,5 @@
 ---
-title: "joint distribution"
+title: "Joint Distribution"
 aliases: []
 tags:
   - probability_distribution

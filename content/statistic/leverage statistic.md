@@ -1,5 +1,5 @@
 ---
-title: "leverage statistic"
+title: "Leverage Statistic"
 tags: statistic 
 aliases: []
 ---

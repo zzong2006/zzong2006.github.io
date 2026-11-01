@@ -1,5 +1,5 @@
 ---
-title: "inverse propensity score"
+title: "Inverse Propensity Score (IPS)"
 aliases: ["IPS", "propensity score"]
 tags: 
 tag: [importance_sampling, IPS, bias]

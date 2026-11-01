@@ -1,5 +1,5 @@
 ---
-title: "pruning"
+title: "Pruning"
 aliases: ["가지치기"]
 tags:
   - deep_learning

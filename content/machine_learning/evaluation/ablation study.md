@@ -1,5 +1,5 @@
 ---
-title: "ablation study"
+title: "Ablation Study"
 tags: machine_learning 
 aliases: []
 ---

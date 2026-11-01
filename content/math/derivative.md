@@ -1,5 +1,5 @@
 ---
-title: "derivative"
+title: "Derivative"
 tags:
   - math
   - linear_algebra

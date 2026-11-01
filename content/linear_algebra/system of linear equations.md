@@ -1,5 +1,5 @@
 ---
-title: "system of linear equations"
+title: "System of Linear Equations"
 aliases: []
 tags:
   - linear_algebra

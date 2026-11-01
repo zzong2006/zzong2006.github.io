@@ -1,5 +1,5 @@
 ---
-title: Group Relative Policy Optimization
+title: "Group Relative Policy Optimization (GRPO)"
 tags:
   - reinforcement_learning
   - LLM

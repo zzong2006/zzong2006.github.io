@@ -1,5 +1,5 @@
 ---
-title: "mixed precision"
+title: "Mixed Precision"
 tags: 
 aliases: []
 ---

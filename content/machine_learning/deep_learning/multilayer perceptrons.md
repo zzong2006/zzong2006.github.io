@@ -1,5 +1,5 @@
 ---
-title: "Multilayer Perceptron"
+title: "Multilayer Perceptron (MLP)"
 aliases: ["MLP", "MLPs", "multilayer perceptrons", "다층 퍼셉트론", "FFDNN"]
 tags:
   - deep_learning

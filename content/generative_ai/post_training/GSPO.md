@@ -1,5 +1,5 @@
 ---
-title: Group Sequence Policy Optimization
+title: "Group Sequence Policy Optimization (GSPO)"
 tags:
   - LLM
   - reinforcement_learning

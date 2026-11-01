@@ -1,5 +1,5 @@
 ---
-title: "priority queue"
+title: "Priority Queue"
 tags: data_structure 
 aliases: ["우선순위 큐"]
 ---

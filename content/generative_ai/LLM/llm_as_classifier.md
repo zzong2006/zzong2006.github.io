@@ -1,5 +1,5 @@
 ---
-title: "llm_as_classifier"
+title: "LLM as Classifier"
 tags:
   - LLM
 aliases: []
