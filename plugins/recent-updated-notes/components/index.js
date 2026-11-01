@@ -57,14 +57,38 @@ export function recentNotes(allFiles, limit) {
   return limit > 0 ? notes.slice(0, limit) : notes
 }
 
-export function RecentNotesList({ notes, fileData, cfg, showPaths, showDates = true }) {
+// 작성일·수정일 중 하나를 Date 로 꺼낸다. 없거나 잘못된 값이면 undefined.
+export function noteDate(page, key) {
+  const raw = page.dates?.[key]
+  const date = raw instanceof Date ? raw : raw ? new Date(raw) : undefined
+  return date && !Number.isNaN(date.getTime()) ? date : undefined
+}
+
+// 하루에 이보다 많이 생긴 노트는 새로 쓴 글이 아니라 한꺼번에 옮겨 온 것이다.
+// (2026-06-14 첫 가져오기 1,232편, 2026-08-28 vault 동기화 56편. 직접 쓴 날은 많아야 5편)
+export const BULK_DAY_THRESHOLD = 20
+
+// 새로 쓴 노트를 작성일 최신순으로 고른다. 한꺼번에 옮겨 온 날의 노트는 뺀다.
+export function newNotes(allFiles) {
+  const notes = allFiles.filter(
+    (page) => isDisplayableNote(page) && noteDate(page, "created") && noteDate(page, "modified"),
+  )
+  const perDay = new Map()
+  const day = (page) => formatDate(noteDate(page, "created"))
+  for (const page of notes) perDay.set(day(page), (perDay.get(day(page)) ?? 0) + 1)
+  return notes
+    .filter((page) => perDay.get(day(page)) <= BULK_DAY_THRESHOLD)
+    .sort((a, b) => noteDate(b, "created") - noteDate(a, "created"))
+}
+
+export function RecentNotesList({ notes, fileData, cfg, showPaths, showDates = true, dateKey }) {
   const locale = cfg.locale ?? "ko-KR"
 
   return h(
     "ol",
     { class: "recent-updated-notes__list" },
     notes.map((page) => {
-      const date = getDate(page)
+      const date = dateKey ? noteDate(page, dateKey) : getDate(page)
       const title = page.frontmatter?.title ?? notePath(page)
       const pathLabel = notePath(page)
 

@@ -18,6 +18,7 @@
     "defaultOptions": {
       "newTitle": "Recent Posts",
       "newLimit": 5,
+      "newMoreSlug": "new",
       "updatedTitle": "최근 수정한 글",
       "updatedLimit": 5,
       "moreSlug": "recent",

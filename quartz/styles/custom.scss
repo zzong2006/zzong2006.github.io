@@ -758,9 +758,10 @@ body[data-slug="index"] {
   }
 }
 
-// 최근 수정한 노트 전체 목록(plugins/recent-notes-page). 대문의 최근 노트 목록과 같은 모양이다.
+// 최근 수정한 노트(/recent)·최근 작성한 노트(/new) 전체 목록(plugins/recent-notes-page). 대문 목록과 같은 모양이다.
 // 이 페이지는 목록이 본문(.center) 안에 있어 기본 링크 칩이 붙는다. 대문처럼 걷는다.
-body[data-slug="recent"] {
+body[data-slug="recent"],
+body[data-slug="new"] {
   .recent-updated-notes__link {
     background-color: transparent;
     padding: 0;
