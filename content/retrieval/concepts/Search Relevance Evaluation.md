@@ -47,6 +47,7 @@ flowchart TD
 
 - 판정 기준을 글로 정해 두고, 같은 결과를 두 사람이 따로 판정해 얼마나 일치하는지 본다. 일치율이 낮으면 기준부터 고친다.
 - 사람 대신 LLM 에 같은 기준을 주고 판정시키기도 한다(LLM judge). 이때는 사람 판정과 얼마나 일치하는지 먼저 확인한다.
+- 공개 데이터셋에서 널리 쓰는 등급 체계는 「무관」 을 대체 상품과 함께 쓰는 상품으로 한 번 더 나눈 ESCI 다([[Query-Product Relevance]]).
 
 # C) 지표
 
@@ -109,6 +110,7 @@ flowchart TD
 
 - 순서대로 확인한다. QU 가 틀렸으면 뒤 단계 결과는 그 해석을 따른 것이므로, 뒤 단계를 먼저 고쳐도 소용이 없다.
 - 원인이 여러 단계에 걸치면 여러 팀이 같이 고쳐야 한다. 예를 들어 기종 속성을 QU 가 뽑아도 Ranking 이 그 속성을 쓰지 않으면 결과가 바뀌지 않는다.
+- 판매량이 많은 상품이 relevance 가 낮은데도 위로 올라오는 Ranking 원인은 relevance 점수를 게이트나 tier 로 써서 막는다([[Query-Product Relevance]]).
 
 # F) A/B 실험
 
@@ -126,6 +128,7 @@ flowchart TD
 # Related
 
 - [[Query Understanding]]
+- [[Query-Product Relevance]]
 - [[offline evaluation]]
 - [[online evaluation]]
 - [[AB Test]]
