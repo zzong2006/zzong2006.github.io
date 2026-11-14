@@ -1,5 +1,5 @@
 ---
-title: "cross-entropy"
+title: "Cross-Entropy"
 tags:
   - information_theory
   - machine_learning

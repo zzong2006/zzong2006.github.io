@@ -1,5 +1,5 @@
 ---
-title: "logistic regression"
+title: "Logistic Regression"
 tags:
   - classification
   - machine_learning
