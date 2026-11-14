@@ -33,8 +33,10 @@ $$
 이를 막기위해 bias correction 은 다음과 같이 계산된다.
 
 $$
-\frac{v_{t}}{1-\beta^{t}} = \beta v_{t-1} + (1-\beta) \theta_t
+\hat v_t = \frac{v_{t}}{1-\beta^{t}}, \qquad v_t = \beta v_{t-1} + (1-\beta) \theta_t
 $$
+
+이동평균 $v_t$ 는 원래 식대로 계속 갱신하고, 값을 쓸 때만 $1-\beta^t$ 로 나눈 $\hat v_t$ 를 쓴다.
 
 상기 수식에서 $t=2$ 일 때의 bias correction 결과는 다음과 같다.
 
@@ -48,4 +50,6 @@ $$
 * 여기서 $v_2$ 는 이전보다 훨씬 큰 값을 가질것이다.
 * 또한, $t$ 가 증가할수록, $1-\beta^t\approx1$ 에 가까워지므로, 보통의 지수이동평균과 같게된다 (보라색, 초록색 그래프 일치).
 
-실제로는 optimization 알고리즘에 bias correction 을 잘 적용하지 않는데, 그 이유는 그냥 몇 번 더 학습하면 알아서 bias 가 사라지기 때문이다.
+Momentum 처럼 이동평균 하나만 쓰는 optimizer 에서는 bias correction 을 생략하는 경우가 많다. 몇십 step 만 지나면 $1-\beta^t$ 가 1 에 가까워져 치우침이 저절로 사라지기 때문이다.
+
+Adam 은 bias correction 을 기본으로 적용한다. gradient 제곱의 이동평균은 $\beta_2 = 0.999$ 로 아주 천천히 움직여서, 보정하지 않으면 수백 step 동안 0 쪽으로 치우친다. 이 값으로 나누면 학습 초반 업데이트가 지나치게 커진다 ([[optimization algorithms]] 노트의 Adam 절).
