@@ -1,5 +1,5 @@
 ---
-title: "Cross-Entropy"
+title: "cross-entropy"
 tags:
   - information_theory
   - machine_learning
@@ -57,9 +57,11 @@ $$
 
 $0\log0$ 계산 시, 정보 이론에 기반하여 $\lim_{x\rightarrow0}x\log x=0$ 이다.
 
-# F) Binary Cross Entory
+# F) Binary Cross-Entropy
 
 binary cross-entropy 는 [[CTR prediction]] 문제에서 광범위하게 사용된다.
+
+[[logistic regression]] 이 이 loss 로 학습하는 이유는 해당 노트의 "학습: cross-entropy 를 최소화한다" 절에 정리했다. Bernoulli 가정의 MLE 와 같은 식이고, weight 에 대해 convex 하며, gradient 가 $(p - y)\boldsymbol{x}$ 로 단순해진다. 같은 모델을 MSE 로 학습하면 sigmoid 의 미분이 gradient 에 곱해진 채 남아, 크게 틀린 샘플에서 gradient 가 오히려 작아진다.
 
 $$
 \mathcal{L}=-\frac{1}{N} \sum_{\mathbb{D}}(y \log \hat{y}+(1-y) \log (1-\hat{y}))
