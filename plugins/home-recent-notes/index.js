@@ -1,5 +1,7 @@
 import { resolveRelative } from "@quartz-community/utils"
 import {
+  changeBadge,
+  changeKindOf,
   formatDate,
   isDisplayableNote,
   newNotes,
@@ -26,18 +28,16 @@ export const manifest = {
 }
 
 // 새 글은 작성일 순으로, 수정한 글은 수정일 순으로 고른다.
-// 수정한 글에는 새 글 목록에 이미 나온 것과, 처음 쓴 뒤로 고친 적 없는 것을 뺀다.
-// 수정한 글은 한꺼번에 옮겨 온 노트도 대상이라 newNotes 가 아니라 전체에서 고른다.
+// 새로 쓰는 것도 노트를 고친 일이라 수정한 글 목록에 새 글도 넣고, 제목 옆에 신규·수정을 단다.
+// 한꺼번에 옮겨 온 뒤 고친 적 없는 노트는 쓴 것도 고친 것도 아니라 뺀다(kindOf 가 undefined).
 export function homeLists(allFiles, { newLimit, updatedLimit }) {
   const newest = newNotes(allFiles).slice(0, newLimit)
-  const shown = new Set(newest.map((page) => page.slug))
+  const kindOf = changeKindOf(allFiles)
   const updated = allFiles
-    .filter((page) => noteDate(page, "created") && noteDate(page, "modified"))
-    .filter((page) => isDisplayableNote(page) && !shown.has(page.slug))
-    .filter((page) => noteDate(page, "modified") > noteDate(page, "created"))
+    .filter((page) => isDisplayableNote(page) && kindOf(page))
     .sort((a, b) => noteDate(b, "modified") - noteDate(a, "modified"))
     .slice(0, updatedLimit)
-  return { newest, updated }
+  return { newest, updated, kindOf }
 }
 
 const folderOf = (page) => notePath(page).split("/").slice(0, -1).join("/")
@@ -51,7 +51,7 @@ const el = (tagName, properties, children = []) => ({
 })
 const text = (value) => ({ type: "text", value })
 
-function section({ id, title, notes, dateKey, more, locale }) {
+function section({ id, title, notes, dateKey, more, locale, kindOf }) {
   // 머리글은 대문의 다른 h2('주제별로 둘러보기')와 같은 크기여야 해서 목록 컴포넌트의
   // 작은 h2 규칙(recent-updated-notes__header)을 쓰지 않는다. 모양은 custom.scss 에 있다.
   const header = el("div", { className: ["home-recent__header"] }, [
@@ -63,15 +63,19 @@ function section({ id, title, notes, dateKey, more, locale }) {
   ])
   const items = notes.map((page) => {
     const date = noteDate(page, dateKey)
+    const badge = kindOf && changeBadge(kindOf(page))
     return el("li", { className: ["recent-updated-notes__item"] }, [
-      el(
-        "a",
-        {
-          className: ["internal", "recent-updated-notes__link"],
-          href: resolveRelative("index", page.slug),
-        },
-        [text(page.frontmatter?.title ?? notePath(page))],
-      ),
+      el("div", { className: ["recent-updated-notes__title"] }, [
+        el(
+          "a",
+          {
+            className: ["internal", "recent-updated-notes__link"],
+            href: resolveRelative("index", page.slug),
+          },
+          [text(page.frontmatter?.title ?? notePath(page))],
+        ),
+        badge && el("span", { className: badge.className.split(" ") }, [text(badge.label)]),
+      ]),
       el("div", { className: ["recent-updated-notes__meta"] }, [
         el("time", { dateTime: date.toISOString() }, [text(formatDate(date, locale))]),
         // 대문에서는 제목이 바로 위에 있으므로 폴더만 적는다. 긴 논문 제목이 두 번 나오지 않는다.
@@ -79,10 +83,11 @@ function section({ id, title, notes, dateKey, more, locale }) {
       ]),
     ])
   })
-  return el("section", { className: ["recent-updated-notes", "home-recent", `home-recent--${id}`] }, [
-    header,
-    el("ol", { className: ["recent-updated-notes__list"] }, items),
-  ])
+  return el(
+    "section",
+    { className: ["recent-updated-notes", "home-recent", `home-recent--${id}`] },
+    [header, el("ol", { className: ["recent-updated-notes__list"] }, items)],
+  )
 }
 
 // 대문(content/index.md)의 첫 h2 앞, 즉 소개 문단 바로 뒤에 두 목록을 끼운다.
@@ -93,7 +98,7 @@ export const HomeRecentNotes = (userOpts = {}) => {
 
   const transform = (root, slug, { allFiles, cfg }) => {
     if (slug !== "index") return
-    const { newest, updated } = homeLists(allFiles, opts)
+    const { newest, updated, kindOf } = homeLists(allFiles, opts)
     const locale = cfg.locale ?? "ko-KR"
     const sections = [
       newest.length > 0 &&
@@ -115,6 +120,7 @@ export const HomeRecentNotes = (userOpts = {}) => {
           notes: updated,
           dateKey: "modified",
           locale,
+          kindOf,
           more: opts.moreSlug && {
             href: resolveRelative("index", opts.moreSlug),
             label: opts.moreLabel,

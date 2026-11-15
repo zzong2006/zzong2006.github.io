@@ -68,20 +68,62 @@ export function noteDate(page, key) {
 // (2026-06-14 첫 가져오기 1,232편, 2026-08-28 vault 동기화 56편. 직접 쓴 날은 많아야 5편)
 export const BULK_DAY_THRESHOLD = 20
 
+const hasBothDates = (page) =>
+  isDisplayableNote(page) && noteDate(page, "created") && noteDate(page, "modified")
+const createdDay = (page) => formatDate(noteDate(page, "created"))
+
+// 노트가 BULK_DAY_THRESHOLD 편보다 많이 생긴 날(서울 날짜 문자열)의 모음.
+export function bulkCreatedDays(allFiles) {
+  const perDay = new Map()
+  for (const page of allFiles.filter(hasBothDates))
+    perDay.set(createdDay(page), (perDay.get(createdDay(page)) ?? 0) + 1)
+  return new Set([...perDay].filter(([, count]) => count > BULK_DAY_THRESHOLD).map(([d]) => d))
+}
+
 // 새로 쓴 노트를 작성일 최신순으로 고른다. 한꺼번에 옮겨 온 날의 노트는 뺀다.
 export function newNotes(allFiles) {
-  const notes = allFiles.filter(
-    (page) => isDisplayableNote(page) && noteDate(page, "created") && noteDate(page, "modified"),
-  )
-  const perDay = new Map()
-  const day = (page) => formatDate(noteDate(page, "created"))
-  for (const page of notes) perDay.set(day(page), (perDay.get(day(page)) ?? 0) + 1)
-  return notes
-    .filter((page) => perDay.get(day(page)) <= BULK_DAY_THRESHOLD)
+  const bulk = bulkCreatedDays(allFiles)
+  return allFiles
+    .filter((page) => hasBothDates(page) && !bulk.has(createdDay(page)))
     .sort((a, b) => noteDate(b, "created") - noteDate(a, "created"))
 }
 
-export function RecentNotesList({ notes, fileData, cfg, showPaths, showDates = true, dateKey }) {
+// 수정일 기준 목록에서 그 날짜에 무슨 일이 있었는지 고른다.
+//   "new"     : 그날 새로 쓴 노트 (쓴 날 바로 고친 것도 새 글이다)
+//   "updated" : 쓴 날 이후에 고친 노트
+//   undefined : 한꺼번에 옮겨 온 뒤 고친 적 없는 노트. 쓴 것도 고친 것도 아니라 표시하지 않는다.
+// 날짜는 화면에 보이는 서울 날짜로 비교한다. 같은 날 머리글 아래에서 표시가 어긋나지 않는다.
+export function changeKindOf(allFiles) {
+  const bulk = bulkCreatedDays(allFiles)
+  return (page) => {
+    if (!hasBothDates(page)) return undefined
+    const modifiedDay = formatDate(noteDate(page, "modified"))
+    if (modifiedDay !== createdDay(page)) return "updated"
+    return bulk.has(createdDay(page)) ? undefined : "new"
+  }
+}
+
+const CHANGE_LABELS = { new: "신규", updated: "수정" }
+
+// 제목 오른쪽에 붙는 신규·수정 표시. preact 와 hast 양쪽에서 쓰도록 이름과 클래스만 준다.
+export function changeBadge(kind) {
+  return (
+    kind && {
+      label: CHANGE_LABELS[kind],
+      className: `recent-updated-notes__badge recent-updated-notes__badge--${kind}`,
+    }
+  )
+}
+
+export function RecentNotesList({
+  notes,
+  fileData,
+  cfg,
+  showPaths,
+  showDates = true,
+  dateKey,
+  kindOf,
+}) {
   const locale = cfg.locale ?? "ko-KR"
 
   return h(
@@ -91,17 +133,23 @@ export function RecentNotesList({ notes, fileData, cfg, showPaths, showDates = t
       const date = dateKey ? noteDate(page, dateKey) : getDate(page)
       const title = page.frontmatter?.title ?? notePath(page)
       const pathLabel = notePath(page)
+      const badge = kindOf && changeBadge(kindOf(page))
 
       return h(
         "li",
         { class: "recent-updated-notes__item" },
         h(
-          "a",
-          {
-            class: "internal recent-updated-notes__link",
-            href: resolveRelative(fileData.slug, page.slug),
-          },
-          title,
+          "div",
+          { class: "recent-updated-notes__title" },
+          h(
+            "a",
+            {
+              class: "internal recent-updated-notes__link",
+              href: resolveRelative(fileData.slug, page.slug),
+            },
+            title,
+          ),
+          badge && h("span", { class: badge.className }, badge.label),
         ),
         h(
           "div",
@@ -153,8 +201,35 @@ export const recentNotesCss = `
   border-bottom: 0;
 }
 
+.recent-updated-notes__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .recent-updated-notes__link {
   font-weight: 600;
+}
+
+/* 제목 오른쪽의 신규·수정 표시. 긴 제목이 줄바꿈돼도 표시는 줄지 않는다. */
+.recent-updated-notes__badge {
+  flex-shrink: 0;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.recent-updated-notes__badge--new {
+  background-color: var(--highlight);
+  color: var(--secondary);
+}
+
+.recent-updated-notes__badge--updated {
+  background-color: var(--lightgray);
+  color: var(--darkgray);
 }
 
 .recent-updated-notes__meta {
