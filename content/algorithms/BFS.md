@@ -117,7 +117,7 @@ class Solution:
 
 # D) 쓰임
 
-Unweighted graph 에서 최단 거리, 연결 component 탐색, level-order traversal 을 구할 때 자주 사용한다. 최단 거리나 "가장 가까운 것을 찾으면 멈추기" 가 필요한 문제는 [[DFS]] 로 대신할 수 없다. 이유는 DFS 노트의 D 절 참고.
+Unweighted graph 에서 최단 거리, 연결 component 탐색, level-order traversal 을 구할 때 자주 사용한다. 최단 거리는 [[DFS]] 로 대신할 수 없고, "가장 가까운 것을 찾으면 멈추기" 는 DFS 로 풀면 비효율적이다. 이유는 DFS 노트의 D 절 참고.
 
 # E) Related
 
