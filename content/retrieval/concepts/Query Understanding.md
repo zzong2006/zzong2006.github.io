@@ -72,7 +72,7 @@ QU 의 결과는 글자 하나가 아니라 구조를 가진 질의다.
 확장어        투명 → 클리어
 ```
 
-Retrieval 은 이 카테고리로 후보를 좁히고, 속성이 맞는 상품에 가산점을 준다.
+Retrieval 은 이 카테고리로 후보를 좁히고, 속성이 맞는 상품에 가산점을 준다. 같은 슬롯은 검색어와 상품이 얼마나 맞는지 등급을 매길 때도 쓴다([[Query-Product Relevance]]).
 
 # C) QU 가 맞을 때와 틀릴 때
 
@@ -107,6 +107,7 @@ QU 의 각 일은 대부분 지도학습 문제로 바꿔 푼다.
 
 - [[Retrieval]]
 - [[Search Relevance Evaluation]]
+- [[Query-Product Relevance]]
 - [[Cascade Ranking System]]
 - [[Named Entity Recognition]]
 - [[BEQUE - Large Language Model based Long-tail Query Rewriting in Taobao Search]]
