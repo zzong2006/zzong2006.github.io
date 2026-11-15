@@ -30,7 +30,7 @@ flowchart LR
 
 **상품 벡터를 미리 계산해 색인에 넣어 둘 수 있다.**
 
-- 상품 1 억 개를 상품 tower 로 한 번 벡터로 바꿔 [[retrieval/indexing/ANN|ANN]] 색인에 넣는다.
+- 상품 1 억 개를 상품 tower 로 한 번 벡터로 바꿔 [[Approximate Nearest Neighbor|ANN]] 색인에 넣는다.
 - 검색어가 오면 검색어 벡터 하나만 만들고, ANN 으로 가까운 상품 수백 개를 꺼낸다.
 - 그래서 전체에서 후보를 넓게 가져오는 첫 단계(candidate generation)에 쓴다.
 

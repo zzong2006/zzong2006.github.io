@@ -1,29 +1,81 @@
 ---
 title: "Position Bias"
-aliases: []
+aliases: ["위치 편향"]
 tags:
   - bias
   - position_bias
 ---
 
-# A) Position Bias 확인하는 방법
+검색 결과 1 위 상품의 클릭률(CTR)이 10%, 10 위 상품은 0.5% 다. 1 위 상품이 20 배 더 좋은 상품일까?
 
-## A.1) 순서 바꾸기
+꼭 그렇지 않다. 사람들은 위에서부터 보고, 10 위까지 내려오기 전에 떠나는 사람이 많다. 같은 상품도 1 위에 두면 더 많이 눌린다. 이렇게 상품의 품질과 상관없이 놓인 위치 때문에 클릭이 달라지는 현상을 position bias 라고 한다.
 
-Alter the order of ranked recommendations or search results in some manner
+# A) 클릭은 "봤는가" 와 "관련 있는가" 가 겹친 결과다
 
-1. 아이템 순서를 섞은것과 섞지 않은 것을 비교하는 방법
-   예를 들어 reverse ordering 해서 추천 결과를 보내면, click 수 역시 거꾸로 나오는 것인지? vimp 의 평균 pos 가 높은 사용자 일수록 position bias 에 덜 민감할 가능성이 높다.
+**사용자는 결과를 본 뒤에야 클릭할 수 있으므로, 클릭 확률을 두 확률의 곱으로 본다.**
 
-3. click modeling
-4. few heuristics in the pairwise manner (e.g., SkipAbove)
-5. unbiased learning-to-rank framework by treating the bias as a counterfactual effect
-   [[Unbiased Learning-to-Rank with Biased Feedback]]
+$$
+P(\text{클릭}) = P(\text{그 위치를 봄}) \times P(\text{관련 있음})
+$$
 
-# B) Papers
+- 앞의 확률은 위치에만 달려 있다고 가정한다. 1 위는 거의 모두 보고, 아래로 갈수록 줄어든다.
+- 뒤의 확률은 검색어와 상품에만 달려 있다. 랭킹 모델이 실제로 배워야 하는 것은 이쪽이다.
+- 이 가정을 examination hypothesis 라고 부른다.
 
-* Addressing Trust Bias for Unbiased Learning-to-Rank (WWW, 2019)
+**클릭 로그를 그대로 라벨로 쓰면 모델이 위치 효과까지 배운다.**
 
-  좀 더 진화한 구글 논문. 마찬가지로 EM 알고리즘을 활용한다.
+- 지금 랭커가 위에 올린 상품은 많이 보이니 클릭도 많고, 다음 모델도 그 상품을 위에 올린다.
+- 아래에 있던 좋은 상품은 보이지 않아 클릭이 없고, 계속 아래에 머문다.
+- 랭커가 자기 결정을 다시 학습하는 순환이 생긴다 ([[exposure bias]]).
 
-* Unbiased Learning-to-Rank with Biased Feedback
+# B) 클릭에 볼 확률의 역수를 곱한다
+
+**아래 위치에서 나온 클릭일수록, 그 위치를 볼 확률의 역수만큼 큰 가중치를 준다.**
+
+- 1 위를 볼 확률이 1, 10 위를 볼 확률이 0.2 라면 10 위 클릭은 5 배로 센다.
+- 10 위 상품은 다섯 번 중 한 번만 사용자 눈에 들어갔으니, 클릭 하나가 "모두 봤다면 났을 클릭 다섯 개" 를 대신한다고 본다.
+- 이 확률을 propensity 라고 하고, 그 역수로 가중하는 방법을 IPS(inverse propensity scoring)라고 한다 ([[inverse propensity score]]).
+- 랭킹 모델을 학습할 때 loss 의 클릭 항마다 이 가중치를 곱한다 ([[Unbiased Learning-to-Rank with Biased Feedback]]).
+
+**가중치는 순위 숫자가 아니다.** 10 위라서 10 배가 아니라, 10 위를 볼 확률이 0.2 면 5 배다.
+
+# C) 볼 확률 추정
+
+**위치별 평균 CTR 로 볼 확률을 추정하면 관련도가 섞인다.**
+
+- 랭커는 원래 관련 있는 상품을 위에 둔다. 그래서 위치별 CTR 차이에는 볼 확률의 차이와, 그 자리에 놓인 상품의 품질 차이가 함께 들어 있다.
+- 1 위를 볼 확률이 1, 10 위가 0.2 이고, 1 위에는 관련 확률 10% 인 상품이, 10 위에는 2.5% 인 상품이 놓인다고 하자.
+- CTR 은 1 위 10%, 10 위 0.5% 다. 이 비율로 추정하면 10 위를 볼 확률이 0.05 로 나와 실제(0.2)의 4 분의 1 이 되고, 가중치는 20 배로 부풀려진다.
+
+**트래픽 일부에서 순서를 무작위로 섞으면 위치마다 놓인 상품의 품질이 같아진다.**
+
+- 상위 몇 개의 순서를 섞어 보여 주면, 1 위와 10 위에 평균적으로 같은 품질의 상품이 놓인다.
+- 위 예에서 섞은 뒤 두 위치의 관련 확률이 모두 5% 라면 CTR 은 1 위 5%, 10 위 1% 다. 그 비율 0.2 가 실제 볼 확률과 같다.
+- 섞은 결과는 사용자 경험을 해치므로 트래픽 일부에만 쓴다. 1 위와 k 위 둘만 맞바꾸면 피해가 더 작다.
+- 실험 없이 기존 로그에서 EM 으로 추정하는 방법도 있다 ([[Position bias estimation for unbiased learning to rank in personal search]]).
+
+# D) 가중치가 너무 커지는 문제
+
+**아주 아래 위치의 클릭은 가중치가 수십, 수백 배가 되어 학습을 흔든다.**
+
+- 50 위를 볼 확률이 0.01 이면 그 클릭 하나가 100 배로 들어간다. 우연히 나온 클릭 몇 개에 모델이 끌려간다.
+- 그래서 가중치에 상한을 둔다(clipping). 예를 들어 볼 확률이 0.05 보다 작으면 0.05 로 본다.
+- 상한을 두면 결과가 흔들리는 정도(variance)는 줄지만, 아래 위치 클릭을 덜 세는 만큼 편향이 다시 조금 생긴다.
+
+# E) 위치를 피처로 넣고 서빙 때 고정하기
+
+**학습할 때 위치를 입력 피처로 넣어, 위치 때문에 생긴 클릭 차이를 그 피처가 맡게 한다.**
+
+- 모델은 "이 상품이 3 위에 있었다" 를 함께 보고 클릭을 예측한다. 위치 효과는 위치 피처가 설명하므로, 나머지 피처는 관련도를 배운다.
+- 서빙할 때는 아직 위치가 정해지지 않았으므로 모든 후보에 같은 위치 값(예: 1 위)을 넣거나 위치 피처를 비운다. 위치 효과가 모든 후보에게 같아져 순서에 영향을 주지 않는다.
+- 볼 확률을 따로 추정하지 않아도 되어 IPS 보다 구현이 간단하다.
+- 위치를 다루는 작은 모듈을 따로 두고 서빙 때는 관련도 쪽 출력만 쓰는 구조도 있다 (PAL, Guo et al., RecSys 2019).
+- 모델이 위치 피처에만 기대지 않도록 학습 중 일부 샘플에서 위치 값을 지우기도 한다 (Zhao et al., RecSys 2019).
+
+# F) References
+
+- [Unbiased Learning-to-Rank with Biased Feedback (Joachims et al., WSDM 2017)](https://arxiv.org/abs/1608.04468)
+- [[Position bias estimation for unbiased learning to rank in personal search]] (Wang et al., WSDM 2018)
+- Addressing Trust Bias for Unbiased Learning-to-Rank (Agarwal et al., WWW 2019)
+- PAL: A Position-bias Aware Learning Framework for CTR Prediction in Live Recommender Systems (Guo et al., RecSys 2019)
+- Recommending What Video to Watch Next: A Multitask Ranking System (Zhao et al., RecSys 2019)

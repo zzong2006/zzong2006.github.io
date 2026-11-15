@@ -15,7 +15,7 @@ Embedding-based Retrieval(EBR)은 query와 document/item을 vector로 표현한 
 
 1. Query encoder가 query embedding을 만든다.
 2. Document/item encoder가 corpus embedding을 만든다.
-3. [[retrieval/indexing/ANN|ANN]] index에서 query embedding과 가까운 후보를 찾는다.
+3. [[Approximate Nearest Neighbor|ANN]] index에서 query embedding과 가까운 후보를 찾는다.
 4. ranking 단계에서 lexical, behavioral, business feature와 함께 다시 정렬한다.
 
 # C) 실무에서 볼 점
