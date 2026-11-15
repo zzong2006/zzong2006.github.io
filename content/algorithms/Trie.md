@@ -82,7 +82,7 @@ class Trie:
 
 # E) 자동완성으로 확장하기
 
-[LeetCode 1268. Search Suggestions System](https://leetcode.com/problems/search-suggestions-system/) 처럼 접두사로 시작하는 단어를 모으려면, `_find` 로 접두사 노드까지 내려간 뒤 거기서 [[DFS]] 로 `is_end` 인 노드를 모은다. 자식을 글자 순서대로 방문하면 사전순으로 나온다.
+[LeetCode 1268. Search Suggestions System](https://leetcode.com/problems/search-suggestions-system/) 처럼 접두사로 시작하는 단어를 모으려면, `_find` 로 접두사 노드까지 내려간 뒤 거기서 [[DFS]] 로 `is_end` 인 노드를 모은다. 자식을 글자 순서대로 방문하면 사전순으로 나온다. 검색창 자동완성은 사전순 대신 검색 빈도 같은 점수로 후보를 정렬한다 ([[Query Auto-Completion]]).
 
 ```python
 def suggest(self, prefix: str, limit: int = 3) -> list[str]:

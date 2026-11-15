@@ -17,6 +17,8 @@ aliases: [접두 검색, prefix search]
 1. **앞부분을 색인어로 펼친다**: 색인할 때 "삼", "삼성", "삼성전", "삼성전자" 를 모두 term 으로 넣는다. 검색할 때는 입력을 그대로 일반 키워드처럼 찾는다. Elasticsearch 의 edge n-gram 이 이 방식이다.
 2. **앞부분을 트리로 공유한다**: 단어들을 앞글자부터 갈라지는 트리(trie)로 만들어 두고, 입력한 글자를 따라 내려가 그 아래 단어를 모은다. Elasticsearch 의 completion suggester 가 이 트리를 압축한 [[Finite State Transducer|FST]] 를 쓴다.
 
+찾은 후보를 어떤 순서로 보여 줄지(검색 빈도, 급상승, 개인화)는 [[Query Auto-Completion]] 에 있다.
+
 # B) 역색인 + Edge N-gram
 
 edge n-gram 은 단어의 **앞에서 시작하는** 부분 문자열만 뽑는 [[n-gram]] 이다. 일반 n-gram 은 단어 중간의 조각까지 모두 만들지만, edge n-gram 은 앞부분만 만든다.

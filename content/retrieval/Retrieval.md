@@ -9,7 +9,7 @@ aliases: [Information Retrieval, Search]
 
 # A) Retrieval
 
-Retrieval은 사용자의 query에 대해 큰 corpus에서 후보 문서나 item을 빠르게 가져오는 단계다. 전통적인 lexical retrieval은 [[BM25]]와 [[Inverted Index]]를 중심으로 동작하고, semantic retrieval은 [[DPR]] 같은 dense retriever와 [[HNSW]], [[faiss]], [[Vamana]] 같은 ANN index를 함께 사용한다. 검색어는 그 전에 [[Query Understanding]] 에서 오타 교정·의도 분류·속성 추출을 거치고, 결과 품질은 [[Search Relevance Evaluation]] 의 지표(NDCG, Defect Rate 등)로 판정한다.
+Retrieval은 사용자의 query에 대해 큰 corpus에서 후보 문서나 item을 빠르게 가져오는 단계다. 전통적인 lexical retrieval은 [[BM25]]와 [[Inverted Index]]를 중심으로 동작하고, semantic retrieval은 [[DPR]] 같은 dense retriever와 [[HNSW]], [[faiss]], [[Vamana]] 같은 ANN index를 함께 사용한다. 검색어는 그 전에 [[Query Understanding]] 에서 오타 교정·의도 분류·속성 추출을 거치고, 결과 품질은 [[Search Relevance Evaluation]] 의 지표(NDCG, Defect Rate 등)로 판정한다. 검색창의 자동완성·오타 교정·연관검색어는 [[Query Suggestion]] 에서 이어진다.
 
 # B) 큰 지도
 
