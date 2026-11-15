@@ -71,7 +71,7 @@ $$
 
 label 을 0/1 대신 $-1$/$+1$ 로 쓰면 같은 loss 가 $\log(1 + e^{-y_i z_i})$ 꼴이 된다. [[logistic loss]] 노트의 식이 이것이다.
 
-## B.2) gradient 가 $(p_i - y_i)$ 로 정리된다
+## B.2) gradient 가 (pᵢ − yᵢ) 로 정리된다
 
 샘플 하나의 loss 를 $\ell_i = -[y_i \log p_i + (1-y_i)\log(1-p_i)]$ 라고 하자. chain rule 로 $z_i$ 에 대한 미분을 두 단계로 구한다.
 
@@ -91,7 +91,7 @@ $$
 
 gradient 는 "예측 확률과 정답의 차이 × 입력" 이다. [[linear regression]] 을 MSE 로 학습할 때의 gradient $(\hat y_i - y_i)\boldsymbol{x}_i$ 와 모양이 같고, 예측값이 $\hat y_i$ 대신 $p_i$ 인 것만 다르다. 정답이 1 인데 $p_i$ 가 0 에 가까우면 gradient 가 $-\boldsymbol{x}_i$ 에 가까워, 크게 틀린 샘플일수록 가중치가 크게 고쳐진다.
 
-## B.3) $\boldsymbol{w}$ 에 대해 convex 하다
+## B.3) 가중치 w 에 대해 convex 하다
 
 앞에서 구한 gradient 를 한 번 더 미분하면 Hessian(2 차 미분을 모은 행렬)이 나온다. $\partial p_i / \partial \boldsymbol{w} = p_i(1-p_i)\boldsymbol{x}_i$ 이므로 다음과 같다. 여기서는 bias $b$ 를 상수 1 인 feature 의 weight 로 보고 $\boldsymbol{w}$ 안에 넣었다.
 
@@ -133,17 +133,17 @@ cross-entropy 의 gradient 는 틀릴수록($w$ 가 작을수록) 커진다. MSE
 
 샘플이 여럿이면 이런 평평한 구간과 굽은 구간이 샘플마다 다른 위치에 생기고, 이들을 더한 loss 에는 국소 최솟값이 여러 개 생길 수 있다. Auer, Herbster, Warmuth (NeurIPS 1995, "Exponentially many local minima for single neurons") 는 sigmoid 뉴런 하나를 제곱 오차로 학습할 때 국소 최솟값의 수가 입력 차원에 대해 지수적으로 늘어날 수 있음을 보였다.
 
-# C) Why We Need Logistic Regression?
+# C) 선형 회귀로 분류할 때의 문제
 
 [[linear regression]] 으로는 classification 문제들을 풀어내기가 힘들다.
 
-## C.1) Example
+## C.1) 예시
 
 아래의 그림의 경우 linear model $h_\theta(x)=\theta^Tx$ 가 magenta 색에서 잘 분리하는 듯 보였지만, outlier 의 등장에 취약한 모습을 보인다.  
 
 ![[img-be213e509a.png|image-20200929000946847|500]]
 
-# D) Optimization
+# D) 최적화 방법
 
 최적화 과정은 [[Newton-Raphson method]] 방식이나 [[gradient descent]] 와 같은 iterative 한 방식을 통해 parameter 를 추정할 수 있다.
 
