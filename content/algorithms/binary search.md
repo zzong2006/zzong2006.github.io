@@ -226,7 +226,66 @@ class Solution:
 
 판정 한 번에 화물 $n$ 개를 보고, 판정은 $\log_2(\sum w_i - \max w_i)$ 번 정도 한다. 전체는 $O(n \log \sum w_i)$ 다.
 
+# E) 예제: Find Minimum in Rotated Sorted Array
+
+[LeetCode 153](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/). 오름차순으로 정렬된 배열을 어느 지점에서 잘라 앞뒤를 바꿔 붙였다. 중복 값은 없다. 최솟값을 $O(\log n)$ 에 찾는다.
+
+```
+원래    : [0, 1, 2, 4, 5, 6, 7]
+회전 후 : [4, 5, 6, 7, 0, 1, 2]
+```
+
+배열이 정렬돼 있지 않은데도 이진 탐색이 된다. 각 칸에 "이 값이 배열의 마지막 값보다 큰가?" 를 물으면 판정이 한 번만 바뀌기 때문이다.
+
+```
+값              :  4   5   6   7   0   1   2
+nums[i] > 마지막 :  T   T   T   T   F   F   F
+                               ↑
+                          첫 거짓 = 최솟값
+```
+
+잘린 지점 앞쪽은 전부 마지막 값보다 크고, 최솟값부터 끝까지는 전부 마지막 값 이하다. 그래서 첫 거짓이 곧 최솟값이고, 앞의 최솟값 틀을 그대로 쓴다.
+
+```python
+class Solution:
+    def findMin(self, nums: list[int]) -> int:
+        lo, hi = 0, len(nums) - 1
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if nums[mid] > nums[-1]:
+                lo = mid + 1    # 잘린 지점 앞쪽, 최솟값은 mid 뒤에 있다
+            else:
+                hi = mid        # mid 가 최솟값일 수 있다
+        return nums[lo]
+```
+
+- 마지막 칸은 `nums[-1] > nums[-1]` 이 거짓이라 항상 거짓 쪽이다. 그래서 `hi` 를 `len(nums) - 1` 로 시작해도 첫 거짓이 범위 밖으로 나가지 않는다.
+- `nums[0]` 과 비교하면 안 된다. 회전하지 않은 배열 `[1, 2, 3]` 에서는 모든 칸이 "첫 값 이상" 이라 판정이 갈리지 않는다. 마지막 값은 회전 여부와 관계없이 항상 최솟값 쪽 구간에 속하므로 기준으로 안정적이다. 회전하지 않은 배열은 모든 칸이 거짓이 되어 첫 칸이 답으로 나온다.
+- 중복이 있는 [LeetCode 154](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/) 에서는 `nums[mid] == nums[-1]` 이면 어느 쪽인지 알 수 없다. 이때는 `hi` 를 한 칸만 줄이므로 최악의 경우 $O(n)$ 이 된다.
+
+# F) 정렬이 아니라 판정이 단조로우면 된다
+
+이진 탐색에 필요한 것은 배열이 정렬돼 있다는 사실이 아니라, **참과 거짓을 한쪽씩 몰리게 나누는 질문 하나**다. 이 노트의 예제를 나란히 놓으면 이렇다.
+
+| 문제 | 탐색 대상 | 참과 거짓을 가르는 질문 | 답 |
+| --- | --- | --- | --- |
+| 875 | 먹는 속도 (숫자 범위) | 이 속도로 h 시간 안에 다 먹는가? | 첫 참 |
+| 1011 | 배 적재량 (숫자 범위) | 이 적재량으로 days 일 안에 다 보내는가? | 첫 참 |
+| [[Time Based Key-Value Store]] | 정렬된 timestamp | 이 시각이 t 이하인가? | 마지막 참 (첫 거짓의 한 칸 앞) |
+| 153 | 회전된 배열 | 이 값이 마지막 값보다 큰가? | 첫 거짓 |
+
+875 와 1011 은 배열이 아니라 숫자 범위를 탐색하고, 153 은 정렬이 깨진 배열을 탐색한다. 처음 보는 문제에서 이진 탐색을 떠올리려면 "정렬돼 있나?" 보다 **"답을 기준으로 한쪽은 전부 참, 반대쪽은 전부 거짓이 되는 질문이 있나?"** 를 묻는 편이 낫다.
+
+## F.1) 자주 하는 실수
+
+- **범위 없이 탐색하기.** 후보를 절반으로 줄였다가 두 배로 늘리는 식으로 오가면, 볼 수 있는 값이 처음 값을 2 로 나눈 수들로 한정되어 답을 건너뛴다. 같은 값을 오가며 끝나지 않거나 0 으로 나누는 문제도 생긴다. 이진 탐색은 항상 `[lo, hi]` 범위를 들고 그 범위를 절반으로 줄인다.
+- **판정 함수 안의 올림.** "바나나 `p` 개를 속도 `k` 로 먹는 시간" 을 `p // k + 1` 로 쓰면 나누어떨어질 때 1 이 크다. 올림은 `(p + k - 1) // k` 다.
+- **단위가 섞인 변수 이름.** 속도를 `hour` 라는 이름에 담으면, 나중에 속도와 시간을 비교하는 코드를 써도 눈치채기 어렵다. `speed`, `hours` 처럼 단위가 드러나게 짓는다.
+- **`lo = mid`, 그리고 열린 `hi` 에 `hi = mid - 1`.** 각각 무한 루프와 답 누락을 만든다. 따라가 보기는 [[Time Based Key-Value Store]] 의 C.2 에 있다.
+- **끝나고 `mid` 를 반환하기.** 마지막으로 확인한 `mid` 는 거짓일 수 있다. 답은 범위가 한 칸으로 줄어든 자리인 `lo` 다 (B.3).
+
 # References
 
 - [LeetCode 875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 - [LeetCode 1011. Capacity To Ship Packages Within D Days](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/)
+- [LeetCode 153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
