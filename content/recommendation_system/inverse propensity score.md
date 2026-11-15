@@ -14,7 +14,7 @@ tag: [importance_sampling, IPS, bias]
 Logging policy $\pi_p$ 가 해당 action 을 선택할 확률을 기준으로 삼고, test policy $\pi_t$ 가 해당 action 을 선택할 확률을 상대적인 가중치로 활용하여 expected weighted reward 을 계산
 
 $$
-\displaystyle\hat{\mathcal{R}}^{\mathrm{IS}}\left(\pi_{t}\right)=\frac{1}{n}\sum_{(x,a,r)\in\mathcal{S}_{n}}w(a,x)r\quad\text{where}w(a,x)=\frac{\pi_{t}(a\mid x)}{\pi_{p}(a\mid x)}
+\displaystyle\hat{\mathcal{R}}^{\mathrm{IS}}\left(\pi_{t}\right)=\frac{1}{n}\sum_{(x,a,r)\in\mathcal{S}_{n}}w(a,x)r\quad\text{where}\quad w(a,x)=\frac{\pi_{t}(a\mid x)}{\pi_{p}(a\mid x)}
 $$
 
 * $\pi_{p}(a\mid x)$: product(logging) policy $p$ 가 context $x$ 에서 action $a$ 를 선택할 확률
@@ -25,14 +25,13 @@ $$
 1. $\pi(a\mid x)$ 를 구하는게 쉽지 않음
 2. low bias and high variance
 	* 특히 두 policy 가 다를 수록, $w(a,x)$ 가 크게 바뀌므로 variance 가 커짐
-3. Low variance 를 위한 capped importance sampling
-
-	$$
-
-
-\displaystyle\hat{\mathcal{R}}^{\operatorname{maxCIS}}\left(\pi_{t},c\right)=\frac{1}{n}\sum_{(x,a,r)\in\mathcal{S}_{n}}\min(w(a,x),c)r
+3. Low variance 를 위한 capped importance sampling: 가중치에 상한 $c$ 를 둔다.
 
 $$
-	variance를 일부 제어할 수 있지만, capping에 의해 bias가 발생함
+\hat{\mathcal{R}}^{\operatorname{maxCIS}}\left(\pi_{t},c\right)=\frac{1}{n}\sum_{(x,a,r)\in\mathcal{S}_{n}}\min(w(a,x),c)\,r
+$$
+
+variance 를 일부 제어할 수 있지만, capping 에 의해 bias 가 발생한다.
+
 4. Condition
 	- unbiased-ness the randomisation requirements for IPS
