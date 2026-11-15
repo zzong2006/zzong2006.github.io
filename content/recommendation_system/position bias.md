@@ -72,6 +72,11 @@ $$
 - 위치를 다루는 작은 모듈을 따로 두고 서빙 때는 관련도 쪽 출력만 쓰는 구조도 있다 (PAL, Guo et al., RecSys 2019).
 - 모델이 위치 피처에만 기대지 않도록 학습 중 일부 샘플에서 위치 값을 지우기도 한다 (Zhao et al., RecSys 2019).
 
+**볼 확률 없이 순서 정보만 쓰는 방법도 있다.**
+
+- 클릭된 결과보다 위에 있었는데 건너뛴 결과는, 클릭된 결과보다 덜 관련 있다고 본다(skip-above).
+- 사용자는 위에서부터 보므로 건너뛴 결과는 봤다고 가정할 수 있다. 그래서 볼 확률을 몰라도 "A 가 B 보다 낫다" 는 pairwise 학습 신호를 얻는다 ([[Learning-to-Rank]]).
+
 # F) References
 
 - [Unbiased Learning-to-Rank with Biased Feedback (Joachims et al., WSDM 2017)](https://arxiv.org/abs/1608.04468)
