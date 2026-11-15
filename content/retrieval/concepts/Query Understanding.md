@@ -46,6 +46,7 @@ flowchart LR
 
 - 한국어는 형태소 분석으로 `케이스를` 의 조사를 떼는 일도 여기서 한다.
 - 고친 결과가 원래 뜻과 다를 수 있어서, 원래 검색어를 버리지 않고 함께 넘기는 경우가 많다.
+- 오타를 찾는 방법(noisy channel, 자모 편집 거리, 한영 자판 전환)은 [[Query Spelling Correction]] 에 있다.
 
 **의도 분류 (Query Intent Classification)**: 이 검색어가 어느 카테고리의 무엇을 찾는지 정한다.
 
@@ -106,6 +107,8 @@ QU 의 각 일은 대부분 지도학습 문제로 바꿔 푼다.
 # Related
 
 - [[Retrieval]]
+- [[Query Suggestion]]
+- [[Query Spelling Correction]]
 - [[Search Relevance Evaluation]]
 - [[Query-Product Relevance]]
 - [[Cascade Ranking System]]
