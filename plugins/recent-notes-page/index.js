@@ -1,6 +1,7 @@
 import { h } from "preact"
 import {
   RecentNotesList,
+  changeKindOf,
   formatDate,
   newNotes,
   noteDate,
@@ -25,7 +26,8 @@ function groupByDay(notes, locale, dateKey) {
 export const manifest = {
   name: "recent-notes-page",
   displayName: "Recent Notes Page",
-  description: "Generates pages listing recently modified and newly written notes, linked from the home lists.",
+  description:
+    "Generates pages listing recently modified and newly written notes, linked from the home lists.",
   version: "1.0.0",
   category: "pageType",
   defaultOptions: {
@@ -55,6 +57,8 @@ function RecentNotesContent(opts) {
         : `노트 ${all.length}개`
 
     const groups = groupByDay(notes, cfg.locale ?? "ko-KR", dateKey)
+    // 수정일 목록에는 새로 쓴 노트도 섞여 있어 제목 옆에 New·Edited 를 단다. 작성일 목록(/new)은 전부 새 글이다.
+    const kindOf = isNew ? undefined : changeKindOf(allFiles)
 
     return h("div", { class: "popover-hint recent-updated-notes recent-notes-page" }, [
       h("p", { class: "recent-notes-page__count" }, countText),
@@ -73,6 +77,7 @@ function RecentNotesContent(opts) {
             showPaths: opts.showPaths,
             showDates: false,
             dateKey,
+            kindOf,
           }),
         ]),
       ),

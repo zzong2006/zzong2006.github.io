@@ -72,7 +72,7 @@ jobs:
         run: npm run patch-explorer
 
       - name: Validate note dates
-        run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js plugins/related-notes/snippet.test.js
+        run: node --test plugins/note-dates/index.test.js plugins/note-meta/index.test.js plugins/explorer-dates-index/index.test.js plugins/related-notes/snippet.test.js plugins/recent-updated-notes/components/index.test.js
 
       - name: Normalize Obsidian frontmatter
         run: npm run normalize-frontmatter
