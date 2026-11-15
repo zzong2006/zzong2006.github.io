@@ -47,7 +47,7 @@ positive 비율이 약 1% 인 데이터 20 만 개로 [[logistic regression]] �
 
 1. 그대로 학습한다.
 2. negative 를 1.01% 만 남겨(positive 비율 약 50%) 학습한다.
-3. 2 의 예측을 아래 D.2 의 식으로 되돌린다.
+3. 2 의 예측을 아래 "확률을 되돌리는 방법" 절의 식으로 되돌린다.
 4. scikit-learn `class_weight="balanced"` 로 학습한다.
 
 | 방법 | ROC-AUC | Average Precision | 예측 확률의 평균 | log loss | recall 80% 에서의 precision | 그때의 threshold |
@@ -61,7 +61,7 @@ test 데이터의 실제 positive 비율은 0.99% 다.
 
 - **순위를 보는 지표는 그대로다.** ROC-AUC, Average Precision, 같은 recall 에서의 precision 이 네 방법에서 모두 같다. 판정 품질은 바뀌지 않았고, 같은 판정을 내리는 threshold 의 위치만 0.009 에서 0.47 근처로 옮겨 갔다.
 - **확률의 절대값은 틀어졌다.** undersampling 과 class weight 는 실제 비율이 1% 인데 평균 33% 를 예측한다. 확률 자체의 정확도를 보는 log loss 는 0.046 에서 0.496 으로 10 배 넘게 나빠졌다.
-- **되돌리면 원래대로 돌아온다.** D.2 의 식으로 바꾼 확률은 그대로 학습한 모델과 평균, log loss 가 같다.
+- **되돌리면 원래대로 돌아온다.** 되돌리는 식으로 바꾼 확률은 그대로 학습한 모델과 평균, log loss 가 같다.
 
 이 실험에서 순위가 정확히 같은 것은 logistic regression 의 특성이다. logistic regression 에서 negative 를 무작위로 버리면, 이론적으로 절편만 바뀌고 기울기는 거의 그대로다. 신경망이나 트리 모델에서는 학습에 쓴 데이터가 달라지므로 순위도 조금 달라질 수 있지만, 확률이 부풀려지는 방향은 같다.
 
@@ -87,4 +87,4 @@ $$
 
 1. 먼저 그대로 학습하고, 불균형을 반영하는 지표로 평가하고, 검증 데이터에서 threshold 를 고른다.
 2. positive 를 잘 구분하지 못하면 class weight 나 oversampling 으로 positive 쪽 학습 신호를 키운다. 판정만 쓴다면 확률 보정은 필요 없다.
-3. negative 가 너무 많아 학습 비용이 문제면 negative undersampling 을 쓴다. 광고 클릭 예측에서 흔한 방식이다. 확률을 쓰는 서비스라면 D.2 의 식으로 반드시 되돌린다.
+3. negative 가 너무 많아 학습 비용이 문제면 negative undersampling 을 쓴다. 광고 클릭 예측에서 흔한 방식이다. 확률을 쓰는 서비스라면 앞의 되돌리는 식으로 반드시 되돌린다.

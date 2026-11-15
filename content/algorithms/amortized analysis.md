@@ -22,3 +22,11 @@ dynamic array 는 가끔 비싼 연산을 수행하지만 일반적으로 저렴
 ## B.2) Amortized Inference of VAE
 
 [[machine_learning/deep_learning/Variational Autoencoder|Variational Autoencoder]] 는 학습이 완료된 모델의 경우 재활용할 수 있다. 예를 들어 [[collaborative filtering]] 방식에서 활용할 수 있는데, 학습된 데이터를 기반으로 비슷한 패턴을 활용하여 입력으로 주어진 새로운 유저의 선호도를 분석할 수 있다. 즉, 학습에는 많은 시간이 걸리지만, 재사용이 가능하므로 전반적 비용으로 보았을 때 저렴한 모델이라고 주장할 수 있는 것이다.
+
+## B.3) 단조 스택
+
+[[Daily Temperatures]] 처럼 "다음으로 큰 원소" 를 찾는 단조 스택 풀이는 `for` 안에 `while` 이 있어 $O(n^2)$ 처럼 보이지만 $O(n)$ 이다.
+
+`while` 한 번이 도는 횟수는 원소마다 제각각이고, 한 원소에서 $O(n)$ 번 돌 수도 있다. 하지만 각 원소는 스택에 정확히 한 번 들어가고 최대 한 번 나오므로, 전체를 통틀어 `pop` 은 $n$ 번을 넘을 수 없다. `while` 의 반복 하나가 `pop` 하나에 대응하므로 전체 비용은 $O(n)$ 이고, 원소 하나당 평균 $O(1)$ 이다.
+
+dynamic array 와 구조가 같다. 가끔 비싼 연산 (여러 번의 `pop`, 배열 doubling) 이 일어나지만, 그 비용은 앞서 일어난 값싼 연산 (`push`) 의 수로 묶여 있다.

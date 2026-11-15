@@ -93,7 +93,7 @@ gradient 는 "예측 확률과 정답의 차이 × 입력" 이다. [[linear regr
 
 ## B.3) $\boldsymbol{w}$ 에 대해 convex 하다
 
-B.2 의 gradient 를 한 번 더 미분하면 Hessian(2 차 미분을 모은 행렬)이 나온다. $\partial p_i / \partial \boldsymbol{w} = p_i(1-p_i)\boldsymbol{x}_i$ 이므로 다음과 같다. 여기서는 bias $b$ 를 상수 1 인 feature 의 weight 로 보고 $\boldsymbol{w}$ 안에 넣었다.
+앞에서 구한 gradient 를 한 번 더 미분하면 Hessian(2 차 미분을 모은 행렬)이 나온다. $\partial p_i / \partial \boldsymbol{w} = p_i(1-p_i)\boldsymbol{x}_i$ 이므로 다음과 같다. 여기서는 bias $b$ 를 상수 1 인 feature 의 weight 로 보고 $\boldsymbol{w}$ 안에 넣었다.
 
 $$
 \nabla^2_{\boldsymbol{w}} \sum_{i=1}^{N} \ell_i = \sum_{i=1}^{N} p_i(1-p_i)\, \boldsymbol{x}_i \boldsymbol{x}_i^\top
@@ -107,7 +107,7 @@ convex 함수에는 전역 최솟값이 아닌 국소 최솟값이 없다. 그�
 
 ## B.4) MSE 로 학습하면 생기는 문제
 
-같은 모델을 $(p_i - y_i)^2$ 로 학습한다고 해 보자. B.2 와 같은 방식으로 미분하면, loss 를 $p_i$ 로 미분한 값 $2(p_i - y_i)$ 에 sigmoid 의 미분 $p_i(1-p_i)$ 가 곱해진 채 남는다.
+같은 모델을 $(p_i - y_i)^2$ 로 학습한다고 해 보자. 앞의 gradient 유도와 같은 방식으로 미분하면, loss 를 $p_i$ 로 미분한 값 $2(p_i - y_i)$ 에 sigmoid 의 미분 $p_i(1-p_i)$ 가 곱해진 채 남는다.
 
 $$
 \frac{\partial}{\partial z_i}(p_i - y_i)^2 = 2\,(p_i - y_i)\; p_i(1-p_i)
