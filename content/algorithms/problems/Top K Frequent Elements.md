@@ -33,7 +33,7 @@ class Solution:
         return sorted(count, key=count.get, reverse=True)[:k]
 ```
 
-## B.1) 시간 복잡도가 $O(n + m \log m)$ 인 이유
+## B.1) 시간 복잡도가 O(n + m log m) 인 이유
 
 단계별로 나누면 다음과 같다.
 
@@ -93,7 +93,7 @@ max-heap 으로도 풀 수는 있다. 전부 넣은 뒤 큰 것부터 `k` 번 �
 - 큰 값 `k` 개 → 크기 `k` 의 **min**-heap
 - 작은 값 `k` 개 → 크기 `k` 의 **max**-heap
 
-## C.2) 시간 복잡도가 $O(n + m \log k)$ 인 이유
+## C.2) 시간 복잡도가 O(n + m log k) 인 이유
 
 | 단계 | 하는 일 | 시간 |
 | --- | --- | --- |

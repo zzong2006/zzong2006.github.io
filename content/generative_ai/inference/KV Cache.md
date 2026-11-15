@@ -121,7 +121,7 @@ Llama 3 8B 의 설정(Hugging Face `config.json`)은 층 32 개(`num_hidden_laye
 
 - **MQA·GQA 는 key·value head 수를 줄인다.** 여러 query head 가 key·value head 하나를 나눠 쓴다.
   - GQA 는 query head 를 그룹으로 묶어 그룹마다 하나를, MQA 는 전부가 하나를 쓴다. 그림의 8 이 Llama 3 8B 의 GQA 설정이다.
-  - 모델 구조가 바뀌므로 학습 때 정한다. 원리와 품질 비교는 [[attention function|Attention]] 노트의 최적화 기법 절에 있다.
+  - 모델 구조가 바뀌므로 학습 때 정한다. 원리와 품질 비교는 [[Attention 최적화 기법]] 노트에 있다.
 - **KV 양자화는 숫자 하나의 바이트 수를 줄인다.** 캐시를 FP8 로 저장하면 BF16 의 절반이다.
   - 근사이므로 품질 변화를 따로 확인해야 한다. 2 비트까지 내린 방법(KIVI)도 있다. 일반적인 내용은 [[Quantization]] 노트에 있다.
 - **PagedAttention 은 토큰 하나의 크기가 아니라 빈자리를 줄인다.** 답변이 얼마나 길어질지 모르니, 기존 서빙 시스템은 요청마다 최대 길이만큼 메모리를 미리 잡았다.
@@ -129,7 +129,7 @@ Llama 3 8B 의 설정(Hugging Face `config.json`)은 층 32 개(`num_hidden_laye
   - 같은 프롬프트로 답변을 여러 개 뽑을 때는 공통 앞부분의 블록을 함께 쓴다.
   - 같은 GPU 에 요청을 더 많이 담을 수 있게 된다. 자세한 내용은 [[vllm]] 노트에 있다.
 
-**캐시 크기가 그대로인 방법도 decode 를 빠르게 할 수 있다.** FlashAttention·Flash-Decoding 은 캐시를 읽는 커널을 빠르게 하고, NSA·DSA 는 한 스텝에 읽는 토큰을 골라 줄인다. 이 방법들도 [[attention function|Attention]] 노트에 있다.
+**캐시 크기가 그대로인 방법도 decode 를 빠르게 할 수 있다.** FlashAttention·Flash-Decoding 은 캐시를 읽는 커널을 빠르게 하고, NSA·DSA 는 한 스텝에 읽는 토큰을 골라 줄인다. 이 방법들도 [[Attention 최적화 기법]] 노트에 있다.
 
 # 부록: 계산과 방법별 크기
 
@@ -171,7 +171,8 @@ DeepSeek-V3 의 attention 크기(층 61 개, query head 128 개, head 길이 128
 
 # References
 
-- [[attention function|Attention]] — query·key·value, causal mask, 최적화 기법의 원리
+- [[attention function|Attention]] — query·key·value, causal mask
+- [[Attention 최적화 기법]] — MQA·GQA·MLA, FlashAttention, sparse attention 의 원리
 - [[Prefill]], [[vllm]], [[Quantization]]
 - Llama Team, Meta, 2024, [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783) — Table 3
 - Hugging Face 사본의 설정 파일 — [Llama 3 8B config.json](https://huggingface.co/unsloth/llama-3-8b/blob/main/config.json), [Llama 2 7B config.json](https://huggingface.co/NousResearch/Llama-2-7b-hf/blob/main/config.json)
