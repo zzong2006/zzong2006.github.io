@@ -56,7 +56,7 @@ LLM 의 생성은 prompt 전체를 한 번에 처리하는 prefill 과, 토큰�
 | NSA, DSA | 토큰 중 일부를 골라 그것만 본다 | 연산량, decode 의 캐시 읽기 | 둘 다 | 구조가 달라진다 |
 | linear attention, hybrid | softmax attention 을 고정 크기 상태를 갱신하는 층으로 바꾼다 | 연산량, KV cache 크기 | 둘 다 | 구조가 달라진다 |
 
-"효과가 큰 단계" 는 각 기법이 줄이는 대상을 prefill·decode 병목과 맞춰 본 해석이다. 논문이 실제로 잰 조건과 수치는 부록에 모았다.
+"효과가 큰 단계" 는 각 기법이 줄이는 대상을 prefill·decode 병목과 맞춰 본 해석이다. 논문의 측정 조건과 수치는 부록에 모았다.
 
 # D) Key·value head 를 나눠 쓰거나 압축하기: MQA, GQA, MLA
 
@@ -113,10 +113,10 @@ $$
 
 결과는 행 전체로 한 번에 계산한 토큰 3 의 출력 $[1.759, 2.007]$ 과 같다. **FlashAttention 은 근사가 아니라 표준 attention 과 같은 값을 계산하고**, 추가 메모리는 $L^2$ 이 아니라 $L$ 에 비례한다.
 
-**연산을 오히려 늘리고도 빨라진다. attention 의 비용이 연산이 아니라 메모리 IO 에 있었기 때문이다.**
+**연산을 오히려 늘리고도 빨라지는 것은, attention 의 비용이 연산이 아니라 메모리 IO 에 있었기 때문이다.**
 
 - 역전파에서는 점수 행렬을 저장하지 않고 블록마다 다시 계산한다. 연산은 늘지만 HBM 접근이 줄어 전체 시간은 짧아진다.
-- GPT-2 medium 에서 attention 의 순전파+역전파를 재면 연산량은 13% 늘었는데, HBM 읽기·쓰기가 9 분의 1 로 줄어 시간은 5.7 배 짧아졌다.
+- GPT-2 medium 에서 attention 의 순전파+역전파를 측정하면 연산량은 13% 늘었는데, HBM 읽기·쓰기가 9 분의 1 로 줄어 시간은 5.7 배 짧아졌다.
 
 **FlashAttention 은 연산량과 캐시 크기를 줄이지 않는다.** $L^2$ 칸을 모두 계산하는 것은 같다.
 
@@ -206,7 +206,7 @@ $$
 
 **MQA (Shazeer, 2019)**
 
-- WMT14 영어–독일어 번역 모델(6 층, head 8 개, head 길이 128)에서 TPUv2 로 잰 디코더의 토큰당 시간이 46 µs 에서 3.8 µs 로 약 12 배 줄었다 (Table 2, 배치 1024).
+- WMT14 영어–독일어 번역 모델(6 층, head 8 개, head 길이 128)에서 TPUv2 로 측정한 디코더의 토큰당 시간이 46 µs 에서 3.8 µs 로 약 12 배 줄었다 (Table 2, 배치 1024).
 - dev BLEU 는 26.7 에서 26.5 로 0.2 떨어졌다 (Table 1). 파라미터 수를 맞추려고 feed-forward 층을 4096 에서 5440 으로 넓힌 비교다.
 
 **GQA (Ainslie et al., 2023)**
@@ -217,14 +217,14 @@ $$
 **MLA (DeepSeek-V2·V3)**
 
 - DeepSeek-V2 는 hidden vector 길이 5120(V3 는 7168), head 128 개, head 길이 128, latent 길이 512, 위치용 key 길이 64 를 쓴다 (V2 2.1절, 부록 C).
-- DeepSeek 67B 대비 KV cache 를 93.3% 줄이고 최대 생성 처리량을 5.76 배 높였다고 보고했다 (초록, 1장). 처리량은 가중치를 FP8, KV cache 를 원소당 평균 약 6 비트로 양자화하고 H800 8 장으로 잰 값이다. 93.3% 에 이 양자화가 포함되는지는 논문에 나와 있지 않다.
+- DeepSeek 67B 대비 KV cache 를 93.3% 줄이고 최대 생성 처리량을 5.76 배 높였다고 보고했다 (초록, 1장). 처리량은 가중치를 FP8, KV cache 를 원소당 평균 약 6 비트로 양자화하고 H800 8 장으로 측정한 값이다. 93.3% 에 이 양자화가 포함되는지는 논문에 나와 있지 않다.
 - 같은 규모의 MoE 모델끼리 비교하면 MLA 가 MHA 의 14%(약 16B 모델), 4%(약 250B 모델) 크기 캐시로 MHA 보다 좋은 성능을 냈다 (부록 D.2).
 - DeepSeek-V3.2 보고서(부록 A)에 따르면 V3.1-Terminus 는 학습과 prefill 에 key·value 를 복원하는 MHA 모드를, decode 에 MQA 모드를 쓴다.
 
 **FlashAttention (Dao et al., 2022)**
 
 - HBM 접근 횟수는 표준 구현이 $\Theta(Nd + N^2)$, FlashAttention 이 $\Theta(N^2 d^2 / M)$ 이다 (Theorem 2). $N$ 은 시퀀스 길이, $d$ 는 head 길이, $M$ 은 SRAM 크기다. $d$ 가 64–128, $M$ 이 약 100 KB 면 $d^2$ 이 $M$ 보다 훨씬 작아 접근 횟수가 크게 준다.
-- GPT-2 medium(시퀀스 1024, head 16 개, head 길이 64, 배치 64, A100)에서 attention 순전파+역전파를 쟀다 (Figure 2).
+- GPT-2 medium(시퀀스 1024, head 16 개, head 길이 64, 배치 64, A100)에서 attention 순전파+역전파를 측정했다 (Figure 2).
 
 | 구현 | 연산량 (GFLOPs) | HBM 읽기·쓰기 (GB) | 시간 (ms) |
 | --- | --- | --- | --- |
@@ -236,7 +236,7 @@ $$
 
 **Flash-Decoding (Dao et al., 2023 블로그)**
 
-- A100 에서 배치 1, query head 16 개·key·value head 2 개 조건으로 잰 attention 자체는 FlashAttention 보다 최대 50 배 빨랐다.
+- A100 에서 배치 1, query head 16 개·key·value head 2 개 조건으로 측정한 attention 자체는 FlashAttention 보다 최대 50 배 빨랐다.
 - CodeLlama-34B 로 배치 1, 시퀀스 길이 64K 까지 생성한 전체 속도는 최대 8 배였다. 이 측정의 GPU 종류와 수는 글에 나와 있지 않다.
 
 **PagedAttention (Kwon et al., 2023)**
@@ -256,7 +256,7 @@ $$
 
 - 압축 갈래는 32 토큰 블록을 16 토큰 간격으로 요약한다. 선택 갈래는 맨 앞 블록 1 개와 최근 블록 2 개를 항상 포함한다.
 - 64K 문맥에서 A100 8 장 기준 순전파 9.0 배, 역전파 6.0 배 빨랐다 (Triton 으로 구현한 FlashAttention-2 대비, 5.1절).
-- decode 는 한 스텝에 읽는 토큰이 65,536 개에서 5,632 개로 줄어 11.6 배를 기대할 수 있다고 계산했다 (Table 4). 시간을 잰 값이 아니라 읽는 메모리 양으로 추정한 값이다.
+- decode 는 한 스텝에 읽는 토큰이 65,536 개에서 5,632 개로 줄어 11.6 배를 기대할 수 있다고 계산했다 (Table 4). 시간 측정값이 아니라 읽는 메모리 양으로 추정한 값이다.
 - 27B MoE 모델로 사전학습했을 때 일반 벤치마크 평균은 0.456 으로 full attention 의 0.443 보다 높았다 (Table 1).
 
 **DSA (DeepSeek-V3.2)**
