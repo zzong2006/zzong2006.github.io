@@ -1,7 +1,6 @@
 import { test } from "node:test"
 import assert from "node:assert/strict"
-import { changeKindOf, newNotes } from "./index.js"
-import { homeLists } from "../../home-recent-notes/index.js"
+import { changeKindOf, newNotes, recentByFilter } from "./index.js"
 
 const note = (slug, created, modified) => ({
   slug,
@@ -38,12 +37,31 @@ test("bulk-imported notes never edited get no badge", () => {
   assert.equal(changeKindOf(files)(imported[0]), undefined)
 })
 
-test("home updated list includes new notes and skips untouched imports", () => {
-  /** 대문 '최근 수정한 글' 은 새 글도 담고, 옮겨 오기만 한 노트는 뺀다. */
-  const { updated } = homeLists(files, { newLimit: 5, updatedLimit: 10 })
+test("recent list mixes new and edited notes and skips untouched imports in filters", () => {
+  /** All 은 수정일 순 전체, New·Edited 는 그 종류만 고른다. 옮겨 오기만 한 노트는 All 에만 든다. */
+  const { notes, filtersOf } = recentByFilter(files, 0)
+  const slugsIn = (key) => notes.filter((page) => filtersOf(page).includes(key)).map((p) => p.slug)
+  assert.deepEqual(slugsIn("new"), ["a/same-day", "a/written"])
+  assert.deepEqual(slugsIn("updated"), ["a/edited", "bulk/edited"])
+  assert.equal(slugsIn("all").length, files.length)
+  assert.deepEqual(filtersOf(imported[0]), ["all"])
+})
+
+test("each filter fills up to the limit on its own", () => {
+  /** All 의 상위가 옮겨 온 노트로 차도 New 는 새 글을 limit 편까지 따로 채운다. */
+  const recentImports = Array.from({ length: 3 }, (_, i) =>
+    note(`late/${i}`, "2026-06-14T09:00:00+09:00", `2026-11-17T0${i}:00:00+09:00`),
+  )
+  const { notes, filtersOf, shown } = recentByFilter([...files, ...recentImports], 2)
+  assert.deepEqual(shown, { all: 2, new: 2, updated: 2 })
   assert.deepEqual(
-    updated.map((page) => page.slug),
-    ["a/same-day", "a/written", "a/edited", "bulk/edited"],
+    notes.map((page) => [page.slug, filtersOf(page)]),
+    [
+      ["late/2", ["all", "updated"]],
+      ["late/1", ["all", "updated"]],
+      ["a/same-day", ["new"]],
+      ["a/written", ["new"]],
+    ],
   )
 })
 

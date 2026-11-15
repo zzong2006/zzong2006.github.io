@@ -115,6 +115,57 @@ export function changeBadge(kind) {
   )
 }
 
+// 최근 목록의 필터. key 는 changeKindOf 가 돌려주는 값과 같다(all 은 전부).
+export const RECENT_FILTERS = [
+  { key: "all", label: "All" },
+  { key: "new", label: "New" },
+  { key: "updated", label: "Edited" },
+]
+
+// 필터마다 수정일 최신 limit 편을 고르고, 합쳐서 수정일 순 한 목록으로 만든다.
+// 화면에는 이 목록을 한 번만 그리고, 각 노트에 들어가는 필터를 data-filters 로 달아
+// 고른 필터의 것만 CSS 로 보이게 한다. 필터를 바꿔도 각 필터가 limit 편씩 꽉 찬다.
+// limit 이 0 이면 전부 고른다.
+export function recentByFilter(allFiles, limit) {
+  const kindOf = changeKindOf(allFiles)
+  const sorted = recentNotes(allFiles)
+  const matches = {
+    all: () => true,
+    new: (p) => kindOf(p) === "new",
+    updated: (p) => kindOf(p) === "updated",
+  }
+  const filtersOf = new Map()
+  const totals = {}
+  const shown = {}
+  for (const { key } of RECENT_FILTERS) {
+    const pages = sorted.filter(matches[key])
+    const picked = limit > 0 ? pages.slice(0, limit) : pages
+    totals[key] = pages.length
+    shown[key] = picked.length
+    for (const page of picked) filtersOf.set(page, [...(filtersOf.get(page) ?? []), key])
+  }
+  return {
+    notes: sorted.filter((page) => filtersOf.has(page)),
+    kindOf,
+    filtersOf: (page) => filtersOf.get(page) ?? [],
+    totals,
+    shown,
+  }
+}
+
+// 필터 단추(라디오) 하나하나의 속성. preact 와 hast 양쪽에서 그리도록 값만 준다.
+// prefix 는 페이지마다 다르게 준다. 미리보기(popover)로 다른 페이지 목록이 같은 문서에
+// 끼어들 때 라디오 name 이 겹치면 서로의 선택을 지운다.
+export function recentFilterControls(prefix) {
+  return RECENT_FILTERS.map(({ key, label }) => ({
+    id: `${prefix}-${key}`,
+    name: prefix,
+    value: key,
+    label,
+    checked: key === "all",
+  }))
+}
+
 export function RecentNotesList({
   notes,
   fileData,
@@ -123,6 +174,7 @@ export function RecentNotesList({
   showDates = true,
   dateKey,
   kindOf,
+  filtersOf,
 }) {
   const locale = cfg.locale ?? "ko-KR"
 
@@ -137,7 +189,10 @@ export function RecentNotesList({
 
       return h(
         "li",
-        { class: "recent-updated-notes__item" },
+        {
+          class: "recent-updated-notes__item",
+          "data-filters": filtersOf ? filtersOf(page).join(" ") : undefined,
+        },
         h(
           "div",
           { class: "recent-updated-notes__title" },
@@ -245,6 +300,57 @@ export const recentNotesCss = `
   background-color: rgba(251, 191, 36, 0.16);
   color: #fbbf5a;
 }
+
+/* 최근 목록 필터. 라디오는 숨기고 label 을 알약 단추로 보인다. */
+.recent-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.recent-filter__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.recent-filter__label {
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+  color: var(--darkgray);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recent-filter__label:hover {
+  border-color: var(--gray);
+}
+
+.recent-filter__input:checked + .recent-filter__label {
+  border-color: var(--dark);
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.recent-filter__input:focus-visible + .recent-filter__label {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+${RECENT_FILTERS.map(
+  ({
+    key,
+  }) => `.recent-filter-scope:has(.recent-filter__input[value="${key}"]:checked) [data-filters]:not([data-filters~="${key}"]) {
+  display: none;
+}`,
+).join("\n\n")}
 
 .recent-updated-notes__meta {
   display: flex;

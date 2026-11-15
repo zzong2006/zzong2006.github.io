@@ -141,7 +141,8 @@ plugins:
     enabled: true
   - source: ./plugins/folder-page-clean
     enabled: true
-  # 대문 두 목록의 "더 보기" 페이지. slug 는 home-recent-notes 의 moreSlug, newSlug 는 newMoreSlug 와 맞춘다.
+  # 대문 Recent Posts 의 "더 보기" 페이지. slug 는 home-recent-notes 의 moreSlug 와 맞춘다.
+  # newSlug(/new) 는 대문에서 링크하지 않지만 예전에 공유된 주소라 남긴다.
   - source: ./plugins/recent-notes-page
     enabled: true
     options:
@@ -151,16 +152,13 @@ plugins:
       newTitle: 최근 작성한 노트
       limit: 200
       showPaths: true
-  # 대문 소개 문단 뒤에 "Recent Posts"(작성일 순)와 "최근 수정한 글"(수정일 순)을 넣는다.
-  # moreSlug 는 recent-notes-page 의 slug 와 맞춘다.
+  # 대문 소개 문단 뒤에 "Recent Posts"(수정일 순, All · New · Edited 필터)를 넣는다.
+  # limit 은 필터마다 보여 줄 개수다. moreSlug 는 recent-notes-page 의 slug 와 맞춘다.
   - source: ./plugins/home-recent-notes
     enabled: true
     options:
-      newTitle: Recent Posts
-      newLimit: 5
-      newMoreSlug: new
-      updatedTitle: 최근 수정한 글
-      updatedLimit: 5
+      title: Recent Posts
+      limit: 10
       moreSlug: recent
       moreLabel: 더 보기
   - source: github:quartz-community/tag-page
