@@ -232,7 +232,7 @@ projection 은 $L$ 에 비례하고 attention 행렬 계산은 $L^2$ 에 비례�
 
 **길이가 8 배면 attention 행렬 계산은 64 배다.**
 
-- 앞의 그래프처럼 8K 부근에서는 attention 행렬 계산이 projection 만큼 커진다.
+- 앞에서 본 것처럼 attention 행렬 계산과 projection 의 비는 $L / (2 d_{\text{model}})$ 이다. $d_{\text{model}} = 1024$ 인 임베딩 인코더라면 2K 토큰에서 이미 둘이 같아지고, 8K 에서는 attention 행렬 쪽이 4 배다.
 - 그래서 수가 적은 긴 문서가 GPU 시간의 상당 부분을 쓴다. 긴 문서를 잘라 낼지, 여러 조각으로 나눠 인코딩할지를 이 비용과 함께 정한다.
 
 padding 을 아예 만들지 않는 방법도 있다. 배치의 문서를 한 줄로 이어 붙이고 문서 경계 위치만 넘겨, attention 이 각 문서 안에서만 계산되게 한다. FlashAttention 의 가변 길이(varlen) 함수가 이 방식이다.
