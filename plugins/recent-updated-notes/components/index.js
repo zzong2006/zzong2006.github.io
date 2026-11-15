@@ -103,9 +103,9 @@ export function changeKindOf(allFiles) {
   }
 }
 
-const CHANGE_LABELS = { new: "신규", updated: "수정" }
+const CHANGE_LABELS = { new: "New", updated: "Edited" }
 
-// 제목 오른쪽에 붙는 신규·수정 표시. preact 와 hast 양쪽에서 쓰도록 이름과 클래스만 준다.
+// 제목 오른쪽에 붙는 New·Edited 표시. preact 와 hast 양쪽에서 쓰도록 이름과 클래스만 준다.
 export function changeBadge(kind) {
   return (
     kind && {
@@ -211,25 +211,39 @@ export const recentNotesCss = `
   font-weight: 600;
 }
 
-/* 제목 오른쪽의 신규·수정 표시. 긴 제목이 줄바꿈돼도 표시는 줄지 않는다. */
+/* 제목 오른쪽의 New·Edited 표시. 긴 제목이 줄바꿈돼도 표시는 줄지 않는다. */
 .recent-updated-notes__badge {
   flex-shrink: 0;
-  padding: 0.05rem 0.45rem;
+  align-self: center;
+  padding: 0.1rem 0.5rem;
   border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.5;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
+/* New 는 초록, Edited 는 주황. 제목 링크가 파랑이라 파랑 계열은 피한다. */
 .recent-updated-notes__badge--new {
-  background-color: var(--highlight);
-  color: var(--secondary);
+  background-color: rgba(22, 163, 74, 0.14);
+  color: #15803d;
 }
 
 .recent-updated-notes__badge--updated {
-  background-color: var(--lightgray);
-  color: var(--darkgray);
+  background-color: rgba(217, 119, 6, 0.14);
+  color: #b45309;
+}
+
+[saved-theme="dark"] .recent-updated-notes__badge--new {
+  background-color: rgba(74, 222, 128, 0.16);
+  color: #6ee7a0;
+}
+
+[saved-theme="dark"] .recent-updated-notes__badge--updated {
+  background-color: rgba(251, 191, 36, 0.16);
+  color: #fbbf5a;
 }
 
 .recent-updated-notes__meta {

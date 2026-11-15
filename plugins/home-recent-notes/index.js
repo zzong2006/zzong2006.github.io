@@ -28,7 +28,7 @@ export const manifest = {
 }
 
 // 새 글은 작성일 순으로, 수정한 글은 수정일 순으로 고른다.
-// 새로 쓰는 것도 노트를 고친 일이라 수정한 글 목록에 새 글도 넣고, 제목 옆에 신규·수정을 단다.
+// 새로 쓰는 것도 노트를 고친 일이라 수정한 글 목록에 새 글도 넣고, 제목 옆에 New·Edited 를 단다.
 // 한꺼번에 옮겨 온 뒤 고친 적 없는 노트는 쓴 것도 고친 것도 아니라 뺀다(kindOf 가 undefined).
 export function homeLists(allFiles, { newLimit, updatedLimit }) {
   const newest = newNotes(allFiles).slice(0, newLimit)

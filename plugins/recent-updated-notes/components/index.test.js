@@ -20,7 +20,7 @@ const importedEdited = note("bulk/edited", "2026-06-14T09:00:00+09:00", "2026-11
 const files = [written, sameDayEdit, edited, ...imported, importedEdited]
 
 test("notes written and edited on the same Seoul day are new", () => {
-  /** 쓴 날 바로 고친 노트는 수정이 아니라 신규로 보인다. */
+  /** 쓴 날 바로 고친 노트는 Edited 가 아니라 New 로 보인다. */
   const kindOf = changeKindOf(files)
   assert.equal(kindOf(written), "new")
   assert.equal(kindOf(sameDayEdit), "new")

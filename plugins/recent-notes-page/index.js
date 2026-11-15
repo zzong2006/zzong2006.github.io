@@ -57,7 +57,7 @@ function RecentNotesContent(opts) {
         : `노트 ${all.length}개`
 
     const groups = groupByDay(notes, cfg.locale ?? "ko-KR", dateKey)
-    // 수정일 목록에는 새로 쓴 노트도 섞여 있어 제목 옆에 신규·수정을 단다. 작성일 목록(/new)은 전부 새 글이다.
+    // 수정일 목록에는 새로 쓴 노트도 섞여 있어 제목 옆에 New·Edited 를 단다. 작성일 목록(/new)은 전부 새 글이다.
     const kindOf = isNew ? undefined : changeKindOf(allFiles)
 
     return h("div", { class: "popover-hint recent-updated-notes recent-notes-page" }, [
