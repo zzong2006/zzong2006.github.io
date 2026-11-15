@@ -8,48 +8,67 @@ aliases: ["GBM", "gradient boosting"]
 
 # A) Gradient Boosting Machine
 
-Gradient Boosting Algorithm (GBM) 은 [[regression]] 또는 [[classification]] 을 수행할 수 있는 예측모형이며 예측모형의 [[ensemble]] 방법론 중 [[boosting]] 계열에 속하는 알고리즘
+집값을 예측한다고 하자. 처음에는 모든 집을 평균값으로 예측하고, 남은 오차를 맞추는 결정 트리를 하나 더한다. 그러고도 남은 오차는 다음 트리가 맞춘다. 이렇게 앞 트리들이 틀린 만큼을 다음 트리가 고치도록 트리를 차례로 더해 가는 모델이 gradient boosting machine(GBM)이다.
 
-여러개의 weak models 을 조합해서 하나의 결과를 만든다. 일반적으로 [[Decision Tree]]s 를 많이 사용하며, 이 경우 알고리즘 이름은 gradient-boosted trees 로 불리게 된다. 일반적으로 [[random forest]] 보다 성능이 좋다고 알려져 있다.
+GBM 은 [[ensemble]] 중 [[boosting]] 계열이고, [[regression|회귀]] 와 [[classification|분류]] 에 모두 쓴다. 더해 가는 모델로는 거의 항상 [[Decision Tree|결정 트리]] 를 쓰며, 이때는 gradient boosted decision tree(GBDT) 라고도 부른다.
 
-## A.1) Introduction
+## A.1) 남은 오차를 맞추는 트리를 차례로 더한다
 
-다른 boosting 방식과 동일하게, gradient boosting 도 반복적인 과정을 통해 약한 모델들을 하나의 강한 모델로 합치게 된다. 가장 쉽게 설명할 수 있는 것은 [[least squares estimation]] 환경으로, 모델 $F$ 에게 [[mean squared error|MSE]] $\frac{1}{n} \sum_{i}\left(\hat{y}_{i}-y_{i}\right)^{2}$ 를 최소화하는 출력 $\hat{y}=F(x)$ 을 가지도록 학습시키는 것이다.
+실제 가격이 3.5 억인 집 하나를 따라가 보자.
 
-이제 gradient boosting 알고리즘이 $M$ 스테이지를 반복한다고 해보자. 각 스테이지 $m$ ($1 \leq m \leq M$) 의 불완전한 모델을 $F_{m}$ 라고 표현하자. $m$ 이 낮을 경우, 이 모델은 아마도 $\hat{y}_{i}=\bar{y}$ 와 같은 출력을 내보낼 것이다 (관측된 결과의 평균 값).
+- 처음 예측은 전체 집값의 평균인 3.0 억이다. 0.5 억이 모자란다.
+- 트리 1 은 집마다 "실제 가격 − 지금 예측" 을 정답으로 삼아 학습한다. 이 집에 0.4 억을 예측했다면 더한 예측은 3.4 억이다.
+- 트리 2 는 남은 0.1 억을 정답으로 삼아 학습한다.
 
-$F_{m}$ 의 성능을 올리기 위해 새로운 추정 모델 $h_{m}(x)$ 을 더해줘야 한다. 즉,  
-
-$$
-F_{m+1}\left(x_{i}\right)=F_{m}\left(x_{i}\right)+h_{m}\left(x_{i}\right)=y_{i}
-$$
-
-또는,  
+$m$ 번째 트리 $h_m$ 을 더하는 한 단계는 다음과 같다. $F_{m-1}$ 은 트리 $m-1$ 개까지 더한 지금의 예측이다.
 
 $$
-h_{m}\left(x_{i}\right)=y_{i}-F_{m}\left(x_{i}\right)
+F_m(x) = F_{m-1}(x) + \nu\, h_m(x)
 $$
 
-로 표현할 수 있다.  
-결과적으로, **gradient boosting 은 $h_{m}$ 를 [[residual]] $y_{i}-F_{m}\left(x_{i}\right)$ 에 대하여 학습한다고 볼 수 있다.**
+실제로는 트리의 예측을 그대로 더하지 않고 learning rate $\nu$ (보통 0.1 이하)를 곱해 조금씩 더한다. 트리 하나가 오차를 한 번에 다 고치려다 학습 데이터의 우연한 흔들림까지 맞추는 것을 막는다 (아래 Shrinkage 절).
 
-주어진 모델에 대한 residuals $h_m(x_i)$ 이 클수록 $F\left(x_{i}\right)$ 에 대한 MSE loss function 의 negative gradients 가 커진다.  
+## A.2) 이름에 gradient 가 붙은 이유
 
-$$
-L_{\mathrm{MSE}}=\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-F\left(x_{i}\right)\right)^{2}
-$$
+**"남은 오차를 맞춘다" 는 제곱 오차를 쓸 때만 성립하는 특별한 경우다.** 일반적으로 다음 트리가 맞추는 값은 손실을 지금 예측으로 미분한 값의 반대 방향(negative gradient)이다.
 
 $$
--\frac{\partial L_{\mathrm{MSE}}}{\partial F\left(x_{i}\right)}=\frac{2}{n}\left(y_{i}-F\left(x_{i}\right)\right)=\frac{2}{n} h_{m}\left(x_{i}\right)
+r_i = -\frac{\partial L\big(y_i, F(x_i)\big)}{\partial F(x_i)}
 $$
 
-그래서 gradient boosting 은 [[gradient descent]] 알고리즘의 특수한 방식중 하나라고 볼 수 있다.
+이 $r_i$ 를 pseudo-residual 이라 부른다. 제곱 오차 $L = \frac{1}{2}(y - F)^2$ 를 넣으면 $r_i = y_i - F(x_i)$ 로, 앞에서 본 남은 오차와 같아진다.
 
-## A.2) 특징
+**손실을 바꾸면 다음 트리가 맞출 값도 바뀐다.** 집이 한 달 안에 팔렸는지(1) 아닌지(0)를 맞히는 분류 문제로 바꿔 보자.
 
-모든 decision tree 의 노드들은 전체 feature 들 중에서 각기 다른 subset 을 이용하여 학습했기 때문에, 모든 weak models 들은 서로 다르며, 데이터에 대한 다방면의 것들을 학습할 수 있다.
+- 모델 출력 $F$ 는 [[logit]] 이고, 팔릴 확률은 $p = \sigma(F)$ 다.
+- 손실은 log loss $L = -[\,y \log p + (1-y)\log(1-p)\,]$ 다.
+- 이를 $F$ 로 미분하면 $r_i = y_i - p_i$ 다. [[logistic regression]] 의 gradient 와 같은 식이다.
 
-또한, 새롭게 학습되는 tree 들은 이전 tree 에서 발생한 error 들을 고려하여 학습한다. 즉, gradient boosting algorithm 에서는 tree 들이 sequential 하게 학습한다고 생각할 수 있다.
+| 집 | 실제 $y$ | 지금 예측 $p$ | 다음 트리가 맞출 값 $y - p$ |
+| --- | --- | --- | --- |
+| 가 | 1 | 0.20 | +0.80 |
+| 나 | 0 | 0.90 | −0.90 |
+| 다 | 1 | 0.95 | +0.05 |
+
+**크게 틀린 집일수록 다음 트리가 크게 고친다.** 가와 나는 반대 방향으로 크게 움직이고, 이미 잘 맞힌 다는 거의 그대로 둔다.
+
+랭킹 손실을 쓰면 문서 쌍의 순서를 바꿨을 때 NDCG 가 얼마나 변하는지로 이 값을 정한다. 아래 LambdaMART 절이 그 경우다.
+
+## A.3) 함수 공간에서의 gradient descent
+
+보통의 [[gradient descent]] 는 모델 파라미터를 negative gradient 방향으로 옮긴다. GBM 은 옮기는 대상이 파라미터가 아니라 **학습 샘플마다의 예측값 $F(x_i)$ 자체**다. 그래서 GBM 을 함수 공간에서의 gradient descent 라고 부른다.
+
+- **트리는 그 방향을 처음 보는 입력까지 넓히는 역할을 한다**: $r_i$ 는 학습 샘플에서만 계산된다. 트리는 비슷한 집끼리 같은 잎에 묶어 같은 값을 주므로, 처음 보는 집에도 어느 쪽으로 고칠지 알려 준다.
+- **learning rate 는 보폭, 트리 수는 걸음 수다**: 보폭을 줄이면 같은 거리를 가는 데 트리가 더 많이 든다.
+- **실제로는 2차 미분까지 쓴다**: XGBoost 와 LightGBM 은 gradient 와 함께 2차 미분(hessian)을 써서 각 잎의 값을 정한다. 식은 [[LightGBM]] 부록에 있다.
+
+## A.4) 특징
+
+- **트리를 차례로 학습한다**: 앞 트리들의 예측이 있어야 다음 트리가 맞출 값이 정해지므로, 트리끼리는 동시에 만들 수 없다.
+  - 트리 하나 안에서 가장 좋은 분할을 찾는 계산은 병렬로 돌린다.
+- **얕은 트리를 많이 쌓아 bias 를 줄인다**: 트리 하나는 몇 단계짜리 얕은 트리라 혼자서는 너무 단순하다. 이를 차례로 더해 복잡한 모양을 만든다.
+  - 같은 얕은 트리 100 개를 [[bagging]] 으로 평균하면 bias 가 거의 그대로지만, boosting 으로 더하면 크게 준다. 수치는 [[bagging]] 노트의 bagging 과 boosting 비교 절에 있다.
+- **분기마다 feature 일부만 쓰는 것은 선택 사항이다**: [[random forest]] 처럼 feature 를 무작위로 일부만 보는 설정(scikit-learn `max_features`, XGBoost `colsample_bytree`, LightGBM `feature_fraction`)이 있지만, 기본값은 모든 feature 를 본다.
 
 # B) Regularization
 
