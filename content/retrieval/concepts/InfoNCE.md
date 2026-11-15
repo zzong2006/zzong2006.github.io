@@ -106,6 +106,40 @@ DPR 의 질문-문단 검색으로 보면 다음과 같다.
 
 - MoCo 는 지난 미니배치들의 임베딩을 큐(queue)에 쌓아 negative 로 쓴다. 가장 오래된 배치를 빼고 새 배치를 넣는다.
 
+## E.1) 자주 나오는 후보는 negative 로도 자주 뽑힌다
+
+상품 검색 모델을 클릭 로그로 학습한다고 하자. 배치에는 (검색어, 클릭한 상품) 쌍이 들어가고, 다른 검색어가 클릭한 상품이 그 검색어의 negative 가 된다.
+
+**in-batch negative 는 무작위로 고른 negative 가 아니다.**
+
+- 클릭이 많은 상품일수록 다른 검색어의 positive 로 배치에 자주 들어온다.
+- 배치에 들어온 상품은 그 배치의 나머지 검색어 모두에게 negative 가 된다.
+- 그래서 판매 1위 상품은 거의 모든 배치에서 밀려나고, 잘 안 팔리는 상품은 밀려날 일이 드물다.
+
+**그 결과 모델은 인기 상품의 점수를 실제 관련도보다 낮게 학습한다.**
+
+- 어떤 검색어에 똑같이 잘 맞는 상품 A, B 가 있고, A 가 배치에 10 배 자주 들어온다고 하자.
+- 끝까지 학습하면 A 의 점수가 B 보다 log 10 ≈ 2.3 낮게 자리 잡는다.
+- 실제로는 점수가 "log 관련도 − log 배치에 들어올 확률" 꼴로 학습된다. 정말 그 검색어에 맞는 인기 상품도 순위가 내려간다.
+
+**logQ correction 은 학습할 때 후보마다 배치에 들어올 확률의 로그를 점수에서 뺀다.**
+
+$$
+s^{c}(q, d) = s(q, d) - \log Q(d)
+$$
+
+- $Q(d)$ 는 상품 $d$ 가 배치에 들어올 확률이다. 학습 데이터에 그 상품이 나온 빈도로 추정한다.
+- positive 를 포함한 후보 전체의 점수를 이렇게 바꾼 뒤 softmax 에 넣는다. 자주 나오는 상품은 많이 깎인 점수로 들어가므로, negative 로 뽑혀도 밀려나는 정도가 줄어든다.
+- 보정은 학습할 때만 한다. 서빙할 때는 원래 유사도 $s(q, d)$ 로 검색한다.
+- 같은 두 상품 예시에 보정을 넣으면 점수 차이가 사라진다. 보정된 점수는 관련도를 따르므로, 인기 상품이 실제로 더 자주 클릭되는 만큼은 점수에 남는다.
+
+YouTube 의 two-tower 추천 논문 [[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations]] (Yi et al., 2019) 이 이 방법을 널리 알렸다. 데이터가 끊임없이 들어오는 환경이라, 상품마다 다시 나타나기까지 걸리는 학습 step 간격을 세어 $Q(d)$ 를 추정했다.
+
+**유사도가 높은 negative 를 loss 에서 빼는 것은 다른 문제의 해법이다.**
+
+- 그 방법은 라벨 없는 정답이 negative 로 섞이는 false negative 를 막는다 ([[hard negative]]).
+- 인기 편향은 negative 가 섞인 것이 아니라 뽑히는 횟수가 치우친 문제라서 logQ correction 으로 따로 다룬다.
+
 # F) 이름과 원래 식
 
 InfoNCE 라는 이름은 CPC(Contrastive Predictive Coding, van den Oord et al., 2018)에서 붙었다.
@@ -151,4 +185,5 @@ $$
 - [A Simple Framework for Contrastive Learning of Visual Representations (SimCLR, Chen et al., ICML 2020)](https://arxiv.org/abs/2002.05709)
 - [Momentum Contrast for Unsupervised Visual Representation Learning (MoCo, He et al., CVPR 2020)](https://arxiv.org/abs/1911.05722)
 - [Dense Passage Retrieval for Open-Domain Question Answering (DPR, Karpukhin et al., EMNLP 2020)](https://arxiv.org/abs/2004.04906)
+- [Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations (Yi et al., RecSys 2019)](https://research.google/pubs/pub48840/)
 - [Learning Transferable Visual Models From Natural Language Supervision (CLIP, Radford et al., ICML 2021)](https://arxiv.org/abs/2103.00020)
