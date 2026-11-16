@@ -39,16 +39,41 @@ focal loss 의 식과 효과는 [[Focal Loss와 Gradient Blending]] 노트에 �
 
 # D) 리샘플링과 class weight 는 확률을 부풀린다
 
-undersampling, oversampling, class weight 는 모두 모델이 보는 positive 의 비율을 실제보다 키운다. positive 가 1% 인 데이터를 50% 처럼 보여 주고 학습시키면, 모델은 positive 확률을 체계적으로 높게 예측한다. 반면 샘플들의 점수 순서는 거의 그대로다.
+positive 가 1% 인 데이터에서 negative 를 100 개 중 1 개만 남기면, 학습 데이터에서는 positive 가 절반쯤 된다. 모델은 "positive 가 절반쯤 있다" 고 배우므로, 실제로는 1% 인 사건을 수십 % 로 예측하게 된다. oversampling 과 class weight 도 모델이 보는 positive 비율을 키우므로 같은 일이 생긴다.
 
-## D.1) 시뮬레이션으로 확인하기
+**확률값은 부풀지만, 샘플들을 점수 높은 순으로 줄 세운 순서(랭킹)는 거의 그대로다.**
 
-positive 비율이 약 1% 인 데이터 20 만 개로 [[logistic regression]] 을 학습하고, 같은 방식으로 만든 test 데이터 20 만 개로 평가했다. feature 5 개 중 3 개만 positive 에서 평균이 조금 높게 만들었다.
+- 모든 샘플의 점수가 함께 올라가므로 누가 누구보다 위에 있는지는 거의 바뀌지 않는다.
+- 그래서 threshold 를 넘었는지만 보는 판정에는 문제가 없다. threshold 를 검증 데이터에서 다시 고르면 된다.
+- 문제가 되는 것은 확률값 자체를 쓰는 경우다. 광고 경매에서 예측 클릭률에 입찰가를 곱해 순위를 매기거나, 여러 모델의 점수를 더하거나, 기대 비용으로 의사결정을 하는 경우가 그렇다.
 
-1. 그대로 학습한다.
-2. negative 를 1.01% 만 남겨(positive 비율 약 50%) 학습한다.
-3. 2 의 예측을 아래 "확률을 되돌리는 방법" 절의 식으로 되돌린다.
-4. scikit-learn `class_weight="balanced"` 로 학습한다.
+## D.1) 부풀린 확률을 원래 비율로 되돌리는 식
+
+**negative 를 비율 $w$ 만 남겼다면, 예측의 odds 에 $w$ 를 곱하면 원래 비율 기준의 확률이 된다.**
+
+- odds 는 $p / (1 - p)$, 즉 positive 일 확률이 negative 일 확률의 몇 배인지다.
+- negative 를 비율 $w$ 만 남기면 학습 데이터에서 positive 대 negative 의 비가 $1/w$ 배로 커진다. 모델이 예측하는 odds 도 그만큼 부푼다.
+- 그래서 부푼 odds 에 $w$ 를 곱해 되돌린다. 확률로 다시 쓰면 다음 식이다. $p'$ 는 undersampling 한 데이터로 학습한 모델의 예측, $p$ 는 되돌린 확률이다.
+
+$$
+p = \frac{p'}{p' + (1 - p')/w}
+$$
+
+negative 를 1.01% 만 남긴 경우($w = 0.0101$)로 계산해 보자.
+
+- 모델이 0.5 를 예측하면 odds 는 1 이다. 여기에 0.0101 을 곱하면 odds 0.0101, 확률로 약 0.010 이다. 50% 로 보이던 예측이 실제 비율인 1% 수준으로 돌아온다.
+- 0.9 를 예측한 샘플은 약 0.083 으로 돌아온다. 0.5 를 예측한 샘플보다 여전히 높으므로 랭킹은 그대로다.
+
+이 식이 나오는 과정과, 식으로 되돌릴 수 없는 경우에 쓰는 Platt scaling, isotonic regression 은 [[probability calibration]] 노트에 있다. class weight 를 썼을 때도 같은 식에서 $w$ 를 negative 가중치 ÷ positive 가중치로 두면 근사적으로 되돌릴 수 있지만, 원래 분포의 검증 데이터로 calibration 을 다시 맞추는 쪽이 확실하다.
+
+## D.2) 시뮬레이션으로 확인하기
+
+positive 비율이 약 1% 인 데이터 20 만 개로 [[logistic regression]] 을 학습하고, 같은 방식으로 만든 test 데이터 20 만 개로 평가했다. feature 5 개 중 3 개만 positive 에서 평균이 조금 높게 만들었다. 학습 방법은 네 가지다.
+
+- **그대로 학습**: 원래 데이터로 학습한다.
+- **negative undersampling**: negative 를 1.01% 만 남겨, 학습 데이터의 positive 비율을 약 50% 로 만든다.
+- **undersampling + 되돌리기**: undersampling 모델의 예측 확률을 앞의 식으로 되돌린다.
+- **class weight**: scikit-learn `class_weight="balanced"` 로 학습한다.
 
 | 방법 | ROC-AUC | Average Precision | 예측 확률의 평균 | log loss | recall 80% 에서의 precision | 그때의 threshold |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -59,29 +84,11 @@ positive 비율이 약 1% 인 데이터 20 만 개로 [[logistic regression]] �
 
 test 데이터의 실제 positive 비율은 0.99% 다.
 
-- **순위를 보는 지표는 그대로다.** ROC-AUC, Average Precision, 같은 recall 에서의 precision 이 네 방법에서 모두 같다. 판정 품질은 바뀌지 않았고, 같은 판정을 내리는 threshold 의 위치만 0.009 에서 0.47 근처로 옮겨 갔다.
+- **랭킹을 보는 지표는 그대로다.** ROC-AUC, Average Precision, 같은 recall 에서의 precision 이 네 방법에서 모두 같다. 판정 품질은 바뀌지 않았고, 같은 판정을 내리는 threshold 의 위치만 0.009 에서 0.47 근처로 옮겨 갔다.
 - **확률의 절대값은 틀어졌다.** undersampling 과 class weight 는 실제 비율이 1% 인데 평균 33% 를 예측한다. 확률 자체의 정확도를 보는 log loss 는 0.046 에서 0.496 으로 10 배 넘게 나빠졌다.
-- **되돌리면 원래대로 돌아온다.** 되돌리는 식으로 바꾼 확률은 그대로 학습한 모델과 평균, log loss 가 같다.
+- **되돌리면 원래대로 돌아온다.** 되돌린 확률은 그대로 학습한 모델과 평균, log loss 가 같다.
 
-이 실험에서 순위가 정확히 같은 것은 logistic regression 의 특성이다. logistic regression 에서 negative 를 무작위로 버리면, 이론적으로 절편만 바뀌고 기울기는 거의 그대로다. 신경망이나 트리 모델에서는 학습에 쓴 데이터가 달라지므로 순위도 조금 달라질 수 있지만, 확률이 부풀려지는 방향은 같다.
-
-## D.2) 확률을 되돌리는 방법
-
-threshold 를 넘었는지만 보는 판정에는 부풀려진 확률도 문제가 없다. threshold 를 검증 데이터에서 다시 고르면 된다. 문제가 되는 것은 확률값 자체를 쓰는 경우다. 광고 경매에서 예측 클릭률에 입찰가를 곱해 순위를 매기거나, 여러 모델의 점수를 더하거나, 기대 비용으로 의사결정을 하는 경우가 그렇다.
-
-negative 를 비율 $w$ 로 무작위 undersampling 했다면 다음 식으로 되돌린다.
-
-$$
-p = \frac{p'}{p' + (1 - p')/w}
-$$
-
-| 기호 | 뜻 |
-| --- | --- |
-| $p'$ | undersampling 한 데이터로 학습한 모델의 예측 |
-| $w$ | negative 를 남긴 비율. 위 실험에서는 0.0101 |
-| $p$ | 원래 분포 기준으로 되돌린 확률 |
-
-이 식이 나오는 과정과, 식으로 되돌릴 수 없는 경우에 쓰는 Platt scaling, isotonic regression 은 [[probability calibration]] 노트에 있다. class weight 를 썼을 때도 같은 식에서 $w$ 를 negative 가중치 ÷ positive 가중치로 두면 근사적으로 되돌릴 수 있지만, 원래 분포의 검증 데이터로 calibration 을 다시 맞추는 쪽이 확실하다.
+이 실험에서 랭킹이 정확히 같은 것은 logistic regression 의 특성이다. logistic regression 에서 negative 를 무작위로 버리면, 이론적으로 절편만 바뀌고 기울기는 거의 그대로다. 신경망이나 트리 모델에서는 학습에 쓴 데이터가 달라지므로 랭킹도 조금 달라질 수 있지만, 확률이 부풀려지는 방향은 같다.
 
 # E) 무엇을 고르나
 
