@@ -19,6 +19,13 @@ tags:
 
 예) Run, runs, ran 등 모두 run 이라는 어휘소에서 가져온다.
 
-# C) References
+# C) 한국어 검색에서
+
+한국어는 조사와 어미가 단어에 붙어 있어서, 검색 엔진은 문장을 형태소 단위로 잘라 색인하는 일이 많다.
+
+- `나무를`, `나무가` 를 형태소로 자르면 둘 다 `나무` 가 남아 같은 term 이 된다.
+- 형태소 분석과 n-gram 을 검색 색인 관점에서 비교한 내용은 [[한국어 검색 토크나이징]] 에 있다.
+
+# D) References
 
 [R, Python 분석과 프로그래밍의 친구 (by R Friend) :: [NLP] 언어 구조의 구성 요소 (Building Blocks of Language Structure)](https://rfriend.tistory.com/739)
