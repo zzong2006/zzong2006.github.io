@@ -173,7 +173,7 @@ loss 를 줄이려면 weight $\boldsymbol{w}$ 와 bias $b$ 를 어느 방향으�
 
 ```mermaid
 flowchart LR
-  WB["weight w, bias b"] --> Z["선형 점수 z_i"] --> P["예측 확률 p_i"] --> L["loss l_i"]
+  WB["weight w, bias b"] --> Z["선형 점수 zᵢ"] --> P["예측 확률 pᵢ"] --> L["loss ℓᵢ"]
 ```
 
 그래서 합성함수의 미분법(chain rule)을 써서 먼저 가운데 고리인 $z_i$ 에 대한 미분을 구한 뒤, $z_i$ 를 $\boldsymbol{w}$ 와 $b$ 로 미분한 값을 곱한다.
