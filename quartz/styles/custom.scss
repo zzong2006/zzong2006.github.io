@@ -816,3 +816,38 @@ body[data-slug="new"] {
 .related-notes__snippet .katex {
   font-size: 1em;
 }
+
+// 본문 절 제목의 단계를 눈으로 구분한다.
+// 크기만 다르면(24px / 19.5px, 둘 다 굵게) # 과 ## 이 잘 안 갈렸고, # 은 노트 제목과
+// 크기가 같았다. # 은 노트 제목보다 작게 줄이고 아래에 선을 긋는다. ## 은 왼쪽에 막대를
+// 세운다. ### 아래는 글자색을 옅게 한다.
+// 대문(index)은 소개 · 주제별 절이 h2 라서 막대가 붙으면 Recent Posts 머리글과 어긋난다.
+// 그래서 대문은 빼고, 컴포넌트가 만든 머리글은 건드리지 않게 본문 직속 자식만 잡는다.
+body:not([data-slug="index"]) article .markdown-rendered {
+  & > h1 {
+    font-size: 1.5rem;
+    margin-top: 2.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--lightgray);
+  }
+
+  & > h2 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--secondary);
+    line-height: 1.45;
+  }
+
+  & > h3 {
+    font-size: 1.05rem;
+    color: var(--darkgray);
+  }
+
+  & > h4,
+  & > h5,
+  & > h6 {
+    font-size: 0.98rem;
+    color: var(--darkgray);
+  }
+}
